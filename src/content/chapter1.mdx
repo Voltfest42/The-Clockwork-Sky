@@ -1,0 +1,170 @@
+import { LightRaceFigure } from '../figures/LightRaceFigure';
+import { ScaleModelFigure } from '../figures/ScaleModelFigure';
+import { ZoomFigure } from '../figures/ZoomFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { VoyagerLightDay } from '../site/content/Dated';
+import { Term } from '../site/content/Term';
+import { ZoomLevels } from '../site/pages/ZoomLevels';
+import { EarthsAcrossTheSun, NeptunesOrbit } from './checks/chapter1';
+
+Astronomy is the science of big numbers. Before we take the sky's clockwork apart, we need a feel for how big the machine is, and that is harder than it sounds: the distances out there are so large that every picture you have seen of the Solar System has had to lie about them. This chapter shows them true.
+
+## Ten times bigger, again and again
+
+Start with yourself, a little under 2 metres long. Now picture a square 10 m across, then 100 m, then 1,000 m. Each step makes the view ten times wider. After 7 steps the view is 10,000 km across, a little less than the width of Earth. After 13, the whole family of planets fits. After 21 steps, the view holds the entire Milky Way: a few hundred billion stars.
+
+Numbers like that get unwieldy. Writing 1,000,000,000,000,000,000,000 m is no fun, and it's easy to miscount the zeros. So scientists write it as 10²¹ m, "ten to the twenty-one": a 1 followed by 21 zeros, or 21 steps of ×10. A number that isn't a neat power of ten gets a number in front: Earth is 12,742 km across, which is 1.27 × 10⁷ m. This is <Term id="scientific-notation">scientific notation</Term>, and the small raised number is simply a count of steps on the zoom. The Toolkit page [Powers of ten](#/toolkit/powers-of-ten) shows how to calculate with it.
+
+<ZoomFigure
+  number="1.1"
+  tryThis={
+    <p>
+      Press <b>Fly out</b> and watch the ×10 counter. When do you first see the Moon? When does Earth shrink to a dot? Then use <b>Go to</b> to
+      jump to Proxima Centauri, and click the Sun’s marker to see how small our whole Solar System has become.
+    </p>
+  }
+/>
+
+Notice what the zoom keeps doing. Every few steps there is a cluster of things, and then a long stretch of nothing. Earth and the Moon, then empty space. The Sun and its planets, then empty space for thousands of times their size. Stars, then more empty space. That emptiness is the first fact about the universe, and the hardest to picture.
+
+<Callout>
+
+Each step of ×10 makes a view ten times wider, so it covers a hundred times the area. Twenty-one steps take you from a person to a galaxy. On a scale that wide, "big" and "small" stop meaning much; what matters is *how many steps* apart two things are.
+
+</Callout>
+
+<DeepDive title="The film that did this first">
+
+The zoom is an old idea. In 1977 Charles and Ray Eames made a short film, *Powers of Ten*, that starts with a couple having a picnic in a Chicago park and pulls back by a factor of ten every ten seconds, to the edge of the known universe, then dives into a hand, down to the scale of a proton. If you've never seen it, it's worth nine minutes. This course stops at the Milky Way: the universe beyond it is a subject for another course.
+
+</DeepDive>
+
+## A Solar System on a football pitch
+
+The zoom shows the sizes and distances honestly, but it can only show one scale at a time. A scale model shows them all together. Shrink everything by the same factor, and see what you get.
+
+Put the Sun on the centre spot of a football pitch as a grapefruit, 10 cm across. That shrinks everything by about 14 billion times. Then:
+
+- **Earth** is a grain of sand, 0.9 mm across, 10.8 m from the grapefruit: just outside the centre circle. The **Moon** is a speck a quarter of a millimetre across, 2.8 cm from it.
+- **Jupiter**, the biggest planet, is a pea 56 m away, just past the goal line.
+- **Neptune**, the farthest planet, is a small peppercorn 323 m away, three pitches off.
+- The nearest other star, **Proxima Centauri**, is a cherry about 2,900 km away: in another country.
+
+Between them there is almost nothing: a grapefruit and eight grains and seeds, scattered over a patch of ground more than half a kilometre wide, and the next grapefruit a long-haul flight away.
+
+<ScaleModelFigure
+  number="1.2"
+  tryThis={
+    <p>
+      Make the Sun a <b>house</b>. How big is Earth now, and where is Proxima Centauri? Then type your own size: how big would the Sun have to be
+      for Neptune to be 1 km away?
+    </p>
+  }
+/>
+
+<Callout kind="note" title="Why the pictures lie">
+
+Diagrams of the Solar System in books, on posters and on screens squeeze the planets close together and blow them up so you can see them. They have to: drawn to true scale on a page, the Sun would be a dot and every planet invisible. But the lie sticks. Many people picture the Solar System as a compact, crowded place, with the asteroid belt as a field of rocks to dodge. In fact spacecraft fly straight through the belt without steering round anything. Whenever a figure in this course has to exaggerate, it carries a **Not to scale** tag.
+
+</Callout>
+
+## Light as a measuring stick
+
+Kilometres run out of meaning quickly. A better yardstick for space is the fastest thing there is. Light travels at 299,792,458 metres per second, about 300,000 km every second, and nothing goes faster. So astronomers often measure a distance by how long light takes to cross it:
+
+| Light takes | To cross | Which is |
+|---|---|---|
+| 1.28 seconds | from the Moon to Earth | 384,400 km |
+| 8 minutes 19 seconds | from the Sun to Earth | 150 million km, or 1 AU |
+| about 4 hours 10 minutes | from the Sun to Neptune | 30 AU |
+| a day | from Earth to Voyager 1 | 26 billion km |
+| 4.25 years | from Proxima Centauri to us | 40 trillion km |
+
+The second row gives the Solar System's own unit of distance: the <Term id="au">astronomical unit</Term>, or AU, the average distance between Earth and the Sun. And the last row gives the unit for the stars: the <Term id="light-year">light-year</Term>, the distance light travels in a year, about 9.46 trillion km. A light-year is a distance, not a time.
+
+<VoyagerLightDay />
+
+<LightRaceFigure
+  number="1.3"
+  tryThis={
+    <p>
+      Press <b>Play</b> at <b>Real speed</b> and watch how long light takes just to reach Mercury. Then switch to <b>1 hour a second</b> and
+      follow it past Neptune. How long does it take to reach Proxima Centauri, and how far is that next to the whole Solar System?
+    </p>
+  }
+/>
+
+There is a strange side to measuring with light. Light takes time to arrive, so you never see anything as it is now. You see the Sun as it was 8 minutes ago, and Proxima Centauri as it was 4 years ago. Looking out into space is looking back in time.
+
+<Callout kind="know">
+
+How do we know these distances so precisely? Inside the Solar System, by timing radio waves. Since 1961, astronomers have bounced radar off Venus and timed spacecraft signals, which turns the speed of light into distances good to metres. The astronomical unit was fixed in 2012 at exactly 149,597,870,700 m. Distances to the stars come from a different trick, parallax, which Chapter 9 explains.
+
+</Callout>
+
+## Where we’re going
+
+The course moves through the zoom in three parts. Part I stays mostly inside the Solar System, where the sky's clockwork lives. Part II zooms out among the stars. Part III zooms both ways at once: into the cores of stars, and out to the most extreme objects in the Galaxy.
+
+<ZoomLevels />
+
+Next comes the sky itself, as you see it from the ground: a dome that turns once a day, and which changes with where you stand.
+
+<CheckYourself>
+  <EarthsAcrossTheSun />
+
+  <Question id="neptune-at-one-metre" prompt="Suppose Earth were 1 m from the Sun. How far away would Neptune be?">
+    <Choice label="3 m">
+      That’s about how it looks in most diagrams, which squeeze the outer planets in to fit the page. Neptune is 30 times as far from the Sun
+      as Earth is, so it would be 30 m away.
+    </Choice>
+    <Choice label="10 m">
+      That’s Saturn, which is 9.5 times as far out as Earth. Neptune is 30 times as far, so it would be 30 m away.
+    </Choice>
+    <Choice label="30 m" correct>
+      Right: Neptune is about 30 AU from the Sun, so 30 m. Light takes about 4 hours to get there. Mercury, in the same model, would be just
+      39 cm from the Sun.
+    </Choice>
+    <Choice label="300 m">
+      Too far: that’s ten times Neptune’s distance, past the edge of the Sun’s wind (120 m in this model) and Voyager 1 (172 m). Neptune is
+      30 AU out, so 30 m.
+    </Choice>
+  </Question>
+
+  <NeptunesOrbit />
+
+  <Question id="sun-vanishes" prompt="If the Sun suddenly vanished, when would we notice on Earth?">
+    <Choice label="At once">
+      Nothing travels faster than light, not even a change in gravity. In 2017, gravitational waves from two colliding neutron stars arrived
+      within 2 seconds of the light from the same crash, after a journey of 130 million years: gravity and light travel at the same speed.
+    </Choice>
+    <Choice label="After about 8 minutes" correct>
+      Right. The last sunlight would still be on its way for 8 minutes and 19 seconds. And the change in gravity spreads at the speed of
+      light too, so for those 8 minutes Earth would keep going round the empty spot where the Sun had been.
+    </Choice>
+    <Choice label="After about a second">
+      That’s how long light takes to reach us from the Moon, 384,400 km away. The Sun is 390 times farther: 8 minutes and 19 seconds.
+    </Choice>
+    <Choice label="After a few days, when it got cold">
+      It would get cold more slowly than that: the oceans and the ground hold heat for weeks. But we wouldn’t need a thermometer. The sky
+      would go dark, and Earth would stop circling the Sun, 8 minutes and 19 seconds after the Sun vanished.
+    </Choice>
+  </Question>
+
+  <Question id="looking-at-sirius" prompt="Sirius is 8.6 light-years away. When you look at it, what do you see?">
+    <Choice label="Sirius as it is right now">
+      The light you see has been travelling for years. You see Sirius as it was when that light left: 8.6 years ago.
+    </Choice>
+    <Choice label="Sirius as it was 8.6 years ago" correct>
+      Right. A light-year is the distance light covers in a year, so light from 8.6 light-years away set off 8.6 years ago.
+    </Choice>
+    <Choice label="Sirius as it was 8.6 light-years ago">
+      A light-year is a distance, not a time, so “8.6 light-years ago” doesn’t mean anything. The light set off 8.6 years ago, so that’s how
+      old the picture is.
+    </Choice>
+    <Choice label="Sirius as it was 8.6 seconds ago">
+      Light takes 8.6 seconds to cross about 2.6 million km, not even twice the Sun’s width. Sirius is 8.6 light-years away: the light left 8.6 years ago.
+    </Choice>
+  </Question>
+</CheckYourself>

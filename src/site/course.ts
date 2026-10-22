@@ -157,6 +157,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Ten times bigger, again and again', 'A Solar System on a football pitch', 'Light as a measuring stick', 'Where we’re going'],
     buildsOn: [],
     toolkit: ['powers-of-ten'],
+    load: () => import('../content/chapter1.mdx'),
   }),
   chapter({
     number: 2,
@@ -372,6 +373,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Scientific notation, multiplying and dividing powers, orders of magnitude, and prefixes from kilo to giga.',
     part: 1,
     firstNeeded: 1,
+    load: () => import('../content/toolkit/powers-of-ten.mdx'),
   },
   {
     slug: 'angles-in-the-sky',
@@ -380,6 +382,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Degrees, arcminutes and arcseconds, your hand at arm’s length, and the small-angle rule.',
     part: 1,
     firstNeeded: 2,
+    load: () => import('../content/toolkit/angles-in-the-sky.mdx'),
   },
   {
     slug: 'ratios-and-scaling',

@@ -1,0 +1,17 @@
+.guess {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.guess input {
+  flex: 1 1 200px;
+  accent-color: var(--accent-fill);
+}
+
+.guess output {
+  min-width: 8em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

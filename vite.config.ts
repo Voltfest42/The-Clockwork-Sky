@@ -12,6 +12,8 @@ export default defineConfig({
   ],
   build: {
     target: 'es2022',
+    // three.js is one lazy chunk of about 750 kB (190 kB gzipped), loaded only by pages with a 3D view.
+    chunkSizeWarningLimit: 800,
   },
   server: {
     // The CDK app's build output holds locked zip files on Windows, which crashes the watcher.

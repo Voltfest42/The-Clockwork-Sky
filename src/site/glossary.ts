@@ -17,6 +17,10 @@ export const GLOSSARY = {
     term: 'Aphelion',
     definition: 'The point of an orbit farthest from the Sun. Earth passes it in early July.',
   },
+  arcsecond: {
+    term: 'Arcminute, arcsecond',
+    definition: 'Small angles: a degree splits into 60 arcminutes (′), and an arcminute into 60 arcseconds (″). The full Moon is about 31′ across.',
+  },
   au: {
     term: 'Astronomical unit (AU)',
     definition: 'About the average distance between Earth and the Sun: exactly 149,597,870,700 m, or roughly 150 million km.',
@@ -89,6 +93,10 @@ export const GLOSSARY = {
     term: 'Focus',
     definition: 'One of the two points that define an ellipse. A planet’s orbit has the Sun at one focus.',
   },
+  heliopause: {
+    term: 'Heliopause',
+    definition: 'The boundary where the wind of particles from the Sun meets the gas between the stars, about 120 AU out. Voyager 1 crossed it in 2012.',
+  },
   'light-year': {
     term: 'Light-year',
     definition: 'The distance light travels in a year: about 9.46 trillion km.',
@@ -105,9 +113,17 @@ export const GLOSSARY = {
     term: 'Obliquity',
     definition: 'The tilt of a planet’s spin axis to its orbit. Earth’s is 23.4°, and it is why we have seasons.',
   },
+  'oort-cloud': {
+    term: 'Oort cloud',
+    definition: 'A vast, sparse shell of icy bodies thought to surround the Solar System out to about 100,000 AU, the source of long-period comets. It has never been seen directly.',
+  },
   opposition: {
     term: 'Opposition',
     definition: 'When a planet is opposite the Sun in our sky, so it rises at sunset and is up all night.',
+  },
+  'order-of-magnitude': {
+    term: 'Order of magnitude',
+    definition: 'The nearest power of ten to a number. Two things of the same order of magnitude are within about a factor of ten of each other.',
   },
   parallax: {
     term: 'Parallax',
@@ -129,6 +145,10 @@ export const GLOSSARY = {
     term: 'Precession',
     definition: 'The slow wobble of Earth’s axis, which traces a circle on the sky about every 26,000 years and makes the pole star change.',
   },
+  radian: {
+    term: 'Radian',
+    definition: 'A unit of angle, about 57.3°. An object spans an angle in radians of its size divided by its distance, when the angle is small.',
+  },
   'retrograde-motion': {
     term: 'Retrograde motion',
     definition: 'A planet’s apparent backward loop against the stars, seen when Earth overtakes it, or it overtakes Earth.',
@@ -140,6 +160,10 @@ export const GLOSSARY = {
   saros: {
     term: 'Saros',
     definition: 'The cycle of 18 years and 11⅓ days (223 lunar months) after which a very similar eclipse comes round again.',
+  },
+  'scientific-notation': {
+    term: 'Scientific notation',
+    definition: 'Writing a number as a number between 1 and 10 times a power of ten: Earth’s width, 12,742 km, is 1.27 × 10⁷ m.',
   },
   sidereal: {
     term: 'Sidereal',

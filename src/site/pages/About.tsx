@@ -33,7 +33,9 @@ export function About() {
           The physics is checked automatically against independent references. So far that covers the foundations: calendar dates and Julian
           Dates against the worked examples in Jean Meeus’s <i>Astronomical Algorithms</i>; sidereal time and conversions between coordinate
           systems against the same book, and against round trips that must come back to where they started; and ΔT against the historical
-          values it was fitted to. As the chapters arrive, the positions of the Sun, Moon and planets will be checked against NASA JPL’s
+          values it was fitted to. Chapter 1’s numbers are checked too: the planets’ periods against NASA’s fact sheets, light travel times
+          against the research notes, galactic coordinates against the defining poles, and the scale models and the zoom against values worked
+          out by hand. As the chapters arrive, the positions of the Sun, Moon and planets will be checked against NASA JPL’s
           Horizons system, and eclipses against NASA’s eclipse lists. End-to-end tests open every page, use it by keyboard, and run
           accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
@@ -55,6 +57,27 @@ export function About() {
           </li>
           <li>Two small effects on star positions, nutation and aberration, are left out. Neither is more than 20 arcseconds.</li>
         </ul>
+        <h3>Chapter 1</h3>
+        <ul>
+          <li>
+            <b>Figure 1.1, the zoom.</b> Sizes and distances are true. Directions are flattened: Earth is seen from straight above you, the
+            planets from above their orbits, the stars from above the Milky Way, and anything above or below those planes is swung into them at
+            its true distance. The planets sit at their average distances, at their average positions for today; the Oort cloud’s size is an
+            estimate, and the Milky Way is a sketch. Anything smaller than a pixel is drawn as a dot.
+          </li>
+          <li>
+            <b>Figure 1.2, the scale model.</b> The planets are at their average distances, in a line. The everyday objects are typical sizes,
+            and distances between cities are straight lines across the globe.
+          </li>
+          <li>
+            <b>Figure 1.3, light’s race.</b> Distances are true; orbits are circles at the average distance. Planets and spacecraft are drawn at
+            least a few pixels wide. Voyager 1’s distance comes from its speed, about 3.6 AU a year, measured from where it is on 18 November 2026.
+          </li>
+          <li>
+            <b>Toolkit figure T2.1.</b> The drawing squeezes the distance to fit, so small angles are drawn wider than they are. Arm’s length is
+            taken as 57 cm.
+          </li>
+        </ul>
 
         <h2>Sources</h2>
         <ul>
@@ -66,6 +89,24 @@ export function About() {
           <li>The International Earth Rotation and Reference Systems Service (IERS) and the US Naval Observatory: measured values of ΔT.</li>
           <li>S. Aoki and colleagues (1982), Astronomy and Astrophysics 105, 359: the IAU 1982 expression for sidereal time.</li>
           <li>J. Laskar (1986), Astronomy and Astrophysics 157, 59: the long-term formula for the tilt of Earth’s axis.</li>
+          <li>NASA Planetary Fact Sheets (D. R. Williams, NASA Goddard): the sizes of the planets and the Moon.</li>
+          <li>
+            E. M. Standish, Keplerian Elements for Approximate Positions of the Major Planets (JPL Solar System Dynamics): the planets’ average
+            distances and how fast they go round.
+          </li>
+          <li>
+            NASA, 17 June 2026: Voyager 1 reaches one light-day from Earth on 18 November 2026. Its distance from the Sun is worked out from
+            that and Earth’s position; its direction (in Ophiuchus) and speed (about 17 km/s) are rounded values.
+          </li>
+          <li>
+            ESA, The Hipparcos and Tycho Catalogues (1997), vol. 1, §1.5.3: the definition of galactic coordinates. Gaia Data Release 3 (2022):
+            the distance to Proxima Centauri. SIMBAD (CDS, Strasbourg): star positions.
+          </li>
+          <li>
+            GRAVITY Collaboration (2019, 2021), Astronomy and Astrophysics 625, L10 and 647, A59: the distance to the centre of the Milky Way and
+            the mass of its black hole.
+          </li>
+          <li>T. S. Boyajian and colleagues (2012), The Astrophysical Journal 757, 112: the sizes of nearby red dwarfs.</li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
@@ -77,8 +118,9 @@ export function About() {
 
         <h2>Data and credits</h2>
         <p>
-          No outside data files are used yet. Star catalogues, constellation figures, planetary elements and eclipse lists arrive with Part I’s
-          chapters, and each will be credited here with its licence.
+          No outside data files are used yet: Chapter 1’s sizes and distances are published values, typed into the code with their sources (see
+          above). Star catalogues, constellation figures and eclipse lists arrive with Part I’s later chapters, and each will be credited here
+          with its licence.
         </p>
 
         <h2>Built with</h2>

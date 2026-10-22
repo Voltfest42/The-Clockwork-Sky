@@ -1,0 +1,63 @@
+import { AnglesFigure } from '../../figures/AnglesFigure';
+import { Callout, DeepDive } from '../../site/content/blocks';
+import { Term } from '../../site/content/Term';
+
+When you look at the sky you can't see how far away anything is. What you can measure is the angle between things, and the angle something spans. Nearly everything in Part I starts from angles like these.
+
+## Degrees, arcminutes and arcseconds
+
+A full circle is 360 degrees (360°). From the horizon to the point straight overhead, the <Term id="zenith">zenith</Term>, is 90°. The Sun and the full Moon are each about half a degree across.
+
+For smaller angles, each degree is split into 60 **arcminutes** (60′), and each arcminute into 60 **<Term id="arcsecond">arcseconds</Term>** (60″), just as an hour splits into minutes and seconds. So:
+
+- the full Moon is about 31′ across;
+- Jupiter, at its biggest, is up to about 50″;
+- the sharpest eyes can split two points about 1′ apart;
+- a nearby star shifts back and forth by less than 1″ a year as Earth goes round the Sun (Chapter 9).
+
+## Your hand as a ruler
+
+You carry an angle-measuring kit with you. Hold your hand out at arm's length:
+
+| At arm's length | Spans about |
+|---|---|
+| your little finger | 1° (two full Moons) |
+| three fingers, side by side | 5° |
+| your fist | 10° |
+| your spread hand, thumb to little finger | 20° |
+
+It works for most people, children too, because people with longer arms tend to have bigger hands. The trick behind it: at 57 cm, a centimetre spans almost exactly 1°.
+
+<Callout kind="note" title="The Moon illusion">
+
+The Moon looks huge when it's low on the horizon and smaller when it's high. Measure it with your little finger and it's the same size, about half your little finger's width, wherever it is. The difference is in how your brain judges it, not in the sky.
+
+</Callout>
+
+## The small-angle rule
+
+There is a simple link between an object's size, its distance, and the angle it spans. For small angles:
+
+**angle = size ÷ distance**
+
+The angle comes out in a unit called the <Term id="radian">radian</Term>. One radian is about 57.3°. (That's where the 57 cm arm's length came from.) To turn radians into degrees, multiply by 57.3.
+
+Try it on the Moon: 3,475 km ÷ 384,400 km = 0.009 radians, and 0.009 × 57.3 = 0.52°. Turned round, the rule measures sizes: if you know how far away something is and the angle it spans, then size = distance × angle. That's how astronomers measured the sizes of the Sun, the Moon and the planets.
+
+<AnglesFigure
+  number="T2.1"
+  tryThis={
+    <p>
+      Compare <b>The full Moon</b> with <b>The Sun</b>: almost the same angle, which is why total eclipses are possible. Then pick your fist at
+      arm’s length and drag the size up: when does the small-angle rule start to be more than 1% out?
+    </p>
+  }
+/>
+
+The rule is good to 1% for angles up to about 20°, which covers almost everything in the sky. For bigger angles it overestimates: it treats the object as an arc curving round your eye, and a flat object of the same width spans a little less.
+
+<DeepDive title="Why 206,265?">
+
+A radian is 57.2958°, which is 3,437.75′ or 206,265″. That last number turns up all over astronomy. A <Term id="parsec">parsec</Term>, for instance, is the distance at which 1 AU spans 1″: by the small-angle rule, that's 206,265 AU.
+
+</DeepDive>

@@ -1,0 +1,70 @@
+import { PowersFigure } from '../../figures/PowersFigure';
+import { Callout } from '../../site/content/blocks';
+import { Term } from '../../site/content/Term';
+
+Astronomy's numbers run from the tiny to the enormous, and writing them out in full is slow and error-prone. Powers of ten fix that. This page covers the four things the course uses them for.
+
+## Ten to the n
+
+10² means 10 × 10, which is 100: a 1 followed by two zeros. 10⁶ is a 1 followed by six zeros, a million. The small raised number, the **power** (or exponent), counts the zeros, or the steps of ×10 from 1.
+
+Going the other way, 10⁻¹ is a tenth (0.1), 10⁻³ a thousandth (0.001), and so on. And 10⁰ is just 1: zero steps.
+
+A number that isn't a neat power of ten gets a **front number** between 1 and 10. Earth is 12,742 km across, which is 12,742,000 m, which is 1.2742 × 10⁷ m: count seven places from where the decimal point ends up to where it was. This way of writing numbers is <Term id="scientific-notation">scientific notation</Term>.
+
+| Written out | In scientific notation | What it is |
+|---|---|---|
+| 1.7 m | 1.7 × 10⁰ m | a person |
+| 12,742,000 m | 1.27 × 10⁷ m | Earth, across |
+| 149,597,870,700 m | 1.50 × 10¹¹ m | the Sun's distance (1 AU) |
+| 9,460,730,472,580,800 m | 9.46 × 10¹⁵ m | a light-year |
+| 0.000 001 m | 1 × 10⁻⁶ m | a micrometre, a bacterium's size |
+
+## Multiplying and dividing
+
+Here is where the notation earns its keep. To multiply two powers of ten, add the powers: 10³ × 10⁴ = 10⁷, because three steps of ×10 and then four more make seven. To divide, subtract them: 10⁷ ÷ 10³ = 10⁴.
+
+With front numbers, deal with the two parts separately, then tidy up so the front number is between 1 and 10 again:
+
+- (3 × 10⁸) × (4 × 10⁵) = 12 × 10¹³ = 1.2 × 10¹⁴
+- (1.5 × 10¹¹) ÷ (3 × 10⁸) = 0.5 × 10³ = 5 × 10²
+
+The second line is the time sunlight takes to reach us: 150 billion metres at 300 million metres a second is 500 seconds, a little over 8 minutes.
+
+<PowersFigure
+  number="T1.1"
+  tryThis={
+    <p>
+      Pick the light-year example and check that the powers add up: 8 + 7 = 15. Then make up your own: how many seconds old are you? (Your
+      age in years, times 3.156 × 10⁷.)
+    </p>
+  }
+/>
+
+## Orders of magnitude
+
+Often the front number doesn't matter much, and only the power does. Two things are the same **<Term id="order-of-magnitude">order of magnitude</Term>** if they're within a factor of ten or so: the nearest power of ten is the same. The Sun is 109 times as wide as Earth: two orders of magnitude. Neptune is 30 times as far from the Sun as Earth: about one and a half.
+
+Thinking in orders of magnitude is a powerful habit, because it lets you check an answer before you trust it. If a calculation says a planet is 10²⁰ m away, you know at once something has gone wrong: that's about 10,000 light-years.
+
+<Callout title="Watch the break point">
+
+On a powers-of-ten scale, the halfway point between 10 and 100 isn't 55. It's about 32, because 32 × 32 is about 1,000. So 40 rounds up to the order of magnitude 10², and 30 rounds down to 10¹.
+
+</Callout>
+
+## Prefixes
+
+Some powers of ten have names, which go in front of a unit. You already use a few:
+
+| Prefix | Symbol | Means | Example |
+|---|---|---|---|
+| nano | n | 10⁻⁹, a billionth | a nanometre: the size of a few atoms |
+| micro | µ | 10⁻⁶, a millionth | a micrometre |
+| milli | m | 10⁻³, a thousandth | a millimetre |
+| kilo | k | 10³, a thousand | a kilometre |
+| mega | M | 10⁶, a million | a megatonne |
+| giga | G | 10⁹, a billion | a gigametre: 1 Gm is about 2.6 times the distance to the Moon |
+| tera | T | 10¹², a trillion | a terametre: Saturn is about 1.4 Tm from the Sun |
+
+Astronomers use these less than you might expect. They prefer units that suit the sky: the [astronomical unit](#/glossary) inside the Solar System and the light-year or the parsec for the stars.

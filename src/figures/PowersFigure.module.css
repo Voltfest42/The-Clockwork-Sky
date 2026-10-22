@@ -1,0 +1,98 @@
+.select {
+  font: inherit;
+  font-size: 0.88rem;
+  max-width: min(26em, 70vw);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.machine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 6px 0 12px;
+}
+
+.number {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.number legend {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+
+.number input {
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  width: 6em;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.number input.exponent {
+  width: 4.2em;
+  align-self: flex-start;
+  font-size: 0.85rem;
+}
+
+.number input[aria-invalid='true'] {
+  border-color: var(--wrong);
+}
+
+.plain {
+  flex-basis: 100%;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.working {
+  margin: 0 0 8px;
+  padding: 10px 14px 10px 34px;
+  border-radius: var(--radius);
+  background: var(--bg);
+  font-variant-numeric: tabular-nums;
+}
+
+.working li + li {
+  margin-top: 4px;
+}
+
+.why {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.ruler {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.axis {
+  stroke: var(--text-muted);
+  stroke-width: 1.2;
+}
+
+.tick {
+  font-size: 12px;
+  fill: var(--text);
+}

@@ -1,4 +1,5 @@
 import type { KeyboardEventHandler, ReactNode } from 'react';
+import { ErrorBoundary } from '../site/ErrorBoundary';
 import styles from './Figure.module.css';
 
 interface FigureProps {
@@ -40,7 +41,7 @@ export function Figure({ number, title, children, legend, tryThis, onReset, simp
           Reset
         </button>
       </figcaption>
-      {children}
+      <ErrorBoundary what={`figure ${number}`}>{children}</ErrorBoundary>
       {legend && <Legend items={legend} />}
       <aside className={styles.tryThis}>
         <span className={styles.tryLabel}>Try this</span>

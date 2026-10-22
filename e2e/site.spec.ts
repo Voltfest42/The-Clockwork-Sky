@@ -4,7 +4,7 @@ import { GLOSSARY } from '../src/site/glossary';
 import { accessibilityViolations, expectNoBrokenFigures, watchErrors } from './helpers';
 
 /** One page of each kind, for the checks that don't need every page. */
-const SAMPLE_PAGES = ['', 'part-1', 'part-3', 'the-moon', 'black-holes', 'toolkit', 'toolkit/powers-of-ten', 'labs', 'orrery', 'glossary', 'about'];
+const SAMPLE_PAGES = ['', 'part-1', 'part-3', 'a-sense-of-scale', 'the-moon', 'black-holes', 'toolkit', 'toolkit/powers-of-ten', 'toolkit/angles-in-the-sky', 'labs', 'orrery', 'glossary', 'about'];
 
 /** Every page of the site. */
 const ALL_PAGES = [
@@ -23,11 +23,16 @@ test('the landing page introduces the course and its three parts @phone', async 
   const errors = watchErrors(page);
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1, name: 'The Clockwork Sky' })).toBeVisible();
-  await expect(page.getByText('on Christmas night 1758 a comet came back')).toBeVisible();
+  await expect(page.getByText(/On Christmas night 1758, Johann Palitzsch/)).toBeVisible();
   const main = page.locator('main');
   for (const part of PARTS) await expect(main.getByRole('link', { name: new RegExp(`Part ${part.numeral} .*${part.title}`) })).toBeVisible();
   for (const lab of LABS) await expect(main.getByRole('link', { name: new RegExp(`^Lab · .*${lab.title}`) })).toBeVisible();
-  await expect(main.getByRole('link', { name: 'See what Part I covers →' })).toHaveAttribute('href', '#/part-1');
+  await expect(main.getByRole('link', { name: 'Start reading: Chapter 1, A sense of scale →' })).toHaveAttribute('href', '#/a-sense-of-scale');
+  await expect(main.getByRole('img', { name: /A ruler of sizes/ })).toBeVisible();
+  await expect(main.getByRole('heading', { name: 'How to use the figures' })).toBeVisible();
+  await expect(main.getByRole('heading', { name: 'Where to start' })).toBeVisible();
+  await expect(main.getByRole('link', { name: 'Start with Chapter 1, A sense of scale →' })).toHaveAttribute('href', '#/a-sense-of-scale');
+  await expect(main.getByRole('link', { name: 'Start with Part II, The Stars →' })).toHaveAttribute('href', '#/part-2');
   expect(await accessibilityViolations(page)).toEqual([]);
   expect(errors).toEqual([]);
 });
@@ -55,7 +60,7 @@ test('Part I’s page lists its chapters, the lab and what readers will be able 
 });
 
 test('a planned chapter shows what it builds on and its planned sections, numbered', async ({ page }) => {
-  for (const chapter of chaptersOf(1)) {
+  for (const chapter of chaptersOf(1).filter((c) => !c.load)) {
     await page.goto(`/#/${chapter.slug}`);
     const main = page.locator('main');
     await expect(main.getByRole('heading', { level: 1, name: chapter.title })).toBeVisible();

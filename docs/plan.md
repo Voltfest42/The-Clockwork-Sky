@@ -27,7 +27,27 @@
 - End-to-end tests preview on port 4175 and the dev launch config uses 5175, clear of the sibling projects.
 - The GitHub repository already existed (empty) when the stage began, so it only needed the push.
 
-**Next: Stage 2, Chapter 1 and the 3D basics** (see §11 and [part1/plan.md](part1/plan.md) §10).
+**Stage 2 (Chapter 1 and the 3D basics) is done** (22 Oct 2026).
+- **Scene3D** (`src/viz/scene3d/`): three.js **0.186.1**, pinned exactly, in a lazy chunk (`engine.ts`, about 190 kB gzipped) that loads only when a 3D view comes near the screen. It has its own z-up orbit camera (pure maths in `orbitCamera.ts`, unit-tested): drag to turn, pinch or wheel to zoom (the wheel only once the view has focus, so the page still scrolls), arrow keys, +/− and Home. It also has an HTML label layer (projected, culled by priority), theme tokens re-read on a light/dark switch, rendering only on change, a pause off screen, reduced motion passed to the scene, a visually hidden text description, ResizeObserver resizing, and a WebGL fallback that shows the description instead.
+- **The scale zoom** (`src/viz/scaleZoom/`, `src/core/scale/`): a Canvas 2D log camera from 10⁰ to 10²¹ m over a catalogue of real objects. Positions sit in a tree of frames (person → Earth → Sun → Galaxy) summed only to the shared ancestor, so 1.7 m survives next to 2.5 × 10²⁰ m. The camera glides from the person to the Sun to the Galactic Centre. Labels fade by scale and avoid each other. It has a scale bar in round units, the ×10 counter, slider and Page Up/Down, ÷10/×10 buttons, wheel and pinch, click-to-pick with an "In view" button list for keyboard users, and an info card (metres, km, Earths).
+- **Chapter 1** (`src/content/chapter1.mdx`) with Figures 1.1 (the zoom, with a tour and Go to), 1.2 (the scale model: four Suns or your own size, a sizes strip, a distance strip, a table with everyday comparisons) and 1.3 (light's race, in Scene3D: five speeds, a log time slider, ten stops, follow-the-light camera). Its Check yourself has five questions, two of them interactive (Earths across the Sun; zoom until Neptune's orbit fits, using the zoom itself).
+- **Toolkit T1 and T2** with their own figures: T1.1, the exponent machine, and T2.1, how big does it look.
+- **The landing page**: the Palitzsch/Halley hook, the three parts as zoom levels (a ruler from 10⁻¹⁵ to 10²² m above the part cards), how to use the figures in six items, and where to start.
+- **Core**: scientific notation and prefixes; angular size and the small-angle rule; formatted durations; galactic coordinates (the Hipparcos matrix); planets' mean longitudes and semi-major axes (Standish Table 1) and the Moon's mean longitude; scale models.
+- **Tests**: 239 unit and property tests (new: the galactic poles, Sirius and Vega; planets' periods against NASA's fact sheets; the brief's grapefruit model and light times; the floating-origin tree; Voyager 1 one light-day from Earth at the milestone; the scale-bar units; the orbit camera; the Voyager tense switch), and 35 end-to-end tests (new: Chapter 1 on a phone with no sideways scroll; the zoom by keyboard, click and wheel; the reduced-motion tour; the scale model; light's race in WebGL reaching Proxima; both Toolkit figures; the embedded zoom question; axe in both themes with every figure in use).
+
+**Decisions and deviations in Stage 2**
+- The scale zoom is drawn in Canvas 2D, not three.js: one flat, top-down picture per scale reads better than a 3D camera across 21 decades, and it's lighter. Directions are flattened (Earth from above you, planets from above the ecliptic, stars from above the galactic plane, with things off those planes swung in at their true distance); sizes and distances are true. Light's race is the first Scene3D user.
+- Planets in Figures 1.1 and 1.3 sit at their mean longitudes for the date of the page load, at their semi-major axes, on circles. The full Standish elements and Kepler's equation still come in Stage 3; `src/core/ephemeris/meanLongitude.ts` holds only a and L.
+- Voyager 1: NASA gives one light-day (173.1 AU) from **Earth** on 18 Nov 2026, 06:16 UTC. Its distance from the **Sun** then, 172.4 AU, was computed from that and Earth's position (a unit test checks the two agree), and it moves out at 3.57 AU a year. The chapter's sentence switches tense at the milestone by itself (`src/site/content/Dated.tsx`); today it reads "will become".
+- Values checked before going on screen (the brief's (std) values in §2 all held): c, AU, light-year, parsec, diameters, the Moon's distance and light times; the grapefruit model; Proxima's 1.302 pc and radius (0.154 R☉); GRAVITY's 8.18–8.28 kpc. Extra facts beyond §2, with sources in `src/data/README.md`: the ISS at about 420 km (2026), the Kármán line, Everest, the FIFA pitch, five more stars from §10, the Pleiades and the Orion Nebula, the heliopause crossing at 121.6 AU, and Sgr A*.
+- The landing page's sample Check yourself is gone. Its Earths-across-the-Sun slider moved into Chapter 1. The "When is Earth closest to the Sun?" question is saved for Chapter 3.
+- Every figure's content now sits inside its own error boundary (in `Figure`).
+- Six glossary terms added: arcminute/arcsecond, heliopause, Oort cloud, order of magnitude, radian, scientific notation.
+- Toolkit figures are numbered T1.1, T2.1.
+- The Milky Way in the zoom is a seeded sketch (bar, four 12° arms, the Orion Spur), and labelled as such.
+
+**Next: Stage 3, Chapter 2 and the sky view** (see [part1/plan.md](part1/plan.md) §10).
 
 ## Decisions so far
 

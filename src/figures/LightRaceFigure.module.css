@@ -1,0 +1,118 @@
+.play {
+  min-width: 6.5em;
+  font-weight: 650;
+}
+
+.speedLabel {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.speeds {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: rgb(7 11 22 / 0.8);
+  color: var(--sky-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.clockTime {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--sun);
+}
+
+.clockDistance {
+  font-size: 0.8rem;
+  color: var(--sky-muted);
+}
+
+.scrub {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  margin: 12px 0 6px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.scrub input {
+  flex: 1 1 200px;
+  accent-color: var(--accent);
+}
+
+.scrubValue {
+  min-width: 7em;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.stops {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stops button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'mark name'
+    'mark time'
+    'mark distance';
+  column-gap: 8px;
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.stops button:hover {
+  border-color: var(--accent);
+}
+
+.reached button {
+  border-color: var(--sun-edge);
+}
+
+.stopMark {
+  grid-area: mark;
+  align-self: center;
+  color: var(--text-warm);
+  font-weight: 700;
+}
+
+.stopName {
+  grid-area: name;
+  font-weight: 650;
+  font-size: 0.9rem;
+}
+
+.stopTime {
+  grid-area: time;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.stopDistance {
+  grid-area: distance;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}

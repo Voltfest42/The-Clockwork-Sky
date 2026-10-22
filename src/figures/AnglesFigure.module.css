@@ -1,0 +1,94 @@
+.select {
+  font: inherit;
+  font-size: 0.88rem;
+  max-width: min(22em, 70vw);
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.sight {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+}
+
+.distance {
+  stroke: var(--border);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.arc {
+  fill: none;
+  stroke: var(--series-1);
+  stroke-width: 3;
+}
+
+.object {
+  fill: var(--series-2);
+}
+
+.eye {
+  fill: var(--text);
+}
+
+.text {
+  font-size: 15px;
+  font-weight: 650;
+  fill: var(--text);
+}
+
+.muted {
+  font-size: 13px;
+  fill: var(--text-muted);
+}
+
+.sliders {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(6em, auto);
+  align-items: center;
+  gap: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.sliders input {
+  accent-color: var(--accent);
+}
+
+.sliders output {
+  font-variant-numeric: tabular-nums;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px 18px;
+  margin: 14px 0 0;
+}
+
+.results dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.results dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.sub {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}

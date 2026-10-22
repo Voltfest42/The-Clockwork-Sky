@@ -1,0 +1,146 @@
+.zoom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.view {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--sky-bg);
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  cursor: crosshair;
+  /* Vertical swipes still scroll the page; pinches go to the figure. */
+  touch-action: pan-y;
+}
+
+.counter {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgb(7 11 22 / 0.8);
+  color: var(--sky-text);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.times {
+  font-size: 0.8rem;
+  color: var(--sky-muted);
+}
+
+.count {
+  font-size: 1.25rem;
+  font-weight: 700;
+  min-width: 2.4em;
+  text-align: right;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sliderLabel {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.slider {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--accent);
+}
+
+.step {
+  font: inherit;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2em;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.step:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.step:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.readout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.sci {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.inView {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.inViewLabel {
+  color: var(--text-muted);
+}
+
+.inView ul {
+  display: contents;
+  list-style: none;
+}
+
+.inView li {
+  display: inline;
+}
+
+.inView button {
+  font: inherit;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.inView button:hover {
+  border-color: var(--accent);
+}
+
+.inView button[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-fill);
+  color: #fff;
+}
