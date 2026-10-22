@@ -1,0 +1,125 @@
+/*
+ * Design tokens, shared with the other Moving Parts explainers. The colours stay
+ * distinguishable for colour-blind readers, and tests/design.test.ts checks
+ * their contrast in both themes. All light-theme tokens are in the first :root
+ * block and all dark-theme overrides in the media query below it.
+ */
+:root {
+  color-scheme: light dark;
+
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1c1f24;
+  --text-muted: #5b6270;
+  --border: #e3e1da;
+  --accent: #2563eb;
+  /* Filled buttons with white text (≥ 4.5:1 in both themes). */
+  --accent-fill: #2563eb;
+  /* Amber for small text such as labels. */
+  --text-warm: #b45309;
+  --highlight-bg: #fff6e0;
+
+  /* Check yourself: right and wrong answers, always with a ✓ or ✗ and a word as well. */
+  --right: #0f766e;
+  --wrong: #b91c1c;
+
+  /* Chart series. */
+  --series-1: #2563eb;
+  --series-2: #d97706;
+
+  /* The night sky is dark in both themes. */
+  --sky-bg: #070b16;
+  --sky-text: #e2e8f5;
+  --sky-muted: #9aa8c4;
+  --sky-grid: #2a3a5e;
+  /* The Sun is always the same pale-yellow disc, with an amber edge where it sits on a light background. */
+  --sun: #fde68a;
+  --sun-edge: #d97706;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+  --radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161a;
+    --surface: #1c1f25;
+    --text: #e8e9ec;
+    --text-muted: #a0a6b2;
+    --border: #2e323a;
+    --accent: #6b9bff;
+    --accent-fill: #2563eb;
+    --text-warm: #fbbf24;
+    --highlight-bg: #3a2f14;
+
+    --right: #2dd4bf;
+    --wrong: #f87171;
+
+    --series-1: #4f84f5;
+    --series-2: #d97706;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+a {
+  color: var(--accent);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--surface);
+}

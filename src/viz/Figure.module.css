@@ -1,0 +1,141 @@
+.figure {
+  margin: 28px 0 36px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.04);
+}
+
+/* On big screens, figures break out of the text column and use the space beside it. */
+@media (min-width: 1100px) {
+  .figure {
+    width: min(1060px, calc(100vw - var(--sidebar-width, 0px) - 72px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-bottom: 12px;
+}
+
+.name {
+  flex: 1 1 auto;
+}
+
+.number {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+}
+
+.title {
+  font-weight: 650;
+  font-size: 1.05rem;
+}
+
+/* Exaggerated sizes or angles: a small dashed tag, never colour alone. */
+.notToScale {
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: var(--text-warm);
+  border: 1px dashed currentColor;
+  border-radius: 999px;
+  padding: 1px 9px;
+  white-space: nowrap;
+}
+
+.reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font: inherit;
+  font-size: 0.82rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  border-color: var(--accent);
+}
+
+.caption {
+  margin: 12px 0;
+  padding: 10px 14px;
+  min-height: 3.6em;
+  background: var(--bg);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.tryThis {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--highlight-bg);
+  font-size: 0.92rem;
+}
+
+.tryThis p {
+  margin: 0;
+}
+
+.tryLabel {
+  flex: none;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-warm);
+}
+
+.simplified {
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.simplified summary {
+  cursor: pointer;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.simplifiedBody {
+  padding: 6px 2px 0;
+}
+
+.simplifiedBody p {
+  margin: 0 0 6px;
+}
+
+.legend {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
