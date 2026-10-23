@@ -11,7 +11,7 @@ async function zoomPower(page: Page) {
 
 test('Chapter 1 shows its sections, three figures and a Check yourself @phone', async ({ page }) => {
   const errors = watchErrors(page);
-  await page.goto(`/#/${chapter.slug}`);
+  await page.goto(`/${chapter.slug}/`);
   const main = page.locator('main');
   await expect(main.getByRole('heading', { level: 1, name: 'A sense of scale' })).toBeVisible();
   await expect(main.getByText('Builds on:')).toBeVisible();
@@ -36,7 +36,7 @@ test('Chapter 1 shows its sections, three figures and a Check yourself @phone', 
 
 test('the zoom works by keyboard, and tells you how big things are', async ({ page }) => {
   const errors = watchErrors(page);
-  await page.goto(`/#/${chapter.slug}`);
+  await page.goto(`/${chapter.slug}/`);
   const figure = figureByNumber(page, '1.1');
   const slider = figure.getByRole('slider', { name: 'Zoom' });
   await expect(figure.getByText(/10¹ m across, 1 step of ×10 from 1 m:/)).toBeVisible();
@@ -76,7 +76,7 @@ test('the zoom works by keyboard, and tells you how big things are', async ({ pa
 });
 
 test('clicking the zoom picks what is under the pointer, and the wheel zooms once the view is clicked', async ({ page }) => {
-  await page.goto(`/#/${chapter.slug}`);
+  await page.goto(`/${chapter.slug}/`);
   const figure = figureByNumber(page, '1.1');
   await figure.getByRole('combobox', { name: /Go to/ }).selectOption({ label: 'The Sun' });
   await figure.getByRole('button', { name: /Close the details/ }).click();
@@ -95,7 +95,7 @@ test.describe('with reduced motion', () => {
   test.use({ reducedMotion: 'reduce' });
 
   test('the zoom’s tour steps a whole power of ten at a time instead of gliding', async ({ page }) => {
-    await page.goto(`/#/${chapter.slug}`);
+    await page.goto(`/${chapter.slug}/`);
     const figure = figureByNumber(page, '1.1');
     await figure.getByRole('button', { name: '▶ Fly out' }).click();
     await expect.poll(() => zoomPower(page), { timeout: 5_000 }).toBeGreaterThanOrEqual(2);
@@ -106,7 +106,7 @@ test.describe('with reduced motion', () => {
 
 test('the scale model changes with the size of the Sun', async ({ page }) => {
   const errors = watchErrors(page);
-  await page.goto(`/#/${chapter.slug}`);
+  await page.goto(`/${chapter.slug}/`);
   const figure = figureByNumber(page, '1.2');
   await expect(figure.getByRole('button', { name: /grapefruit/ })).toHaveAttribute('aria-pressed', 'true');
   await expect(figure.getByText(/Earth is 0.92 mm across and 10.8 m away. Neptune is 323 m out./)).toBeVisible();
@@ -126,7 +126,7 @@ test('the scale model changes with the size of the Sun', async ({ page }) => {
 
 test('light’s race runs in 3D, steps from stop to stop, and reaches Proxima Centauri', async ({ page }) => {
   const errors = watchErrors(page);
-  await page.goto(`/#/${chapter.slug}/light-as-a-measuring-stick`);
+  await page.goto(`/${chapter.slug}/#light-as-a-measuring-stick`);
   const figure = figureByNumber(page, '1.3');
   const view = figure.getByRole('group', { name: /3D view of the Solar System/ });
   await expect(view).toBeVisible();
@@ -157,7 +157,7 @@ test('light’s race runs in 3D, steps from stop to stop, and reaches Proxima Ce
 
 test('the Toolkit pages work: the exponent machine and the angle figure', async ({ page }) => {
   const errors = watchErrors(page);
-  await page.goto('/#/toolkit/powers-of-ten');
+  await page.goto('/toolkit/powers-of-ten/');
   await expect(page.getByRole('heading', { level: 1, name: 'Powers of ten' })).toBeVisible();
   const machine = figureByNumber(page, 'T1.1');
   await expect(machine.getByText(/The answer is 4.99 × 10²/)).toBeVisible();
@@ -166,7 +166,7 @@ test('the Toolkit pages work: the exponent machine and the angle figure', async 
   await machine.getByRole('spinbutton', { name: 'Second number: the power of ten' }).fill('3');
   await expect(machine.getByText(/Its order of magnitude, the nearest power of ten, is 10¹²/)).toBeVisible();
 
-  await page.goto('/#/toolkit/angles-in-the-sky');
+  await page.goto('/toolkit/angles-in-the-sky/');
   await expect(page.getByRole('heading', { level: 1, name: 'Angles in the sky' })).toBeVisible();
   const angles = figureByNumber(page, 'T2.1');
   await expect(angles.getByText(/The full Moon: 3,475 km across, 384,400 km away, spans 31.1′/)).toBeVisible();
@@ -182,7 +182,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
     test.use({ colorScheme });
 
     test('Chapter 1, with every figure in use, passes the accessibility checks', async ({ page }) => {
-      await page.goto(`/#/${chapter.slug}`);
+      await page.goto(`/${chapter.slug}/`);
       await figureByNumber(page, '1.1').getByRole('combobox', { name: /Go to/ }).selectOption({ label: 'Jupiter' });
       await figureByNumber(page, '1.3').getByRole('button', { name: /Jump to Neptune/ }).click();
       await expect(figureByNumber(page, '1.3').getByText('Loading the 3D view…')).toHaveCount(0, { timeout: 15_000 });

@@ -7,8 +7,10 @@ import { useSyncExternalStore } from 'react';
  */
 const KEY = 'clockwork-sky:read-chapters';
 const listeners = new Set<() => void>();
-let cache: readonly string[] = load();
 const NONE: readonly string[] = [];
+/** Read from storage on first use, never at import, so the module also runs on the server. */
+let cache: readonly string[] | null = null;
+const current = () => (cache ??= load());
 
 function load(): readonly string[] {
   try {
@@ -20,8 +22,8 @@ function load(): readonly string[] {
 }
 
 export function markChapterRead(slug: string): void {
-  if (cache.includes(slug)) return;
-  cache = [...cache, slug];
+  if (current().includes(slug)) return;
+  cache = [...current(), slug];
   try {
     window.localStorage.setItem(KEY, JSON.stringify(cache));
   } catch {
@@ -36,7 +38,7 @@ export function useReadChapters(): readonly string[] {
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
-    () => cache,
+    current,
     () => NONE,
   );
 }

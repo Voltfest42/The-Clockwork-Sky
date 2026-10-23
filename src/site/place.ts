@@ -55,7 +55,9 @@ function load(): ChosenPlace {
   }
 }
 
-let cache: ChosenPlace = typeof window === 'undefined' ? DEFAULT_PLACE : load();
+/** Read from storage on first use, never at import, so the module also runs on the server. */
+let cache: ChosenPlace | null = null;
+const current = () => (cache ??= load());
 
 export function setPlace(place: ChosenPlace): void {
   cache = place;
@@ -78,7 +80,7 @@ export function usePlace(): ChosenPlace {
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
-    () => cache,
+    current,
     () => DEFAULT_PLACE,
   );
 }

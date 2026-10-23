@@ -9,6 +9,7 @@ describe('the figure frame', () => {
       <Figure
         number="1.1"
         title="The zoom"
+        description="A zoom from a person to the Milky Way."
         legend={[{ label: 'the Sun', symbol: <circle r="6" /> }]}
         tryThis="Zoom out until the Sun disappears."
         onReset={() => {}}
@@ -28,9 +29,21 @@ describe('the figure frame', () => {
     expect(html).toContain('What’s simplified here?');
   });
 
+  it('prerenders its description in place of the live figure, which needs the browser', () => {
+    const html = renderToStaticMarkup(
+      <Figure number="1.1" title="The zoom" description="A zoom from a person to the Milky Way." height={480} tryThis="Zoom out." onReset={() => {}}>
+        <canvas />
+      </Figure>,
+    );
+    expect(html).toContain('A zoom from a person to the Milky Way.');
+    expect(html).toContain('--placeholder-height:480px');
+    expect(html).toContain('<noscript>');
+    expect(html).not.toContain('<canvas');
+  });
+
   it('leaves out the tag and the note when the figure is true to scale and simplifies nothing', () => {
     const html = renderToStaticMarkup(
-      <Figure number="2.4" title="One spin, two days" tryThis="Step one day." onReset={() => {}}>
+      <Figure number="2.4" title="One spin, two days" description="Earth spins as it orbits." tryThis="Step one day." onReset={() => {}}>
         <svg />
       </Figure>,
     );
@@ -71,8 +84,10 @@ describe('Check yourself', () => {
     expect(html).toMatch(/<button[^>]*disabled=""[^>]*>Check<\/button>/);
   });
 
-  it('draws an interactive question’s figure in its starting state', () => {
-    expect(html).toContain('<output>1</output>');
+  it('prerenders an interactive question’s prompt, and leaves its figure to the browser', () => {
+    expect(html).toContain('Pick 3.');
+    expect(html).not.toContain('<output>');
+    expect(html).toContain('needs JavaScript');
     expect(html).toContain('Your answers stay in this browser.');
   });
 

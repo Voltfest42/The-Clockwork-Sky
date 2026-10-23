@@ -10,7 +10,8 @@ import {
   type PartNumber,
 } from './course';
 import { useReadChapters } from './progress';
-import { href, scrollToSection, useRoute } from './router';
+import { href, useRoute } from './router';
+import { pageMeta } from './routes';
 import styles from './Layout.module.css';
 
 /** The front page that lists all the explainers, this one included. */
@@ -83,7 +84,9 @@ export function Layout({ children }: { children: ReactNode }) {
 
         <ul className={styles.extraList}>
           {EXTRAS.map(({ page, label }) => {
-            const active = route.page === page || route.page.startsWith(`${page}/`) || (page === 'labs' && findLab(route.page) !== undefined);
+            // Only for pages that exist, so the "Not found" page looks the same at every address.
+            const known = pageMeta(route.page) !== null;
+            const active = known && (route.page === page || route.page.startsWith(`${page}/`) || (page === 'labs' && findLab(route.page) !== undefined));
             return (
               <li key={page}>
                 <a href={href(page)} className={active ? styles.active : undefined} aria-current={route.page === page ? 'page' : undefined}>
@@ -171,10 +174,6 @@ function ChapterLink({ chapter, active, done }: { chapter: ChapterInfo; active: 
                   href={href(chapter.slug, id)}
                   className={id === activeSection ? styles.activeSection : undefined}
                   aria-current={id === activeSection ? 'location' : undefined}
-                  onClick={() => {
-                    // Same URL as now: no hashchange will fire, so scroll directly.
-                    if (window.location.hash === href(chapter.slug, id)) scrollToSection(id);
-                  }}
                 >
                   {title}
                 </a>

@@ -27,7 +27,7 @@ function caption(figure: Locator, text: RegExp | string) {
 }
 
 async function openChapter(page: Page, section = '') {
-  await page.goto(`/#/${chapter.slug}${section ? `/${section}` : ''}`);
+  await page.goto(`/${chapter.slug}/${section ? `#${section}` : ''}`);
   await expect(page.locator('main').getByRole('heading', { level: 1, name: 'The turning sky' })).toBeVisible();
 }
 

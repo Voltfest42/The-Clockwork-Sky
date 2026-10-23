@@ -2,9 +2,6 @@ import { VOYAGER_1 } from '../../data/scale';
 
 /** Dates for sentences whose tense depends on today (see Dated.tsx). Times are Unix milliseconds. */
 
-/** When the page loaded: "now" for the text. */
-export const PAGE_LOADED = Date.now();
-
 const MILESTONE = Date.parse(VOYAGER_1.lightDay.when);
 const LAUNCH = Date.parse(VOYAGER_1.launched);
 const YEAR_MS = 365.25 * 86_400_000;

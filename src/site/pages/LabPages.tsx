@@ -1,11 +1,10 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { LABS, partNumbered, type LabInfo } from '../course';
+import { labContent } from '../pageContent';
 import { href } from '../router';
 import { LabCard, SoonTag } from './CourseCards';
 import contentStyles from '../content/content.module.css';
 import styles from './pages.module.css';
-
-const lazyLabs = new Map(LABS.flatMap((l) => (l.load ? [[l.slug, lazy(l.load)] as const] : [])));
 
 export function LabsIndex() {
   return (
@@ -33,11 +32,11 @@ export function LabsIndex() {
 }
 
 export function LabPage({ lab }: { lab: LabInfo }) {
-  const Lab = lazyLabs.get(lab.slug);
+  const Lab = labContent(lab.slug);
   if (Lab) {
     return (
       <Suspense fallback={<p className={styles.loading}>Loading {lab.title}…</p>}>
-        {/* Every lazy component is made once, at module level, in lazyLabs. */}
+        {/* Not created during render: every lab's component is made once, in pageContent.ts. */}
         {/* eslint-disable-next-line react-hooks/static-components */}
         <Lab />
       </Suspense>

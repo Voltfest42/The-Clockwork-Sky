@@ -23,7 +23,7 @@
 - Mean obliquity: Laskar (1986), Meeus 22.3, valid for ±10,000 years. (Stage 3 kept it; see below.)
 - The landing page shows a sample Check yourself (when Earth is closest to the Sun; how many Earths fit across the Sun), so the component is live and tested before Chapter 1. Stage 2 can keep, move or replace it.
 - Parts II and III have titles and blurbs (from §3) but no sections or "Builds on" links until their planning stages; their Toolkit pages (T5–T11) have placeholder blurbs. Part I's stretch section 3.5 (the analemma) isn't in the registry; add it if its figure gets built.
-- Addresses drop apostrophes: `#/the-suns-year`, `#/keplers-laws`.
+- Addresses drop apostrophes: `/the-suns-year/`, `/keplers-laws/` (hash addresses until Stage 3b).
 - End-to-end tests preview on port 4175 and the dev launch config uses 5175, clear of the sibling projects.
 - The GitHub repository already existed (empty) when the stage began, so it only needed the push.
 
@@ -68,6 +68,24 @@
 - The Laskar mean obliquity stays; Vondrák's obliquity agrees with it to 2″ over AD 0–4000, and the sky frames use Vondrák's poles directly.
 - Scene3D's label layer now hides a label unless it fits wholly inside the view.
 - The Stage 1 mean-longitude module stays for Chapter 1's figures; the full elements are in `planets.ts`.
+
+**Stage 3b (Search engines) is done** (23 Oct 2026). It was slotted in before Stage 4, so later stages keep their numbers.
+- **Real paths.** Every page has its own address with a trailing slash (`/`, `/the-turning-sky/`, `/toolkit/powers-of-ten/`, `/part-1/`, `/orrery/`), and sections are fragments (`/the-turning-sky/#the-sky-as-a-dome`). Links are ordinary `<a href>`; a document-level listener turns plain clicks on internal page links into `pushState` navigations (`src/site/router.ts`), so back, forward, section scrolling, the sidebar's active section, reading progress and focus work as before. Old `#/…` links are moved with `replaceState` on load; a one-line script in `index.html` hides the start page's HTML until the app has rendered the right page, so nothing flashes.
+- **Prerendering.** `npm run build` now runs the client build, a Vite SSR build of `src/entry-server.tsx`, and `scripts/prerender.ts`, which renders all 52 pages to `dist/<path>/index.html` plus `dist/404.html`, `sitemap.xml` and `robots.txt`. The browser hydrates (`hydrateRoot`), after loading the first page's content, so neither side shows "Loading…". One route list (`src/site/routes.ts`, from `course.ts` plus the extra pages) drives the prerender, the head tags, the sitemap and the tab title. A single stylesheet (`cssCodeSplit: false`) styles every page before its scripts run, and the prerender checks every CSS-module class it writes exists in it.
+- **Figures and hydration.** `Figure` prerenders its frame (number, title, legend, "Try this", the simplified note) and a new required `description` of the figure, in a box the height of the live figure (`height`, measured at desktop width; without JavaScript it shrinks to the text). The live figure mounts right after hydration, and `useOnScreen` restarts then. Check yourself prerenders its questions; interactive widgets mount after hydration, and the questions remount then to pick up stored answers. Stored progress, answers and place are read lazily, never at import. The Voyager sentence uses `usePageTime()`: the build's time (written as `<html data-rendered>`) during hydration, then the reader's clock.
+- **Head and structured data** (`src/site/seo.ts`): a unique title and description per page (chapters' from their titles and blurbs), canonical `https://sky.moving-parts.dev/<path>`, Open Graph and Twitter tags as in Rulebook (og:site_name "Moving Parts", the 1200 × 630 image from the Moving Parts project). The start page is a schema.org `Course` (free, en-GB, Beginner, provider Moving Parts, offers category Free, an online course instance, the three parts as syllabus sections). Each chapter and Toolkit page is a `LearningResource` that `isPartOf` the course by `@id`. The 404 page is `noindex`.
+- **CloudFront.** A viewer-request function (`infra/lib/viewer-request.ts`, replacing Rulebook's `canonicalHostCode` with a superset) sends other host names to sky.moving-parts.dev, adds trailing slashes and drops a typed `index.html` (301s, combined into one hop, path and query kept), and serves `/x/` from `/x/index.html`. 403s and 404s from S3 now return `404.html` with a 404 status, not the start page. `scripts/serve.ts` runs the same function in front of `dist/` for `npm run preview` and the end-to-end tests.
+- **Tests**: 340 unit and property tests (new: the route list, unique titles and descriptions, the sitemap lists exactly the routes, head tags and escaping, the Course and LearningResource data, the viewer-request function's rewrites and redirects; the router's paths and moved `#/` links) and 56 end-to-end tests (new: every page with JavaScript off has its own h1, title, canonical address and description; written chapters have their text, headings and figure frames in the HTML; the structured data; axe on prerendered pages with scripts blocked; slash and index.html redirects, the sitemap and robots.txt; old `#/` links land at the right section; links, back and forward without reloads; progress shown after hydration; unknown addresses get a 404; and every page hydrated on a development build of React, which reports any mismatch, served on port 4177).
+- **Checked live with curl after the deploy:** all 52 pages return 200 with their own title and canonical address; `/the-turning-sky`, `/about/index.html` and `/the-moon?ref=x` return a 301 to the slashed address; the `dmjexr84ttb4x.cloudfront.net` address returns a 301 to the same path and query on sky.moving-parts.dev; unknown pages return the prerendered 404 page with status 404; the sitemap lists 52 addresses. The search-engine and site end-to-end tests also pass against the live site.
+
+**Decisions and deviations in Stage 3b**
+- **Stage number 3b**, not 4, so the later stages and the part plan's references keep their numbers.
+- **Figures hydrate as placeholders, by design.** Rendering the live figures on the server would mean their first browser render must match the server's, but they start from "now", the reader's place and canvas sizes. So every figure's body waits for hydration, and search engines get its description instead. No figure needed a different approach.
+- **Google's Course markup**: Google dropped Course *info* rich results on 9 Sep 2025. The Course *list* rich result still exists but needs at least three courses and an ItemList on a summary page, so a single course doesn't qualify. The markup keeps Google's still-documented Course properties (name, description, provider) and is valid schema.org for other consumers. An ItemList of the explainers on moving-parts.dev would be a Moving Parts change.
+- **Every page is in the sitemap**, including the 29 "coming soon" chapters, as asked. They are thin pages; if Search Console flags them as soft 404s, they could get `noindex` until written.
+- **Rulebook has no unit test for `canonicalHostCode`**, so the tests here are new: they run the function's code through `new Function` with fake CloudFront events.
+- A malformed address such as `/%E0%A4%A/` gets a 400 from CloudFront itself, before the function runs; the local server answers 404.
+- The link-preview image `public/og-image.png` was already supplied from the Moving Parts project and is committed with this stage.
 
 **Next: Stage 4, Chapters 3 and 4** (see [part1/plan.md](part1/plan.md) §10).
 
@@ -147,7 +165,7 @@ Landing       the hook (Halley's comet, 1758), the three parts as a map, how to 
   - Part II: *Logarithms and magnitudes · Measurements and uncertainty*
   - Part III: *Vectors · Rates of change · Adding up small pieces · Differential equations · Estimating with orders of magnitude*
 
-**Navigation and routing.** These work as in the other explainers: a sidebar (now grouped by part, collapsible), hash URLs such as `/#/the-turning-sky/where-you-stand-changes-the-sky`, chapters loaded on demand, reading progress remembered in the browser, and error boundaries around every figure. Part pages are `/#/part-1` and so on, the labs `/#/orrery` and `/#/star-forge`, and Toolkit pages `/#/toolkit/<slug>`. Chapters are numbered 1–31 straight through, so "see Chapter 14" is unambiguous. Sections and figures are numbered by chapter (Figure 7.3). Nothing is locked: readers can jump anywhere.
+**Navigation and routing.** A sidebar (grouped by part, collapsible), chapters loaded on demand, reading progress remembered in the browser, and error boundaries around every figure. Since Stage 3b every page has a real address with its own prerendered HTML, such as `/the-turning-sky/#where-you-stand-changes-the-sky` (the other explainers use `#/` hash URLs, which search engines can't tell apart). Part pages are `/part-1/` and so on, the labs `/orrery/` and `/star-forge/`, and Toolkit pages `/toolkit/<slug>/`. Chapters are numbered 1–31 straight through, so "see Chapter 14" is unambiguous. Sections and figures are numbered by chapter (Figure 7.3). Nothing is locked: readers can jump anywhere.
 
 **Check yourself.** Three to five questions per chapter:
 - Multiple choice, where the wrong answers are the common misconceptions, each with its own explanation.
@@ -412,7 +430,9 @@ Each part's research brief records the details. The About page lists every credi
 
 ## 9. Hosting
 
-Exactly like the other explainers: a private, encrypted S3 bucket readable only by CloudFront through Origin Access Control, HTTPS only, hashed assets cached for a year and `index.html` never cached, and `npm run deploy` to build, upload and invalidate. It is a **new stack**, `ClockworkSkySite`, in the same account and region (`default` profile, `us-east-1`). It gets a certificate and an alias record for **sky.moving-parts.dev** in the existing `moving-parts.dev` hosted zone, as Beyond Dijkstra's `infra/lib/site-stack.ts` does.
+Exactly like the other explainers: a private, encrypted S3 bucket readable only by CloudFront through Origin Access Control, HTTPS only, hashed assets cached for a year and the pages' HTML never cached, and `npm run deploy` to build, upload and invalidate. It is a **new stack**, `ClockworkSkySite`, in the same account and region (`default` profile, `us-east-1`). It gets a certificate and an alias record for **sky.moving-parts.dev** in the existing `moving-parts.dev` hosted zone, as Beyond Dijkstra's `infra/lib/site-stack.ts` does.
+
+Since Stage 3b every page is a prerendered folder (`/the-moon/index.html`). A CloudFront Function on viewer requests sends any other host name (the `*.cloudfront.net` address) to sky.moving-parts.dev, adds a missing trailing slash, drops a typed `index.html` (all 301s, in one hop) and serves `/the-moon/` from `/the-moon/index.html`. An address with no page gets the prerendered `404.html` with a 404 status.
 
 The site goes live, unlisted, from Stage 1. When Part I is complete (Stage 8), the "Coming soon" card on moving-parts.dev becomes a link that says Part I is available and more is coming. That change is made in the Moving Parts project.
 
@@ -446,6 +466,7 @@ If a session runs low before the stage is finished, it stops at a clean point, c
 | 1 | I | **Foundations:** scaffold copied from Rulebook, a course-shaped shell, core maths, time and coordinates with tests, the CDK stack, a first deploy | A placeholder site is live at sky.moving-parts.dev and the core tests pass ✔ |
 | 2 | I | **Chapter 1**, Scene3D, the scale zoom, two Toolkit pages, the landing page | Chapter 1 is live |
 | 3 | I | **Chapter 2**, the sky view, star data, positions of the Sun, Moon and planets, precession | Chapter 2 is live |
+| 3b | — | **Search engines:** real paths, prerendered pages, head tags, structured data, sitemap, a CloudFront Function | Every page has its own HTML ✔ |
 | 4 | I | **Chapters 3 and 4**, the Sun–Earth–Moon scene, the eclipse finder | Chapters 3 and 4 are live |
 | 5 | I | **Chapters 5 and 6**, the orbit view, Kepler's equation, the Ptolemy model | Chapters 5 and 6 are live |
 | 6 | I | **Chapter 7**, the n-body worker and teaching integrators | Chapter 7 is live |

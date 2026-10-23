@@ -17,7 +17,9 @@ export type Answers = Readonly<Record<string, StoredAnswer>>;
 const KEY = 'clockwork-sky:answers';
 const NONE: Answers = {};
 const listeners = new Set<() => void>();
-let cache: Answers = load();
+/** Read from storage on first use, never at import, so the module also runs on the server. */
+let cache: Answers | null = null;
+const current = () => (cache ??= load());
 
 /** Where a question's answer is kept: its block's scope (usually the chapter's slug) and its own id. */
 export function answerKey(scope: string, id: string): string {
@@ -73,11 +75,11 @@ function save(next: Answers): void {
 }
 
 export function recordAnswer(scope: string, id: string, answer: StoredAnswer): void {
-  save({ ...cache, [answerKey(scope, id)]: answer });
+  save({ ...current(), [answerKey(scope, id)]: answer });
 }
 
 export function forgetAnswers(scope: string, ids: readonly string[]): void {
-  const next = { ...cache };
+  const next = { ...current() };
   for (const id of ids) delete next[answerKey(scope, id)];
   save(next);
 }
@@ -88,7 +90,7 @@ export function useAnswers(): Answers {
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
-    () => cache,
+    current,
     () => NONE,
   );
 }

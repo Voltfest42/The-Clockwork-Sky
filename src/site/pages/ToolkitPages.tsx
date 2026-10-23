@@ -1,12 +1,11 @@
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { chapterNumbered, PARTS, TOOLKIT, type ToolkitInfo } from '../course';
 import { mdxComponents } from '../content/mdxComponents';
+import { toolkitContent } from '../pageContent';
 import { href } from '../router';
 import { SoonTag, ToolkitCard } from './CourseCards';
 import contentStyles from '../content/content.module.css';
 import styles from './pages.module.css';
-
-const lazyContent = new Map(TOOLKIT.flatMap((t) => (t.load ? [[t.slug, lazy(t.load)] as const] : [])));
 
 export function ToolkitIndex() {
   return (
@@ -38,7 +37,7 @@ export function ToolkitIndex() {
 }
 
 export function ToolkitPage({ page }: { page: ToolkitInfo }) {
-  const Content = lazyContent.get(page.slug);
+  const Content = toolkitContent(page.slug);
   const chapter = page.firstNeeded ? chapterNumbered(page.firstNeeded) : undefined;
   return (
     <article className={styles.page}>
@@ -58,7 +57,7 @@ export function ToolkitPage({ page }: { page: ToolkitInfo }) {
       <div className={contentStyles.prose}>
         {Content ? (
           <Suspense fallback={<p className={styles.loading}>Loading…</p>}>
-            {/* Every lazy component is made once, at module level, in lazyContent. */}
+            {/* Not created during render: every page's component is made once, in pageContent.ts. */}
             {/* eslint-disable-next-line react-hooks/static-components */}
             <Content components={mdxComponents} />
           </Suspense>

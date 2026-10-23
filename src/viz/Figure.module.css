@@ -70,6 +70,29 @@
   border-color: var(--accent);
 }
 
+/* The prerendered page shows the figure's description until the live figure takes its place. */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: var(--placeholder-height, 320px);
+  padding: 16px 20px;
+  background: var(--bg);
+  border-radius: var(--radius);
+  line-height: 1.55;
+}
+
+.placeholder p {
+  margin: 0;
+  max-width: 68ch;
+}
+
+.noscript {
+  margin-top: 10px !important;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .caption {
   margin: 12px 0;
   padding: 10px 14px;

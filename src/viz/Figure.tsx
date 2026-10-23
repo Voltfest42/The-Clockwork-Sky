@@ -1,5 +1,6 @@
-import type { KeyboardEventHandler, ReactNode } from 'react';
+import type { CSSProperties, KeyboardEventHandler, ReactNode } from 'react';
 import { ErrorBoundary } from '../site/ErrorBoundary';
+import { useHydrated } from '../site/hydration';
 import styles from './Figure.module.css';
 
 interface FigureProps {
@@ -7,6 +8,14 @@ interface FigureProps {
   number: string;
   title: string;
   children: ReactNode;
+  /**
+   * What the figure shows, in a sentence or three, for the prerendered page: search
+   * engines, link previews and readers without JavaScript see it in place of the
+   * live figure, which only runs once the page has hydrated.
+   */
+  description: ReactNode;
+  /** About how tall the live figure is on a desktop screen, in pixels, so the page doesn't jump when it replaces the description. */
+  height?: number;
   /** What each colour and shape means, shown under the figure. (A chart may carry its own legend instead.) */
   legend?: readonly LegendItem[];
   /** A short prompt for something to try. Every figure has one. */
@@ -24,9 +33,16 @@ interface FigureProps {
  * The frame around every figure: its number and title, a "not to scale" tag
  * when it exaggerates, a reset button, the figure itself, its legend, a "Try
  * this" prompt, and a "What's simplified here?" note when it simplifies.
+ *
+ * The frame is prerendered with the page. The figure itself needs the browser
+ * (canvas, WebGL, storage, the clock), so the prerendered page shows its
+ * description instead, and the live figure takes its place once the page has
+ * hydrated. Hooks in the figure that watch its elements must start again then:
+ * useOnScreen does.
  */
-export function Figure({ number, title, children, legend, tryThis, onReset, simplified, notToScale, onKeyDown }: FigureProps) {
+export function Figure({ number, title, children, description, height, legend, tryThis, onReset, simplified, notToScale, onKeyDown }: FigureProps) {
   const id = `figure-${number}`;
+  const hydrated = useHydrated();
   return (
     <figure className={styles.figure} onKeyDown={onKeyDown} aria-labelledby={id}>
       <figcaption className={styles.header}>
@@ -41,7 +57,20 @@ export function Figure({ number, title, children, legend, tryThis, onReset, simp
           Reset
         </button>
       </figcaption>
-      <ErrorBoundary what={`figure ${number}`}>{children}</ErrorBoundary>
+      {hydrated ? (
+        <ErrorBoundary what={`figure ${number}`}>{children}</ErrorBoundary>
+      ) : (
+        <div
+          className={styles.placeholder}
+          data-figure-placeholder=""
+          style={height ? ({ '--placeholder-height': `${height}px` } as CSSProperties) : undefined}
+        >
+          <p>{description}</p>
+          <noscript>
+            <p className={styles.noscript}>This figure is interactive and needs JavaScript.</p>
+          </noscript>
+        </div>
+      )}
       {legend && <Legend items={legend} />}
       <aside className={styles.tryThis}>
         <span className={styles.tryLabel}>Try this</span>

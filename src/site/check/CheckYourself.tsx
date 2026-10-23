@@ -10,6 +10,7 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react';
+import { useHydrated } from '../hydration';
 import { useRoute } from '../router';
 import { answerKey, forgetAnswers, recordAnswer, tally, useAnswers, type StoredAnswer } from './answers';
 import styles from './check.module.css';
@@ -28,6 +29,9 @@ import styles from './check.module.css';
  * Wrong answers are the common misconceptions, each with its own explanation.
  * Interactive questions put a figure in "question mode" and check its state.
  * Answers are kept in the browser only.
+ *
+ * The questions are prerendered unanswered. Stored answers can only be read
+ * once the page has hydrated, so the questions start again then, picking them up.
  */
 
 interface Block {
@@ -51,6 +55,7 @@ export function CheckYourself({ scope, title = 'Check yourself', children }: Che
   const [ids, setIds] = useState<readonly string[]>([]);
   // Clearing the answers starts every question again from scratch.
   const [round, setRound] = useState(0);
+  const hydrated = useHydrated();
   const headingId = useId();
 
   const block = useMemo<Block>(
@@ -76,7 +81,7 @@ export function CheckYourself({ scope, title = 'Check yourself', children }: Che
         {title}
       </h2>
       <BlockContext.Provider value={block}>
-        <div key={round} className={styles.questions}>
+        <div key={hydrated ? round : 'prerendered'} className={styles.questions}>
           {children}
         </div>
       </BlockContext.Provider>
@@ -195,6 +200,7 @@ export function InteractiveQuestion<S>({ id, prompt, initial, isState, children,
   const restored = stored && isState && isState(stored.value) ? { state: stored.value } : null;
   const [state, setState] = useState<S>(restored ? restored.state : initial);
   const [checked, setChecked] = useState<{ state: S } | null>(restored);
+  const hydrated = useHydrated();
   const result = checked ? check(checked.state) : null;
 
   const submit = () => {
@@ -205,7 +211,16 @@ export function InteractiveQuestion<S>({ id, prompt, initial, isState, children,
   return (
     <fieldset className={styles.question}>
       <legend className={styles.prompt}>{prompt}</legend>
-      <div className={styles.widget}>{children(state, setState)}</div>
+      <div className={styles.widget}>
+        {/* The widget is a figure, so it needs the browser: it appears once the page has hydrated. */}
+        {hydrated ? (
+          children(state, setState)
+        ) : (
+          <noscript>
+            <p>This question is interactive and needs JavaScript.</p>
+          </noscript>
+        )}
+      </div>
       <div className={styles.actions}>
         <button type="button" className={`${styles.button} ${styles.primary}`} onClick={submit}>
           Check

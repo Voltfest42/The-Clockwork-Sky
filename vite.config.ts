@@ -12,12 +12,15 @@ export default defineConfig({
   ],
   build: {
     target: 'es2022',
+    // One stylesheet, linked from every prerendered page, so a page is fully styled
+    // before its scripts run (split CSS would arrive only with each chapter's chunk).
+    cssCodeSplit: false,
     // three.js is one lazy chunk of about 750 kB (190 kB gzipped), loaded only by pages with a 3D view.
     chunkSizeWarningLimit: 800,
   },
   server: {
     // The CDK app's build output holds locked zip files on Windows, which crashes the watcher.
-    watch: { ignored: ['**/infra/**', '**/docs/**'] },
+    watch: { ignored: ['**/infra/**', '**/docs/**', '**/dist*/**'] },
   },
   test: {
     include: ['tests/**/*.test.{ts,tsx}'],

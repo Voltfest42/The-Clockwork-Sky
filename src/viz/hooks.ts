@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore, type RefObject } from 'react';
+import { useHydrated } from '../site/hydration';
 
 function subscribeMedia(query: string) {
   return (onChange: () => void) => {
@@ -39,18 +40,22 @@ export function useDarkMode(): boolean {
 /**
  * Whether an element is on (or near) the screen, and the page is visible.
  * Animations pause when it's false.
+ *
+ * A figure's elements only exist once the page has hydrated (see Figure), so the
+ * watch starts again then: the element may not have been there at first.
  */
 export function useOnScreen(ref: RefObject<Element | null>, margin = '100px'): boolean {
   const [onScreen, setOnScreen] = useState(false);
   const [pageVisible, setPageVisible] = useState(() => typeof document === 'undefined' || document.visibilityState !== 'hidden');
+  const hydrated = useHydrated();
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || typeof IntersectionObserver === 'undefined') return;
+    if (!hydrated || !element || typeof IntersectionObserver === 'undefined') return;
     const observer = new IntersectionObserver((entries) => setOnScreen(entries.some((e) => e.isIntersecting)), { rootMargin: margin });
     observer.observe(element);
     return () => observer.disconnect();
-  }, [ref, margin]);
+  }, [ref, margin, hydrated]);
 
   useEffect(() => {
     const update = () => setPageVisible(document.visibilityState !== 'hidden');

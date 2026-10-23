@@ -3,14 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="An interactive course in astronomy and astrophysics that starts from scratch: from the sky you can see to the physics inside the stars, with live figures that run real physics in your browser."
-    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--head-->
     <title>The Clockwork Sky</title>
+    <!--/head-->
+    <script>
+      // An old "#/page" link is moved to the page's own address by the app: keep the
+      // start page this HTML holds hidden until then (see src/main.tsx).
+      if (location.hash.indexOf('#/') === 0) document.documentElement.setAttribute('data-moved', '');
+    </script>
+    <style>
+      [data-moved] #root {
+        visibility: hidden;
+      }
+    </style>
+    <noscript>
+      <!-- Without JavaScript the figures never arrive, so their descriptions needn't keep room for them. -->
+      <style>
+        [data-figure-placeholder] {
+          min-height: 0 !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
+    <!-- Each page's HTML is prerendered into #root at build time (scripts/prerender.ts), and the head above is filled in for it. -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

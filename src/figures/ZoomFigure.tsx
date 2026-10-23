@@ -59,6 +59,8 @@ export function ZoomFigure({ number, tryThis }: { number: string; tryThis: React
     <Figure
       number={number}
       title="The zoom: from you to the Milky Way"
+      description="A zoom through 21 powers of ten, drawn from real sizes and distances. It starts with a person, 1.7 metres tall, and widens the view ten times at each step: a football pitch, the edge of space, Earth, the Moon’s orbit, the Sun and the planets, the Oort cloud, the nearest stars and, after 21 steps, the whole Milky Way. A scale bar and a ×10 counter keep track, and every object can be picked to see its size and distance."
+      height={740}
       tryThis={tryThis}
       onReset={reset}
       legend={[

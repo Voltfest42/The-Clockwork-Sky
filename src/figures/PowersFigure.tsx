@@ -51,6 +51,8 @@ export function PowersFigure({ number, tryThis }: { number: string; tryThis: Rea
     <Figure
       number={number}
       title="The exponent machine"
+      description="A calculator for numbers in scientific notation: enter two numbers as a front number and a power of ten, multiply or divide them, and see how the powers add or subtract. Worked examples answer questions such as how long sunlight takes to reach Earth."
+      height={600}
       tryThis={tryThis}
       onReset={reset}
       legend={[

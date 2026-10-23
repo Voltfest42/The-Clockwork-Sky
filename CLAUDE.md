@@ -29,7 +29,8 @@ npm run dev        # http://localhost:5173
 npm test           # Vitest unit and property tests
 npm run e2e        # Playwright + axe on the production build (first time: npx playwright install chromium)
 npm run lint
-npm run build      # type-check and build to dist/
+npm run build      # type-check, build to dist/ and prerender every page
+npm run preview    # serve dist/ the way CloudFront does, at http://localhost:4175
 npm run deploy     # build, upload to S3, invalidate CloudFront (default AWS profile, us-east-1)
 ```
 
@@ -41,6 +42,21 @@ npm run deploy     # build, upload to S3, invalidate CloudFront (default AWS pro
 - **Heavy work** runs in Web Workers. Figures pause when off-screen. three.js is used only through `Scene3D` and lazy-loaded.
 - **Tests:** physics against independent references (JPL Horizons fixtures, NASA eclipse lists, analytic solutions, conservation laws); property tests with fast-check; end-to-end and axe tests for every new page and figure.
 - **Data:** scripts in `scripts/` build compact files in `src/data/`. Raw downloads go to `scripts/.cache/` and are not committed. Record every source and licence in `src/data/README.md` and on the About page. Keep share-alike files (HYG stars, CC BY-SA 4.0) separate.
+
+## Search engines
+
+Every page is a real address with its own prerendered HTML, so search engines and link previews see it. Keep it that way:
+
+- **One route list.** `src/site/routes.ts` makes every page's path, title and description from the course registry (`course.ts`) plus the extra pages. A new chapter, Toolkit page or lab added to `course.ts` gets its address (`/<slug>/`, Toolkit pages `/toolkit/<slug>/`), its prerendered `dist/<path>/index.html`, its head tags, its structured data and its sitemap entry by itself. A new kind of page goes in `routes.ts` (and `App.tsx`); its title and description must be unique.
+- **Links** are plain `<a href={href(page, section)}>`. Sections are fragments: `/the-turning-sky/#the-sky-as-a-dome`. Never write `#/` addresses; old ones are only moved on load.
+- **Prerendering and hydration.** `npm run build` renders every route with `src/entry-server.tsx` (`scripts/prerender.ts`), and the browser hydrates it. The first render in the browser must match the server's exactly:
+  - No module touches `window`, `document`, storage or the clock at import time. Read storage lazily, through `useSyncExternalStore` with a server snapshot.
+  - Anything that needs the browser (canvas, WebGL, workers, `matchMedia`, the clock, storage) lives inside a figure's body: `Figure` prerenders the frame and the figure's `description` (required, with a `height` hint) and mounts the live figure after hydration. Hooks that watch a figure's elements restart then (`useOnScreen` does). Use `useHydrated()` for anything else that must wait.
+  - Text that depends on today's date uses `usePageTime()`.
+  - `npm run e2e` checks every page with JavaScript off, and hydrates every page on a development build of React, which reports any mismatch.
+- **Head tags and structured data** come from `src/site/seo.ts`: title, description, canonical `https://sky.moving-parts.dev/<path>`, Open Graph and Twitter tags, a schema.org `Course` on the start page and a `LearningResource` on each chapter and Toolkit page. `sitemap.xml` and `robots.txt` are generated from the same list.
+- **Hosting.** A CloudFront Function (`infra/lib/viewer-request.ts`) sends other host names to sky.moving-parts.dev, adds trailing slashes and serves `/<path>/index.html`. Unknown paths get `404.html` with a 404 status. `npm run preview` and the end-to-end tests serve the build through the same function (`scripts/serve.ts`).
+- The link-preview image `public/og-image.png` comes from the Moving Parts project (`npm run previews` there); ask for a new one rather than editing it.
 
 ## Content conventions
 

@@ -1,12 +1,16 @@
-import { PAGE_LOADED, voyagerHasReachedLightDay, voyagerYears } from './voyagerDates';
+import { usePageTime } from '../hydration';
+import { voyagerHasReachedLightDay, voyagerYears } from './voyagerDates';
 
 /**
  * Sentences whose tense depends on today's date, so the text stays right
- * after the event without an edit. "Now" is the reader's clock.
+ * after the event without an edit. "Now" is the reader's clock once the page
+ * has hydrated, and the time the HTML was built before that (see usePageTime).
  */
 
 /** Voyager 1's light-day milestone on 18 November 2026, in the right tense for today. */
-export function VoyagerLightDay({ now = PAGE_LOADED }: { now?: number }) {
+export function VoyagerLightDay({ now: given }: { now?: number }) {
+  const pageTime = usePageTime();
+  const now = given ?? pageTime;
   const years = voyagerYears(now);
   return voyagerHasReachedLightDay(now) ? (
     <>

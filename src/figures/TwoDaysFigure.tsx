@@ -87,6 +87,8 @@ export function TwoDaysFigure({ number, tryThis }: { number: string; tryThis: Re
     <Figure
       number={number}
       title="One spin, two days"
+      description="A diagram of Earth spinning as it goes round the Sun, seen from above. It times how long Earth takes to bring a distant star back to your meridian (a star day) and to bring the Sun back (a Sun day). The Sun day is about four minutes longer, because Earth has moved along its orbit and must turn a little further. Short made-up years make the difference easy to see."
+      height={730}
       tryThis={tryThis}
       onReset={reset}
       notToScale

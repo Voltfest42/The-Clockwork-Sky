@@ -34,6 +34,8 @@ export function AnglesFigure({ number, tryThis }: { number: string; tryThis: Rea
     <Figure
       number={number}
       title="How big does it look?"
+      description="A diagram of an eye looking at an object of some size at some distance, with the angle it spans. Examples run from your little finger at arm’s length (about 1°) to the full Moon and the Sun (each about half a degree), and the figure compares the exact angle with the small-angle rule: size divided by distance, in radians."
+      height={580}
       tryThis={tryThis}
       onReset={reset}
       notToScale={exaggerated}

@@ -1,16 +1,15 @@
-import { lazy, Suspense, useEffect, useRef } from 'react';
-import { chapterNumbered, CHAPTERS, partNumbered, sectionId, type ChapterInfo } from '../course';
+import { Suspense, useEffect, useRef } from 'react';
+import { chapterNumbered, partNumbered, sectionId, type ChapterInfo } from '../course';
 import { mdxComponents } from '../content/mdxComponents';
+import { chapterContent } from '../pageContent';
 import { markChapterRead } from '../progress';
 import { href, scrollToSection } from '../router';
 import { BuildsOn, SoonTag } from './CourseCards';
 import contentStyles from '../content/content.module.css';
 import styles from './pages.module.css';
 
-const lazyContent = new Map(CHAPTERS.flatMap((c) => (c.load ? [[c.slug, lazy(c.load)] as const] : [])));
-
 export function ChapterPage({ chapter, section }: { chapter: ChapterInfo; section: string | null }) {
-  const Content = lazyContent.get(chapter.slug);
+  const Content = chapterContent(chapter.slug);
   const part = partNumbered(chapter.part);
 
   const header = (
@@ -40,7 +39,7 @@ export function ChapterPage({ chapter, section }: { chapter: ChapterInfo; sectio
       {header}
       <div className={contentStyles.prose}>
         <Suspense fallback={<p className={styles.loading}>Loading the chapter…</p>}>
-          {/* Not created during render: every lazy component is made once, at module level, in lazyContent. */}
+          {/* Not created during render: every chapter's component is made once, in pageContent.ts. */}
           {/* eslint-disable-next-line react-hooks/static-components */}
           <Content components={mdxComponents} />
           <ScrollToSection chapter={chapter.slug} section={section} />

@@ -18,8 +18,11 @@ npm test           # unit + property tests (Vitest, fast-check)
 npm run e2e        # end-to-end + accessibility tests on the production build (Playwright + axe)
                    # first time only: npx playwright install chromium
 npm run lint
-npm run build      # type-check and build to dist/
+npm run build      # type-check, build to dist/ and prerender every page to its own HTML
+npm run preview    # serve dist/ the way CloudFront does, at http://localhost:4175
 ```
+
+Every page has its own address (`/the-turning-sky/`) and is prerendered at build time, then hydrated in the browser; see "Search engines" in `CLAUDE.md`.
 
 The data files in `src/data/` are committed; to rebuild them from the sources (downloaded once into `scripts/.cache/`):
 
@@ -35,13 +38,14 @@ npx tsx scripts/fetch-horizons.ts         # JPL Horizons → tests/fixtures/hori
 src/core/      the physics: units, vectors and angles, calendars and time, coordinates, precession, the Sun, Moon and planets, stars (pure TypeScript, no UI)
 src/viz/       reusable visual pieces: figure frame, step player, charts, the 3D scene, the scale zoom, the sky view, time and place controls
 src/figures/   the figures themselves, one file each
-src/site/      site shell: course registry, routing, sidebar, pages, glossary, Check yourself, reading progress
+src/site/      site shell: course registry, route list, routing, head tags and sitemap, sidebar, pages, glossary, Check yourself, reading progress
+src/entry-server.tsx  renders a page to HTML at build time (scripts/prerender.ts)
 src/content/   chapter and Toolkit text (MDX)
 src/data/      compact data files built by scripts/, each with its source and licence (share-alike ones in their own folder)
-scripts/       data builders and fixture fetchers
+scripts/       data builders, fixture fetchers, the prerenderer and a local server that behaves like CloudFront
 tests/         unit and property tests
 e2e/           Playwright tests and WCAG 2.1 AA checks
-infra/         AWS CDK app: private S3 bucket + CloudFront on sky.moving-parts.dev
+infra/         AWS CDK app: private S3 bucket + CloudFront (with its viewer-request function) on sky.moving-parts.dev
 docs/          plans and research notes
 ```
 
@@ -54,7 +58,7 @@ docs/          plans and research notes
 
 ## Deploying
 
-The site is static. It is served from a private S3 bucket through CloudFront (Origin Access Control), on `sky.moving-parts.dev` with a certificate and an alias record in the `moving-parts.dev` hosted zone (owned by the Moving Parts project). It is all defined in `infra/` with AWS CDK, as the stack `ClockworkSkySite`.
+The site is static: one prerendered HTML file per page. It is served from a private S3 bucket through CloudFront (Origin Access Control), with a CloudFront Function that gives every page one address (trailing slash, one host name) and serves each folder's `index.html`, on `sky.moving-parts.dev` with a certificate and an alias record in the `moving-parts.dev` hosted zone (owned by the Moving Parts project). It is all defined in `infra/` with AWS CDK, as the stack `ClockworkSkySite`.
 
 ```bash
 npm install --prefix infra   # once

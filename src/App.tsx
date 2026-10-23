@@ -10,60 +10,59 @@ import { Landing } from './site/pages/Landing';
 import { NotFound } from './site/pages/NotFound';
 import { PartPage } from './site/pages/PartPage';
 import { ToolkitIndex, ToolkitPage } from './site/pages/ToolkitPages';
-import { useRoute } from './site/router';
+import { NOT_FOUND, pageMeta } from './site/routes';
+import { scrollToSection, useRoute } from './site/router';
+import { applyHead } from './site/seo';
 
-const SITE = 'The Clockwork Sky';
-
-/** The page for an address, and its title in the browser tab. */
-function resolve(page: string, section: string | null): { content: ReactNode; title: string } {
-  if (page === '') return { content: <Landing />, title: `${SITE}: an interactive course in astronomy` };
+/** The page for an address. Its title and description come from the route list (routes.ts). */
+function resolve(page: string, section: string | null): ReactNode {
+  if (page === '') return <Landing />;
 
   const chapter = findChapter(page);
-  if (chapter) {
-    return { content: <ChapterPage key={chapter.slug} chapter={chapter} section={section} />, title: `${chapter.number}. ${chapter.title} · ${SITE}` };
-  }
+  if (chapter) return <ChapterPage key={chapter.slug} chapter={chapter} section={section} />;
   const part = findPart(page);
-  if (part) return { content: <PartPage part={part} />, title: `Part ${part.numeral}: ${part.title} · ${SITE}` };
+  if (part) return <PartPage part={part} />;
 
   const toolkit = page.startsWith('toolkit/') ? findToolkitPage(page) : undefined;
-  if (toolkit) return { content: <ToolkitPage page={toolkit} />, title: `${toolkit.title} · Toolkit · ${SITE}` };
+  if (toolkit) return <ToolkitPage page={toolkit} />;
 
   const lab = findLab(page);
-  if (lab) return { content: <LabPage lab={lab} />, title: `${lab.title} · ${SITE}` };
+  if (lab) return <LabPage lab={lab} />;
 
   switch (page) {
     case 'toolkit':
-      return { content: <ToolkitIndex />, title: `Toolkit · ${SITE}` };
+      return <ToolkitIndex />;
     case 'labs':
-      return { content: <LabsIndex />, title: `Labs · ${SITE}` };
+      return <LabsIndex />;
     case 'glossary':
-      return { content: <Glossary />, title: `Glossary · ${SITE}` };
+      return <Glossary />;
     case 'about':
-      return { content: <About />, title: `About · ${SITE}` };
+      return <About />;
     default:
-      return { content: <NotFound />, title: `Not found · ${SITE}` };
+      return <NotFound />;
   }
 }
 
 export function App() {
   const { page, section } = useRoute();
-  const { content, title } = resolve(page, section);
+  const content = resolve(page, section);
   const isChapter = findChapter(page) !== undefined;
 
   useEffect(() => {
-    document.title = title;
-  }, [title]);
+    applyHead(pageMeta(page) ?? NOT_FOUND);
+  }, [page]);
 
-  // New page: start at the top (chapters handle their own #section scrolling) and
-  // move keyboard and screen-reader focus to the new content. The first page is
-  // left alone, so that the first Tab still lands on "Skip to content".
+  // New page: start at the top, or at the #section asked for (chapters handle their
+  // own, once their content is in), and move keyboard and screen-reader focus to the
+  // new content. The first page is left alone, so that the first Tab still lands on
+  // "Skip to content".
   const shownPage = useRef(page);
   useEffect(() => {
-    if (!isChapter) window.scrollTo({ top: 0 });
+    if (!isChapter && !(section && scrollToSection(section, 'auto'))) window.scrollTo({ top: 0 });
     if (shownPage.current === page) return;
     shownPage.current = page;
     document.getElementById('main')?.focus({ preventScroll: true });
-  }, [page, isChapter]);
+  }, [page, section, isChapter]);
 
   return (
     <Layout>

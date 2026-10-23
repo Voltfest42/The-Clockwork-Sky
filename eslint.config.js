@@ -6,7 +6,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 export default defineConfig([
-  globalIgnores(['dist', 'infra/cdk.out', 'infra/node_modules', 'coverage', 'scripts/.cache']),
+  globalIgnores(['dist', 'dist-server', 'dist-dev', 'dist-dev-server', 'infra/cdk.out', 'infra/node_modules', 'coverage', 'scripts/.cache']),
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
@@ -19,5 +19,10 @@ export default defineConfig([
       ecmaVersion: 2022,
       globals: globals.browser,
     },
+  },
+  {
+    // Run once at build time by scripts/prerender.ts, never hot-reloaded.
+    files: ['src/entry-server.tsx'],
+    rules: { 'react-refresh/only-export-components': 'off' },
   },
 ]);

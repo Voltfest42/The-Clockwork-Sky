@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { CHAPTERS, chaptersOf, LABS, PARTS, TOOLKIT } from '../src/site/course';
 import { GLOSSARY } from '../src/site/glossary';
+import { href } from '../src/site/router';
 import { accessibilityViolations, expectNoBrokenFigures, watchErrors } from './helpers';
 
 /** One page of each kind, for the checks that don't need every page. */
@@ -27,12 +28,12 @@ test('the landing page introduces the course and its three parts @phone', async 
   const main = page.locator('main');
   for (const part of PARTS) await expect(main.getByRole('link', { name: new RegExp(`Part ${part.numeral} .*${part.title}`) })).toBeVisible();
   for (const lab of LABS) await expect(main.getByRole('link', { name: new RegExp(`^Lab · .*${lab.title}`) })).toBeVisible();
-  await expect(main.getByRole('link', { name: 'Start reading: Chapter 1, A sense of scale →' })).toHaveAttribute('href', '#/a-sense-of-scale');
+  await expect(main.getByRole('link', { name: 'Start reading: Chapter 1, A sense of scale →' })).toHaveAttribute('href', '/a-sense-of-scale/');
   await expect(main.getByRole('img', { name: /A ruler of sizes/ })).toBeVisible();
   await expect(main.getByRole('heading', { name: 'How to use the figures' })).toBeVisible();
   await expect(main.getByRole('heading', { name: 'Where to start' })).toBeVisible();
-  await expect(main.getByRole('link', { name: 'Start with Chapter 1, A sense of scale →' })).toHaveAttribute('href', '#/a-sense-of-scale');
-  await expect(main.getByRole('link', { name: 'Start with Part II, The Stars →' })).toHaveAttribute('href', '#/part-2');
+  await expect(main.getByRole('link', { name: 'Start with Chapter 1, A sense of scale →' })).toHaveAttribute('href', '/a-sense-of-scale/');
+  await expect(main.getByRole('link', { name: 'Start with Part II, The Stars →' })).toHaveAttribute('href', '/part-2/');
   expect(await accessibilityViolations(page)).toEqual([]);
   expect(errors).toEqual([]);
 });
@@ -41,7 +42,7 @@ test('every page of the course opens without errors', async ({ page }) => {
   const errors = watchErrors(page);
   await page.goto('/');
   for (const path of ALL_PAGES) {
-    await page.goto(`/#/${path}`);
+    await page.goto(href(path));
     await expect(page.locator('main h1'), path || 'landing').toBeVisible();
     await expect(page.getByRole('heading', { name: 'There’s no page here' })).toHaveCount(0);
     await expectNoBrokenFigures(page);
@@ -50,7 +51,7 @@ test('every page of the course opens without errors', async ({ page }) => {
 });
 
 test('Part I’s page lists its chapters, the lab and what readers will be able to explain', async ({ page }) => {
-  await page.goto('/#/part-1');
+  await page.goto('/part-1/');
   await expect(page.getByRole('heading', { level: 1, name: 'The Clockwork' })).toBeVisible();
   const main = page.locator('main');
   for (const c of chaptersOf(1)) await expect(main.getByRole('link', { name: new RegExp(`Chapter ${c.number} .*${c.title}`) })).toBeVisible();
@@ -61,7 +62,7 @@ test('Part I’s page lists its chapters, the lab and what readers will be able 
 
 test('a planned chapter shows what it builds on and its planned sections, numbered', async ({ page }) => {
   for (const chapter of chaptersOf(1).filter((c) => !c.load)) {
-    await page.goto(`/#/${chapter.slug}`);
+    await page.goto(href(chapter.slug));
     const main = page.locator('main');
     await expect(main.getByRole('heading', { level: 1, name: chapter.title })).toBeVisible();
     await expect(main.getByText(`Part I · Chapter ${chapter.number}`)).toBeVisible();
@@ -71,14 +72,14 @@ test('a planned chapter shows what it builds on and its planned sections, number
     }
   }
   // "Builds on" links lead to the earlier chapters.
-  await page.goto('/#/the-moon');
+  await page.goto('/the-moon/');
   await page.locator('main').getByRole('link', { name: 'Chapter 3, The Sun’s year' }).click();
-  await expect(page).toHaveURL(/#\/the-suns-year$/);
+  await expect(page).toHaveURL(/\/the-suns-year\/$/);
   await expect(page.getByRole('heading', { level: 1, name: 'The Sun’s year' })).toBeVisible();
 });
 
 test('the pager runs straight through the chapters, across parts', async ({ page }) => {
-  await page.goto('/#/the-stars-are-suns');
+  await page.goto('/the-stars-are-suns/');
   const pager = page.getByRole('navigation', { name: 'Chapters' });
   await pager.getByRole('link', { name: /Part II · Chapter 10/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'Light, the messenger' })).toBeVisible();
@@ -104,28 +105,28 @@ test('the sidebar groups chapters by part, and its groups open and close by keyb
   await expect(nav.getByRole('link', { name: /Colour is temperature/ })).toBeHidden();
 
   // Opening a chapter opens its part's group and marks the chapter as the current page.
-  await page.goto('/#/black-holes');
+  await page.goto('/black-holes/');
   await expect(nav.getByRole('button', { name: 'Chapters of Part III', exact: true })).toHaveAttribute('aria-expanded', 'true');
   await expect(nav.getByRole('link', { name: /Black holes/ })).toHaveAttribute('aria-current', 'page');
 });
 
 test('the Toolkit and the labs list their pages', async ({ page }) => {
-  await page.goto('/#/toolkit');
+  await page.goto('/toolkit/');
   const main = page.locator('main');
   for (const t of TOOLKIT) await expect(main.getByRole('link', { name: new RegExp(t.title) })).toBeVisible();
   await main.getByRole('link', { name: /Angles in the sky/ }).click();
-  await expect(page).toHaveURL(/#\/toolkit\/angles-in-the-sky$/);
+  await expect(page).toHaveURL(/\/toolkit\/angles-in-the-sky\/$/);
   await expect(page.getByRole('heading', { level: 1, name: 'Angles in the sky' })).toBeVisible();
   await expect(main.getByRole('link', { name: 'Chapter 2, The turning sky' })).toBeVisible();
 
-  await page.goto('/#/labs');
+  await page.goto('/labs/');
   await page.locator('main').getByRole('link', { name: /The Star Forge/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'The Star Forge' })).toBeVisible();
   await expect(page.locator('main').getByText(/Version 1, with/)).toBeVisible();
 });
 
 test('the glossary lists every term, and terms explain themselves on hover and focus', async ({ page }) => {
-  await page.goto('/#/glossary');
+  await page.goto('/glossary/');
   await expect(page.locator('main dt').first()).toBeVisible();
   const terms = await page.locator('main dt').allTextContents();
   expect([...terms].sort()).toEqual(Object.values(GLOSSARY).map((g) => g.term).sort());
@@ -137,7 +138,7 @@ test('the glossary lists every term, and terms explain themselves on hover and f
 });
 
 test('the skip link moves focus to the content', async ({ page }) => {
-  await page.goto('/#/about');
+  await page.goto('/about/');
   await page.keyboard.press('Tab');
   const skip = page.getByRole('link', { name: 'Skip to content' });
   await expect(skip).toBeFocused();
@@ -147,7 +148,7 @@ test('the skip link moves focus to the content', async ({ page }) => {
 
 test('every kind of page passes the accessibility checks', async ({ page }) => {
   for (const path of SAMPLE_PAGES) {
-    await page.goto(`/#/${path}`);
+    await page.goto(href(path));
     await expect(page.locator('main h1')).toBeVisible();
     expect(await accessibilityViolations(page), path || 'landing').toEqual([]);
   }
@@ -158,7 +159,7 @@ test.describe('dark mode', () => {
 
   test('every kind of page passes the accessibility checks in dark mode too', async ({ page }) => {
     for (const path of SAMPLE_PAGES) {
-      await page.goto(`/#/${path}`);
+      await page.goto(href(path));
       await expect(page.locator('main h1')).toBeVisible();
       expect(await accessibilityViolations(page), path || 'landing').toEqual([]);
     }
@@ -171,7 +172,7 @@ test.describe('at 375 pixels wide', () => {
 
   test('no page scrolls sideways', async ({ page }) => {
     for (const path of SAMPLE_PAGES) {
-      await page.goto(`/#/${path}`);
+      await page.goto(href(path));
       await expect(page.locator('main h1')).toBeVisible();
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       expect(overflow, path || 'landing').toBeLessThanOrEqual(0);
@@ -191,11 +192,18 @@ test.describe('at 375 pixels wide', () => {
   });
 });
 
-test('unknown pages show a friendly not-found page', async ({ page }) => {
+test('unknown addresses get the not-found page with a 404 status', async ({ page }) => {
+  const errors = watchErrors(page);
+  for (const path of ['/no-such-page/', '/toolkit/no-such-tool/', '/the-moon/extra/']) {
+    const response = await page.goto(path);
+    expect(response?.status(), path).toBe(404);
+    await expect(page.getByRole('heading', { name: 'There’s no page here' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Contents' }).locator('[aria-current="page"]')).toHaveCount(0);
+  }
+  // A malformed address is never a page: CloudFront itself answers 400 Bad Request (the local server says 404).
+  expect([400, 404]).toContain((await page.request.get('/%E0%A4%A/')).status());
+  // An old link to a page that doesn't exist lands on the not-found page too.
   await page.goto('/#/no-such-page');
   await expect(page.getByRole('heading', { name: 'There’s no page here' })).toBeVisible();
-  await page.goto('/#/toolkit/no-such-tool');
-  await expect(page.getByRole('heading', { name: 'There’s no page here' })).toBeVisible();
-  await page.goto('/#/%E0%A4%A');
-  await expect(page.getByRole('heading', { name: 'There’s no page here' })).toBeVisible();
+  expect(errors.filter((e) => !e.includes('404'))).toEqual([]);
 });

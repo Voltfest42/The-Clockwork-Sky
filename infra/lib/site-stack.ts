@@ -7,6 +7,7 @@ import * as targets from 'aws-cdk-lib/aws-route53-targets';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import type { Construct } from 'constructs';
+import { viewerRequestCode } from './viewer-request.ts';
 
 export interface SiteStackProps extends StackProps {
   /** Absolute path to the built app (the Vite `dist/` folder). */
@@ -45,6 +46,14 @@ export class SiteStack extends Stack {
       validation: acm.CertificateValidation.fromDns(zone),
     });
 
+    // Every page is a prerendered folder: one address per page on one host name, and
+    // "/page/" served from "/page/index.html" (see viewer-request.ts).
+    const viewerRequest = new cloudfront.Function(this, 'ViewerRequest', {
+      runtime: cloudfront.FunctionRuntime.JS_2_0,
+      comment: `One address per page on ${props.domainName}, and folder index pages`,
+      code: cloudfront.FunctionCode.fromInline(viewerRequestCode(props.domainName)),
+    });
+
     const distribution = new cloudfront.Distribution(this, 'Distribution', {
       comment: 'The Clockwork Sky: interactive astronomy course',
       domainNames: [props.domainName],
@@ -58,13 +67,14 @@ export class SiteStack extends Stack {
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED,
         responseHeadersPolicy: cloudfront.ResponseHeadersPolicy.SECURITY_HEADERS,
         compress: true,
+        functionAssociations: [{ function: viewerRequest, eventType: cloudfront.FunctionEventType.VIEWER_REQUEST }],
       },
-      // The app routes with #hashes, so any other path is a typo: show the app (it lands on
-      // the start page) instead of S3's raw "AccessDenied" XML, but keep the 404 status.
+      // An address with no page behind it: S3 says 403 (the bucket can't be listed), so show
+      // the prerendered "Not found" page instead of S3's raw XML, with a real 404 status.
       errorResponses: [403, 404].map((httpStatus) => ({
         httpStatus,
         responseHttpStatus: 404,
-        responsePagePath: '/index.html',
+        responsePagePath: '/404.html',
         ttl: Duration.minutes(1),
       })),
     });
@@ -82,7 +92,7 @@ export class SiteStack extends Stack {
       cacheControl: [s3deploy.CacheControl.fromString('public, max-age=31536000, immutable')],
     });
 
-    // Everything else (index.html, favicon) must be revalidated, so a deploy shows up immediately.
+    // Everything else (the pages' HTML, the sitemap, the favicon) must be revalidated, so a deploy shows up immediately.
     const root = new s3deploy.BucketDeployment(this, 'DeployRoot', {
       sources: [s3deploy.Source.asset(props.siteDir)],
       destinationBucket: bucket,

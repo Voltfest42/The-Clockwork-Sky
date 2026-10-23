@@ -47,6 +47,8 @@ export function ScaleModelFigure({ number, tryThis }: { number: string; tryThis:
     <Figure
       number={number}
       title="Build a scale model of the Solar System"
+      description="A scale model of the Solar System: choose how big the Sun is, and the figure works out how big each planet would be and how far from the Sun it would sit, with everyday things for comparison. The planets come out as grains and peas spread over hundreds of metres to kilometres, and the nearest star, Proxima Centauri, ends up thousands of kilometres away."
+      height={1300}
       tryThis={tryThis}
       onReset={reset}
       legend={[

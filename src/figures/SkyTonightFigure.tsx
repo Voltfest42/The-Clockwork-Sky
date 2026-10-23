@@ -93,6 +93,8 @@ export function SkyTonightFigure({ number, tryThis }: { number: string; tryThis:
     <Figure
       number={number}
       title="The sky tonight"
+      description="A live map of the sky from where you are, at the time you choose: the stars down to magnitude 6.5, coloured by temperature, the constellation figures, the Milky Way, the Sun, the Moon in its phase and the planets, above a horizon with the compass points. You can change the place and the time, turn the view to any direction, find a star or planet by name, and run the clock to watch the sky turn."
+      height={820}
       tryThis={tryThis}
       onReset={reset}
       legend={[

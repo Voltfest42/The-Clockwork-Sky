@@ -129,8 +129,8 @@ describe('components', () => {
 
   it('ZoomLevels links to each part', () => {
     const html = renderToStaticMarkup(<ZoomLevels />);
-    expect(html).toContain('href="#/part-1"');
-    expect(html).toContain('href="#/part-3"');
+    expect(html).toContain('href="/part-1/"');
+    expect(html).toContain('href="/part-3/"');
     expect(renderToStaticMarkup(<ZoomLevels list={false} />)).not.toContain('href=');
   });
 });

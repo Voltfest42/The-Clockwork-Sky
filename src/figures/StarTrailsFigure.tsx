@@ -162,6 +162,8 @@ export function StarTrailsFigure({ number, tryThis }: { number: string; tryThis:
     <Figure
       number={number}
       title="Star trails"
+      description="A long-exposure photograph of the night sky, computed from the star catalogue. As the night runs, every star draws an arc about the celestial pole, 15° for every hour: circles round the pole facing north, rising slants facing east, arches facing south and setting slants facing west, from wherever you choose to stand."
+      height={680}
       tryThis={tryThis}
       onReset={reset}
       legend={[

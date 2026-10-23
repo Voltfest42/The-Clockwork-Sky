@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { CHAPTERS, LABS, PARTS, TOOLKIT } from '../src/site/course';
 import { GLOSSARY } from '../src/site/glossary';
-import { href, parseHash, slugify } from '../src/site/router';
+import { href, movedAddress, parseLocation, slugify } from '../src/site/router';
 
 /** Every source file under a folder, recursively. */
 function filesUnder(dir: URL, pattern: RegExp): URL[] {
@@ -16,26 +16,44 @@ function filesUnder(dir: URL, pattern: RegExp): URL[] {
 const src = new URL('../src/', import.meta.url);
 
 describe('router', () => {
-  it('parses the page and section from the hash', () => {
-    expect(parseHash('')).toEqual({ page: '', section: null });
-    expect(parseHash('#/')).toEqual({ page: '', section: null });
-    expect(parseHash('#/the-moon')).toEqual({ page: 'the-moon', section: null });
-    expect(parseHash('#/the-turning-sky/where-you-stand-changes-the-sky')).toEqual({
+  it('reads the page from the path and the section from the fragment', () => {
+    expect(parseLocation('/')).toEqual({ page: '', section: null });
+    expect(parseLocation('/the-moon/')).toEqual({ page: 'the-moon', section: null });
+    expect(parseLocation('/the-moon')).toEqual({ page: 'the-moon', section: null });
+    expect(parseLocation('/the-moon/index.html')).toEqual({ page: 'the-moon', section: null });
+    expect(parseLocation('/the-turning-sky/', '#where-you-stand-changes-the-sky')).toEqual({
       page: 'the-turning-sky',
       section: 'where-you-stand-changes-the-sky',
     });
+    expect(parseLocation('/toolkit/powers-of-ten/', '#prefixes')).toEqual({ page: 'toolkit/powers-of-ten', section: 'prefixes' });
   });
 
-  it('puts Toolkit pages one level down', () => {
-    expect(parseHash('#/toolkit')).toEqual({ page: 'toolkit', section: null });
-    expect(parseHash('#/toolkit/powers-of-ten')).toEqual({ page: 'toolkit/powers-of-ten', section: null });
-    expect(parseHash('#/toolkit/powers-of-ten/prefixes')).toEqual({ page: 'toolkit/powers-of-ten', section: 'prefixes' });
-    expect(parseHash(href('toolkit/powers-of-ten', 'prefixes'))).toEqual({ page: 'toolkit/powers-of-ten', section: 'prefixes' });
+  it('gives every page an address with a trailing slash, and sections a fragment', () => {
+    expect(href('')).toBe('/');
+    expect(href('the-moon')).toBe('/the-moon/');
+    expect(href('toolkit/powers-of-ten', 'prefixes')).toBe('/toolkit/powers-of-ten/#prefixes');
+    for (const [page, section] of [['', null], ['the-moon', 'eclipses'], ['toolkit/powers-of-ten', 'prefixes'], ['about', null]] as const) {
+      const address = href(page, section);
+      const at = address.indexOf('#');
+      expect(at < 0 ? parseLocation(address) : parseLocation(address.slice(0, at), address.slice(at))).toEqual({ page, section });
+    }
+  });
+
+  it('moves old #/ links to their pages’ addresses', () => {
+    expect(movedAddress('')).toBeNull();
+    expect(movedAddress('#the-sky-as-a-dome')).toBeNull();
+    expect(movedAddress('#/')).toBe('/');
+    expect(movedAddress('#/the-moon')).toBe('/the-moon/');
+    expect(movedAddress('#/the-turning-sky/where-you-stand-changes-the-sky')).toBe('/the-turning-sky/#where-you-stand-changes-the-sky');
+    expect(movedAddress('#/toolkit')).toBe('/toolkit/');
+    expect(movedAddress('#/toolkit/powers-of-ten')).toBe('/toolkit/powers-of-ten/');
+    expect(movedAddress('#/toolkit/powers-of-ten/prefixes')).toBe('/toolkit/powers-of-ten/#prefixes');
   });
 
   it('survives mistyped links', () => {
-    expect(parseHash('#/%E0%A4%A')).toEqual({ page: '%E0%A4%A', section: null });
-    expect(parseHash('#//the-moon//')).toEqual({ page: 'the-moon', section: null });
+    expect(parseLocation('/%E0%A4%A/')).toEqual({ page: '%E0%A4%A', section: null });
+    expect(parseLocation('//the-moon//')).toEqual({ page: 'the-moon', section: null });
+    expect(movedAddress('#//the-moon//')).toBe('/the-moon/');
   });
 
   it('slugifies headings into URL-safe ids, dropping apostrophes', () => {

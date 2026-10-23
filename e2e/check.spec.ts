@@ -2,7 +2,7 @@ import { expect, test, type Locator, type Page } from '@playwright/test';
 import { accessibilityViolations, watchErrors } from './helpers';
 
 /** Chapter 1's Check yourself block. */
-const CHAPTER = '/#/a-sense-of-scale';
+const CHAPTER = '/a-sense-of-scale/';
 
 function sample(page: Page) {
   return page.getByRole('region', { name: 'Check yourself' });

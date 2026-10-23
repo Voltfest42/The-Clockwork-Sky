@@ -133,6 +133,8 @@ export function InsideOutsideFigure({ number, tryThis }: { number: string; tryTh
     <Figure
       number={number}
       title="Inside and outside"
+      description="Two views of the same sky side by side: from inside, as you see it from the ground, and from outside, as a celestial sphere around a tilted Earth, with the horizon, the axis through the poles, the daily circles of the stars, and the caps of sky that never set and never rise. A latitude slider shows how those caps grow towards the poles and vanish at the equator."
+      height={850}
       tryThis={tryThis}
       onReset={reset}
       notToScale

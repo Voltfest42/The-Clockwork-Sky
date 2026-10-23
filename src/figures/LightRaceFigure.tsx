@@ -90,6 +90,8 @@ export function LightRaceFigure({ number, tryThis }: { number: string; tryThis: 
     <Figure
       number={number}
       title="Light’s race"
+      description="A 3D view of the Solar System in which a flash of light leaves the Sun and spreads outwards at its true speed. It reaches Earth in 8 minutes 19 seconds, Neptune in about 4 hours, Voyager 1 in about a day and Proxima Centauri, the nearest star, in about 4.2 years. A time slider and a list of stops jump to each arrival."
+      height={900}
       tryThis={tryThis}
       onReset={reset}
       legend={[

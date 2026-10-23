@@ -157,6 +157,8 @@ export function WanderingPoleFigure({ number, tryThis }: { number: string; tryTh
     <Figure
       number={number}
       title="The wandering pole"
+      description="A star chart showing the path of the north celestial pole among the stars from 10,000 BC to AD 16,000, as Earth’s axis slowly wobbles (precession, one turn in about 26,000 years). It marks the pole stars of different ages: Thuban when the pyramids were built, Polaris today, Vega around AD 13,600. A second view shows the sky from your place in any year."
+      height={670}
       tryThis={tryThis}
       onReset={reset}
       legend={[
