@@ -35,9 +35,11 @@ export function About() {
           systems against the same book, and against round trips that must come back to where they started; and ΔT against the historical
           values it was fitted to. Chapter 1’s numbers are checked too: the planets’ periods against NASA’s fact sheets, light travel times
           against the research notes, galactic coordinates against the defining poles, and the scale models and the zoom against values worked
-          out by hand. As the chapters arrive, the positions of the Sun, Moon and planets will be checked against NASA JPL’s
-          Horizons system, and eclipses against NASA’s eclipse lists. End-to-end tests open every page, use it by keyboard, and run
-          accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
+          out by hand. Since Chapter 2, the positions of the Sun, the Moon and the planets are checked against NASA JPL’s Horizons system
+          (DE441) at dates from 3000 BC to AD 3000, each within its published accuracy; the precession of Earth’s axis against the reference
+          values of ERFA, the open-source version of the IAU’s SOFA library, and Meeus’s worked example; and the pole stars of the past and
+          future against the literature. Eclipses will be checked against NASA’s eclipse lists. End-to-end tests open every page, use it by
+          keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
         <h2>What is simplified</h2>
@@ -56,6 +58,13 @@ export function About() {
             may be tens of seconds out by 2050. In antiquity it is uncertain by minutes, more the further back you go.
           </li>
           <li>Two small effects on star positions, nutation and aberration, are left out. Neither is more than 20 arcseconds.</li>
+          <li>
+            Positions in the sky come from published formulas: the Sun from Meeus’s low-accuracy theory (within 0.01° from 1800 to 2050), the
+            Moon from Meeus’s 120 largest terms of the ELP-2000/82 theory (within 30″, and seen from where you stand, not from Earth’s centre),
+            and the planets from E. M. Standish’s orbital elements and Kepler’s equation (from 10″ for Neptune to 10′ for Saturn). Planets are
+            shown only from 3000 BC to AD 3000, where those elements hold. Stars move in straight lines through space from their measured
+            motions.
+          </li>
         </ul>
         <h3>Chapter 1</h3>
         <ul>
@@ -78,10 +87,49 @@ export function About() {
             taken as 57 cm.
           </li>
         </ul>
+        <h3>Chapter 2</h3>
+        <ul>
+          <li>
+            <b>Figure 2.1, the sky tonight.</b> The stars are the 8,900 brighter than magnitude 6.5, as seen under a perfectly dark sky. Dot
+            sizes grow with brightness but are squeezed, so the brightest don’t swamp the screen. Refraction lifts things near the horizon. The
+            daylight and twilight colours are a sketch, not a model of the atmosphere, with no haze, light pollution or weather.
+          </li>
+          <li>
+            <b>Figure 2.2, star trails.</b> Daylight is switched off so the trails can run for twelve hours, even where the night is short. Only
+            stars brighter than magnitude 3.6 leave trails; the Moon and planets are left out.
+          </li>
+          <li>
+            <b>Figure 2.3, inside and outside.</b> In the view from outside, Earth is drawn huge and the sky tiny; really, the stars are so far
+            away that your horizon and Earth’s centre see the same sky. Refraction is left out of the split into stars that never set, rise and
+            set, or never rise.
+          </li>
+          <li>
+            <b>Figure 2.4, one spin, two days.</b> Earth and its orbit are drawn far too big, the short years exaggerate how far Earth moves in a
+            day, the orbit is a circle and the axis’s tilt is left out. None of that changes the count of turns.
+          </li>
+          <li>
+            <b>Figure 2.5, the wandering pole.</b> The pole follows the long-term precession model of Vondrák, Capitaine and Wallace (2011). The
+            stars move in straight lines at their measured speeds; their real paths curve round the Galaxy. The chart is fixed to the ecliptic of
+            the year 2000.
+          </li>
+        </ul>
 
         <h2>Sources</h2>
         <ul>
-          <li>Jean Meeus, Astronomical Algorithms, 2nd edition (Willmann-Bell, 1998): calendars, Julian Dates, sidereal time, coordinate conversions.</li>
+          <li>
+            Jean Meeus, Astronomical Algorithms, 2nd edition (Willmann-Bell, 1998): calendars, Julian Dates, sidereal time, coordinate
+            conversions, the positions of the Sun (ch. 25) and the Moon (ch. 47), refraction and the planets’ brightness.
+          </li>
+          <li>
+            J. Vondrák, N. Capitaine and P. Wallace (2011), Astronomy and Astrophysics 534, A22: precession over 200,000 years, as coded in ERFA
+            (BSD licence), whose test values the course is checked against.
+          </li>
+          <li>NASA JPL Horizons (DE441): reference positions of the Sun, the Moon and the planets for the tests.</li>
+          <li>
+            F. J. Ballesteros (2012), EPL 97, 34008: a star’s temperature from its colour; C. Wyman, P.-P. Sloan and P. Shirley (2013), Journal of
+            Computer Graphics Techniques 2(2): the colour-matching functions behind the star colours.
+          </li>
+          <li>G. G. Bennett (1982), Journal of Navigation 35, 255, and T. Sæmundsson (1986): atmospheric refraction.</li>
           <li>
             Fred Espenak and Jean Meeus, Five Millennium Canon of Solar Eclipses: −1999 to +3000 (NASA/TP-2006-214141, 2006), and the values of
             ΔT behind it from L. V. Morrison and F. R. Stephenson (2004).
@@ -91,8 +139,8 @@ export function About() {
           <li>J. Laskar (1986), Astronomy and Astrophysics 157, 59: the long-term formula for the tilt of Earth’s axis.</li>
           <li>NASA Planetary Fact Sheets (D. R. Williams, NASA Goddard): the sizes of the planets and the Moon.</li>
           <li>
-            E. M. Standish, Keplerian Elements for Approximate Positions of the Major Planets (JPL Solar System Dynamics): the planets’ average
-            distances and how fast they go round.
+            E. M. Standish, Keplerian Elements for Approximate Positions of the Major Planets (JPL Solar System Dynamics, after Standish and
+            Williams 1992): the planets’ orbits, from 3000 BC to AD 3000.
           </li>
           <li>
             NASA, 17 June 2026: Voyager 1 reaches one light-day from Earth on 18 November 2026. Its distance from the Sun is worked out from
@@ -117,17 +165,43 @@ export function About() {
         </p>
 
         <h2>Data and credits</h2>
+        <ul>
+          <li>
+            <b>Stars:</b> the HYG database, version 4.4, by David Nash (
+            <a href="https://astronexus.com/hyg" target="_blank" rel="noreferrer">
+              astronexus.com
+            </a>
+            ), which combines the Hipparcos, Yale Bright Star and Gliese catalogues. It is shared under the{' '}
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution-ShareAlike 4.0
+            </a>{' '}
+            licence, and so is this course’s cut-down copy of it (the stars to magnitude 6.5), which is kept in a file of its own.
+          </li>
+          <li>
+            <b>Constellation figures, boundaries and the Milky Way:</b> from{' '}
+            <a href="https://github.com/ofrohn/d3-celestial" target="_blank" rel="noreferrer">
+              d3-celestial
+            </a>
+            , copyright © 2015 Olaf Frohn, under the BSD 3-Clause licence. The figures follow the IAU’s constellation charts with Frohn’s edits;
+            the boundaries are Davenhall and Leggett’s (1989); the Milky Way’s outline is after J. R. Vieira. The course matches the figures to
+            its own stars and turns the outline into a smoothed map.
+          </li>
+          <li>
+            <b>Planet positions:</b> NASA JPL’s published orbital elements (see Sources). <b>Places:</b> rounded city coordinates; clock times
+            use your browser’s copy of the IANA time-zone database.
+          </li>
+        </ul>
         <p>
-          No outside data files are used yet: Chapter 1’s sizes and distances are published values, typed into the code with their sources (see
-          above). Star catalogues, constellation figures and eclipse lists arrive with Part I’s later chapters, and each will be credited here
-          with its licence.
+          Chapter 1’s sizes and distances are published values, typed into the code with their sources (see above). Eclipse lists arrive with
+          Chapter 4, and will be credited here with their licence.
         </p>
 
         <h2>Built with</h2>
         <p>
           TypeScript, React and Vite, with the chapter text in MDX. The physics is written from scratch for this course. It is hosted as a
           static site on Amazon S3 and CloudFront. There’s no server, no tracking and no cookies. The only things stored are your reading
-          progress and your Check yourself answers, in your own browser.
+          progress, your Check yourself answers and the place you chose for the sky figures, in your own browser. If you use “Use my
+          location”, your browser asks first, and the location stays in your browser.
         </p>
       </div>
     </article>

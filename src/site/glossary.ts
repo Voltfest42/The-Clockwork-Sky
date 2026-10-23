@@ -49,6 +49,10 @@ export const GLOSSARY = {
     term: 'Circumpolar',
     definition: 'Close enough to a celestial pole never to set: a circumpolar star circles the pole all night, every night.',
   },
+  constellation: {
+    term: 'Constellation',
+    definition: 'One of the 88 areas into which astronomers divide the sky, each named after the star pattern in it. Every star belongs to exactly one.',
+  },
   conjunction: {
     term: 'Conjunction',
     definition: 'When a planet lines up with the Sun as seen from Earth, on the same side of the sky.',
@@ -101,6 +105,14 @@ export const GLOSSARY = {
     term: 'Light-year',
     definition: 'The distance light travels in a year: about 9.46 trillion km.',
   },
+  horizon: {
+    term: 'Horizon',
+    definition: 'The line where the sky meets the ground, all the way round you. Half the celestial sphere is above it at any moment, and half below.',
+  },
+  magnitude: {
+    term: 'Magnitude',
+    definition: 'How bright a star looks, on a scale that runs backwards: the brightest stars are magnitude 0 or less, and the faintest the eye can see about 6. Five magnitudes are a factor of 100 in brightness.',
+  },
   meridian: {
     term: 'Meridian',
     definition: 'The line across the sky from due north to due south, through the point overhead. The Sun crosses it at noon by the sundial.',
@@ -152,6 +164,10 @@ export const GLOSSARY = {
   'retrograde-motion': {
     term: 'Retrograde motion',
     definition: 'A planet’s apparent backward loop against the stars, seen when Earth overtakes it, or it overtakes Earth.',
+  },
+  'proper-motion': {
+    term: 'Proper motion',
+    definition: 'A star’s slow drift across the sky as it moves through space: for most stars, far too slow to notice in a lifetime.',
   },
   'right-ascension': {
     term: 'Right ascension',

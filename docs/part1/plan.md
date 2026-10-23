@@ -4,7 +4,7 @@
 
 ## Status
 
-**In progress.** Part I is built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026; details in the master plan's Status). Next: Stage 3, Chapter 2 and the sky view.
+**In progress.** Part I is built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), and Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026); details in the master plan's Status. Next: Stage 4, Chapters 3 and 4.
 
 ---
 

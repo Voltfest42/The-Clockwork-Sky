@@ -201,8 +201,8 @@ class Labels implements LabelLayer {
         label.visible !== false &&
         v.z > -1 &&
         v.z < 1 &&
-        x > -entry.width &&
-        x < width &&
+        x > 0 &&
+        x + entry.width < width &&
         y > 0 &&
         y < height &&
         !placed.some((p) => box[0] < p[2] && box[2] > p[0] && box[1] < p[3] && box[3] > p[1]);

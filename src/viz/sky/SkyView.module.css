@@ -1,0 +1,124 @@
+.sky {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.view {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--sky-bg);
+}
+
+.view:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  cursor: grab;
+  /* Vertical swipes still scroll the page; drags and pinches go to the view. */
+  touch-action: pan-y;
+}
+
+.canvas:active {
+  cursor: grabbing;
+}
+
+.loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--sky-muted);
+  font-size: 0.95rem;
+}
+
+.overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  max-width: calc(100% - 70px);
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgb(7 11 22 / 0.78);
+  color: var(--sky-text);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.zoomButtons {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zoomButtons button {
+  width: 32px;
+  height: 32px;
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  border-radius: 8px;
+  border: 1px solid rgb(154 168 196 / 0.5);
+  background: rgb(7 11 22 / 0.78);
+  color: var(--sky-text);
+  cursor: pointer;
+}
+
+.zoomButtons button:hover:not(:disabled) {
+  border-color: var(--sky-text);
+}
+
+.zoomButtons button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.inView {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.inViewLabel {
+  color: var(--text-muted);
+}
+
+.inView button {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.inView button:hover {
+  border-color: var(--accent);
+}
+
+.inView button[aria-pressed='true'] {
+  background: var(--accent-fill);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.help {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

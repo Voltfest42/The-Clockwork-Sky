@@ -167,6 +167,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['The sky as a dome', 'Everything turns about the pole', 'Where you stand changes the sky', 'Star time and Sun time', 'The slow wobble'],
     buildsOn: [1],
     toolkit: ['angles-in-the-sky'],
+    load: () => import('../content/chapter2.mdx'),
   }),
   chapter({
     number: 3,

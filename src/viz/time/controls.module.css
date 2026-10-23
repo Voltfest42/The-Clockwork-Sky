@@ -1,0 +1,110 @@
+.time,
+.place {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.88rem;
+}
+
+.place {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+}
+
+.field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.label {
+  color: var(--text-muted);
+}
+
+.time select,
+.time input,
+.place select,
+.place input {
+  font: inherit;
+  font-size: 0.86rem;
+  padding: 4px 7px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--bg);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.time input[aria-invalid='true'],
+.place input[aria-invalid='true'] {
+  border-color: var(--wrong);
+}
+
+.day {
+  width: 4em;
+}
+
+.year {
+  width: 5.6em;
+}
+
+.coordinate {
+  width: 6.5em;
+}
+
+.zone {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.button {
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 11px;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.button[aria-pressed='true'] {
+  background: var(--accent-fill);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.stepGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.note {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

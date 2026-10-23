@@ -1,0 +1,262 @@
+import { InsideOutsideFigure } from '../figures/InsideOutsideFigure';
+import { SkyTonightFigure } from '../figures/SkyTonightFigure';
+import { StarTrailsFigure } from '../figures/StarTrailsFigure';
+import { TwoDaysFigure } from '../figures/TwoDaysFigure';
+import { WanderingPoleFigure } from '../figures/WanderingPoleFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { PolarisOnTheHorizon } from './checks/chapter2';
+
+Chapter 1 showed how far away everything is. This chapter goes outside and looks up. Without a telescope, and without knowing any of those distances, you can still work out a great deal from the sky alone: that Earth spins, roughly where on Earth you are, and that Earth's axis is slowly wobbling. People worked all of it out that way, long before anyone knew what a star was.
+
+## The sky as a dome
+
+Look up on a clear night and the stars seem to hang on the inside of a huge dome. They aren't at the same distance: the nearest bright star, Alpha Centauri, is 4.4 light-years away, and Rigel, in Orion, about 860. But they are all so far away that your eyes, which judge depth by comparing the views from two eyes 6 cm apart, can't tell the difference. So the sky looks like a sphere with you at the centre, and the stars painted on its inside.
+
+Astronomers call it the <Term id="celestial-sphere">celestial sphere</Term>. If you've made a game, you know it already: it's the original skybox, the textured backdrop that is drawn "at infinity" so it never gets closer however far the player walks. Nothing in the real sky is painted on anything, but for working out where things appear, the picture of a dome is exactly right.
+
+Half the dome is hidden below your <Term id="horizon">horizon</Term>. The point straight overhead is the <Term id="zenith">zenith</Term>. The line across the sky from due north, through the zenith, to due south is your <Term id="meridian">meridian</Term>. To say where something is on your dome, you need two angles:
+
+- its <Term id="altitude">altitude</Term>, how high it is: 0° on the horizon, 90° at the zenith;
+- its <Term id="azimuth">azimuth</Term>, its compass direction: 0° north, 90° east, 180° south, 270° west.
+
+You can measure altitude with your hand: at arm's length a fist spans about 10°, and a little finger about 1°. The Toolkit page [Angles in the sky](#/toolkit/angles-in-the-sky) has the details.
+
+<SkyTonightFigure
+  number="2.1"
+  tryThis={
+    <p>
+      Press <b>Tonight at 22:00</b> and look south, then north. Pick the brightest star you can see and read how far away it is. Then press{' '}
+      <b>Play</b> and watch for a minute: which way does the sky move? Finally switch on <b>Constellation names</b> and <b>Boundaries</b>.
+    </p>
+  }
+/>
+
+The sky view is drawn from the positions of about 8,900 stars, all those bright enough to see with your own eyes on a dark night, and the Sun, the Moon and the planets, worked out for your place and time. The patterns in it, the <Term id="constellation">constellations</Term>, are human inventions. Most of the northern ones come down to us from the Greeks, who took many of them from the Babylonians. The far southern sky, which European navigators and astronomers charted between the 1590s and the 1750s, is full of ships, telescopes and air pumps. In 1922 the International Astronomical Union settled on 88 official constellations, and in 1930 it drew borders between them, so that every point of the sky now belongs to exactly one.
+
+The stars' brightness is measured in <Term id="magnitude">magnitudes</Term>, a scale that goes back to Hipparchus, about 2,100 years ago. It runs backwards: the brightest stars are first magnitude, the faintest you can see sixth. Sirius, the brightest star of all, is −1.4 on the modern scale.
+
+<Callout kind="note" title="Polaris isn't the brightest star">
+
+Many people think the North Star, Polaris, is the brightest star in the sky. It isn't: about 47 stars are brighter. What makes it special is where it is, close to the point that the whole northern sky turns round. The next section shows why that matters.
+
+</Callout>
+
+## Everything turns about the pole
+
+Watch the sky for an hour and it moves. Stars rise in the east, climb across the south (if you live in the northern hemisphere), and set in the west, like the Sun. But not all of them. In the north, some stars never set: they circle round and round one point of the sky, and the closer a star is to that point, the smaller its circle.
+
+That point is the north <Term id="celestial-pole">celestial pole</Term>. Polaris sits less than a degree from it, so Polaris barely moves at all while everything else wheels round it. On the other side of the sky, hidden from the north, is the south celestial pole. Halfway between the two runs the <Term id="celestial-equator">celestial equator</Term>.
+
+Why does the sky turn? Because Earth turns. Earth spins once a day about an axis through its poles, and the stars stay put; we see the sky going round the other way. The celestial poles are simply the points straight above Earth's poles, and the celestial equator lies straight above Earth's equator. Earth spins from west to east, so the sky seems to turn from east to west, at 15° an hour.
+
+<StarTrailsFigure
+  number="2.2"
+  tryThis={
+    <p>
+      Press <b>Run the night</b> facing north. Every trail is part of a circle round the same point: how big a circle does Polaris make? Then
+      face south, east and west, and run it again. Then pick <b>Sydney</b> or <b>The equator (0°, 0°)</b> as your place.
+    </p>
+  }
+/>
+
+A camera on a tripod, with its shutter left open for a few hours, records the turning sky as star trails. Point it at the pole and you get circles round it; point it the other way and you get arcs that rise from one side of the horizon and sink below the other. Every trail is a piece of a circle round the same axis, because the whole sky turns as one.
+
+<DeepDive title="Why don't we feel Earth spinning?">
+
+At London's latitude you are moving east at about 1,040 km/h, and on the equator at 1,670 km/h. You don't feel it because the motion is smooth and steady: your body only notices changes in motion, the way you feel a lift start and stop but not the steady ride in between. And you don't get flung off because Earth's pull is about 300 times stronger than what's needed to keep you going round.
+
+</DeepDive>
+
+## Where you stand changes the sky
+
+The celestial pole isn't at the same height everywhere. Here is the rule, one of the most useful in astronomy: **the height of the pole above your horizon equals your latitude.** In London, at latitude 51.5° north, the north celestial pole is 51.5° above the northern horizon. In Cairo, at 30° north, it's 30° up.
+
+The reason is simple geometry. The stars are so far away that the direction to the pole is the same from anywhere on Earth: parallel to Earth's axis. At the North Pole, Earth's axis points straight up, so the celestial pole is at the zenith. At the equator, the axis lies flat along the ground, so the poles sit on the horizon, due north and due south. In between, the pole stands as high as you are far from the equator.
+
+That one fact sets everything else about your sky:
+
+- **At the poles,** the stars circle parallel to the horizon. Nothing rises or sets: half the sky is always up, and the other half never is.
+- **At the equator,** every star rises straight up in the east and sets straight down in the west, and spends half of each day above the horizon. You can see the whole sky over a year.
+- **In between,** the stars within your latitude's worth of degrees of the visible pole never set; they are <Term id="circumpolar">circumpolar</Term>. The same amount of sky round the other pole never rises. From London, the Plough never sets, and Canopus, the second-brightest star, never rises.
+
+<InsideOutsideFigure
+  number="2.3"
+  tryThis={
+    <p>
+      Drag the latitude slowly from the <b>North Pole</b> to the <b>South Pole</b> and watch the axis tip over in the outside view. At what
+      latitude does Sirius stop rising? Where can you see both Polaris and the Southern Cross? Then press <b>Turn the sky</b>.
+    </p>
+  }
+/>
+
+The southern sky has no bright pole star. The nearest naked-eye star to the south celestial pole is Sigma Octantis, magnitude 5.4, more than a degree away and so faint that city skies hide it. Southern navigators find the pole another way: the long arm of the Southern Cross points towards it, and the pole lies about four and a half lengths of the cross along that line.
+
+<Callout kind="know">
+
+How do we know Earth is round? The changing sky is one of the oldest proofs. Travellers going south found that the pole star sank lower each day and that new stars rose above the southern horizon. Aristotle used exactly this argument around 350 BC. On a flat Earth, everyone would see the same stars at the same height.
+
+</Callout>
+
+## Star time and Sun time
+
+Earth spins once in 23 hours 56 minutes and 4 seconds, measured against the stars. That's a <Term id="sidereal">sidereal</Term> day, or star day. The day on our clocks, from noon to noon, is 24 hours. Why the difference of about 4 minutes?
+
+Because Earth is also moving along its orbit round the Sun. In a day it covers about 1/365 of the orbit, so the Sun's direction shifts by about 1°. After one full turn, the stars are back where they were, but Earth has to turn about 1° further, which takes about 4 minutes, before the Sun is back on your meridian. Over a year, those extra turns add up to exactly one: Earth spins 366¼ times against the stars in the 365¼ days it takes to go round the Sun.
+
+<TwoDaysFigure
+  number="2.4"
+  tryThis={
+    <p>
+      With the <b>12-day year</b>, press <b>Next star crossing</b>, then <b>Next Sun crossing</b>, and compare the times. Why does the Sun
+      come back later? Then switch to the <b>Real year</b> and do the same.
+    </p>
+  }
+/>
+
+That small difference has a big effect. Every star rises about 4 minutes earlier each night than the night before, which adds up to two hours a month. So a star rising at 22:00 tonight will rise at about 20:00 a month from now and at about 18:00 two months from now, when it's still light. That's why the constellations of the evening sky change with the seasons. From the north, Orion rules winter evenings and Scorpius summer ones. In the southern hemisphere it's the other way round: Orion is a summer constellation there, and stands on its head.
+
+## The slow wobble
+
+There is one more motion, so slow that it takes centuries to notice. Earth's axis isn't fixed: like the axis of a spinning top, it slowly swings round in a circle. The Sun and the Moon pull on the bulge round Earth's equator, trying to straighten the tilt, and the spinning Earth responds by wobbling instead. One wobble takes about 25,800 years.
+
+As the axis swings, the celestial poles trace circles 47° across among the stars, and the pole star changes. When the pyramids at Giza were built, around 2560 BC, the star nearest the north pole was Thuban, in Draco; it came within a tenth of a degree around 2800 BC. In Hipparchus's day there was no pole star at all: Polaris was 12° away. Polaris is now 0.6° from the pole and will be closest, about 0.46°, around the year 2100. In about 12,000 years the pole will pass near Vega, the fifth-brightest star in the sky, about 6° off: a dazzling pole star, but not an accurate one.
+
+<WanderingPoleFigure
+  number="2.5"
+  tryThis={
+    <p>
+      Press <b>Play the centuries</b> and watch the pole move. Which stars does it pass? Then pick <b>2560 BC</b> and switch to{' '}
+      <b>From London</b> (or your own place): which star did the sky turn round then? Watch Arcturus, near the edge of the chart, as the
+      centuries pass.
+    </p>
+  }
+/>
+
+The figure also shows a second, much smaller effect. The stars aren't really fixed: each one drifts slowly across the sky as it moves through space, its <Term id="proper-motion">proper motion</Term>. Most drift far too slowly to see, but over thousands of years the nearer, faster stars move visibly. Arcturus moves the width of the full Moon every 800 years, and the shapes of some constellations slowly change.
+
+The wobble has a practical side too. It drags the equinox, the point where the Sun crosses the celestial equator in March, backwards along the zodiac by 1° every 72 years. Since the zodiac's signs were named about 2,000 years ago, the equinox has slipped by nearly 30°, a whole sign. The Sun on your birthday is probably in the constellation before your star sign.
+
+<Callout kind="know">
+
+How do we know? Hipparchus, around 130 BC, compared his own measurements of star positions with ones made about 150 years earlier by Timocharis. The bright star Spica had shifted by about 2° relative to the equinox. He realised the whole sky had shifted, not just Spica, and he had found <Term id="precession">precession</Term>. Newton explained the cause about 1,800 years later.
+
+</Callout>
+
+<DeepDive title="Latitude and longitude on the sky">
+
+The altitude and azimuth of a star change all the time as the sky turns, and they're different for every observer. To catalogue the stars, astronomers use coordinates that turn with the sky, laid out like latitude and longitude on Earth:
+
+- <Term id="declination">Declination</Term> is the sky's latitude: the angle north or south of the celestial equator. Polaris is at +89.3°, Sirius at −16.7°.
+- <Term id="right-ascension">Right ascension</Term> is the sky's longitude, measured east along the celestial equator from the March equinox. It's usually given in hours, from 0h to 24h, because the sky turns 15° an hour: Sirius is at 6h 45m, which means it crosses your meridian 6 hours 45 minutes of star time after the March equinox does.
+
+From these two numbers, your latitude and the time, the sky view works out every star's altitude and azimuth. Because of precession, the grid itself slowly slides across the stars, so a catalogue has to say which year its coordinates are for. Most use the year 2000 (written J2000), and the sky view moves every star from there to the date you choose.
+
+</DeepDive>
+
+<DeepDive title="How the sky view is drawn">
+
+A dome can't be shown on a flat screen without some distortion; the only question is which kind. A game camera uses a perspective projection, which keeps straight lines straight but can never show more than half the sky at once, and stretches everything badly near the edges of a wide view.
+
+The sky view uses the stereographic projection instead. It keeps the shape of every small patch of sky, so a constellation looks the same at the edge of the screen as at the centre, and it turns every circle on the sky into a circle on the screen, so the horizon and the stars' daily paths stay round. It's an old idea: the astrolabe, the star-finding instrument of medieval astronomers, is built on the same projection, and it may go back to Hipparchus too.
+
+</DeepDive>
+
+Next: the Sun's own path through the stars over the year, and why that gives us seasons.
+
+<CheckYourself>
+  <Question id="polaris-from-sydney" prompt="You’re in Sydney, at 34° south. Can you see Polaris?">
+    <Choice label="Yes, low in the north">
+      From the southern hemisphere the north celestial pole is below the northern horizon, by as many degrees as your latitude: 34° below
+      from Sydney. Polaris is within a degree of it, so it never rises there.
+    </Choice>
+    <Choice label="No: it never rises there" correct>
+      Right. The north celestial pole is 34° below Sydney’s northern horizon, and Polaris, less than a degree from it, never comes up.
+      Southern navigators use the Southern Cross instead.
+    </Choice>
+    <Choice label="Only in winter">
+      Polaris barely moves through the day or the year: it sits almost on the pole. From Sydney the north pole is always 34° below the
+      horizon, so Polaris is never up, whatever the season.
+    </Choice>
+    <Choice label="Yes, straight overhead">
+      Polaris is overhead only at the North Pole. The pole’s height equals your latitude, so from 34° south it is 34° below the horizon.
+    </Choice>
+  </Question>
+
+  <Question id="star-rises-a-month-later" prompt="A bright star rises at 22:00 tonight. At about what time will it rise a month from now?">
+    <Choice label="At 22:00">
+      Stars keep star time, not Sun time. A star day is about 4 minutes shorter than a Sun day, so the star rises about 4 minutes earlier
+      every night: about 2 hours earlier after a month.
+    </Choice>
+    <Choice label="At about 21:56">
+      That’s tomorrow night: 4 minutes earlier. After 30 nights the 4 minutes add up to 2 hours, so it rises at about 20:00.
+    </Choice>
+    <Choice label="At about 20:00" correct>
+      Right. Each night it rises about 3 minutes 56 seconds earlier; over 30 nights that’s close to 2 hours. (Clock changes for summer time
+      can shift this by an hour.)
+    </Choice>
+    <Choice label="At about midnight">
+      Wrong way round. Earth spins once in 23 h 56 min against the stars, so each star comes round a little earlier each night, not later.
+    </Choice>
+  </Question>
+
+  <PolarisOnTheHorizon />
+
+  <Question id="why-the-sky-turns" prompt="Why do the stars rise in the east and set in the west?">
+    <Choice label="Earth spins from west to east" correct>
+      Right. Earth turns towards the east, so everything in the sky seems to move the other way, west, at 15° an hour, about an axis through
+      the celestial poles.
+    </Choice>
+    <Choice label="The stars orbit Earth once a day">
+      That is how it looks, and how most people explained it for 2,000 years. But the stars are light-years away: to go round Earth in a day
+      even the nearest would have to move thousands of times faster than light. It’s Earth that turns.
+    </Choice>
+    <Choice label="Earth goes round the Sun">
+      Earth’s orbit is too slow to see in a night: it moves the Sun about 1° a day against the stars. The nightly turning comes from Earth’s
+      spin.
+    </Choice>
+    <Choice label="The wind in the upper atmosphere">
+      The atmosphere turns with Earth, and stars far above it move at exactly the same rate on every night, calm or windy. The turning comes
+      from Earth’s spin.
+    </Choice>
+  </Question>
+
+  <Question id="circumpolar-from-london" prompt="From London (51.5° N), which stars never set?">
+    <Choice label="Only Polaris">
+      Every star close enough to the pole circles without setting, not just Polaris. From London that’s every star within 51.5° of the pole,
+      including the Plough and Cassiopeia.
+    </Choice>
+    <Choice label="Those within 51.5° of the north celestial pole" correct>
+      Right. The pole is 51.5° up, so a star closer to it than that circles round without dipping below the horizon. That’s about a fifth of
+      the whole sky.
+    </Choice>
+    <Choice label="Those within 51.5° of the zenith">
+      The zenith is the wrong centre: stars circle the celestial pole, which from London is 38.5° below the zenith, in the north. The stars
+      that never set are those within 51.5° of the pole.
+    </Choice>
+    <Choice label="None: every star rises and sets">
+      That’s true only on the equator. Anywhere else, some stars near the visible pole never set: from London, every star within 51.5° of
+      the north celestial pole.
+    </Choice>
+  </Question>
+
+  <Question id="vega-pole-star" prompt="In about 12,000 years, Vega will be near the north celestial pole. Why?">
+    <Choice label="Vega is moving towards the pole">
+      Vega does move, but only slowly; its own motion shifts it by about 1° in 10,000 years. The big change comes from Earth: its axis
+      wobbles, and the pole traces a circle among the stars every 25,800 years, passing near Vega.
+    </Choice>
+    <Choice label="Earth’s axis wobbles slowly, so the pole moves among the stars" correct>
+      Right. That wobble, precession, swings the pole round a circle about 47° across in 25,800 years. Thuban was the pole star 4,800 years
+      ago, Polaris is now, and Vega will be, though about 6° off.
+    </Choice>
+    <Choice label="Earth’s orbit is shrinking">
+      Earth’s orbit barely changes, and its size wouldn’t move the pole anyway. The pole moves because Earth’s axis wobbles, like a slowing
+      top, once every 25,800 years.
+    </Choice>
+    <Choice label="The constellations rotate once every 12,000 years">
+      The constellations don’t rotate; it is Earth’s axis that wobbles, taking 25,800 years to go round once. Halfway round, in about 12,000
+      years, the pole passes near Vega.
+    </Choice>
+  </Question>
+</CheckYourself>

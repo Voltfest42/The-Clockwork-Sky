@@ -21,14 +21,24 @@ npm run lint
 npm run build      # type-check and build to dist/
 ```
 
+The data files in `src/data/` are committed; to rebuild them from the sources (downloaded once into `scripts/.cache/`):
+
+```bash
+npx tsx scripts/build-stars.ts            # HYG v4.4 → src/data/hyg/stars.json (CC BY-SA 4.0)
+npx tsx scripts/build-constellations.ts   # d3-celestial → constellations.json, milkyway.json
+npx tsx scripts/fetch-horizons.ts         # JPL Horizons → tests/fixtures/horizons.json
+```
+
 ## Layout
 
 ```
-src/core/      the physics: units, vectors and angles, calendars and time, coordinates (pure TypeScript, no UI)
-src/viz/       reusable visual pieces: figure frame, step player, charts
+src/core/      the physics: units, vectors and angles, calendars and time, coordinates, precession, the Sun, Moon and planets, stars (pure TypeScript, no UI)
+src/viz/       reusable visual pieces: figure frame, step player, charts, the 3D scene, the scale zoom, the sky view, time and place controls
+src/figures/   the figures themselves, one file each
 src/site/      site shell: course registry, routing, sidebar, pages, glossary, Check yourself, reading progress
 src/content/   chapter and Toolkit text (MDX)
-src/data/      compact data files built by scripts/, each with its source and licence
+src/data/      compact data files built by scripts/, each with its source and licence (share-alike ones in their own folder)
+scripts/       data builders and fixture fetchers
 tests/         unit and property tests
 e2e/           Playwright tests and WCAG 2.1 AA checks
 infra/         AWS CDK app: private S3 bucket + CloudFront on sky.moving-parts.dev
@@ -39,7 +49,7 @@ docs/          plans and research notes
 
 - `src/core` takes and returns SI units (metres, seconds, kilograms, radians); time is a Julian Date in Terrestrial Time. Every exported function states its units.
 - Historical dates use astronomical year numbering (1 BC is year 0), the Julian calendar before 15 October 1582 and the Gregorian after.
-- The physics is tested against independent references: Meeus's worked examples now, JPL Horizons and NASA's eclipse lists as the chapters arrive.
+- The physics is tested against independent references: Meeus's worked examples, JPL Horizons, ERFA's test values, and (from Chapter 4) NASA's eclipse lists.
 - British spelling.
 
 ## Deploying
