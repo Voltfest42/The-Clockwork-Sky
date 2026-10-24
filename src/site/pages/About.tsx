@@ -45,7 +45,11 @@ export function About() {
           numbers. Since Chapters 5 and 6, the planets’ oppositions, conjunctions, stations and greatest elongations are checked against
           published dates, their synodic periods and the lengths of their backward loops against the research notes, Kepler’s laws against
           independent calculations (areas added up slice by slice, distances to both foci), the third law against the orbits of the planets,
-          dwarf planets, comets and Jupiter’s moons, and the fitted Ptolemaic model against Ptolemy’s own proportions. End-to-end tests open every page, use it by
+          dwarf planets, comets and Jupiter’s moons, and the fitted Ptolemaic model against Ptolemy’s own proportions. Since Chapter 7, the
+          n-body engine is checked against Kepler’s exact orbits; each stepping method against the rate at which its error should shrink as the
+          step does; the energy, momentum and angular momentum that an exact solution keeps; and the figure-eight orbit of three equal stars
+          (Chenciner and Montgomery), which must come back to its start after one period. The masses weighed with orbits, the balance points,
+          the strength of the Sun’s tides and the trip to Mars are checked against the research notes. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -201,6 +205,38 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 7</h3>
+        <ul>
+          <li>
+            <b>Figure 7.1, Newton’s cannon.</b> Earth is a perfect sphere that doesn’t spin, with no air. The ball is drawn far too big. Each path
+            is computed in steps with the leapfrog method.
+          </li>
+          <li>
+            <b>Figure 7.2, step by step.</b> An Earth-mass planet on an orbit the size of Earth’s, computed with exactly the method named and a
+            fixed step.
+          </li>
+          <li>
+            <b>Figure 7.3, the cosmic scale.</b> Orbits are drawn as circles at their average distance and sped up; small bodies are drawn bigger.
+            The space station’s orbit is as of October 2026.
+          </li>
+          <li>
+            <b>Figure 7.4, the barycentre.</b> Circular orbits; the pair on the left is drawn far too big for the distance between them (the
+            close-up is to scale).
+          </li>
+          <li>
+            <b>Figure 7.5, the tide maker.</b> The Moon is drawn far too close and the bulges hugely exaggerated. Heights are the equilibrium tide
+            at the equator, with the Moon and the Sun over the equator; real oceans respond far more slowly and unevenly, and the solid Earth’s own
+            tide is left out.
+          </li>
+          <li>
+            <b>Figure 7.6, getting to Mars.</b> Circular orbits in one plane, with the planets at their average positions, so the launch windows
+            can be a few weeks from the real ones. The craft feels only the Sun.
+          </li>
+          <li>
+            <b>Toolkit figure T4.1.</b> A perfect spring with no friction, stepped with exactly the method named.
+          </li>
+        </ul>
+
         <h2>The people behind Part I</h2>
         <Timeline title="Timeline" />
 
@@ -247,7 +283,21 @@ export function About() {
             (fetched October 2026). JPL’s planetary satellite mean elements and NASA’s Jovian satellite fact sheet: the orbits of Jupiter’s four
             large moons.
           </li>
-          <li>NASA Planetary Fact Sheets (D. R. Williams, NASA Goddard): the sizes of the planets and the Moon.</li>
+          <li>NASA Planetary Fact Sheets (D. R. Williams, NASA Goddard): the sizes and masses of the planets, the Moon and their moons.</li>
+          <li>
+            Isaac Newton, Philosophiæ Naturalis Principia Mathematica (1687), book III, and A Treatise of the System of the World (1728): the law of
+            gravity, the Moon test and the cannon on the mountain.
+          </li>
+          <li>H. Cavendish (1798), Philosophical Transactions of the Royal Society 88, 469: the experiment that first measured gravity between lab masses.</li>
+          <li>
+            A. Chenciner and R. Montgomery (2000), Annals of Mathematics 152, 881, with C. Simó’s initial values: the figure-eight orbit of three
+            equal masses, used to test the n-body engine.
+          </li>
+          <li>
+            F. R. Stephenson, L. V. Morrison and C. Y. Hohenkerk (2016), Proceedings of the Royal Society A 472, 20160404: the lengthening of the
+            day. J. O. Dickey and colleagues (1994), Science 265, 482: the Moon’s recession, from lunar laser ranging.
+          </li>
+          <li>W. Hohmann, Die Erreichbarkeit der Himmelskörper (1925): the transfer orbit between two planets.</li>
           <li>
             E. M. Standish, Keplerian Elements for Approximate Positions of the Major Planets (JPL Solar System Dynamics, after Standish and
             Williams 1992): the planets’ orbits, from 3000 BC to AD 3000.

@@ -1,0 +1,66 @@
+import { SpringFigure } from '../../figures/SpringFigure';
+import { Callout } from '../../site/content/blocks';
+
+Physics is full of rules about how things change. A planet’s position changes by its velocity; its velocity changes by the pull of gravity; the pull depends on where the planet is. Rules like these say what happens next, a moment at a time. For one planet round the Sun there is an exact formula for where it will be (Kepler’s ellipse), but add a second planet and there isn’t. So computers do it the way a video game does: in small steps. This page shows how, why the size of the step matters, and why some ways of stepping slowly go wrong.
+
+## Rules of change
+
+Speed is how fast position changes: at 30 metres a second, a second later you are 30 metres farther on. Acceleration is how fast speed changes: falling, you gain about 10 metres a second of speed every second. If you know where something is, how fast it is going and what is pulling on it, those two rules tell you where it will be a moment later, and how fast it will be going then. Repeat, and you have its whole path.
+
+That is exactly what a game engine’s physics does in every frame, sixty times a second:
+
+<Callout kind="key">
+
+New position = position + velocity × time step. New velocity = velocity + acceleration × time step.
+
+</Callout>
+
+This is the simplest way of stepping, named after Leonhard Euler, who described it in 1768. The catch is in the word “moment”. The rules only hold exactly for an instant, but a step lasts a while, and during it the speed and the pull are both changing.
+
+## Small steps
+
+Throw a ball straight up at 20 m/s, with gravity taking away 10 m/s every second. Step it with Euler’s method, one second at a time, and compare with the exact answer.
+
+| Time | Speed | Height, stepped | Height, exact |
+|---|---|---|---|
+| 0 s | 20 m/s up | 0 m | 0 m |
+| 1 s | 10 m/s up | 20 m | 15 m |
+| 2 s | 0 | 30 m | 20 m |
+| 3 s | 10 m/s down | 30 m | 15 m |
+| 4 s | 20 m/s down | 20 m | 0 m |
+
+The stepped ball goes too high, and it is still 20 m up when the real one lands. The reason: in each step it moves at the speed it had at the *start* of the step, but really it slows down all through the step. Every step overshoots a little, and the errors pile up.
+
+Halve the step, to half a second, and each step’s overshoot is a quarter as big, but there are twice as many: the error at the end is half as big. Ten times smaller steps, ten times smaller error. That is what makes Euler’s method a *first-order* method: the error shrinks only in step with the step size, so a tiny error costs a vast number of steps.
+
+## Why the step size matters
+
+A step has to be short compared with how fast things change. The ball’s speed changes completely in two seconds, so steps of a second are far too coarse. A planet’s velocity turns right round in a year, so a step of a day is short; a comet swinging round the Sun in a few days near perihelion needs steps of hours there, though days would do far out.
+
+Smaller steps are more accurate, but each one costs a calculation of the pull, and for many bodies that is most of the work. So the game is to get the most accuracy for the fewest steps, and that depends on the method.
+
+Better methods look ahead. **Leapfrog** gives the velocity half a step’s change, moves the position a whole step with that halfway velocity, then gives the velocity the other half, using the pull at the new position. It costs the same as Euler (one pull a step, since each step’s last half reuses the next one’s first), but it is *second-order*: halve the step and the error drops four times. **RK4**, the classical Runge–Kutta method of 1901, tries out the pull at four trial points inside each step and blends them. It costs four pulls a step but is *fourth-order*: halve the step and the error drops sixteen times.
+
+## Why some methods drift
+
+There is a subtler difference, and for orbits it matters more than accuracy. Some methods have a built-in lean: their small errors always push the same way. Euler’s method always adds a little energy, so a stepped spring swings wider and wider and a stepped planet spirals slowly outward. RK4 always takes a tiny bit away, far less, but it adds up over millions of orbits.
+
+Leapfrog doesn’t lean. Its error wobbles up and down within each swing or orbit but never builds up, because it treats time the same backwards as forwards: run it in reverse and it retraces its steps exactly, as real physics does. It also belongs to a family called *symplectic* methods, which keep a hidden geometry of the motion intact. They are the workhorses of simulations that must run for a very long time, such as the Solar System over billions of years.
+
+<SpringFigure
+  number="T4.1"
+  tryThis={
+    <p>
+      Watch Euler’s swings grow, then switch to <b>Leapfrog</b>. Slide the steps down to 8 a swing: which method still keeps its swings the
+      same size? Which follows the exact curve most closely?
+    </p>
+  }
+/>
+
+<Callout kind="note" title="In games">
+
+Many game engines use a one-line change to Euler’s method: update the velocity first, then move with the *new* velocity. That version, symplectic Euler, keeps orbits and springs from blowing up, which is why it is the usual choice. Leapfrog is its tidier twin.
+
+</Callout>
+
+Chapter 7 puts all three methods to work on a planet’s orbit, and the Orrery uses the same idea with methods built for planets.

@@ -34,14 +34,17 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1609, when: '1609', who: 'Kepler', what: 'publishes Astronomia nova: orbits are ellipses, and sweep equal areas in equal times.', chapter: 6 },
   { year: 1610, when: '1610', who: 'Galileo', what: 'sees Jupiter’s moons, the Milky Way’s stars and the phases of Venus through a telescope.', chapter: 5 },
   { year: 1619, when: '1619', who: 'Kepler', what: 'finds the harmonic law: the square of the period follows the cube of the distance.', chapter: 6 },
+  { year: 1666, when: 'c. 1666', who: 'Newton', what: 'wonders whether the pull that drops an apple reaches the Moon, weakened by the square of the distance.', chapter: 7 },
   { year: 1676, when: '1676', who: 'Rømer', what: 'times light’s journey across Earth’s orbit with Jupiter’s moons.', chapter: 8 },
   { year: 1687, when: '1687', who: 'Newton', what: 'publishes the Principia: one law of gravity for apples, moons and planets.', chapter: 7 },
   { year: 1705, when: '1705', who: 'Halley', what: 'predicts that his comet will return.', chapter: 7 },
   { year: 1758, when: '1758', who: 'Palitzsch', what: 'sees Halley’s comet come back, on Christmas night.', chapter: 7 },
+  { year: 1759, when: '1759', what: 'Halley’s comet passes the Sun on 13 March, within the month Clairaut, Lalande and Lepaute allowed for Jupiter’s and Saturn’s pulls.', chapter: 7 },
   { year: 1785, when: '1785', who: 'William Herschel', what: 'maps the Milky Way by counting stars.', chapter: 9 },
   { year: 1798, when: '1798', who: 'Cavendish', what: 'weighs the Earth.', chapter: 7 },
   { year: 1838, when: '1838', who: 'Bessel', what: 'measures the first distance to a star, 61 Cygni.', chapter: 9 },
   { year: 1846, when: '1846', what: 'Neptune is found where Le Verrier predicted.', chapter: 7 },
+  { year: 1925, when: '1925', who: 'Walter Hohmann', what: 'works out the cheapest path from one planet’s orbit to another’s.', chapter: 7 },
 ];
 
 /** The events from one year to another (astronomical years, inclusive). */

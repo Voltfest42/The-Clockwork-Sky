@@ -214,6 +214,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['The falling Moon', 'Orbits, one step at a time', 'Weighing the Sun', 'Both bodies move', 'Tides', 'Gravity’s victories'],
     buildsOn: [6],
     toolkit: ['solving-by-stepping'],
+    load: () => import('../content/chapter7.mdx'),
   }),
   chapter({
     number: 8,
@@ -405,6 +406,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Turning “how things change” into small steps, why the step size matters, and why some methods drift.',
     part: 1,
     firstNeeded: 7,
+    load: () => import('../content/toolkit/solving-by-stepping.mdx'),
   },
   {
     slug: 'logarithms-and-magnitudes',

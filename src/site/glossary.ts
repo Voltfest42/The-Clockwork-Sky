@@ -105,6 +105,10 @@ export const GLOSSARY = {
     term: 'Escape speed',
     definition: 'The speed something needs never to fall back: 11.2 km/s from Earth’s surface, if there were no air.',
   },
+  'hohmann-transfer': {
+    term: 'Hohmann transfer',
+    definition: 'The cheapest path between two orbits: half an ellipse that touches the inner orbit at one end and the outer at the other. To Mars it takes about 259 days.',
+  },
   focus: {
     term: 'Focus',
     definition: 'One of the two points that define an ellipse. A planet’s orbit has the Sun at one focus.',
@@ -116,6 +120,10 @@ export const GLOSSARY = {
   heliopause: {
     term: 'Heliopause',
     definition: 'The boundary where the wind of particles from the Sun meets the gas between the stars, about 120 AU out. Voyager 1 crossed it in 2012.',
+  },
+  'inverse-square-law': {
+    term: 'Inverse-square law',
+    definition: 'A rule in which something weakens with the square of the distance: twice as far, a quarter as strong. Gravity and the brightness of a lamp both follow one.',
   },
   'light-year': {
     term: 'Light-year',
@@ -200,6 +208,10 @@ export const GLOSSARY = {
   'scientific-notation': {
     term: 'Scientific notation',
     definition: 'Writing a number as a number between 1 and 10 times a power of ten: Earth’s width, 12,742 km, is 1.27 × 10⁷ m.',
+  },
+  'spring-tide': {
+    term: 'Spring and neap tides',
+    definition: 'The biggest tides of the month, at new and full Moon when the Sun’s and Moon’s pulls line up, and the smallest, at the quarter Moons when they pull at right angles.',
   },
   station: {
     term: 'Station, stationary point',

@@ -1,0 +1,266 @@
+import { BarycentreFigure } from '../figures/BarycentreFigure';
+import { CannonFigure } from '../figures/CannonFigure';
+import { CosmicScaleFigure } from '../figures/CosmicScaleFigure';
+import { HohmannFigure } from '../figures/HohmannFigure';
+import { SteppingFigure } from '../figures/SteppingFigure';
+import { TideFigure } from '../figures/TideFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { OrbitSpeed } from './checks/chapter7';
+
+Kepler’s laws say how the planets move. They don’t say why. Isaac Newton found the answer: one force, the same that drops an apple, reaching out across space and weakening with distance. With it, Kepler’s three laws stopped being rules found in the data and became things that had to be true. And the same force explained what Kepler’s laws couldn’t: why the Moon raises tides, why comets come back late, and where to look for a planet nobody had seen.
+
+## The falling Moon
+
+In 1665 and 1666, with Cambridge closed by the plague, Newton was at his family’s farm in Lincolnshire, thinking about gravity. He later said that the fall of an apple set him wondering: if gravity reaches the top of the tallest tree and the highest mountain, why shouldn’t it reach the Moon?
+
+The Moon doesn’t fall to the ground, so the idea seems absurd at first. But think about what the Moon would do with no force on it at all: carry straight on in a line and leave Earth behind. It doesn’t. Its path keeps bending towards Earth. Something is pulling it inward, and in that sense the Moon is falling: it falls a little towards Earth every second, while moving sideways so fast that it keeps missing.
+
+Newton could check how much. The Moon is about 60 Earth radii away, and he guessed that gravity weakens with the square of the distance: twice as far, a quarter of the pull; three times as far, a ninth. Then at the Moon it should be 60 × 60 = 3,600 times weaker than on the ground. A dropped apple falls 4.9 metres in its first second, so the Moon should fall 4.9 m ÷ 3,600, about 1.4 millimetres, in a second. Work out how far the Moon’s real path bends away from a straight line in one second, from its distance and its 27.3-day orbit, and the answer is 1.36 mm. They agree to about 1%.
+
+<Callout kind="key">
+
+**Newton’s law of gravity.** Every mass pulls on every other. The pull grows with both masses and weakens with the square of the distance between them: an <Term id="inverse-square-law">inverse-square law</Term>. Twice as far, a quarter of the pull; ten times as far, a hundredth.
+
+</Callout>
+
+Newton published the law in 1687, in the *Principia*. In a more popular account published after his death, *A Treatise of the System of the World* (1728), he explained orbits with a thought experiment: a cannon on top of a very high mountain, above the air, firing a ball sideways. The faster the ball, the farther it lands. Fire it fast enough, and the ground curves away beneath it as fast as it falls. It never lands. It is in orbit.
+
+<CannonFigure
+  number="7.1"
+  tryThis={
+    <p>
+      Fire at <b>4 km/s</b> and <b>7 km/s</b>, and watch the red line: how far below the straight line has the ball fallen? Then try{' '}
+      <b>7.9 km/s</b>. What happens at <b>9.5 km/s</b>? Find the slowest speed that never comes back.
+    </p>
+  }
+/>
+
+From the ground, with no air in the way, it would take 7.9 km/s, about 28,000 km/h, to circle Earth: a lap in about 85 minutes. Faster than that, the orbit stretches into an ellipse that climbs higher on the far side. At 11.2 km/s, the <Term id="escape-speed">escape speed</Term>, the orbit opens out, and the ball slows down for ever as it climbs but never stops and never comes back.
+
+Notice what an orbit doesn’t need: a push. Nothing drives the Moon along its path. Left alone it would go straight on; all gravity does is bend the line into a curve. A satellite’s engine is needed only to reach orbit, not to stay there.
+
+<Callout kind="note" title="Why astronauts float">
+
+The International Space Station orbits about 420 km up, at 7.7 km/s. Gravity there is about 88% as strong as on the ground. The astronauts float not because there is no gravity, but because they and the station are falling together, all the time, round Earth. In a falling lift you would float too, for a moment.
+
+</Callout>
+
+## Orbits, one step at a time
+
+Newton’s law says how hard a planet is pulled at each moment, and in which direction: towards the Sun. To turn that into a path, a computer does what Newton’s cannon suggests, one moment at a time, like a game engine’s physics tick:
+
+1. The planet’s velocity carries it a short way along.
+2. The Sun’s pull changes the velocity a little, bending it towards the Sun.
+3. Repeat.
+
+The smaller the steps, the closer the computed path comes to the real one. But how you take each step matters as much as how small it is. The obvious way, moving the planet with the velocity it had at the start of the step, is Euler’s method, and it has a fault: it always overshoots slightly outward, so the orbit gains a little energy every step and spirals away from the Sun. Better methods look ahead within each step. The Toolkit page [Solving by stepping](/toolkit/solving-by-stepping/) explains them with a bouncing spring.
+
+<SteppingFigure
+  number="7.2"
+  tryThis={
+    <p>
+      Press <b>Play</b> and watch Euler’s orbit spiral out. Switch to <b>Leapfrog</b>, then <b>RK4</b>. Now slide the steps down to 12 an orbit
+      and press <b>One step</b> a few times: where does RK4 try out the pull? Then try the <b>stretched</b> orbit with each method.
+    </p>
+  }
+/>
+
+How do you know a simulated orbit is right, when there is no exact answer to compare it with? Physics gives checks for free. A planet alone with the Sun keeps the same total energy (the energy of its motion plus the energy stored by its height in the Sun’s pull), and the same angular momentum, which is what keeps it sweeping equal areas. If the computed numbers drift, the computer is making errors, and the drift says how big. Euler’s energy climbs steadily; RK4’s falls very slowly; leapfrog’s wobbles each orbit but stays put, which is why methods of its kind run the long simulations of the Solar System, and, with refinements built for planets, the Orrery at the end of Part I.
+
+## Weighing the Sun
+
+Newton’s law also explains Kepler’s third law, and corrects it. Work out how fast a planet must move to circle at a given distance, and how long the circle takes, and out comes Kepler’s rule: the period squared goes with the distance cubed. But there is a number in front, set by the mass at the centre. The heavier the Sun, the harder it pulls, and the faster its planets must go round. Kepler’s P² = a³, in years and AU, works for the planets because they all circle the same Sun.
+
+Turn that round, and an orbit becomes a pair of scales. Measure how big an orbit is and how long it takes, and you can work out the mass it goes round:
+
+<Callout kind="key">
+
+**Mass = 4π² × distance³ ÷ (G × period²).** With the distance in metres and the period in seconds, the mass comes out in kilograms. G is the gravitational constant: 6.674 × 10⁻¹¹.
+
+</Callout>
+
+G sets how strong gravity is, and it is tiny: two people a metre apart pull on each other with about the weight of a grain of fine sand. Henry Cavendish first measured its effect in 1798, with lead balls hung from a thread in a shed, in a famous experiment to “weigh the Earth”. With G known, Earth’s orbit weighs the Sun. Put in 1 AU (1.496 × 10¹¹ m) and a year (3.156 × 10⁷ s), and the Sun comes out at 1.99 × 10³⁰ kg, about 333,000 times Earth.
+
+<CosmicScaleFigure
+  number="7.3"
+  tryThis={
+    <p>
+      Set the ruler on the Moon’s orbit, press <b>Start the stopwatch</b> as the Moon crosses the start line and stop it when it comes round
+      again. How close did you get to Earth’s mass? Time three laps instead: is it better? Then weigh Jupiter with Io.
+    </p>
+  }
+/>
+
+This is how every planet with a moon was weighed: Jupiter 318 times Earth, Saturn 95, Mars about a tenth. Mercury and Venus have no moons, so they had to wait for spacecraft, whose paths bend as they fly past. In Chapter 6, Jupiter’s moons sat on a line of their own, at any distance taking 32 times as long to go round as a planet would; 32 × 32 is about 1,000, and Jupiter is about a thousandth of the Sun’s mass.
+
+<Callout kind="know">
+
+Astronomers know the product G × M for the Sun to ten digits, from the planets’ and spacecraft’s motions, but G itself only to about five: it is the hardest of the basic constants to measure, because gravity between lab-sized masses is so weak. So the Sun’s mass in kilograms is known only as well as G, and much of celestial mechanics works with G × M directly, as the code behind these figures does.
+
+</Callout>
+
+## Both bodies move
+
+Newton’s law has a twist: the pull goes both ways. Earth pulls the Moon, and the Moon pulls Earth just as hard. Earth, 81 times heavier, moves 81 times less, but it does move. Strictly, neither goes round the other. Both go round their shared balance point, the <Term id="barycentre">barycentre</Term>, the point where they would balance on a seesaw, 81 times closer to Earth than to the Moon.
+
+<BarycentreFigure
+  number="7.4"
+  tryThis={
+    <p>
+      Start with <b>Earth and the Moon</b>: is the balance point inside Earth? Try <b>Pluto and Charon</b>, then <b>Sun and Jupiter</b>, and
+      watch the close-up. Slide the mass ratio down to 1.
+    </p>
+  }
+/>
+
+For Earth and the Moon, the balance point is 4,670 km from Earth’s centre: inside Earth, about 1,700 km below the surface. Earth swings round it once a month. Pluto’s moon Charon is an eighth of Pluto’s mass, and their balance point lies out in the space between them, so the two circle each other like a pair of dancers; that is one reason they are sometimes called a double dwarf planet. And Jupiter swings the Sun round a point just outside the Sun’s surface, at 12.5 m/s, once every 12 years.
+
+That last wobble is tiny, but it can be measured from far away. Seen from another star, the Sun would sway back and forth, its light shifting colour very slightly as it moved towards and away from us. That is how the first planets round other Sun-like stars were found, in Part II.
+
+## Tides
+
+The Moon pulls on all of Earth, but not equally. The side facing the Moon is about 6,400 km closer to it than Earth’s centre, and the far side 6,400 km farther away, so the near side is pulled a little harder than the centre and the far side a little less.
+
+Earth as a whole falls towards the Moon (that is its share of the monthly swing round the balance point). What matters for the oceans is what is left over: the difference between the pull at each place and the pull at the centre. On the near side the water is pulled towards the Moon more than Earth is; on the far side Earth is pulled towards the Moon more than the water is, so the water is left behind. Round the middle, the leftover pulls are inward. The oceans are stretched into two bulges, one under the Moon and one opposite.
+
+<TideFigure
+  number="7.5"
+  tryThis={
+    <p>
+      Switch from <b>The Moon’s pull</b> to <b>Minus the average</b>: which way do the leftover arrows point on the far side? Show the bulges and
+      turn Earth: how many high tides does the harbour pass in a day? Then add the Sun and slide to 7 days after new Moon.
+    </p>
+  }
+/>
+
+Earth turns under the two bulges, so most coasts get two high tides a day. Not exactly every 12 hours: the Moon moves on round its orbit while Earth turns, so it comes back overhead about 50 minutes later each day (Chapter 4), and the high tides come every 12 hours 25 minutes.
+
+The Sun raises tides too. It pulls on Earth about 180 times harder than the Moon does, but it is 390 times farther away, so its pull is almost the same across all of Earth. What raises tides is the difference across Earth, and that falls off with the cube of the distance, not the square. The Sun’s tides come out at 46% of the Moon’s. When the Sun and Moon line up, at new and full Moon, their bulges add: **spring tides**, the biggest of the month (nothing to do with the season). At the quarter Moons they pull at right angles and partly cancel: **neap tides**, the smallest. These are the <Term id="spring-tide">spring and neap tides</Term>.
+
+Real tides are far more varied than two neat bulges. The oceans can’t keep up as Earth turns beneath them, and the water sloshes round each ocean basin, so some places get one tide a day, some almost none, and the Bay of Fundy, where the shape of the coast funnels the tide, gets ranges of 16 metres.
+
+Tides also slowly change Earth and the Moon. As Earth spins, it drags the bulges a little ahead of the line to the Moon, and the Moon’s pull on them acts as a brake: Earth’s day is lengthening by about 2 milliseconds a century. In return the bulges tug the Moon forward, and it is spiralling outward, 3.8 centimetres a year, measured by bouncing lasers off reflectors left by the Apollo astronauts. Long ago, Earth’s pull braked the Moon’s spin the same way, until it turned once per orbit and kept one face towards us: <Term id="tidal-locking">tidal locking</Term>, the reason we always see the same side of the Moon (Chapter 4).
+
+## Gravity’s victories
+
+Newton’s law did more than explain the known. It predicted.
+
+Edmond Halley, Newton’s friend and publisher, noticed that the comets of 1531, 1607 and 1682 had very similar orbits, and in 1705 he predicted that they were one comet, which would return late in 1758. He died sixteen years before it could. As the date neared, Alexis Clairaut, Joseph Lalande and Nicole-Reine Lepaute spent months calculating how Jupiter and Saturn would pull on the comet, and predicted it would pass closest to the Sun around 13 April 1759, give or take a month. On Christmas night 1758, Johann Palitzsch, a farmer near Dresden, found it in his telescope. It passed the Sun on 13 March 1759, inside their margin.
+
+In the 1840s Uranus, found in 1781, was drifting from its predicted path, even after the pulls of Jupiter and Saturn were allowed for. Urbain Le Verrier in Paris (and, independently, John Couch Adams in Cambridge) worked backwards from the drift to where an unseen planet must be. On 23 September 1846 Johann Galle and Heinrich d’Arrest in Berlin turned their telescope to Le Verrier’s position and found Neptune within about a degree of it, the first planet found by mathematics.
+
+Today the same law steers spacecraft. The cheapest way to Mars is a <Term id="hohmann-transfer">Hohmann transfer</Term>: half an ellipse that leaves Earth’s orbit at its nearest point to the Sun and just reaches Mars’s at its farthest. The craft coasts the whole way, but Mars has to arrive at the far end at the same moment, which happens once every 26 months, the time it takes Earth to lap Mars (Chapter 5).
+
+<HohmannFigure
+  number="7.6"
+  tryThis={
+    <p>
+      Press <b>Launch now</b> and play: does the craft meet Mars? Press <b>Reset</b>, then <b>Go to the next window</b> and launch from there.
+      How far ahead of Earth is Mars at launch?
+    </p>
+  }
+/>
+
+<Timeline from={1660} to={1930} chapter={7} title="From Newton to the space age" />
+
+Newton’s law isn’t quite the last word. Mercury’s orbit slowly turns, and after every known pull is allowed for, it turns 43 arcseconds a century faster than Newton’s law predicts. Le Verrier, flushed with Neptune, guessed at another unseen planet inside Mercury’s orbit, but nobody found it. The answer came in 1915 from Einstein’s general relativity, which is in Part III.
+
+<DeepDive title="Why the inverse square?">
+
+Picture the pull of the Sun spreading out in every direction, like light from a lamp. At any distance it is shared over the surface of a sphere round the Sun. Twice as far, that sphere has four times the area (2 × 2), so each square metre gets a quarter of the share; three times as far, a ninth. Light from a lamp dims the same way, and for the same reason (see [Ratios and scaling](/toolkit/ratios-and-scaling/)).
+
+Newton also showed that only an inverse-square law gives closed ellipses with the Sun at a focus, and that a ball of matter, like Earth or the Sun, pulls on things outside it exactly as if all its mass were at its centre. That second result took him years, and it is what lets every figure in this chapter treat planets as points.
+
+</DeepDive>
+
+Next: a tour of the Solar System, the planets, moons and smaller worlds that Newton’s law holds together.
+
+<CheckYourself>
+  <Question id="moon-twice-as-far" prompt="If the Moon were twice as far away, how strongly would Earth pull on it?">
+    <Choice label="A quarter as strongly" correct>
+      Right. Gravity weakens with the square of the distance: twice as far, 2 × 2 = 4 times weaker.
+    </Choice>
+    <Choice label="Half as strongly">
+      That would be true if gravity weakened in proportion to distance. It weakens with the square of the distance: twice as far, a quarter of
+      the pull.
+    </Choice>
+    <Choice label="Just as strongly">
+      Gravity weakens with distance, which is how Newton linked the Moon to a falling apple: 60 times farther, 3,600 times weaker.
+    </Choice>
+    <Choice label="Not at all">
+      Gravity never switches off; it only weakens. Twice as far away, the pull is a quarter as strong.
+    </Choice>
+  </Question>
+
+  <Question id="astronauts-float" prompt="Why do astronauts on the space station float?">
+    <Choice label="They are falling round Earth, together with the station" correct>
+      Right. Gravity at 420 km up is about 88% as strong as on the ground. The station and everyone in it are in free fall, moving sideways
+      fast enough to keep missing Earth.
+    </Choice>
+    <Choice label="There is no gravity in space">
+      Gravity reaches the Moon and far beyond. At the station’s height it is nearly 90% as strong as on the ground; without it, the station
+      would fly off in a straight line.
+    </Choice>
+    <Choice label="They are above the air">
+      Air has nothing to do with weight. Gravity at the station’s height is nearly as strong as on the ground; the astronauts float because they
+      are falling.
+    </Choice>
+    <Choice label="The station spins to cancel gravity">
+      The station doesn’t spin to make or cancel gravity. Everything in it is simply falling round Earth together.
+    </Choice>
+  </Question>
+
+  <Question id="moon-falling" prompt="Is the Moon falling towards Earth?">
+    <Choice label="Yes, all the time, but it keeps missing" correct>
+      Right. Without gravity the Moon would go off in a straight line. Every second it falls about 1.4 mm away from that line towards Earth,
+      and moves about 1 km sideways, so it keeps going round.
+    </Choice>
+    <Choice label="No: it is too far away to feel Earth’s gravity">
+      Earth’s gravity is 3,600 times weaker at the Moon than on the ground, but that is enough to bend the Moon’s path into an orbit.
+    </Choice>
+    <Choice label="No: its speed balances gravity, so it isn’t pulled">
+      It is pulled all the time; that pull is what bends its path. Its sideways speed only means it keeps missing Earth as it falls.
+    </Choice>
+    <Choice label="Only at new Moon">
+      The Moon is pulled towards Earth at every point of its orbit, whatever its phase.
+    </Choice>
+  </Question>
+
+  <Question id="two-tides" prompt="Why do most coasts get two high tides a day, not one?">
+    <Choice label="The oceans bulge on the side facing the Moon and on the far side" correct>
+      Right. The Moon pulls the near side harder than Earth’s centre, and the centre harder than the far side, which stretches the oceans into
+      two bulges. Earth turns under both.
+    </Choice>
+    <Choice label="The Sun makes one and the Moon the other">
+      The Moon alone makes two bulges. The Sun’s tides, about half as strong, make the tides bigger at new and full Moon and smaller at the
+      quarters.
+    </Choice>
+    <Choice label="The Moon goes round Earth twice a day">
+      The Moon takes a month to go round. Earth’s turning carries each coast under the Moon’s two bulges, one facing it and one opposite.
+    </Choice>
+    <Choice label="Water sloshes back after the first tide">
+      Sloshing does shape real tides, but the reason for two a day is the two bulges: the Moon pulls the near side more than the centre, and
+      the centre more than the far side.
+    </Choice>
+  </Question>
+
+  <Question id="weigh-a-planet" prompt="A newly found planet has a moon. What do you need to measure to work out the planet’s mass?">
+    <Choice label="The size of the moon’s orbit and how long it takes" correct>
+      Right. Mass = 4π² × distance³ ÷ (G × period²). The moon’s own mass hardly matters, as long as it is much lighter than the planet.
+    </Choice>
+    <Choice label="The moon’s size and brightness">
+      The moon’s size tells you nothing about the planet’s pull. Its orbit does: how big it is, and how long it takes.
+    </Choice>
+    <Choice label="The planet’s size">
+      Size alone doesn’t give mass: a planet could be dense rock or mostly gas. The moon’s orbit measures the pull directly.
+    </Choice>
+    <Choice label="It can’t be done without landing there">
+      Every planet with a moon was weighed from a distance, from the size and period of its moon’s orbit.
+    </Choice>
+  </Question>
+
+  <OrbitSpeed />
+</CheckYourself>
