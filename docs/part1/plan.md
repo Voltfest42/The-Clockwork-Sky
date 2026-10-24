@@ -4,7 +4,7 @@
 
 ## Status
 
-**In progress.** Part I is built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026), and so is Stage 3b (search engines: real paths and prerendered pages); details in the master plan's Status. Next: Stage 4, Chapters 3 and 4.
+**In progress.** Part I is built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026), so is Stage 3b (search engines: real paths and prerendered pages), and Stage 4 (Chapters 3 and 4) is done (24 Oct 2026); details in the master plan's Status. Next: Stage 5, Chapters 5 and 6.
 
 ---
 
@@ -103,7 +103,7 @@ Each section is a few short paragraphs, usually with one figure. ★ marks the k
 | 3.2 | **Why we have seasons.** The tilt, not the distance. Earth is closest to the Sun in early January and gets about 7% more sunlight then, during northern winter. The tilt changes how high the Sun climbs and how long it stays up, and so how much sunlight each square metre gets. | ★ **3.2 The seasons machine.** Earth circles the Sun in 3D with its axis tilted 23.4°, and your latitude marked. *Predict first:* "When is Earth closest to the Sun?" Panels show noon Sun height, day length and sunlight per square metre through the year, plus the same beam falling on flat and slanted ground. Tilt slider from 0° (no seasons) to 98° (Uranus); a distance switch shows the small 7% swing and its timing; a hemisphere switch. |
 | 3.3 | **Solstices, equinoxes and the midnight Sun.** The Sun's daily path changes through the year: high and long in summer, low and short in winter. The sunrise point slides along the horizon, and monuments mark it (Stonehenge, Newgrange). Polar day and night lie beyond the polar circles. | **3.3 The Sun's daily path.** The Sun's arc across your sky on any date; sunrise and sunset directions through the year; above 66.6° the arcs stop crossing the horizon. The noon Sun is overhead only in the tropics, and only on some days. |
 | 3.4 | **Calendars.** The year is 365.2422 days. Julian leap years overshoot by a day every 128 years; Gregorian rules (1582) by a day in about 3,200. Sweden once had a 30 February (1712). | **3.4 Calendar drift.** How far the calendar slips against the equinox over 2,000 years with no leap years, with Julian rules and with Gregorian rules. |
-| 3.5 | *(stretch)* **The analemma.** Photograph the Sun at the same clock time every day for a year and it traces a figure eight, from the tilt plus Earth's elliptical orbit. | *(stretch)* **3.5 Build the analemma**, with switches for the tilt and the ellipse |
+| 3.5 | *(stretch, built in Stage 4)* **The analemma.** Photograph the Sun at the same clock time every day for a year and it traces a figure eight, from the tilt plus Earth's elliptical orbit. | *(stretch)* **3.5 Build the analemma**, with switches for the tilt and the ellipse |
 | Deep dive | Milankovitch cycles: the tilt, the wobble and the orbit's shape over tens of thousands of years, and the ice ages | A small chart |
 
 *Check yourself:* When is Earth closest to the Sun? (Early January.) What season is it in Sydney in December? (Summer.) Without the tilt, would there be seasons? (Almost none.) *Interactive:* set the date when the noon Sun is highest where you live.

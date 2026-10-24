@@ -39,3 +39,13 @@
   font-weight: 600;
   fill: var(--text);
 }
+
+.baseline {
+  stroke: var(--text-muted);
+  stroke-width: 1.25;
+}
+
+.marker {
+  font-size: 10.5px;
+  font-weight: 600;
+}

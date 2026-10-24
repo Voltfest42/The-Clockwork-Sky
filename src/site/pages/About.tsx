@@ -38,7 +38,10 @@ export function About() {
           out by hand. Since Chapter 2, the positions of the Sun, the Moon and the planets are checked against NASA JPL’s Horizons system
           (DE441) at dates from 3000 BC to AD 3000, each within its published accuracy; the precession of Earth’s axis against the reference
           values of ERFA, the open-source version of the IAU’s SOFA library, and Meeus’s worked example; and the pole stars of the past and
-          future against the literature. Eclipses will be checked against NASA’s eclipse lists. End-to-end tests open every page, use it by
+          future against the literature. Since Chapters 3 and 4, the equinoxes, solstices, perihelion and aphelion are checked against published
+          times; sunrise and sunset against published tables; the Moon’s phases against Meeus’s worked examples and the lunar theory; and the
+          eclipse finder against NASA’s catalogue of every solar and lunar eclipse from 1900 to 2100, about 900 of them, including their Saros
+          numbers. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -113,12 +116,64 @@ export function About() {
             the year 2000.
           </li>
         </ul>
+        <h3>Chapter 3</h3>
+        <ul>
+          <li>
+            <b>Figure 3.1, the Sun’s year.</b> The stars behind the Sun are shown as if the sky were black. Dates are in Universal Time; the Sun
+            crosses each boundary at a different hour each year, so tables of entry dates differ by a day or so.
+          </li>
+          <li>
+            <b>Figure 3.2, the seasons machine.</b> Earth and the Sun are drawn far too big for their distance. Sunlight is counted at the top of
+            the atmosphere: no clouds, no air, and no lag while oceans and land warm up and cool down. Changing the tilt changes only the Sun’s
+            path in the sky; the orbit stays the real one.
+          </li>
+          <li>
+            <b>Figure 3.3, the Sun’s daily path.</b> The sky is drawn dark and empty so the paths stand out, and the ground is flat to the
+            horizon. Refraction is included.
+          </li>
+          <li>
+            <b>Figure 3.4, calendar drift.</b> The no-leap calendar is lined up with the Julian one in 45 BC, and the Gregorian rules are used all
+            the way back. The lines show every fourth year.
+          </li>
+          <li>
+            <b>Figure 3.5, the analemma.</b> Earth’s orbit is a simple ellipse with today’s shape and timing, and the sideways scale is stretched
+            to make the eight readable.
+          </li>
+          <li>
+            <b>Figure 3.6, Earth’s changing tilt.</b> The tilt comes from the long-term precession model of Vondrák, Capitaine and Wallace. The
+            other two Milanković cycles aren’t shown.
+          </li>
+        </ul>
+        <h3>Chapter 4</h3>
+        <ul>
+          <li>
+            <b>Figure 4.1, the phase machine.</b> The orbit is far too small and the bodies far too big. The sky and the times are for an
+            idealised place on the equator at an equinox, with the Moon’s orbit in the plane of the equator.
+          </li>
+          <li>
+            <b>Figures 4.2 and 4.3, two months and the Moon’s spin.</b> The orbits are circles in one plane, drawn out of scale; the 120-day year
+            exaggerates Earth’s motion. Libration is left out of Figure 4.3.
+          </li>
+          <li>
+            <b>Figure 4.4, eclipse seasons.</b> The Sun is drawn three Moon-orbits away instead of 390, and the Moon’s tilt three times too steep
+            unless that is switched off. The eclipse seasons use the Moon’s average node. The eclipses come from the eclipse finder.
+          </li>
+          <li>
+            <b>Figure 4.5, shadows.</b> Nothing is to scale, but the sizes are chosen so the Moon’s umbra just reaches Earth when the Moon is
+            closer than about 380,000 km, as it really does. The bending of sunlight in Earth’s air is much exaggerated.
+          </li>
+          <li>
+            <b>Figure 4.6, a Saros series.</b> Every member comes from the eclipse finder; far from the present its times are less certain, and a
+            grazing first or last member may come or go by one.
+          </li>
+        </ul>
 
         <h2>Sources</h2>
         <ul>
           <li>
             Jean Meeus, Astronomical Algorithms, 2nd edition (Willmann-Bell, 1998): calendars, Julian Dates, sidereal time, coordinate
-            conversions, the positions of the Sun (ch. 25) and the Moon (ch. 47), refraction and the planets’ brightness.
+            conversions, the positions of the Sun (ch. 25) and the Moon (ch. 47), refraction, the planets’ brightness, rising and setting
+            (ch. 15), equinoxes and solstices (ch. 27), the Moon’s phases (ch. 49) and eclipses (ch. 54).
           </li>
           <li>
             J. Vondrák, N. Capitaine and P. Wallace (2011), Astronomy and Astrophysics 534, A22: precession over 200,000 years, as coded in ERFA
@@ -137,6 +192,16 @@ export function About() {
           <li>The International Earth Rotation and Reference Systems Service (IERS) and the US Naval Observatory: measured values of ΔT.</li>
           <li>S. Aoki and colleagues (1982), Astronomy and Astrophysics 105, 359: the IAU 1982 expression for sidereal time.</li>
           <li>J. Laskar (1986), Astronomy and Astrophysics 157, 59: the long-term formula for the tilt of Earth’s axis.</li>
+          <li>
+            NASA’s Five Millennium Catalogs of Solar and Lunar Eclipses (Fred Espenak, NASA Goddard): every eclipse from 1900 to 2100, against
+            which the eclipse finder is tested.
+          </li>
+          <li>
+            G. Kopp and J. L. Lean (2011), Geophysical Research Letters 38, L01706, with the IAU’s nominal solar luminosity: sunlight at Earth,
+            about 1,361 W/m².
+          </li>
+          <li>J. D. Hays, J. Imbrie and N. J. Shackleton (1976), Science 194, 1121: the ice ages and the cycles of Earth’s orbit.</li>
+          <li>T. Freeth and colleagues (2006), Nature 444, 587: the Antikythera mechanism and its Saros dial.</li>
           <li>NASA Planetary Fact Sheets (D. R. Williams, NASA Goddard): the sizes of the planets and the Moon.</li>
           <li>
             E. M. Standish, Keplerian Elements for Approximate Positions of the Major Planets (JPL Solar System Dynamics, after Standish and
@@ -190,11 +255,12 @@ export function About() {
             <b>Planet positions:</b> NASA JPL’s published orbital elements (see Sources). <b>Places:</b> rounded city coordinates; clock times
             use your browser’s copy of the IANA time-zone database.
           </li>
+          <li>
+            <b>Eclipses:</b> the course finds eclipses with its own code, and tests it against NASA’s catalogues. Eclipse Predictions by Fred
+            Espenak (NASA’s GSFC), reproduced in the tests with that acknowledgment, as NASA asks.
+          </li>
         </ul>
-        <p>
-          Chapter 1’s sizes and distances are published values, typed into the code with their sources (see above). Eclipse lists arrive with
-          Chapter 4, and will be credited here with their licence.
-        </p>
+        <p>Chapter 1’s sizes and distances are published values, typed into the code with their sources (see above).</p>
 
         <h2>Built with</h2>
         <p>

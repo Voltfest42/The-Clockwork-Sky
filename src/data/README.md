@@ -13,6 +13,8 @@ Files under a share-alike licence (such as the HYG star catalogue, CC BY-SA 4.0)
 
 The test fixture `tests/fixtures/horizons.json` (geocentric astrometric positions of the Sun, the Moon and the planets at 42 dates from 3000 BC to AD 3000) comes from NASA JPL's Horizons system (DE441), a public service, and is fetched by `scripts/fetch-horizons.ts`.
 
+The test fixture `tests/fixtures/eclipses.json` (every solar and lunar eclipse from 1900 to 2100: date and time of greatest eclipse, Saros series, type, gamma and magnitudes) comes from NASA's *Five Millennium Catalogs of Solar and Lunar Eclipses* by Fred Espenak, and is fetched by `scripts/fetch-eclipses.ts`. NASA allows the data to be reproduced with the acknowledgment **"Eclipse Predictions by Fred Espenak (NASA's GSFC)"**, which the file carries. The site itself doesn't ship it: its eclipses come from the course's own eclipse finder, which the fixture tests.
+
 ## Values in the code
 
 Some small tables of published values live in the code itself, next to the formulas that use them:
@@ -25,6 +27,10 @@ Some small tables of published values live in the code itself, next to the formu
 | `src/core/ephemeris/planets.ts` | The planets' Keplerian elements and rates, Tables 1, 2a and 2b; the giant planets' masses | Standish & Williams (1992), as published by JPL SSD ("Approximate Positions of the Planets"); IAU 2009 / DE430 mass ratios |
 | `src/core/ephemeris/sun.ts`, `moon.ts` | The low-accuracy solar theory; the 60 + 60 largest periodic terms of ELP-2000/82 (Tables 47.A and 47.B) | Meeus (1998), chapters 25 and 47 (cross-checked against S. Keys's MIT-licensed Go port) |
 | `src/core/ephemeris/bodies.ts` | Planets' visual magnitude formulas; bodies' radii; the Earth–Moon mass ratio | *Astronomical Almanac* 1984, via Meeus (1998) ch. 41; NASA Planetary Fact Sheets; DE430 |
+| `src/core/ephemeris/lunation.ts` | The mean lunation and the periodic terms for new Moon, full Moon and the quarters, with the 14 planetary arguments | Meeus (1998), chapter 49 |
+| `src/core/ephemeris/eclipses.ts` | The terms for the time of greatest eclipse, γ and u, and the eclipse limits; reference eclipses for Saros numbering | Meeus (1998), chapter 54; Saros numbers as in NASA's catalogues (van den Bergh's numbering) |
+| `src/core/ephemeris/seasons.ts`, `src/core/sky/sunlight.ts` | Aberration and nutation corrections to the Sun's longitude; the Sun's rising altitude; sunlight at 1 AU from the nominal solar luminosity | Meeus (1998), chapters 15, 25 and 27; IAU 2015 B3 |
+| `src/core/ephemeris/moon.ts` (node) | The longitude of the Moon's mean ascending node | Meeus (1998), 47.7 |
 | `src/core/coords/precession.ts` | Long-term precession of the ecliptic and the equator: polynomial and periodic coefficients | Vondrák, Capitaine & Wallace (2011), *A&A* 534, A22 (erratum 541, C1), as coded in ERFA's `eraLtpecl` and `eraLtpequ` (BSD 3-Clause) |
 | `src/core/coords/refraction.ts` | Bennett's and Sæmundsson's refraction formulas | Bennett (1982); Sæmundsson (1986); Meeus (1998) ch. 16 |
 | `src/core/stars/photometry.ts` | B−V to temperature; fits to the CIE 1931 colour-matching functions; sRGB matrix | Ballesteros (2012); Wyman, Sloan & Shirley (2013); IEC 61966-2-1 |

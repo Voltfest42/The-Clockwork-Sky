@@ -14,7 +14,12 @@ export function moonElongation(jdTT: number): number {
 
 /** "new", "waxing crescent", "first quarter", "waxing gibbous", "full", "waning gibbous", "last quarter" or "waning crescent". */
 export function moonPhaseName(jdTT: number): string {
-  const e = (moonElongation(jdTT) * 180) / Math.PI; // −180 to 180
+  return phaseNameOf(moonElongation(jdTT));
+}
+
+/** The phase's name for an elongation east of the Sun (radians, any range). */
+export function phaseNameOf(elongation: number): string {
+  const e = (wrapPi(elongation) * 180) / Math.PI; // −180 to 180
   const a = Math.abs(e);
   if (a < 10) return 'new';
   if (a > 170) return 'full';

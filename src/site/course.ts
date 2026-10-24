@@ -173,9 +173,10 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     number: 3,
     part: 1,
     title: 'The Sun’s year',
-    blurb: 'The Sun’s path through the zodiac, why we have seasons (the tilt, not the distance), solstices and the midnight Sun, and calendars.',
-    sections: ['The Sun’s path among the stars', 'Why we have seasons', 'Solstices, equinoxes and the midnight Sun', 'Calendars'],
+    blurb: 'The Sun’s path through the zodiac, why we have seasons (the tilt, not the distance), solstices and the midnight Sun, calendars, and the analemma.',
+    sections: ['The Sun’s path among the stars', 'Why we have seasons', 'Solstices, equinoxes and the midnight Sun', 'Calendars', 'The analemma'],
     buildsOn: [2],
+    load: () => import('../content/chapter3.mdx'),
   }),
   chapter({
     number: 4,
@@ -184,6 +185,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Phases, two kinds of month, the face we always see, and why eclipses come only in some months.',
     sections: ['Half lit, always', 'Two kinds of month', 'The face we always see', 'Eclipses', 'The Saros'],
     buildsOn: [2, 3],
+    load: () => import('../content/chapter4.mdx'),
   }),
   chapter({
     number: 5,

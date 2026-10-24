@@ -53,7 +53,7 @@ docs/          plans and research notes
 
 - `src/core` takes and returns SI units (metres, seconds, kilograms, radians); time is a Julian Date in Terrestrial Time. Every exported function states its units.
 - Historical dates use astronomical year numbering (1 BC is year 0), the Julian calendar before 15 October 1582 and the Gregorian after.
-- The physics is tested against independent references: Meeus's worked examples, JPL Horizons, ERFA's test values, and (from Chapter 4) NASA's eclipse lists.
+- The physics is tested against independent references: Meeus's worked examples, JPL Horizons, ERFA's test values, and NASA's eclipse catalogues (every eclipse from 1900 to 2100).
 - British spelling.
 
 ## Deploying

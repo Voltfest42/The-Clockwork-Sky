@@ -95,7 +95,7 @@ export function moonGeocentric(jdTT: number): Vec3 {
 }
 
 /** Earth's centre, heliocentric (AU, J2000 equatorial): the Earth–Moon barycentre less Earth's small share of the Moon's offset. */
-function earthHeliocentric(jdTT: number, moon: Vec3): Vec3 {
+export function earthHeliocentric(jdTT: number, moon: Vec3): Vec3 {
   const barycentre = equatorialFromEclipticJ2000(heliocentricEcliptic('earth', jdTT));
   return sub(barycentre, scale(moon, 1 / (1 + EARTH_MOON_MASS_RATIO)));
 }

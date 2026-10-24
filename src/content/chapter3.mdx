@@ -1,0 +1,261 @@
+import { AnalemmaFigure } from '../figures/AnalemmaFigure';
+import { CalendarDriftFigure } from '../figures/CalendarDriftFigure';
+import { SeasonsFigure } from '../figures/SeasonsFigure';
+import { SunPathFigure } from '../figures/SunPathFigure';
+import { SunsYearFigure } from '../figures/SunsYearFigure';
+import { TiltHistoryFigure } from '../figures/TiltHistoryFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { HighestNoonSun } from './checks/chapter3';
+
+Chapter 2 watched the sky turn in a night. This chapter watches it over a year. The stars come back to the same places every year, but the Sun doesn’t stay put among them: it creeps once round the whole sky. That slow drift, and the tilt of Earth’s axis, give us the seasons, the long days of summer and the short ones of winter, and in the end our calendar.
+
+## The Sun’s path among the stars
+
+If you could see the stars in daylight, you would see the Sun moving against them: about 1° east every day, twice its own width. In a month it crosses about 30°, and in a year it goes all the way round the sky and comes back where it started.
+
+The reason is Earth’s orbit. As Earth goes round the Sun, we see the Sun from a different side each day, so it lines up with different stars behind it. The path it follows among the stars is the <Term id="ecliptic">ecliptic</Term>. It is Earth’s orbit seen from the inside: the plane of the orbit, extended out to the stars, cuts the sky in a great circle, and the Sun is always on it.
+
+<SunsYearFigure
+  number="3.1"
+  tryThis={
+    <p>
+      Press <b>Run the year</b> and watch the outline jump from one constellation to the next. Which constellation does the Sun spend the
+      longest in, and which the shortest? Find the one between Scorpius and Sagittarius. Then press <b>100 BC</b> and go to the{' '}
+      <b>March equinox</b>.
+    </p>
+  }
+/>
+
+The constellations along the ecliptic make up the <Term id="zodiac">zodiac</Term>. The Babylonians split it into twelve equal signs of 30°, one for each month, and astrology still uses them. But the real constellations aren’t equal. When the International Astronomical Union drew the official boundaries in 1930, the ecliptic crossed thirteen of them: the twelve familiar ones and Ophiuchus, the serpent-bearer, which the Sun passes through from about 29 November to 17 December. The Sun spends 45 days in Virgo and only a week in Scorpius.
+
+The signs and the constellations have also drifted apart. Chapter 2’s slow wobble moves the equinox backwards along the ecliptic by about 1° every 72 years. The signs are counted from the March equinox, so they move with it; the stars don’t. When the signs were named, the Sun at the March equinox was in Aries. Now it is in Pisces, and in about 600 years it will be in Aquarius.
+
+<Callout kind="know">
+
+How do we know where the Sun is among the stars, when its light hides them? By watching the stars just before dawn. Each morning a slightly different star is the last to rise before the sky gets too bright. In ancient Egypt the first morning on which Sirius could be seen low in the east, just before sunrise, came in summer, a little before the Nile began to flood, and it marked the start of the year.
+
+</Callout>
+
+## Why we have seasons
+
+Ask people why it is warmer in summer, and many will say that Earth is closer to the Sun then. It’s a sensible guess, and it’s wrong. Earth’s orbit is very nearly a circle, and Earth is closest to the Sun, 147.1 million km away, at the start of January, in the middle of the northern winter. It is farthest, 152.1 million km away, at the start of July. And when it is summer in the northern hemisphere, it is winter in the southern one: Australians have Christmas on the beach. If distance made the seasons, the whole Earth would have summer at once.
+
+The real cause is the tilt of Earth’s axis. Earth spins about an axis tilted 23.4° from upright, its <Term id="obliquity">obliquity</Term>, and the axis keeps pointing the same way in space, towards Polaris, all year round. So in June the northern half of Earth leans towards the Sun, and in December it leans away. The southern half does the opposite.
+
+Leaning towards the Sun does two things:
+
+- **The Sun climbs higher.** A high Sun’s light falls on the ground straight on; a low Sun’s light falls at a slant and spreads over more ground, so each square metre gets less. Shine a torch straight down at a table and then at a slant: the slanted patch is bigger and dimmer. If you have written a lighting shader, you know this already: the brightness of a surface is the dot product of its normal with the direction to the light. The seasons are that dot product.
+- **The days are longer.** More hours of sunshine and fewer hours of night to cool down.
+
+In London, at 51.5° north, the noon Sun climbs to 62° at midsummer and only 15° at midwinter. The midsummer day lasts 16 hours 38 minutes, the midwinter day 7 hours 50 minutes. Together, they give each square metre more than six times as much sunlight in June as in December.
+
+<SeasonsFigure
+  number="3.2"
+  tryThis={
+    <p>
+      Answer the question at the top first. Then press <b>Run the year</b> and watch the yellow circle, your latitude, slide into the light and
+      out again. Drag the <b>Tilt</b> to 0°: what happens to the three charts? Try <b>Uranus, 98°</b>. Finally switch on <b>Distance from the
+      Sun</b> and compare the purple line with the blue one.
+    </p>
+  }
+/>
+
+The change in distance does matter a little. In early January Earth gets about 7% more sunlight than in early July. That softens northern winters slightly and sharpens southern summers, but the tilt’s effect is far larger: at London’s latitude the sunlight swings by a factor of six.
+
+Near the equator the Sun is always high and the days always about 12 hours long, so the seasons there are mostly wet and dry, not warm and cold. Near the poles the swing is enormous: months of daylight, then months of night. And with no tilt at all, there would be no seasons, just the small swing in distance. Uranus, tipped over by 98°, has the most extreme seasons in the Solar System: each pole gets about 42 years of sunlight and then 42 years of darkness.
+
+<Callout kind="note" title="Why the hottest weeks come later">
+
+The longest day is around 21 June, but in the northern hemisphere the hottest weather usually comes in July and August. Oceans and land take weeks to warm up and to cool down, so the temperature lags behind the sunlight, the way a pan keeps heating for a while after you turn up the hob.
+
+</Callout>
+
+## Solstices, equinoxes and the midnight Sun
+
+Four moments mark the Sun’s year. At the June <Term id="solstice">solstice</Term>, around 21 June, the Sun is as far north of the celestial equator as it gets, 23.4°; at the December solstice, around 21 December, as far south. "Solstice" means "the Sun stands still": for a few days it seems to stop moving north or south before turning back. At the two <Term id="equinox">equinoxes</Term>, around 20 March and 22 September, it crosses the celestial equator. On those days it rises due east and sets due west everywhere on Earth, and day and night are nearly equal everywhere.
+
+Day by day, the Sun’s path across your sky changes. In summer it rises well round towards the pole, climbs high and sets far round on the other side; in winter it rises close to the equator side of east, stays low and sets soon after. From London, the sunrise point slides along the horizon from the north-east in June to the south-east in December, nearly 80° in all, and then back again.
+
+<SunPathFigure
+  number="3.3"
+  tryThis={
+    <p>
+      Press <b>June solstice</b> and then <b>December solstice</b>, and compare the paths and the times. Pick <b>Tromsø</b> and drag the date
+      through the year: when does the Sun stop setting? Then pick <b>Singapore</b>: when is the noon Sun overhead?
+    </p>
+  }
+/>
+
+People have marked these turning points for thousands of years. The main axis of Stonehenge, built around 2500 BC, points to the sunrise on midsummer’s day in one direction and to the sunset on midwinter’s day in the other. At Newgrange in Ireland, about 700 years older, a slot above the entrance lets the rising Sun shine down the passage to the central chamber on the mornings around the midwinter solstice.
+
+Beyond 66.6° north or south, the polar circles, the Sun’s path doesn’t always cross the horizon. Around midsummer the whole daily circle stays above it, and the Sun circles the sky all day and night: the midnight Sun. Around midwinter the whole circle stays below, and it never rises: the polar night. At the poles themselves there is one sunrise and one sunset a year. The air bends the Sun’s light over the horizon by about half a degree, so you can see the midnight Sun a little south of the Arctic Circle too.
+
+The opposite happens near the equator. Between 23.4° north and 23.4° south, the tropics, the noon Sun is straight overhead on one or two days a year; anywhere else, it never is. The tropics were named after the constellations the Sun was in at the solstices about 2,000 years ago, Cancer and Capricorn. Precession has moved it on since then: at the June solstice the Sun has been in Taurus since 1990.
+
+## Calendars
+
+A calendar has to count days, but the seasons don’t come round in a whole number of them. From one March equinox to the next, the tropical year, takes 365.2422 days: 365 days, 5 hours, 48 minutes and 45 seconds. Any calendar of whole days drifts against the seasons unless it adds a day now and then.
+
+The ancient Egyptians’ civil calendar had 365 days, no more. Every four years it fell a day behind the seasons, and in about 1,460 years its New Year’s Day wandered right round them. In 45 BC Julius Caesar, advised by the astronomer Sosigenes, gave Rome a calendar with a leap day every fourth year, so the average year was 365¼ days. That is 11 minutes too long, a day every 128 years. The church reckoned the March equinox to fall on 21 March, as it had around the time of the Council of Nicaea in AD 325, and worked out the date of Easter from it. By the 16th century the real equinox had crept back to 11 March, and Easter was going astray.
+
+In 1582 Pope Gregory XIII fixed both. To bring the equinox back to 21 March, ten days were dropped: in Italy, Spain and Portugal, Thursday 4 October 1582 was followed by Friday 15 October. And to stop the drift, century years would be leap years only if they divide by 400: 1700, 1800 and 1900 were not, 2000 was. That makes the average year 365.2425 days, which drifts by a day only in about 3,200 years.
+
+<CalendarDriftFigure
+  number="3.4"
+  tryThis={
+    <p>
+      Drag the year to <b>1582</b>: how far had the Julian calendar slipped? Switch to <b>Julian and Gregorian close up</b> and look for the
+      small steps in the Gregorian line: in which years do they come, and why? Where would the equinox fall today with no leap years at all?
+    </p>
+  }
+/>
+
+Not every country changed at once. Britain and its colonies waited until 1752, by which time they had to drop eleven days. Sweden tried to change gradually, by leaving out the leap days from 1700 to 1740. It left out the first, forgot the next two, and in 1712 gave up and went back to the Julian calendar, which meant adding a second leap day that year: Sweden had a 30 February. It changed for good in 1753. Russia changed in 1918, which is why its October Revolution is remembered in November.
+
+If you have written a game loop, you have met the same problem. A loop that adds one fixed time step per frame, when frames don’t arrive at exactly that rate, drifts away from the real clock. The cure is the same as Gregory’s: count, notice the error building up, and correct it now and then.
+
+<Callout kind="note">
+
+The sky views in this course use the calendar of the day, as history books do: Gregorian dates from 15 October 1582, and Julian dates before.
+
+</Callout>
+
+## The analemma
+
+Take a photograph of the Sun at exactly the same clock time every day for a year, without moving the camera, and the Suns don’t line up. They trace a figure eight in the sky, called the <Term id="analemma">analemma</Term>.
+
+The up-and-down part is the seasons: the Sun is high in summer and low in winter. The sideways part means that the Sun isn’t always due south (or due north, in the southern hemisphere) at 12 noon on the clock. A sundial, which shows where the Sun really is, runs up to about 14 minutes behind the clock in mid-February and up to about 16 minutes ahead in early November. The difference is called the <Term id="equation-of-time">equation of time</Term>. Clocks keep an average, steady Sun; the real Sun runs ahead of it and behind it.
+
+<AnalemmaFigure
+  number="3.5"
+  tryThis={
+    <p>
+      Switch off the <b>Elliptical orbit</b>: the eight becomes neat and symmetrical. Switch it back on and switch off the <b>Tilted axis</b>:
+      what’s left? Find the days when the sundial and the clock agree.
+    </p>
+  }
+/>
+
+Two things make the real Sun uneven. Earth’s orbit is an ellipse, so Earth moves faster in January, when it is closest to the Sun, and the Sun seems to move faster along the ecliptic then (Chapter 6 explains why). And the ecliptic is tilted to the equator, along which clocks count: even a Sun moving at a steady rate along the ecliptic would cross the sky’s hour lines unevenly, faster near the solstices and slower near the equinoxes.
+
+<DeepDive title="The ice ages and the slow cycles of Earth’s orbit">
+
+The tilt and the orbit change too, over tens of thousands of years, nudged by the Moon and the other planets. These slow changes are named after Milutin Milanković, the Serbian engineer who worked out their effect on the climate in the 1920s and 1930s:
+
+- **The tilt** rocks between about 22.1° and 24.5° every 41,000 years. More tilt means hotter summers and colder winters.
+- **The wobble** of the axis (Chapter 2), together with a slow turning of the orbit itself, changes the season in which Earth is closest to the Sun, in a cycle of 19,000 to 23,000 years. Today it’s in the northern winter; in about 11,000 years it will be in the northern summer.
+- **The shape of the orbit** changes from nearly circular to slightly stretched (an eccentricity of up to about 0.06) and back, over about 100,000 and 405,000 years. When it is more stretched, the difference in sunlight between the closest and farthest points grows from 7% to over 20%.
+
+None of these changes the total sunlight Earth gets in a year by much. They change where and when it falls, and in particular how warm the summers are in the far north, where the great ice sheets grow. When summers there are cool, the winter’s snow doesn’t melt, and ice builds up year after year. In 1976 James Hays, John Imbrie and Nicholas Shackleton found these cycles in the layers of mud on the ocean floor: the ice ages had followed the rhythm of Earth’s orbit.
+
+<TiltHistoryFigure
+  number="3.6"
+  tryThis={
+    <p>
+      Drag back to <b>10,000 years ago</b>, when the last ice age was ending: was the tilt more or less than today? When will it be smallest
+      next?
+    </p>
+  }
+/>
+
+</DeepDive>
+
+Next: the Moon, which has phases, a month of its own, and, now and then, an eclipse.
+
+<CheckYourself>
+  <Question id="closest-to-the-sun" prompt="When in the year is Earth closest to the Sun?">
+    <Choice label="In late June, in the northern summer">
+      That’s the distance idea of the seasons, and it’s the most common wrong answer. Earth is farthest from the Sun in early July, in the
+      northern summer.
+    </Choice>
+    <Choice label="In early January" correct>
+      Right. Earth is about 147 million km from the Sun in early January and 152 million km in early July. It gets about 7% more sunlight in
+      January, in the middle of the northern winter, so distance can’t be what makes the seasons.
+    </Choice>
+    <Choice label="At the equinoxes">
+      The equinoxes are when the Sun crosses the celestial equator, which has to do with the tilt, not the distance. Earth is closest to the
+      Sun in early January.
+    </Choice>
+    <Choice label="Never: its distance doesn’t change">
+      The orbit is very nearly a circle, but not quite: Earth’s distance swings by about 3%, from 147 million km in early January to
+      152 million km in early July.
+    </Choice>
+  </Question>
+
+  <Question id="december-in-sydney" prompt="What season is it in Sydney in December?">
+    <Choice label="Winter, as in the north">
+      The seasons are opposite in the two hemispheres. In December the southern half of Earth leans towards the Sun, so Sydney has its
+      longest days and highest noon Sun: summer.
+    </Choice>
+    <Choice label="Summer" correct>
+      Right. In December Earth’s southern half leans towards the Sun. In Sydney the noon Sun climbs to almost 80°, and the day lasts over
+      14 hours.
+    </Choice>
+    <Choice label="Spring">
+      Sydney’s spring runs from September to December. By late December the southern half of Earth leans fully towards the Sun: it’s
+      summer.
+    </Choice>
+    <Choice label="There are no seasons that close to the equator">
+      Sydney is 34° from the equator, as far south as Morocco is north. It has clear seasons, opposite to the north’s: December is summer.
+    </Choice>
+  </Question>
+
+  <Question id="no-tilt" prompt="If Earth’s axis weren’t tilted at all, would there be seasons?">
+    <Choice label="Yes, just as now">
+      The seasons come from the tilt. With no tilt, the Sun would be overhead at the equator every day, and every place would have the same
+      day length and the same noon Sun all year.
+    </Choice>
+    <Choice label="Almost none" correct>
+      Right. Only the small swing in distance would be left, about 7% more sunlight in January than in July, the same for both hemispheres.
+      Try it in Figure 3.2 with the tilt at 0°.
+    </Choice>
+    <Choice label="Stronger ones">
+      It’s the other way round: the tilt makes the seasons. With more tilt the seasons get stronger (Uranus, at 98°, has the strongest);
+      with none, they almost vanish.
+    </Choice>
+    <Choice label="Only near the poles">
+      With no tilt, the poles would have the Sun skimming round the horizon every day of the year: no change at all. Only the small swing
+      in distance would be left, everywhere.
+    </Choice>
+  </Question>
+
+  <HighestNoonSun />
+
+  <Question id="equinox-sunrise" prompt="Where does the Sun rise on the day of an equinox?">
+    <Choice label="Due east, everywhere on Earth" correct>
+      Right. At an equinox the Sun is on the celestial equator, which meets every horizon at the east and west points, so it rises due east
+      and sets due west wherever you are (except exactly at the poles).
+    </Choice>
+    <Choice label="Due east only on the equator">
+      The celestial equator always crosses the horizon at due east and due west, whatever your latitude. On an equinox the Sun is on it, so
+      it rises due east everywhere.
+    </Choice>
+    <Choice label="North-east in the north, south-east in the south">
+      That’s the June solstice in the north, when the Sun rises well round towards the north. At an equinox it rises due east everywhere.
+    </Choice>
+    <Choice label="It depends on the time zone">
+      Time zones change the clock time of sunrise, not its direction. At an equinox the Sun rises due east everywhere.
+    </Choice>
+  </Question>
+
+  <Question id="julian-drift" prompt="Why did the Julian calendar drift against the seasons?">
+    <Choice label="Its average year was about 11 minutes too long" correct>
+      Right. A leap day every fourth year makes the average year 365.25 days, but the seasons take 365.2422. The 11 minutes add up to a day
+      every 128 years, and to 10 days by 1582.
+    </Choice>
+    <Choice label="It had no leap years">
+      It did: one every fourth year. That was the Julian calendar’s improvement on the 365-day year. The trouble was that it added a little
+      too much.
+    </Choice>
+    <Choice label="Earth’s orbit was slowing down">
+      The year’s length barely changes. The Julian calendar’s average year, 365.25 days, was simply 11 minutes longer than the seasons’
+      365.2422 days.
+    </Choice>
+    <Choice label="Precession moved the equinox">
+      Precession moves the equinox against the stars, but the calendar follows the equinox itself, the seasons. The Julian calendar drifted
+      because its average year was 11 minutes too long.
+    </Choice>
+  </Question>
+</CheckYourself>

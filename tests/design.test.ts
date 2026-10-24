@@ -59,6 +59,10 @@ describe('design tokens', () => {
         expect(contrast('#ffffff', color('accent-fill')), 'white on filled buttons').toBeGreaterThanOrEqual(4.5);
       });
 
+      it('draws chart lines that stand out from the page (≥ 3:1)', () => {
+        for (const series of ['series-1', 'series-2', 'series-3']) expect(contrast(color(series), color('bg')), `--${series}`).toBeGreaterThanOrEqual(3);
+      });
+
       it('keeps the night sky dark, with readable labels on it', () => {
         expect(luminance(color('sky-bg'))).toBeLessThan(0.01);
         expect(contrast(color('sky-text'), color('sky-bg'))).toBeGreaterThanOrEqual(7);

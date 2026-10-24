@@ -13,6 +13,10 @@ export const GLOSSARY = {
     term: 'Altitude',
     definition: 'How high something appears above the horizon, as an angle: 0° on the horizon, 90° straight overhead.',
   },
+  analemma: {
+    term: 'Analemma',
+    definition: 'The figure eight the Sun traces in the sky if you mark where it is at the same clock time every day for a year.',
+  },
   aphelion: {
     term: 'Aphelion',
     definition: 'The point of an orbit farthest from the Sun. Earth passes it in early July.',
@@ -88,6 +92,10 @@ export const GLOSSARY = {
   equinox: {
     term: 'Equinox',
     definition: 'One of the two moments a year, around 20 March and 22 September, when the Sun crosses the celestial equator, and day and night are nearly equal everywhere.',
+  },
+  'equation-of-time': {
+    term: 'Equation of time',
+    definition: 'How far sundial time runs ahead of or behind clock time, from about 14 minutes behind in February to 16 minutes ahead in November.',
   },
   'escape-speed': {
     term: 'Escape speed',

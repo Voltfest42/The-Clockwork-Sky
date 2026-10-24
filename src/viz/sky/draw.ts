@@ -29,6 +29,10 @@ export interface SkyLayers {
   /** The opaque ground below the horizon; off shows the stars below it, behind a tint. */
   ground: boolean;
   planets: boolean;
+  /** The Moon (shown unless this is false). */
+  moon?: boolean;
+  /** The stars (shown unless this is false, for diagrams that need a plain sky). */
+  stars?: boolean;
 }
 
 export const DEFAULT_LAYERS: SkyLayers = {
@@ -403,7 +407,7 @@ export function drawSky(ctx: CanvasRenderingContext2D, model: SkyModel, o: DrawO
   const nameLimit = camera.fov > 2.4 ? 1.3 : camera.fov > 1.3 ? 2.1 : camera.fov > 0.6 ? 3.2 : 4.5;
   const featured = new Set(o.featured);
   const selectedStar = o.selected?.startsWith('star:') ? Number(o.selected.slice(5)) : -1;
-  for (let i = cat.count - 1; i >= 0; i--) {
+  for (let i = layers.stars === false ? -1 : cat.count - 1; i >= 0; i--) {
     const mag = model.starMag[i];
     if (mag > limit && !featured.has(i)) continue;
     const v = starVector(model, i);
@@ -448,7 +452,7 @@ export function drawSky(ctx: CanvasRenderingContext2D, model: SkyModel, o: DrawO
   ctx.globalAlpha = 1;
 
   // ---------- the Sun, the Moon and the planets ----------
-  const bodies = layers.planets ? model.bodies : model.bodies.filter((b) => b.name === 'sun' || b.name === 'moon');
+  const bodies = model.bodies.filter((b) => b.name === 'sun' || (b.name === 'moon' ? layers.moon !== false : layers.planets));
   // Farthest first, so the Moon covers what it passes in front of.
   for (const body of [...bodies].sort((a, b) => b.distance - a.distance)) {
     const [x, y, depth] = toScreen(p, body.local);

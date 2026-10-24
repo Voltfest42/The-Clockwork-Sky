@@ -99,3 +99,75 @@ export function milkyWayAt(mw: MilkyWay, x: number, y: number, z: number): numbe
 }
 
 const RAD_TO_DEG = 180 / Math.PI;
+
+/** A boundary ring as right ascensions and declinations (radians), and whether it goes round the north celestial pole. */
+interface Ring {
+  ra: Float64Array;
+  dec: Float64Array;
+  aroundNorthPole: boolean;
+  minDec: number;
+  maxDec: number;
+}
+
+const ringCache = new WeakMap<Constellation, Ring[]>();
+
+function ringsOf(c: Constellation): Ring[] {
+  let rings = ringCache.get(c);
+  if (rings) return rings;
+  rings = c.boundaries.map((points) => {
+    const ra = new Float64Array(points.length);
+    const dec = new Float64Array(points.length);
+    points.forEach((p, i) => {
+      ra[i] = Math.atan2(p[1], p[0]);
+      dec[i] = Math.asin(Math.max(-1, Math.min(1, p[2])));
+    });
+    // A ring round a pole turns through a full 360° of right ascension.
+    let turn = 0;
+    for (let i = 0; i < points.length; i++) turn += wrap(ra[(i + 1) % points.length] - ra[i]);
+    const aroundPole = Math.abs(turn) > Math.PI;
+    let minDec = Infinity;
+    let maxDec = -Infinity;
+    for (const d of dec) {
+      minDec = Math.min(minDec, d);
+      maxDec = Math.max(maxDec, d);
+    }
+    const north = aroundPole && maxDec > 0;
+    const south = aroundPole && maxDec < 0;
+    return { ra, dec, aroundNorthPole: north, minDec: south ? -Math.PI / 2 : minDec, maxDec: north ? Math.PI / 2 : maxDec };
+  });
+  ringCache.set(c, rings);
+  return rings;
+}
+
+function wrap(angle: number): number {
+  return angle - 2 * Math.PI * Math.round(angle / (2 * Math.PI));
+}
+
+/** Whether a direction (right ascension and declination, radians) is inside a boundary ring. */
+function insideRing(ring: Ring, ra0: number, dec0: number): boolean {
+  if (dec0 < ring.minDec || (dec0 > ring.maxDec && !ring.aroundNorthPole)) return false;
+  // Count where the ring crosses the meridian from the point up to the north pole.
+  let crossings = 0;
+  const n = ring.ra.length;
+  for (let i = 0; i < n; i++) {
+    const j = (i + 1) % n;
+    const d1 = wrap(ring.ra[i] - ra0);
+    const d2 = wrap(ring.ra[j] - ra0);
+    if (d1 < 0 === d2 < 0 || Math.abs(d2 - d1) > Math.PI) continue;
+    const dec = ring.dec[i] + ((ring.dec[j] - ring.dec[i]) * -d1) / (d2 - d1);
+    if (dec > dec0) crossings++;
+  }
+  // A ring round the north pole holds the pole, where the count ends: inside means an even count then.
+  return ring.aroundNorthPole ? crossings % 2 === 0 : crossings % 2 === 1;
+}
+
+/**
+ * The constellation a J2000 direction lies in, by the IAU boundaries (which
+ * are fixed to the stars, so precession carries the equinox through them).
+ */
+export function constellationAt(constellations: readonly Constellation[], v: Vec3): Constellation | null {
+  const ra = Math.atan2(v[1], v[0]);
+  const dec = Math.asin(Math.max(-1, Math.min(1, v[2] / Math.hypot(v[0], v[1], v[2]))));
+  for (const c of constellations) if (ringsOf(c).some((ring) => insideRing(ring, ra, dec))) return c;
+  return null;
+}

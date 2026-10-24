@@ -1,0 +1,236 @@
+import { EclipseSeasonsFigure } from '../figures/EclipseSeasonsFigure';
+import { PhaseMachineFigure } from '../figures/PhaseMachineFigure';
+import { SarosFigure } from '../figures/SarosFigure';
+import { ShadowsFigure } from '../figures/ShadowsFigure';
+import { SpinFigure } from '../figures/SpinFigure';
+import { TwoMonthsFigure } from '../figures/TwoMonthsFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { FirstQuarter } from './checks/chapter4';
+
+The Moon is the easiest thing in the sky to watch and one of the most misunderstood. It changes shape through the month, it rises at a different time every night, it turns up in the daytime, and now and then it blots out the Sun or turns red. All of it follows from one simple arrangement: a ball, lit from one side by the Sun, going round Earth once a month on a slightly tilted orbit.
+
+## Half lit, always
+
+The Moon makes no light of its own. Like Earth, it is a ball lit by the Sun, and at every moment the Sun lights exactly half of it: the half that faces the Sun. The other half is in night.
+
+What changes through the month is how much of that lit half faces us. When the Moon is between Earth and the Sun, its lit half faces away from us and we see only its night side: a new Moon, which is usually invisible against the bright sky near the Sun. A few days later the Moon has moved round its orbit and we see a sliver of the lit side, a crescent. A quarter of the way round, at first quarter, we see half of the lit half: the Moon looks half lit. When the Moon is on the far side of Earth from the Sun, we see all of its lit half: full Moon. Then the same steps run backwards, through last quarter to new Moon again, 29.5 days after the last.
+
+<PhaseMachineFigure
+  number="4.1"
+  tryThis={
+    <p>
+      Answer the question at the top first. Then press <b>Full</b> and drag the <b>Time</b>: when does the full Moon rise? Press{' '}
+      <b>First quarter</b> and find an hour when the Sun and the Moon are both up. Finally switch on <b>Earth’s shadow</b> and drag the Moon
+      round: when does the shadow reach it?
+    </p>
+  }
+/>
+
+<Callout kind="note" title="It isn’t Earth’s shadow">
+
+The most common idea about the phases is that Earth’s shadow covers part of the Moon. It can’t be: Earth’s shadow points away from the Sun, so it can only reach the Moon at full Moon, when the Moon is fully lit, and even then it usually misses. When it doesn’t miss, we get something quite different from a phase: a lunar eclipse. And on a gibbous Moon the line between light and dark bulges outwards, which no round shadow could do.
+
+</Callout>
+
+The phase also tells you when the Moon is up. A full Moon is opposite the Sun, so it rises as the Sun sets and sets as the Sun rises: it is up all night. A first-quarter Moon is 90° east of the Sun, so it is highest at sunset and sets around midnight. A waning crescent rises just before dawn. And for about half the month the Moon is above the horizon for part of the daytime: the daytime Moon isn’t a rare sight at all, just one people don’t look for.
+
+## Two kinds of month
+
+The Moon goes once round Earth, measured against the stars, in 27.3 days: the <Term id="sidereal">sidereal</Term> month. But from new Moon to new Moon takes 29.5 days, the <Term id="synodic">synodic</Term> month. It is the same story as the star day and the Sun day in Chapter 2. While the Moon goes round Earth, Earth moves about 27° along its orbit round the Sun, so the Moon has to go a couple of days further before it is lined up with the Sun again.
+
+<TwoMonthsFigure
+  number="4.2"
+  tryThis={
+    <p>
+      Press <b>Next star alignment</b>, then <b>Next new Moon</b>, and compare the times. Then switch to the <b>120-day year</b> and do it
+      again: why does the gap grow?
+    </p>
+  }
+/>
+
+Against the stars the Moon moves about 13° east every day, its own width in an hour. So it rises, on average, about 50 minutes later each day, and from night to night you can watch it work its way along the zodiac. Our month, and in many cultures the calendar, comes from the synodic month: the word "month" comes from "Moon".
+
+## The face we always see
+
+The Moon always shows us the same face: the same dark patches, the "man in the Moon" or the "rabbit", depending on where you grew up. That doesn’t mean it doesn’t spin. To keep one face towards Earth, the Moon has to turn exactly once each time it goes round. A Moon that didn’t spin at all would show us every side in turn over a month.
+
+<SpinFigure
+  number="4.3"
+  tryThis={
+    <p>
+      Press <b>Play</b> and watch the two faces. Which Moon spins? Stop the left one halfway round its orbit: which side of it does Earth see?
+    </p>
+  }
+/>
+
+That exact match is no coincidence. Earth’s pull long ago braked the Moon’s spin until it settled at once per orbit; this is <Term id="tidal-locking">tidal locking</Term>, and Chapter 7 explains it. The match isn’t perfect, though. The Moon’s orbit is slightly elliptical, so it moves faster and slower round it while spinning steadily, and its orbit is tilted, so we see a little over its top and bottom in turn. These small rocking motions, called libration, let us see 59% of its surface over time.
+
+The far side is often called the dark side, but it gets just as much sunlight as the near side: at new Moon it is fully lit. It is only dark in the sense of unknown. Nobody saw it until 1959, when the Soviet probe Luna 3 sent back the first photographs.
+
+## Eclipses
+
+A few times a year the Moon passes exactly in front of the Sun, or exactly through Earth’s shadow. In a solar eclipse the Moon’s shadow falls on Earth: it can only happen at new Moon. In a lunar eclipse Earth’s shadow falls on the Moon: only at full Moon.
+
+Why not every month? Because the Moon’s orbit is tilted by about 5° to the ecliptic, the plane of Earth’s orbit. At most new Moons the Moon passes a little north or south of the Sun, and at most full Moons a little north or south of Earth’s shadow. The two planes cross along a line through Earth, the line of <Term id="node">nodes</Term>. An eclipse needs a new or full Moon that happens while the Sun is close to that line.
+
+The Sun passes each node once a year, so there are two windows a year, each a little over a month long, when eclipses can happen: the eclipse seasons. Since a season lasts longer than a month, every season has at least one new Moon in it, and so at least one solar eclipse, usually partial. Every year has at least two solar eclipses and at most seven eclipses of both kinds. The nodes slide slowly backwards round the ecliptic, once in 18.6 years, so the eclipse seasons come about 19 days earlier each year.
+
+<EclipseSeasonsFigure
+  number="4.4"
+  tryThis={
+    <p>
+      Press <b>Run the year</b> and watch the Moon’s shadow and Earth’s sweep above and below each other. Stop when a new Moon falls in a
+      shaded eclipse season. Then step to the next few years with <b>+</b>: how do the seasons shift?
+    </p>
+  }
+/>
+
+A solar eclipse can be total, annular or partial, and it depends on a coincidence. The Sun is about 400 times wider than the Moon, and about 390 times farther away, so the two look almost the same size. The Moon’s orbit is slightly elliptical, though, and its distance swings between about 356,000 and 407,000 km. When it is near, it looks a little bigger than the Sun and can cover it completely: a total eclipse. When it is far, it looks a little smaller and leaves a ring of sunlight round it: an annular eclipse, from the Latin for ring.
+
+The dark centre of the Moon’s shadow, the <Term id="umbra">umbra</Term>, is never more than a few hundred kilometres wide where it touches Earth, so a total eclipse is only seen along a narrow track, and totality lasts at most about seven and a half minutes. Around the umbra, the much larger <Term id="penumbra">penumbra</Term> gives a partial eclipse over thousands of kilometres. A lunar eclipse is different: anyone on the night side of Earth can see it, because it is the Moon itself that goes dark.
+
+<ShadowsFigure
+  number="4.5"
+  tryThis={
+    <p>
+      Drag the <b>Moon’s distance</b> slowly from near to far: at what distance does the eclipse stop being total? Then switch to{' '}
+      <b>Lunar eclipse</b> and slide the Moon through Earth’s shadow. Why does a totally eclipsed Moon turn red, not black?
+    </p>
+  }
+/>
+
+During a total lunar eclipse the Moon rarely disappears. Sunlight passing through Earth’s atmosphere is bent slightly into the shadow, and on its long way through the air the blue light is scattered out of it, as at sunset. What reaches the Moon is a dim red glow: the light of all the world’s sunrises and sunsets at once.
+
+<Callout kind="note" title="Watching a solar eclipse safely">
+
+Never look at the Sun directly, even when the Moon covers most of it: the sliver that is left can still damage your eyes. Use proper eclipse glasses, or project the Sun’s image through a pinhole onto a card. Only during the brief minutes of totality, when the Sun is completely covered, is it safe to look with the naked eye.
+
+</Callout>
+
+The next total eclipses of the Sun are on 12 August 2026, across Greenland, Iceland and northern Spain; on 2 August 2027, across North Africa, with up to 6 minutes 23 seconds of totality near Luxor; and on 22 July 2028, across Australia and New Zealand. Earth’s shadow turns the Moon red on 31 December 2028.
+
+<Callout kind="know">
+
+How do we know Earth is round, again? During a lunar eclipse, Earth’s shadow on the Moon always has a curved edge, whatever the time of night and wherever the Moon is in the sky. Only a ball casts a round shadow in every direction. Aristotle gave this argument around 350 BC, and Aristarchus, a century later, used the size of the shadow to estimate how far away the Moon is.
+
+</Callout>
+
+## The Saros
+
+Eclipses repeat. After 223 synodic months, which is 6,585.3 days, or 18 years and 11⅓ days, the Moon is back at the same phase. By a happy accident, that is also almost exactly 242 trips from one node round to the same node again, and 239 trips from one nearest approach to Earth to the next. So after one cycle, called the <Term id="saros">Saros</Term>, the Sun, the Moon and the nodes line up again almost exactly, with the Moon at almost the same distance, and an eclipse of nearly the same kind happens again.
+
+The extra third of a day means that Earth has turned a third of the way further round, so the next eclipse in the series is seen about 120° of longitude further west. After three Saros cycles, 54 years and 33 days, it comes back to about the same part of the world.
+
+<SarosFigure
+  number="4.6"
+  tryThis={
+    <p>
+      Step through the series of the 2026 total eclipse with the <b>Eclipse</b> slider. When did it start, what kinds of eclipse does it pass
+      through, and when will it end? Then compare the series of the 2027 eclipse.
+    </p>
+  }
+/>
+
+The Babylonians recorded eclipses for centuries and knew the 223-month cycle, and used it to warn of eclipses to come. The Antikythera mechanism, a bronze gearwork calculator found in a shipwreck off a Greek island and built about 2,100 years ago, has a dial for the Saros, marked with the months in which to expect eclipses.
+
+<DeepDive title="How the eclipse finder works">
+
+The eclipses in Figure 4.4 come from the method in Jean Meeus’s *Astronomical Algorithms*, which runs much as the reasoning above does. For each new and full Moon it works out the Moon’s angle from its node. If that is too large, there is no eclipse, and the method moves on. If it is small enough, it works out the time of greatest eclipse and two numbers: how far the axis of the shadow passes from Earth’s centre, and how wide the shadow is there. Those two say whether an eclipse happens and what kind it is.
+
+The tests compare it with NASA’s catalogue of every eclipse from 1900 to 2100, about 900 of them. It finds them all, at the right time to within a few minutes, and of the right kind, except a handful sitting right on a dividing line: an annular eclipse that is almost total, and penumbral eclipses so slight that nobody would notice them.
+
+</DeepDive>
+
+Next: the planets, which wander among the stars along the same zodiac, sometimes backwards.
+
+<CheckYourself>
+  <Question id="solar-eclipse-phase" prompt="What phase is the Moon in during a solar eclipse?">
+    <Choice label="New" correct>
+      Right. To hide the Sun, the Moon has to be between Earth and the Sun, with its lit half facing away from us: a new Moon.
+    </Choice>
+    <Choice label="Full">
+      At full Moon the Moon is on the far side of Earth from the Sun, so it can’t hide the Sun. A full Moon can be eclipsed by Earth’s
+      shadow, though: that’s a lunar eclipse.
+    </Choice>
+    <Choice label="First quarter">
+      At first quarter the Moon is 90° from the Sun in the sky, nowhere near it. To cover the Sun it has to be right in line with it: a new
+      Moon.
+    </Choice>
+    <Choice label="Any phase">
+      Only a Moon lined up with the Sun can cover it, and that’s a new Moon. Lunar eclipses, similarly, only happen at full Moon.
+    </Choice>
+  </Question>
+
+  <Question id="why-not-every-month" prompt="Why isn’t there an eclipse every month?">
+    <Choice label="The Moon’s orbit is tilted to Earth’s" correct>
+      Right. The Moon’s orbit is tilted by about 5°, so at most new and full Moons it passes a little above or below the line through the Sun
+      and Earth. Eclipses only happen when a new or full Moon falls near a node, in one of the two eclipse seasons each year.
+    </Choice>
+    <Choice label="The Moon is too small to block the Sun most months">
+      The Moon looks almost exactly as big as the Sun every month. The problem is lining up: its tilted orbit usually takes it above or
+      below the Sun at new Moon.
+    </Choice>
+    <Choice label="Clouds hide most of them">
+      Clouds hide eclipses from some places, but the eclipses still happen. They don’t happen every month because the Moon’s orbit is tilted
+      by 5°, so it usually passes above or below the Sun and Earth’s shadow.
+    </Choice>
+    <Choice label="The Moon doesn’t always go between Earth and the Sun">
+      It does, once a month, at new Moon, but usually a little above or below the line to the Sun, because its orbit is tilted by 5°.
+    </Choice>
+  </Question>
+
+  <Question id="full-moon-rises" prompt="At about what time does the full Moon rise?">
+    <Choice label="At sunset" correct>
+      Right. The full Moon is opposite the Sun in the sky, so it rises as the Sun sets, is highest around midnight and sets at sunrise.
+    </Choice>
+    <Choice label="At midnight">
+      That’s when the full Moon is highest. It is opposite the Sun, so it rises around sunset.
+    </Choice>
+    <Choice label="At sunrise">
+      That’s when the full Moon sets. It is opposite the Sun in the sky, so it rises as the Sun goes down.
+    </Choice>
+    <Choice label="At noon">
+      At noon the full Moon is below the horizon, on the opposite side of the sky from the Sun. It rises at sunset.
+    </Choice>
+  </Question>
+
+  <FirstQuarter />
+
+  <Question id="daytime-moon" prompt="Can you see the Moon in the daytime?">
+    <Choice label="Yes, on about half the days of the month" correct>
+      Right. Except near new and full Moon, the Moon is above the horizon for part of the day. A first-quarter Moon rises around noon, and a
+      last-quarter Moon is still up in the morning.
+    </Choice>
+    <Choice label="No, only at night">
+      The Moon is in the sky for about 12 hours a day, at a time that shifts through the month. For about half the month part of that time is
+      in daylight, and it is easy to see.
+    </Choice>
+    <Choice label="Only during a solar eclipse">
+      During a solar eclipse the Moon is in the daytime sky but invisible until it covers the Sun. At other times you can often see it by
+      day: on about half the days of the month.
+    </Choice>
+    <Choice label="Only in winter">
+      The daytime Moon has nothing to do with the season: it depends on the phase. Around first and last quarter it is up for much of the
+      day all year round.
+    </Choice>
+  </Question>
+
+  <Question id="moon-spin" prompt="The Moon always shows us the same face. Does it spin?">
+    <Choice label="Yes, once each orbit" correct>
+      Right. To keep the same face towards Earth, it has to turn exactly once for every trip round, about once every 27 days. Without that
+      spin we’d see every side of it in turn.
+    </Choice>
+    <Choice label="No, it doesn’t spin at all">
+      A Moon that didn’t spin would keep pointing the same way in space, and we would see every side of it over a month. The real Moon turns
+      once per orbit.
+    </Choice>
+    <Choice label="Yes, once a day, like Earth">
+      Then we would see its whole surface go by every day. It spins much more slowly: exactly once per orbit, every 27.3 days.
+    </Choice>
+    <Choice label="Only during eclipses">
+      The Moon spins all the time, steadily, once per orbit. That steady turn keeps the same face towards Earth.
+    </Choice>
+  </Question>
+</CheckYourself>

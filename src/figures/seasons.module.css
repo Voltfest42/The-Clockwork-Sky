@@ -1,0 +1,181 @@
+/* Shared by the figures of Chapters 3 and 4. */
+
+.table {
+  width: 100%;
+  max-width: 560px;
+  margin-top: 12px;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.table caption {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-bottom: 4px;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 3px 10px 3px 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+
+.table thead th {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.current th,
+.current td {
+  background: var(--highlight-bg);
+}
+
+.current th button {
+  font-weight: 700;
+}
+
+.link {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 16px;
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .panels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.panel {
+  min-width: 0;
+}
+
+.panel h4 {
+  margin: 0 0 2px;
+  font-size: 0.88rem;
+}
+
+.panel p {
+  margin: 0 0 4px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.predict {
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 0.92rem;
+}
+
+.predict p {
+  margin: 0 0 6px;
+}
+
+.predict fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.predict legend {
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+.verdict {
+  margin: 8px 0 0;
+}
+
+.right {
+  color: var(--right);
+  font-weight: 700;
+}
+
+.wrong {
+  color: var(--wrong);
+  font-weight: 700;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--sky-bg);
+  border-radius: var(--radius);
+  touch-action: none;
+}
+
+.svgLight {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.focusable:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.timelineWrap {
+  margin-top: 8px;
+  overflow-x: auto;
+  border-radius: var(--radius);
+}
+
+.timelineWrap:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Wide enough for its labels to stay legible; on a phone the box scrolls sideways. */
+.timeline {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+  height: auto;
+}
+
+.list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 0.88rem;
+}
+
+.list li + li {
+  margin-top: 2px;
+}
+
+.sceneBadge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: rgb(7 11 22 / 0.78);
+  color: var(--sky-text);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}

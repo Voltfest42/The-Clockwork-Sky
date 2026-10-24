@@ -61,8 +61,14 @@ test.describe('with JavaScript off', () => {
       expect(await figures.count(), meta.path).toBeGreaterThan(0);
       for (const figure of await figures.all()) {
         await expect(figure.locator('figcaption')).toContainText(/Figure T?\d+\.\d+/);
-        await expect(figure.getByText('Try this')).toBeVisible();
-        await expect(figure.getByText(/needs JavaScript/)).toBeVisible();
+        // A figure in a closed deep dive is in the HTML but out of sight until the reader opens it.
+        const hidden = await figure.evaluate((el) => !!el.closest('details:not([open])'));
+        await expect(figure.getByText('Try this')).toBeAttached();
+        await expect(figure.getByText(/needs JavaScript/)).toBeAttached();
+        if (!hidden) {
+          await expect(figure.getByText('Try this')).toBeVisible();
+          await expect(figure.getByText(/needs JavaScript/)).toBeVisible();
+        }
       }
     }
   });

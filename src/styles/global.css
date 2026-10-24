@@ -26,6 +26,7 @@
   /* Chart series. */
   --series-1: #2563eb;
   --series-2: #d97706;
+  --series-3: #7c3aed;
 
   /* The night sky is dark in both themes. */
   --sky-bg: #070b16;
@@ -58,6 +59,7 @@
 
     --series-1: #4f84f5;
     --series-2: #d97706;
+    --series-3: #b794f6;
   }
 }
 

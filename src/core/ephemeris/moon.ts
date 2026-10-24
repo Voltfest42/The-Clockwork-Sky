@@ -99,3 +99,13 @@ export function moonPosition(jdTT: number): MoonPosition {
     distanceKm: 385000.56 + sumR / 1000,
   };
 }
+
+/**
+ * The longitude of the Moon's mean ascending node, where its orbit crosses
+ * the ecliptic going north, in the ecliptic of date (Meeus 47.7): radians,
+ * [0, 2π). The node slides backwards round the ecliptic once in 18.6 years.
+ */
+export function meanAscendingNode(jdTT: number): number {
+  const T = julianCenturies(jdTT);
+  return normalizeRadians(polynomial(T, [125.0445479, -1934.1362891, 0.0020754, 1 / 467441, -1 / 60616000]) * DEG);
+}
