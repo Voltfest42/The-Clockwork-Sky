@@ -14,27 +14,49 @@ import { wrapPi } from '../math/angles';
 /** The solver stops when a step is smaller than this (radians). */
 const TOLERANCE = 1e-15;
 
+/** One refinement of the guess, reported to a figure that steps through the solver. */
+export interface KeplerStep {
+  /** 0 for the starting guess, then 1, 2, … */
+  iteration: number;
+  /** The guess for E (radians, on the same turn as M). */
+  E: number;
+  /** How far the guess is from solving the equation: E − e sin E − M, radians. */
+  residual: number;
+  /** Whether this guess came from halving the bracket, because Newton's step would have left it. */
+  bisected: boolean;
+}
+
+/** Danby's starting guess for E (1988): M + 0.85 e, towards the side sin M points. Radians. */
+export function danbyStart(M: number, e: number): number {
+  return M + 0.85 * e * Math.sign(Math.sin(wrapPi(M)));
+}
+
 /**
  * The eccentric anomaly E for a mean anomaly M on an ellipse of eccentricity e
  * (0 ≤ e < 1): the solution of M = E − e sin E. Radians in, radians out, with E
- * on the same turn as M. Danby's starting guess (1988), then Newton's method;
- * a step that would leave the bracket [M − e, M + e] bisects it instead.
+ * on the same turn as M. Danby's starting guess (1988), unless another is
+ * given, then Newton's method; a step that would leave the bracket
+ * [M − e, M + e] bisects it instead. `emit` hears every guess.
  */
-export function eccentricAnomaly(M: number, e: number): number {
+export function eccentricAnomaly(M: number, e: number, options: { start?: number; emit?: (step: KeplerStep) => void } = {}): number {
   if (!(e >= 0 && e < 1)) throw new RangeError(`eccentricAnomaly needs 0 ≤ e < 1, not ${e}`);
   const m = wrapPi(M);
   const turn = M - m; // whole turns, added back at the end
+  const { emit } = options;
   // The answer lies within e of M, since E − M = e sin E.
   let lo = m - e;
   let hi = m + e;
-  let E = m + 0.85 * e * Math.sign(Math.sin(m));
+  let E = options.start === undefined ? danbyStart(m, e) : Math.min(hi, Math.max(lo, options.start - turn));
+  emit?.({ iteration: 0, E: E + turn, residual: E - e * Math.sin(E) - m, bisected: false });
   for (let i = 0; i < 60; i++) {
     const f = E - e * Math.sin(E) - m;
     if (f > 0) hi = E;
     else lo = E;
     const step = f / (1 - e * Math.cos(E));
     let next = E - step;
-    if (!(next > lo && next < hi)) next = (lo + hi) / 2;
+    const bisected = !(next > lo && next < hi);
+    if (bisected) next = (lo + hi) / 2;
+    emit?.({ iteration: i + 1, E: next + turn, residual: next - e * Math.sin(next) - m, bisected });
     if (Math.abs(next - E) <= TOLERANCE * Math.max(1, Math.abs(E))) {
       E = next;
       break;

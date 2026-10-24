@@ -4,7 +4,7 @@
 
 ## Status
 
-**In progress.** Part I is built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026), so is Stage 3b (search engines: real paths and prerendered pages), and Stage 4 (Chapters 3 and 4) is done (24 Oct 2026); details in the master plan's Status. Next: Stage 5, Chapters 5 and 6.
+**In progress.** Part I is built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026), so is Stage 3b (search engines: real paths and prerendered pages), Stage 4 (Chapters 3 and 4) is done (24 Oct 2026), and so is Stage 5 (Chapters 5 and 6, Toolkit T3; 24 Oct 2026); details in the master plan's Status. Next: Stage 6, Chapter 7.
 
 ---
 

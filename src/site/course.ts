@@ -194,6 +194,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Planets and their backward loops, Ptolemy’s circles on circles, and how Copernicus, Galileo and Tycho put the Sun in the middle.',
     sections: ['Stars that wander', 'Backward loops', 'Circles on circles', 'The Sun in the middle', 'What Galileo saw', 'Tycho’s data'],
     buildsOn: [2, 3, 4],
+    load: () => import('../content/chapter5.mdx'),
   }),
   chapter({
     number: 6,
@@ -203,6 +204,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Mars refuses a circle', 'Equal areas in equal times', 'The harmonic law', 'Where will the planet be?'],
     buildsOn: [5],
     toolkit: ['ratios-and-scaling'],
+    load: () => import('../content/chapter6.mdx'),
   }),
   chapter({
     number: 7,
@@ -391,9 +393,10 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     slug: 'ratios-and-scaling',
     code: 'T3',
     title: 'Ratios and scaling',
-    blurb: 'What happens when you double something, square and cube laws, and reading log–log plots.',
+    blurb: 'What happens when you double something, square and cube laws, powers and roots, and reading log–log plots.',
     part: 1,
     firstNeeded: 6,
+    load: () => import('../content/toolkit/ratios-and-scaling.mdx'),
   },
   {
     slug: 'solving-by-stepping',

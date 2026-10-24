@@ -1,0 +1,53 @@
+import { ScalingFigure } from '../../figures/ScalingFigure';
+import { Callout } from '../../site/content/blocks';
+
+Much of astronomy is about how one thing changes when another does. Double a planet’s distance from the Sun: what happens to its year? Make a star twice as wide: how much more light does it give out? Most of the time you don’t need the whole formula, only how it scales. This page covers the four ideas the course uses.
+
+## What happens when you double something
+
+A **ratio** compares two numbers by dividing one by the other. Jupiter is 5.2 AU from the Sun and Earth 1 AU, so Jupiter is 5.2 times as far. Ratios have no units: the AU cancels out. That is why astronomers love them. Copernicus knew Venus’s orbit was 0.72 times the size of Earth’s long before anyone knew how big Earth’s orbit was in kilometres.
+
+The simplest way something can depend on something else is in **proportion**: double one and the other doubles too. A car at a steady speed goes twice as far in twice the time. Light takes twice as long to cross twice the distance. If one thing is in proportion to another, every ratio carries straight over: Neptune is 30 times as far from the Sun as Earth, so sunlight takes 30 times as long to get there, 30 × 8.3 minutes, about four hours.
+
+## Square and cube laws
+
+Many things don’t scale in proportion. Take a square and make each side twice as long. Its area isn’t twice as big but four times, because it is twice as wide *and* twice as tall: 2 × 2. Make the sides three times as long and the area is 3 × 3 = 9 times as big. Area goes with the **square** of the size.
+
+A cube does it once more. Double each side and the volume grows 2 × 2 × 2 = 8 times; triple it and it grows 27 times. Volume goes with the **cube** of the size.
+
+<ScalingFigure
+  number="T3.1"
+  tryThis={
+    <p>
+      Set the scale to <b>×2</b> and count the small squares and cubes. Then try <b>×3</b>. What scale makes the volume 10 times bigger?
+    </p>
+  }
+/>
+
+This is why giants in films can’t be real: make a person ten times taller and they weigh 1,000 times as much (volume), but their bones are only 100 times as strong (the area of the bones’ cross-section). It is why a small planet cools faster than a big one, why the Sun’s surface can be dim per square metre and the Sun still enormously bright, and why a star twice as wide, at the same temperature, gives out four times the light.
+
+<Callout kind="key">
+
+Square laws: double the size, four times as much. Cube laws: double the size, eight times as much. Inverse-square laws, like the brightness of a lamp as you walk away from it, go the other way: twice as far, a quarter as bright.
+
+</Callout>
+
+## Powers and their roots
+
+Kepler’s third law (Chapter 6) mixes the two: the square of a planet’s period equals the cube of its distance, with the period in years and the distance in AU. Written out, P × P = a × a × a, or for short P² = a³.
+
+To use it, work out one side and then undo the other. For a planet 4 AU from the Sun: a³ = 4 × 4 × 4 = 64. The period P is the number that, multiplied by itself, makes 64: its **square root**, 8. So the year is 8 Earth years. Going the other way, a planet with a 27-year year: P² = 27 × 27 = 729, and a is the number that, cubed, makes 729: its **cube root**, 9. So the planet is 9 AU from the Sun.
+
+A calculator’s square-root key does the first. For the second, many calculators have a cube-root key, or you can try numbers until one fits: 9 × 9 × 9 is 729.
+
+The same law says how ratios carry over. Double the distance and the period grows by the square root of 2 × 2 × 2 = 8, which is about 2.83. Ten times the distance, and the year is the square root of 1,000, about 31.6 times as long.
+
+## Reading log–log plots
+
+Plot a planet’s year against its distance on ordinary graph paper and you have a problem. Mercury is 0.39 AU from the Sun and Neptune 30 AU. Squeeze Neptune onto the page and the inner planets are crammed into a corner too small to read. And the points lie on a curve, which is hard to judge by eye.
+
+A **log–log plot** fixes both. Instead of spacing the axis marks evenly, 1, 2, 3, 4, it spaces the powers of ten evenly: 0.1, 1, 10, 100 (see [Powers of ten](/toolkit/powers-of-ten/)). Each step along the axis is a multiplication by ten. Now 0.39 AU and 30 AU fit on the same chart with room to spare.
+
+The other benefit is less obvious, and more useful. On a log–log plot, a square law, a cube law or any other power law is a **straight line**, and its slope is the power. The line for area against size goes up two steps for every one across; volume goes up three for every one. Kepler’s third law, P² = a³, is a line going up three steps for every two across: a slope of 1.5. That makes power laws easy to spot, and easy to check: if a set of measurements makes a straight line on a log–log plot, the slope tells you the law. Figure 6.3 puts every planet, dwarf planet and comet on one such line.
+
+Two lines with the same slope but at different heights follow the same law with a different constant in front: Jupiter’s moons and the planets in Figure 6.3, or bright and faint stars of the same kind in Part II.

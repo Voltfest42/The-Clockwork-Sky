@@ -1,0 +1,239 @@
+import { PtolemyFigure } from '../figures/PtolemyFigure';
+import { RetrogradeFigure } from '../figures/RetrogradeFigure';
+import { VenusOrbitFigure } from '../figures/VenusOrbitFigure';
+import { VenusPhasesFigure } from '../figures/VenusPhasesFigure';
+import { YearOfPlanetsFigure } from '../figures/YearOfPlanetsFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+
+The stars keep their places: the patterns you learn this year will be there, unchanged, for the rest of your life. Five bright points don’t. They drift through the constellations from week to week, brighten and fade, and now and then stop and go backwards. The Greeks called them *planētai*, wanderers. Working out what they were doing took two thousand years, and it changed what people thought the world was.
+
+## Stars that wander
+
+Five planets are easy to see with the naked eye: Mercury, Venus, Mars, Jupiter and Saturn. Most nights at least one is up. They look like bright stars, but they shine steadily rather than twinkling, and they move.
+
+They don’t move just anywhere. All five stay close to the <Term id="ecliptic">ecliptic</Term>, the Sun’s path from Chapter 3, within a few degrees of it, and so they wander through the same band of constellations as the Sun and the Moon: the <Term id="zodiac">zodiac</Term>. That is the first clue to what they are. Things that all keep to one flat band of sky are things that move in nearly one flat plane, and Earth is in it too.
+
+The second clue is how they keep company with the Sun. Mercury and Venus never get far from it. Venus is never more than about 47° from the Sun, so it is only ever seen in the west after sunset, as the evening star, or in the east before sunrise, as the morning star, never in the middle of the night. Mercury stays within 28°, low in the twilight, and is easy to miss. Mars, Jupiter and Saturn have no such leash: they can be anywhere along the ecliptic, including opposite the Sun, where they are up all night.
+
+<YearOfPlanetsFigure
+  number="5.1"
+  tryThis={
+    <p>
+      Press <b>Run the year</b> and watch Venus and Mercury swing from one side of the Sun to the other and back. Then follow <b>Mars</b> and
+      step the year with <b>+</b> until its path has a thick stretch in it. How far does Mercury ever get from the Sun? Which planets get
+      opposite it?
+    </p>
+  }
+/>
+
+The angle between a planet and the Sun, as seen from Earth, is its <Term id="elongation">elongation</Term>. A planet lined up with the Sun is at <Term id="conjunction">conjunction</Term>, lost in its glare; one on the far side of the sky from the Sun is at <Term id="opposition">opposition</Term>, and is then at its brightest and up all night. Mercury and Venus never reach opposition. That turns out to say exactly where they are.
+
+## Backward loops
+
+Mars usually moves east against the stars from night to night, as the Sun and Moon do, about half a degree a day. But every 26 months or so it slows, stops, and goes backwards, westwards, for about ten weeks, before stopping again and carrying on east. Each stop is called a <Term id="station">station</Term>. Over those weeks it traces a loop or a zigzag on the sky. Jupiter and Saturn do the same, more often and less dramatically: about once a year, for four months or more, over a smaller arc. This backward motion is called <Term id="retrograde-motion">retrograde motion</Term>.
+
+The loops always happen at the same point in each planet’s cycle: Mars, Jupiter and Saturn go backwards around opposition, when they are opposite the Sun and at their brightest. The last time Mars did it, it stopped on 6 December 2024, went backwards for 11 weeks through opposition on 16 January 2025, and turned east again on 24 February. The next opposition is on 19 February 2027.
+
+<RetrogradeFigure
+  number="5.2"
+  tryThis={
+    <p>
+      Press <b>Play</b> and watch the lines of sight on the left: when do they start to swing the other way? Find the date Mars stands still.
+      Then try <b>Saturn</b>, whose loop is small, and <b>Venus</b>, which goes backwards when it passes between us and the Sun.
+    </p>
+  }
+/>
+
+Seen from above, there is nothing strange about it. Earth goes round the Sun faster than Mars, on the inside lane. Most of the time the line from Earth to Mars swings forwards, eastwards, against the distant stars. But for a few weeks around opposition, Earth overtakes Mars, and the line of sight swings backwards, just as a slower car seems to slide backwards against the far-off hills when you pass it on a motorway. Then Earth draws ahead, rounds the curve, and Mars resumes its eastward course.
+
+Mercury and Venus loop too, the other way round: they are the faster runners, on the inside, and they go backwards when they overtake Earth, passing between us and the Sun.
+
+<Callout kind="key">
+
+Retrograde loops are not something the planets do. They are what we see from a moving viewpoint: Earth overtaking a slower planet, or being overtaken by a faster one.
+
+</Callout>
+
+## Circles on circles
+
+Nobody in the ancient world could watch the Solar System from above, and the obvious starting point was that Earth stands still. The stars turn round us once a day; the Sun, the Moon and the planets drift through the stars on top of that. The Greeks wanted every motion in the heavens built from circles, turned at steady rates, which they considered the only fitting motion for the heavens. One circle per planet can’t make a loop. Two can.
+
+Put the planet on a small circle, the <Term id="epicycle">epicycle</Term>, and carry the centre of that circle round Earth on a large one, the <Term id="deferent">deferent</Term>. Most of the time the two motions add up and the planet moves forwards; when the planet is on the inner side of its epicycle, moving the other way, it goes backwards for a while. With the right sizes and speeds, the loops come at the right times. Apollonius of Perga and Hipparchus worked on such models in the third and second centuries BC.
+
+Claudius Ptolemy, working in Alexandria around AD 150, brought it to its finished form in the book now called the *Almagest*. He needed two more tricks to fit the observations. Mars’s loops are bigger on one side of the sky than the other, and it moves faster through some constellations than others. So Ptolemy moved the deferent’s centre off Earth a little, and made the epicycle’s centre move at a steady rate as seen not from Earth or from the deferent’s centre, but from a third point, the <Term id="equant">equant</Term>, placed the same distance beyond the centre. To a purist this was cheating, a circle whose motion isn’t steady about its own centre. But it worked.
+
+<PtolemyFigure
+  number="5.3"
+  tryThis={
+    <p>
+      Start with the speeds: set the deferent to about 687 days and the epicycle to about 780, and watch the average miss fall. Then grow the
+      epicycle, and move the deferent’s centre and the equant off Earth. Can you beat <b>Ptolemy’s proportions</b>? Finally press{' '}
+      <b>Best fit without an equant</b>: what does the equant buy?
+    </p>
+  }
+/>
+
+Ptolemy’s model predicted where the planets would be to within a degree or two most of the time, which was good enough for 1,400 years of almanacs, calendars and astrology. Its numbers were refined many times, by astronomers writing in Arabic and Persian above all, but its structure survived until the 1500s.
+
+The figure holds a lesson that runs through all of science. A model can fit the observations well and still be wrong about how the world works. Ptolemy’s circles fitted Mars because, without knowing it, they copied the real arrangement: the deferent stands in for Mars’s own orbit round the Sun, the off-centre circle and the equant stand in for that orbit’s oval shape, and the epicycle is Earth’s own orbit, seen from Mars. Every superior planet’s epicycle turns exactly once a year, in step with the Sun. Ptolemy recorded that coincidence and never explained it.
+
+## The Sun in the middle
+
+The explanation had been suggested long before. Around 270 BC Aristarchus of Samos, who had worked out from the Moon’s phases and eclipses that the Sun is much bigger than Earth, proposed that Earth goes round the Sun, and turns once a day as it does so. We know of it mainly because Archimedes mentioned it in passing. Most Greek thinkers rejected the idea. If Earth moved, they argued, we would feel it, and the stars would shift as we went round, which nobody could see. (They do shift, but by less than a second of arc: Chapter 9 tells how Bessel first measured it in 1838.)
+
+Nicolaus Copernicus, a canon of Frombork cathedral in Poland, worked the idea out in full in *On the Revolutions of the Heavenly Spheres*, published in 1543, the year he died. The Sun stands still in the middle, and Earth is a planet, the third out, going round it once a year and spinning once a day.
+
+Much of the old puzzle then falls into place. Loops come from Earth overtaking the outer planets, so they must happen at opposition, and more often for slower, more distant planets. Mercury and Venus stay near the Sun because their orbits lie inside ours. And for the first time the planets have an order and a scale. Mercury is closest to the Sun, because it goes round fastest, then Venus, Earth, Mars, Jupiter and Saturn, and the sizes of their orbits, compared with Earth’s, can be measured with nothing but angles.
+
+<VenusOrbitFigure
+  number="5.4"
+  tryThis={
+    <p>
+      Drag Venus slowly round its orbit and find where its angle from the Sun is greatest. What is the angle at Venus then? Switch to{' '}
+      <b>Mercury</b> and do it again.
+    </p>
+  }
+/>
+
+Here is how it works for Venus. Watch it over a year and a half and note its <Term id="greatest-elongation">greatest elongation</Term>, its greatest angle from the Sun: about 46°. At that moment, the line from Earth just grazes Venus’s orbit, so the corner of the triangle at Venus is a right angle. A triangle with one right angle and one known angle has a fixed shape, whatever its size. Draw it to scale, with the Earth–Sun side as 1, and the Sun–Venus side measures 0.72. Venus’s orbit is 0.72 times the size of Earth’s. The real elongations bear this out: Venus reached 47.2° east of the Sun on 10 January 2025 and 45.9° west of it on 1 June 2025.
+
+For the outer planets the geometry is a little longer, but the answer came out the same way, and Copernicus could draw a scale map of the Solar System in units of Earth’s distance from the Sun. What he couldn’t do was make it more accurate than Ptolemy’s. He kept perfect circles, so he still needed small epicycles, and his predictions were no better. The case for the Sun in the middle was its simplicity, not its accuracy. That took two more people: one with a telescope and one with better measurements.
+
+## What Galileo saw
+
+In the winter of 1609–10, Galileo Galilei, a professor of mathematics at Padua, turned a telescope of his own making to the sky. In a few weeks he saw more than everyone before him. The Moon had mountains and craters, casting shadows: it was a world, not a perfect sphere. The Milky Way was made of countless faint stars. And from 7 January 1610 he watched four points of light shuttle back and forth beside Jupiter: moons going round it. Here was a planet with its own moons, so not everything went round Earth. He published all this in March 1610, in a short book called *The Starry Messenger*.
+
+Later that year he turned to Venus, and found the decisive observation. Venus has phases, like the Moon. In the autumn of 1610 it was small and nearly round; by December it was half lit and larger; by the end of January 1611 it was a large, thin crescent.
+
+<VenusPhasesFigure
+  number="5.5"
+  tryThis={
+    <p>
+      Press <b>Play</b> and compare the two telescope views. How full does Ptolemy’s Venus ever get? Now find the moment Venus is small and
+      nearly full going round the Sun, like Galileo’s Venus of October 1610: where is it?
+    </p>
+  }
+/>
+
+In Ptolemy’s arrangement, Venus’s epicycle always stays between Earth and the Sun: that is how it keeps Venus near the Sun. Then the Sun always lights Venus from behind, and we should only ever see a crescent. A nearly full Venus is impossible. If Venus goes round the Sun, it shows every phase: nearly full and small when it is on the far side of the Sun, a large crescent when it is on our side. That is exactly what Galileo saw.
+
+<Callout kind="know">
+
+What did the phases of Venus prove? That Venus goes round the Sun. They ruled out Ptolemy’s arrangement, but not every Earth-centred one: as the next section explains, Tycho Brahe had a model in which the planets go round the Sun while the Sun goes round a stationary Earth, and it gives Venus exactly the same phases. Telling those two apart needed other evidence.
+
+</Callout>
+
+## Tycho’s data
+
+Tycho Brahe was a Danish nobleman who decided as a young man that astronomy needed better measurements more than better theories. In 1572 he saw a new star blaze up in Cassiopeia, and showed that it didn’t shift against the stars as the Moon does over a night: it was far beyond the Moon. In 1577 he did the same for a bright comet. The heavens, supposedly perfect and unchanging, changed.
+
+The King of Denmark gave him the island of Hven, between Denmark and Sweden, and the money to build an observatory, Uraniborg. From 1576 to 1597 he and his assistants measured the positions of the stars and planets, night after night, with huge instruments of brass and wood, carefully calibrated. There were no telescopes yet. Even so, his positions were good to about one or two minutes of arc: a minute of arc is the width of a small coin seen from 50 metres away.
+
+He never accepted that Earth moves. His own model put Earth still at the centre, with the Sun and Moon going round it and all the other planets going round the Sun. Geometrically, it is the Sun-centred system seen from Earth, so it predicts the same loops and the same phases of Venus. For decades it was the respectable middle way.
+
+Tycho’s great legacy was his data. In 1600 he hired a young German mathematician, Johannes Kepler, and gave him the hardest problem in the data: the orbit of Mars. Tycho died the next year, and Kepler kept the observations. Chapter 6 tells what he found in them.
+
+<Timeline from={-300} to={1620} chapter={5} title="From Aristarchus to Kepler" />
+
+<DeepDive title="Why the epicycle is Earth’s orbit">
+
+Take the Sun-centred picture and put Earth at the origin: Mars’s position from Earth is the line from Earth to the Sun, plus the line from the Sun to Mars. Ptolemy’s model adds two lines too: from Earth to the epicycle’s centre (the deferent), then from there to the planet (the epicycle). Match them up, the other way round. The deferent carries the planet once round in Mars’s own year, 687 days, so it plays the part of the Sun-to-Mars line. The epicycle radius always points the way the Sun does from Earth and turns once a year, so it plays the part of the Earth-to-Sun line. Adding two lines in either order gives the same result, so the two models put Mars in the same direction.
+
+Only the directions match: Ptolemy couldn’t measure the sizes of his circles, only their ratios. Copernicus noticed that every planet’s epicycle (or, for Mercury and Venus, the deferent) was secretly the same circle, Earth’s orbit, and that made the Sun-centred system both simpler and, at last, a map with a scale.
+
+</DeepDive>
+
+Next: Kepler, Tycho’s Mars, and the end of the perfect circle.
+
+<CheckYourself>
+  <Question id="mars-backwards" prompt="Why does Mars sometimes move backwards against the stars?">
+    <Choice label="Earth is overtaking it" correct>
+      Right. Earth goes round the Sun faster, on a smaller orbit. When it passes Mars, around opposition, the line of sight from Earth to Mars
+      swings backwards against the distant stars for a few weeks.
+    </Choice>
+    <Choice label="Mars really turns round in its orbit">
+      Mars goes steadily round the Sun in the same direction all the time. The backward motion is only how it looks from Earth, which is
+      overtaking it.
+    </Choice>
+    <Choice label="Mars is pulled back by Jupiter">
+      Jupiter’s pull on Mars is tiny. The loops happen at every opposition, when Earth passes Mars, and are a matter of viewpoint, not force.
+    </Choice>
+    <Choice label="Earth’s spin reverses it">
+      Earth’s spin makes everything cross the sky from east to west each day. The backward loop is a slow drift against the stars over weeks,
+      caused by Earth overtaking Mars in its orbit.
+    </Choice>
+  </Question>
+
+  <Question id="venus-phases" prompt="What did Galileo’s observations of Venus’s phases show?">
+    <Choice label="Venus goes round the Sun" correct>
+      Right. A nearly full, small Venus means it was on the far side of the Sun from us, impossible if its epicycle stays between Earth and
+      the Sun, as in Ptolemy’s arrangement. Tycho’s system, in which Venus goes round the Sun while the Sun goes round Earth, survived it.
+    </Choice>
+    <Choice label="Earth goes round the Sun">
+      Not on its own: Tycho’s system keeps Earth still, has Venus going round the Sun, and gives exactly the same phases. Venus’s phases ruled
+      out Ptolemy’s arrangement, not every Earth-centred one.
+    </Choice>
+    <Choice label="Venus has an atmosphere">
+      Phases come from which part of Venus’s sunlit half faces us, not from its air. The full set of phases showed Venus goes round the Sun.
+    </Choice>
+    <Choice label="Venus is bigger than Earth">
+      Venus’s apparent size changes because its distance from us changes, but that told Galileo nothing about its true size, which is a little
+      smaller than Earth’s. The phases showed it goes round the Sun.
+    </Choice>
+  </Question>
+
+  <Question id="never-at-midnight" prompt="Which planets can never be seen at midnight?">
+    <Choice label="Mercury and Venus" correct>
+      Right. Their orbits lie inside Earth’s, so they never get more than about 28° (Mercury) or 47° (Venus) from the Sun, and at midnight the
+      Sun is far below the horizon on the other side of the sky.
+    </Choice>
+    <Choice label="Jupiter and Saturn">
+      Jupiter and Saturn are outside Earth’s orbit and can be anywhere along the ecliptic, including opposite the Sun, where they are up all
+      night.
+    </Choice>
+    <Choice label="Mars only">
+      Mars can be opposite the Sun, and is then up all night: that is when it is brightest. It’s Mercury and Venus, inside Earth’s orbit,
+      that never stray far from the Sun.
+    </Choice>
+    <Choice label="None: they can all be seen at midnight sometimes">
+      Mercury and Venus never get far enough from the Sun: at most about 28° and 47°. They are only seen in the evening or morning twilight.
+    </Choice>
+  </Question>
+
+  <Question id="mars-loop-when" prompt="When in its cycle does Mars go backwards?">
+    <Choice label="Around opposition, when it is brightest" correct>
+      Right. Opposition is when Earth passes between the Sun and Mars, overtaking it. Mars is closest to us then, and brightest.
+    </Choice>
+    <Choice label="Around conjunction, when it is behind the Sun">
+      At conjunction Mars is on the far side of the Sun, and Earth is moving across our line of sight in a way that carries Mars eastwards.
+      The backward stretch comes half a cycle later, around opposition.
+    </Choice>
+    <Choice label="At random">
+      The loops come like clockwork, once every 26 months, always centred on opposition. Ptolemy’s model and Copernicus’s both reproduce
+      that.
+    </Choice>
+    <Choice label="Every winter">
+      Mars’s cycle is about 26 months, not a year, so its loops come in different seasons each time: January 2025, February 2027, March 2029.
+    </Choice>
+  </Question>
+
+  <Question id="venus-distance" prompt="Venus is never more than about 46° from the Sun. What does that tell you?">
+    <Choice label="Its orbit is about 0.72 times the size of Earth’s" correct>
+      Right. At greatest elongation the line from Earth just grazes Venus’s orbit, making a right angle at Venus. A right-angled triangle with
+      a 46° corner, drawn with the Earth–Sun side as 1, has a Sun–Venus side of 0.72.
+    </Choice>
+    <Choice label="It is 46 million km from the Sun">
+      An angle can’t give a distance in kilometres on its own; it gives a ratio. Venus’s orbit is 0.72 times the size of Earth’s, about 108
+      million km.
+    </Choice>
+    <Choice label="It moves faster than Earth">
+      It does, but the greatest elongation tells you the size of its orbit compared with Earth’s: 0.72.
+    </Choice>
+    <Choice label="Nothing: it could be anywhere along that line">
+      The greatest angle fixes the shape of a right-angled triangle, and so the size of Venus’s orbit compared with Earth’s: 0.72.
+    </Choice>
+  </Question>
+</CheckYourself>

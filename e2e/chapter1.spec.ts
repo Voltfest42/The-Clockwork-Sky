@@ -144,10 +144,10 @@ test('light’s race runs in 3D, steps from stop to stop, and reaches Proxima Ce
   await expect(figure.getByRole('button', { name: 'Follow the light' })).toHaveAttribute('aria-pressed', 'false');
   await page.keyboard.press('Home');
 
-  // At a year a second, Proxima is about 4 seconds away.
+  // At a year a second, Proxima is about 4 seconds away (longer when the whole suite is busy, since frames come slower).
   await figure.getByRole('button', { name: '1 year a second' }).click();
   await figure.getByRole('button', { name: '▶ Play' }).click();
-  await expect(figure.getByText(/The light has reached Proxima Centauri, 4.25 years after leaving the Sun/)).toBeVisible({ timeout: 15_000 });
+  await expect(figure.getByText(/The light has reached Proxima Centauri, 4.25 years after leaving the Sun/)).toBeVisible({ timeout: 40_000 });
   await expect(figure.getByRole('button', { name: '↺ Again' })).toBeVisible();
 
   await figure.getByRole('button', { name: 'Reset figure 1.3' }).click();

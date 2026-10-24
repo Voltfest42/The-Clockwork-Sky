@@ -1,4 +1,5 @@
 import contentStyles from '../content/content.module.css';
+import { Timeline } from '../content/Timeline';
 import { href } from '../router';
 import styles from './pages.module.css';
 
@@ -41,7 +42,10 @@ export function About() {
           future against the literature. Since Chapters 3 and 4, the equinoxes, solstices, perihelion and aphelion are checked against published
           times; sunrise and sunset against published tables; the Moon’s phases against Meeus’s worked examples and the lunar theory; and the
           eclipse finder against NASA’s catalogue of every solar and lunar eclipse from 1900 to 2100, about 900 of them, including their Saros
-          numbers. End-to-end tests open every page, use it by
+          numbers. Since Chapters 5 and 6, the planets’ oppositions, conjunctions, stations and greatest elongations are checked against
+          published dates, their synodic periods and the lengths of their backward loops against the research notes, Kepler’s laws against
+          independent calculations (areas added up slice by slice, distances to both foci), the third law against the orbits of the planets,
+          dwarf planets, comets and Jupiter’s moons, and the fitted Ptolemaic model against Ptolemy’s own proportions. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -168,6 +172,38 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 5</h3>
+        <ul>
+          <li>
+            <b>Figures 5.1 and 5.2, the planets’ paths and loops.</b> Real positions from the planetary model. The sky is drawn as if it were dark
+            at every hour, so planets in the Sun’s glare still show. The view from above flattens the orbits into one plane, and its ring of
+            distant stars shows only directions.
+          </li>
+          <li>
+            <b>Figure 5.3, Ptolemy’s model.</b> Longitudes only, in the plane of the ecliptic: Ptolemy’s separate theory of the planets’ latitudes is
+            left out. “Ptolemy’s proportions” uses his sizes with today’s apogee and the true speeds, since his own numbers were for his time and
+            his frame of reference.
+          </li>
+          <li>
+            <b>Figures 5.4 and 5.5, Venus.</b> Circular orbits in one plane. Ptolemy’s Venus is drawn the same size as the real one, since his model
+            fixed only directions. Galileo’s views of 1610–11 come from the planetary model.
+          </li>
+        </ul>
+        <h3>Chapter 6</h3>
+        <ul>
+          <li>
+            <b>Figures 6.1 and 6.2, ellipses and areas.</b> Exact two-body orbits. Speeds assume the Sun’s mass and an orbit of the size shown (1 AU
+            for a shape picked with the slider).
+          </li>
+          <li>
+            <b>Figure 6.3, the harmonic law.</b> Comets’ and dwarf planets’ orbits are osculating elements at one date: a comet’s period changes a
+            little from one return to the next.
+          </li>
+        </ul>
+
+        <h2>The people behind Part I</h2>
+        <Timeline title="Timeline" />
+
         <h2>Sources</h2>
         <ul>
           <li>
@@ -202,6 +238,15 @@ export function About() {
           </li>
           <li>J. D. Hays, J. Imbrie and N. J. Shackleton (1976), Science 194, 1121: the ice ages and the cycles of Earth’s orbit.</li>
           <li>T. Freeth and colleagues (2006), Nature 444, 587: the Antikythera mechanism and its Saros dial.</li>
+          <li>
+            Ptolemy, Almagest, book X: the proportions of his model of Mars (an epicycle of 39½ and an eccentricity of 6, on a deferent of 60).
+          </li>
+          <li>J. M. A. Danby, Fundamentals of Celestial Mechanics, 2nd edition (Willmann-Bell, 1988): the starting guess for Kepler’s equation.</li>
+          <li>
+            NASA JPL Small-Body Database: the orbits of Ceres, Pluto, Haumea, Makemake, Eris and the comets Encke, Halley and Swift–Tuttle
+            (fetched October 2026). JPL’s planetary satellite mean elements and NASA’s Jovian satellite fact sheet: the orbits of Jupiter’s four
+            large moons.
+          </li>
           <li>NASA Planetary Fact Sheets (D. R. Williams, NASA Goddard): the sizes of the planets and the Moon.</li>
           <li>
             E. M. Standish, Keplerian Elements for Approximate Positions of the Major Planets (JPL Solar System Dynamics, after Standish and

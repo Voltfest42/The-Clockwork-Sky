@@ -238,8 +238,10 @@ test('the wandering pole: Thuban, Polaris and Vega take turns', async ({ page })
 test('the interactive question: put Polaris on the horizon', async ({ page }) => {
   await openChapter(page);
   const question = page.getByRole('group', { name: /Drag the latitude until Polaris/ });
-  await question.scrollIntoViewIfNeeded();
+  // The question remounts once the page has hydrated (to pick up stored answers): wait for its live slider.
   const slider = question.getByRole('slider', { name: 'Latitude' });
+  await expect(slider).toBeAttached();
+  await slider.scrollIntoViewIfNeeded();
   await slider.fill('30');
   await question.getByRole('button', { name: 'Check' }).click();
   await expect(question.getByText(/Polaris is still about 30° up/)).toBeVisible();

@@ -89,6 +89,10 @@ export const GLOSSARY = {
     term: 'Equant',
     definition: 'In Ptolemy’s model, the off-centre point from which the centre of a planet’s epicycle appears to move round at a steady rate.',
   },
+  ellipse: {
+    term: 'Ellipse',
+    definition: 'An oval curve: the set of points whose distances to two fixed points, the foci, add up to the same total. Every planet’s orbit is one, with the Sun at a focus.',
+  },
   equinox: {
     term: 'Equinox',
     definition: 'One of the two moments a year, around 20 March and 22 September, when the Sun crosses the celestial equator, and day and night are nearly equal everywhere.',
@@ -104,6 +108,10 @@ export const GLOSSARY = {
   focus: {
     term: 'Focus',
     definition: 'One of the two points that define an ellipse. A planet’s orbit has the Sun at one focus.',
+  },
+  'greatest-elongation': {
+    term: 'Greatest elongation',
+    definition: 'The moment Mercury or Venus is farthest from the Sun in the sky, east (in the evening) or west (in the morning): up to about 28° for Mercury and 47° for Venus.',
   },
   heliopause: {
     term: 'Heliopause',
@@ -181,6 +189,10 @@ export const GLOSSARY = {
     term: 'Right ascension',
     definition: 'Longitude on the sky, measured eastward along the celestial equator from the point where the Sun crosses it in March. Usually given in hours: 24 hours make a full circle.',
   },
+  'semi-major-axis': {
+    term: 'Semi-major axis',
+    definition: 'Half the longest diameter of an ellipse; for an orbit, the average of the nearest and farthest distances from the Sun. It sets the orbit’s size and, by Kepler’s third law, its period.',
+  },
   saros: {
     term: 'Saros',
     definition: 'The cycle of 18 years and 11⅓ days (223 lunar months) after which a very similar eclipse comes round again.',
@@ -188,6 +200,10 @@ export const GLOSSARY = {
   'scientific-notation': {
     term: 'Scientific notation',
     definition: 'Writing a number as a number between 1 and 10 times a power of ten: Earth’s width, 12,742 km, is 1.27 × 10⁷ m.',
+  },
+  station: {
+    term: 'Station, stationary point',
+    definition: 'The moment a planet stops moving against the stars, before starting or ending a stretch of backward (retrograde) motion.',
   },
   sidereal: {
     term: 'Sidereal',

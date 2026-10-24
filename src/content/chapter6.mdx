@@ -1,0 +1,202 @@
+import { AreasFigure } from '../figures/AreasFigure';
+import { EllipseFigure } from '../figures/EllipseFigure';
+import { HarmonicFigure } from '../figures/HarmonicFigure';
+import { KeplerSolverFigure } from '../figures/KeplerSolverFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { HalleyShape } from './checks/chapter6';
+
+Johannes Kepler was a mathematician with poor eyesight and a mystic’s conviction that the Solar System was built on a hidden plan. He inherited the best observations anyone had ever made, Tycho Brahe’s, and spent years forcing himself to take them seriously. What came out were three short laws that describe every orbit in the Solar System, and that Newton would later explain.
+
+## Mars refuses a circle
+
+Kepler started from the Sun-centred system and set out to find Mars’s orbit from Tycho’s observations. Like everyone before him, he assumed it was a circle, and like Ptolemy he allowed himself an off-centre circle and an equant. After years of calculation he had a model that matched Tycho’s positions of Mars at opposition to within two minutes of arc. It was better than anything before. But when he tested it on other observations, it was off by up to 8 minutes of arc: about a quarter of the Moon’s width.
+
+Before Tycho, nobody would have noticed; Ptolemy’s and Copernicus’s data were only good to about 10 minutes of arc. But Kepler knew Tycho’s measurements were good to one or two. Those eight minutes, he wrote, could not be ignored, and they alone pointed the way to reforming the whole of astronomy. He threw the circle away.
+
+After more false starts, he found the shape that fitted: an <Term id="ellipse">ellipse</Term>, with the Sun not at its centre but at one of two special points inside it, the foci (each one a <Term id="focus">focus</Term>). This is Kepler’s first law, published in *Astronomia nova*, the “New Astronomy”, in 1609:
+
+<Callout kind="key">
+
+**Kepler’s first law.** Each planet moves on an ellipse, with the Sun at one focus.
+
+</Callout>
+
+An ellipse is easy to draw. Push two pins into a board, loop a piece of string round them, pull it tight with a pencil and go round: the string keeps the pencil’s distances to the two pins adding up to the same total. The pins are the foci. The farther apart they are, the more stretched the ellipse; how stretched it is is called its <Term id="eccentricity">eccentricity</Term>, which runs from 0, a circle, towards 1, a long thin oval.
+
+<EllipseFigure
+  number="6.1"
+  tryThis={
+    <p>
+      Press <b>Draw it</b>, then drag the pencil round and watch the two lengths of string. Now press <b>Earth</b>: can you tell its orbit from
+      the circle? Try <b>Mars</b>, <b>Mercury</b> and <b>Halley’s comet</b>.
+    </p>
+  }
+/>
+
+The planets’ orbits are very nearly circles. Earth’s has an eccentricity of 0.017: drawn to fill this page, it would differ from a circle by less than the width of the line. Only the Sun’s position gives it away, set slightly off-centre, so that Earth is about 147 million km from the Sun in early January and 152 million km in early July. Mars’s orbit, at 0.093, is the most stretched of the planets Tycho could watch apart from Mercury’s, which is why it gave the game away. Comets are different: Halley’s comet, at 0.97, swings in to just over half Earth’s distance from the Sun and out beyond Neptune.
+
+The <Term id="semi-major-axis">semi-major axis</Term> is half the ellipse’s longest diameter. It is also the average of the planet’s nearest and farthest distances from the Sun, its <Term id="perihelion">perihelion</Term> and <Term id="aphelion">aphelion</Term>, so it is the natural measure of the size of an orbit: for Earth, 1 AU.
+
+## Equal areas in equal times
+
+A planet on an ellipse doesn’t move at a steady speed. Kepler found the rule, in fact before he found the ellipse: imagine a line from the Sun to the planet. As the planet moves, the line sweeps across the inside of the orbit, and it sweeps out equal areas in equal times.
+
+<Callout kind="key">
+
+**Kepler’s second law.** The line from the Sun to a planet sweeps out equal areas in equal times.
+
+</Callout>
+
+Near the Sun the line is short, so to sweep the same area in a day the planet has to cover a longer stretch of its orbit: it moves fast. Far from the Sun the line is long, and a shorter stretch does: it moves slowly.
+
+<AreasFigure
+  number="6.2"
+  tryThis={
+    <p>
+      Press <b>Play</b> and watch the wedges fill up: each takes the same time. Drag the eccentricity up to 0.9: how do the wedges change
+      shape? Then pick <b>Halley’s comet</b> and compare its speed nearest the Sun and farthest from it.
+    </p>
+  }
+/>
+
+Earth moves at about 30.3 km/s at perihelion in early January and 29.3 km/s at aphelion in early July, which is why the Sun drifts east among the stars a little faster in January than in July (Chapter 3), and why the northern winter, from the December solstice to the March equinox, is the shortest season, nearly five days shorter than the northern summer. Mercury varies between 59 and 39 km/s. Halley’s comet races past the Sun at about 55 km/s and creeps round the far end of its orbit, beyond Neptune, at under 1 km/s, which is why it spends most of its 76 years far out.
+
+Why should the line sweep equal areas? Kepler guessed that a force from the Sun drives the planets, weaker farther away. He was half right. Newton showed that the second law holds for any force that pulls straight towards the Sun, whatever its strength. It is the conservation of angular momentum, the same rule that makes a spinning skater speed up as they pull their arms in.
+
+## The harmonic law
+
+Kepler’s first two laws describe one planet at a time. His third connects them all. He searched for it for a decade, and found it on 15 May 1618; he published it the next year in *Harmonices mundi*, “The Harmony of the World”. It links the time a planet takes to go round the Sun, its period, with the size of its orbit.
+
+Measure the period P in years and the size of the orbit (the semi-major axis) a in AU. Then:
+
+<Callout kind="key">
+
+**Kepler’s third law.** P × P = a × a × a. The square of the period equals the cube of the size.
+
+</Callout>
+
+Earth: 1 × 1 = 1 × 1 × 1. Jupiter is 5.2 AU from the Sun; 5.2 × 5.2 × 5.2 is 141, and the square root of 141 is 11.9: Jupiter takes 11.9 years to go round, as it does. A planet 4 AU from the Sun would have a year of 8 Earth years, since 8 × 8 = 64 = 4 × 4 × 4. Farther planets go round more slowly, in a longer orbit and at a lower speed. If the law looks like magic, the Toolkit page [Ratios and scaling](/toolkit/ratios-and-scaling/) shows how square and cube laws work and how to read them off a chart.
+
+<HarmonicFigure
+  number="6.3"
+  tryThis={
+    <p>
+      Drag <b>Your planet</b> out to Neptune’s distance and read off its year. Then switch to <b>Ordinary axes</b>: what happens to the inner
+      planets and Jupiter’s moons? Back on log–log axes, what does the dashed line tell you?
+    </p>
+  }
+/>
+
+On a chart of period against distance, with both axes stretched by powers of ten, the law is a straight line, and everything that goes round the Sun is on it: the planets, the dwarf planets out to Eris, the comets. Kepler only had the six planets known in his day, but the law holds for bodies he never knew about, out to hundreds of times their distance.
+
+Jupiter’s four large moons, which Galileo had found nine years earlier, follow a law of the same shape: their squared periods are in step with their cubed distances from Jupiter. But they sit on a different line, higher up the chart: at any given distance, a moon takes about 32 times as long to go round Jupiter as a planet would take to go round the Sun. Kepler couldn’t explain that. Newton could: the number depends on the mass at the centre, and Chapter 7 uses it to weigh the Sun and Jupiter.
+
+## Where will the planet be?
+
+Kepler’s laws say where a planet is at any moment, in principle. In practice there is a catch. The second law tells you how much area has been swept since perihelion: just the fraction of the year that has passed. Turning that area back into a position on the ellipse can’t be done with a formula. This is Kepler’s equation, and it has no exact solution in ordinary terms.
+
+Kepler’s own way out was to guess a position, work out how much area that guess sweeps, see how far off it is, and adjust. That is still exactly how it is done. A computer makes a guess, checks it, and improves it, again and again, until the error is smaller than anything that matters, and for an ordinary orbit that takes three or four rounds. Every planet in this course’s sky view is placed this way, thousands of times a second as you drag the time slider.
+
+<Callout kind="know">
+
+Kepler’s laws are empirical: rules found in the data, not explained by anything deeper. They were tested by prediction. Kepler’s *Rudolphine Tables* of 1627, built on them, forecast a transit of Mercury across the Sun for 7 November 1631, and Pierre Gassendi in Paris saw it, a few hours from the predicted time: the first transit of a planet anyone had watched.
+
+</Callout>
+
+<DeepDive title="Solving Kepler’s equation">
+
+Measure time round the orbit as an angle, the **mean anomaly** M: it grows steadily from 0 at perihelion to 360° a full orbit later. Measure position by another angle, the **eccentric anomaly** E: draw a circle round the ellipse, touching it at both ends, and take the point on the circle straight above or below the planet; E is that point’s angle at the centre. The second law then becomes Kepler’s equation:
+
+M = E − e × sin E
+
+where e is the eccentricity. Given E, finding M is easy. Given M, which is what we have when we know the time, finding E is the hard direction.
+
+Newton’s method makes it routine. Start with a guess for E, for example E = M. Work out how far E − e sin E is from M: that is the miss. The slope of the curve at the guess is 1 − e cos E. Slide down the slope to where it would reach zero, and that is the next guess. Each step roughly doubles the number of correct digits, so a guess good to 1% becomes good to 0.01%, then to 0.000 001%.
+
+<KeplerSolverFigure
+  number="6.4"
+  tryThis={
+    <p>
+      Press <b>Next guess</b> a few times and watch the misses shrink. Then push the eccentricity to 0.99, set the time to 5° and start from{' '}
+      <b>E = M</b>: how many steps now? Does <b>Danby’s guess</b> do better?
+    </p>
+  }
+/>
+
+For orbits nearly as stretched as a straight line, near perihelion, a plain Newton step can overshoot wildly. This course’s solver keeps every guess inside a range that is sure to hold the answer, E between M − e and M + e, and halves that range instead whenever Newton’s step would leave it. And it starts from J. M. A. Danby’s guess, M + 0.85 e towards the side the planet is heading, which is usually close. For the visitors from other stars, on open hyperbolic paths, there is a version of the equation with the hyperbolic sine, solved the same way.
+
+</DeepDive>
+
+Next: why the laws hold. Newton found one force behind all three, the same one that drops an apple.
+
+<CheckYourself>
+  <Question id="four-au-year" prompt="A planet is 4 AU from the Sun. How long is its year?">
+    <Choice label="8 years" correct>
+      Right. 4 × 4 × 4 = 64, and 8 × 8 = 64: the square of the period equals the cube of the distance, so the period is 8 years.
+    </Choice>
+    <Choice label="4 years">
+      Period doesn’t grow in proportion to distance: farther planets also move more slowly. 4 cubed is 64, and the period squared must match:
+      8 years.
+    </Choice>
+    <Choice label="16 years">
+      That’s 4 squared. Kepler’s third law matches the period squared to the distance cubed: 4 × 4 × 4 = 64 = 8 × 8, so 8 years.
+    </Choice>
+    <Choice label="64 years">
+      64 is the distance cubed, which equals the period squared. The period itself is the square root of 64: 8 years.
+    </Choice>
+  </Question>
+
+  <Question id="comet-fastest" prompt="Where on its orbit does a comet move fastest?">
+    <Choice label="Nearest the Sun" correct>
+      Right. The line from the Sun is shortest there, so to sweep out equal areas in equal times the comet has to cover the most ground.
+      Halley’s comet passes the Sun at about 55 km/s, and crawls along the far end of its orbit at under 1 km/s.
+    </Choice>
+    <Choice label="Farthest from the Sun">
+      That’s where it is slowest. The line from the Sun is long there, so a short stretch of orbit already sweeps out a large area.
+    </Choice>
+    <Choice label="It moves at the same speed all the way round">
+      Only on a circle. On a stretched orbit, equal areas in equal times means it speeds up near the Sun and slows down far away.
+    </Choice>
+    <Choice label="Halfway out">
+      The speed changes steadily from fastest at perihelion, nearest the Sun, to slowest at aphelion, farthest away.
+    </Choice>
+  </Question>
+
+  <Question id="where-is-the-sun" prompt="Where is the Sun in a planet’s orbit?">
+    <Choice label="At one focus, a little off-centre" correct>
+      Right. Kepler’s first law. For Earth the offset is tiny, 1.7% of the orbit’s size, which is why Earth’s distance from the Sun changes by
+      only about 3% over a year.
+    </Choice>
+    <Choice label="At the exact centre">
+      The Sun is at a focus, not the centre. For nearly circular orbits like Earth’s the two are close, but for a comet the focus is almost at
+      one end.
+    </Choice>
+    <Choice label="At both foci">
+      There is only one Sun. It sits at one focus; the other is an empty point in space.
+    </Choice>
+    <Choice label="Nowhere in particular: it moves around the orbit">
+      The Sun stays put at one focus of each planet’s ellipse. (Strictly, the Sun and planet both circle their shared balance point: Chapter 7.)
+    </Choice>
+  </Question>
+
+  <HalleyShape />
+
+  <Question id="eight-minutes" prompt="Why did Kepler give up circular orbits?">
+    <Choice label="His best circle missed Tycho’s positions of Mars by 8 minutes of arc" correct>
+      Right. Earlier observations were good to about 10 minutes of arc, so the error would have gone unnoticed. Tycho’s were good to one or
+      two, and Kepler trusted them.
+    </Choice>
+    <Choice label="Ellipses are more beautiful">
+      Kepler found circles more beautiful, and held on to them for years. The data forced him off them.
+    </Choice>
+    <Choice label="Galileo’s telescope showed the orbits">
+      Nobody can see an orbit. Kepler worked from Tycho’s naked-eye measurements of where Mars appeared, and no circle fitted them well enough.
+    </Choice>
+    <Choice label="Newton’s gravity predicted ellipses">
+      Newton came later: the Principia was published in 1687, 78 years after Kepler’s first law. Newton explained the ellipses Kepler had
+      found in the data.
+    </Choice>
+  </Question>
+</CheckYourself>
