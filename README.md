@@ -17,6 +17,8 @@ npm run dev        # local dev server at http://localhost:5173
 npm test           # unit + property tests (Vitest, fast-check)
 npm run e2e        # end-to-end + accessibility tests on the production build (Playwright + axe)
                    # first time only: npx playwright install chromium
+                   # CROSS_BROWSER=1 npm run e2e also runs the overview and @cross tests in Firefox and WebKit
+                   # PERF=1 npx playwright test --project=perf measures frame rates with the CPU slowed 4×
 npm run lint
 npm run build      # type-check, build to dist/ and prerender every page to its own HTML
 npm run preview    # serve dist/ the way CloudFront does, at http://localhost:4175
@@ -30,14 +32,17 @@ The data files in `src/data/` are committed; to rebuild them from the sources (d
 npx tsx scripts/build-stars.ts            # HYG v4.4 → src/data/hyg/stars.json (CC BY-SA 4.0)
 npx tsx scripts/build-constellations.ts   # d3-celestial → constellations.json, milkyway.json
 npx tsx scripts/fetch-horizons.ts         # JPL Horizons → tests/fixtures/horizons.json
+node scripts/fetch-orrery.ts              # JPL Horizons → src/data/orrery.json and tests/fixtures/orrery.json (the Orrery's Solar System)
 ```
 
 ## Layout
 
 ```
-src/core/      the physics: units, vectors and angles, calendars and time, coordinates, precession, the Sun, Moon and planets, stars (pure TypeScript, no UI)
+src/core/      the physics: units, vectors and angles, calendars and time, coordinates, precession, the Sun, Moon and planets, stars, orbits, the n-body integrators (leapfrog, RK4, Wisdom–Holman, IAS15) and the Orrery's engine (pure TypeScript, no UI)
 src/viz/       reusable visual pieces: figure frame, step player, charts, the 3D scene, the scale zoom, the sky view, time and place controls
 src/figures/   the figures themselves, one file each
+src/lab/       the labs: the Orrery (its presets, views and the worker that runs it)
+src/workers/   Web Workers: the n-body engine for the figures and the Orrery's engine
 src/site/      site shell: course registry, route list, routing, head tags and sitemap, sidebar, pages, glossary, Check yourself, reading progress
 src/entry-server.tsx  renders a page to HTML at build time (scripts/prerender.ts)
 src/content/   chapter and Toolkit text (MDX)

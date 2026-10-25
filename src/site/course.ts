@@ -480,6 +480,7 @@ export const LABS: readonly LabInfo[] = [
         summary: 'Star clusters, colliding galaxies, a correction for general relativity, and the fate of the planets as the Sun swells and loses mass.',
       },
     ],
+    load: () => import('../lab/orrery/Orrery'),
   },
   {
     slug: 'star-forge',

@@ -58,7 +58,7 @@ function PlannedChapter({ chapter }: { chapter: ChapterInfo }) {
   return (
     <div className={contentStyles.prose}>
       <p>
-        <SoonTag /> This chapter isn’t written yet. The course is being built one chapter at a time, starting with Part I.
+        <SoonTag /> This chapter isn’t written yet. The course is being built one part at a time; Part I is complete.
       </p>
       {chapter.sections.length > 0 ? (
         <>

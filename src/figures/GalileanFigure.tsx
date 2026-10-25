@@ -135,6 +135,7 @@ export function GalileanFigure({ number, tryThis }: { number: string; tryThis: R
       description="Jupiter’s four large moons, Io, Europa, Ganymede and Callisto, seen from above their orbits and computed live from JPL’s positions for 1 January 2026, with a counter of the laps each has made. Io goes round four times and Europa twice for each lap of Ganymede: the three are locked in a 1 : 2 : 4 resonance. A strip below shows them as they look from far off, strung along a line, as Galileo saw them."
       height={760}
       tryThis={tryThis}
+      orrery="preset=galilean"
       onReset={reset}
       legend={[
         { label: 'Jupiter (to scale)', symbol: onSky(<circle r="6" fill={JUPITER} />) },

@@ -51,7 +51,7 @@ test('Newton’s cannon: falling back, orbiting and escaping', async ({ page }) 
   expect(errors).toEqual([]);
 });
 
-test('step by step: the orbit runs in the n-body worker', async ({ page }) => {
+test('step by step: the orbit runs in the n-body worker @cross', async ({ page }) => {
   const errors = watchErrors(page);
   const workers: string[] = [];
   page.on('worker', (w) => workers.push(w.url()));

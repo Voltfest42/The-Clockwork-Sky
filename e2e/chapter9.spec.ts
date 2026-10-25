@@ -51,7 +51,7 @@ test('parallax: real stars, a year of shifting, and 1 ÷ parallax', async ({ pag
   expect(errors).toEqual([]);
 });
 
-test('the neighbourhood in WebGL: filter by type and pick a star', async ({ page }) => {
+test('the neighbourhood in WebGL: filter by type and pick a star @cross', async ({ page }) => {
   const errors = watchErrors(page);
   await openChapter(page, 'our-neighbours');
   const figure = figureByNumber(page, '9.2');

@@ -79,7 +79,7 @@ test('the Sun’s year: the zodiac’s 13 constellations, and the equinox in Ari
   expect(errors).toEqual([]);
 });
 
-test('the seasons machine: predict, then tilt the axis', async ({ page }) => {
+test('the seasons machine: predict, then tilt the axis @cross', async ({ page }) => {
   const errors = watchErrors(page);
   await openChapter(page, 'why-we-have-seasons');
   const figure = figureByNumber(page, '3.2');

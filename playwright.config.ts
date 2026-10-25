@@ -17,8 +17,18 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
+    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } }, grepInvert: /@perf/ },
     { name: 'phone', use: { ...devices['Pixel 7'] }, grep: /@phone/ },
+    // A slow phone's frame rates, on request (PERF=1 npx playwright test --project=perf): see e2e/performance.spec.ts.
+    ...(process.env.PERF ? [{ name: 'perf', use: { ...devices['Desktop Chrome'] }, grep: /@perf/ }] : []),
+    // Cross-browser checks, on request (CROSS_BROWSER=1 npm run e2e; first time: npx playwright install firefox webkit):
+    // each page's overview test and the tests tagged @cross, in Firefox and in WebKit (Safari's engine).
+    ...(process.env.CROSS_BROWSER
+      ? [
+          { name: 'firefox', use: { ...devices['Desktop Firefox'], viewport: { width: 1440, height: 900 } }, grep: /@phone|@cross/ },
+          { name: 'webkit', use: { ...devices['Desktop Safari'], viewport: { width: 1440, height: 900 } }, grep: /@phone|@cross/ },
+        ]
+      : []),
   ],
   webServer: liveUrl
     ? undefined

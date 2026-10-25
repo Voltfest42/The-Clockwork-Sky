@@ -75,7 +75,7 @@ test('the zoom works by keyboard, and tells you how big things are', async ({ pa
   expect(errors).toEqual([]);
 });
 
-test('clicking the zoom picks what is under the pointer, and the wheel zooms once the view is clicked', async ({ page }) => {
+test('clicking the zoom picks what is under the pointer, and the wheel zooms once the view is clicked @cross', async ({ page }) => {
   await page.goto(`/${chapter.slug}/`);
   const figure = figureByNumber(page, '1.1');
   await figure.getByRole('combobox', { name: /Go to/ }).selectOption({ label: 'The Sun' });

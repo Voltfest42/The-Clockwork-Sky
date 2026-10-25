@@ -95,6 +95,7 @@ export function BarycentreFigure({ number, tryThis }: { number: string; tryThis:
       description="Two bodies circle their shared balance point, the barycentre, which divides the line between them in the inverse ratio of their masses. Earth and the Moon’s is inside Earth; Pluto and Charon’s is in the space between them; Jupiter swings the Sun round a point just outside its surface. A slider sets the mass ratio, and a close-up shows the heavier body at true scale wobbling round the balance point."
       height={720}
       tryThis={tryThis}
+      orrery="preset=earth-moon"
       onReset={reset}
       notToScale
       legend={[

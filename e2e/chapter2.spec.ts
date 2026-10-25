@@ -54,7 +54,7 @@ test('Chapter 2 shows its sections, five figures and a Check yourself @phone', a
   expect(errors).toEqual([]);
 });
 
-test('the sky tonight: a set date and place, Find, the info card and the keyboard', async ({ page }) => {
+test('the sky tonight: a set date and place, Find, the info card and the keyboard @cross', async ({ page }) => {
   const errors = watchErrors(page);
   await openChapter(page);
   const figure = figureByNumber(page, '2.1');

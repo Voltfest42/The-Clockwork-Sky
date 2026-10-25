@@ -162,3 +162,8 @@
   align-items: center;
   gap: 6px;
 }
+
+.orrery {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+}

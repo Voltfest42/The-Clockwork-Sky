@@ -128,6 +128,7 @@ export function SteppingFigure({ number, tryThis }: { number: string; tryThis: R
       description="A planet goes round the Sun, its orbit computed in steps: velocity moves the planet, gravity bends the velocity. You choose how many steps an orbit is cut into, and the method: Euler’s method, the obvious one, gains energy and spirals outward; leapfrog stays on track for ever; RK4 is far more accurate per step but slowly drifts. A chart compares their energy errors over 20 orbits."
       height={980}
       tryThis={tryThis}
+      orrery="preset=one-planet&method=leapfrog"
       onReset={reset}
       legend={[
         { label: 'the exact orbit', symbol: onSky(<path d="M-10 0 H10" stroke="#c8d2e8" strokeWidth="1.5" strokeDasharray="3 3" />) },

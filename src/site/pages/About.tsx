@@ -18,8 +18,8 @@ export function About() {
           <a href="https://moving-parts.dev" target="_blank" rel="noreferrer">
             Moving Parts
           </a>
-          , after <i>Beyond Dijkstra</i> and <i>From Black Box to Rulebook</i>. It is being built one part at a time, starting with{' '}
-          <a href={href('part-1')}>Part I</a>.
+          , after <i>Beyond Dijkstra</i> and <i>From Black Box to Rulebook</i>. It is being built one part at a time: <a href={href('part-1')}>Part I</a>,
+          with its lab, <a href={href('orrery')}>the Orrery</a>, is complete, and Parts II and III are on the way.
         </p>
 
         <h2>The physics runs in your browser</h2>
@@ -53,7 +53,13 @@ export function About() {
           moons, computed from JPL’s positions, are checked against JPL’s positions 60 days later (drifting only as much as leaving out Jupiter’s
           bulge explains), and must keep their 1 : 2 : 4 rhythm; the Kirkwood gaps against Kepler’s third law and the real asteroid counts; the
           snow line against Hayashi’s disc model; parallaxes and the distance modulus against round trips and the research notes; and the stars
-          within 10 parsecs against their catalogue positions. End-to-end tests open every page, use it by
+          within 10 parsecs against their catalogue positions. With the Orrery, its two integrators are checked too: Wisdom–Holman must follow
+          a lone planet’s exact orbit whatever the step, and keep a planetary system’s energy for a thousand years; IAS15 must follow an orbit as
+          stretched as e = 0.99 to round-off, run backwards to where it started, and keep the energy of the Pythagorean three-body problem
+          through its closest passes; and the two must agree. The Solar System, started from JPL’s positions on 1 January 2026, must land within
+          20″ of JPL’s positions a century later (Mercury is furthest off, as leaving out relativity predicts), and every ready-made system must
+          do what it is there to show: the figure-eight returns, the Trojans swing in tadpoles and horseshoes, the comet is caught and let go, and
+          TRAPPIST-1’s and Kepler-16’s planets keep their measured periods. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -283,6 +289,23 @@ export function About() {
           </li>
         </ul>
 
+        <h3>The Orrery</h3>
+        <ul>
+          <li>
+            Every body is a point mass pulling by Newton’s law: no relativity (Mercury ends a century about 20″ from JPL’s position), no tides, no
+            flattened planets. Bodies that touch merge completely, keeping their mass and momentum.
+          </li>
+          <li>
+            In the Solar System preset each planet with moons is one body at its system’s centre of mass, carrying the moons’ mass; asteroids are
+            left out. Jupiter’s moons leave out the Sun and Jupiter’s bulge.
+          </li>
+          <li>
+            Kepler-16 and TRAPPIST-1 have their measured masses and periods, but where each body starts along its orbit is made up, and their
+            orbits are flat. The Trojans and the comets go with a Jupiter on a circular orbit, without Saturn.
+          </li>
+          <li>Bodies are drawn at least a few pixels across, far bigger than they are.</li>
+        </ul>
+
         <h2>The people behind Part I</h2>
         <Timeline title="Timeline" />
 
@@ -379,6 +402,19 @@ export function About() {
             F. van Leeuwen (2007), Astronomy and Astrophysics 474, 653: the new reduction of Hipparcos (the parallaxes of Sirius and Vega). Gaia
             Data Release 3 (2022): the parallaxes of Proxima Centauri and 61 Cygni. M. Joyce and colleagues (2020), The Astrophysical Journal
             902, 63: the distance to Betelgeuse.
+          </li>
+          <li>
+            The Orrery’s integrators: J. Wisdom and M. Holman (1991), The Astronomical Journal 102, 1528; H. Rein and D. Tamayo (2015), Monthly
+            Notices of the Royal Astronomical Society 452, 376 (WHFast); H. Rein and D. S. Spiegel (2015), MNRAS 446, 1424 (IAS15), after E.
+            Everhart (1985); J. M. A. Danby, Fundamentals of Celestial Mechanics, 2nd edition (Willmann-Bell, 1988), for Kepler’s problem in
+            universal variables.
+          </li>
+          <li>
+            The Orrery’s systems: NASA JPL Horizons (DE441) for the Solar System, Earth and the Moon on 1 January 2026 and a century later for the
+            tests, with the masses of R. S. Park and colleagues (2021), The Astronomical Journal 161, 105 (DE440). A. Chenciner and R. Montgomery
+            (2000), Annals of Mathematics 152, 881, with C. Simó’s initial conditions: the figure-eight. C. Burrau (1913) and V. Szebehely and C.
+            F. Peters (1967), The Astronomical Journal 72, 876: the Pythagorean problem. L. R. Doyle and colleagues (2011), Science 333, 1602:
+            Kepler-16. E. Agol and colleagues (2021), The Planetary Science Journal 2, 1: TRAPPIST-1, via the NASA Exoplanet Archive.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

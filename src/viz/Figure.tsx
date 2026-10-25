@@ -1,6 +1,7 @@
 import type { CSSProperties, KeyboardEventHandler, ReactNode } from 'react';
 import { ErrorBoundary } from '../site/ErrorBoundary';
 import { useHydrated } from '../site/hydration';
+import { href } from '../site/router';
 import styles from './Figure.module.css';
 
 interface FigureProps {
@@ -27,6 +28,8 @@ interface FigureProps {
   /** Sizes, distances or angles are exaggerated: shows the "not to scale" tag. */
   notToScale?: boolean;
   onKeyDown?: KeyboardEventHandler<HTMLElement>;
+  /** A matching system in the Orrery, as its address's query: "preset=galilean". Shows an "Open this in the Orrery" link. */
+  orrery?: string;
 }
 
 /**
@@ -40,7 +43,7 @@ interface FigureProps {
  * hydrated. Hooks in the figure that watch its elements must start again then:
  * useOnScreen does.
  */
-export function Figure({ number, title, children, description, height, legend, tryThis, onReset, simplified, notToScale, onKeyDown }: FigureProps) {
+export function Figure({ number, title, children, description, height, legend, tryThis, onReset, simplified, notToScale, onKeyDown, orrery }: FigureProps) {
   const id = `figure-${number}`;
   const hydrated = useHydrated();
   return (
@@ -76,6 +79,11 @@ export function Figure({ number, title, children, description, height, legend, t
         <span className={styles.tryLabel}>Try this</span>
         <div>{tryThis}</div>
       </aside>
+      {orrery && (
+        <p className={styles.orrery}>
+          <a href={`${href('orrery')}?${orrery}`}>Open this in the Orrery →</a>
+        </p>
+      )}
       {simplified && (
         <details className={styles.simplified}>
           <summary>What’s simplified here?</summary>

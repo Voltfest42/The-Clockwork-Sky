@@ -9,6 +9,19 @@ interface Entry {
 }
 
 export const GLOSSARY = {
+  'lagrange-point': {
+    term: 'Lagrange point',
+    definition:
+      'One of five places where a small body can ride along with two larger ones going round each other, held by their pulls. L4 and L5, 60° ahead of and behind the smaller body, collect Trojan asteroids.',
+  },
+  'hill-sphere': {
+    term: 'Hill sphere',
+    definition: 'The region round a planet where its own pull wins over its star’s tide, so moons can stay. Earth’s reaches about 1.5 million km.',
+  },
+  'three-body-problem': {
+    term: 'Three-body problem',
+    definition: 'Working out how three bodies move under each other’s gravity. Unlike two bodies, it has no general formula, and most of its motions are chaotic.',
+  },
   'absolute-magnitude': {
     term: 'Absolute magnitude',
     definition: 'How bright a star would look from a standard distance of 10 parsecs: a measure of how much light it really gives out. The Sun’s is +4.8.',
