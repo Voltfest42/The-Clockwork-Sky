@@ -85,6 +85,8 @@ export interface SceneController<S> {
   beforeRender?(ctx: SceneContext): void;
   /** The theme changed (light or dark mode). */
   onTheme?(theme: SceneTheme, ctx: SceneContext): void;
+  /** The reader clicked or tapped the view without dragging, at (x, y) CSS pixels from its top left. */
+  onClick?(x: number, y: number, ctx: SceneContext): void;
   dispose?(): void;
 }
 
@@ -241,6 +243,8 @@ export class SceneEngine<S> {
   private lastTime: number | null = null;
   private readonly pointers = new Map<number, [number, number]>();
   private pinch: number | null = null;
+  /** Where the current press started, and whether it has moved far enough to count as a drag. */
+  private press: { x: number; y: number; dragged: boolean } | null = null;
   private readonly resizeObserver: ResizeObserver;
   private disposed = false;
 
@@ -414,6 +418,7 @@ export class SceneEngine<S> {
     this.host.focus({ preventScroll: true });
     this.canvas.setPointerCapture?.(event.pointerId);
     this.pointers.set(event.pointerId, [event.clientX, event.clientY]);
+    this.press = this.pointers.size === 1 ? { x: event.clientX, y: event.clientY, dragged: false } : null;
     if (this.pointers.size === 2) {
       const [a, b] = [...this.pointers.values()];
       this.pinch = Math.hypot(a[0] - b[0], a[1] - b[1]);
@@ -425,6 +430,7 @@ export class SceneEngine<S> {
     if (!last) return;
     const now: [number, number] = [event.clientX, event.clientY];
     this.pointers.set(event.pointerId, now);
+    if (this.press && Math.hypot(now[0] - this.press.x, now[1] - this.press.y) > 5) this.press.dragged = true;
     if (this.pointers.size === 1) {
       const [dAz, dEl] = dragRotation(now[0] - last[0], now[1] - last[1], this.ctx.size.height);
       this.orbit = rotate(this.orbit, dAz, dEl, this.limits);
@@ -443,6 +449,11 @@ export class SceneEngine<S> {
   };
 
   private readonly onPointerUp = (event: PointerEvent) => {
+    if (event.type === 'pointerup' && this.press && !this.press.dragged && this.pointers.size === 1 && this.controller.onClick) {
+      const box = this.canvas.getBoundingClientRect();
+      this.controller.onClick(event.clientX - box.left, event.clientY - box.top, this.ctx);
+    }
+    if (this.pointers.size <= 1) this.press = null;
     this.pointers.delete(event.pointerId);
     if (this.pointers.size < 2) this.pinch = null;
   };

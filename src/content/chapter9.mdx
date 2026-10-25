@@ -1,0 +1,177 @@
+import { MilkyWayFigure } from '../figures/MilkyWayFigure';
+import { NeighbourhoodFigure } from '../figures/NeighbourhoodFigure';
+import { ParallaxFigure } from '../figures/ParallaxFigure';
+import { SunAwayFigure } from '../figures/SunAwayFigure';
+import { ZoomFigure } from '../figures/ZoomFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { GaiaDr4 } from '../site/content/Dated';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { SunAtTheLimit } from './checks/chapter9';
+
+For most of history the stars were lights on a dome, all at the same unknown distance. Some Greek thinkers guessed that they were suns, very far away, and Giordano Bruno said it again in the 1580s. But nobody could prove it until someone measured how far away a star is, and then worked out how bright it must really be to look as it does from there. This chapter makes that measurement, meets our neighbours, and then steps back to see where the Sun sits in the Milky Way.
+
+## How far is a star?
+
+Hold up a thumb at arm’s length and look at it with one eye, then the other. It jumps against the background. That shift is <Term id="parallax">parallax</Term>, and the farther away the thumb, the smaller the jump. Measure the jump and the distance between your eyes, and you can work out how far away the thumb is.
+
+For the stars, the two eyes are Earth on opposite sides of its orbit, 300 million km apart. Look at a nearby star in January and again in July, and it shifts slightly against much more distant stars behind it. Over a year it traces a tiny ellipse. The shift is so small that it defeated astronomers for two thousand years. Its absence was even an argument against Earth moving at all (Chapter 5): if Earth goes round the Sun, why don’t the stars shift? The answer is that they do, but by less than a thousandth of a degree.
+
+<Callout kind="key">
+
+**Distance in parsecs = 1 ÷ parallax in arcseconds.** A star whose parallax is one <Term id="arcsecond">arcsecond</Term> is one <Term id="parsec">parsec</Term> away: 206,265 times the Earth–Sun distance, or 3.26 light-years. No star is that close.
+
+</Callout>
+
+<ParallaxFigure
+  number="9.1"
+  tryThis={
+    <p>
+      Press <b>Play a year</b> and watch Proxima Centauri trace its ellipse. Then pick <b>Vega</b> and <b>Betelgeuse</b>: what happens to the
+      scale bar? Slide the distance to 32.6 light-years: what is the parallax?
+    </p>
+  }
+/>
+
+In 1838 Friedrich Bessel announced the first parallax: 0.314 arcseconds for 61 Cygni, a faint double star he chose because it moves unusually fast across the sky, a hint that it is near. (The modern value is 0.286″, which puts it 11.4 light-years away.) At about the same time Thomas Henderson measured α Centauri and Friedrich Struve measured Vega. The stars were suns, at distances of millions of times the Earth–Sun distance.
+
+Today the Gaia spacecraft, launched by the European Space Agency in December 2013, measures parallaxes from space to a few hundred-thousandths of an arcsecond. Its third data release, in 2022, gave parallaxes for about 1.5 billion stars. <GaiaDr4 /> Parallax is the first rung of every distance in astronomy: the farther methods of Part II are all calibrated by it.
+
+## Our neighbours
+
+Within 10 parsecs of the Sun (33 light-years) there are about 375 known stars, in some 340 systems: singles, pairs and triples. The figure shows the 323 in the HYG catalogue, where they really are.
+
+<NeighbourhoodFigure
+  number="9.2"
+  tryThis={
+    <p>
+      Turn the map round: is the Sun in a crowd or on its own? Switch off the <b>M: red dwarf</b> stars: how many are left? Find{' '}
+      <b>Sirius</b>, then <b>Proxima Centauri</b>, and compare how much light they give out.
+    </p>
+  }
+/>
+
+The striking thing is who our neighbours are. About two thirds are <Term id="red-dwarf">red dwarfs</Term>: small, cool stars with a tenth to half the Sun’s mass, so faint that not one of them can be seen with the eye alone. Proxima Centauri, the nearest star of all at 4.25 light-years, is one, with at least one planet. There are about twenty <Term id="white-dwarf">white dwarfs</Term>, the Earth-sized cores left by stars that have died, and more than eighty <Term id="brown-dwarf">brown dwarfs</Term>, too small to shine as stars, most found only in the last thirty years by infrared telescopes. Only a handful of stars are bigger and brighter than the Sun: Sirius, Procyon, Altair, Vega, Fomalhaut. The Sun outshines more than nine in ten of its neighbours.
+
+So why does the night sky look full of bright stars? Because the bright stars you see are mostly not our neighbours. They are the rare, powerful ones, visible from hundreds of light-years away, while the common faint ones nearby are invisible. A census of the eye’s stars is a census of the brightest stars in a huge volume, not of what is typical.
+
+## The Sun from far away
+
+How bright a star looks depends on how much light it gives out and how far away it is. Brightness falls with the square of the distance (Chapter 7): twice as far, a quarter of the light; ten times as far, a hundredth. On the astronomers’ <Term id="magnitude">magnitude</Term> scale, where bigger numbers are fainter, a hundredth of the light is five magnitudes. So knowing a star’s distance turns how bright it looks into how bright it is: its <Term id="absolute-magnitude">absolute magnitude</Term>, the brightness it would have seen from a standard 10 parsecs.
+
+<SunAwayFigure
+  number="9.3"
+  tryThis={
+    <p>
+      See the Sun from <b>α Centauri</b>: which of our bright stars is it like? Slide outward until it disappears. How far is that? Try{' '}
+      <b>the Pleiades</b>, and <b>the Galaxy’s centre</b>.
+    </p>
+  }
+/>
+
+From α Centauri, the Sun would be a bright star of magnitude 0.5, one of the brightest in their sky, sitting in our constellation Cassiopeia (it would turn its W into a zigzag of six). From Vega it would be an ordinary faint star. And beyond about 17 parsecs, 55 light-years, it would fade below what the eye can see at all. Most of the stars that make up the constellations are farther than that, and outshine the Sun.
+
+<Callout kind="know">
+
+Part II starts here: once you know a star’s distance, you know how much light it really gives out, and that, with its colour, is the key to what kind of star it is.
+
+</Callout>
+
+## Our place in the Milky Way
+
+On a dark night, away from towns, a pale band of light crosses the sky: the Milky Way. In 1610 Galileo turned his telescope on it and found that it was made of “innumerable stars”. It is our own <Term id="galaxy">galaxy</Term>, seen from inside: a flat disc of stars, and we are in it, so looking along the disc we see stars piled on stars, and looking out of it we see few.
+
+<MilkyWayFigure
+  number="9.4"
+  tryThis={
+    <p>
+      Press <b>Look towards the centre</b>. Is the centre of the Galaxy up tonight, from where you are? Step the time a month at a time and find
+      a season when it is up in the evening. Follow the pink midline round: does it go below your horizon?
+    </p>
+  }
+/>
+
+In 1785 William Herschel counted stars in hundreds of directions and concluded that the Galaxy is a flattened disc, with the Sun near its middle. He was misled: dust between the stars hides the distant ones, so in every direction along the disc he ran out of stars at about the same distance. In 1918 Harlow Shapley mapped the <Term id="globular-cluster">globular clusters</Term>, great balls of old stars that orbit the Galaxy above and below the dust, and found them centred on a point far away in Sagittarius. The Sun was moved off-centre, as Earth had been by Copernicus. (Shapley’s distances were too big, because he too didn’t know about the dust; Robert Trumpler showed in 1930 how much it dims distant stars.)
+
+Today’s picture: the Milky Way is a barred spiral galaxy about 100,000 light-years across, with a few hundred billion stars. The Sun is about 26,700 light-years from the centre, in a minor spiral arm, and it goes round at about 230 km/s, taking about 230 million years for each lap. At the centre sits a black hole four million times the Sun’s mass, which comes in Part III.
+
+<ZoomFigure
+  number="9.5"
+  start={13.2}
+  title="The zoom: from the Sun to the Milky Way"
+  description="The zoom from Chapter 1, starting at the Solar System and widening the view ten times at each step: the Kuiper belt, the Oort cloud, the nearest stars, the Sun’s neighbourhood and finally the whole Milky Way, about 100,000 light-years across, with the Sun about 26,700 light-years from its centre. Every object can be picked to see its size and distance."
+  tryThis={
+    <p>
+      Press <b>Fly out</b> and stop when the nearest stars appear: how many powers of ten past the planets is that? Carry on to the whole
+      Galaxy. Then use <b>Go to</b> to find the Galactic Centre.
+    </p>
+  }
+/>
+
+<Timeline from={1780} to={2030} chapter={9} title="Measuring the stars" />
+
+<DeepDive title="Why didn’t the ancients see parallax?">
+
+They looked. Aristotle used its absence as an argument that Earth stands still, and Aristarchus, who put the Sun in the middle, could only answer that the stars must be immensely far away, which was right. The largest stellar parallax, Proxima Centauri’s 0.77″, is less than a seventieth of the finest detail the eye can see (about 1′), and Tycho Brahe’s best instruments measured to about 1′ too. It took telescopes, precise micrometers and Bessel’s patience, over a year of nightly measurements, to find it.
+
+</DeepDive>
+
+That is the end of Part I. The Sun is one star among hundreds of billions, and an ordinary one. Part II asks what stars are made of, why they shine, and how they live and die. The Orrery, Part I’s lab, lets you build solar systems of your own.
+
+<CheckYourself>
+  <Question id="parallax-distance" prompt="A star has a parallax of 0.1 arcseconds. How far away is it?">
+    <Choice label="10 parsecs, about 33 light-years" correct>
+      Right. Distance in parsecs is 1 ÷ parallax in arcseconds: 1 ÷ 0.1 = 10 parsecs, and a parsec is 3.26 light-years.
+    </Choice>
+    <Choice label="0.1 parsecs">
+      The distance goes the other way: the smaller the parallax, the farther the star. 1 ÷ 0.1 = 10 parsecs.
+    </Choice>
+    <Choice label="1 parsec">
+      A star at 1 parsec would have a parallax of 1″. A tenth of that parallax means ten times as far: 10 parsecs.
+    </Choice>
+    <Choice label="100 parsecs">
+      That would be a parallax of 0.01″. Distance in parsecs is 1 ÷ parallax: 1 ÷ 0.1 = 10.
+    </Choice>
+  </Question>
+
+  <Question id="neighbours-like-sun" prompt="Are most of the Sun’s nearest neighbours stars like the Sun?">
+    <Choice label="No: most are red dwarfs, smaller and much fainter" correct>
+      Right. About two thirds of the stars within 33 light-years are red dwarfs, none of them visible to the eye. The Sun outshines more than
+      nine in ten of its neighbours.
+    </Choice>
+    <Choice label="Yes: most are yellow stars like the Sun">
+      Only about 18 of the 375 or so stars within 10 parsecs are yellow G stars like the Sun. Most are red dwarfs.
+    </Choice>
+    <Choice label="No: most are much bigger and brighter">
+      The bright stars you see in the sky are mostly far away. Nearby, most stars are small, faint red dwarfs.
+    </Choice>
+  </Question>
+
+  <Question id="bright-stars-far" prompt="Why are most of the stars you can see brighter than the Sun really is, even though most stars are fainter?">
+    <Choice label="Faint stars can only be seen when they are very close, so the ones we see are mostly the rare, powerful ones" correct>
+      Right. A powerful star can be seen from hundreds of light-years away; a red dwarf disappears beyond a few. So the eye’s stars are mostly
+      the rare bright ones.
+    </Choice>
+    <Choice label="The atmosphere makes stars look brighter">
+      The air dims starlight slightly. The bright stars we see are mostly far away, and visible because they really are powerful.
+    </Choice>
+    <Choice label="Most stars are actually brighter than the Sun">
+      Most stars are fainter: about two thirds of our neighbours are red dwarfs. We just can’t see them without a telescope.
+    </Choice>
+  </Question>
+
+  <Question id="milky-way-band" prompt="Why does the Milky Way look like a band across the sky?">
+    <Choice label="We are inside a flat disc of stars, and see it edge-on" correct>
+      Right. Looking along the disc, we see stars piled behind stars; looking out of it, few. The band is our own Galaxy seen from inside.
+    </Choice>
+    <Choice label="It is a cloud of gas round the Solar System">
+      Galileo saw in 1610 that the band is made of countless stars. It is the disc of our Galaxy, seen edge-on from within.
+    </Choice>
+    <Choice label="It is the path of the Sun across the sky">
+      That is the ecliptic, a different circle. The Milky Way is the disc of our Galaxy, seen from inside.
+    </Choice>
+  </Question>
+
+  <SunAtTheLimit />
+</CheckYourself>

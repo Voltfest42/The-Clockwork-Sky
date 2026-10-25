@@ -9,6 +9,46 @@ interface Entry {
 }
 
 export const GLOSSARY = {
+  'absolute-magnitude': {
+    term: 'Absolute magnitude',
+    definition: 'How bright a star would look from a standard distance of 10 parsecs: a measure of how much light it really gives out. The Sun’s is +4.8.',
+  },
+  'brown-dwarf': {
+    term: 'Brown dwarf',
+    definition: 'A ball of gas too small to keep hydrogen fusing in its core, between the heaviest planets and the lightest stars: it glows dimly and cools for ever.',
+  },
+  'dwarf-planet': {
+    term: 'Dwarf planet',
+    definition: 'A body that goes round the Sun and is massive enough to be round, but hasn’t cleared its orbit of other bodies: Pluto, Ceres, Eris, Haumea and Makemake.',
+  },
+  'globular-cluster': {
+    term: 'Globular cluster',
+    definition: 'A ball of hundreds of thousands of old stars, held together by their own gravity. About 150 orbit the Milky Way.',
+  },
+  'kirkwood-gap': {
+    term: 'Kirkwood gap',
+    definition: 'A gap in the asteroid belt where an asteroid would go round the Sun a simple number of times for each of Jupiter’s orbits, so Jupiter’s tugs add up and clear it out.',
+  },
+  'red-dwarf': {
+    term: 'Red dwarf',
+    definition: 'A small, cool, faint star, from about a tenth to half the Sun’s mass. Most stars, including most of our neighbours, are red dwarfs.',
+  },
+  'resonance': {
+    term: 'Resonance',
+    definition: 'A simple ratio between two orbital periods, such as 2 : 1, so the bodies meet at the same places over and over and their small tugs add up.',
+  },
+  'snow-line': {
+    term: 'Snow line',
+    definition: 'The distance from a young star beyond which water freezes into ice. In the young Solar System it lay at about 2.7 AU, in the asteroid belt.',
+  },
+  'white-dwarf': {
+    term: 'White dwarf',
+    definition: 'The hot, Earth-sized core left when a star like the Sun has used up its fuel. It no longer makes energy, and slowly cools.',
+  },
+  'galaxy': {
+    term: 'Galaxy',
+    definition: 'A vast system of stars, gas and dust held together by gravity. Ours, the Milky Way, has a few hundred billion stars, and the Sun is one of them.',
+  },
   altitude: {
     term: 'Altitude',
     definition: 'How high something appears above the horizon, as an angle: 0° on the horizon, 90° straight overhead.',

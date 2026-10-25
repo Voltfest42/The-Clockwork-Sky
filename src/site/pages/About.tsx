@@ -49,7 +49,11 @@ export function About() {
           n-body engine is checked against Kepler’s exact orbits; each stepping method against the rate at which its error should shrink as the
           step does; the energy, momentum and angular momentum that an exact solution keeps; and the figure-eight orbit of three equal stars
           (Chenciner and Montgomery), which must come back to its start after one period. The masses weighed with orbits, the balance points,
-          the strength of the Sun’s tides and the trip to Mars are checked against the research notes. End-to-end tests open every page, use it by
+          the strength of the Sun’s tides and the trip to Mars are checked against the research notes. Since Chapters 8 and 9, Jupiter’s four large
+          moons, computed from JPL’s positions, are checked against JPL’s positions 60 days later (drifting only as much as leaving out Jupiter’s
+          bulge explains), and must keep their 1 : 2 : 4 rhythm; the Kirkwood gaps against Kepler’s third law and the real asteroid counts; the
+          snow line against Hayashi’s disc model; parallaxes and the distance modulus against round trips and the research notes; and the stars
+          within 10 parsecs against their catalogue positions. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -237,6 +241,48 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 8</h3>
+        <ul>
+          <li>
+            <b>Figure 8.1, the Solar System today.</b> Real positions from JPL’s planetary model, flattened into the plane of Earth’s orbit. In the
+            distances view the Sun and planets are dots far bigger than they are; in the sizes view the distances are left out. The belts are
+            plain bands.
+          </li>
+          <li>
+            <b>Figure 8.2, planet cards.</b> Real maps on smooth spheres: no mountains, no flattening of the giants, no glowing air. Gravity for the
+            giants is at their cloud tops. Moon counts are as of March 2026.
+          </li>
+          <li>
+            <b>Figure 8.3, Jupiter’s moons.</b> Jupiter and its four large moons pull on each other as points; the Sun and Jupiter’s bulge are left
+            out, so the moons slowly fall behind the real ones. The moons are drawn far too big.
+          </li>
+          <li>
+            <b>Figure 8.4, gaps in the belt.</b> Only the numbered asteroids, as of October 2026; many more are known less well or not yet found.
+          </li>
+          <li>
+            <b>Figure 8.5, the snow line.</b> Hayashi’s textbook disc (1981), warmed only by sunlight; real discs were hotter inside early on and
+            changed over time. Freezing temperatures are rounded.
+          </li>
+        </ul>
+
+        <h3>Chapter 9</h3>
+        <ul>
+          <li>
+            <b>Figure 9.1, parallax.</b> The star is drawn hundreds of thousands of times too close, and the view through the telescope is
+            magnified until the shift shows. The stars’ own motions are left out.
+          </li>
+          <li>
+            <b>Figure 9.2, the neighbourhood.</b> The stars within 10 parsecs in the HYG catalogue, which misses some faint red dwarfs and all brown
+            dwarfs; a few faint stars’ types are estimated from their colour. Dots are far bigger than stars.
+          </li>
+          <li>
+            <b>Figure 9.3, the Sun from far away.</b> Visible light only, with no dust in the way.
+          </li>
+          <li>
+            <b>Figure 9.4, the Milky Way.</b> A smoothed outline from star maps, with the stars drawn as if the sky were dark at any time.
+          </li>
+        </ul>
+
         <h2>The people behind Part I</h2>
         <Timeline title="Timeline" />
 
@@ -316,6 +362,25 @@ export function About() {
           </li>
           <li>T. S. Boyajian and colleagues (2012), The Astrophysical Journal 757, 112: the sizes of nearby red dwarfs.</li>
           <li>
+            NASA JPL Small-Body Database query API: the orbits of every numbered asteroid (895,910, fetched October 2026), from the Minor Planet
+            Center’s observations. JPL Horizons (JUP365): the positions of Jupiter’s four large moons on 1 January 2026, and 60 days later for the
+            tests.
+          </li>
+          <li>
+            C. Hayashi (1981), Progress of Theoretical Physics Supplement 70, 35: the minimum-mass solar nebula and its snow line. K. Lodders
+            (2003), The Astrophysical Journal 591, 1220: the temperatures at which materials freeze out of the Sun’s gas.
+          </li>
+          <li>
+            J. A. Connelly and colleagues (2012), Science 338, 651: the age of the Solar System from the oldest grains in meteorites. J. Laskar
+            (1989), Nature 338, 237, and J. Laskar and M. Gastineau (2009), Nature 459, 817: the chaos and long-term stability of the planets.
+          </li>
+          <li>
+            C. Reylé and colleagues (2021), Astronomy and Astrophysics 650, A201: the census of stars, brown dwarfs and planets within 10 parsecs.
+            F. van Leeuwen (2007), Astronomy and Astrophysics 474, 653: the new reduction of Hipparcos (the parallaxes of Sirius and Vega). Gaia
+            Data Release 3 (2022): the parallaxes of Proxima Centauri and 61 Cygni. M. Joyce and colleagues (2020), The Astrophysical Journal
+            902, 63: the distance to Betelgeuse.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -353,6 +418,25 @@ export function About() {
           <li>
             <b>Eclipses:</b> the course finds eclipses with its own code, and tests it against NASA’s catalogues. Eclipse Predictions by Fred
             Espenak (NASA’s GSFC), reproduced in the tests with that acknowledgment, as NASA asks.
+          </li>
+          <li>
+            <b>Planet maps:</b> the globes use the planet textures of{' '}
+            <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noreferrer">
+              Solar System Scope
+            </a>
+            , under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution 4.0
+            </a>{' '}
+            licence, made smaller for the web.
+          </li>
+          <li>
+            <b>Asteroids:</b> counts made from the orbits of the numbered asteroids in NASA JPL’s Small-Body Database, which come from the
+            Minor Planet Center. Only the counts are kept, not the orbits.
+          </li>
+          <li>
+            <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons
+            Attribution-ShareAlike 4.0 licence, in a file of their own.
           </li>
         </ul>
         <p>Chapter 1’s sizes and distances are published values, typed into the code with their sources (see above).</p>

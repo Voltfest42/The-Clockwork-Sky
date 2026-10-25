@@ -27,7 +27,8 @@ const MARS = '#e0663f';
 const CRAFT = '#ffffff';
 
 export function HohmannFigure({ number, tryThis }: { number: string; tryThis: ReactNode }) {
-  const [today] = useState(() => Math.floor(jdFromUnixMs(Date.now()) - 0.5) + 0.5);
+  // Noon today: a day's 0h UT minus ΔT would be the evening before.
+  const [today] = useState(() => Math.floor(jdFromUnixMs(Date.now()) - 0.5) + 1);
   const [offset, setOffset] = useState(0);
   const [launch, setLaunch] = useState<number | null>(null);
   const [playing, setPlaying] = useState(false);

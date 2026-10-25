@@ -40,11 +40,20 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1705, when: '1705', who: 'Halley', what: 'predicts that his comet will return.', chapter: 7 },
   { year: 1758, when: '1758', who: 'Palitzsch', what: 'sees Halley’s comet come back, on Christmas night.', chapter: 7 },
   { year: 1759, when: '1759', what: 'Halley’s comet passes the Sun on 13 March, within the month Clairaut, Lalande and Lepaute allowed for Jupiter’s and Saturn’s pulls.', chapter: 7 },
+  { year: 1781, when: '1781', who: 'William Herschel', what: 'finds Uranus, the first planet unknown to the ancients.', chapter: 8 },
   { year: 1785, when: '1785', who: 'William Herschel', what: 'maps the Milky Way by counting stars.', chapter: 9 },
   { year: 1798, when: '1798', who: 'Cavendish', what: 'weighs the Earth.', chapter: 7 },
+  { year: 1801, when: '1801', who: 'Giuseppe Piazzi', what: 'finds Ceres, the first asteroid.', chapter: 8 },
   { year: 1838, when: '1838', who: 'Bessel', what: 'measures the first distance to a star, 61 Cygni.', chapter: 9 },
   { year: 1846, when: '1846', what: 'Neptune is found where Le Verrier predicted.', chapter: 7 },
+  { year: 1866, when: '1866', who: 'Daniel Kirkwood', what: 'notices gaps in the asteroid belt and explains them by Jupiter’s resonances.', chapter: 8 },
+  { year: 1918, when: '1918', who: 'Harlow Shapley', what: 'maps the globular clusters and moves the centre of the Galaxy to Sagittarius, far from the Sun.', chapter: 9 },
   { year: 1925, when: '1925', who: 'Walter Hohmann', what: 'works out the cheapest path from one planet’s orbit to another’s.', chapter: 7 },
+  { year: 1930, when: '1930', who: 'Clyde Tombaugh', what: 'finds Pluto.', chapter: 8 },
+  { year: 1989, when: '1989', who: 'Jacques Laskar', what: 'shows that the planets’ orbits are chaotic over tens of millions of years.', chapter: 8 },
+  { year: 2006, when: '2006', what: 'The International Astronomical Union defines a planet, and Pluto becomes a dwarf planet.', chapter: 8 },
+  { year: 2013, when: '2013', what: 'ESA launches Gaia, which measures the parallaxes of over a billion stars.', chapter: 9 },
+  { year: 2017, when: '2017', what: 'ʻOumuamua, the first known visitor from another star, passes through the Solar System.', chapter: 8 },
 ];
 
 /** The events from one year to another (astronomical years, inclusive). */

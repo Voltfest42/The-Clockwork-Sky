@@ -14,9 +14,21 @@ import styles from './ZoomFigure.module.css';
 /** Where the zoom starts: just wide enough to see the whole person. */
 const START = 0.65;
 
-export function ZoomFigure({ number, tryThis }: { number: string; tryThis: ReactNode }) {
+const DESCRIPTION =
+  'A zoom through 21 powers of ten, drawn from real sizes and distances. It starts with a person, 1.7 metres tall, and widens the view ten times at each step: a football pitch, the edge of space, Earth, the Moon’s orbit, the Sun and the planets, the Oort cloud, the nearest stars and, after 21 steps, the whole Milky Way. A scale bar and a ×10 counter keep track, and every object can be picked to see its size and distance.';
+
+interface ZoomFigureProps {
+  number: string;
+  tryThis: ReactNode;
+  /** Where the zoom starts and Reset puts it back, as a power of ten of metres across (default: the person). */
+  start?: number;
+  title?: string;
+  description?: string;
+}
+
+export function ZoomFigure({ number, tryThis, start = START, title = 'The zoom: from you to the Milky Way', description = DESCRIPTION }: ZoomFigureProps) {
   const objects = zoomObjectsToday();
-  const [power, setPower] = useState(START);
+  const [power, setPower] = useState(start);
   const [selected, setSelected] = useState<string | null>(null);
   const [touring, setTouring] = useState<'out' | 'in' | null>(null);
   const reducedMotion = useReducedMotion();
@@ -42,7 +54,7 @@ export function ZoomFigure({ number, tryThis }: { number: string; tryThis: React
   });
 
   const reset = () => {
-    setPower(START);
+    setPower(start);
     setSelected(null);
     setTouring(null);
   };
@@ -58,8 +70,8 @@ export function ZoomFigure({ number, tryThis }: { number: string; tryThis: React
   return (
     <Figure
       number={number}
-      title="The zoom: from you to the Milky Way"
-      description="A zoom through 21 powers of ten, drawn from real sizes and distances. It starts with a person, 1.7 metres tall, and widens the view ten times at each step: a football pitch, the edge of space, Earth, the Moon’s orbit, the Sun and the planets, the Oort cloud, the nearest stars and, after 21 steps, the whole Milky Way. A scale bar and a ×10 counter keep track, and every object can be picked to see its size and distance."
+      title={title}
+      description={description}
       height={740}
       tryThis={tryThis}
       onReset={reset}

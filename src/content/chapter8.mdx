@@ -1,0 +1,218 @@
+import { AsteroidBeltFigure } from '../figures/AsteroidBeltFigure';
+import { GalileanFigure } from '../figures/GalileanFigure';
+import { PlanetCardsFigure } from '../figures/PlanetCardsFigure';
+import { SnowLineFigure } from '../figures/SnowLineFigure';
+import { SolarSystemFigure } from '../figures/SolarSystemFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { MOONS_AS_OF, worldById } from '../data/planets';
+import { ThreeToOne } from './checks/chapter8';
+
+Newton’s law explains how the Solar System moves. This chapter is about what it is made of: eight planets in two families, more than four hundred known moons, close to a million numbered asteroids, a ring of icy worlds beyond Neptune, and comets falling in from a cloud that reaches a quarter of the way to the nearest star. And it ends with how it all came to be, 4.57 billion years ago, from a spinning disc of gas and dust.
+
+## The family portrait
+
+The planets fall into two families. Close to the Sun are four small, rocky planets: Mercury, Venus, Earth and Mars. Far out are four giants: Jupiter and Saturn, made mostly of hydrogen and helium, and Uranus and Neptune, with more water, ammonia and methane. Between the two families lies the asteroid belt, and beyond the giants the Kuiper belt.
+
+The figure shows where they all are today, worked out from the same planetary model as the sky view in Chapter 2. Switch between the two kinds of picture, because no single picture can show both the sizes and the distances. In true distances, even Jupiter is far smaller than a pixel. In true sizes the gaps are left out: at that scale Neptune would be more than 3,000 Sun-widths away.
+
+<SolarSystemFigure
+  number="8.1"
+  tryThis={
+    <p>
+      Pick <b>Neptune</b>: how long does sunlight take to get there? Zoom <b>Out to Neptune</b> and press <b>Play</b>: which planet laps the
+      others? Then switch to <b>True sizes</b>: how many Earths fit across Jupiter?
+    </p>
+  }
+/>
+
+Everything goes round the Sun the same way, and nearly in one plane, the plane of Earth’s orbit, within a few degrees. That is no accident, and the last section says why. The Sun itself holds 99.86% of the Solar System’s mass; Jupiter has most of the rest, more than twice as much as all the other planets put together.
+
+## Rocky worlds
+
+The four rocky planets are made of rock round an iron core, with thin air or none. They are similar in make-up but very different as places, and the differences are mostly about size and distance from the Sun.
+
+<PlanetCardsFigure
+  number="8.2"
+  tryThis={
+    <p>
+      Compare <b>Earth</b> with <b>Venus</b>: nearly twins in size, so why is one 464 °C? Put in your own weight and age, then pick{' '}
+      <b>Mars</b>, then <b>Jupiter</b>. Press <b>Spin</b> and compare how fast Earth and Venus turn.
+    </p>
+  }
+/>
+
+- **Mercury** is the smallest planet and the closest to the Sun. It has almost no air to hold heat, so its days reach 427 °C and its nights fall to −173 °C. It spins three times for every two trips round the Sun, so a full day, from noon to noon, lasts 176 Earth days.
+- **Venus** is almost Earth’s twin in size, but its air is 96.5% carbon dioxide and 92 times as thick as ours. Sunlight warms the ground, and the carbon dioxide stops the heat from escaping: a runaway greenhouse. At 464 °C, Venus is hotter than Mercury, though twice as far from the Sun. It also spins backwards, once in 243 days.
+- **Earth** is the largest rocky planet, and the only world known with oceans on its surface, and life. Its Moon is unusually large for its planet, about a quarter of Earth’s width.
+- **Mars** is half Earth’s width, with a tenth of its mass, a thin carbon dioxide air and a surface below freezing on average. But dry riverbeds, lake beds and minerals that form only in water show that water once flowed there, and its polar caps still hold water ice.
+
+<Callout kind="know">
+
+Your weight on another world depends on its mass and its size together: mass pulls harder, but a bigger world puts you farther from its centre. Saturn is 95 times as heavy as Earth, but so wide that at its cloud tops you would weigh only 7% more. Uranus’s pull is weaker than Earth’s.
+
+</Callout>
+
+## Giants and their moons
+
+**Jupiter** is the giant of giants: 11 times as wide as Earth and 318 times as heavy. What we see is the top of its clouds, striped by winds that run east and west, with the Great Red Spot, a storm wider than Earth that has blown for at least a century and a half. There is no surface to stand on; the air simply gets thicker and hotter all the way down. **Saturn** is nearly as big but less than a third as heavy: less dense than water, it would float in a big enough bath. Its bright rings are about 280,000 km across but mostly only about 10 metres thick, made of countless chunks of ice. **Uranus** lies on its side, tilted 98°, probably knocked over by a giant impact, so each pole has 42 years of sunlight and then 42 of darkness. **Neptune**, the windiest planet, was the first found by calculation (Chapter 7).
+
+Between them the giants have hundreds of moons: as of {MOONS_AS_OF}, Saturn has {worldById('saturn').moons} known moons, Jupiter {worldById('jupiter').moons}, Uranus {worldById('uranus').moons} and Neptune {worldById('neptune').moons}. Most are small, captured lumps a few kilometres across, but some are worlds in their own right:
+
+- **Europa** (Jupiter) and **Enceladus** (Saturn) have oceans of liquid water under their ice. Europa’s showed up in the Galileo spacecraft’s magnetic measurements; Enceladus sprays its ocean into space in plumes that Cassini flew through in 2005.
+- **Titan** (Saturn), bigger than Mercury, has thick air and lakes and seas of liquid methane and ethane, seen by Cassini and the Huygens lander.
+- **Io** (Jupiter) is the most volcanic place in the Solar System.
+
+Io’s volcanoes are powered by tides. Io, Europa and Ganymede go round Jupiter in a rhythm: while Ganymede goes round once, Europa goes round twice and Io four times. A rhythm like this is a <Term id="resonance">resonance</Term>. Because the moons keep meeting at the same places, their small tugs on each other add up instead of cancelling, and they stretch Io’s orbit slightly out of round. So Io swings closer to Jupiter and farther away every 42 hours, and Jupiter’s tides squeeze and relax it, heating its inside like a ball of putty kneaded in the hand.
+
+<GalileanFigure
+  number="8.3"
+  tryThis={
+    <p>
+      Press <b>Run one lap of Ganymede</b> and read the counters. Then press <b>Play</b> and watch the edge-on strip: this is what Galileo saw in
+      1610. Can you ever catch Io, Europa and Ganymede all on the same side of Jupiter?
+    </p>
+  }
+/>
+
+These are the moons that Galileo found in January 1610, the first things seen going round something other than Earth (Chapter 5). In 1676 Ole Rømer noticed that their eclipses came late when Jupiter was far from Earth and early when it was near, and worked out that light takes time to cross Earth’s orbit: the first measurement of the speed of light.
+
+## Small worlds
+
+Between Mars and Jupiter lies the **asteroid belt**: rocky and metal leftovers that never made a planet, with Jupiter’s pull stirring them too hard to gather. The biggest, Ceres, is 940 km across; most are far smaller. Close to 900,000 have orbits known well enough to be numbered, and more are found every month.
+
+Daniel Kirkwood noticed in 1866 that the belt has gaps, and he worked out why. An asteroid whose year is exactly a third of Jupiter’s meets Jupiter at the same point of its orbit every third lap. Jupiter’s tugs then always push the same way, and over millions of years they stretch the asteroid’s orbit until it crosses Mars’s or Earth’s and the asteroid is thrown out. The emptied rings are the <Term id="kirkwood-gap">Kirkwood gaps</Term>. Kepler’s third law (Chapter 6) says where they are: a year a third of Jupiter’s needs an orbit (1/3)^(2/3) = 0.48 times the size of Jupiter’s, 2.50 AU.
+
+<AsteroidBeltFigure
+  number="8.4"
+  tryThis={
+    <p>
+      Find the deepest gap and read its distance, then press <b>Show Jupiter’s resonances</b>. Switch to <b>Out to Jupiter</b> and turn on the{' '}
+      <b>Log scale</b>: what piles up at 5.2 AU? Then look at <b>How empty is it?</b>
+    </p>
+  }
+/>
+
+Not every resonance clears: some protect. The Hildas, at 3 : 2, are timed so that they are never near Jupiter. The **Trojans** share Jupiter’s orbit, gathered in two swarms 60° ahead of it and 60° behind, at two of the balance points of the Sun’s and Jupiter’s pulls (the Orrery shows how).
+
+And the belt is far emptier than films suggest. Spread a million asteroids through a doughnut the size of the belt, and each has millions of kilometres to itself: stand on one and the nearest would usually be too faint to see. Spacecraft cross it without trying to steer round anything.
+
+Beyond Neptune, from about 30 to 50 AU, lies the **Kuiper belt**, a ring of icy bodies. Pluto, found in 1930, is one of the largest. Once more like it turned up, notably Eris in 2005, almost exactly Pluto’s size, astronomers had to decide what a planet is. In 2006 the International Astronomical Union decided that a planet must also have cleared its orbit of other bodies, and Pluto became a <Term id="dwarf-planet">dwarf planet</Term>, with Ceres, Eris, Haumea and Makemake.
+
+**Comets** are icy bodies that fall in from the cold outer Solar System on long, stretched orbits. Near the Sun their ice turns to gas, which carries dust off into a glowing head and tails millions of kilometres long. Their dust spreads out along their orbits, and when Earth crosses such a trail, the grains burn up in our air as a **meteor shower**: the Perseids every August are dust from comet Swift–Tuttle. Comets with periods of thousands of years or more come from the **Oort cloud**, a vast sphere of icy bodies out to perhaps 100,000 AU, which no telescope has seen but which their orbits point to.
+
+Some visitors come from other stars, on orbits that are open, not closed: they pass once and leave. Only three are known: ʻOumuamua, found on 19 October 2017; comet Borisov, in August 2019; and 3I/ATLAS, in July 2025.
+
+## How it all formed
+
+The Solar System began as part of a cloud of gas and dust, mostly hydrogen and helium, that collapsed under its own gravity about 4.57 billion years ago. That date comes from the oldest grains in meteorites, dated by the radioactive elements in them to 4.567 billion years.
+
+As the cloud fell in, it spun faster, like a skater pulling in her arms, and flattened into a disc round the young Sun. That is why the planets all go round the same way and in nearly the same plane. Telescopes now see such discs round young stars: in 2014 the ALMA telescopes in Chile imaged the disc round the young star HL Tauri, with dark rings where planets may be forming.
+
+In the disc, dust grains stuck together into pebbles, pebbles into rocks, and rocks into **planetesimals** a few kilometres across, which pulled each other into bigger and bigger bodies. What they were made of depended on the temperature, and so on the distance from the Sun.
+
+<SnowLineFigure
+  number="8.5"
+  tryThis={
+    <p>
+      Slide the distance from Earth out to Jupiter: where does water freeze? Then make the star four times as bright: where is the snow line
+      now, and would a giant planet have formed at 5 AU?
+    </p>
+  }
+/>
+
+Close to the Sun it was too hot for ice, and only rock and metal could form solid grains, which are a small part of the disc: the rocky planets stayed small. Beyond the <Term id="snow-line">snow line</Term>, about 2.7 AU from the Sun, water froze too, and there was about four times as much solid material to build with. Cores there grew to ten or so times Earth’s mass, big enough to pull in the disc’s hydrogen and helium directly, and they swelled into gas giants. Jupiter, the first, may have formed within a few million years, before the young Sun’s wind blew the gas away.
+
+The rocky planets took longer, tens of millions of years of collisions between bodies the size of the Moon and Mars. One of the last made the Moon: a body about the size of Mars struck the young Earth, and the debris thrown off gathered into the Moon.
+
+The planets didn’t all stay where they formed. In models that match today’s Solar System, the giant planets moved: Jupiter may have drifted in towards the Sun and back out (the “Grand Tack”), and later Saturn, Uranus and Neptune moved outward, scattering the small bodies in their way (the Nice model). Neptune may have formed much closer to the Sun than it is now, and pushing the Kuiper belt outward as it went would explain why Pluto, like the Hildas, is in a resonance: it goes round twice for every three of Neptune’s laps.
+
+<Timeline from={1670} to={2030} chapter={8} title="Exploring the Solar System" />
+
+<DeepDive title="Is the Solar System stable?">
+
+Mostly, but not perfectly. The planets’ pulls on each other make the Solar System chaotic: a tiny change today grows until, after some tens of millions of years, nobody can say exactly where the planets will be, as Jacques Laskar showed in 1989. But chaotic doesn’t mean falling apart. In thousands of computer runs of the next five billion years, the planets keep their orbits in about 99% of them. In about 1%, Jupiter’s pull slowly stretches Mercury’s orbit until it can hit Venus or fall into the Sun.
+
+</DeepDive>
+
+Next: beyond the Solar System, to the stars, and how we know how far away they are.
+
+<CheckYourself>
+  <Question id="most-moons" prompt="Which planet has the most known moons?">
+    <Choice label="Saturn" correct>
+      Right: {worldById('saturn').moons} known as of {MOONS_AS_OF}, against Jupiter’s {worldById('jupiter').moons}. Most are small, captured bodies a few kilometres across, and more are found
+      every few years.
+    </Choice>
+    <Choice label="Jupiter">
+      Jupiter has {worldById('jupiter').moons} known moons as of {MOONS_AS_OF}, but Saturn has {worldById('saturn').moons}. Both totals keep growing as telescopes find smaller moons.
+    </Choice>
+    <Choice label="Earth">
+      Earth has one Moon. Saturn has {worldById('saturn').moons} known moons, as of {MOONS_AS_OF}.
+    </Choice>
+    <Choice label="Uranus">
+      Uranus has {worldById('uranus').moons}. Saturn, with {worldById('saturn').moons} known as of {MOONS_AS_OF}, has the most.
+    </Choice>
+  </Question>
+
+  <Question id="giants-far-out" prompt="Why are the giant planets far from the Sun?">
+    <Choice label="Beyond the snow line, ice gave them more solid material to start with" correct>
+      Right. Beyond about 2.7 AU water froze, so there was about four times as much solid material. Cores grew big enough to pull in the disc’s
+      gas.
+    </Choice>
+    <Choice label="The Sun’s gravity pushed the heavy planets outward">
+      Gravity only pulls. The giants formed far out because that is where ice could freeze and give them big enough cores to gather gas.
+    </Choice>
+    <Choice label="Heavy planets sank outward as the disc spun">
+      Nothing sinks outward. Distance mattered through temperature: beyond the snow line, ice added to the building material.
+    </Choice>
+    <Choice label="Gas giants were captured from other stars">
+      They formed here, from the same disc as everything else. They grew big because, beyond the snow line, ice gave them more to build with.
+    </Choice>
+  </Question>
+
+  <Question id="dodge-asteroids" prompt="Does a spacecraft have to dodge its way through the asteroid belt?">
+    <Choice label="No: the asteroids are millions of kilometres apart" correct>
+      Right. Even the near-million numbered asteroids are typically millions of kilometres from their nearest neighbour, several times the
+      distance to the Moon. Spacecraft cross the belt without steering round anything.
+    </Choice>
+    <Choice label="Yes: it is a dense field of rocks">
+      That’s the film version. The belt is huge, and its asteroids are typically millions of kilometres apart.
+    </Choice>
+    <Choice label="Only through the Kirkwood gaps">
+      The gaps are where Jupiter has cleared out orbits, but the rest of the belt is nearly empty too: millions of kilometres between asteroids.
+    </Choice>
+  </Question>
+
+  <Question id="io-heat" prompt="What keeps Io’s volcanoes going?">
+    <Choice label="Tides from Jupiter, squeezing an orbit that the other moons keep stretched" correct>
+      Right. The 1 : 2 : 4 resonance with Europa and Ganymede keeps Io’s orbit slightly oval, so Jupiter’s tides squeeze and relax it every
+      orbit, heating it inside.
+    </Choice>
+    <Choice label="Heat left over from when it formed">
+      A small moon would have cooled long ago. Io is kept hot by tides: the resonance keeps its orbit oval, and Jupiter squeezes it every orbit.
+    </Choice>
+    <Choice label="Sunlight">
+      At Jupiter’s distance sunlight is 27 times weaker than at Earth. Io is heated from inside, by Jupiter’s tides.
+    </Choice>
+    <Choice label="Radioactive rock">
+      Radioactivity warms Earth’s inside, but Io is far too small for that to keep it molten. Jupiter’s tides do it.
+    </Choice>
+  </Question>
+
+  <Question id="pluto-demoted" prompt="Why is Pluto no longer called a planet?">
+    <Choice label="It hasn’t cleared its orbit: it is one of many bodies in the Kuiper belt" correct>
+      Right. In 2006 the IAU added the rule that a planet must have cleared its neighbourhood. Pluto shares its zone with many Kuiper belt
+      objects, including Eris, almost its size, so it is a dwarf planet.
+    </Choice>
+    <Choice label="It turned out to be too far away">
+      Distance isn’t part of the definition. Pluto shares its zone with many similar bodies, so it hasn’t cleared its orbit.
+    </Choice>
+    <Choice label="It isn’t round">
+      Pluto is round: that is one of the rules for a dwarf planet too. What it lacks is a cleared orbit.
+    </Choice>
+  </Question>
+
+  <ThreeToOne />
+</CheckYourself>

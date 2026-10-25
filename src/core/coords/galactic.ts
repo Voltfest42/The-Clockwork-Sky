@@ -1,5 +1,5 @@
 import { normalizeRadians } from '../math/angles';
-import { apply, type Mat3 } from '../math/vec3';
+import { apply, transpose, type Mat3, type Vec3 } from '../math/vec3';
 import type { Equatorial } from './transforms';
 
 /**
@@ -32,4 +32,14 @@ export function galacticFromEquatorial({ ra, dec }: Equatorial): Galactic {
   const cosDec = Math.cos(dec);
   const [x, y, z] = apply(EQUATORIAL_TO_GALACTIC, [cosDec * Math.cos(ra), cosDec * Math.sin(ra), Math.sin(dec)]);
   return { lon: normalizeRadians(Math.atan2(y, x)), lat: Math.atan2(z, Math.hypot(x, y)) };
+}
+
+/** A direction or position in equatorial axes (ICRS / J2000: x towards RA 0h, z towards the north celestial pole) turned into galactic axes (x towards the Galaxy's centre, z towards the north galactic pole). Same units. */
+export function galacticFromEquatorialVector(v: Vec3): Vec3 {
+  return apply(EQUATORIAL_TO_GALACTIC, v);
+}
+
+/** A direction or position in galactic axes turned into equatorial ones (the inverse turn). Same units. */
+export function equatorialFromGalacticVector(v: Vec3): Vec3 {
+  return apply(transpose(EQUATORIAL_TO_GALACTIC), v);
 }

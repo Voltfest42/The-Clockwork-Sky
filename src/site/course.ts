@@ -223,6 +223,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Rocky worlds, the giant planets and their moons, asteroids, comets and resonances, and how it all formed.',
     sections: ['The family portrait', 'Rocky worlds', 'Giants and their moons', 'Small worlds', 'How it all formed'],
     buildsOn: [1, 7],
+    load: () => import('../content/chapter8.mdx'),
   }),
   chapter({
     number: 9,
@@ -231,6 +232,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'How far away the stars are, our stellar neighbours, the Sun seen from afar, and our place in the Milky Way.',
     sections: ['How far is a star?', 'Our neighbours', 'The Sun from far away', 'Our place in the Milky Way'],
     buildsOn: [1, 6, 7],
+    load: () => import('../content/chapter9.mdx'),
   }),
 
   // ---------- Part II · The Stars ----------
