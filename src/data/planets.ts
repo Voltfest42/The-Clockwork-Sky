@@ -11,9 +11,12 @@
  * sheet's own counts are older.
  */
 
+import { AS_OF, monthYear } from './asOf';
+
 export type WorldId = 'mercury' | 'venus' | 'earth' | 'moon' | 'mars' | 'jupiter' | 'saturn' | 'uranus' | 'neptune';
 
-export const MOONS_AS_OF = 'March 2026';
+/** When the moon counts were last checked (see asOf.ts). */
+export const MOONS_AS_OF = monthYear(AS_OF.moons.checked);
 
 export interface World {
   id: WorldId;
@@ -249,9 +252,20 @@ export const SATURN_RINGS_KM = { inner: 74_500, outer: 136_780 };
 /** Known asteroids and other small bodies, beyond the numbered ones in src/data/asteroids.json. */
 export const DWARF_PLANETS = ['Ceres', 'Pluto', 'Haumea', 'Makemake', 'Eris'] as const;
 
-/** The three known interstellar visitors, with the dates they were found. */
+/** The known interstellar visitors, with the dates they were found, as of VISITORS_AS_OF; `called` is how the text names them. */
 export const INTERSTELLAR_VISITORS = [
-  { name: '1I/ʻOumuamua', found: '19 October 2017' },
-  { name: '2I/Borisov', found: '30 August 2019' },
-  { name: '3I/ATLAS', found: '1 July 2025' },
+  { name: '1I/ʻOumuamua', called: 'ʻOumuamua', found: '19 October 2017' },
+  { name: '2I/Borisov', called: 'comet Borisov', found: '30 August 2019' },
+  { name: '3I/ATLAS', called: '3I/ATLAS', found: '1 July 2025' },
 ] as const;
+
+export const VISITORS_AS_OF = monthYear(AS_OF.visitors.checked);
+
+/** Chapter 8's sentence: "Three are known, as of October 2026: ʻOumuamua, found on 19 October 2017; …". */
+export function visitorsSentence(): string {
+  const counts = ['none', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  const n: number = INTERSTELLAR_VISITORS.length;
+  const list = INTERSTELLAR_VISITORS.map((v, i) => `${i === n - 1 && n > 1 ? 'and ' : ''}${v.called}, ${i === 0 ? 'found on ' : 'on '}${v.found}`);
+  const count = counts[n] ?? String(n);
+  return `${count[0].toUpperCase()}${count.slice(1)} ${n === 1 ? 'is' : 'are'} known, as of ${VISITORS_AS_OF}: ${list.join('; ')}.`;
+}

@@ -1,0 +1,390 @@
+{
+ "source": "NASA eclipse decade tables, 2021–2050: Eclipse Predictions by Fred Espenak (NASA’s GSFC)",
+ "fetched": "2026-10-27",
+ "covers": {
+  "from": "2021-01-01",
+  "to": "2050-12-31"
+ },
+ "solar": [
+  {
+   "date": "2021-06-10",
+   "type": "annular",
+   "path": "northern Canada, Greenland, Russia",
+   "seconds": 231
+  },
+  {
+   "date": "2021-12-04",
+   "type": "total",
+   "path": "Antarctica",
+   "seconds": 114
+  },
+  {
+   "date": "2023-04-20",
+   "type": "hybrid",
+   "path": "Indonesia, Australia, Papua New Guinea",
+   "seconds": 76
+  },
+  {
+   "date": "2023-10-14",
+   "type": "annular",
+   "path": "western US, Central America, Colombia, Brazil",
+   "seconds": 317
+  },
+  {
+   "date": "2024-04-08",
+   "type": "total",
+   "path": "Mexico, central US, eastern Canada",
+   "seconds": 268
+  },
+  {
+   "date": "2024-10-02",
+   "type": "annular",
+   "path": "southern Chile, southern Argentina",
+   "seconds": 445
+  },
+  {
+   "date": "2026-02-17",
+   "type": "annular",
+   "path": "Antarctica",
+   "seconds": 140
+  },
+  {
+   "date": "2026-08-12",
+   "type": "total",
+   "path": "Arctic, Greenland, Iceland, Spain",
+   "seconds": 138
+  },
+  {
+   "date": "2027-02-06",
+   "type": "annular",
+   "path": "Chile, Argentina, Atlantic",
+   "seconds": 471
+  },
+  {
+   "date": "2027-08-02",
+   "type": "total",
+   "path": "Morocco, Spain, Algeria, Libya, Egypt, Saudi Arabia, Yemen, Somalia",
+   "seconds": 383
+  },
+  {
+   "date": "2028-01-26",
+   "type": "annular",
+   "path": "Ecuador, Peru, Brazil, Suriname, Spain, Portugal",
+   "seconds": 627
+  },
+  {
+   "date": "2028-07-22",
+   "type": "total",
+   "path": "Australia, New Zealand",
+   "seconds": 310
+  },
+  {
+   "date": "2030-06-01",
+   "type": "annular",
+   "path": "Algeria, Tunisia, Greece, Turkey, Russia, northern China, Japan",
+   "seconds": 321
+  },
+  {
+   "date": "2030-11-25",
+   "type": "total",
+   "path": "Botswana, South Africa, Australia",
+   "seconds": 224
+  },
+  {
+   "date": "2031-05-21",
+   "type": "annular",
+   "path": "Angola, Congo, Zambia, Tanzania, southern India, Malaysia, Indonesia",
+   "seconds": 326
+  },
+  {
+   "date": "2031-11-14",
+   "type": "hybrid",
+   "path": "Pacific, Panama",
+   "seconds": 68
+  },
+  {
+   "date": "2032-05-09",
+   "type": "annular",
+   "path": "southern Atlantic",
+   "seconds": 22
+  },
+  {
+   "date": "2033-03-30",
+   "type": "total",
+   "path": "eastern Russia, Alaska",
+   "seconds": 157
+  },
+  {
+   "date": "2034-03-20",
+   "type": "total",
+   "path": "Nigeria, Cameroon, Chad, Sudan, Egypt, Saudi Arabia, Iran, Afghanistan, Pakistan, India, China",
+   "seconds": 249
+  },
+  {
+   "date": "2034-09-12",
+   "type": "annular",
+   "path": "Chile, Bolivia, Argentina, Paraguay, Brazil",
+   "seconds": 178
+  },
+  {
+   "date": "2035-03-09",
+   "type": "annular",
+   "path": "New Zealand, Pacific",
+   "seconds": 48
+  },
+  {
+   "date": "2035-09-02",
+   "type": "total",
+   "path": "China, Korea, Japan, Pacific",
+   "seconds": 174
+  },
+  {
+   "date": "2037-07-13",
+   "type": "total",
+   "path": "Australia, New Zealand",
+   "seconds": 238
+  },
+  {
+   "date": "2038-01-05",
+   "type": "annular",
+   "path": "Cuba, Dominican Republic, Côte d’Ivoire, Ghana, Niger, Chad, Egypt",
+   "seconds": 198
+  },
+  {
+   "date": "2038-07-02",
+   "type": "annular",
+   "path": "Colombia, Venezuela, Mauritania, Morocco, Mali, Niger, Chad, Sudan, Ethiopia, Kenya",
+   "seconds": 60
+  },
+  {
+   "date": "2038-12-26",
+   "type": "total",
+   "path": "Australia, New Zealand, southern Pacific",
+   "seconds": 138
+  },
+  {
+   "date": "2039-06-21",
+   "type": "annular",
+   "path": "Alaska, northern Canada, Norway, Sweden, Finland, Estonia, Russia",
+   "seconds": 245
+  },
+  {
+   "date": "2039-12-15",
+   "type": "total",
+   "path": "Antarctica",
+   "seconds": 111
+  },
+  {
+   "date": "2041-04-30",
+   "type": "total",
+   "path": "Angola, Congo, Uganda, Kenya, Somalia",
+   "seconds": 111
+  },
+  {
+   "date": "2041-10-25",
+   "type": "annular",
+   "path": "Mongolia, China, Korea, Japan, Pacific",
+   "seconds": 367
+  },
+  {
+   "date": "2042-04-20",
+   "type": "total",
+   "path": "Malaysia, Indonesia, Philippines, northern Pacific",
+   "seconds": 291
+  },
+  {
+   "date": "2042-10-14",
+   "type": "annular",
+   "path": "Thailand, Malaysia, Indonesia, Australia, New Zealand",
+   "seconds": 464
+  },
+  {
+   "date": "2043-04-09",
+   "type": "total",
+   "path": "north-eastern Russia",
+   "seconds": null
+  },
+  {
+   "date": "2043-10-03",
+   "type": "annular",
+   "path": "southern Indian Ocean",
+   "seconds": null
+  },
+  {
+   "date": "2044-02-28",
+   "type": "annular",
+   "path": "southern Atlantic",
+   "seconds": 147
+  },
+  {
+   "date": "2044-08-23",
+   "type": "total",
+   "path": "Greenland, northern Canada, Montana, North Dakota",
+   "seconds": 124
+  },
+  {
+   "date": "2045-02-16",
+   "type": "annular",
+   "path": "New Zealand, Pacific",
+   "seconds": 467
+  },
+  {
+   "date": "2045-08-12",
+   "type": "total",
+   "path": "southern US, Haiti, Dominican Republic, Venezuela, Guyana, French Guiana, Suriname, Brazil",
+   "seconds": 366
+  },
+  {
+   "date": "2046-02-05",
+   "type": "annular",
+   "path": "Papua New Guinea, Hawaii, California, Oregon, Idaho",
+   "seconds": 582
+  },
+  {
+   "date": "2046-08-02",
+   "type": "total",
+   "path": "Brazil, Angola, eastern Namibia, Botswana, South Africa, Eswatini, southern Mozambique",
+   "seconds": 291
+  },
+  {
+   "date": "2048-06-11",
+   "type": "annular",
+   "path": "midwest US, Quebec, Ontario, Greenland, Iceland, Norway, Sweden, Russia, Afghanistan",
+   "seconds": 298
+  },
+  {
+   "date": "2048-12-05",
+   "type": "total",
+   "path": "Chile, Argentina, Namibia, Botswana",
+   "seconds": 208
+  },
+  {
+   "date": "2049-05-31",
+   "type": "annular",
+   "path": "Peru, Ecuador, Colombia, Venezuela, Guyana, Senegal, Mali, Burkina Faso, Ghana, Nigeria",
+   "seconds": 285
+  },
+  {
+   "date": "2049-11-25",
+   "type": "hybrid",
+   "path": "Saudi Arabia, Yemen, Malaysia, Indonesia",
+   "seconds": 38
+  },
+  {
+   "date": "2050-05-20",
+   "type": "hybrid",
+   "path": "southern Pacific",
+   "seconds": 21
+  }
+ ],
+ "lunar": [
+  {
+   "date": "2021-05-26",
+   "seen": "eastern Asia, Australia, Pacific, Americas"
+  },
+  {
+   "date": "2022-05-16",
+   "seen": "Americas, Europe, Africa"
+  },
+  {
+   "date": "2022-11-08",
+   "seen": "Asia, Australia, Pacific, Americas"
+  },
+  {
+   "date": "2025-03-14",
+   "seen": "Pacific, Americas, western Europe, western Africa"
+  },
+  {
+   "date": "2025-09-07",
+   "seen": "Europe, Africa, Asia, Australia"
+  },
+  {
+   "date": "2026-03-03",
+   "seen": "eastern Asia, Australia, Pacific, Americas"
+  },
+  {
+   "date": "2028-12-31",
+   "seen": "Europe, Africa, Asia, Australia, Pacific"
+  },
+  {
+   "date": "2029-06-26",
+   "seen": "Americas, Europe, Africa, the Middle East"
+  },
+  {
+   "date": "2029-12-20",
+   "seen": "Americas, Europe, Africa, Asia"
+  },
+  {
+   "date": "2032-04-25",
+   "seen": "eastern Africa, Asia, Australia, Pacific"
+  },
+  {
+   "date": "2032-10-18",
+   "seen": "Africa, Europe, Asia, Australia"
+  },
+  {
+   "date": "2033-04-14",
+   "seen": "Europe, Africa, Asia, Australia"
+  },
+  {
+   "date": "2033-10-08",
+   "seen": "Asia, Australia, Pacific, Americas"
+  },
+  {
+   "date": "2036-02-11",
+   "seen": "Americas, Europe, Africa, Asia, western Australia"
+  },
+  {
+   "date": "2036-08-07",
+   "seen": "Americas, Europe, Africa, western Asia"
+  },
+  {
+   "date": "2037-01-31",
+   "seen": "eastern Europe, eastern Africa, Asia, Australia, Pacific, North America"
+  },
+  {
+   "date": "2040-05-26",
+   "seen": "eastern Asia, Australia, Pacific, western Americas"
+  },
+  {
+   "date": "2040-11-18",
+   "seen": "eastern Americas, Europe, Africa, Asia, Australia"
+  },
+  {
+   "date": "2043-03-25",
+   "seen": "eastern Africa, eastern Europe, Asia, Australia, Pacific, western North America"
+  },
+  {
+   "date": "2043-09-19",
+   "seen": "Americas, Europe, Africa, western Asia"
+  },
+  {
+   "date": "2044-03-13",
+   "seen": "eastern South America, Europe, Africa, Asia, Australia"
+  },
+  {
+   "date": "2044-09-07",
+   "seen": "eastern Asia, Australia, Pacific, Americas"
+  },
+  {
+   "date": "2047-01-12",
+   "seen": "Americas, Europe, Africa, Asia"
+  },
+  {
+   "date": "2047-07-07",
+   "seen": "eastern Asia, Australia, Pacific, Americas"
+  },
+  {
+   "date": "2048-01-01",
+   "seen": "north-eastern Asia, Pacific, Americas, western Europe, western Africa"
+  },
+  {
+   "date": "2050-05-06",
+   "seen": "eastern Americas, Europe, Africa, Asia, western Australia"
+  },
+  {
+   "date": "2050-10-30",
+   "seen": "Americas, Europe, Africa, western Asia"
+  }
+ ]
+}

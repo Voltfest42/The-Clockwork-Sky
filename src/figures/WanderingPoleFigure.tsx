@@ -23,15 +23,17 @@ import styles from './sky/sky.module.css';
 /** Astronomical years: 10,000 BC is −9999. */
 const FIRST = -9999;
 const LAST = 16_000;
-const TODAY = 2026;
 
-const PRESETS: { year: number; label: string }[] = [
-  { year: -2559, label: '2560 BC: the Great Pyramid' },
-  { year: -129, label: '130 BC: Hipparchus' },
-  { year: TODAY, label: 'Today' },
-  { year: 2100, label: 'AD 2100' },
-  { year: 13_600, label: 'AD 13,600' },
-];
+/** The presets, with "Today" as the reader's own year. */
+function presets(today: number): { year: number; label: string }[] {
+  return [
+    { year: -2559, label: '2560 BC: the Great Pyramid' },
+    { year: -129, label: '130 BC: Hipparchus' },
+    { year: today, label: 'Today' },
+    { year: 2100, label: 'AD 2100' },
+    { year: 13_600, label: 'AD 13,600' },
+  ];
+}
 
 const FEATURED = ['Polaris', 'Thuban', 'Vega', 'Deneb', 'Alderamin', 'Kochab', 'Errai', 'Eltanin', 'Dubhe'];
 /** Stars down to this magnitude can be a pole star (Thuban is 3.7). */
@@ -58,7 +60,9 @@ export function WanderingPoleFigure({ number, tryThis }: { number: string; tryTh
   const place = usePlace();
   const where = corePlace(place);
   const north = where.latitude >= 0;
-  const [year, setYear] = useState(TODAY);
+  // The figure runs only in the browser, after hydration, so it can read the clock.
+  const [today] = useState(() => new Date().getUTCFullYear());
+  const [year, setYear] = useState(today);
   const [playing, setPlaying] = useState(false);
   const [mode, setMode] = useState<'chart' | 'ground'>('chart');
   const [spin, setSpin] = useState(0); // hours the sky has turned in the view from the ground
@@ -126,7 +130,7 @@ export function WanderingPoleFigure({ number, tryThis }: { number: string; tryTh
   }, [model, poleNow, sign, year]);
 
   const reset = () => {
-    setYear(TODAY);
+    setYear(today);
     setPlaying(false);
     setSpinning(false);
     setSpin(0);
@@ -203,7 +207,7 @@ export function WanderingPoleFigure({ number, tryThis }: { number: string; tryTh
             <button type="button" className={figureStyles.toolButton} aria-pressed={playing} onClick={() => (year >= LAST ? (setYear(FIRST), setPlaying(true)) : setPlaying(!playing))}>
               {playing ? '❚❚ Pause' : year >= LAST ? '↺ Again from 10,000 BC' : '▶ Play the centuries'}
             </button>
-            {PRESETS.map((p) => (
+            {presets(today).map((p) => (
               <button
                 key={p.year}
                 type="button"

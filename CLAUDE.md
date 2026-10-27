@@ -64,7 +64,7 @@ Every page is a real address with its own prerendered HTML, so search engines an
 - **Tone:** intuition and pictures first, game-dev analogies where they fit, formulas only when they earn their place. Part I uses no equations beyond arithmetic. Part II uses algebra in short boxes. Part III uses real equations.
 - **Every chapter:** a "Builds on" line, figures, and a Check yourself block at the end.
 - **Every figure:** a caption, a legend, a "Try this" prompt and a reset. Add a "What's simplified here?" note when it simplifies, and a "not to scale" tag when it exaggerates.
-- **Facts:** take numbers from the part's research brief. Facts that change (moon counts, exoplanet counts) carry an "as of" date, and their values live in `src/data/`, not in the prose.
+- **Facts:** take numbers from the part's research brief. Facts that change (moon counts, exoplanet counts) carry an "as of" date, and their values live in `src/data/`, not in the prose; register each in `src/data/asOf.ts`, whose test fails when one is overdue for a check. Never write "the next …" or "the last …" with a fixed date: give a past example in the past tense, or compute the next one from today in `src/site/content/Dated.tsx`.
 - **Misconceptions:** figures for the seasons, phases, eclipses and gravity are built to confront the known wrong ideas (`docs/part1/research.md` §1).
 - **Accessibility:** WCAG 2.1 AA in both themes, full keyboard control, `prefers-reduced-motion` respected, colour never the only cue, and a text description and keyboard camera for every 3D scene.
 - **Scope:** no cosmology (the expanding universe, the Big Bang, the CMB, dark energy). It may become a separate course.

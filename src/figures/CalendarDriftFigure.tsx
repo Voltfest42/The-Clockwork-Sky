@@ -21,7 +21,6 @@ const RULES: { rule: CalendarRule; name: string; color: string; dashed?: boolean
   { rule: 'julian', name: 'Julian rules (365¼ days)', color: 'var(--series-2)' },
   { rule: 'gregorian', name: 'Gregorian rules (365.2425 days)', color: 'var(--series-1)' },
 ];
-const START_YEAR = 2026;
 
 /** "15 days earlier than in 45 BC". */
 function slipText(days: number): string {
@@ -31,7 +30,9 @@ function slipText(days: number): string {
 }
 
 export function CalendarDriftFigure({ number, tryThis }: { number: string; tryThis: ReactNode }) {
-  const [year, setYear] = useState(START_YEAR);
+  // The figure runs only in the browser, after hydration, so it can read the clock.
+  const [today] = useState(() => new Date().getUTCFullYear());
+  const [year, setYear] = useState(today);
   const [closeUp, setCloseUp] = useState(false);
 
   const series = useMemo<Series[]>(() => {
@@ -50,7 +51,7 @@ export function CalendarDriftFigure({ number, tryThis }: { number: string; tryTh
   const at = RULES.map((r) => ({ ...r, date: equinoxDate(year, r.rule).label, drift: equinoxDrift(year, r.rule) }));
 
   const reset = () => {
-    setYear(START_YEAR);
+    setYear(today);
     setCloseUp(false);
   };
 
@@ -98,7 +99,7 @@ export function CalendarDriftFigure({ number, tryThis }: { number: string; tryTh
             {[
               [325, 'AD 325'],
               [1582, '1582'],
-              [START_YEAR, 'Today'],
+              [today, 'Today'],
             ].map(([y, label]) => (
               <button key={label} type="button" className={figureStyles.toolButton} onClick={() => setYear(y as number)}>
                 {label}

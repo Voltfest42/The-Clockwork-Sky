@@ -5,6 +5,7 @@ import {
   findLab,
   findToolkitPage,
   partNumbered,
+  partReady,
   toolkitPage,
   type ChapterInfo,
   type LabInfo,
@@ -70,11 +71,14 @@ export function ChapterCard({ chapter, done }: { chapter: ChapterInfo; done: boo
   );
 }
 
+/** A part's card: a link once all its chapters are written; until then a plain card marked "Coming soon". */
 export function PartCard({ part }: { part: PartInfo }) {
   const chapters = chaptersOf(part.number);
   const labs = part.labs.map(({ slug, version }) => `${findLab(slug)!.title}${version > 1 ? ` v${version}` : ''}`);
+  const ready = partReady(part);
+  const Card = ready ? 'a' : 'div';
   return (
-    <a href={href(part.slug)} className={styles.card}>
+    <Card href={ready ? href(part.slug) : undefined} className={`${styles.card} ${ready ? '' : styles.cardSoon}`}>
       <span className={styles.cardNumber}>
         <span>Part {part.numeral}</span>
         <span className={styles.level}>{part.level}</span>
@@ -86,13 +90,16 @@ export function PartCard({ part }: { part: PartInfo }) {
       </span>
       <span className={styles.cardMeta}>Maths: {part.maths}</span>
       <span className={styles.startHere}>{part.startHere}</span>
-    </a>
+      {!ready && <SoonTag />}
+    </Card>
   );
 }
 
+/** A lab's card: a link once the lab is built; until then a plain card marked "Coming soon" (its plans are still in the sidebar). */
 export function LabCard({ lab }: { lab: LabInfo }) {
+  const Card = lab.load ? 'a' : 'div';
   return (
-    <a href={href(lab.slug)} className={`${styles.card} ${lab.load ? '' : styles.cardSoon}`}>
+    <Card href={lab.load ? href(lab.slug) : undefined} className={`${styles.card} ${lab.load ? '' : styles.cardSoon}`}>
       <span className={styles.cardNumber}>
         <span>Lab · {lab.subject}</span>
       </span>
@@ -102,7 +109,7 @@ export function LabCard({ lab }: { lab: LabInfo }) {
         {lab.versions.map((v) => `Version ${v.version} with Part ${partNumbered(v.part).numeral}`).join(' · ')}
       </span>
       {!lab.load && <SoonTag />}
-    </a>
+    </Card>
   );
 }
 

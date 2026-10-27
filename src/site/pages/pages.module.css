@@ -122,6 +122,12 @@
   background: transparent;
 }
 
+/* A coming-soon card that isn't a link doesn't lift on hover. */
+div.cardSoon:hover {
+  border-color: var(--border);
+  transform: none;
+}
+
 .cardNumber {
   font-size: 0.78rem;
   font-weight: 700;

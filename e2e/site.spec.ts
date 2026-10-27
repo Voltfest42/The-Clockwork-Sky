@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { CHAPTERS, chaptersOf, LABS, PARTS, TOOLKIT } from '../src/site/course';
+import { CHAPTERS, chaptersOf, LABS, PARTS, partReady, TOOLKIT } from '../src/site/course';
 import { GLOSSARY } from '../src/site/glossary';
 import { href } from '../src/site/router';
 import { accessibilityViolations, expectNoBrokenFigures, watchErrors } from './helpers';
@@ -26,14 +26,23 @@ test('the landing page introduces the course and its three parts @phone', async 
   await expect(page.getByRole('heading', { level: 1, name: 'The Clockwork Sky' })).toBeVisible();
   await expect(page.getByText(/On Christmas night 1758, Johann Palitzsch/)).toBeVisible();
   const main = page.locator('main');
-  for (const part of PARTS) await expect(main.getByRole('link', { name: new RegExp(`Part ${part.numeral} .*${part.title}`) })).toBeVisible();
-  for (const lab of LABS) await expect(main.getByRole('link', { name: new RegExp(`^Lab · .*${lab.title}`) })).toBeVisible();
+  // Parts and labs that are ready are links; the rest are plain cards marked "Coming soon".
+  for (const part of PARTS) {
+    const link = main.getByRole('link', { name: new RegExp(`Part ${part.numeral} .*${part.title}`) });
+    if (partReady(part)) await expect(link).toBeVisible();
+    else {
+      await expect(link).toHaveCount(0);
+      await expect(main.getByRole('listitem').filter({ hasText: new RegExp(`^Part ${part.numeral}.*${part.title}.*Coming soon`) })).toBeVisible();
+    }
+  }
+  for (const lab of LABS) await expect(main.getByRole('link', { name: new RegExp(`^Lab · .*${lab.title}`) })).toHaveCount(lab.load ? 1 : 0);
   await expect(main.getByRole('link', { name: 'Start reading: Chapter 1, A sense of scale →' })).toHaveAttribute('href', '/a-sense-of-scale/');
   await expect(main.getByRole('img', { name: /A ruler of sizes/ })).toBeVisible();
   await expect(main.getByRole('heading', { name: 'How to use the figures' })).toBeVisible();
   await expect(main.getByRole('heading', { name: 'Where to start' })).toBeVisible();
   await expect(main.getByRole('link', { name: 'Start with Chapter 1, A sense of scale →' })).toHaveAttribute('href', '/a-sense-of-scale/');
-  await expect(main.getByRole('link', { name: 'Start with Part II, The Stars →' })).toHaveAttribute('href', '/part-2/');
+  await expect(main.getByText('Part II, The Stars:')).toContainText('Coming soon');
+  await expect(main.getByRole('link', { name: /Start with Part II/ })).toHaveCount(0);
   expect(await accessibilityViolations(page)).toEqual([]);
   expect(errors).toEqual([]);
 });
@@ -119,8 +128,14 @@ test('the Toolkit and the labs list their pages', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1, name: 'Angles in the sky' })).toBeVisible();
   await expect(main.getByRole('link', { name: 'Chapter 2, The turning sky' })).toBeVisible();
 
+  // The Star Forge isn't built: its card is marked "Coming soon" and isn't a link, but its plans are in the sidebar.
   await page.goto('/labs/');
-  await page.locator('main').getByRole('link', { name: /The Star Forge/ }).click();
+  await expect(page.locator('main').getByRole('link', { name: /The Star Forge/ })).toHaveCount(0);
+  await expect(page.locator('main').getByText('The Star Forge').locator('..')).toContainText('Coming soon');
+  const nav = page.getByRole('navigation', { name: 'Contents' });
+  const partTwo = nav.getByRole('button', { name: 'Chapters of Part II', exact: true });
+  if ((await partTwo.getAttribute('aria-expanded')) !== 'true') await partTwo.click();
+  await nav.getByRole('link', { name: /The Star Forge/ }).click();
   await expect(page.getByRole('heading', { level: 1, name: 'The Star Forge' })).toBeVisible();
   await expect(page.locator('main').getByText(/Version 1, with/)).toBeVisible();
 });

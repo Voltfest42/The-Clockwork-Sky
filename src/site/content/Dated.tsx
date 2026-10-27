@@ -1,5 +1,6 @@
 import { usePageTime } from '../hydration';
 import { GAIA } from '../../data/gaia';
+import { dayLabel, durationWords, jdTTFromMs, nextOpposition, nextTotalLunarEclipse, nextTotalSolarEclipses, placeList } from './upcoming';
 import { voyagerHasReachedLightDay, voyagerYears } from './voyagerDates';
 
 /**
@@ -36,4 +37,33 @@ export function GaiaDr4({ now: given }: { now?: number }) {
   ) : (
     <>Its fourth data release, due on {GAIA.dr4.date}, will add five and a half years of measurements, and with them sharper distances still.</>
   );
+}
+
+/**
+ * The next three total eclipses of the Sun and the next total eclipse of the
+ * Moon, from today, with where they can be seen (Chapter 4).
+ */
+export function NextEclipses({ now: given }: { now?: number }) {
+  const pageTime = usePageTime();
+  const from = jdTTFromMs(given ?? pageTime);
+  const solar = nextTotalSolarEclipses(from, 3);
+  const lunar = nextTotalLunarEclipse(from);
+  const longest = solar.reduce((best, e) => ((e.seconds ?? 0) > (best?.seconds ?? 0) ? e : best), solar[0]);
+  const items = solar.map((e) => {
+    const where = e.path ? `, across ${placeList(e.path)}` : '';
+    const how = e === longest && e.seconds ? `, with up to ${durationWords(e.seconds)} of totality` : '';
+    return `${e.date}${where}${how}`;
+  });
+  return (
+    <>
+      The next total eclipses of the Sun are on {items[0]}; on {items[1]}; and on {items[2]}. Earth’s shadow next turns the Moon red on {lunar.date}
+      {lunar.seen ? `, seen from ${placeList(lunar.seen)}` : ''}.
+    </>
+  );
+}
+
+/** When Mars is next opposite the Sun, and so in the middle of its next backward loop (Chapter 5). */
+export function NextMarsOpposition({ now: given }: { now?: number }) {
+  const pageTime = usePageTime();
+  return <>Its next opposition is on {dayLabel(nextOpposition('mars', jdTTFromMs(given ?? pageTime)))}.</>;
 }

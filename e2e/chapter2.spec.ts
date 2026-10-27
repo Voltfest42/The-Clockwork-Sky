@@ -239,7 +239,7 @@ test('the wandering pole: Thuban, Polaris and Vega take turns', async ({ page })
   await figure.getByRole('button', { name: /^From / }).click();
   await expect(figure.locator('[aria-roledescription="sky view"]')).toHaveAccessibleName(/The sky from London in 10,000 BC/);
   await figure.getByRole('button', { name: 'Reset figure 2.5' }).click();
-  await expect(slider).toHaveAttribute('aria-valuetext', 'AD 2026');
+  await expect(slider).toHaveAttribute('aria-valuetext', `AD ${new Date().getUTCFullYear()}`);
   expect(errors).toEqual([]);
 });
 

@@ -200,6 +200,15 @@
 - **"Air" for other worlds** is now "atmosphere" (Mercury, Venus, Mars, the rocky planets, Jupiter, Titan, Venus in Chapter 5's Check yourself, Figure 8.2's table and notes); Earth's air stays air. Venus's atmosphere "presses down 92 times as hard as our air" (it was "92 times as thick"). Figure 8.2's Mars row no longer gives the pressure twice.
 - Tests: 552 unit and 128 end-to-end tests pass.
 
+**Stage 8c (dates that stay right, and unfinished parts marked) is done** (27 Oct 2026).
+- **The start page** shows Parts II and III, and the Star Forge, as plain cards marked "Coming soon" instead of links, and "Where to start" marks those parts as coming soon. A part becomes a link by itself once all its chapters are written (`partReady` in `course.ts`), a lab once it is built. Their pages are still reachable from the sidebar. The Labs page and Part II's page show the Star Forge the same way.
+- **No "next" or "last" with a fixed date in the text.** Chapter 4's next total solar eclipses and next total lunar eclipse, and Chapter 5's next opposition of Mars, are now computed from today (the build's date in the prerendered HTML, the reader's clock after hydration) by the course's own eclipse finder and planet positions (`src/site/content/upcoming.ts`, `NextEclipses` and `NextMarsOpposition` in `Dated.tsx`). Where each eclipse can be seen, and the longest totality, come from NASA's decade tables, 2021–2050 (`scripts/build-eclipse-regions.ts` → `src/data/eclipseRegions.json`, with NASA's abbreviations written out); beyond them the dates still come, without the places. Chapter 5's Mars loop is now a past example ("In 2024–25, for example, …").
+- **Figures 2.5 and 3.4** start from the reader's own year ("Today"), not 2026.
+- **A register of facts that go out of date** (`src/data/asOf.ts`): moon counts, the interstellar visitors, the ISS's orbit, the numbered asteroids, Gaia DR4's date and measured ΔT, each with the month it was last checked, where it lives, where to check it and how often (6–24 months). The pages' "as of" dates come from it; `tests/dated.test.tsx` fails when one is overdue, and when NASA's eclipse regions run less than ten years ahead. Chapter 8's interstellar visitors sentence is built from the data, with its date. `CLAUDE.md`'s facts convention says so.
+- **Fixed on the way**: Chapter 1's Voyager sentence sat outside any paragraph in the HTML; it and the eclipse sentence are now paragraphs.
+- Checked: NASA's 2021–2050 tables agree with the eclipse finder on every central solar eclipse's type and every total lunar eclipse (9 April 2043 is total but not central); the next total solar eclipses after 27 October 2026 are 2 August 2027 (6 min 23 s), 22 July 2028 and 25 November 2030, the next total lunar eclipse 31 December 2028, and Mars's next oppositions 19 February 2027 and 25 March 2029.
+- Tests: 566 unit and 128 end-to-end tests pass.
+
 **Next: Stage 9, Part II research and detailed plan** (§3 and §11): write `docs/part2/research.md` and `docs/part2/plan.md` for Part II's chapters, the Star Forge v1 and its Toolkit pages, and agree them before building.
 
 ## Decisions so far

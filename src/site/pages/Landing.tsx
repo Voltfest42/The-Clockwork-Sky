@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react';
 import Intro from '../../content/intro.mdx';
-import { CHAPTERS, LABS, PARTS, chaptersOf } from '../course';
+import { CHAPTERS, LABS, PARTS, chaptersOf, partReady } from '../course';
 import { Term } from '../content/Term';
 import { mdxComponents } from '../content/mdxComponents';
 import { useReadChapters } from '../progress';
 import { href } from '../router';
-import { LabCard, PartCard } from './CourseCards';
+import { LabCard, PartCard, SoonTag } from './CourseCards';
 import { ZoomLevels } from './ZoomLevels';
 import contentStyles from '../content/content.module.css';
 import styles from './pages.module.css';
@@ -112,7 +112,11 @@ export function Landing() {
           return (
             <li key={part.slug}>
               <span className={styles.startWho}>{part.startHere.replace(/^Start here /, '').replace(/^if/, 'If')}</span>
-              {first.load ? (
+              {!partReady(part) ? (
+                <span>
+                  Part {part.numeral}, {part.title}: <SoonTag />
+                </span>
+              ) : first.load ? (
                 <a href={href(first.slug)}>
                   Start with Chapter {first.number}, {first.title} →
                 </a>

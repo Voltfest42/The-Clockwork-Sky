@@ -335,7 +335,7 @@ export function About() {
           <li>J. Laskar (1986), Astronomy and Astrophysics 157, 59: the long-term formula for the tilt of Earth’s axis.</li>
           <li>
             NASA’s Five Millennium Catalogs of Solar and Lunar Eclipses (Fred Espenak, NASA Goddard): every eclipse from 1900 to 2100, against
-            which the eclipse finder is tested.
+            which the eclipse finder is tested; and NASA’s decade tables of eclipses, 2021–2050, for where each coming eclipse can be seen.
           </li>
           <li>
             G. Kopp and J. L. Lean (2011), Geophysical Research Letters 38, L01706, with the IAU’s nominal solar luminosity: sunlight at Earth,
@@ -452,8 +452,8 @@ export function About() {
             use your browser’s copy of the IANA time-zone database.
           </li>
           <li>
-            <b>Eclipses:</b> the course finds eclipses with its own code, and tests it against NASA’s catalogues. Eclipse Predictions by Fred
-            Espenak (NASA’s GSFC), reproduced in the tests with that acknowledgment, as NASA asks.
+            <b>Eclipses:</b> the course finds eclipses with its own code, and tests it against NASA’s catalogues. Where the coming eclipses can be
+            seen comes from NASA’s tables. Eclipse Predictions by Fred Espenak (NASA’s GSFC), reproduced with that acknowledgment, as NASA asks.
           </li>
           <li>
             <b>Planet maps:</b> the globes use the planet textures of{' '}

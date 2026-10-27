@@ -518,6 +518,11 @@ export function chaptersOf(part: PartNumber): readonly ChapterInfo[] {
   return CHAPTERS.filter((c) => c.part === part);
 }
 
+/** Whether a part is out: every one of its chapters is written. Until then the start page shows it as coming soon. */
+export function partReady(part: PartInfo): boolean {
+  return chaptersOf(part.number).every((c) => c.load !== undefined);
+}
+
 export function findPart(slug: string): PartInfo | undefined {
   return PARTS.find((p) => p.slug === slug);
 }

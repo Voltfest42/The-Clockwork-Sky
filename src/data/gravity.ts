@@ -4,6 +4,8 @@
  * in kg, unless a name says otherwise.
  */
 
+import { AS_OF, monthYear } from './asOf';
+
 export interface WeighingPair {
   id: string;
   /** "Sun and Earth": the button's label. */
@@ -33,7 +35,7 @@ export interface WeighingPair {
 export const WEIGHING_PAIRS: readonly WeighingPair[] = [
   { id: 'sun-earth', name: 'Sun and Earth', central: 'the Sun', satellite: 'Earth', a: 149_598_000, period: 365.256, mass: 1.9885e30 + 6.046e24, massOf: 'the Sun', centralRadius: 695_700, satelliteRadius: 6_371 },
   { id: 'earth-moon', name: 'Earth and the Moon', central: 'Earth', satellite: 'the Moon', a: 384_400, period: 27.3217, mass: 5.9722e24 + 7.342e22, massOf: 'Earth plus the Moon', centralRadius: 6_371, satelliteRadius: 1_737 },
-  { id: 'earth-iss', name: 'Earth and the ISS', central: 'Earth', satellite: 'the ISS', a: 6_791, period: 92.8 / 1440, mass: 5.9722e24, massOf: 'Earth', centralRadius: 6_371, satelliteRadius: 0.05, asOf: 'October 2026' },
+  { id: 'earth-iss', name: 'Earth and the ISS', central: 'Earth', satellite: 'the ISS', a: 6_791, period: 92.8 / 1440, mass: 5.9722e24, massOf: 'Earth', centralRadius: 6_371, satelliteRadius: 0.05, asOf: monthYear(AS_OF.iss.checked) },
   { id: 'jupiter-io', name: 'Jupiter and Io', central: 'Jupiter', satellite: 'Io', a: 421_800, period: 1.769_138, mass: 1.898_1e27 + 8.93e22, massOf: 'Jupiter (and Io)', centralRadius: 69_911, satelliteRadius: 1_822 },
   { id: 'mars-phobos', name: 'Mars and Phobos', central: 'Mars', satellite: 'Phobos', a: 9_376, period: 0.318_91, mass: 6.417e23, massOf: 'Mars', centralRadius: 3_390, satelliteRadius: 11 },
   { id: 'pluto-charon', name: 'Pluto and Charon', central: 'Pluto', satellite: 'Charon', a: 19_596, period: 6.387_2, mass: 1.303e22 + 1.586e21, massOf: 'Pluto plus Charon', centralRadius: 1_188, satelliteRadius: 606 },
