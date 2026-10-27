@@ -125,7 +125,7 @@ Newton’s method makes it routine. Start with a guess for E, for example E = M.
   }
 />
 
-For orbits nearly as stretched as a straight line, near perihelion, a plain Newton step can overshoot wildly. This course’s solver keeps every guess inside a range that is sure to hold the answer, E between M − e and M + e, and halves that range instead whenever Newton’s step would leave it. And it starts from J. M. A. Danby’s guess, M + 0.85 e towards the side the planet is heading, which is usually close. For the visitors from other stars, on open hyperbolic paths, there is a version of the equation with the hyperbolic sine, solved the same way.
+For orbits nearly as stretched as a straight line, near perihelion, a plain Newton step can overshoot wildly. This course’s solver keeps every guess inside a range that is sure to hold the answer, E between M − e and M + e, and halves that range instead whenever Newton’s step would leave it. And it starts from J. M. A. Danby’s guess: M nudged by 0.85 e towards where the answer must lie, ahead of M while the planet heads out from perihelion and behind it on the way back. That is close near perihelion, where the equation is hardest; near aphelion the answer is close to M itself, so the nudge overshoots, and at 180° it jumps from one side to the other. For the visitors from other stars, on open hyperbolic paths, there is a version of the equation with the hyperbolic sine, solved the same way.
 
 </DeepDive>
 

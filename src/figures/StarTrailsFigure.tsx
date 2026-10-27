@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type ReactNode } from 'react';
 import { precessionMatrix } from '../core/coords/precession';
-import { clamp } from '../core/math/angles';
+import { clamp, wrapPi } from '../core/math/angles';
 import { apply, type Vec3 } from '../core/math/vec3';
 import { horizonMatrix } from '../core/sky/frames';
 import type { SkyCamera } from '../core/sky/projection';
@@ -144,17 +144,22 @@ export function StarTrailsFigure({ number, tryThis }: { number: string; tryThis:
   };
 
   const degreesTurned = (turned / DEG).toFixed(0);
-  const facingPole = (direction === 'N' && where.latitude > 0) || (direction === 'S' && where.latitude < 0);
+  // A heading button stays pressed only while the view is still where it put it, as in Figure 2.1; turned by hand, the
+  // words describe the nearest compass point instead.
+  const aimed = cameraFor(direction, where.latitude);
+  const onHeading = Math.abs(wrapPi(camera.az - aimed.az)) < 1e-6 && Math.abs(camera.alt - aimed.alt) < 1e-6;
+  const facing: Direction = onHeading ? direction : (['N', 'E', 'S', 'W'] as const)[Math.round(((camera.az / DEG) % 360 + 360) % 360 / 90) % 4];
+  const facingPole = (facing === 'N' && where.latitude > 0) || (facing === 'S' && where.latitude < 0);
   const shape =
     Math.abs(where.latitude) > 89 * DEG
       ? 'At the pole, every trail is a circle parallel to the horizon: nothing rises or sets.'
-      : Math.abs(where.latitude) < 1 * DEG && (direction === 'E' || direction === 'W')
-        ? `On the equator the trails go straight ${direction === 'E' ? 'up from' : 'down to'} the horizon.`
+      : Math.abs(where.latitude) < 1 * DEG && (facing === 'E' || facing === 'W')
+        ? `On the equator the trails go straight ${facing === 'E' ? 'up from' : 'down to'} the horizon.`
         : facingPole
           ? 'Facing the pole, the trails are circles round it, and the stars near it never set.'
-          : direction === 'E'
+          : facing === 'E'
             ? 'Facing east, the stars rise at a slant, all in parallel.'
-            : direction === 'W'
+            : facing === 'W'
               ? 'Facing west, they set at the same slant.'
               : 'Facing away from the pole, the trails are arcs that rise in the east and set in the west.';
 
@@ -207,7 +212,7 @@ export function StarTrailsFigure({ number, tryThis }: { number: string; tryThis:
             <span className={styles.togglesLabel}>Face</span>
             <span className={figureStyles.segmented}>
               {(['N', 'E', 'S', 'W'] as const).map((d) => (
-                <button key={d} type="button" aria-label={`Face ${DIRECTION_WORDS[d]}`} aria-pressed={direction === d} onClick={() => look(d)}>
+                <button key={d} type="button" aria-label={`Face ${DIRECTION_WORDS[d]}`} aria-pressed={onHeading && direction === d} onClick={() => look(d)}>
                   {d}
                 </button>
               ))}
@@ -225,7 +230,7 @@ export function StarTrailsFigure({ number, tryThis }: { number: string; tryThis:
           selected={selected}
           onSelect={setSelected}
           inViewButtons={false}
-          label={`Star trails seen from ${place.name}, facing ${DIRECTION_WORDS[direction]}`}
+          label={`Star trails seen from ${place.name}, facing ${onHeading ? '' : 'roughly '}${DIRECTION_WORDS[facing]}`}
           description={`An exposure of ${hours.toFixed(1)} hours starting ${formatMoment(start, place, false)}: the sky has turned ${degreesTurned}°. ${shape}`}
           overlay={
             <>

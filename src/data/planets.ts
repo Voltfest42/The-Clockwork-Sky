@@ -148,7 +148,7 @@ export const WORLDS: readonly World[] = [
     tiltDeg: 25.19,
     temperatureC: -65,
     pressureBar: 0.006,
-    atmosphere: '95% carbon dioxide, 2.8% nitrogen, 2% argon: less than 1% of Earth’s air pressure',
+    atmosphere: '95% carbon dioxide, 2.8% nitrogen, 2% argon',
     moons: 2,
     rings: false,
     note: 'Dry riverbeds and lake beds show that water once flowed. Its ice caps hold water and carbon dioxide ice.',

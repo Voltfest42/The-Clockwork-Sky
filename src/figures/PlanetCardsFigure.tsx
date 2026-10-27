@@ -14,7 +14,7 @@ import styles from './sky/sky.module.css';
  * Planet cards: compare any two worlds, side by side as globes at their true
  * relative sizes (spinning at their true relative rates when played), with a
  * table of their sizes, gravity (your weight there), days and years (your
- * age there), temperatures, air and moons.
+ * age there), temperatures, atmospheres and moons.
  */
 
 const SPEEDS = [
@@ -49,7 +49,7 @@ function temperatureWords(world: World): string {
   return world.temperatureNote ? `${t} on average, ${world.temperatureNote}` : `${t} on average`;
 }
 
-function airWords(world: World): string {
+function atmosphereWords(world: World): string {
   if (world.pressureBar === null) return `No solid surface. ${world.atmosphere}.`;
   if (world.pressureBar === 0) return `${world.atmosphere}.`;
   const p = world.pressureBar >= 1 ? `${threeFigures(world.pressureBar)} times Earth’s air pressure` : `${(world.pressureBar * 100).toFixed(1)}% of Earth’s air pressure`;
@@ -101,7 +101,7 @@ export function PlanetCardsFigure({ number, tryThis }: { number: string; tryThis
     ['Your age there', (w) => <b>{w.id === 'moon' ? age : threeFigures(ageThere(age, w))} years</b>],
     ['Tilt of the axis', (w) => `${w.tiltDeg < 1 ? w.tiltDeg.toFixed(2) : w.tiltDeg.toFixed(1)}°`],
     ['Temperature', temperatureWords],
-    ['Air', airWords],
+    ['Atmosphere', atmosphereWords],
     [`Known moons (${MOONS_AS_OF})`, (w) => `${w.moons}${w.moonNote ? `, ${w.moonNote}` : ''}`],
     ['Rings', (w) => (w.rings ? 'Yes' : 'No')],
   ];
@@ -112,15 +112,15 @@ export function PlanetCardsFigure({ number, tryThis }: { number: string; tryThis
     <Figure
       number={number}
       title="Planet cards"
-      description="Two worlds side by side as 3D globes at their true relative sizes, with real maps of their surfaces or cloud tops, each tilted and spinning at its own rate. Any two of the eight planets and the Moon can be compared: their width, mass and gravity (and what you would weigh there), their days and years (and how old you would be), their tilt, temperature, air and moons."
+      description="Two worlds side by side as 3D globes at their true relative sizes, with real maps of their surfaces or cloud tops, each tilted and spinning at its own rate. Any two of the eight planets and the Moon can be compared: their width, mass and gravity (and what you would weigh there), their days and years (and how old you would be), their tilt, temperature, atmosphere and moons."
       height={1180}
       tryThis={tryThis}
       onReset={reset}
       simplified={
         <p>
           The globes are real maps (the giants’ cloud tops, and Venus’s clouds) on smooth spheres: no mountains, no flattening of the fast-spinning
-          giants, and no glowing air. The Moon counts as a world here, though it isn’t a planet. Gravity for the giant planets is at the level
-          where the air pressure is the same as at Earth’s surface, high in their clouds.
+          giants, and no glowing atmospheres. The Moon counts as a world here, though it isn’t a planet. Gravity for the giant planets is at the level
+          where the pressure is the same as at Earth’s surface, high in their clouds.
         </p>
       }
     >

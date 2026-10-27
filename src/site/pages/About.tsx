@@ -255,7 +255,7 @@ export function About() {
             plain bands.
           </li>
           <li>
-            <b>Figure 8.2, planet cards.</b> Real maps on smooth spheres: no mountains, no flattening of the giants, no glowing air. Gravity for the
+            <b>Figure 8.2, planet cards.</b> Real maps on smooth spheres: no mountains, no flattening of the giants, no glowing atmospheres. Gravity for the
             giants is at their cloud tops. Moon counts are as of March 2026.
           </li>
           <li>

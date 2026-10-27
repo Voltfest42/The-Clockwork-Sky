@@ -211,7 +211,11 @@ export function KeplerSolverFigure({ number, tryThis }: { number: string; tryThi
         {done
           ? `Done in ${last.iteration} step${last.iteration === 1 ? '' : 's'}: E = ${(last.E / DEG).toFixed(6)}°, and the equation balances to the last digit a computer keeps. Each Newton step roughly doubles the number of correct digits.`
           : shown === 1
-            ? `Starting guess: E = ${(last.E / DEG).toFixed(2)}°, off by ${formatMiss(last.residual)}. Press “Next guess”: Newton’s method follows the curve’s slope down to zero.`
+            ? `Starting guess: E = ${(last.E / DEG).toFixed(2)}°, off by ${formatMiss(last.residual)}. Press “Next guess”: Newton’s method follows the curve’s slope down to zero.${
+                start === 'danby' && Math.abs(Mdeg - 180) < 40
+                  ? ' Near aphelion Danby’s guess is at its worst: the answer is close to M there, but his nudge is always 0.85 e, and at 180° it jumps from ahead of M to behind it.'
+                  : ''
+              }`
             : `After ${last.iteration} step${last.iteration === 1 ? '' : 's'} the guess is off by ${formatMiss(last.residual)}.`}
       </Caption>
     </Figure>

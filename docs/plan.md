@@ -193,6 +193,13 @@
 - **Performance** on Chromium with the CPU slowed four times on a phone-sized screen: the sky view playing time at 38 fps (worst frame 50 ms), the scale zoom's tour at 51 fps, the Orrery at 60 fps both with the Solar System at a century a second and with the Pythagorean problem in IAS15 (the engine runs off the main thread). Bundles: the shell is 85 kB gzipped; three.js (187 kB), the star catalogue (177 kB) and the Orrery (29 kB) load only where needed.
 - **The accuracy and copy pass awaits your review**: the automated checks and the Orrery's own claims are done; the read-through by you that the plan asks for hasn't happened yet.
 
+**Stage 8b (fixes from your read-through of Part I) is done** (27 Oct 2026).
+- **Figure 2.2**: a heading button (N, E, S, W) now lets go when the view is turned by hand, as in Figure 2.1; the caption and the view's label then describe the nearest compass point ("facing roughly east"), and Home brings the heading back. The end-to-end test checks it.
+- **Figure 6.4**: the starting point's jump at M = 180° with Danby's guess is not a bug: his guess is M ± 0.85 e, on the side where sin M points, so it switches sides at aphelion, a jump of 1.7 e radians. The answer itself doesn't jump. The caption now says so near aphelion, and the chapter's description of the guess is more exact (close near perihelion, where the equation is hardest; overshooting near aphelion, where the answer is close to M).
+- **Chapter 3, the polar circles**: the text now says the change from polar night to midnight Sun is gradual (a first glimpse at noon, then longer days), and explains the poles' one sunrise and one sunset a year: the Sun circles level with the horizon and creeps up over a couple of days around the spring equinox.
+- **"Air" for other worlds** is now "atmosphere" (Mercury, Venus, Mars, the rocky planets, Jupiter, Titan, Venus in Chapter 5's Check yourself, Figure 8.2's table and notes); Earth's air stays air. Venus's atmosphere "presses down 92 times as hard as our air" (it was "92 times as thick"). Figure 8.2's Mars row no longer gives the pressure twice.
+- Tests: 552 unit and 128 end-to-end tests pass.
+
 **Next: Stage 9, Part II research and detailed plan** (§3 and §11): write `docs/part2/research.md` and `docs/part2/plan.md` for Part II's chapters, the Star Forge v1 and its Toolkit pages, and agree them before building.
 
 ## Decisions so far

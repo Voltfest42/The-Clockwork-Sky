@@ -142,6 +142,14 @@ test('star trails circle the pole facing north, and slant facing east', async ({
   await expect(caption(figure, /Facing the pole, the trails are circles round it/)).toBeVisible();
   await figure.getByRole('button', { name: 'Face east' }).click();
   await expect(view).toHaveAccessibleDescription(/Facing east, the stars rise at a slant/);
+  await expect(figure.getByRole('button', { name: 'Face east' })).toHaveAttribute('aria-pressed', 'true');
+  // Turned by hand, the heading lets go, as in Figure 2.1; Home puts the view back on it.
+  await view.focus();
+  for (let i = 0; i < 4; i++) await page.keyboard.press('ArrowLeft');
+  await expect(figure.getByRole('button', { name: 'Face east' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(view).toHaveAccessibleName(/facing roughly (east|north)/);
+  await page.keyboard.press('Home');
+  await expect(figure.getByRole('button', { name: 'Face east' })).toHaveAttribute('aria-pressed', 'true');
   await figure.getByRole('button', { name: 'Reset figure 2.2' }).click();
   await expect(figure.getByRole('slider', { name: 'Exposure' })).toHaveValue('0');
   expect(errors).toEqual([]);
