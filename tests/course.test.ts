@@ -36,9 +36,9 @@ describe('the course registry', () => {
     expect(findChapter('keplers-laws')?.number).toBe(6);
   });
 
-  it('gives Part I’s chapters their planned sections, with unique ids', () => {
+  it('gives Part I’s and Part II’s chapters their planned sections, with unique ids', () => {
     for (const c of CHAPTERS) {
-      if (c.part === 1) expect(c.sections.length, `Chapter ${c.number}`).toBeGreaterThanOrEqual(4);
+      if (c.part !== 3) expect(c.sections.length, `Chapter ${c.number}`).toBeGreaterThanOrEqual(4);
       else expect(c.sections, `Chapter ${c.number}`).toEqual([]);
       const ids = c.sections.map(sectionId);
       expect(new Set(ids).size).toBe(ids.length);
@@ -47,9 +47,10 @@ describe('the course registry', () => {
     expect(sectionId('Where you stand changes the sky')).toBe('where-you-stand-changes-the-sky');
   });
 
-  it('builds only on earlier chapters, and every Part I chapter says what it builds on', () => {
+  it('builds only on earlier chapters, and every planned chapter says what it builds on', () => {
     for (const c of CHAPTERS) {
-      if (c.part === 1) expect(c.buildsOn, `Chapter ${c.number}`).toBeDefined();
+      if (c.part !== 3) expect(c.buildsOn, `Chapter ${c.number}`).toBeDefined();
+      else expect(c.buildsOn, `Chapter ${c.number}`).toBeUndefined();
       for (const n of c.buildsOn ?? []) {
         expect(n).toBeLessThan(c.number);
         expect(n).toBeGreaterThanOrEqual(1);
@@ -57,6 +58,8 @@ describe('the course registry', () => {
     }
     expect(findChapter('a-sense-of-scale')?.buildsOn).toEqual([]);
     expect(findChapter('the-stars-are-suns')?.buildsOn).toEqual([1, 6, 7]);
+    expect(findChapter('light-the-messenger')?.buildsOn).toEqual([1, 9]);
+    expect(findChapter('other-worlds')?.buildsOn).toEqual([7, 12, 14]);
   });
 
   it('links chapters and Toolkit pages both ways', () => {
@@ -69,6 +72,11 @@ describe('the course registry', () => {
     }
     expect(TOOLKIT.map((t) => t.code)).toEqual(TOOLKIT.map((_, i) => `T${i + 1}`));
     expect(TOOLKIT.filter((t) => t.part === 1).map((t) => t.title)).toEqual(['Powers of ten', 'Angles in the sky', 'Ratios and scaling', 'Solving by stepping']);
+    // Part II's Toolkit pages, each first needed in the chapter that lists it.
+    expect(TOOLKIT.filter((t) => t.part === 2).map((t) => [t.title, t.firstNeeded])).toEqual([
+      ['Logarithms and magnitudes', 11],
+      ['Measurements and uncertainty', 14],
+    ]);
   });
 
   it('gives each part its lab: the Orrery after Part I, the Star Forge after Part II, both upgraded in Part III', () => {

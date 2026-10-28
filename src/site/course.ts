@@ -7,9 +7,9 @@ import { slugify } from './router';
  * the Toolkit pages and the labs. The sidebar, the part pages, "Builds on" lines,
  * "Next chapter" links and reading progress all read from here.
  *
- * Part I is planned in detail (docs/part1/plan.md), so its chapters list their
- * sections. Parts II and III are outlines (docs/plan.md §3): their chapters get
- * sections and "Builds on" links in their planning stages.
+ * Parts I and II are planned in detail (docs/part1/plan.md, docs/part2/plan.md),
+ * so their chapters list their sections. Part III is an outline (docs/plan.md §3):
+ * its chapters get sections and "Builds on" links in its planning stage.
  */
 
 export type PartNumber = 1 | 2 | 3;
@@ -120,6 +120,19 @@ export const PARTS: readonly PartInfo[] = [
       text: 'A star is a ball of gas whose pressure holds gravity off, but only for as long as its fuel lasts.',
     },
     startHere: 'Start here if you know the Solar System.',
+    outcomes: [
+      'what light is, why telescopes are big, and why some have to go to space;',
+      'how a star’s colour tells its temperature, and how its temperature and size set its power;',
+      'how the lines in a spectrum show what a star is made of and how it moves, and why stars are mostly hydrogen;',
+      'what the Hertzsprung–Russell diagram shows, and why most stars lie on the main sequence;',
+      'how pairs of stars give us stars’ masses, and why heavier stars shine far brighter;',
+      'what powers the Sun, and how we know what is inside it;',
+      'how stars are born in cold clouds, and why small stars far outnumber big ones;',
+      'why heavy stars live fast and die young, and how clusters give stars’ ages;',
+      'how stars die, and what they leave behind: white dwarfs, neutron stars and black holes;',
+      'how we find planets round other stars, and what we have found.',
+    ],
+    minutes: 'about 25–35 minutes each',
     labs: [{ slug: 'star-forge', version: 1 }],
   },
   {
@@ -241,60 +254,84 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     part: 2,
     title: 'Light, the messenger',
     blurb: 'Waves and photons, the electromagnetic spectrum, why some light never reaches the ground, and how telescopes collect and resolve light.',
+    sections: ['Waves of light', 'Light comes in packets', 'Why some light never reaches the ground', 'Sharper eyes'],
+    buildsOn: [1, 9],
   }),
   chapter({
     number: 11,
     part: 2,
     title: 'Colour is temperature',
     blurb: 'Hotter is bluer and far brighter; luminosity against apparent brightness; the inverse-square law.',
+    sections: ['Everything glows', 'A thermometer made of two filters', 'Hotter is far brighter', 'How bright it looks, and how bright it is'],
+    buildsOn: [9, 10],
+    toolkit: ['logarithms-and-magnitudes'],
   }),
   chapter({
     number: 12,
     part: 2,
     title: 'Barcodes in starlight',
     blurb: 'Atoms and their energy levels, absorption and emission lines, spectral classes, Cecilia Payne’s discovery that stars are mostly hydrogen, and Doppler shifts.',
+    sections: ['Dark lines in sunlight', 'Atoms as ladders', 'The alphabet of the stars', 'Stars are made of hydrogen', 'Starlight’s speedometer'],
+    buildsOn: [10, 11],
   }),
   chapter({
     number: 13,
     part: 2,
     title: 'Sorting the stars',
     blurb: 'Magnitudes, absolute magnitude, and the Hertzsprung–Russell diagram: the main sequence, giants and white dwarfs.',
+    sections: ['Two numbers for every star', 'Hertzsprung and Russell’s diagram', 'Giants, dwarfs and the Sun', 'A snapshot, not a path'],
+    buildsOn: [9, 11, 12],
+    toolkit: ['logarithms-and-magnitudes'],
   }),
   chapter({
     number: 14,
     part: 2,
     title: 'Weighing the stars',
     blurb: 'Visual, spectroscopic and eclipsing binaries give stars’ masses and sizes, and the mass–luminosity relation.',
+    sections: ['Stars in pairs', 'Weighing with the Doppler effect', 'Eclipses give sizes', 'Heavier means brighter'],
+    buildsOn: [6, 7, 12, 13],
+    toolkit: ['measurements-and-uncertainty'],
   }),
   chapter({
     number: 15,
     part: 2,
     title: 'The Sun up close',
     blurb: 'Its layers, granulation, sunspots and the 11-year cycle, flares and space weather, solar neutrinos, and fusion in outline.',
+    sections: ['Inside the Sun', 'Sunspots and the 11-year cycle', 'Space weather', 'What keeps the Sun shining', 'Messages from the core'],
+    buildsOn: [11, 12, 13],
   }),
   chapter({
     number: 16,
     part: 2,
     title: 'Born in the dark',
     blurb: 'Gas and dust between the stars, collapsing clouds, protostars, discs and jets, brown dwarfs, and why small stars far outnumber big ones.',
+    sections: ['The space between the stars', 'Clouds that collapse', 'From protostar to star', 'Failed stars', 'Many small stars, few big ones'],
+    buildsOn: [8, 13, 14],
   }),
   chapter({
     number: 17,
     part: 2,
     title: 'A star’s life',
     blurb: 'Lifetimes, what happens when the hydrogen runs out, red giants, star clusters as snapshots, ages from the turn-off, and pulsating stars.',
+    sections: ['Living fast, dying young', 'When the hydrogen runs out', 'Clusters as snapshots', 'Stars that breathe'],
+    buildsOn: [13, 14, 15, 16],
   }),
   chapter({
     number: 18,
     part: 2,
     title: 'How stars die',
     blurb: 'Planetary nebulae and white dwarfs, supernovae, neutron stars and pulsars, black holes, and the elements returned to space.',
+    sections: ['A gentle end', 'Exploding stars', 'Neutron stars', 'Finding black holes', 'The fork in the road', 'Stardust'],
+    buildsOn: [12, 14, 17],
   }),
   chapter({
     number: 19,
     part: 2,
     title: 'Other worlds',
     blurb: 'Finding exoplanets by their wobbles and transits, what we’ve found, habitable zones, and reading atmospheres.',
+    sections: ['A wobble in Pegasus', 'Shadows', 'What we’ve found', 'Where water could be liquid', 'Reading other worlds’ air'],
+    buildsOn: [7, 12, 14],
+    toolkit: ['measurements-and-uncertainty'],
   }),
 
   // ---------- Part III · The Engine Room ----------
@@ -416,6 +453,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Logarithms and magnitudes',
     blurb: 'Scales that multiply instead of add, and why astronomers’ magnitudes run backwards.',
     part: 2,
+    firstNeeded: 11,
   },
   {
     slug: 'measurements-and-uncertainty',
@@ -423,6 +461,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Measurements and uncertainty',
     blurb: 'Error bars, how uncertainties combine, and telling a real signal from noise.',
     part: 2,
+    firstNeeded: 14,
   },
   {
     slug: 'vectors',

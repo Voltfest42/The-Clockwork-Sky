@@ -209,7 +209,20 @@
 - Checked: NASA's 2021–2050 tables agree with the eclipse finder on every central solar eclipse's type and every total lunar eclipse (9 April 2043 is total but not central); the next total solar eclipses after 27 October 2026 are 2 August 2027 (6 min 23 s), 22 July 2028 and 25 November 2030, the next total lunar eclipse 31 December 2028, and Mars's next oppositions 19 February 2027 and 25 March 2029.
 - Tests: 566 unit and 128 end-to-end tests pass.
 
-**Next: Stage 9, Part II research and detailed plan** (§3 and §11): write `docs/part2/research.md` and `docs/part2/plan.md` for Part II's chapters, the Star Forge v1 and its Toolkit pages, and agree them before building.
+**Stage 9 (Part II research and plan) is done** (28 Oct 2026).
+- **The research brief** ([part2/research.md](part2/research.md)): what readers believe about stars, with the numbers (Bailey et al. 2009: a third of students say starlight comes from burning, 7% name fusion; Agan 2004; the two concept inventories), and the figure that meets each wrong idea; the facts for every chapter, marked checked, standard, to verify or computed; the data and their licences; the algorithms; SSE as published and as coded; a timeline, a glossary and readers' questions.
+- **The plan** ([part2/plan.md](part2/plan.md)): ten chapters, 26 key figures, 17 smaller and 3 stretch; Toolkit T5 and T6; the Star Forge v1 (inputs, views, comparisons, cluster mode, a calibration map, presets, tests against Hurley's code); the building blocks; the data pipeline; what's simplified; Stages 10–16; risks; and eight open questions with my defaults.
+- **The registry** (`course.ts`): Part II's outcomes and reading time, and its chapters' sections, "Builds on" lines and Toolkit links (T5 first needed in Chapter 11, T6 in Chapter 14), so the Part II page and the coming-soon pages show the plan. Chapter titles, and so addresses, are unchanged.
+- **Tests:** the registry test now expects sections and "Builds on" for Parts I and II (and none yet for Part III) and checks Part II's Toolkit pages; a new end-to-end test checks Part II's page; the planned-chapter test now runs over Part II's chapters; the sample pages for the axe checks gained Part II's page, Chapter 10 and T5. 566 unit tests, lint, the type-check and the build pass; the site, search-engine and hydration end-to-end tests (26, with the new one) pass.
+
+**Decisions and deviations in Stage 9**
+- **Gaia's data are CC BY-NC 3.0 IGO**, not CC BY-SA (ESA's licence page; checked); §8 is corrected. **SILSO** is CC BY-NC 4.0, as expected. moving-parts.dev has no ads or payments, so both fit, but adopting non-commercial data is your call (Part II plan §12, question 1).
+- **MIST has no licence** ("© MIST. All rights reserved"), so the plan leaves the Star Forge's detailed-models mode out of version 1 (§4, and question 2).
+- **SSE's source** is in AMUSE's repository, unchanged from Hurley's distribution (his own page timed out from here); its default switches and wind formulas are in the brief. **There's no Fortran compiler** on this machine: WSL Ubuntu 26.04 is installed without gfortran, which Stage 13 needs (question 3).
+- **Part II's stages:** two chapters a stage in Stages 10–12 and 14, the engine with Chapter 16 in Stage 13 (with a fallback to Stage 15), Chapter 19 in Stage 15, and the Star Forge with polish in Stage 16. §11 is updated.
+- Dated facts checked for the plan: 6,451 confirmed exoplanets (15 Oct 2026); Cycle 25's maximum in October 2024 (smoothed 160.9, revised to 161); Roman launched on 30 Aug 2026; the LSST began on 29 Jun 2026; the ELT's first light is planned for March 2029; PLATO slipped to early 2027; T Coronae Borealis hadn't erupted.
+
+**Next: Stage 10, Chapters 10 and 11** (Part II plan §10), after your review of the Part II plan and its open questions.
 
 ## Decisions so far
 
@@ -299,7 +312,7 @@ Answers stay in the browser, and no scores are sent anywhere.
 
 ## 3. The course map
 
-Part I is planned in detail in [part1/plan.md](part1/plan.md). Parts II and III are outlined here and will be refined, and probably trimmed, in their planning stages. ★ marks the candidate key figures.
+Parts I and II are planned in detail in [part1/plan.md](part1/plan.md) and [part2/plan.md](part2/plan.md); Part II's rows below list the key figures that plan settled on. Part III is outlined here and will be refined, and probably trimmed, in its planning stage. ★ marks the (candidate) key figures.
 
 ### Part I · The Clockwork (beginner): the sky and the Solar System
 
@@ -324,17 +337,17 @@ Part I is planned in detail in [part1/plan.md](part1/plan.md). Parts II and III 
 
 | Ch | Title | What it covers | Candidate key figures |
 |---|---|---|---|
-| 10 | Light, the messenger | Waves and photons, the electromagnetic spectrum, why some light never reaches the ground, how telescopes collect and resolve light, what each kind of light reveals | Telescope resolution (two stars merge or split as the aperture changes); the spectrum ruler |
-| 11 | Colour is temperature | Thermal radiation: hotter is bluer (Wien) and far brighter (Stefan–Boltzmann); luminosity against apparent brightness; the inverse-square law | ★ Blackbody explorer; ★ the inverse-square law |
-| 12 | Barcodes in starlight | Atoms and energy levels, absorption and emission lines, spectral classes set by temperature, Cecilia Payne's 1925 discovery that stars are mostly hydrogen, Doppler shifts | ★ Make a spectrum (temperature and composition in, lines out); Doppler shifter |
-| 13 | Sorting the stars | Magnitudes (a logarithmic scale), absolute magnitude, the Hertzsprung–Russell diagram: main sequence, giants, white dwarfs | ★ The HR diagram of real stars (Gaia, within ~100 pc); find famous stars on it |
-| 14 | Weighing the stars | Visual, spectroscopic and eclipsing binaries give masses and radii; the mass–luminosity relation | ★ Binary workbench: orbit, velocity curve and light curve together; fit the masses |
-| 15 | The Sun up close | Layers, granulation, sunspots and the 11-year cycle, flares and space weather, solar neutrinos, fusion in outline (mass becomes energy) | Sun cutaway; ★ the sunspot cycle (real data) |
-| 16 | Born in the dark | Gas and dust between the stars, molecular clouds, collapse, protostars, disks and jets, brown dwarfs; many small stars and few big ones | Collapse or not (mass, size, temperature of a cloud); a new cluster's star masses |
-| 17 | A star's life | Lifetimes (massive stars burn out fast), when the hydrogen runs out, red giants, star clusters as snapshots, ages from the turn-off, pulsating stars | ★ The Sun's life on the HR diagram; ★ age a cluster (models against real Gaia clusters) |
-| 18 | How stars die | Planetary nebulae and white dwarfs; supernovae; neutron stars and pulsars; black holes and how we know they exist; the mass thresholds; elements returned to space | ★ The fork in the road (mass in, fate out) |
-| 19 | Other worlds | Exoplanets: wobbles, transits and other methods; what we've found; habitable zones; reading atmospheres | ★ Find the planet (one orbit, seen as a transit and as a wobble); the exoplanet census (real data) |
-| Lab | **The Star Forge** | Version 1: any single star, from brown dwarfs to the most massive stars (§4) | |
+| 10 | Light, the messenger | Waves and photons, the electromagnetic spectrum, why some light never reaches the ground, how telescopes collect and resolve light, what each kind of light reveals | ★ The spectrum ruler; ★ split the stars (two stars merge or split as the aperture changes) |
+| 11 | Colour is temperature | Thermal radiation: hotter is bluer (Wien) and far brighter (Stefan–Boltzmann); luminosity against apparent brightness; the inverse-square law | ★ Blackbody explorer; ★ size, temperature, power; ★ the inverse-square law |
+| 12 | Barcodes in starlight | Atoms and energy levels, absorption and emission lines, spectral classes set by temperature, Cecilia Payne's 1925 discovery that stars are mostly hydrogen, Doppler shifts | ★ Kirchhoff's three spectra; ★ make a spectrum, with Payne's curves; ★ Doppler shifter |
+| 13 | Sorting the stars | Magnitudes (a logarithmic scale), absolute magnitude, the Hertzsprung–Russell diagram: main sequence, giants, white dwarfs | ★ The HR diagram of real stars (Gaia, within 100 pc), with famous stars |
+| 14 | Weighing the stars | Visual, spectroscopic and eclipsing binaries give masses and radii; the mass–luminosity relation | ★ Binary workbench: orbit, velocity curves and light curve together; ★ the mass–luminosity relation |
+| 15 | The Sun up close | Layers, granulation, sunspots and the 11-year cycle, flares and space weather, solar neutrinos, fusion in outline (mass becomes energy) | ★ Sun cutaway; ★ the sunspot cycle (real data); the fuel gauge |
+| 16 | Born in the dark | Gas and dust between the stars, molecular clouds, collapse, protostars, discs and jets, brown dwarfs; many small stars and few big ones | ★ Collapse or not; ★ arrival on the main sequence; ★ a new cluster's star masses |
+| 17 | A star's life | Lifetimes (massive stars burn out fast), when the hydrogen runs out, red giants, star clusters as snapshots, ages from the turn-off, pulsating stars | ★ Lifetimes; ★ the Sun's life on the HR diagram; ★ age a cluster (models against real Gaia clusters); ★ Leavitt's law |
+| 18 | How stars die | Planetary nebulae and white dwarfs; supernovae; neutron stars and pulsars; black holes and how we know they exist; the mass thresholds; elements returned to space | ★ Weigh the invisible companion; ★ the fork in the road (mass in, fate out) |
+| 19 | Other worlds | Exoplanets: wobbles, transits and other methods; what we've found; habitable zones; reading atmospheres | ★ Find the planet (one orbit, seen as a transit and as a wobble); ★ the exoplanet census (real data); ★ habitable zones |
+| Lab | **The Star Forge** | Version 1: any single star, from brown dwarfs to the most massive stars (§4; Part II plan §5) | |
 
 *Engines and data:* thermal spectra and star colour, simplified line formation, Doppler shifts, binary light and velocity curves (reusing the Kepler code), the **SSE stellar-evolution engine** with isochrones, transit light curves, Gaia samples and cluster members, the NASA Exoplanet Archive, sunspot numbers.
 
@@ -418,7 +431,7 @@ Both are still at the core of the population codes used today to predict gravita
   - brown dwarfs below the hydrogen-burning limit (about 0.08 M☉), with a simple cooling model;
   - stars of 100–300 M☉, extrapolated, with modern pair-instability outcomes (no remnant at all for helium cores of roughly 65–130 M☉);
   - ultra-metal-poor stars, flagged.
-- **To decide in Part II planning:** an optional "detailed models" mode that interpolates MESA-based MIST tracks (0.1–300 M☉), for comparison with the formulas. Its licence and data size still need checking.
+- **Proposed in Part II planning (Stage 9):** no "detailed models" mode in version 1. MIST's site says "© MIST. All rights reserved" and gives no licence, so its tracks can't be shipped without permission. The calibration map, and an optional switch to modern winds and remnant masses, show instead that the formulas are models (Part II plan §5 and §12, question 2).
 
 **Version 2 (Part III).** Binaries:
 - **Inputs.** Companion mass, orbital period and eccentricity.
@@ -540,10 +553,11 @@ Each part's research brief records the details. The About page lists every credi
 | NASA Planetary Fact Sheets | Planet cards | Public domain | I |
 | JPL Small-Body Database | Asteroid-belt histogram | NASA/JPL, public | I |
 | Solar System Scope textures | Planet globes | CC BY 4.0 (to confirm on their site in Stage 7) | I |
-| Gaia DR3 (ESA) | HR diagram, clusters | CC BY-SA 3.0 IGO | II |
-| NASA Exoplanet Archive | The exoplanet census | Public, with credit | II |
-| SILSO sunspot number | The solar cycle | CC BY-NC 4.0 (to check against how the site is used) | II |
-| MIST stellar tracks | Optional detailed-model mode | To check | II |
+| Gaia DR3 (ESA) | HR diagram, clusters | **CC BY-NC 3.0 IGO** (checked in Stage 9; the earlier "CC BY-SA" was ESA's image licence); derived files non-commercial too, kept separate | II |
+| NASA Exoplanet Archive | The exoplanet census | Public; acknowledge the Archive and cite Christiansen et al. 2025 (checked in Stage 9) | II |
+| SILSO sunspot number | The solar cycle | CC BY-NC 4.0 (checked in Stage 9); the site is free with no ads, so it fits, but it's your call (Part II plan §12) | II |
+| MIST stellar tracks | Optional detailed-model mode | No licence: "All rights reserved" (checked in Stage 9); not used | II |
+| Others for Part II (XSL spectra, DEBCat, a solar model, Mamajek's sequence, BHAC15, cluster members) | See [part2/research.md](part2/research.md) §13 | Mostly citation-only; each checked in its stage | II |
 | SSE/BSE (Hurley et al.) | Stellar evolution | Implemented from the papers; the original code only makes test fixtures | II–III |
 | ATNF pulsar catalogue | The P–Ṗ diagram | To check | III |
 | GWTC (LIGO–Virgo–KAGRA, via GWOSC) | The merger population | To check (believed CC BY 4.0) | III |
@@ -594,8 +608,13 @@ If a session runs low before the stage is finished, it stops at a clean point, c
 | 6 | I | **Chapter 7**, the n-body worker and teaching integrators | Chapter 7 is live |
 | 7 | I | **Chapters 8 and 9**, planet globes, the asteroid belt, parallax, the stellar neighbourhood | All of Part I's chapters are live |
 | 8 | I | **The Orrery v1 and Part I polish**, card on moving-parts.dev | Part I is complete and listed |
-| 9 | II | **Part II research and detailed plan** | Plan agreed |
-| 10–15 | II | Part II chapters, about two per stage; the SSE engine gets most of a stage of its own | Part II's chapters are live |
+| 9 | II | **Part II research and detailed plan** | Plan written ✔; agreed after your review |
+| 10 | II | **Chapters 10 and 11**, the light core, the spectrum view, Toolkit T5 | Chapters 10 and 11 are live |
+| 11 | II | **Chapters 12 and 13**, the spectra core, the HR diagram and Gaia's 100-pc stars | Chapters 12 and 13 are live |
+| 12 | II | **Chapters 14 and 15**, the binary workbench, the star cutaway, the sunspot data, Toolkit T6 | Chapters 14 and 15 are live |
+| 13 | II | **The SSE engine** (tested against Hurley's code) **and Chapter 16** | The engine's tests pass; Chapter 16 is live |
+| 14 | II | **Chapters 17 and 18**, isochrones and Gaia clusters | Chapters 17 and 18 are live |
+| 15 | II | **Chapter 19**, the exoplanet core and census | Part II's chapters are live |
 | 16 | II | **The Star Forge v1 and Part II polish** | Part II is complete |
 | 17 | III | **Part III research and detailed plan** | Plan agreed |
 | 18–26 | III | Part III chapters, one or two per stage; the BSE and many-body engines | Part III's chapters are live |
@@ -625,4 +644,5 @@ That makes about 28 stages. The counts for Parts II and III are estimates that t
 
 - **Name, scope and structure:** as in the Decisions table (agreed 22 Oct 2026, with my defaults for the open points).
 - **Confirmed in Stage 1:** the GitHub repository `Voltfest42/The-Clockwork-Sky`, and the `sky.moving-parts.dev` subdomain.
-- **To decide in later planning stages:** the Star Forge's optional MIST mode (Part II), and whether Chapter 31 stays (Part III).
+- **Part II's open questions** are in [part2/plan.md](part2/plan.md) §12, with my defaults (non-commercial data, no MIST mode, gfortran in WSL for the SSE fixtures, real spectra, young stars' tracks, supernova light curves, section titles, the Moving Parts card).
+- **To decide in Part III's planning stage:** whether Chapter 31 stays.

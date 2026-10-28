@@ -4,7 +4,7 @@
 
 ## Status
 
-**Done** (25 Oct 2026). Part I was built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026), so is Stage 3b (search engines: real paths and prerendered pages), Stage 4 (Chapters 3 and 4) is done (24 Oct 2026), Stage 5 (Chapters 5 and 6, Toolkit T3; 24 Oct 2026) and Stage 6 (Chapter 7, the n-body core and worker, Toolkit T4; 24 Oct 2026) and Stage 7 (Chapters 8 and 9: planet globes, the asteroid belt, parallax, the neighbourhood; 25 Oct 2026) are done, so every Part I chapter is live, and Stage 8 (the Orrery v1, polish and the card on moving-parts.dev; 25 Oct 2026) completes the part; details in the master plan's Status. Next: Stage 9, Part II's research and plan.
+**Done** (25 Oct 2026). Part I was built in Stages 1–8 (§10). Stage 1 (Foundations) and Stage 2 (Chapter 1 and the 3D basics) are done (22 Oct 2026), Stage 3 (Chapter 2 and the sky view) is done (23 Oct 2026), so is Stage 3b (search engines: real paths and prerendered pages), Stage 4 (Chapters 3 and 4) is done (24 Oct 2026), Stage 5 (Chapters 5 and 6, Toolkit T3; 24 Oct 2026) and Stage 6 (Chapter 7, the n-body core and worker, Toolkit T4; 24 Oct 2026) and Stage 7 (Chapters 8 and 9: planet globes, the asteroid belt, parallax, the neighbourhood; 25 Oct 2026) are done, so every Part I chapter is live, and Stage 8 (the Orrery v1, polish and the card on moving-parts.dev; 25 Oct 2026) completes the part; details in the master plan's Status. Part II is planned in [part2/plan.md](../part2/plan.md) (Stage 9).
 
 ---
 

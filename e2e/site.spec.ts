@@ -1,11 +1,11 @@
 import { expect, test } from '@playwright/test';
-import { CHAPTERS, chaptersOf, LABS, PARTS, partReady, TOOLKIT } from '../src/site/course';
+import { CHAPTERS, chaptersOf, LABS, partNumbered, PARTS, partReady, TOOLKIT } from '../src/site/course';
 import { GLOSSARY } from '../src/site/glossary';
 import { href } from '../src/site/router';
 import { accessibilityViolations, expectNoBrokenFigures, watchErrors } from './helpers';
 
 /** One page of each kind, for the checks that don't need every page. */
-const SAMPLE_PAGES = ['', 'part-1', 'part-3', 'a-sense-of-scale', 'the-moon', 'black-holes', 'toolkit', 'toolkit/powers-of-ten', 'toolkit/angles-in-the-sky', 'labs', 'orrery', 'glossary', 'about'];
+const SAMPLE_PAGES = ['', 'part-1', 'part-2', 'part-3', 'a-sense-of-scale', 'the-moon', 'light-the-messenger', 'black-holes', 'toolkit', 'toolkit/powers-of-ten', 'toolkit/angles-in-the-sky', 'toolkit/logarithms-and-magnitudes', 'labs', 'orrery', 'glossary', 'about'];
 
 /** Every page of the site. */
 const ALL_PAGES = [
@@ -69,12 +69,22 @@ test('Part I’s page lists its chapters, the lab and what readers will be able 
   await expect(main.getByText('0 of 9 read')).toBeVisible();
 });
 
+test('Part II’s page lists its chapters, the lab and what readers will be able to explain', async ({ page }) => {
+  await page.goto('/part-2/');
+  await expect(page.getByRole('heading', { level: 1, name: 'The Stars' })).toBeVisible();
+  const main = page.locator('main');
+  for (const c of chaptersOf(2)) await expect(main.getByRole('link', { name: new RegExp(`Chapter ${c.number} .*${c.title}`) })).toBeVisible();
+  await expect(main.getByText('how stars die, and what they leave behind: white dwarfs, neutron stars and black holes;')).toBeVisible();
+  await expect(main.getByText('10–19, about 25–35 minutes each')).toBeVisible();
+  await expect(main.getByText('0 of 10 read')).toBeVisible();
+});
+
 test('a planned chapter shows what it builds on and its planned sections, numbered', async ({ page }) => {
-  for (const chapter of chaptersOf(1).filter((c) => !c.load)) {
+  for (const chapter of [...chaptersOf(1), ...chaptersOf(2)].filter((c) => !c.load)) {
     await page.goto(href(chapter.slug));
     const main = page.locator('main');
     await expect(main.getByRole('heading', { level: 1, name: chapter.title })).toBeVisible();
-    await expect(main.getByText(`Part I · Chapter ${chapter.number}`)).toBeVisible();
+    await expect(main.getByText(`Part ${partNumbered(chapter.part).numeral} · Chapter ${chapter.number}`)).toBeVisible();
     await expect(main.getByText('Builds on:')).toBeVisible();
     for (const [i, title] of chapter.sections.entries()) {
       await expect(main.getByRole('listitem').filter({ hasText: `${chapter.number}.${i + 1} ${title}` })).toHaveCount(1);
