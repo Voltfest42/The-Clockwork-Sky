@@ -68,6 +68,13 @@ export const AS_OF = {
     source: 'ESO’s ELT pages (eso.org/public/telescopes-instruments/elt)',
     everyMonths: 12,
   },
+  solarCycle: {
+    checked: '2026-10',
+    what: 'the sunspot record and the state of Cycle 25 (peaked in October 2024 at a smoothed 160.9; record to September 2026)',
+    where: 'src/data/silso/sunspots.json (scripts/build-sunspots.ts), and Chapter 15’s “Cycle 25 peaked in October 2024”',
+    source: 'WDC-SILSO, Royal Observatory of Belgium (sidc.be/SILSO): the monthly numbers and the table of cycle minima and maxima',
+    everyMonths: 12,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

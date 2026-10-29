@@ -297,6 +297,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Stars in pairs', 'Weighing with the Doppler effect', 'Eclipses give sizes', 'Heavier means brighter'],
     buildsOn: [6, 7, 12, 13],
     toolkit: ['measurements-and-uncertainty'],
+    load: () => import('../content/chapter14.mdx'),
   }),
   chapter({
     number: 15,
@@ -305,6 +306,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Its layers, granulation, sunspots and the 11-year cycle, flares and space weather, solar neutrinos, and fusion in outline.',
     sections: ['Inside the Sun', 'Sunspots and the 11-year cycle', 'Space weather', 'What keeps the Sun shining', 'Messages from the core'],
     buildsOn: [11, 12, 13],
+    load: () => import('../content/chapter15.mdx'),
   }),
   chapter({
     number: 16,
@@ -469,6 +471,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Error bars, how uncertainties combine, and telling a real signal from noise.',
     part: 2,
     firstNeeded: 14,
+    load: () => import('../content/toolkit/measurements-and-uncertainty.mdx'),
   },
   {
     slug: 'vectors',

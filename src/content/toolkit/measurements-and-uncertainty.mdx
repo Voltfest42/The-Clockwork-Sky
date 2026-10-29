@@ -1,0 +1,58 @@
+import { FindSignalFigure } from '../../figures/FindSignalFigure';
+import { Callout } from '../../site/content/blocks';
+
+Sirius B weighs 1.018 Suns, give or take 0.011. β Aurigae’s brighter star is 2.762 times the Sun’s width, give or take 0.017. Every number measured in astronomy comes with a second number, its uncertainty, and the second is often as important as the first: it says how far to trust the first. This page is about where uncertainties come from, how they shrink, how they combine, and how to tell a real signal from noise.
+
+## Every measurement has an error bar
+
+Measure the same thing twice and you get two slightly different answers. A star’s position wobbles with the air, a detector counts photons that arrive at random (Chapter 10), a ruler is read by eye. Measure it many times and the answers scatter around a middle value; how widely they scatter is the measurement’s **uncertainty**, usually written as ± and drawn on a chart as an **error bar**. Sirius B’s 1.018 ± 0.011 Suns means its mass very probably lies between about 1.007 and 1.029.
+
+More precisely, ±σ (sigma) is the scatter’s standard deviation: if the errors are random, about two measurements in three land within 1σ of the true value, 95% within 2σ, and only 3 in 1,000 beyond 3σ.
+
+## Random and systematic errors
+
+Errors come in two kinds. **Random errors** scatter measurements both ways and average out. **Systematic errors** push every measurement the same way: a mis-set clock, a mirror slightly out of shape, a model that leaves something out. Averaging does nothing for them, so they are the hard part of any measurement. The Hubble Space Telescope’s main mirror was polished very precisely to the wrong shape, in 1990; the tests that should have caught it shared the same mistake.
+
+Systematic errors are why astronomers measure the same thing in different ways. Chapter 9’s distances from parallax check the distances from brightness; Chapter 14’s masses from orbits check the masses from models.
+
+## Averaging beats noise
+
+Random errors shrink when measurements are averaged, but slowly. The average of N measurements has an uncertainty √N times smaller than one alone: four measurements halve it, a hundred cut it tenfold. Game developers meet the same law in path tracing, where an image’s noise falls as one over the square root of the samples per pixel (Chapter 10).
+
+<Callout kind="maths">
+
+**σ_average = σ ÷ √N.** One measurement of a star’s light scatters by 0.4%. The average of 25 scatters by 0.4% ÷ 5 = 0.08%; of 400, by 0.02%. To halve the uncertainty again you need four times as many measurements.
+
+</Callout>
+
+## How errors combine
+
+When a result is worked out from measured numbers, their uncertainties carry through. For products and quotients, the **relative** uncertainties (the error as a share of the value) add, roughly; and a quantity raised to a power multiplies its relative error by the power. Weighing a pair by Kepler’s law, M = a³ ÷ P², triples the relative error in the orbit’s size a and doubles that in the period P, so a 1% error in a becomes 3% in the mass.
+
+<Callout kind="maths">
+
+**Relative errors under a power: if y = xⁿ, then σ_y ÷ y = n × σ_x ÷ x.** Independent errors add “in quadrature”: if M = a³ ÷ P² with a known to 1% and P to 0.5%, the mass is known to √(3² + 1²) = 3.2%.
+
+</Callout>
+
+## Signal and noise
+
+A measurement’s **signal-to-noise ratio** is how big the thing you are looking for is compared with the noise that hides it: a dip of 0.5% in a star’s light, measured to 0.4% at a time, has a signal-to-noise of about 1, invisible in any single measurement. But averaging every measurement taken during the dips raises it by √N. Folding a light curve, stacking it at a trial period so that every dip falls in the same place, does exactly that; it is how planets are found by their transits (Chapter 19).
+
+The danger is trying too many times. A signal that stands out by 3σ happens by chance about once in 1,000 tries, so a search through a thousand periods will find one even in pure noise: a false alarm. That is why physicists ask for **5σ**, less than one chance in a million, before calling something a discovery, and why a discovery needs a second, independent look.
+
+<FindSignalFigure
+  number="T6.1"
+  tryThis={
+    <p>
+      Look at the raw light curve: can you see the planet? Average over 3 hours. Then press <b>Search every period</b> and fold at the peak.
+      Now switch to <b>Noise alone</b> and search again: how high does the tallest false alarm reach?
+    </p>
+  }
+/>
+
+## Fitting: making the misfit small
+
+To measure something from many data points, like a pair of stars’ radii from their light curve (Chapter 14), astronomers build a model with a few knobs and turn them until it matches the data as well as possible. “As well as possible” means the **misfit**, χ² (chi-squared), is smallest: the sum, over every point, of the model’s miss divided by that point’s error bar, squared. A good model misses each point by about its error bar, so χ² comes to about one per point; much more means the model is wrong, much less that the error bars were too pessimistic.
+
+The fit’s uncertainty comes from the same sum: how far each knob can turn before χ² grows by 1. Knobs that trade off against each other, such as two stars’ radii and their orbit’s tilt, have larger uncertainties than each would alone, because turning one can be made up for by turning the others. Fitting software takes that into account; so does the “Fit for me” button in Figure 14.3.

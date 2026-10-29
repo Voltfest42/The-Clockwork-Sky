@@ -69,7 +69,13 @@ export function About() {
           nm; Saha’s equation against the textbook temperature at which hydrogen is half ionised; the model atmosphere’s lines against
           where each element’s lines peak along the spectral classes, and the Sun’s strongest lines against their real strengths; the Sun’s
           make-up against its published mass fractions; and the HR diagram’s conversions between colour and temperature against round
-          trips, with the famous stars landing in their known places. End-to-end tests open every page, use it by
+          trips, with the famous stars landing in their known places. Since Chapters 14 and 15, the orbits of pairs of stars are checked
+          against Kepler’s third law with both masses (Sirius and α Centauri weigh what their papers say), against a balance point that never
+          moves and velocities that are the rate of change of distance; the masses back from the velocities and the mass function; the
+          eclipses against the exact overlap of two discs and the tilt at which they must begin; the fit to β Aurigae’s eclipses against
+          the radii it was simulated from; the mass–luminosity relation against DEBCat’s measured stars; the solar model against its
+          published centre and convection zone; the Sun’s fuels against the research notes; the sunspot record against SILSO’s table of
+          cycles; and the search for a hidden signal against one planted in noise. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -364,6 +370,44 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 14</h3>
+        <ul>
+          <li>
+            <b>Figures 14.1–14.3, the binary workbench.</b> Exact orbits of two point masses; the stars are spheres with the same limb
+            darkening, giving light by Planck’s law, with no stretching by each other’s pull, no heating of each other’s facing sides and no
+            gas passing between them. In Figure 14.1 the stars are dots, far bigger than they would be, and the tilt runs only from face-on to
+            edge-on. β Aurigae’s velocities and light are simulated from its published solution, with noise; the fit’s uncertainties leave
+            out errors in the model itself.
+          </li>
+          <li>
+            <b>Figure 14.4, the mass–luminosity relation.</b> Luminosities worked out from measured radii and temperatures; stars sorted by
+            their surface gravity; DEBCat’s 2017 version, with few red dwarfs.
+          </li>
+        </ul>
+
+        <h3>Chapter 15</h3>
+        <ul>
+          <li>
+            <b>Figure 15.1, the Sun cutaway.</b> A standard solar model, Model S; the chromosphere and corona drawn far thicker than they are.
+          </li>
+          <li>
+            <b>Figure 15.2, the sunspot cycle.</b> Real records; the latest months are provisional, and the butterfly diagram’s areas after
+            1976 are scaled to match the earlier ones.
+          </li>
+          <li>
+            <b>Figure 15.3, the fuel gauge.</b> Order-of-magnitude sums at today’s luminosity; fusion burns the hydrogen in the core, a tenth
+            of the Sun.
+          </li>
+        </ul>
+
+        <h3>Toolkit: Measurements and uncertainty</h3>
+        <ul>
+          <li>
+            <b>Figure T6.1, find the signal.</b> The simplest noise, the same size throughout and independent from one measurement to the next;
+            a box-shaped dip of a single length.
+          </li>
+        </ul>
+
         <h3>The Orrery</h3>
         <ul>
           <li>
@@ -534,6 +578,20 @@ export function About() {
             and H. N. Russell (1914), Popular Astronomy 22, 275: the first diagrams.
           </li>
           <li>
+            J. Southworth (2015), ASP Conference Series 496, 164: DEBCat, the catalogue of detached eclipsing binaries. J. Southworth, H. Bruntt
+            and D. L. Buzasi (2007), Astronomy and Astrophysics 467, 1215: β Aurigae; J. C. Morales and colleagues (2009), The Astrophysical
+            Journal 691, 1400: CM Draconis. D. Raghavan and colleagues (2010), The Astrophysical Journal Supplement 190, 1: how many Sun-like
+            stars have companions. A. S. Eddington (1924), Monthly Notices of the Royal Astronomical Society 84, 308: the mass–luminosity
+            relation. J. A. Nelder and R. Mead (1965), The Computer Journal 7, 308: the downhill simplex; G. Kovács, S. Zucker and T. Mazeh
+            (2002), Astronomy and Astrophysics 391, 369: the box search.
+          </li>
+          <li>
+            J. Christensen-Dalsgaard and colleagues (1996), Science 272, 1286: Model S, the standard solar model. H. A. Bethe (1939), Physical
+            Review 55, 434: how the Sun shines. R. Mitalas and K. R. Sills (1992), The Astrophysical Journal 401, 759: how long the Sun’s energy
+            takes to get out. F. Clette and L. Lefèvre (2016), Solar Physics 291, 2629: the recalibrated sunspot number. D. H. Hathaway
+            (2015), Living Reviews in Solar Physics 12, 4: the solar cycle.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -609,6 +667,19 @@ export function About() {
           <li>
             <b>Spectral lines:</b> the NIST Atomic Spectra Database. <b>Main-sequence colours and temperatures:</b> Mamajek’s table (see
             Sources), used with the citation it asks for.
+          </li>
+          <li>
+            <b>Stars weighed in pairs:</b> DEBCat, by John Southworth (Keele University), in the copy kept by VizieR (CDS, Strasbourg, catalogue
+            V/152, version of 2017), used with the citation it asks for. <b>The Sun’s insides:</b> Model S, published by Jørgen
+            Christensen-Dalsgaard (Aarhus University).
+          </li>
+          <li>
+            <b>Sunspot numbers:</b> Source: WDC-SILSO, Royal Observatory of Belgium, Brussels. SILSO’s data are shared under the{' '}
+            <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution-NonCommercial 4.0
+            </a>{' '}
+            licence, and so is this course’s file made from them, kept in a folder of its own. <b>The butterfly diagram:</b> the Royal Greenwich
+            Observatory’s and USAF/NOAA’s sunspot records, compiled by David Hathaway.
           </li>
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons

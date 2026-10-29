@@ -8,7 +8,9 @@
 
 **Stage 10 done** (29 Oct 2026): Chapters 10 and 11, Toolkit T5, the light core, the spectrum view, a star drawn true, the famous stars file and the first visual-binary code (see the master plan's Status for details and deviations).
 
-**Stage 11 done** (29 Oct 2026): Chapters 12 and 13, the spectra core, the HR diagram component and its core, Gaia's 100-pc stars, ten X-shooter spectra, NIST's lines and Mamajek's table (see the master plan's Status). Next: Stage 12, Chapters 14 and 15.
+**Stage 11 done** (29 Oct 2026): Chapters 12 and 13, the spectra core, the HR diagram component and its core, Gaia's 100-pc stars, ten X-shooter spectra, NIST's lines and Mamajek's table (see the master plan's Status).
+
+**Stage 12 done** (29 Oct 2026): Chapters 14 and 15 and Toolkit T6, the binaries core, the light-curve view, the binary workbench, the star cutaway with Model S, DEBCat and the sunspot record (see the master plan's Status). Figure 15.3 (the race from the Sun, a stretch) wasn't built, so the fuel gauge is Figure 15.3. Next: Stage 13, the stellar-evolution engine and Chapter 16, which first needs gfortran and make in WSL (§12, question 3).
 
 ---
 
@@ -301,10 +303,10 @@ Scripts in `scripts/` download the raw data once into `scripts/.cache/` (not com
 | `build-spectra.ts` | ~12 XSL DR3 spectra, resampled | CC BY 4.0 (verify) | ≤ 120 kB gzipped | 11 |
 | `build-hr.ts` | Gaia's 100-pc stars: a density grid plus a sample of points with colour and M_G → `src/data/gaia/` | **CC BY-NC 3.0 IGO** | ≤ 250 kB gzipped | 11 |
 | `src/data/dwarfSequence.ts` | Mamajek's colours, temperatures and corrections | Cited | small | 11 |
-| `build-debcat.ts` | Masses, radii, temperatures, luminosities of ~200 pairs | Cited (verify) | < 15 kB | 12 |
+| `build-debcat.ts` | Masses, radii, temperatures, luminosities of 195 pairs (VizieR V/152) | Cited | 13 kB | 12 |
 | `src/data/binaries.ts` | Orbits of Sirius, α Centauri, Castor, ε Lyrae, Mizar A, Algol, Gaia BH1, Cygnus X-1 | Facts, cited | small | 12 |
-| `build-solar-model.ts` | A standard solar model, ~100 shells | Cited (verify) | < 10 kB | 12 |
-| `build-sunspots.ts` | SILSO monthly numbers since 1749 → `src/data/silso/`; the butterfly diagram as a latitude–time grid | **CC BY-NC 4.0**; NASA/NOAA (verify) | < 40 kB | 12 |
+| `build-solar-model.ts` | Model S, 117 shells | Cited | 3 kB | 12 |
+| `build-sunspots.ts` | SILSO monthly numbers since 1749 → `src/data/silso/`; the butterfly diagram as a latitude–time grid | **CC BY-NC 4.0**; RGO/USAF/NOAA records (Hathaway) | 38 kB | 12 |
 | `scripts/sse/` | Hurley's code run in WSL over a grid of masses and metallicities → `tests/fixtures/sse/` | Fixtures only | test only | 13 |
 | `build-pms.ts` (optional) | BHAC15 tracks for 0.1–1.4 M☉ | Cited | < 20 kB | 13 |
 | `build-clusters.ts` | Members of 6–7 clusters with distances and reddening → `src/data/gaia/` | **CC BY-NC 3.0 IGO** | < 80 kB | 14 |

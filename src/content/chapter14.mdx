@@ -1,0 +1,157 @@
+import { BinaryEclipseFigure, BinaryOrbitFigure, BinaryVelocityFigure } from '../figures/BinaryFigures';
+import { MassLuminosityFigure } from '../figures/MassLuminosityFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { EclipseStart } from './checks/chapter14';
+
+A star’s light tells us its temperature, its make-up, its speed towards us and, with its distance, its luminosity. It doesn’t tell us its mass. There is no scale to put a star on: the only way to weigh anything in space is by its pull on something else, as Chapter 7 weighed the Sun by Earth’s orbit. For stars, the something else is usually another star. This chapter weighs stars in pairs, and finds that mass is the number that decides almost everything about a star.
+
+## Stars in pairs
+
+Look at Mizar, in the handle of the Plough, with a small telescope and it splits in two: in 1617 it was the first double star seen in a telescope. For two centuries most astronomers thought such pairs were chance alignments, one star far behind the other. Then William Herschel, who had set out to measure parallaxes with them, found in 1803 that some pairs had turned round each other since he first measured them. Castor’s two stars were orbiting each other, under the same gravity that holds the planets to the Sun.
+
+Pairs turned out to be common. About half of all Sun-like stars have at least one companion: a survey of the nearby ones found 56% single, 33% in pairs and 11% in threes or more. Almost every heavy O star has a companion, and most are close enough to swap gas during their lives. The Sun, alone, is one of the majority only among the small red dwarfs, of which about three in four are single.
+
+A pair of stars is a <Term id="binary-star">binary star</Term>. Each star circles their shared balance point, the centre of mass (Chapter 7), the heavier star on a smaller orbit, so their distances from it give the ratio of their masses. The orbit’s size and period give their total mass, by Kepler’s third law with both masses in it.
+
+<Callout kind="maths">
+
+**M₁ + M₂ = a³ ÷ P²,** with the masses in Suns, the orbit’s size a in AU and its period P in years. Sirius B circles Sirius A every 50.1 years at an average distance of 7.50″; at Sirius’s parallax of 0.379″ that is 7.50 ÷ 0.379 = 19.8 AU. So the pair weighs 19.8³ ÷ 50.1² = 7,760 ÷ 2,510 = 3.1 Suns. Sirius A keeps about half as far from the balance point as Sirius B, so it has about twice B’s mass: 2.06 and 1.02 Suns.
+
+</Callout>
+
+<BinaryOrbitFigure
+  number="14.1"
+  tryThis={
+    <p>
+      Load <b>Sirius</b> and play the orbit: which star moves more, and why? Then make your own pair with equal masses, and give one star ten times
+      the other’s mass. Where is the balance point now? Tilt the orbit edge-on: what would we see from Earth?
+    </p>
+  }
+/>
+
+Sirius’s companion was weighed before anyone saw it. In 1844 Friedrich Bessel noticed that Sirius weaves from side to side as it moves across the sky, once every 50 years, and concluded that it must circle an unseen companion. In January 1862 the telescope maker Alvan Graham Clark, testing a new lens, saw it, a faint point lost in Sirius’s glare. It turned out to be a white dwarf: a Sun’s worth of mass in a ball the size of Earth (Chapter 13).
+
+## Weighing with the Doppler effect
+
+Most pairs are too close to see as two, even in the largest telescopes. But their light still gives them away. As two stars circle each other, each comes towards us and then moves away, and its lines shift to the blue and then to the red (Chapter 12). In 1889 Edward Pickering noticed that the lines of Mizar’s brighter star split in two every 20.5 days and merged again between: the first <Term id="spectroscopic-binary">spectroscopic binary</Term>, a pair found only by its spectrum.
+
+Plot each star’s speed against time and you get two curves that mirror each other: when one star comes towards us, the other moves away. The period is how long the curves take to repeat, and their shape gives the orbit’s shape: a smooth wave for a circle, lopsided for an oval. The lighter star moves faster, round a bigger circle in the same time, so the ratio of the swings is the ratio of the masses.
+
+<Callout kind="maths">
+
+**M₂ ÷ M₁ = K₁ ÷ K₂.** Each star’s velocity swings by K either side of the pair’s own speed; the lighter star swings further. And with the period P, the swings give each mass times sin³ i, where i is the orbit’s tilt: M₁ sin³ i = P K₂ (K₁ + K₂)² ÷ 2πG for a circular orbit. Seen face-on (i = 0) the stars never come towards us, and the method sees nothing.
+
+</Callout>
+
+<BinaryVelocityFigure
+  number="14.2"
+  tryThis={
+    <p>
+      Make star 2 lighter and watch its curve: which swings more? Drag the cursor across the chart to see where each star is in its orbit when it
+      is fastest. Then press <b>Fit β Aurigae’s velocities</b> and match the two curves to the measurements.
+    </p>
+  }
+/>
+
+The tilt is the catch. Velocities alone give only the masses times sin³ i, so a pair seen nearly face-on could hide heavy stars behind small swings. The pair’s orbit on the sky, where it can be seen, gives the tilt; so do eclipses.
+
+## Eclipses give sizes
+
+If the orbit is seen almost edge-on, the stars take turns passing in front of each other, and the pair’s light dips twice an orbit. Algol, the “demon star” in Perseus, fades by two-thirds for a few hours every 2.87 days, as the young deaf astronomer John Goodricke timed in 1783 and suggested might be an eclipse. A pair whose light dips this way is an <Term id="eclipsing-binary">eclipsing binary</Term>, and its record of brightness against time is its <Term id="light-curve">light curve</Term>.
+
+The light curve is full of information. How long each dip lasts, compared with the period, gives the stars’ sizes compared with their orbit. The dips’ depths compare the stars’ surface brightness, so their temperatures: the dip is deeper when the hotter star is hidden. And eclipses mean the orbit is close to edge-on, which fixes the tilt that velocities can’t give.
+
+<BinaryEclipseFigure
+  number="14.3"
+  tryThis={
+    <p>
+      Tilt the pair slowly from 60° towards 90°: at what tilt do the dips appear? Make one star much hotter and compare the two dips. Then
+      press <b>Fit β Aurigae’s eclipses</b>: match the dips by eye, then press <b>Fit for me</b> and compare its radii with DEBCat’s.
+    </p>
+  }
+/>
+
+So an eclipsing pair whose two spectra we can see gives everything: masses from the velocities and the tilt, and radii from the eclipses, each to a per cent or two. β Aurigae, the second-brightest star in Auriga, is two hot A stars, 2.38 and 2.29 times the Sun’s mass and 2.8 and 2.6 times its width, circling every 3.96 days at a tilt of 76°, so they only graze each other. Catalogues such as John Southworth’s DEBCat now list a few hundred such pairs. They are the bedrock of stellar astrophysics: the few stars whose masses and sizes we know without models, and against which every model of stars is tested.
+
+How well do we know a number? Every measurement has an error bar, and a fit to many measurements has one too: how far the answer can move before the model stops matching the data. [Measurements and uncertainty](/toolkit/measurements-and-uncertainty/) explains how they work.
+
+## Heavier means brighter
+
+Plot the stars weighed this way, luminosity against mass, and they fall on a line: the <Term id="mass-luminosity-relation">mass–luminosity relation</Term>. On logarithmic axes it is nearly straight, the sign of a power law: luminosity rises roughly as mass to the power 3.5 to 4. Arthur Eddington explained it in 1924, from how a ball of hot gas holds itself up: a heavier star must be hotter inside to resist its own weight, and heat leaks out of it far faster.
+
+<Callout kind="maths">
+
+**L ∝ M^3.5,** roughly, for main-sequence stars, with L and M in solar units. Twice the Sun’s mass: 2^3.5 ≈ 11 times its luminosity. Ten times the mass: 10^3.5 ≈ 3,000 times. The real slope changes along the main sequence: about 4 for stars like the Sun, flatter for red dwarfs and for the heaviest stars.
+
+</Callout>
+
+<MassLuminosityFigure
+  number="14.4"
+  tryThis={
+    <p>
+      Tilt your line until it runs through the stars. What power fits best? Then fit each range of masses in turn: where is the relation steepest?
+      Switch to <b>Radius</b>: do heavier stars grow wider as fast as they grow brighter?
+    </p>
+  }
+/>
+
+This is why the main sequence is a sequence of masses. A star’s mass sets its luminosity, and through its size, its temperature, so each mass has its own place on the HR diagram (Chapter 13): the heavy stars at the top left, hot and brilliant, the light ones at the bottom right. And it sets how long a star lives. A star of ten Suns has ten times the fuel but burns it thousands of times faster, so it lives hundreds of times less long. Chapter 17 follows that through.
+
+<Timeline from={1600} to={2030} chapter={14} only={[14]} title="Stars in pairs" />
+
+<CheckYourself>
+  <Question id="how-weigh" prompt="How can we weigh a star?">
+    <Choice label="Only by its pull on something else, such as a companion" correct>
+      Right. Mass shows itself only through gravity, so we weigh stars by the orbits of their companions, as Chapter 7 weighed the Sun by
+      Earth’s orbit.
+    </Choice>
+    <Choice label="From its brightness">
+      Brightness gives a star’s luminosity once we know its distance, not its mass. The mass–luminosity relation links them only for main-sequence
+      stars, and it was found by weighing stars in pairs.
+    </Choice>
+    <Choice label="From the colour of its light">
+      Colour gives the surface temperature. Only gravity reveals mass: the orbit of something round the star.
+    </Choice>
+  </Question>
+
+  <Question id="pair-mass" prompt="Two stars orbit each other once a year, 1 AU apart. What is their total mass?">
+    <Choice label="One Sun" correct>
+      Right: M₁ + M₂ = a³ ÷ P² = 1³ ÷ 1² = 1 Sun, the same as Earth and the Sun, whose combined mass is almost all the Sun’s.
+    </Choice>
+    <Choice label="Two Suns">
+      Kepler’s third law gives the total: 1³ ÷ 1² = 1 Sun between them, however it is split.
+    </Choice>
+    <Choice label="It can’t be known without their brightness">
+      The orbit alone gives the total mass: a³ ÷ P² = 1 Sun. Brightness doesn’t come into it.
+    </Choice>
+  </Question>
+
+  <Question id="twice-mass" prompt="A main-sequence star has twice the Sun’s mass. Roughly how luminous is it?">
+    <Choice label="More than ten times as luminous" correct>
+      Right. Luminosity rises roughly as mass to the power 3.5 or more: 2^3.5 ≈ 11. Sirius A, with 2.06 Suns, gives out about 25 times the Sun’s light.
+    </Choice>
+    <Choice label="Twice as luminous">
+      Luminosity rises far faster than mass, roughly as M^3.5: twice the mass gives more than ten times the light.
+    </Choice>
+    <Choice label="Half as luminous, because it burns its fuel more slowly">
+      Heavier stars burn their fuel faster, not more slowly: twice the mass, more than ten times the light, and a much shorter life.
+    </Choice>
+  </Question>
+
+  <Question id="why-eclipsing" prompt="Why are eclipsing pairs so valuable?">
+    <Choice label="They give stars’ sizes as well as their masses" correct>
+      Right. The dips give the radii and fix the tilt, and with the velocities, the masses: both to a per cent or two, without any model of the stars.
+    </Choice>
+    <Choice label="They are the brightest stars in the sky">
+      Most are faint. Their value is that eclipses give the stars’ sizes, and fix the orbit’s tilt, so the velocities give true masses.
+    </Choice>
+    <Choice label="They are the only pairs whose stars orbit each other">
+      Every binary’s stars orbit each other; in an eclipsing pair we happen to see the orbit edge-on, so the eclipses give the sizes too.
+    </Choice>
+  </Question>
+
+  <EclipseStart />
+</CheckYourself>

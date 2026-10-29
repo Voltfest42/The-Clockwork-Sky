@@ -1,0 +1,158 @@
+import { FuelGaugeFigure } from '../figures/FuelGaugeFigure';
+import { SunCutawayFigure } from '../figures/SunCutawayFigure';
+import { SunspotCycleFigure } from '../figures/SunspotCycleFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { TallestCycle } from './checks/chapter15';
+
+Every other star is a point of light. One is close enough to see its face, to watch it change from day to day, and to feel what it does. The Sun is a middling main-sequence star, a G2 V (Chapter 13), and almost everything we know about how stars work inside was learned from it first. This chapter goes inside it, looks at its restless surface, and asks the question that puzzled physicists for a century: what keeps it shining?
+
+## Inside the Sun
+
+Nobody can see inside the Sun, but its insides are well known, because they must add up to what we can see: a ball of gas of the Sun’s mass, radius and make-up, held up against its own weight by its pressure and pouring out 3.8 × 10²⁶ watts. Physicists build models that obey the laws of gas, heat and fusion and match all those numbers, and then check them against two kinds of messenger from inside (the last section of this chapter). The result is a standard solar model, and the Sun’s layers come out of it.
+
+At the centre, the <Term id="core">core</Term> is at 15.7 million degrees, its gas squeezed to 150 times the density of water, though it is still a gas, too hot for its atoms to hold together. Here hydrogen fuses into helium, and inside a quarter of the Sun’s radius 99% of its power is made. The energy then creeps outward through the radiative zone as light, absorbed and given out again countless times, each time in a random direction. At 71% of the way out the gas is cool and opaque enough that it starts to boil: the convection zone carries the energy up the rest of the way in hot rising plumes, like a pan of soup.
+
+The plumes’ tops show on the surface as <Term id="granulation">granulation</Term>, a pattern of bright cells about 1,000 kilometres across with darker lanes where cooled gas sinks, each cell lasting a few minutes. That surface, the <Term id="photosphere">photosphere</Term>, is only a few hundred kilometres thick, at 5,772 K, where the gas becomes transparent and light escapes. Above it are the thin red <Term id="chromosphere">chromosphere</Term> and the pearly <Term id="corona">corona</Term> seen at total eclipses (Chapter 4), at 1 to 3 million degrees, far hotter than the surface below; why is one of the Sun’s open questions. In December 2024 NASA’s Parker Solar Probe flew through it, 6.1 million kilometres from the surface, at 692,000 kilometres an hour.
+
+<SunCutawayFigure
+  number="15.1"
+  tryThis={
+    <p>
+      Slide from the centre outwards with the chart on <b>Power made inside</b>: how far out is all the Sun’s power made? Switch to <b>Mass inside</b>:
+      how much of the Sun lies inside half its radius? Then pick the corona: why is it drawn not to scale?
+    </p>
+  }
+/>
+
+## Sunspots and the 11-year cycle
+
+The photosphere has dark blemishes, <Term id="sunspot">sunspots</Term>, often bigger than Earth. Galileo and others watched them through the first telescopes, from 1610 on, and saw them carried across the disc as the Sun turns, every 25 days at its equator and more slowly near its poles: the Sun isn’t solid. Sunspots are dark only by comparison. Their centres are at 3,000 to 4,500 K, against the surface’s 5,800, and on their own they would shine brighter than a lamp filament.
+
+They are cool because they are magnetic. In 1908 George Ellery Hale found that the lines in sunspots’ light are split in two or three, the mark of a magnetic field thousands of times stronger than Earth’s. The field holds back the boiling that brings heat up from below, so the gas above cools.
+
+Sunspots come and go in a rhythm. In 1843 the amateur astronomer Heinrich Schwabe, who had been looking for a planet inside Mercury’s orbit, noticed that the number of spots rose and fell over about ten years. That <Term id="solar-cycle">solar cycle</Term> averages 11 years, and the cycles are numbered from 1755. Each one starts with spots at mid-latitudes, about 30° north and south, and as it goes on new spots appear closer and closer to the equator: plotted by latitude against time, they draw a series of butterflies. Hale found that the spots’ magnetic polarity flips each cycle, so the full magnetic cycle is 22 years.
+
+<SunspotCycleFigure
+  number="15.2"
+  tryThis={
+    <p>
+      Step through the cycles with the arrows: which was the shortest, and which the longest? Find the quiet stretch around 1800 to 1830.
+      Then look at the butterflies below: where on the Sun do a cycle’s first spots appear, and where its last?
+    </p>
+  }
+/>
+
+The cycles differ. Cycle 19 peaked in 1958 with three and a half times the spots of the quietest, Cycle 6; Cycle 25 peaked in October 2024, higher than forecast. And from 1645 to 1715, in the Maunder minimum, the spots all but vanished, during some of the coldest decades of the Little Ice Age, though how much the quiet Sun had to do with the cold is still argued over. Predicting a cycle’s height, even a few years ahead, is still hard.
+
+## Space weather
+
+The magnetic fields that make sunspots store energy, and sometimes they snap. A **flare** releases it in minutes as a burst of X-rays and fast particles; a <Term id="coronal-mass-ejection">coronal mass ejection</Term> hurls a billion tonnes of magnetised gas into space. When one hits Earth it shakes our magnetic field: it lights aurorae far from the poles, induces currents in power lines and pipelines, disturbs radio and GPS, and swells the upper air so that low satellites drag.
+
+On 1 September 1859 Richard Carrington and Richard Hodgson saw a white-light flare on the Sun; the next day aurorae were seen in the tropics and telegraph lines sparked. In March 1989 a storm blacked out the power grid of Quebec for nine hours. In February 2022 a minor storm brought down 38 of 49 new Starlink satellites just after launch, and in May 2024 the strongest storm in twenty years showed aurorae to millions as far south as the Mediterranean and Mexico. Between storms, the Sun blows a steady <Term id="solar-wind">solar wind</Term>, 1 to 2 million tonnes of gas a second.
+
+| From the Sun to Earth | How fast | How long |
+|---|---|---|
+| Light | 300,000 km/s | 8 minutes 19 seconds |
+| The fastest particles from a flare | close to light’s speed | tens of minutes |
+| A fast coronal mass ejection | 1,000 to 3,000 km/s | a day or two (Carrington’s, about 17.6 hours) |
+| The solar wind | 400 to 750 km/s | about four days |
+
+## What keeps the Sun shining
+
+A third of college students, asked how stars make their light, say “burning”. It is a natural guess; even astronomers call fusion “hydrogen burning”. But it can’t be fire. A Sun made of coal and oxygen, burning at the rate the Sun shines, would be ash in about 5,000 years.
+
+In the 1860s Lord Kelvin had a better idea: the Sun is shrinking under its own weight, and the falling gas heats up. That would power it for about 30 million years. Kelvin used it to argue that Earth could be no older, and the geologists and Darwin, who needed hundreds of millions of years, could not answer him. They were right; Earth’s oldest rocks and meteorites show it is 4.5 billion years old, so the Sun has shone for at least that long.
+
+<FuelGaugeFigure
+  number="15.3"
+  tryThis={
+    <p>
+      Which fuels would already have run out by the time the dinosaurs died out? Press each fuel to see its sum. How many times longer than
+      gravity does fusion last?
+    </p>
+  }
+/>
+
+The answer is <Term id="fusion">fusion</Term>, as Arthur Eddington guessed in 1920 and Hans Bethe worked out in 1938–39. In the core, four hydrogen nuclei, protons, join through a chain of steps into one helium nucleus. The helium weighs 0.7% less than the four protons, and that missing mass comes out as energy, by Einstein’s E = mc².
+
+<Callout kind="maths">
+
+**E = mc².** The Sun’s power is 3.8 × 10²⁶ watts, so every second it turns L ÷ c² = 3.8 × 10²⁶ ÷ (3.0 × 10⁸)² = 4.3 × 10⁹ kg of itself into light: about 4 million tonnes a second. Since only 0.7% of the hydrogen’s mass becomes energy, it fuses about 600 million tonnes of hydrogen a second. Even so, in 4.6 billion years it has used only a few hundredths of a per cent of its mass.
+
+</Callout>
+
+## Messages from the core
+
+The light we see comes from the surface. The energy it carries left the core long ago, and has been absorbed and given out again on its way so often that it remembers nothing of where it began. But two kinds of messenger come straight from inside.
+
+The first is the <Term id="neutrino">neutrino</Term>. Each helium nucleus made in the core also makes two neutrinos, ghostly particles that pass through almost anything: they fly straight out of the Sun at nearly the speed of light, and about 65 billion of them pass through each square centimetre of you every second, day and night, since Earth is no obstacle either. From 1968 Raymond Davis caught a few a week in a tank of 600 tonnes of cleaning fluid nearly a mile underground in South Dakota, and found only a third as many as the solar model predicted. For thirty years this solar neutrino problem was blamed on the model or on the experiment. In 2001–02 the Sudbury Neutrino Observatory in Canada, which could count all three kinds of neutrino, showed that the model was right: two-thirds of the Sun’s neutrinos had changed kind on the way, which meant neutrinos have mass. Davis shared the Nobel Prize in 2002, and the discovery of the change won another in 2015.
+
+The second is sound. The Sun rings like a bell, its surface rising and falling with periods near five minutes, struck by the turbulence of the convection zone. Millions of these vibrations, each reaching a different depth, measure how fast sound travels at each depth inside: <Term id="helioseismology">helioseismology</Term>. It found the base of the convection zone at 71.3% of the radius, mapped how the inside turns, and checked the solar model to a fraction of a per cent.
+
+<DeepDive title="How long light takes to get out, and the solar abundance problem">
+
+How long does the energy made in the core take to reach the surface? You may have read 10,000 years, or 170,000, or a million. The estimates differ because the answer depends on how far light travels between absorptions, which changes enormously with depth, from a fraction of a millimetre in the core to centimetres further out. A proper sum through a solar model, such as Mitalas and Sills’s in 1992, gives about 170,000 years for the radiative zone; the convection zone adds only weeks. “Light” is a loose word here, too: the energy is passed on, not the same photon, and what reaches the surface as visible light set out as X-rays.
+
+And one puzzle is still open. In the 2000s, better analyses of the Sun’s spectrum lowered the amounts of carbon, nitrogen and oxygen in its surface by about a third. Solar models built with the new amounts no longer match helioseismology: the convection zone comes out too shallow and the speed of sound wrong, where the older amounts matched well. Newer analyses disagree with each other over the amounts, and whether the fault lies in the measurements or the models’ physics, such as how opaque the hot gas inside is, isn’t settled.
+
+</DeepDive>
+
+<Timeline from={1600} to={2030} chapter={15} only={[15]} title="Watching the Sun" />
+
+<CheckYourself>
+  <Question id="sunspots-dark" prompt="Why are sunspots dark?">
+    <Choice label="They are cooler than the surface around them" correct>
+      Right. Strong magnetic fields hold back the boiling that brings up heat, so the gas cools to 3,000–4,500 K. On their own they would shine
+      brighter than a lamp filament; they look dark only beside the 5,800 K surface.
+    </Choice>
+    <Choice label="They are holes through which we see the dark inside">
+      The inside is far hotter, not darker. Sunspots are patches of surface cooled by magnetic fields, and look dark only by comparison.
+    </Choice>
+    <Choice label="They are clouds of soot in front of the Sun">
+      There is no soot at those temperatures. Sunspots are cooler patches of the surface itself, cooled by magnetic fields.
+    </Choice>
+  </Question>
+
+  <Question id="what-powers" prompt="What powers the Sun?">
+    <Choice label="Fusion of hydrogen into helium in its core" correct>
+      Right. Four protons become one helium nucleus, and the 0.7% of mass that goes missing comes out as energy, E = mc², enough for 10 billion years.
+    </Choice>
+    <Choice label="Burning, like a fire">
+      A Sun made of coal would burn out in about 5,000 years, and there is no oxygen to burn with. Only fusion lasts billions of years.
+    </Choice>
+    <Choice label="Shrinking under its own weight">
+      That was Kelvin’s answer, but it would last only about 30 million years, and Earth is 4.5 billion years old. Fusion powers it.
+    </Choice>
+  </Question>
+
+  <Question id="cycle-length" prompt="How long is the sunspot cycle, on average?">
+    <Choice label="About 11 years" correct>
+      Right: the cycles have run from about 9 to 14 years, averaging 11. The magnetic cycle, with the polarity back where it started, is twice that.
+    </Choice>
+    <Choice label="About 27 days">
+      That is about how long the Sun takes to turn, carrying spots across its face. The cycle of how many spots there are lasts about 11 years.
+    </Choice>
+    <Choice label="About 100 years">
+      There may be slower swells in solar activity, but the sunspot cycle itself averages 11 years.
+    </Choice>
+  </Question>
+
+  <Question id="how-core" prompt="How do we know what happens in the Sun’s core?">
+    <Choice label="Its neutrinos come straight out, and its vibrations map the inside" correct>
+      Right. Neutrinos made by fusion reach us eight minutes later, and the Sun’s ringing measures the speed of sound at every depth: both match
+      the standard solar model.
+    </Choice>
+    <Choice label="From the light we see">
+      The light comes from the surface; the energy it carries left the core long ago and has forgotten its origin. Neutrinos and the Sun’s
+      vibrations tell us about the core.
+    </Choice>
+    <Choice label="Space probes have measured it">
+      Nothing can go near the core. Its neutrinos come out to us, and its vibrations, seen at the surface, map the inside.
+    </Choice>
+  </Question>
+
+  <TallestCycle />
+</CheckYourself>

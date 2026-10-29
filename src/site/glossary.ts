@@ -105,6 +105,74 @@ export const GLOSSARY = {
     term: 'Giant',
     definition: 'A star near the end of its life, swollen to tens of times the Sun’s width with a cool surface; supergiants, from heavier stars, reach hundreds of times.',
   },
+  'binary-star': {
+    term: 'Binary star',
+    definition: 'Two stars orbiting their shared balance point. About half of Sun-like stars have a companion; their orbits give the stars’ masses.',
+  },
+  'spectroscopic-binary': {
+    term: 'Spectroscopic binary',
+    definition: 'A pair of stars too close to see apart, found by the Doppler shifts of their lines, which move back and forth as the stars orbit.',
+  },
+  'eclipsing-binary': {
+    term: 'Eclipsing binary',
+    definition: 'A pair of stars whose orbit we see nearly edge-on, so that each passes in front of the other and the pair’s light dips. The dips give the stars’ sizes.',
+  },
+  'light-curve': {
+    term: 'Light curve',
+    definition: 'A record of how an object’s brightness changes with time: the dips of an eclipsing pair or a transiting planet, the pulses of a variable star.',
+  },
+  'mass-luminosity-relation': {
+    term: 'Mass–luminosity relation',
+    definition: 'On the main sequence, heavier stars are far more luminous: roughly as mass to the power 3.5, so twice the mass gives more than ten times the light.',
+  },
+  core: {
+    term: 'Core',
+    definition: 'A star’s hot, dense centre, where it makes its power by fusion. The Sun’s core, at 15.7 million degrees, lies within about a quarter of its radius.',
+  },
+  photosphere: {
+    term: 'Photosphere',
+    definition: 'A star’s visible surface: the layer, a few hundred kilometres thick in the Sun, where its gas turns transparent and its light escapes.',
+  },
+  granulation: {
+    term: 'Granulation',
+    definition: 'The pattern of bright cells on the Sun’s surface, each about 1,000 km across and lasting minutes: the tops of rising columns of hot gas.',
+  },
+  chromosphere: {
+    term: 'Chromosphere',
+    definition: 'A thin layer of the Sun’s atmosphere just above its surface, glowing red with hydrogen’s light and hotter than the surface beneath it.',
+  },
+  corona: {
+    term: 'Corona',
+    definition: 'The Sun’s outer atmosphere, at 1 to 3 million degrees, seen as a pearly halo during total eclipses and streaming away as the solar wind.',
+  },
+  sunspot: {
+    term: 'Sunspot',
+    definition: 'A dark patch on the Sun’s surface, cooler than its surroundings because a strong magnetic field holds back the heat rising from below.',
+  },
+  'solar-cycle': {
+    term: 'Solar cycle',
+    definition: 'The Sun’s rise and fall in sunspots and activity over about 11 years; its magnetic field flips each cycle, so the full magnetic cycle is 22 years.',
+  },
+  'solar-wind': {
+    term: 'Solar wind',
+    definition: 'The stream of charged gas flowing out from the Sun’s corona in every direction, at 400 to 750 km/s, a million or two tonnes a second.',
+  },
+  'coronal-mass-ejection': {
+    term: 'Coronal mass ejection',
+    definition: 'A huge cloud of magnetised gas thrown out from the Sun. When one hits Earth it can light aurorae and disrupt satellites and power grids.',
+  },
+  fusion: {
+    term: 'Fusion',
+    definition: 'Joining light atomic nuclei into heavier ones, which releases energy. Stars shine by fusing hydrogen into helium.',
+  },
+  neutrino: {
+    term: 'Neutrino',
+    definition: 'A tiny, nearly massless particle made in fusion that passes through almost anything. The Sun’s neutrinos reach us straight from its core.',
+  },
+  helioseismology: {
+    term: 'Helioseismology',
+    definition: 'Mapping the Sun’s inside from its vibrations: sound waves ringing through it, seen as the surface rising and falling every few minutes.',
+  },
   'lagrange-point': {
     term: 'Lagrange point',
     definition:
