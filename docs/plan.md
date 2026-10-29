@@ -222,7 +222,9 @@
 - **Part II's stages:** two chapters a stage in Stages 10–12 and 14, the engine with Chapter 16 in Stage 13 (with a fallback to Stage 15), Chapter 19 in Stage 15, and the Star Forge with polish in Stage 16. §11 is updated.
 - Dated facts checked for the plan: 6,451 confirmed exoplanets (15 Oct 2026); Cycle 25's maximum in October 2024 (smoothed 160.9, revised to 161); Roman launched on 30 Aug 2026; the LSST began on 29 Jun 2026; the ELT's first light is planned for March 2029; PLATO slipped to early 2027; T Coronae Borealis hadn't erupted.
 
-**Next: Stage 10, Chapters 10 and 11** (Part II plan §10), after your review of the Part II plan and its open questions.
+- Agreed on 29 Oct 2026: the defaults for the Part II plan's eight open questions (§12) stand.
+
+**Next: Stage 10, Chapters 10 and 11** (Part II plan §10).
 
 ## Decisions so far
 
@@ -608,7 +610,7 @@ If a session runs low before the stage is finished, it stops at a clean point, c
 | 6 | I | **Chapter 7**, the n-body worker and teaching integrators | Chapter 7 is live |
 | 7 | I | **Chapters 8 and 9**, planet globes, the asteroid belt, parallax, the stellar neighbourhood | All of Part I's chapters are live |
 | 8 | I | **The Orrery v1 and Part I polish**, card on moving-parts.dev | Part I is complete and listed |
-| 9 | II | **Part II research and detailed plan** | Plan written ✔; agreed after your review |
+| 9 | II | **Part II research and detailed plan** | Plan written and agreed ✔ |
 | 10 | II | **Chapters 10 and 11**, the light core, the spectrum view, Toolkit T5 | Chapters 10 and 11 are live |
 | 11 | II | **Chapters 12 and 13**, the spectra core, the HR diagram and Gaia's 100-pc stars | Chapters 12 and 13 are live |
 | 12 | II | **Chapters 14 and 15**, the binary workbench, the star cutaway, the sunspot data, Toolkit T6 | Chapters 14 and 15 are live |

@@ -4,7 +4,7 @@
 
 ## Status
 
-**Planned** (28 Oct 2026, Stage 9). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. Nothing in §4–§10 is built yet. It waits for your review of this plan, especially the open questions in §12. Next: Stage 10, Chapters 10 and 11.
+**Planned** (28 Oct 2026, Stage 9). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. Nothing in §4–§10 is built yet. **Agreed** (29 Oct 2026): the defaults for all eight open questions in §12 stand. Next: Stage 10, Chapters 10 and 11.
 
 ---
 
@@ -397,7 +397,7 @@ Each stage is one session and ends as the master plan says (§11): tests, Status
 
 ---
 
-## 12. Open questions (my defaults apply unless you say otherwise)
+## 12. Open questions (decided 29 Oct 2026: the defaults below stand)
 
 1. **Non-commercial data.** Gaia (CC BY-NC 3.0 IGO) for the HR diagram and the clusters, and SILSO (CC BY-NC 4.0) for the sunspot cycle. The site is free, with no ads or payments, so it qualifies. *My default: use them, in their own folders with their licences, credited on the About page.* The alternatives are HYG for the HR diagram (Hipparcos-era: few faint red dwarfs or white dwarfs) and NOAA's records for the sunspots.
 2. **The Star Forge's "detailed models" mode.** MIST says "All rights reserved" and gives no licence. *My default: leave it out of version 1.* The calibration map and the optional modern prescriptions show that the formulas are models. You could ask the MIST team for permission for version 2.
