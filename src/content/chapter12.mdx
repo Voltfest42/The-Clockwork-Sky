@@ -1,0 +1,185 @@
+import { DopplerFigure } from '../figures/DopplerFigure';
+import { HydrogenLadderFigure } from '../figures/HydrogenLadderFigure';
+import { KirchhoffFigure } from '../figures/KirchhoffFigure';
+import { MakeSpectrumFigure } from '../figures/MakeSpectrumFigure';
+import { SunCompositionFigure } from '../figures/SunCompositionFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { BalmerPeak } from './checks/chapter12';
+
+In 1835 the philosopher Auguste Comte gave an example of something we could never know: what the stars are made of. We could measure their positions and motions, he wrote, but never their chemistry. Within thirty years chemists had read it straight off starlight. Spread a star’s light into a rainbow and it is crossed by dark lines, a barcode that tells what the star is made of, how hot it is and how fast it is moving. This chapter reads the barcode.
+
+## Dark lines in sunlight
+
+In 1802 William Wollaston passed sunlight through a narrow slit and a prism and saw a few dark lines across the colours. In 1814 Joseph von Fraunhofer, a lens maker with a far better prism, mapped 574 of them. He gave the strongest letters, A to K, that astronomers still use: the D line in the yellow, the H and K lines at the violet end. He found many of the same lines in the light of the Moon and the planets, which is sunlight reflected, and different ones in Sirius and other stars. He couldn’t explain them.
+
+Around 1859 the physicist Gustav Kirchhoff and the chemist Robert Bunsen, with Bunsen’s new burner, whose flame is nearly colourless, sprinkled chemicals into the flame and looked at its light through a prism. Each element glowed with its own set of bright lines: sodium a pair of yellow lines, exactly where Fraunhofer’s D line sat. Then Kirchhoff shone bright light through a sodium flame and the D line turned dark. He set out three rules, which hold for any glowing matter.
+
+<Callout kind="know">
+
+**Kirchhoff’s three rules.** A hot, dense body (a solid, a liquid or a dense gas) glows with a **continuous spectrum**, every colour. A thin, hot gas glows only at its own wavelengths: **bright lines** (an <Term id="emission-line">emission line</Term> spectrum). A thin, cooler gas in front of a hot source takes out its own wavelengths from the light passing through: **dark lines** (an <Term id="absorption-line">absorption line</Term> spectrum).
+
+</Callout>
+
+<KirchhoffFigure
+  number="12.1"
+  tryThis={
+    <p>
+      With hydrogen, look from each of the three places in turn. Do the dark lines line up with the bright ones? Then try <b>Sodium</b> and <b>Neon</b>: which would you recognise in a street at night?
+    </p>
+  }
+/>
+
+The dark lines aren’t missing light in the sense of a shadow or of dust. The gas absorbs those colours and gives them out again in every direction, so less of them carries on towards you. The Sun is the third case: its glowing interior is the hot source, and its thinner, cooler outer layers are the gas in front. So the dark lines in sunlight are the fingerprints of the elements in the Sun’s atmosphere, and within two years Kirchhoff had found sodium, iron, calcium, magnesium and more in the Sun.
+
+One line belonged to nothing known. At the total eclipse of 18 August 1868 Jules Janssen saw a bright yellow line in the glowing clouds at the Sun’s edge, close to sodium’s but not the same. Norman Lockyer saw it that October without an eclipse, and he and the chemist Edward Frankland named its element after the Greek for the Sun: helium. It was found on Earth in 1895, by William Ramsay, in a uranium mineral. Helium is the one element discovered in space before it was found at home.
+
+## Atoms as ladders
+
+Why does each element have its own lines? In 1913 Niels Bohr pictured the electron in a hydrogen atom on one of a set of rungs, each with its own energy. An electron can’t sit between rungs. To climb, it must take in exactly the energy of the gap; when it drops, it gives out exactly that energy as one photon. A photon’s energy sets its wavelength (Chapter 10), so each gap makes one line, and the pattern of gaps is the element’s barcode. Rungs are called <Term id="energy-level">energy levels</Term>.
+
+<HydrogenLadderFigure
+  number="12.2"
+  tryThis={
+    <p>
+      Press <b>Hα</b>, the red Balmer line, then <b>Lyα</b>: which photon carries more energy, and why can’t your eye see it? Switch to <b>Take in light</b>: which level must the electron start on to absorb visible light?
+    </p>
+  }
+/>
+
+<Callout kind="maths">
+
+**Hydrogen’s lines: 1/λ = R (1/n₁² − 1/n₂²),** where n₁ and n₂ are the lower and upper rungs and R = 1.097 × 10⁷ per metre (Rydberg’s constant). Johann Balmer found the visible case, n₁ = 2, by trial in 1885, without knowing why: for n₂ = 3 it gives 656.3 nm, the red Hα line. Bohr’s ladder explained the formula: level n lies 13.6 eV ÷ n² below the point where the electron goes free.
+
+</Callout>
+
+The jumps fall into families. Every jump to or from the bottom rung is a big one, an ultraviolet photon: the Lyman series. Jumps to or from the second rung give the Balmer series, in visible light: Hα red, Hβ blue-green, Hγ and Hδ violet. Jumps to or from the third give the Paschen series in the infrared. So hydrogen gas can only absorb visible light if some of its atoms already sit on the second rung. That small fact turns out to explain the order of the stars.
+
+Atoms with more electrons have more complicated ladders, but the rule is the same: every element, and every molecule, has its own rungs, so its own lines. Knock an electron off altogether, <Term id="ionisation">ionising</Term> the atom, and what is left has a new ladder: ionised calcium’s lines are nothing like neutral calcium’s.
+
+## The alphabet of the stars
+
+At Harvard College Observatory in the 1880s Edward Pickering set out to photograph the spectra of every bright star, a prism in front of the telescope spreading each star into a short streak. To sort the hundreds of thousands of plates he hired a team of women, the Harvard computers. Williamina Fleming sorted ten thousand stars into classes A to Q by the strength of their hydrogen lines. Antonia Maury noticed that some stars’ lines were narrower than others’. Annie Jump Cannon dropped most of the letters, reordered the rest and, by 1901, settled the order still used today: O, B, A, F, G, K, M. Working at a rate of three stars a minute, she classified about 225,000 for the Henry Draper Catalogue (1918–24), and about 350,000 in her lifetime.
+
+The order is temperature, hottest first. Each <Term id="spectral-class">spectral class</Term> is split into ten, so the Sun is a G2 and Sirius an A1. But nobody knew why the lines should change along the sequence until Meghnad Saha, in 1920, worked out how the atoms in a hot gas share themselves out. At a higher temperature more of them are ionised, and within each kind more electrons sit on higher rungs. A line is strong only where many atoms are in the right state to make it.
+
+<MakeSpectrumFigure
+  number="12.3"
+  tryThis={
+    <p>
+      Drag the temperature slowly from M to O and watch which lines come and go. Where are hydrogen’s lines strongest? Then press <b>Make the Sun without iron</b>: how much changes? Switch to <b>Payne’s curves</b> to see the whole pattern at once.
+    </p>
+  }
+/>
+
+Hydrogen shows Saha’s point best. Its visible lines, the Balmer lines, need atoms on the second rung. In a cool star like the Sun, almost every hydrogen atom sits on the bottom rung, so its Balmer lines are modest, although hydrogen is by far the commonest element. Near 10,000 K enough atoms are on the second rung to make the strongest Balmer lines of any stars: the A stars. Hotter than that, most of the hydrogen is ionised and has no electron left to absorb anything, so the lines fade again. The same rise and fall, at different temperatures, runs through every element: ionised helium in the O stars, neutral helium in the B stars, ionised calcium in the G stars, neutral metals in the K stars, and molecules such as titanium oxide, which break apart in anything hotter, in the cool M stars.
+
+## Stars are made of hydrogen
+
+In 1925 Cecilia Payne, a 25-year-old student at Harvard, turned Saha’s physics around. If a line’s strength depends on temperature, then by allowing for the temperature, the strength measures how much of the element there is. She did this for 18 elements in stars across the classes, in a thesis Otto Struve later called the most brilliant ever written in astronomy. She found that the stars all have much the same make-up, and differ in temperature, not chemistry. And they are overwhelmingly hydrogen and helium, far more of both than of everything else together.
+
+Astronomers then believed the Sun was made much like Earth. Henry Norris Russell, the most influential astronomer in America, told her the result was “clearly impossible”, and she wrote in her thesis that the hydrogen figure was “almost certainly not real”. Four years later Russell measured the Sun’s make-up by another route, confirmed it, and was often credited with it. Payne, later Payne-Gaposchkin, became the first woman to head a department at Harvard.
+
+<SunCompositionFigure
+  number="12.4"
+  tryThis={
+    <p>
+      Switch between <b>By mass</b> and <b>By number of atoms</b>: why are they so different for helium? How many grams of iron are there in a kilogram of Sun?
+    </p>
+  }
+/>
+
+By mass the Sun is about 74% hydrogen and 24% helium. Everything else, all the oxygen, carbon, iron and the rest from which planets and people are made, is about 1.4%. Astronomers call all of it “metals”, and a star’s share of them its <Term id="metallicity">metallicity</Term>. The oldest stars have even less, some a thousandth of the Sun’s share or below, because the metals were made later, inside stars (Chapter 18).
+
+## Starlight’s speedometer
+
+A siren sounds higher as it comes towards you and lower as it goes away: its waves are bunched up ahead of it and stretched out behind. Christian Doppler predicted the same for light in 1842. A star moving away from us has every line in its spectrum shifted to longer, redder wavelengths; one coming closer, to shorter, bluer ones. Compare the star’s lines with the same lines made in a laboratory, and the <Term id="doppler-shift">Doppler shift</Term> gives the star’s speed towards or away from us, its radial velocity.
+
+<Callout kind="maths">
+
+**v = c × Δλ ÷ λ.** The speed along the line of sight is the speed of light times the shift divided by the wavelength. Barnard’s star’s sodium lines arrive 0.22 nm short of 589.0 nm: v = 300,000 km/s × 0.22 ÷ 589 = 110 km/s, towards us. (For speeds near light’s, the formula needs Einstein’s correction; no star moves that fast.)
+
+</Callout>
+
+<DopplerFigure
+  number="12.5"
+  tryThis={
+    <p>
+      Press <b>Barnard’s star</b>, then <b>Aldebaran</b>: which is coming towards us? Can you see Arcturus’s shift at all? Then press <b>A pair of stars in orbit</b> and watch the lines split.
+    </p>
+  }
+/>
+
+The Doppler shift measures only motion along the line of sight, but it measures it without our needing to see the star move across the sky at all, at any distance, and very precisely: the best spectrographs today measure stars’ speeds to well under a metre a second, slower than walking pace. Chapter 14 uses this to weigh stars by their partners’ pull, and Chapter 19 to find planets by the tiny wobble they give their star.
+
+Lines carry more than position. Their widths tell a star’s temperature (atoms in a hot gas move faster, smearing each line), its spin (one edge coming towards us, the other going away) and the pressure in its atmosphere. Altair spins so fast, its equator at about 240 km/s, that its lines are smeared out dozens of times wider than the Sun’s.
+
+<Timeline from={1800} to={1960} chapter={12} only={[12, 13]} title="Reading starlight" />
+
+<DeepDive title="Luminosity classes: a giant’s lines are narrower">
+
+Antonia Maury noticed in the 1890s that some stars of the same class had sharper lines than others. Ejnar Hertzsprung realised in 1905 that the stars with sharp lines were far more luminous: giants. A giant’s atmosphere is enormous and thin, so its atoms collide less often, and collisions, which broaden lines, are rarer. A dwarf’s atmosphere is compressed by its stronger surface gravity, and its lines are broader.
+
+In 1943 William Morgan, Philip Keenan and Edith Kellman turned this into a second label, the <Term id="luminosity-class">luminosity class</Term>: I for supergiants, III for giants, V for main-sequence stars (with II and IV between). The Sun is a G2 V; Betelgeuse is an M1–2 Ia, a bright supergiant; Arcturus a K1.5 III. A spectrum alone thus gives a star’s temperature and roughly its luminosity. Compare that luminosity with how bright the star looks, and the inverse-square law gives its distance: a method called spectroscopic parallax, though no parallax is involved, which reaches far beyond where true parallaxes can be measured.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="dark-lines" prompt="Why does sunlight have dark lines in its spectrum?">
+    <Choice label="Cooler gas in the Sun’s atmosphere absorbs particular colours" correct>
+      Right. The Sun’s glowing interior gives a continuous spectrum; the thinner, cooler gas above it takes out each element’s own wavelengths.
+    </Choice>
+    <Choice label="Dust between us and the Sun blocks some colours">
+      Dust dims and reddens light smoothly; it doesn’t make sharp lines. The lines come from atoms in the Sun’s own atmosphere, absorbing their
+      particular wavelengths.
+    </Choice>
+    <Choice label="The Sun gives out no light at those colours">
+      The Sun’s interior glows at every wavelength. Atoms in its cooler outer layers absorb particular colours and scatter them away from our
+      direction.
+    </Choice>
+  </Question>
+
+  <Question id="weak-hydrogen" prompt="The Sun is mostly hydrogen. Why are its hydrogen lines fairly weak?">
+    <Choice label="At its temperature few hydrogen atoms are on the rung that makes visible lines" correct>
+      Right. Hydrogen’s visible (Balmer) lines need atoms on the second rung. At 5,800 K almost all of them sit on the first, so the lines are
+      modest; they are strongest near 10,000 K.
+    </Choice>
+    <Choice label="Most of its hydrogen is ionised">
+      Not at the Sun’s surface: there it is ionised in hotter stars. At 5,800 K almost all the hydrogen is neutral, but on the bottom rung, which
+      makes ultraviolet lines, not visible ones.
+    </Choice>
+    <Choice label="Hydrogen makes no visible lines">
+      It does, the Balmer lines, but only from atoms on the second rung, and at the Sun’s temperature few atoms are there.
+    </Choice>
+  </Question>
+
+  <Question id="payne" prompt="What did Cecilia Payne discover?">
+    <Choice label="Stars are almost all hydrogen and helium" correct>
+      Right. She showed that stars differ in temperature, not make-up, and that they are overwhelmingly hydrogen and helium.
+    </Choice>
+    <Choice label="Stars are made of the same mix of elements as Earth">
+      That was the belief she overturned. The Sun is about 74% hydrogen and 24% helium by mass; Earth’s elements make up less than 2%.
+    </Choice>
+    <Choice label="The order of the spectral classes, OBAFGKM">
+      Annie Jump Cannon settled the order. Payne used Saha’s physics to read the classes’ lines as amounts, and found that stars are mostly
+      hydrogen and helium.
+    </Choice>
+  </Question>
+
+  <Question id="redshift" prompt="A star’s lines are all shifted a little to the red. What does that tell you?">
+    <Choice label="It is moving away from us" correct>
+      Right. Motion away stretches the waves: every line moves to a longer wavelength by the same fraction, v/c.
+    </Choice>
+    <Choice label="It is cooler than we thought">
+      A cooler star has a redder continuum, but its lines stay at the same wavelengths. Lines that shift together mean motion away from us.
+    </Choice>
+    <Choice label="It is moving across the sky">
+      The Doppler shift measures only motion towards or away from us. Motion across the sky has to be measured by watching the star’s position
+      change.
+    </Choice>
+  </Question>
+
+  <BalmerPeak />
+</CheckYourself>

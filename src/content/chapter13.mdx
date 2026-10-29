@@ -1,0 +1,145 @@
+import { HRDiagramFigure } from '../figures/HRDiagramFigure';
+import { PlotStarFigure } from '../figures/PlotStarFigure';
+import { StarsToScaleFigure } from '../figures/StarsToScaleFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { PickWhiteDwarf } from './checks/chapter13';
+
+Biologists sorted living things before anyone knew why they fell into groups; chemists laid out the periodic table before anyone knew what an atom was inside. Astronomers had their own great sorting in the early twentieth century, when two men independently plotted stars’ brightness against their colour and found that the stars don’t fall just anywhere. This chapter draws their diagram from scratch and then fills it with real stars, a quarter of a million of them.
+
+## Two numbers for every star
+
+Chapter 9 measured how far away a star is, from its parallax. Chapter 11 turned a star’s colour into its surface temperature, and its distance and apparent brightness into its luminosity. So every star whose distance we know gives two numbers: how hot its surface is and how much power it pours out.
+
+Astronomers measure brightness in <Term id="magnitude">magnitudes</Term>, a backwards logarithmic scale where each step of 1 is a factor of about 2.5 in brightness and smaller numbers are brighter (see [Logarithms and magnitudes](/toolkit/logarithms-and-magnitudes/)). A star’s <Term id="absolute-magnitude">absolute magnitude</Term> is how bright it would look from a standard distance of 10 parsecs: a measure of its luminosity. The Sun’s is 4.8, so from 10 parsecs it would be a faint naked-eye star.
+
+<Callout kind="maths">
+
+**M = m − 5 log₁₀(d ÷ 10 pc).** Absolute magnitude M from apparent magnitude m and distance d. Each factor of 10 in distance is 5 magnitudes, a factor of 100 in brightness, as the inverse-square law says. Vega, at 7.7 parsecs and magnitude 0.03: M = 0.03 − 5 log₁₀(0.77) = +0.6, so about 50 times the Sun’s visible light.
+
+</Callout>
+
+<PlotStarFigure
+  number="13.1"
+  tryThis={
+    <p>
+      Plot Sirius, then Betelgeuse, then Sirius B. Where does each land? Then type in a star of your own: a parallax of 10 mas, magnitude 5 and a colour of 1.1. What kind of star is it?
+    </p>
+  }
+/>
+
+One more step turns the magnitude into a luminosity. The V filter sees only visible light, and very hot or very cool stars give out most of their light outside it, in ultraviolet or infrared. A small correction for the light outside the band, the bolometric correction, gives the star’s total output.
+
+## Hertzsprung and Russell’s diagram
+
+In 1911 the Danish astronomer Ejnar Hertzsprung plotted the stars of the Pleiades and the Hyades, clusters whose stars are all at about the same distance, by colour and brightness. In 1913 the American Henry Norris Russell plotted nearby stars of known distance by spectral class and absolute magnitude. Both found the same thing: most stars lie along a single band running from hot and luminous to cool and dim. This plot is the <Term id="hr-diagram">Hertzsprung–Russell diagram</Term>, the HR diagram for short, and the band is the <Term id="main-sequence">main sequence</Term>.
+
+Read it carefully, because it is drawn the wrong way round. Hot stars are on the left and cool ones on the right, because the spectral classes O, B, A, F, G, K, M were written in that order before anyone knew they were a temperature scale. Luminous stars are at the top. With magnitudes the vertical scale runs backwards too: smaller numbers, brighter stars, at the top.
+
+<HRDiagramFigure
+  number="13.2"
+  tryThis={
+    <p>
+      Press <b>Within 20 parsecs</b>, then <b>Naked-eye stars</b>: where are most of each? Switch to <b>Physicists’ axes</b> and find the dashed line through the Sun: which stars are bigger than the Sun but dimmer? Click the white dwarfs at the bottom left.
+    </p>
+  }
+/>
+
+The Gaia spacecraft has measured the distances and colours of more than a billion stars. Within 100 parsecs, a few hundred light-years, its measurements are precise enough to draw the diagram with almost no scatter: here are 238,000 stars, and about nine in ten of them lie on the main sequence. Above it, on the right, sit the giants. Below and to the left lies a second, fainter band, the <Term id="white-dwarf">white dwarfs</Term>. And the bottom right of the main sequence is crowded with <Term id="red-dwarf">red dwarfs</Term>, small, cool and dim.
+
+Now compare the stars you can see with your own eyes. They are mostly in the upper part of the diagram: hot main-sequence stars and giants, more luminous than the Sun. That isn’t because such stars are common, but because only luminous stars are bright enough to see from far away. Not one red dwarf is visible to the naked eye, though three stars in four near the Sun are red dwarfs. The sky you see is a biased sample, as Chapter 9 warned.
+
+## Giants, dwarfs and the Sun
+
+The diagram also shows stars’ sizes, though nobody measured them. A star’s luminosity depends on its temperature and its size, L = 4πR²σT⁴ (Chapter 11). So two stars at the same temperature but different luminosities must differ in size: the brighter one has more surface. On the physicists’ diagram every star of the same radius lies on one sloping line. The supergiants at the top right are hundreds of times the Sun’s width; the white dwarfs at the bottom left about a hundredth, the size of Earth.
+
+<Callout kind="maths">
+
+**R = √L ÷ (T ÷ T☉)²,** with R and L in units of the Sun’s. A star at half the Sun’s temperature and 100 times its luminosity: R = 10 ÷ ¼ = 40 times the Sun’s width, a giant. A star at four times the Sun’s temperature and a hundredth of its luminosity: R = 0.1 ÷ 16 = 1/160 of the Sun’s width, a white dwarf.
+
+</Callout>
+
+<StarsToScaleFigure
+  number="13.3"
+  tryThis={
+    <p>
+      Start at the Sun and zoom out slowly. How many Suns would fit across Arcturus? Across Betelgeuse? Then go back to <b>Sirius B</b>: which is bigger, it or Earth?
+    </p>
+  }
+/>
+
+Where does the Sun fit? It is often called an average star, but that’s not quite right. It lies on the main sequence, a G2 V, in the middle of the range of stars’ temperatures. But most stars are smaller, cooler and dimmer: in the 100-parsec sample, the Sun outshines more than nine stars in ten. The stars we see at night are, on the whole, brighter than the Sun; the stars that are actually out there are, on the whole, dimmer.
+
+## A snapshot, not a path
+
+It is tempting to read the main sequence as a road, with stars travelling along it as they age, cooling and dimming from top left to bottom right. That is a common mistake, and the diagram can’t tell you so by itself: it is a snapshot of many stars at one moment, like a photograph of a crowd that shows children, adults and old people but not how anyone grows up.
+
+A star sits nearly still on the main sequence for most of its life, while it turns hydrogen into helium in its core. Where it sits is set by one thing above all: its mass. Heavy stars sit at the top left, hot and brilliant; light ones at the bottom right. Chapter 14 weighs stars and shows this mass sequence directly (Figure 14.4). The giants and white dwarfs are stars that have left the main sequence near the ends of their lives, and Chapter 17 follows them there; there the diagram becomes a clock, because a cluster of stars born together leaves the main sequence from the top down (Figure 17.3).
+
+<Timeline from={1800} to={2030} chapter={13} only={[12, 13]} title="Reading starlight" />
+
+<DeepDive title="Why hot is on the left, and Gaia’s two white-dwarf tracks">
+
+Russell’s 1913 diagram had spectral classes along the bottom, B, A, F, G, K, M from left to right, in the order the Harvard computers had settled. Only in the 1920s did Saha’s and Payne’s work show that this order is a temperature scale, falling from left to right. By then the habit was fixed, and it has stayed: astronomers plot temperature backwards, and students have been confused by it ever since.
+
+Gaia’s second data release, in 2018, came with HR diagrams of unprecedented sharpness, and one surprise: the white-dwarf sequence is two close tracks, not one. White dwarfs have thin atmospheres of almost pure hydrogen or almost pure helium, the heaviest elements having sunk out of sight in their enormous gravity, and the two kinds have slightly different colours at the same luminosity. A third, fainter feature, a pile-up of white dwarfs along a “Q branch”, turned out to be white dwarfs whose cores are freezing solid, releasing heat as they crystallise and slowing their cooling for billions of years.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="hot-side" prompt="Which way does temperature run on an HR diagram?">
+    <Choice label="Hotter to the left" correct>
+      Right. The spectral classes O to M were written left to right before anyone knew they were a temperature scale, so hot stars are on the left.
+    </Choice>
+    <Choice label="Hotter to the right">
+      It’s the other way round, a historical accident: hot O and B stars are on the left, cool M stars on the right.
+    </Choice>
+    <Choice label="Hotter towards the top">
+      Up is brighter, more luminous. Temperature runs across, and backwards: hotter to the left.
+    </Choice>
+  </Question>
+
+  <Question id="most-stars" prompt="Where on the HR diagram are most stars?">
+    <Choice label="On the main sequence" correct>
+      Right. About nine stars in ten are on the main sequence, most of them dim red dwarfs at its bottom right.
+    </Choice>
+    <Choice label="Among the giants">
+      Giants are easy to see from far away, so many naked-eye stars are giants, but they are rare: a few per cent of the stars near the Sun.
+    </Choice>
+    <Choice label="Spread evenly over the diagram">
+      The surprise of the diagram is that they aren’t: about nine in ten lie on one band, the main sequence.
+    </Choice>
+  </Question>
+
+  <Question id="how-big" prompt="A star has half the Sun’s surface temperature and 100 times its luminosity. How big is it?">
+    <Choice label="40 times the Sun’s width: a giant" correct>
+      Right. At half the temperature each square metre gives out a sixteenth as much, so it needs 1,600 times the Sun’s surface for 100 times
+      the power: √1,600 = 40 times the width.
+    </Choice>
+    <Choice label="10 times the Sun’s width">
+      That would be right at the Sun’s temperature (√100 = 10). But each square metre is cooler, giving out (½)⁴ = 1/16 as much, so it needs 16
+      times more surface: 40 times the width.
+    </Choice>
+    <Choice label="Half the Sun’s width">
+      A cool star that is more luminous than the Sun must be bigger: 40 times the Sun’s width.
+    </Choice>
+  </Question>
+
+  <Question id="snapshot" prompt="Do stars move along the main sequence as they age?">
+    <Choice label="No: a star stays at nearly one place on it, set by its mass" correct>
+      Right. The diagram is a snapshot of stars of different masses. A star moves little while it is on the main sequence, and leaves it when its
+      core’s hydrogen runs out.
+    </Choice>
+    <Choice label="Yes: they slide from the top left to the bottom right">
+      A common reading, but a wrong one. Each star sits nearly still, at a place set by its mass, until it leaves to become a giant.
+    </Choice>
+    <Choice label="Yes: they slide from the bottom right to the top left">
+      Stars don’t travel along the main sequence in either direction. Where a star sits is set by its mass; it leaves the band when its core’s
+      hydrogen runs out.
+    </Choice>
+  </Question>
+
+  <PickWhiteDwarf />
+</CheckYourself>

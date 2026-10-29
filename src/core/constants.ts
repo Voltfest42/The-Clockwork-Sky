@@ -67,3 +67,17 @@ export const T_SUN = 5_772;
 
 /** Sunlight above the air at 1 AU, the total solar irradiance, W/m² (IAU 2015 nominal; Kopp & Lean 2011). */
 export const SOLAR_IRRADIANCE = 1_361;
+
+// ---------- atoms (Part II) ----------
+
+/** The electron's mass, kg (CODATA 2018). */
+export const M_E = 9.109_383_7015e-31;
+
+/** The proton-to-electron mass ratio (CODATA 2018). */
+export const PROTON_ELECTRON_MASS_RATIO = 1_836.152_673_43;
+
+/** The atomic mass unit (dalton), kg (CODATA 2018). */
+export const AMU = 1.660_539_066_6e-27;
+
+/** The Rydberg constant for an infinitely heavy nucleus, m⁻¹ (CODATA 2018). */
+export const RYDBERG_INFINITY = 10_973_731.568_160;

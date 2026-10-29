@@ -61,6 +61,50 @@ export const GLOSSARY = {
     term: 'Wien’s law',
     definition: 'A glowing body’s light peaks at a wavelength of 2.9 millimetres divided by its temperature in kelvin: the hotter it is, the bluer.',
   },
+  'absorption-line': {
+    term: 'Absorption line',
+    definition: 'A dark line in a spectrum, where atoms or molecules in a cooler gas have taken out light of one particular wavelength.',
+  },
+  'emission-line': {
+    term: 'Emission line',
+    definition: 'A bright line in a spectrum: light of one particular wavelength given out by atoms in a thin, hot gas.',
+  },
+  'energy-level': {
+    term: 'Energy level',
+    definition: 'One of the set energies an electron in an atom can have, like the rungs of a ladder. Jumping between two gives out or takes in a photon of exactly the energy between them.',
+  },
+  ionisation: {
+    term: 'Ionisation',
+    definition: 'An atom losing one or more of its electrons, by heat, a collision or a photon. What is left is an ion, with lines of its own.',
+  },
+  'spectral-class': {
+    term: 'Spectral class',
+    definition: 'A star’s type by the lines in its spectrum: O, B, A, F, G, K or M, from hottest to coolest, each split from 0 to 9 (the Sun is a G2).',
+  },
+  'luminosity-class': {
+    term: 'Luminosity class',
+    definition: 'A second label read from a star’s spectrum, from I (supergiants) through III (giants) to V (main-sequence stars, like the Sun).',
+  },
+  metallicity: {
+    term: 'Metallicity',
+    definition: 'The share of a star made of elements heavier than helium, all of which astronomers call metals. The Sun’s is about 1.4% by mass.',
+  },
+  'doppler-shift': {
+    term: 'Doppler shift',
+    definition: 'The change in wavelength of light from something moving towards us (shorter, bluer) or away (longer, redder). It gives the speed along the line of sight, the radial velocity.',
+  },
+  'hr-diagram': {
+    term: 'Hertzsprung–Russell diagram',
+    definition: 'A plot of stars’ luminosity (or absolute magnitude) against their surface temperature (or colour), hot stars on the left. Most stars fall on the main sequence.',
+  },
+  'main-sequence': {
+    term: 'Main sequence',
+    definition: 'The band on the HR diagram where stars spend most of their lives, turning hydrogen into helium in their cores. A star’s place on it is set by its mass.',
+  },
+  giant: {
+    term: 'Giant',
+    definition: 'A star near the end of its life, swollen to tens of times the Sun’s width with a cool surface; supergiants, from heavier stars, reach hundreds of times.',
+  },
   'lagrange-point': {
     term: 'Lagrange point',
     definition:

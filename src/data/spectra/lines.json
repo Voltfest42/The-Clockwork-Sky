@@ -1,0 +1,371 @@
+{
+ "source": "NIST Atomic Spectra Database, version 5 (A. Kramida, Yu. Ralchenko, J. Reader and the NIST ASD Team), https://physics.nist.gov/asd",
+ "units": {
+  "nm": "wavelength in air, nm",
+  "ion": "0 = neutral, 1 = singly ionised",
+  "chi": "energy of the lower level, eV",
+  "logGf": "log10 of the oscillator strength × the lower level’s statistical weight"
+ },
+ "lines": [
+  {
+   "element": "H",
+   "ion": 0,
+   "nm": 656.282,
+   "chi": 10.199,
+   "logGf": 0.71,
+   "name": "Hα"
+  },
+  {
+   "element": "H",
+   "ion": 0,
+   "nm": 486.133,
+   "chi": 10.199,
+   "logGf": -0.02,
+   "name": "Hβ"
+  },
+  {
+   "element": "H",
+   "ion": 0,
+   "nm": 434.047,
+   "chi": 10.199,
+   "logGf": -0.45,
+   "name": "Hγ"
+  },
+  {
+   "element": "H",
+   "ion": 0,
+   "nm": 410.174,
+   "chi": 10.199,
+   "logGf": -0.75,
+   "name": "Hδ"
+  },
+  {
+   "element": "H",
+   "ion": 0,
+   "nm": 397.008,
+   "chi": 10.199,
+   "logGf": -0.99,
+   "name": "Hε"
+  },
+  {
+   "element": "H",
+   "ion": 0,
+   "nm": 388.906,
+   "chi": 10.199,
+   "logGf": -1.19,
+   "name": "H8"
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 587.566,
+   "chi": 20.964,
+   "logGf": 0.74,
+   "name": "He I “D₃”"
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 447.15,
+   "chi": 20.964,
+   "logGf": 0.04
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 667.815,
+   "chi": 21.218,
+   "logGf": 0.33
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 501.568,
+   "chi": 20.616,
+   "logGf": -0.82
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 492.193,
+   "chi": 21.218,
+   "logGf": -0.44
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 471.317,
+   "chi": 20.964,
+   "logGf": -1.02
+  },
+  {
+   "element": "He",
+   "ion": 0,
+   "nm": 402.621,
+   "chi": 20.964,
+   "logGf": -0.37
+  },
+  {
+   "element": "He",
+   "ion": 1,
+   "nm": 468.571,
+   "chi": 48.372,
+   "logGf": 1.18
+  },
+  {
+   "element": "Na",
+   "ion": 0,
+   "nm": 588.995,
+   "chi": 0,
+   "logGf": 0.11,
+   "name": "Na D₂"
+  },
+  {
+   "element": "Na",
+   "ion": 0,
+   "nm": 589.592,
+   "chi": 0,
+   "logGf": -0.19,
+   "name": "Na D₁"
+  },
+  {
+   "element": "Mg",
+   "ion": 0,
+   "nm": 516.732,
+   "chi": 2.709,
+   "logGf": -0.87,
+   "name": "Mg b"
+  },
+  {
+   "element": "Mg",
+   "ion": 0,
+   "nm": 517.268,
+   "chi": 2.712,
+   "logGf": -0.39,
+   "name": "Mg b"
+  },
+  {
+   "element": "Mg",
+   "ion": 0,
+   "nm": 518.36,
+   "chi": 2.717,
+   "logGf": -0.17,
+   "name": "Mg b"
+  },
+  {
+   "element": "Mg",
+   "ion": 0,
+   "nm": 383.829,
+   "chi": 2.717,
+   "logGf": 0.4
+  },
+  {
+   "element": "Mg",
+   "ion": 1,
+   "nm": 448.121,
+   "chi": 8.864,
+   "logGf": 0.99
+  },
+  {
+   "element": "Si",
+   "ion": 1,
+   "nm": 634.711,
+   "chi": 8.121,
+   "logGf": 0.15
+  },
+  {
+   "element": "Si",
+   "ion": 1,
+   "nm": 637.137,
+   "chi": 8.121,
+   "logGf": -0.08
+  },
+  {
+   "element": "Si",
+   "ion": 1,
+   "nm": 412.805,
+   "chi": 9.837,
+   "logGf": 0.36
+  },
+  {
+   "element": "Ca",
+   "ion": 0,
+   "nm": 422.673,
+   "chi": 0,
+   "logGf": 0.24,
+   "name": "Ca I"
+  },
+  {
+   "element": "Ca",
+   "ion": 1,
+   "nm": 393.366,
+   "chi": 0,
+   "logGf": 0.13,
+   "name": "Ca II K"
+  },
+  {
+   "element": "Ca",
+   "ion": 1,
+   "nm": 396.847,
+   "chi": 0,
+   "logGf": -0.18,
+   "name": "Ca II H"
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 382.042,
+   "chi": 0.859,
+   "logGf": 0.12
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 385.991,
+   "chi": 0,
+   "logGf": -0.71
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 404.581,
+   "chi": 1.485,
+   "logGf": 0.28
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 406.359,
+   "chi": 1.557,
+   "logGf": 0.06
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 407.174,
+   "chi": 1.608,
+   "logGf": -0.02
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 425.079,
+   "chi": 1.557,
+   "logGf": -0.71
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 427.176,
+   "chi": 1.485,
+   "logGf": -0.16
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 430.79,
+   "chi": 1.557,
+   "logGf": -0.07,
+   "name": "Fe I (G band)"
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 438.354,
+   "chi": 1.485,
+   "logGf": 0.2
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 440.475,
+   "chi": 1.557,
+   "logGf": -0.14
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 495.76,
+   "chi": 2.808,
+   "logGf": 0.23
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 526.954,
+   "chi": 0.859,
+   "logGf": -1.32
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 527.036,
+   "chi": 1.608,
+   "logGf": -1.34,
+   "name": "Fe I (E)"
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 532.804,
+   "chi": 0.915,
+   "logGf": -1.47
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 537.149,
+   "chi": 0.958,
+   "logGf": -1.64
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 539.713,
+   "chi": 0.915,
+   "logGf": -1.99
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 543.452,
+   "chi": 1.011,
+   "logGf": -2.12
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 614.173,
+   "chi": 3.603,
+   "logGf": -1.46
+  },
+  {
+   "element": "Fe",
+   "ion": 0,
+   "nm": 649.498,
+   "chi": 2.404,
+   "logGf": -1.27
+  },
+  {
+   "element": "Fe",
+   "ion": 1,
+   "nm": 492.392,
+   "chi": 2.891,
+   "logGf": -1.2
+  },
+  {
+   "element": "Fe",
+   "ion": 1,
+   "nm": 501.844,
+   "chi": 2.891,
+   "logGf": -1.34
+  },
+  {
+   "element": "Fe",
+   "ion": 1,
+   "nm": 516.903,
+   "chi": 2.891,
+   "logGf": -0.87
+  }
+ ]
+}

@@ -30,6 +30,16 @@ The test fixture `tests/fixtures/orrery.json` (the same bodies' positions a Juli
 
 The test fixture `tests/fixtures/eclipses.json` (every solar and lunar eclipse from 1900 to 2100: date and time of greatest eclipse, Saros series, type, gamma and magnitudes) comes from NASA's *Five Millennium Catalogs of Solar and Lunar Eclipses* by Fred Espenak, and is fetched by `scripts/fetch-eclipses.ts`. NASA allows the data to be reproduced with the acknowledgment **"Eclipse Predictions by Fred Espenak (NASA's GSFC)"**, which the file carries. The site itself doesn't ship it: its eclipses come from the course's own eclipse finder, which the fixture tests.
 
+## Part II's data files
+
+- `src/data/gaia/hr.json` (**CC BY-NC 3.0 IGO**, in its own folder with a README): the HR diagram of Gaia DR3's stars within 100 parsecs, built by `scripts/build-hr.ts` from the Gaia archive.
+- `src/data/xsl/spectra.json` (**CC BY 4.0**, in its own folder with a README): ten stellar spectra from the X-shooter Spectral Library DR2 (Gonneau et al. 2020), from the ESO Science Archive, built by `scripts/build-spectra.ts`.
+- `src/data/spectra/lines.json`: 49 spectral lines (air wavelengths, lower-level energies and log gf from the transition probabilities) from the NIST Atomic Spectra Database, fetched 29 Oct 2026 by `scripts/fetch-lines.ts`. Facts, cited.
+- `src/data/dwarfSequence.json`: Mamajek's mean dwarf colours, temperatures, bolometric corrections and absolute magnitudes (version 2022.04.16), built by `scripts/build-dwarfs.ts`. No licence stated; cite Pecaut & Mamajek (2013, *ApJS* 208, 9), as the author asks.
+- `src/data/spectra/lamps.ts`: the brightest visible lines of hydrogen, helium, sodium, neon and mercury lamps (NIST strong lines; brightnesses schematic).
+- `src/data/sunComposition.ts`: the Sun's photospheric abundances of fifteen elements (Asplund, Amarsi & Grevesse 2021, *A&A* 653, A141).
+- `src/core/spectra/saha.ts`: ionisation energies (NIST), partition functions near 6,000 K (Gray 2005, Appendix D) and abundances (Asplund et al. 2021) for the toy atmosphere; a main-sequence electron pressure read from model photospheres.
+
 ## Values in the code
 
 The B and V filter curves in `src/core/light/filters.ts` are Bessell's (1990, *PASP* 102, 1181, Table 2), as served by the SVO Filter Profile Service (`Generic/Bessell.B` and `.V`, fetched 29 Oct 2026), with the zero points of Bessell, Castelli & Plez (1998, *A&A* 333, 231). The sketch of how far down light gets (`src/core/light/atmosphere.ts`) is drawn from band values in the Part II research brief §2, not from a dataset.

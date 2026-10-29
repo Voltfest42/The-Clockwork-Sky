@@ -275,6 +275,8 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Atoms and their energy levels, absorption and emission lines, spectral classes, Cecilia Payne’s discovery that stars are mostly hydrogen, and Doppler shifts.',
     sections: ['Dark lines in sunlight', 'Atoms as ladders', 'The alphabet of the stars', 'Stars are made of hydrogen', 'Starlight’s speedometer'],
     buildsOn: [10, 11],
+
+    load: () => import('../content/chapter12.mdx'),
   }),
   chapter({
     number: 13,
@@ -284,6 +286,8 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Two numbers for every star', 'Hertzsprung and Russell’s diagram', 'Giants, dwarfs and the Sun', 'A snapshot, not a path'],
     buildsOn: [9, 11, 12],
     toolkit: ['logarithms-and-magnitudes'],
+
+    load: () => import('../content/chapter13.mdx'),
   }),
   chapter({
     number: 14,

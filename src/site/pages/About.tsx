@@ -65,7 +65,11 @@ export function About() {
           its measured size and temperature; photon energies, photon rates from a star of known magnitude, and the Bessel functions behind
           the diffraction pattern against tables; telescopes’ resolving power against the research notes; the blurred star images against
           the light they must contain; and the double stars’ orbits against the Sixth Catalog of Orbits’ own predictions for 2025–2029, to
-          0.002″. End-to-end tests open every page, use it by
+          0.002″. Since Chapters 12 and 13, hydrogen’s wavelengths from Bohr’s ladder are checked against NIST’s, and Balmer’s lines to 0.01
+          nm; Saha’s equation against the textbook temperature at which hydrogen is half ionised; the model atmosphere’s lines against
+          where each element’s lines peak along the spectral classes, and the Sun’s strongest lines against their real strengths; the Sun’s
+          make-up against its published mass fractions; and the HR diagram’s conversions between colour and temperature against round
+          trips, with the famous stars landing in their known places. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -330,6 +334,36 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 12</h3>
+        <ul>
+          <li>
+            <b>Figure 12.1, Kirchhoff’s three spectra.</b> Real wavelengths; the lines’ brightnesses are only a rough guide, and a cool gas is
+            drawn absorbing every line it gives out when hot.
+          </li>
+          <li>
+            <b>Figure 12.3, make a spectrum.</b> A toy atmosphere: one layer at one temperature and a main-sequence star’s pressure, fifty of the
+            strongest lines and a sketch of titanium oxide’s bands. It gets where lines come and go right, not their exact depths. The real
+            spectra beside it are not corrected for dust.
+          </li>
+          <li>
+            <b>Figure 12.4, the Sun’s make-up.</b> Surface abundances today; helium’s comes from helioseismology.
+          </li>
+          <li>
+            <b>Figure 12.5, the Doppler shifter.</b> v = c Δλ/λ, exact for stars’ speeds; every star is drawn with the Sun’s spectrum.
+          </li>
+        </ul>
+
+        <h3>Chapter 13</h3>
+        <ul>
+          <li>
+            <b>Figures 13.1 and 13.2, the HR diagram.</b> Temperatures and bolometric corrections from a table of main-sequence stars, so
+            approximate for giants and white dwarfs; Gaia misses the brightest stars and pairs too close to measure cleanly; dust is ignored.
+          </li>
+          <li>
+            <b>Figure 13.3, stars to scale.</b> Red supergiants’ sizes are uncertain by a fifth to a half; the dashed circles show the range.
+          </li>
+        </ul>
+
         <h3>The Orrery</h3>
         <ul>
           <li>
@@ -486,6 +520,20 @@ export function About() {
             (1962), Physical Review Letters 9, 439: the first X-ray source beyond the Sun.
           </li>
           <li>
+            The NIST Atomic Spectra Database (A. Kramida, Yu. Ralchenko, J. Reader and the NIST ASD Team): the wavelengths, energy levels and
+            transition probabilities of the lines in Chapter 12. N. Bohr (1913), Philosophical Magazine 26, 1; M. N. Saha (1920),
+            Philosophical Magazine 40, 472; C. H. Payne (1925), Stellar Atmospheres (Harvard Observatory Monographs 1); B. W. Carroll and D. A.
+            Ostlie, An Introduction to Modern Astrophysics, 2nd edition (2007), and D. F. Gray, The Observation and Analysis of Stellar
+            Photospheres, 3rd edition (2005), for the Saha–Boltzmann model; M. Asplund, A. M. Amarsi and N. Grevesse (2021), Astronomy and
+            Astrophysics 653, A141: the Sun’s make-up.
+          </li>
+          <li>
+            M. J. Pecaut and E. E. Mamajek (2013), The Astrophysical Journal Supplement 208, 9, and E. Mamajek’s “A Modern Mean Dwarf Stellar
+            Color and Effective Temperature Sequence”, version 2022.04.16: colours, temperatures and bolometric corrections. Gaia
+            Collaboration, C. Babusiaux and colleagues (2018), Astronomy and Astrophysics 616, A10: Gaia’s HR diagrams. E. Hertzsprung (1911)
+            and H. N. Russell (1914), Popular Astronomy 22, 275: the first diagrams.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -538,6 +586,29 @@ export function About() {
           <li>
             <b>Asteroids:</b> counts made from the orbits of the numbered asteroids in NASA JPL’s Small-Body Database, which come from the
             Minor Planet Center. Only the counts are kept, not the orbits.
+          </li>
+          <li>
+            <b>The HR diagram of the stars within 100 parsecs:</b> made from Gaia Data Release 3 (ESA/Gaia/DPAC). Gaia’s data are shared under
+            the{' '}
+            <a href="https://creativecommons.org/licenses/by-nc/3.0/igo/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution-NonCommercial 3.0 IGO
+            </a>{' '}
+            licence, and so is this course’s file made from them (a map of where the stars lie on the diagram, every star within 20 parsecs and
+            a sample of the rest), which is kept in a folder of its own. This work has made use of data from the European Space Agency mission
+            Gaia, processed by the Gaia Data Processing and Analysis Consortium (DPAC).
+          </li>
+          <li>
+            <b>Real stellar spectra:</b> ten spectra from the X-shooter Spectral Library (A. Gonneau and colleagues 2020, Astronomy and
+            Astrophysics 634, A133), based on observations collected at the European Southern Observatory and served by the ESO Science
+            Archive under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution 4.0
+            </a>{' '}
+            licence. The course averages them into 0.4 nm steps and joins each star’s two arms. Spectral types from SIMBAD (CDS, Strasbourg).
+          </li>
+          <li>
+            <b>Spectral lines:</b> the NIST Atomic Spectra Database. <b>Main-sequence colours and temperatures:</b> Mamajek’s table (see
+            Sources), used with the citation it asks for.
           </li>
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons
