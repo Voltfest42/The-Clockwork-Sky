@@ -1,0 +1,163 @@
+import { BlackbodyFigure } from '../figures/BlackbodyFigure';
+import { InverseSquareFigure } from '../figures/InverseSquareFigure';
+import { StarPowerFigure } from '../figures/StarPowerFigure';
+import { TwoFiltersFigure } from '../figures/TwoFiltersFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { HalfTemperature } from './checks/chapter11';
+
+Look at the stars on a clear night and a few show colour: orange Arcturus and Betelgeuse, blue-white Rigel and Vega. Those colours are thermometers. This chapter shows how a star’s colour gives its temperature, how its temperature and size give the power it pours out, and how we measure that power from here, by the starlight that reaches us.
+
+## Everything glows
+
+Turn on an electric stove ring and it glows dull red; a lamp’s filament glows yellow-white. Heat them more and they would glow whiter still. You glow too, though not in light your eyes can see: at 37 °C, about 310 kelvin, your body gives off infrared, which is what a thermal camera sees. Everything with a temperature glows, and the shape of the glow, how much light comes out at each wavelength, depends on the temperature alone. A perfect glower is called a <Term id="blackbody">black body</Term>, and stars are close to it.
+
+<BlackbodyFigure
+  number="11.1"
+  tryThis={
+    <p>
+      Answer the question first. Then press <b>You</b>, <b>A stove ring</b> and <b>The Sun</b> in turn: where does each one peak? Switch
+      to <b>Log axes</b> and drag the temperature up: is a hotter body brighter at <i>every</i> wavelength?
+    </p>
+  }
+/>
+
+Hotter is bluer. As a body heats up, the peak of its glow moves to shorter wavelengths: from the infrared through red and yellow to white and then blue. So blue stars are the hottest and red ones the coolest, the opposite of the colours on hot and cold taps. Game engines borrow this physics: in Unreal or Unity you can set a light’s colour by a temperature in kelvin, warm 2,700 K for a candle-lit room, cool 6,500 K for daylight.
+
+<Callout kind="maths">
+
+**<Term id="wiens-law">Wien’s law</Term>: λ_peak = 2.9 mm·K ÷ T.** Divide 2.9 millimetre-kelvins by the temperature to get the wavelength where a black body glows brightest. You, at 310 K: 9.3 µm, in the infrared. The Sun, at 5,772 K: 502 nm, blue-green. A 40,000 K star: 72 nm, far ultraviolet.
+
+</Callout>
+
+The Sun peaks in the blue-green, yet nobody calls it green, and above the air it isn’t yellow either: it is white. Its light mixes every colour in roughly equal measure. It looks yellow from the ground, and orange or red at sunset, because the air scatters some of its blue out of the beam (Chapter 10).
+
+## A thermometer made of two filters
+
+How do you take the temperature of something you can never touch? Measure its colour. Astronomers photograph a star through two coloured filters, one passing blue light (B) and one yellow-green (V), and compare how bright it looks through each. A hot star is brighter through the blue filter; a cool one through the yellow. The difference, written as a <Term id="colour-index">colour index</Term>, B − V, is the star’s thermometer. On the astronomers’ <Term id="magnitude">magnitude</Term> scale (see [Logarithms and magnitudes](/toolkit/logarithms-and-magnitudes/)), Vega’s B − V is 0 by definition; bluer stars have negative values and redder ones positive, up to about 2 for the reddest.
+
+<TwoFiltersFigure
+  number="11.2"
+  tryThis={
+    <p>
+      Press the stars in turn and watch the arrow move along the scale. Then press <b>Peak in the green</b>: what colour does the body look?
+    </p>
+  }
+/>
+
+Measuring colour is fast and cheap: two quick exposures give the temperatures of thousands of stars at once. The Gaia spacecraft has measured colours for well over a billion.
+
+Why are there no green stars? A star whose glow peaks in the green gives out nearly as much red and blue light too, because a black body’s spectrum is broad. Your eye adds them up and sees white. To look green, a light has to give out green and little else, and nothing glowing with heat does that.
+
+## Hotter is far brighter
+
+Heat a body and it doesn’t only change colour: it gives out far more light, at every wavelength. Each square metre of a hot surface gives out a power that grows with the fourth power of its temperature (the <Term id="stefan-boltzmann-law">Stefan–Boltzmann law</Term>). Double the temperature and each square metre shines sixteen times as brightly. Each square metre of the Sun’s surface gives out 63 million watts, as much as 20,000 kettles at full power.
+
+A star’s total power, its <Term id="luminosity">luminosity</Term>, also depends on how much surface it has: twice the width, four times the surface (see [Ratios and scaling](/toolkit/ratios-and-scaling/)). Size and temperature together set the power.
+
+<Callout kind="maths">
+
+**L = 4πR² × σT⁴.** Luminosity is the surface area of a sphere of radius R times the power per square metre, σT⁴, with σ = 5.67 × 10⁻⁸ W m⁻² K⁻⁴. In units of the Sun: L = R² × (T ÷ 5,772 K)⁴. A star 4 times the Sun’s width at half its temperature: 16 × 1/16 = exactly the Sun’s luminosity.
+
+</Callout>
+
+<StarPowerFigure
+  number="11.3"
+  tryThis={
+    <p>
+      Start with Betelgeuse beside the Sun: which planets’ orbits would it swallow? Press <b>Sirius B</b>: where is it? Then make your own
+      star twice the Sun’s width at the Sun’s temperature, and watch it move on the map.
+    </p>
+  }
+/>
+
+So a cool star can be enormously luminous, if it is big enough. Betelgeuse’s surface is cooler than the Sun’s, about 3,600 K, so each square metre gives out only a seventh as much. But it is some 760 times as wide, with 580,000 times the surface, so it gives out about 90,000 times the Sun’s power. Sirius B is the reverse: hotter than the Sun, about 25,000 K, but only the size of Earth, so it gives out a fortieth of the Sun’s power. Put stars on a map of temperature against luminosity and their sizes can be read off it, along lines of equal size: the map that Chapter 13 fills with real stars.
+
+## How bright it looks, and how bright it is
+
+Two different things are both called brightness. One is how much light a star gives out, its luminosity, in watts. The other is how bright it looks from here, how much of its light reaches each square metre of a telescope: its <Term id="flux">flux</Term>, in watts per square metre. A lamp across the street has the same luminosity as when it is in your hand, but looks fainter, because its light has spread out.
+
+Light leaving a star spreads over bigger and bigger spheres. At twice the distance, the same light is spread over a sphere with four times the area, so each square metre gets a quarter as much: the <Term id="inverse-square-law">inverse-square law</Term>, the same law as gravity’s (Chapter 7) and the one Chapter 9 used for the Sun seen from afar.
+
+<InverseSquareFigure
+  number="11.4"
+  tryThis={
+    <p>
+      Slide the detector to 2 units, then 3: what share does it catch? How much less sunlight reaches Jupiter than Earth? Then press <b>Weigh
+      the Sun’s power</b>.
+    </p>
+  }
+/>
+
+<Callout kind="know">
+
+Measure sunlight above the air and you can work out the Sun’s whole power, the way Chapter 7 weighed the Sun from Earth’s orbit. Satellites measure 1,361 watts falling on each square metre at Earth’s distance. All of the Sun’s light crosses a sphere that size, 4π × (150 million km)² = 2.8 × 10²³ square metres. Multiply: the Sun gives out 3.8 × 10²⁶ watts.
+
+</Callout>
+
+The same reasoning works for any star whose distance we know (Chapter 9): measure how much of its light arrives, multiply by the area of a sphere as big as its distance, and out comes its luminosity. With its temperature from its colour, the luminosity gives its size too, through L = 4πR²σT⁴, even when the star is far too small to see as a disc. Chapter 13 does this for thousands of stars at once.
+
+<Timeline from={1660} to={2030} chapter={11} only={[10, 11]} title="Light and heat" />
+
+<DeepDive title="Measuring a star’s size directly">
+
+A star’s disc is far too small to see in an ordinary telescope: even Betelgeuse, one of the biggest stars in the sky, is about 0.05″ across, the width of a coin seen from 100 km. On 13 December 1920 Albert Michelson and Francis Pease measured it anyway. They fixed a 6-metre beam across the top of the 2.5-metre Hooker telescope on Mount Wilson, with mirrors at its ends, so the starlight came through two openings far apart. Light from the two edges of the star’s disc makes interference fringes that wash out when the openings are a certain distance apart, and that distance gives the disc’s width: 0.047″. With Betelgeuse’s distance, that made it hundreds of times wider than the Sun, the first star whose size was measured.
+
+Today’s interferometers link telescopes tens or hundreds of metres apart (the CHARA array in California, the VLTI in Chile) and measure the sizes of hundreds of stars, check the sizes worked out from L = 4πR²σT⁴, and even make rough pictures of the nearest giants’ surfaces. When Betelgeuse dimmed in 2019–20, images from the Very Large Telescope showed why: a dark cloud of dust had formed over part of its face.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="red-or-blue" prompt="Which is hotter: a red star or a blue one?">
+    <Choice label="The blue star" correct>
+      Right. The hotter a body, the shorter the wavelength where its glow peaks: red stars are about 3,000 K, blue ones 10,000 K and more.
+    </Choice>
+    <Choice label="The red star">
+      That’s the hot tap’s colour, but for glowing bodies it’s the other way round: hotter means bluer. Red stars are the coolest.
+    </Choice>
+    <Choice label="They could be the same temperature">
+      A star’s colour is set by its temperature: a red star and a blue one can’t have the same surface temperature. The blue one is hotter.
+    </Choice>
+  </Question>
+
+  <Question id="betelgeuse-bright" prompt="Betelgeuse is cooler than the Sun. Why does it give out about 90,000 times as much light?">
+    <Choice label="It is enormous: about 760 times as wide as the Sun" correct>
+      Right. Each square metre of it gives out about a seventh as much as the Sun’s, but it has about 580,000 times the surface.
+    </Choice>
+    <Choice label="It is closer to us">
+      Distance changes how bright a star looks, not how much light it gives out. Betelgeuse is about 550 light-years away; its power comes
+      from its size.
+    </Choice>
+    <Choice label="It burns a different fuel">
+      Its power comes from its size: a cool surface, but an enormous one, hundreds of times wider than the Sun.
+    </Choice>
+  </Question>
+
+  <Question id="twice-as-far" prompt="You walk twice as far from a lamp. How bright does it look?">
+    <Choice label="A quarter as bright" correct>
+      Right. Its light is spread over a sphere with four times the area, so each square metre, and your eye, gets a quarter as much.
+    </Choice>
+    <Choice label="Half as bright">
+      Brightness falls with the square of the distance, not in proportion: twice as far, a quarter as bright.
+    </Choice>
+    <Choice label="Just as bright, only smaller">
+      Its surface brightness stays the same, but the light reaching your eye falls to a quarter: twice as far, a quarter of the light.
+    </Choice>
+  </Question>
+
+  <Question id="no-green-stars" prompt="Why are there no green stars?">
+    <Choice label="A star that peaks in the green gives out red and blue too, and looks white" correct>
+      Right. A glowing body’s spectrum is broad. Peaking in the green, it still gives out plenty of red and blue, and the mixture looks white.
+    </Choice>
+    <Choice label="No star has the right temperature">
+      Stars near 5,000–6,000 K do peak in the green. But their spectra are broad, so they give out red and blue too and look white.
+    </Choice>
+    <Choice label="The air filters green light out">
+      The air scatters blue, not green. A star peaking in green looks white because it gives out plenty of every colour.
+    </Choice>
+  </Question>
+
+  <HalfTemperature />
+</CheckYourself>

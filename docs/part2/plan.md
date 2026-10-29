@@ -4,7 +4,9 @@
 
 ## Status
 
-**Planned** (28 Oct 2026, Stage 9). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. Nothing in §4–§10 is built yet. **Agreed** (29 Oct 2026): the defaults for all eight open questions in §12 stand. Next: Stage 10, Chapters 10 and 11.
+**Planned** (28 Oct 2026, Stage 9). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. **Agreed** (29 Oct 2026): the defaults for all eight open questions in §12 stand.
+
+**Stage 10 done** (29 Oct 2026): Chapters 10 and 11, Toolkit T5, the light core, the spectrum view, a star drawn true, the famous stars file and the first visual-binary code (see the master plan's Status for details and deviations). Next: Stage 11, Chapters 12 and 13.
 
 ---
 

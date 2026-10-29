@@ -256,6 +256,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Waves and photons, the electromagnetic spectrum, why some light never reaches the ground, and how telescopes collect and resolve light.',
     sections: ['Waves of light', 'Light comes in packets', 'Why some light never reaches the ground', 'Sharper eyes'],
     buildsOn: [1, 9],
+    load: () => import('../content/chapter10.mdx'),
   }),
   chapter({
     number: 11,
@@ -265,6 +266,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Everything glows', 'A thermometer made of two filters', 'Hotter is far brighter', 'How bright it looks, and how bright it is'],
     buildsOn: [9, 10],
     toolkit: ['logarithms-and-magnitudes'],
+    load: () => import('../content/chapter11.mdx'),
   }),
   chapter({
     number: 12,
@@ -454,6 +456,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Scales that multiply instead of add, and why astronomers’ magnitudes run backwards.',
     part: 2,
     firstNeeded: 11,
+    load: () => import('../content/toolkit/logarithms-and-magnitudes.mdx'),
   },
   {
     slug: 'measurements-and-uncertainty',

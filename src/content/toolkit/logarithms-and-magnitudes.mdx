@@ -1,0 +1,58 @@
+import { MagnitudeLadderFigure } from '../../figures/MagnitudeLadderFigure';
+import { Callout } from '../../site/content/blocks';
+
+The Sun is about 10,000,000,000 times brighter in our sky than Sirius, and Sirius about 10,000,000,000,000 times brighter than the faintest galaxies JWST has seen. Numbers that span so many powers of ten are awkward to write and impossible to plot on ordinary axes. The way round is to count the powers of ten instead: a logarithm. Astronomers have their own version, the magnitude scale, which is older than logarithms and runs backwards.
+
+## Scales that multiply
+
+On an ordinary ruler each step adds the same amount: 1, 2, 3, 4 centimetres. On a **logarithmic** scale each step multiplies by the same amount: 1, 10, 100, 1,000. Many things in nature are better measured that way, because what matters is the ratio, not the difference. A star twice as bright as another looks “one step” brighter whether the pair is faint or dazzling, and your ears hear a sound ten times as powerful as one step louder at any volume.
+
+The **logarithm** of a number (in base ten) is simply how many factors of ten it takes to make it. The log of 100 is 2, because 10 × 10 = 100. The log of 1,000,000 is 6. The log of 1 is 0, and of 0.01 is −2. Numbers between have logs between: the log of 2 is about 0.3, of 3 about 0.48, of 5 about 0.7 (see [Powers of ten](/toolkit/powers-of-ten/)).
+
+Logarithms turn multiplying into adding, which is why they were invented, in 1614: the log of a × b is log a + log b. Two factors of 100 make 10,000, and 2 + 2 = 4.
+
+## Log axes
+
+A chart whose axis is spaced by logarithms, with 1, 10, 100 and 1,000 equally far apart, can show the Sun and the faintest galaxy side by side. Part I used them for Kepler’s third law (see [Ratios and scaling](/toolkit/ratios-and-scaling/)), and Part II uses them everywhere: for the spectrum, twenty powers of ten wide (Chapter 10), for black-body curves (Chapter 11), and for stars’ luminosities, from a ten-thousandth of the Sun’s to a million times it.
+
+## Decibels
+
+If you have mixed audio for a game, you have used logarithms already. Volume in decibels is ten times the log of a power ratio: +10 dB is ten times the power, +20 dB a hundred times, +3 dB about twice. A sound at −60 dB carries a millionth of the power of one at 0 dB. Decibels add where powers multiply, so a mixer can stack gains by adding numbers.
+
+## Magnitudes: astronomers’ decibels, backwards
+
+About 2,100 years ago Hipparchus sorted the stars he could see into six classes: the brightest were of the first magnitude, the faintest of the sixth. The eye, it turned out, judges brightness roughly logarithmically, so his steps were roughly equal ratios. In 1856 Norman Pogson made the scale exact: five magnitudes are a factor of exactly 100 in brightness. So one magnitude is the fifth root of 100, about **2.512**.
+
+Two things make the scale feel strange. It runs backwards, because Hipparchus counted down from the brightest: bigger numbers are fainter. And it runs off both ends: the brightest stars are brighter than “first magnitude”, so Vega is about 0 and Sirius −1.46; the Sun is −26.74. Telescopes see far below the sixth: Pluto is 14, Hubble’s deepest images reach about 30.
+
+<MagnitudeLadderFigure
+  number="T5.1"
+  tryThis={
+    <p>
+      Compare <b>Vega</b> with <b>The faintest stars the eye sees</b>: how many times brighter? Then the Sun with the full Moon. How many
+      steps of 100 lie between the Sun and JWST’s faintest galaxies?
+    </p>
+  }
+/>
+
+<Callout kind="maths">
+
+**m₁ − m₂ = −2.5 log₁₀(F₁ ÷ F₂).** A difference of magnitudes is −2.5 times the log of the ratio of brightnesses (fluxes). Going the other way: the ratio is 10^(0.4 × difference). Vega (0.03) and a star of magnitude 6 differ by about 6 magnitudes: 10^2.4 ≈ 250 times.
+
+</Callout>
+
+## Adding two stars’ light
+
+Because magnitudes are logarithms, you can’t add them. Two stars of magnitude 3 side by side don’t make a star of magnitude 6 (that would be fainter!) or 1.5. Add their light instead: twice the light is 2.5 × log 2 ≈ 0.75 magnitudes brighter, so together they shine at magnitude 2.25. A hundred such stars together make magnitude −2: five magnitudes brighter.
+
+## The distance modulus
+
+How bright a star looks, its apparent magnitude m, depends on its luminosity and its distance. Astronomers measure luminosity as an **absolute magnitude** M: how bright the star would look from a standard distance of 10 parsecs (Chapter 9). Since brightness falls with the square of the distance, ten times farther is a hundred times fainter, five magnitudes:
+
+<Callout kind="maths">
+
+**m − M = 5 log₁₀(d ÷ 10 pc).** The difference m − M, the distance modulus, gives the distance d. The Sun, whose M is 4.83, seen from 100 parsecs: m = 4.83 + 5 × log₁₀ 10 = 9.83, too faint for the eye. A star with m − M = 10 is 1,000 parsecs away.
+
+</Callout>
+
+Chapter 13 uses all of this: it puts stars on a chart of absolute magnitude against colour, which is how astronomers usually draw the Hertzsprung–Russell diagram.

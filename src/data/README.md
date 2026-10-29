@@ -17,6 +17,10 @@ Files under a share-alike licence (such as the HYG star catalogue, CC BY-SA 4.0)
 | `asOf.ts` | The register of facts that go out of date (moon counts, interstellar visitors, the ISS's orbit, the numbered asteroids, Gaia's release date, measured ΔT): when each was last checked, where it lives, where to check it and how often. `tests/dated.test.tsx` fails when one is overdue. | — | — | by hand |
 | `textures/*.webp` | Maps of the eight planets, the Moon (Venus's cloud tops) and Saturn's rings, 1024 × 512, about 390 kB in all | [Solar System Scope](https://www.solarsystemscope.com/textures/) 2k textures | **CC BY 4.0** (credit Solar System Scope) | `scripts/build-textures.py` (Python, with Pillow) |
 | `places.ts` | Cities for the sky figures, the poles and a point on the equator: rounded coordinates and IANA time-zone names | Rounded public coordinates | — | by hand |
+| `stars.ts` | Part II's famous stars (the Sun, Proxima, Barnard's star, α Centauri A and B, Sirius A and B, Procyon A and B, Vega, Arcturus, Aldebaran, Polaris, Betelgeuse, Antares, Rigel, Deneb, Spica): spectral class, temperature, radius, luminosity, mass, distance, V and B − V, Hipparcos number. Each value names its source; uncertain ones carry a range. A test checks each star's luminosity against its radius and temperature. | The Part II research brief §3 and the papers in `STAR_SOURCES` (Boyajian et al. 2012, Kervella et al. 2017, Bond et al. 2015 and 2017, Joyce et al. 2020 and others); magnitudes and colours from SIMBAD | Facts, cited | by hand |
+| `binaries.ts` | The orbits of five double stars on the sky (Sirius, α Centauri, Castor, ε¹ and ε² Lyrae): period, periastron, semi-major axis, e, i, Ω, ω, with the catalogue's grade | The Sixth Catalog of Orbits of Visual Binary Stars (USNO/GSU, `orb6orbits.txt`, fetched 29 Oct 2026); a test checks them against the catalogue's own ephemerides (`orb6ephem.txt`) for 2025–2029 | Facts, cited | by hand |
+| `telescopes.ts` | Light buckets from the eye to the ELT: aperture and collecting area | The Part II research brief §2 | Facts | by hand |
+| `spectrum.ts` | The bands of the electromagnetic spectrum (conventional boundaries), what each shows in the sky and what makes it, and things of the same size as each wavelength | The Part II research brief §2 | — | by hand |
 
 The test fixture `tests/fixtures/horizons.json` (geocentric astrometric positions of the Sun, the Moon and the planets at 42 dates from 3000 BC to AD 3000) comes from NASA JPL's Horizons system (DE441), a public service, and is fetched by `scripts/fetch-horizons.ts`.
 
@@ -27,6 +31,8 @@ The test fixture `tests/fixtures/orrery.json` (the same bodies' positions a Juli
 The test fixture `tests/fixtures/eclipses.json` (every solar and lunar eclipse from 1900 to 2100: date and time of greatest eclipse, Saros series, type, gamma and magnitudes) comes from NASA's *Five Millennium Catalogs of Solar and Lunar Eclipses* by Fred Espenak, and is fetched by `scripts/fetch-eclipses.ts`. NASA allows the data to be reproduced with the acknowledgment **"Eclipse Predictions by Fred Espenak (NASA's GSFC)"**, which the file carries. The site itself doesn't ship it: its eclipses come from the course's own eclipse finder, which the fixture tests.
 
 ## Values in the code
+
+The B and V filter curves in `src/core/light/filters.ts` are Bessell's (1990, *PASP* 102, 1181, Table 2), as served by the SVO Filter Profile Service (`Generic/Bessell.B` and `.V`, fetched 29 Oct 2026), with the zero points of Bessell, Castelli & Plez (1998, *A&A* 333, 231). The sketch of how far down light gets (`src/core/light/atmosphere.ts`) is drawn from band values in the Part II research brief §2, not from a dataset.
 
 Some small tables of published values live in the code itself, next to the formulas that use them:
 

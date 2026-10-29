@@ -2,9 +2,9 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { href, slugify, useRoute } from '../router';
 import styles from './content.module.css';
 
-const CALLOUT_LABELS = { key: 'Key idea', note: 'Note', ahead: 'Coming up', know: 'How do we know?' } as const;
+const CALLOUT_LABELS = { key: 'Key idea', note: 'Note', ahead: 'Coming up', know: 'How do we know?', maths: 'The algebra' } as const;
 
-/** A highlighted box: the one idea a section hinges on, an aside, a look ahead, or the evidence behind a claim. */
+/** A highlighted box: the one idea a section hinges on, an aside, a look ahead, the evidence behind a claim, or (from Part II) a short piece of algebra. */
 export function Callout({ kind = 'key', title, children }: { kind?: keyof typeof CALLOUT_LABELS; title?: string; children: ReactNode }) {
   return (
     <aside className={`${styles.callout} ${styles[kind]}`}>

@@ -1,4 +1,4 @@
-import { SECONDS_PER_DAY, SECONDS_PER_JULIAN_YEAR } from './units';
+import { SECONDS_PER_DAY, SECONDS_PER_JULIAN_YEAR } from '../units';
 
 /**
  * Durations written for reading, such as light travel times. (The travel time

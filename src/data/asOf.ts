@@ -61,6 +61,13 @@ export const AS_OF = {
     source: 'ESA’s Gaia news (cosmos.esa.int/web/gaia)',
     everyMonths: 6,
   },
+  elt: {
+    checked: '2026-10',
+    what: 'the Extremely Large Telescope being built (first light planned for March 2029)',
+    where: 'src/data/telescopes.ts (BUCKETS, the ELT’s note)',
+    source: 'ESO’s ELT pages (eso.org/public/telescopes-instruments/elt)',
+    everyMonths: 12,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

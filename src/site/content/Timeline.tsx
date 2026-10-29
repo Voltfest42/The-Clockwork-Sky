@@ -9,8 +9,21 @@ import styles from './Timeline.module.css';
  * the entries of the chapter itself are marked, and the others link to the
  * chapter that tells their story.
  */
-export function Timeline({ from = -10_000, to = 10_000, chapter, title = 'Timeline' }: { from?: number; to?: number; chapter?: number; title?: string }) {
-  const events = timelineBetween(from, to);
+export function Timeline({
+  from = -10_000,
+  to = 10_000,
+  chapter,
+  only,
+  title = 'Timeline',
+}: {
+  from?: number;
+  to?: number;
+  chapter?: number;
+  /** Show only these chapters' events. */
+  only?: readonly number[];
+  title?: string;
+}) {
+  const events = timelineBetween(from, to, only);
   return (
     <section className={styles.timeline} aria-label={title}>
       <p className={styles.title}>{title}</p>

@@ -59,7 +59,13 @@ export function About() {
           through its closest passes; and the two must agree. The Solar System, started from JPL’s positions on 1 January 2026, must land within
           20″ of JPL’s positions a century later (Mercury is furthest off, as leaving out relativity predicts), and every ready-made system must
           do what it is there to show: the figure-eight returns, the Trojans swing in tadpoles and horseshoes, the comet is caught and let go, and
-          TRAPPIST-1’s and Kepler-16’s planets keep their measured periods. End-to-end tests open every page, use it by
+          TRAPPIST-1’s and Kepler-16’s planets keep their measured periods. Since Part II’s Chapters 10 and 11, Planck’s law is checked against
+          Wien’s law (where it peaks) and the Stefan–Boltzmann law (what it adds up to), and the share of light between two wavelengths
+          against a direct sum; the Sun’s luminosity against its size and temperature, and every famous star’s measured luminosity against
+          its measured size and temperature; photon energies, photon rates from a star of known magnitude, and the Bessel functions behind
+          the diffraction pattern against tables; telescopes’ resolving power against the research notes; the blurred star images against
+          the light they must contain; and the double stars’ orbits against the Sixth Catalog of Orbits’ own predictions for 2025–2029, to
+          0.002″. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -289,6 +295,41 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 10</h3>
+        <ul>
+          <li>
+            <b>Figure 10.1, the spectrum ruler.</b> The boundaries between the bands are conventions.
+          </li>
+          <li>
+            <b>Figure 10.2, counting photons.</b> A perfect detector: every photon counted, no noise of its own, no sky glow. Visible (V-band)
+            light only.
+          </li>
+          <li>
+            <b>Figure 10.3, how far down light gets.</b> A sketch from typical values, band by band; real absorption changes line by line and
+            with the weather.
+          </li>
+          <li>
+            <b>Figure 10.4, split the stars.</b> Exact diffraction for a clear circular opening, with no secondary mirror in the way. The air’s
+            blur is the long-exposure average for standard (Kolmogorov) turbulence; adaptive optics is a simple mix of a sharp core and the
+            blurred halo. The orbits of ε Lyrae’s pairs are preliminary.
+          </li>
+        </ul>
+
+        <h3>Chapter 11</h3>
+        <ul>
+          <li>
+            <b>Figures 11.1 and 11.2, black bodies and filters.</b> Perfect black bodies; real stars’ dark lines and atmospheres change their
+            spectra, and their colours, a little. The colour shown is the light’s colour with its brightness evened out.
+          </li>
+          <li>
+            <b>Figure 11.3, size, temperature, power.</b> Stars as smooth, limb-darkened discs, with luminosities from their sizes and
+            temperatures alone; supergiants’ sizes are uncertain by a fifth or more.
+          </li>
+          <li>
+            <b>Figure 11.4, the inverse-square law.</b> A point source with nothing in the way; the planets at their average distances.
+          </li>
+        </ul>
+
         <h3>The Orrery</h3>
         <ul>
           <li>
@@ -306,7 +347,7 @@ export function About() {
           <li>Bodies are drawn at least a few pixels across, far bigger than they are.</li>
         </ul>
 
-        <h2>The people behind Part I</h2>
+        <h2>The people behind the course</h2>
         <Timeline title="Timeline" />
 
         <h2>Sources</h2>
@@ -415,6 +456,34 @@ export function About() {
             (2000), Annals of Mathematics 152, 881, with C. Simó’s initial conditions: the figure-eight. C. Burrau (1913) and V. Szebehely and C.
             F. Peters (1967), The Astronomical Journal 72, 876: the Pythagorean problem. L. R. Doyle and colleagues (2011), Science 333, 1602:
             Kepler-16. E. Agol and colleagues (2021), The Planetary Science Journal 2, 1: TRAPPIST-1, via the NASA Exoplanet Archive.
+          </li>
+          <li>
+            M. Planck (1901), Annalen der Physik 4, 553: the law of black-body radiation. The SI’s exact values of the speed of light,
+            Planck’s constant and Boltzmann’s constant (2019), and CODATA’s Wien constant.
+          </li>
+          <li>
+            M. S. Bessell (1990), Publications of the Astronomical Society of the Pacific 102, 1181: the B and V filters, as served by the SVO
+            Filter Profile Service (Spanish Virtual Observatory); M. S. Bessell, F. Castelli and B. Plez (1998), Astronomy and Astrophysics
+            333, 231: the filters’ zero points.
+          </li>
+          <li>
+            The Sixth Catalog of Orbits of Visual Binary Stars (W. I. Hartkopf, B. D. Mason and colleagues, US Naval Observatory and Georgia
+            State University; fetched October 2026): the orbits of Sirius (H. E. Bond and colleagues 2017), α Centauri (R. Akeson and
+            colleagues 2021), Castor and ε Lyrae (J. A. Docobo and colleagues 2020).
+          </li>
+          <li>
+            D. L. Fried (1966) and F. Roddier (1981), on how turbulence blurs a telescope’s image; Lord Rayleigh (1879, 1881) on resolving power
+            and how much light lies inside a ring of the Airy pattern.
+          </li>
+          <li>
+            The famous stars’ sizes, temperatures, luminosities and masses: the sources listed in the course’s data file, among them
+            Boyajian and colleagues (2012), Kervella and colleagues (2017), Bond and colleagues (2015, 2017), Yoon and colleagues (2010), Joyce
+            and colleagues (2020), Levesque and Massey (2020), Ohnaka and colleagues (2013), Przybilla and colleagues (2006), Schiller and
+            Przybilla (2008) and Tkachenko and colleagues (2016).
+          </li>
+          <li>
+            A. A. Michelson and F. G. Pease (1921), The Astrophysical Journal 53, 249: the width of Betelgeuse. R. Giacconi and colleagues
+            (1962), Physical Review Letters 9, 439: the first X-ray source beyond the Sun.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

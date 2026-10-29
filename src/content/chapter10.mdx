@@ -1,0 +1,172 @@
+import { AtmosphereFigure } from '../figures/AtmosphereFigure';
+import { PhotonsFigure } from '../figures/PhotonsFigure';
+import { SpectrumRulerFigure } from '../figures/SpectrumRulerFigure';
+import { SplitStarsFigure } from '../figures/SplitStarsFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { SplitEpsilonLyrae } from './checks/chapter10';
+
+Part I measured where the stars are. Part II asks what they are, and nobody has ever been to one. Everything we know about the stars, their temperatures, sizes, make-up, speeds and ages, we have read from the light they send us. So before the stars, the messenger: what light is, why most of it never reaches the ground, and why astronomers keep building bigger telescopes.
+
+## Waves of light
+
+In 1666 Isaac Newton let a beam of sunlight through a hole in his shutter and a glass prism, and spread it into a band of colours on the far wall: a <Term id="spectrum">spectrum</Term>. A second prism couldn’t split any colour further, but a lens could gather them all back into white. White light, he concluded, is a mixture of all the colours.
+
+Light is a wave: a ripple of electric and magnetic fields that travels through empty space at 299,792 km a second. Like a ripple on a pond it has a <Term id="wavelength">wavelength</Term>, the distance from one crest to the next, and the wavelength is what our eyes see as colour. Red light’s waves are about 700 nanometres long (a nanometre is a millionth of a millimetre); violet’s about 400.
+
+The rainbow is only a sliver of the story. In 1800 William Herschel put a thermometer beyond the red end of a spectrum, where there was no light to see, and it warmed up: infrared. A year later Johann Ritter found ultraviolet beyond the violet, because it darkened silver salts. Radio waves, X-rays and gamma rays followed by 1900. They are all the same thing, light, with different wavelengths, and together they make the <Term id="electromagnetic-spectrum">electromagnetic spectrum</Term>, twenty powers of ten wide.
+
+<SpectrumRulerFigure
+  number="10.1"
+  tryThis={
+    <p>
+      Press <b>You</b>: at what wavelength do you glow? Then <b>Hydrogen’s 21 cm</b>: how cold would something have to be to glow brightest there?
+      Drag the marker from gamma rays to radio and watch the energy of each photon fall.
+    </p>
+  }
+/>
+
+Radio waves are not sound: sound is air shaking and can’t cross empty space, while radio is light, and crosses the Galaxy. X-rays are not a different kind of thing from visible light either, just light with waves a thousand times shorter. And every kind of light travels at the same speed, so the wavelength and the number of waves passing each second, the frequency, are two ways of saying the same thing.
+
+<Callout kind="maths">
+
+**c = f × λ.** The speed of light c equals the frequency f times the wavelength λ. Green light, λ = 550 nm, has f = 299,792,458 ÷ 0.000 000 55 ≈ 545 million million waves a second (545 THz). FM radio at 100 MHz has waves 3 metres long.
+
+</Callout>
+
+## Light comes in packets
+
+Light is also a stream of particles. In 1900 Max Planck found that he could only explain how hot bodies glow if they gave out light in lumps, and in 1905 Albert Einstein showed that light itself comes in lumps, or <Term id="photon">photons</Term>. Each photon carries an energy set by its frequency: blue photons carry more than red ones, ultraviolet photons more still. That is why ultraviolet light burns your skin and X-rays can break molecules, while radio waves pass through you harmlessly however bright the transmitter: it is the energy of each photon that does the damage, not how many there are.
+
+<Callout kind="maths">
+
+**E = h × f.** A photon’s energy is Planck’s constant, h = 6.63 × 10⁻³⁴ joule-seconds, times its frequency. A green photon carries about 3.6 × 10⁻¹⁹ joules, or 2.25 electronvolts; an X-ray photon of 1 nm about 1,240 electronvolts; a radio photon of 21 cm only 0.000 006.
+
+</Callout>
+
+A camera, like your eye, counts photons. Starlight is a thin rain of them: from Vega, one of the brightest stars, about 300,000 a second fall into your pupil when it is opened wide in the dark. From the faintest star you can see, about 1,400. A telescope is a bucket for photons. What matters most is not magnification but the area of its mirror, which grows with the square of its width: twice as wide, four times the photons. The James Webb Space Telescope’s mirror, 6.5 metres across, catches as much light as 660,000 eyes.
+
+<PhotonsFigure
+  number="10.2"
+  tryThis={
+    <p>
+      Press <b>Take the exposure</b> and watch the photons land. Switch to <b>JWST</b> and pick <b>JWST’s faintest galaxies</b>: how long an
+      exposure do you need to see one as more than a few dots? Try your eye on the same galaxy.
+    </p>
+  }
+/>
+
+Photons arrive at random, like raindrops, so a picture made from a few of them is grainy. The graininess, the noise, grows as the square root of the number of photons, √N, while the signal grows as N itself. A hundred photons give an image good to about one part in ten; ten thousand, to one part in a hundred. Anyone who has watched a path tracer render a game scene has seen the same thing: the speckle fades as more samples come in, but slowly, and each halving of the noise costs four times the samples.
+
+## Why some light never reaches the ground
+
+Our air is a filter. It lets through visible light, some infrared, and radio waves from about a centimetre to ten metres long. Nearly everything else is stopped high above our heads. Ozone, 20 to 50 km up, absorbs ultraviolet; water vapour and carbon dioxide absorb most of the infrared; X-rays and gamma rays are absorbed tens of kilometres up; long radio waves are turned back by the ionosphere. That is lucky for life, which would not survive the ultraviolet and X-rays, but bad for astronomers.
+
+<AtmosphereFigure
+  number="10.3"
+  tryThis={
+    <p>
+      Drag the marker into the X-rays: where would your telescope have to be? Find the infrared windows that reach a mountain top. Which
+      kinds of light could you study from your back garden?
+    </p>
+  }
+/>
+
+<Callout kind="key">
+
+Telescopes go to space to get above the air, not to get closer to the stars. Hubble, a few hundred kilometres up, is no nearer to any star in any way that matters: the nearest is forty million million kilometres away.
+
+</Callout>
+
+So X-ray astronomy began with rockets: in 1962 Riccardo Giacconi’s team flew a detector on one for about six minutes and found the first X-ray source beyond the Sun, Scorpius X-1. Infrared telescopes go to high, dry mountains, flew on aircraft, or fly in space, like JWST. Radio telescopes can sit at sea level, and work by day and in cloud.
+
+Even the light that gets through is disturbed. Pockets of warmer and cooler air bend starlight one way and another as they drift past, so a star jitters and twinkles, and a long exposure smears it into a blur called <Term id="seeing">seeing</Term>: about one arcsecond on a good night at a good site, more at most places.
+
+## Sharper eyes
+
+A telescope’s second job is to show fine detail. Here its width matters too, for a reason that has nothing to do with collecting light. A wave passing through an opening spreads out a little, by an angle of about its wavelength divided by the opening’s width: <Term id="diffraction-limit">diffraction</Term>. So even a perfect telescope turns a point of light into a small disc with faint rings around it. Two stars closer together than about one disc’s width merge into one. The wider the <Term id="aperture">aperture</Term>, the smaller the disc, and the closer the pairs it can split.
+
+<Callout kind="maths">
+
+**θ = 1.22 λ ÷ D.** The smallest angle a telescope of width D can resolve at wavelength λ, in radians (Rayleigh’s rule, from the position of the first dark ring). Your eye’s 7 mm pupil manages about 20″ in green light (in practice your retina limits you to about 1′); Hubble’s 2.4 m mirror, 0.06″; the Extremely Large Telescope’s 39 m, 0.014″ in infrared.
+
+</Callout>
+
+<SplitStarsFigure
+  number="10.4"
+  tryThis={
+    <p>
+      With <b>No air</b>, find the narrowest telescope that splits <b>ε¹ Lyrae</b>. Now switch to <b>A good night</b> and make the telescope
+      as wide as you like: what happens? Try <b>Adaptive optics</b> in green light and in infrared. Then find Sirius’s faint companion.
+    </p>
+  }
+/>
+
+On the ground, the air wins. Above about 10 to 20 cm, a wider telescope collects more light but shows no finer detail, because the seeing blurs everything to about an arcsecond. There are three ways round it. Put the telescope above the air, as Hubble and JWST are. Correct the blur as it happens: <i>adaptive optics</i> measures how the air is distorting a bright star’s light hundreds of times a second and bends a thin mirror to undo it, which works best in infrared. Or link telescopes far apart, so that together they act like one as wide as the distance between them. In 2019 the Event Horizon Telescope, radio dishes spread across the Earth, made the first image of a black hole’s shadow, 40 millionths of an arcsecond across, by working as a telescope the size of the planet.
+
+<Timeline from={1660} to={2030} chapter={10} only={[10, 11]} title="Catching light" />
+
+<DeepDive title="Why is the sky blue, and the setting Sun red?">
+
+Air molecules scatter light, and they scatter short wavelengths far more than long ones: blue light about five times as much as red (the scattering goes as 1/λ⁴, Lord Rayleigh found in 1871). Sunlight crossing the air has some of its blue knocked sideways, out of the beam and all over the sky, so the sky glows blue and the Sun looks a little yellower than it is. At sunset its light crosses dozens of times as much air, so most of the blue and green are scattered away before they reach you, and the Sun turns orange and red. (The sky isn’t violet, though violet scatters even more, because sunlight has less violet in it and our eyes are less sensitive to it.)
+
+Stars twinkle because each one is a point: its light crosses a thin column of air, and every passing pocket of warm or cool air bends the whole beam. Planets mostly don’t twinkle, because they are small discs, not points: the light from different parts of the disc crosses different air, and the jitters average out.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="why-space" prompt="Why do astronomers put telescopes in space?">
+    <Choice label="To get above the air, which blocks most kinds of light and blurs the rest" correct>
+      Right. Above the air a telescope sees ultraviolet, X-rays and most of the infrared, which never reach the ground, and its view is as
+      sharp as its mirror allows.
+    </Choice>
+    <Choice label="To get closer to the stars">
+      A few hundred kilometres is nothing next to the forty million million kilometres to the nearest star. Telescopes go up to escape the air.
+    </Choice>
+    <Choice label="Because it is darker in space at night">
+      The sky above the air is darker, which helps a little, but the main reasons are that the air blocks most kinds of light and blurs the rest.
+    </Choice>
+  </Question>
+
+  <Question id="photon-energy" prompt="Which carries more energy: a photon of red light or a photon of blue light?">
+    <Choice label="Blue" correct>
+      Right. Blue light has a shorter wavelength and so a higher frequency, and a photon’s energy is proportional to its frequency (E = hf).
+    </Choice>
+    <Choice label="Red">
+      Red light has longer waves and a lower frequency, so each red photon carries less energy than a blue one.
+    </Choice>
+    <Choice label="They carry the same">
+      They travel at the same speed, but a photon’s energy depends on its frequency: blue photons carry more.
+    </Choice>
+  </Question>
+
+  <Question id="twice-as-wide" prompt="A telescope is twice as wide as another. How much more light does it collect?">
+    <Choice label="Four times as much" correct>
+      Right. The light collected goes with the mirror’s area, which grows with the square of its width: 2 × 2 = 4.
+    </Choice>
+    <Choice label="Twice as much">
+      The light goes with the area of the mirror, not its width. Twice as wide is four times the area.
+    </Choice>
+    <Choice label="Eight times as much">
+      That would be a cube law. The mirror’s area, and so the light, grows with the square of its width: four times.
+    </Choice>
+  </Question>
+
+  <Question id="radio-sound" prompt="Are radio waves a kind of sound?">
+    <Choice label="No: they are light, with long wavelengths" correct>
+      Right. Radio waves are electromagnetic waves like visible light, just with longer waves. A radio turns them into sound; they travel
+      through empty space, which sound can’t.
+    </Choice>
+    <Choice label="Yes: we listen to them on the radio">
+      The radio turns the waves into sound. The waves themselves are light, with wavelengths from centimetres to kilometres, and cross empty
+      space, which sound can’t.
+    </Choice>
+    <Choice label="Partly: they are a mixture of light and sound">
+      They are purely light, electromagnetic waves, just with long wavelengths.
+    </Choice>
+  </Question>
+
+  <SplitEpsilonLyrae />
+</CheckYourself>

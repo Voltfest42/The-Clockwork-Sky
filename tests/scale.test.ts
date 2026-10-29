@@ -5,7 +5,7 @@ import { galacticFromEquatorial } from '../src/core/coords/galactic';
 import { angularSeparation } from '../src/core/math/angles';
 import { angularSize, smallAngle, smallAngleError } from '../src/core/math/angularSize';
 import { fromSpherical, norm, sub } from '../src/core/math/vec3';
-import { formatDuration } from '../src/core/light';
+import { formatDuration } from '../src/core/time/duration';
 import { meanLongitude, moonMeanLongitude, MEAN_ORBITS, siderealPeriodDays } from '../src/core/ephemeris/meanLongitude';
 import { RUNGS, voyagerDirection, voyagerSunDistanceAu, ZOOM_CAMERA, ZOOM_MAX, ZOOM_MIN, zoomCatalogue } from '../src/core/scale/catalogue';
 import { formatEarths, formatKilometres, formatLength } from '../src/core/scale/format';

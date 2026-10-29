@@ -49,6 +49,20 @@ export class Random {
     return r * Math.cos(2 * Math.PI * v);
   }
 
+  /** A Poisson count with the given mean: Knuth's method for small means, a rounded normal for large ones (mean ≥ 40). */
+  poisson(mean: number): number {
+    if (!(mean > 0)) return 0;
+    if (mean >= 40) return Math.max(0, Math.round(mean + Math.sqrt(mean) * this.normal()));
+    const limit = Math.exp(-mean);
+    let k = 0;
+    let p = this.next();
+    while (p > limit) {
+      k++;
+      p *= this.next();
+    }
+    return k;
+  }
+
   pick<T>(items: readonly T[]): T {
     return items[this.int(items.length)];
   }

@@ -44,3 +44,26 @@ export const R_EARTH = 6.371_0e6;
 
 /** The Moon's mean radius, m. */
 export const R_MOON = 1.737_4e6;
+
+// ---------- light and heat (Part II) ----------
+
+/** Planck's constant, J s. Exact (SI definition of the kilogram, 2019). */
+export const H = 6.626_070_15e-34;
+
+/** Boltzmann's constant, J/K. Exact (SI definition of the kelvin, 2019). */
+export const K_B = 1.380_649e-23;
+
+/** The elementary charge, C, and so one electronvolt in joules. Exact (SI, 2019). */
+export const EV = 1.602_176_634e-19;
+
+/** The Stefan–Boltzmann constant σ = 2π⁵k⁴/(15c²h³), W m⁻² K⁻⁴ (about 5.670 374 419 × 10⁻⁸; exact, since c, h and k are). */
+export const SIGMA = (2 * Math.PI ** 5 * K_B ** 4) / (15 * C ** 2 * H ** 3);
+
+/** Wien's displacement constant b: a black body's spectrum per unit wavelength peaks at b / T. m K (CODATA: 2.897 771 955 × 10⁻³). */
+export const WIEN_B = 2.897_771_955e-3;
+
+/** The Sun's effective temperature, K (IAU 2015 nominal). */
+export const T_SUN = 5_772;
+
+/** Sunlight above the air at 1 AU, the total solar irradiance, W/m² (IAU 2015 nominal; Kopp & Lean 2011). */
+export const SOLAR_IRRADIANCE = 1_361;

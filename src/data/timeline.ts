@@ -1,7 +1,7 @@
 /**
- * The people and moments of Part I, for the history timeline in Chapters 5
- * and 7 and on the About page. From the Part I research brief
- * (docs/part1/research.md §6 and §13). Years use astronomical numbering
+ * The people and moments of the course, for the history timelines in the
+ * chapters and on the About page. From the research briefs
+ * (docs/part1/research.md §6 and §13; docs/part2/research.md §15). Years use astronomical numbering
  * (1 BC = year 0), so "c. 270 BC" is −269; `when` is how the year is shown.
  */
 
@@ -35,6 +35,7 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1610, when: '1610', who: 'Galileo', what: 'sees Jupiter’s moons, the Milky Way’s stars and the phases of Venus through a telescope.', chapter: 5 },
   { year: 1619, when: '1619', who: 'Kepler', what: 'finds the harmonic law: the square of the period follows the cube of the distance.', chapter: 6 },
   { year: 1666, when: 'c. 1666', who: 'Newton', what: 'wonders whether the pull that drops an apple reaches the Moon, weakened by the square of the distance.', chapter: 7 },
+  { year: 1666, when: '1666', who: 'Newton', what: 'splits sunlight into a spectrum with a prism, and shows that white light is a mixture of colours.', chapter: 10 },
   { year: 1676, when: '1676', who: 'Rømer', what: 'times light’s journey across Earth’s orbit with Jupiter’s moons.', chapter: 8 },
   { year: 1687, when: '1687', who: 'Newton', what: 'publishes the Principia: one law of gravity for apples, moons and planets.', chapter: 7 },
   { year: 1705, when: '1705', who: 'Halley', what: 'predicts that his comet will return.', chapter: 7 },
@@ -44,15 +45,29 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1781, when: '1781', who: 'William Herschel', what: 'finds Uranus, the first planet unknown to the ancients.', chapter: 8 },
   { year: 1785, when: '1785', who: 'William Herschel', what: 'maps the Milky Way by counting stars.', chapter: 9 },
   { year: 1798, when: '1798', who: 'Cavendish', what: 'weighs the Earth.', chapter: 7 },
+  { year: 1800, when: '1800', who: 'William Herschel', what: 'puts a thermometer beyond the red end of a spectrum and finds infrared.', chapter: 10 },
+  { year: 1801, when: '1801', who: 'Johann Ritter', what: 'finds ultraviolet beyond the violet, by its darkening of silver chloride.', chapter: 10 },
   { year: 1801, when: '1801', who: 'Giuseppe Piazzi', what: 'finds Ceres, the first asteroid.', chapter: 8 },
   { year: 1838, when: '1838', who: 'Bessel', what: 'measures the first distance to a star, 61 Cygni.', chapter: 9 },
   { year: 1846, when: '1846', what: 'Neptune is found where Le Verrier predicted.', chapter: 7 },
+  { year: 1856, when: '1856', who: 'Norman Pogson', what: 'fixes the magnitude scale: five magnitudes are a factor of exactly 100 in brightness.', chapter: 11 },
   { year: 1866, when: '1866', who: 'Daniel Kirkwood', what: 'notices gaps in the asteroid belt and explains them by Jupiter’s resonances.', chapter: 8 },
+  { year: 1879, when: '1879', who: 'Josef Stefan', what: 'finds that a hot body’s glow grows with the fourth power of its temperature; Ludwig Boltzmann explains why in 1884.', chapter: 11 },
+  { year: 1887, when: '1887', who: 'Heinrich Hertz', what: 'makes and detects radio waves, light far beyond the red.', chapter: 10 },
+  { year: 1893, when: '1893', who: 'Wilhelm Wien', what: 'shows that a glowing body’s peak wavelength shrinks in proportion as its temperature rises.', chapter: 11 },
+  { year: 1895, when: '1895', who: 'Wilhelm Röntgen', what: 'discovers X-rays.', chapter: 10 },
+  { year: 1900, when: '1900', who: 'Max Planck', what: 'explains the glow of hot bodies by supposing light is given out in packets of energy.', chapter: 11 },
+  { year: 1900, when: '1900', who: 'Paul Villard', what: 'finds gamma rays in the radiation of radium.', chapter: 10 },
+  { year: 1905, when: '1905', who: 'Albert Einstein', what: 'proposes that light itself travels in packets: photons.', chapter: 10 },
   { year: 1906, when: '1906', who: 'Max Wolf', what: 'finds Achilles, the first Trojan asteroid, at Jupiter’s L4 point.' },
   { year: 1918, when: '1918', who: 'Harlow Shapley', what: 'maps the globular clusters and moves the centre of the Galaxy to Sagittarius, far from the Sun.', chapter: 9 },
+  { year: 1920, when: '1920', who: 'Albert Michelson and Francis Pease', what: 'measure Betelgeuse’s width with an interferometer on the Mount Wilson telescope: the first star measured.', chapter: 11 },
   { year: 1925, when: '1925', who: 'Walter Hohmann', what: 'works out the cheapest path from one planet’s orbit to another’s.', chapter: 7 },
   { year: 1930, when: '1930', who: 'Clyde Tombaugh', what: 'finds Pluto.', chapter: 8 },
+  { year: 1932, when: '1932', who: 'Karl Jansky', what: 'picks up radio waves from the Milky Way: the start of radio astronomy.', chapter: 10 },
+  { year: 1962, when: '1962', who: 'Riccardo Giacconi', what: 'and his team fly an X-ray detector on a rocket and find the first X-ray source beyond the Sun, Scorpius X-1.', chapter: 10 },
   { year: 1989, when: '1989', who: 'Jacques Laskar', what: 'shows that the planets’ orbits are chaotic over tens of millions of years.', chapter: 8 },
+  { year: 1990, when: '1990', what: 'The Hubble Space Telescope is launched, above the air’s blur.', chapter: 10 },
   { year: 1991, when: '1991', who: 'Jack Wisdom and Matthew Holman', what: 'invent the integrator that runs the planets in big steps along their Kepler orbits.' },
   { year: 1993, when: '1993', who: 'Cris Moore', what: 'finds the figure-eight orbit of three equal stars, proved by Alain Chenciner and Richard Montgomery in 2000.' },
   { year: 2006, when: '2006', what: 'The International Astronomical Union defines a planet, and Pluto becomes a dwarf planet.', chapter: 8 },
@@ -60,9 +75,11 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 2013, when: '2013', what: 'ESA launches Gaia, which measures the parallaxes of over a billion stars.', chapter: 9 },
   { year: 2017, when: '2017', what: 'TRAPPIST-1’s seven Earth-sized planets are announced.' },
   { year: 2017, when: '2017', what: 'ʻOumuamua, the first known visitor from another star, passes through the Solar System.', chapter: 8 },
+  { year: 2019, when: '2019', what: 'The Event Horizon Telescope, radio dishes across the Earth working as one, shows the shadow of a black hole in the galaxy M87.', chapter: 10 },
+  { year: 2021, when: '2021', what: 'JWST is launched on 25 December, with a 6.5-metre mirror for infrared light.', chapter: 10 },
 ];
 
-/** The events from one year to another (astronomical years, inclusive). */
-export function timelineBetween(from: number, to: number): TimelineEvent[] {
-  return TIMELINE.filter((e) => e.year >= from && e.year <= to);
+/** The events from one year to another (astronomical years, inclusive), optionally only those of some chapters. */
+export function timelineBetween(from: number, to: number, only?: readonly number[]): TimelineEvent[] {
+  return TIMELINE.filter((e) => e.year >= from && e.year <= to && (!only || (e.chapter !== undefined && only.includes(e.chapter))));
 }

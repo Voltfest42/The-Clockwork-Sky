@@ -1,0 +1,62 @@
+.view {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+.plot {
+  fill: var(--surface);
+  stroke: var(--border);
+}
+
+.strip {
+  fill: var(--border);
+}
+
+.grid {
+  stroke: var(--border);
+}
+
+.tick {
+  font-size: 10.5px;
+  fill: var(--text-muted);
+}
+
+.axis {
+  font-size: 11.5px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.band {
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.marker {
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.cursor {
+  outline: none;
+  pointer-events: none;
+}
+
+.cursorLine {
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.cursorHandle {
+  fill: var(--text);
+  cursor: ew-resize;
+}
+
+.focus {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+}

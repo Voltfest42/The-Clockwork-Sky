@@ -1,6 +1,6 @@
 import type * as THREE from 'three';
 import { AU, C } from '../../core/constants';
-import { formatDuration } from '../../core/light';
+import { formatDuration } from '../../core/time/duration';
 import type { SceneContext, SceneController, SceneFactory } from '../../viz/scene3d/engine';
 import { SUN_RADIUS_AU, type RaceStop } from './stops';
 

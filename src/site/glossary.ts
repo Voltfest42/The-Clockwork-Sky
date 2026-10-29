@@ -1,7 +1,7 @@
 /**
  * Plain-language definitions, shown when a reader hovers over or taps a <Term>,
  * and listed on the Glossary page. Part I's terms come from its research brief
- * (docs/part1/research.md §14); each part adds its own.
+ * (docs/part1/research.md §14), Part II’s from its brief (docs/part2/research.md §16).
  */
 interface Entry {
   term: string;
@@ -9,6 +9,58 @@ interface Entry {
 }
 
 export const GLOSSARY = {
+  aperture: {
+    term: 'Aperture',
+    definition: 'The width of a telescope’s main mirror or lens. It sets how much light the telescope collects (with its area) and how fine a detail it can see.',
+  },
+  blackbody: {
+    term: 'Black body',
+    definition: 'A perfect glower: an object whose glow depends on its temperature alone. Stars are close to black bodies; hotter ones are bluer and far brighter.',
+  },
+  'colour-index': {
+    term: 'Colour index',
+    definition: 'The difference between a star’s magnitudes through two filters, such as B − V (blue minus yellow-green): a measure of its colour, and so of its surface temperature.',
+  },
+  'diffraction-limit': {
+    term: 'Diffraction limit',
+    definition: 'The finest detail a telescope can see, set by the spreading of light waves through its opening: about 1.22 times the wavelength divided by its width, in radians.',
+  },
+  'electromagnetic-spectrum': {
+    term: 'Electromagnetic spectrum',
+    definition: 'Light of every wavelength: gamma rays, X-rays, ultraviolet, visible light, infrared, microwaves and radio waves. All travel at the speed of light.',
+  },
+  flux: {
+    term: 'Flux',
+    definition: 'The power arriving on each square metre, in watts per square metre: how bright a star looks from here, as opposed to how much light it gives out.',
+  },
+  luminosity: {
+    term: 'Luminosity',
+    definition: 'The total power a star gives out, in watts or in units of the Sun’s (3.8 × 10²⁶ W). It doesn’t depend on how far away we are.',
+  },
+  photon: {
+    term: 'Photon',
+    definition: 'A particle of light. Each carries an energy set by its frequency: blue photons more than red, X-ray photons far more.',
+  },
+  seeing: {
+    term: 'Seeing',
+    definition: 'The blurring of starlight by moving pockets of warm and cool air, which smears stars into discs about an arcsecond across, and makes them twinkle.',
+  },
+  spectrum: {
+    term: 'Spectrum',
+    definition: 'Light spread out by wavelength, as a prism spreads sunlight into a rainbow; or how much light something gives out at each wavelength.',
+  },
+  'stefan-boltzmann-law': {
+    term: 'Stefan–Boltzmann law',
+    definition: 'Each square metre of a hot body gives out σT⁴ watts: double the temperature, sixteen times the power. So a star’s luminosity is 4πR²σT⁴.',
+  },
+  wavelength: {
+    term: 'Wavelength',
+    definition: 'The distance from one crest of a wave to the next. For light it sets the colour: about 400 nanometres for violet, 700 for red. Its frequency is how many waves pass each second.',
+  },
+  'wiens-law': {
+    term: 'Wien’s law',
+    definition: 'A glowing body’s light peaks at a wavelength of 2.9 millimetres divided by its temperature in kelvin: the hotter it is, the bluer.',
+  },
   'lagrange-point': {
     term: 'Lagrange point',
     definition:

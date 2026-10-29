@@ -183,3 +183,11 @@
   padding: 0 18px 8px;
   font-size: 0.95rem;
 }
+
+.maths {
+  border-left-color: var(--series-3);
+}
+
+.maths .calloutLabel {
+  color: var(--series-3);
+}

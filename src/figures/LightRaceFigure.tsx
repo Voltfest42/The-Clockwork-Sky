@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type ReactNode } from 'react';
 import { AU, C } from '../core/constants';
-import { formatDuration } from '../core/light';
+import { formatDuration } from '../core/time/duration';
 import { formatInWords, formatSignificant } from '../core/math/scientific';
 import { jdFromUnixMs } from '../core/time/julian';
 import { LIGHT_YEAR } from '../core/units';
