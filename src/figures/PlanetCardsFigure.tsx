@@ -8,6 +8,7 @@ import { Scene3D } from '../viz/scene3d/Scene3D';
 import { ageThere, compareSizes, formatHours, formatYear, lowerThe, threeFigures, weightThere } from './planetCards';
 import { pairCamera, planetPairScene, type CardGlobe, type PlanetPairState } from './planetCards/scene';
 import figureStyles from './figures.module.css';
+import tableStyles from './seasons.module.css';
 import styles from './sky/sky.module.css';
 
 /**
@@ -181,7 +182,7 @@ export function PlanetCardsFigure({ number, tryThis }: { number: string; tryThis
           </label>
         </div>
         <div style={{ overflowX: 'auto' }}>
-          <table className={figureStyles.table}>
+          <table className={tableStyles.table}>
             <caption className="visually-hidden">
               {left.name} and {lowerThe(right.name)} compared
             </caption>

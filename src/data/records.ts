@@ -15,3 +15,9 @@ export const COLDEST_BROWN_DWARF = { name: 'WISE 0855−0714', kelvin: 285, ligh
 
 /** The nearest brown dwarfs: the pair Luhman 16 AB, 2.0 pc away (Luhman 2013). */
 export const NEAREST_BROWN_DWARFS = { name: 'Luhman 16', lightYears: 6.5 } as const;
+
+/** The heaviest neutron star measured well: PSR J0952−0607, 2.35 ± 0.17 M☉ (Romani et al. 2022), spinning 707 times a second. */
+export const HEAVIEST_NEUTRON_STAR = { name: 'PSR J0952−0607', mass: 2.35, error: 0.17 } as const;
+
+/** The heaviest black hole known from a star in our Galaxy: Gaia BH3, 33 M☉, 590 pc away (Gaia Collaboration, Panuzzo et al. 2024). */
+export const HEAVIEST_GALACTIC_BLACK_HOLE = { name: 'Gaia BH3', mass: 33, parsecs: 590 } as const;

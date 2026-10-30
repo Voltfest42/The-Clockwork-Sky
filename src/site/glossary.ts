@@ -222,6 +222,50 @@ export const GLOSSARY = {
     term: 'Dwarf planet',
     definition: 'A body that goes round the Sun and is massive enough to be round, but hasn’t cleared its orbit of other bodies: Pluto, Ceres, Eris, Haumea and Makemake.',
   },
+  'red-giant': {
+    term: 'Red giant',
+    definition: 'A star that has used up the hydrogen in its core and swollen to tens or hundreds of times its old width, its surface cool and red. The Sun will become one in about 5 billion years.',
+  },
+  'helium-flash': {
+    term: 'Helium flash',
+    definition: 'The runaway lighting of helium in the core of a red giant of less than about 2 solar masses. For a few seconds the core makes as much power as a galaxy, all of it soaked up inside the star.',
+  },
+  'star-cluster': {
+    term: 'Star cluster',
+    definition: 'A group of stars born together from one cloud, with the same age and make-up, at nearly the same distance: from a few dozen stars in an open cluster to hundreds of thousands in a globular cluster.',
+  },
+  'turn-off': {
+    term: 'Turn-off',
+    definition: 'The point on a cluster’s HR diagram where its stars leave the main sequence. The stars there have just run out of hydrogen in their cores, so their lifetime is the cluster’s age.',
+  },
+  cepheid: {
+    term: 'Cepheid',
+    definition: 'A yellow giant or supergiant that brightens and fades regularly, every few days to months. The slower it pulses, the more luminous it is, so Cepheids measure distances.',
+  },
+  'planetary-nebula': {
+    term: 'Planetary nebula',
+    definition: 'The glowing shell of gas shed by a dying Sun-like star, lit by its hot core, the future white dwarf. Named for its planet-like look in old telescopes; nothing to do with planets.',
+  },
+  'chandrasekhar-limit': {
+    term: 'Chandrasekhar limit',
+    definition: 'The heaviest a white dwarf can be, about 1.4 solar masses. Above it the packed electrons can no longer hold the weight, and the star collapses or explodes.',
+  },
+  supernova: {
+    term: 'Supernova',
+    definition: 'A star’s explosion, for weeks as bright as a galaxy: the collapse of a heavy star’s core, or a white dwarf blown apart in a pair.',
+  },
+  'neutron-star': {
+    term: 'Neutron star',
+    definition: 'The collapsed core of a heavy star: about 1.4 solar masses of neutrons in a ball about 24 km across, as dense as an atomic nucleus.',
+  },
+  pulsar: {
+    term: 'Pulsar',
+    definition: 'A spinning neutron star whose beams of radio waves (or light, or X-rays) sweep past Earth like a lighthouse’s, as regular pulses.',
+  },
+  'black-hole': {
+    term: 'Black hole',
+    definition: 'An object so compact that nothing, not even light, can escape from inside its horizon, 2GM/c² in radius: about 3 km for each solar mass.',
+  },
   'globular-cluster': {
     term: 'Globular cluster',
     definition: 'A ball of hundreds of thousands of old stars, held together by their own gravity. About 150 orbit the Milky Way.',

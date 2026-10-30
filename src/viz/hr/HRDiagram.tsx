@@ -179,7 +179,7 @@ export function HRDiagram({ axes, range, density, layers = [], markers = [], rad
     }
   };
 
-  const ticks = axes === 'observer' ? observerTicks() : physicistTicks(r);
+  const ticks = axes === 'observer' ? observerTicks(r) : physicistTicks(r);
   const place = (p: HRPoint) => placeOf(axes, p, r);
 
   return (
@@ -299,9 +299,15 @@ function RadiusLines({ r: range }: { r: AxisRange }) {
   );
 }
 
-function observerTicks() {
-  const x = [-0.5, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5].map((v) => ({ at: placeOf('observer', { bpRp: v, mG: 0, kelvin: 1, luminosity: 1 })[0], label: v < 0 ? `−${-v}` : `${v}` }));
-  const y = [-5, 0, 5, 10, 15].map((v) => ({ at: placeOf('observer', { bpRp: 0, mG: v, kelvin: 1, luminosity: 1 })[1], label: v < 0 ? `−${-v}` : `${v}` }));
+function observerTicks(r: AxisRange) {
+  const within = (v: number, [a, b]: readonly [number, number]) => v >= Math.min(a, b) - 1e-9 && v <= Math.max(a, b) + 1e-9;
+  const yStep = Math.abs(r.y[1] - r.y[0]) > 15 ? 5 : 2;
+  const xs: number[] = [];
+  for (let v = -1; v <= 5; v += 0.5) if (within(v, r.x)) xs.push(v);
+  const ys: number[] = [];
+  for (let v = -10; v <= 20; v += yStep) if (within(v, r.y)) ys.push(v);
+  const x = xs.map((v) => ({ at: placeOf('observer', { bpRp: v, mG: 0, kelvin: 1, luminosity: 1 }, r)[0], label: v < 0 ? `−${-v}` : `${v}` }));
+  const y = ys.map((v) => ({ at: placeOf('observer', { bpRp: 0, mG: v, kelvin: 1, luminosity: 1 }, r)[1], label: v < 0 ? `−${-v}` : `${v}` }));
   return { x, y };
 }
 

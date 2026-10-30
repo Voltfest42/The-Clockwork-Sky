@@ -28,6 +28,9 @@ export const physicistRange = (hot: number, cool: number, faint: number, bright:
   y: [Math.log10(faint), Math.log10(bright)],
 });
 
+/** A zoomed range on the observers' axes, from colours (G_BP − G_RP, blue first) and absolute magnitudes (bright first). */
+export const observerRange = (blue: number, red: number, bright: number, faint: number): AxisRange => ({ x: [blue, red], y: [bright, faint] });
+
 /** Where a point sits in the drawing, on a set of axes. */
 export function placeOf(axes: Axes, p: HRPoint, r: AxisRange = RANGES[axes]): [number, number] {
   const [xv, yv] = axes === 'observer' ? [p.bpRp, p.mG] : [Math.log10(p.kelvin), Math.log10(p.luminosity)];

@@ -77,9 +77,9 @@ export const AS_OF = {
   },
   records: {
     checked: '2026-10',
-    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs',
-    where: 'src/data/records.ts (used by Chapter 16)',
-    source: 'the literature: Kalari et al. 2022 and later for R136a1; Luhman’s and the Backyard Worlds surveys for brown dwarfs',
+    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs, the heaviest neutron star and the heaviest black hole known from a star in the Galaxy',
+    where: 'src/data/records.ts (used by Chapters 16 and 18)',
+    source: 'the literature: Kalari et al. 2022 and later for R136a1; Luhman’s and the Backyard Worlds surveys for brown dwarfs; pulsar-timing and NICER papers for neutron stars; Gaia and X-ray binary papers for black holes',
     everyMonths: 24,
   },
   deltaT: {

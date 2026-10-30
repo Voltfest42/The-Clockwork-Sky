@@ -1,0 +1,161 @@
+import { DarkCompanionFigure } from '../figures/DarkCompanionFigure';
+import { DeadStarsFigure } from '../figures/DeadStarsFigure';
+import { ForkFigure } from '../figures/ForkFigure';
+import { WhiteDwarfFigure } from '../figures/WhiteDwarfFigure';
+import { HEAVIEST_GALACTIC_BLACK_HOLE, HEAVIEST_NEUTRON_STAR, RECORDS_AS_OF } from '../data/records';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { LightestNeutronStar } from './checks/chapter18';
+
+When a star’s fuel runs out for good, gravity wins at last, but how far it wins depends on the star’s mass. A star like the Sun ends gently, as a white dwarf. A heavy one ends in a few seconds of collapse and an explosion seen across the universe, and leaves a neutron star or a black hole. This chapter follows each ending, and finds out how astronomers weigh objects that give out no light at all.
+
+## A gentle end
+
+At the end of its giant phases a Sun-like star blows its outer layers away in a slow wind. The hot core left behind, at over 100,000 K, floods them with ultraviolet light, and they glow with the bright lines of hydrogen, oxygen and nitrogen (Kirchhoff’s second law, Chapter 12). William Herschel called these glowing shells <Term id="planetary-nebula">planetary nebulae</Term> in the 1780s, because through his telescope they looked like the round discs of planets. They have nothing to do with planets. Each glows for only some tens of thousands of years before its gas thins out into space, and a few thousand are known in the Galaxy.
+
+The core is a white dwarf: about 0.6 of the Sun’s mass in a ball the size of Earth. Its gas is so compressed that the electrons are packed as tightly as quantum physics allows, and their resistance to being squeezed further holds the star up, whatever its temperature. A teaspoon of Sirius B, the white dwarf beside the brightest star in the sky, would weigh about 14 tonnes. Heavier white dwarfs are smaller, and there is a limit: above about 1.4 solar masses, the <Term id="chandrasekhar-limit">Chandrasekhar limit</Term>, the electrons can’t hold the weight. Subrahmanyan Chandrasekhar worked it out in 1930, aged 19, on the voyage from India to Cambridge.
+
+A white dwarf makes no new energy. It shines on its stored heat, and fades for ever. Because the cooling follows physics we understand, a white dwarf is a clock.
+
+<WhiteDwarfFigure
+  number="18.1"
+  tryThis={
+    <p>
+      Slide the cooling time from a million years to ten billion. Which way do the white dwarfs move on the diagram? Where does the cloud of
+      Gaia’s white dwarfs end, and how long does a 0.6 M☉ white dwarf take to get there? Compare the 0.6 and 1.2 M☉ white dwarfs at the same
+      age: which is smaller?
+    </p>
+  }
+/>
+
+The faintest white dwarfs in the Milky Way’s disc have been cooling for about 9 to 10 billion years, by the simple law in the figure and by more careful ones. Add the time their stars took to live and die, and the disc must be about 10 billion years old. In 2019 Gaia’s measurements showed white dwarfs piling up at one stage of cooling, where their cores crystallise and the heat released slows their fading: the Galaxy’s dead stars are slowly turning into crystals of carbon and oxygen.
+
+## Exploding stars
+
+A star heavier than about 8 Suns doesn’t stop at carbon and oxygen. Its core is hot enough to fuse them, and the products, in turn, into heavier elements, in shells like an onion, until the centre is iron. Fusing iron gives out no energy, so the iron core grows with nothing to hold it up but its electrons. When it passes about 1.4 solar masses it collapses, from the size of Earth to a ball 20 km across, in less than a second.
+
+The collapse stops when the core is as dense as an atomic nucleus, and it rebounds. Most of the energy comes out as neutrinos, which pour out of the core; a small share of them, soaking into the infalling layers, drives a shock that blows the star apart. This is a core-collapse <Term id="supernova">supernova</Term>: for weeks it can outshine a whole galaxy of a hundred billion stars.
+
+On 23 February 1987 one went off in the Large Magellanic Cloud, 168,000 light-years away: SN 1987A, the nearest seen since telescopes were invented, from a blue supergiant called Sanduleak −69° 202. About three hours before its light was seen, detectors in Japan, the United States and the Soviet Union caught 24 neutrinos. The neutrinos had left the collapsing core at once; the light came out only when the shock reached the star’s surface. In 2024 the James Webb Space Telescope found the glow of gas lit by the neutron star left inside.
+
+In the Milky Way about two supernovae go off each century, but most are hidden by dust. Those seen in history were in 1006, the brightest star ever recorded; 1054, which left the Crab Nebula; 1181; 1572, Tycho’s; and 1604, Kepler’s. Another kind of supernova, from a white dwarf in a pair pushed over its limit, is in Part III.
+
+## Neutron stars
+
+The collapsed core is a <Term id="neutron-star">neutron star</Term>: about 1.4 solar masses in a ball 24 km across, as dense as an atomic nucleus, with its electrons squeezed into its protons to make neutrons. Walter Baade and Fritz Zwicky predicted them in 1934, two years after the neutron was discovered, and said they would be made in supernovae.
+
+Nobody expected to see one. Then, in the summer of 1967, Jocelyn Bell, a graduate student in Cambridge, noticed a “bit of scruff” on her radio telescope’s chart recorder. On 28 November a faster recording showed what it was: pulses every 1.337 seconds, as regular as a clock. It was a <Term id="pulsar">pulsar</Term>: a spinning neutron star sweeping a beam of radio waves past Earth like a lighthouse. Only a neutron star could spin that fast without flying apart. The Crab pulsar, at the heart of the supernova of 1054, spins 30 times a second. The Nobel Prize of 1974 went to her supervisor, Antony Hewish, and to Martin Ryle; it is still argued about.
+
+<DeadStarsFigure
+  number="18.2"
+  tryThis={
+    <p>
+      Start at Earth and Sirius B, then zoom slowly: how many times closer do you have to get before the neutron star is as big on the screen as
+      Earth was? Which is bigger, a neutron star or the horizon of a black hole of 10 Suns?
+    </p>
+  }
+/>
+
+The heaviest neutron star measured well, as of {RECORDS_AS_OF}, is {HEAVIEST_NEUTRON_STAR.name}, at {HEAVIEST_NEUTRON_STAR.mass} ± {HEAVIEST_NEUTRON_STAR.error} solar masses. Somewhere above that, at perhaps 2.3 to 3 Suns, the neutrons can’t hold their weight either, and nothing known can.
+
+## Finding black holes
+
+If a collapsing core is too heavy to stop as a neutron star, nothing stops it. It falls inside its own horizon: a sphere from which not even light can escape, 2GM/c² in radius, about 3 km for every solar mass. It is a <Term id="black-hole">black hole</Term>. Karl Schwarzschild found the solution to Einstein’s equations in 1916, and Robert Oppenheimer and Hartland Snyder showed in 1939 that a heavy enough star would collapse that far.
+
+A black hole gives out no light, so how can it be found? Not because it sucks things in: from a distance its gravity is the same as any star’s of its mass, and a companion orbits it the way the planets orbit the Sun. That orbit is the clue. A star’s spectrum shows it swinging towards and away from us (Chapter 14); the period and the size of the swing give a lower limit on the mass of whatever it orbits. If the partner is heavier than about 3 Suns and gives out no light, it can only be a black hole.
+
+<DarkCompanionFigure
+  number="18.3"
+  tryThis={
+    <p>
+      For <b>Gaia BH1</b>, slide the tilt from edge-on to face-on: what happens to the swing, and to the least mass the curve proves? Then pick
+      <b> A white-dwarf companion</b> and raise its mass until the verdict changes.
+    </p>
+  }
+/>
+
+The first came in 1972. Cygnus X-1, a bright X-ray source, turned out to circle a blue supergiant every 5.6 days, and Louise Webster and Paul Murdin, and separately Tom Bolton, showed that the unseen partner was too heavy to be a neutron star. Its X-rays come from gas pulled off the supergiant and heated to millions of degrees as it spirals in. It is now weighed at 21 solar masses. Quiet black holes, with nothing falling in, were harder to find; Gaia’s measurements of stars’ wobbles turned up Gaia BH1, 9.6 Suns and 1,600 light-years away, in 2022, and as of {RECORDS_AS_OF} the heaviest known from a star in the Galaxy is {HEAVIEST_GALACTIC_BLACK_HOLE.name}, at {HEAVIEST_GALACTIC_BLACK_HOLE.mass} solar masses and {HEAVIEST_GALACTIC_BLACK_HOLE.parsecs} parsecs away. Black holes merging, and the giant ones at galaxies’ centres, are Part III’s.
+
+<Callout kind="maths">
+
+**The mass function.** From a visible star’s period P and the size K of its velocity swing, f = P K³ / (2πG) = M₂³ sin³i / (M₁ + M₂)², for a circular orbit. The unseen mass M₂ can’t be less than f, whatever the visible star’s mass M₁ or the tilt i. For Gaia BH1, f ≈ 4 solar masses: the partner must weigh at least 4 Suns, and, with the visible star’s mass known, at least 5.6.
+
+</Callout>
+
+## The fork in the road
+
+So a star’s mass at birth decides its end. Below 0.075 Suns, a brown dwarf, which never really starts (Chapter 16). Up to somewhere between half a Sun and 0.8 Suns, depending on how much of itself a star blows away as a red giant, a helium white dwarf, in tens of billions to trillions of years. Up to about 6 to 8 Suns, a carbon–oxygen white dwarf; just above, one of oxygen and neon. Above about 8 Suns, a supernova and a neutron star; above about 20, a black hole. And for the very heaviest stars with almost no metals, a stranger end: their cores get so hot that light turns into pairs of electrons and positrons, the core loses its support, and the explosion that follows can leave nothing at all.
+
+<ForkFigure
+  number="18.4"
+  tryThis={
+    <p>
+      Slide the mass from a tenth of a Sun to 300: where does each kind of remnant begin? Then set <b>Almost none</b> for the metals: what happens
+      to the heaviest stars’ black holes? Try weaker winds: which boundaries move?
+    </p>
+  }
+/>
+
+The boundaries are less certain than the figure’s sharp steps suggest. Above about 20 Suns, models find that some stars explode and others collapse quietly into black holes, in ranges of mass that interleave; and no supernova has yet been traced to a red supergiant heavier than about 18 Suns. Winds matter as much as mass: a heavy star at the Sun’s make-up blows much of itself away before it dies, which is why the heaviest black holes come from stars poor in metals, such as the old star orbiting Gaia BH3.
+
+## Stardust
+
+Dying stars give back much of what they were made of, and more. Giants’ winds return hydrogen and helium, enriched with carbon and nitrogen made inside them; supernovae blast out oxygen, magnesium, silicon and iron. In the stellar-evolution engine, of all the mass a generation of stars is born with, about two-fifths has been given back to space after 10 billion years, an eighth is locked in white dwarfs, neutron stars and black holes, and the rest is still in stars that haven’t died yet, most of them red dwarfs.
+
+That returned gas mixes with the clouds between the stars, and new stars and planets form from it. The Sun was born from gas enriched by billions of years of earlier stars, which is why Earth has iron in its core and carbon in its life. The calcium in your bones and the oxygen you breathe were made inside stars that died before the Sun was born. Where each element comes from, from the Big Bang’s hydrogen to the gold made when neutron stars collide, is Part III’s Chapter 23.
+
+<Timeline from={1700} to={2030} chapter={18} only={[18]} title="How stars die" />
+
+<CheckYourself>
+  <Question id="sun-explode" prompt="Will the Sun explode as a supernova?">
+    <Choice label="No: it will end as a white dwarf" correct>
+      Right. Only stars heavier than about 8 Suns explode. The Sun will shed its outer layers gently and leave a white dwarf of about half its mass.
+    </Choice>
+    <Choice label="Yes, in about 5 billion years">
+      In about 5 billion years it will become a red giant, but it is far too light to explode. It will end as a white dwarf.
+    </Choice>
+    <Choice label="No: it will become a black hole">
+      Black holes come from stars of about 20 Suns or more. The Sun will become a white dwarf.
+    </Choice>
+  </Question>
+
+  <Question id="planetary-nebula" prompt="What is a planetary nebula?">
+    <Choice label="A dying star’s shed layers, lit by its hot core" correct>
+      Right. The name is Herschel’s, from their round, planet-like look in his telescope; they have nothing to do with planets.
+    </Choice>
+    <Choice label="The disc of gas and dust in which planets form">
+      That is a protoplanetary disc (Chapter 8). Planetary nebulae are shells blown off by dying stars, lit by the white dwarf left inside.
+    </Choice>
+    <Choice label="The remains of a planet destroyed by its star">
+      They were named for their planet-like look. They are the outer layers of dying Sun-like stars, glowing in the light of the hot core.
+    </Choice>
+  </Question>
+
+  <Question id="find-black-hole" prompt="How can astronomers find a black hole that gives out no light?">
+    <Choice label="By its pull on a companion star" correct>
+      Right. A star orbiting it swings towards and away from us; the period and the swing give the partner’s least mass. Heavier than about 3 Suns and dark means a black hole.
+    </Choice>
+    <Choice label="By the stars it sucks in from all around">
+      From a distance a black hole pulls like any other object of its mass: stars orbit it, as they would a star. That orbit is how it is found.
+    </Choice>
+    <Choice label="By photographing the black disc">
+      That has been done only for the giant black holes at galaxies’ centres, with telescopes across the whole Earth. Small ones are found by their companions’ orbits.
+    </Choice>
+  </Question>
+
+  <Question id="neutrinos-first" prompt="Why did SN 1987A’s neutrinos reach Earth before its light?">
+    <Choice label="They left the collapsing core at once; the light came out only when the blast reached the surface" correct>
+      Right. Neutrinos pass straight through the star. The light had to wait for the shock to reach the surface, hours later, and both then travelled at nearly the same speed.
+    </Choice>
+    <Choice label="Neutrinos travel faster than light">
+      Nothing travels faster than light. The neutrinos simply set off first, straight out of the core; the light had to wait for the shock to cross the star.
+    </Choice>
+    <Choice label="Dust slowed the light down on its way">
+      Dust dims light but doesn’t delay it. The light left later: only when the shock reached the star’s surface.
+    </Choice>
+  </Question>
+
+  <LightestNeutronStar />
+</CheckYourself>

@@ -30,6 +30,8 @@ interface FigureProps {
   onKeyDown?: KeyboardEventHandler<HTMLElement>;
   /** A matching system in the Orrery, as its address's query: "preset=galilean". Shows an "Open this in the Orrery" link. */
   orrery?: string;
+  /** A matching star in the Star Forge, as its address's query: "preset=sun". Shows an "Open this in the Star Forge" link. */
+  starForge?: string;
 }
 
 /**
@@ -43,7 +45,7 @@ interface FigureProps {
  * hydrated. Hooks in the figure that watch its elements must start again then:
  * useOnScreen does.
  */
-export function Figure({ number, title, children, description, height, legend, tryThis, onReset, simplified, notToScale, onKeyDown, orrery }: FigureProps) {
+export function Figure({ number, title, children, description, height, legend, tryThis, onReset, simplified, notToScale, onKeyDown, orrery, starForge }: FigureProps) {
   const id = `figure-${number}`;
   const hydrated = useHydrated();
   return (
@@ -82,6 +84,11 @@ export function Figure({ number, title, children, description, height, legend, t
       {orrery && (
         <p className={styles.orrery}>
           <a href={`${href('orrery')}?${orrery}`}>Open this in the Orrery →</a>
+        </p>
+      )}
+      {starForge && (
+        <p className={styles.orrery}>
+          <a href={`${href('star-forge')}?${starForge}`}>Open this in the Star Forge →</a>
         </p>
       )}
       {simplified && (

@@ -40,6 +40,10 @@
   color: var(--text-muted);
 }
 
+.what {
+  min-width: 0;
+}
+
 .own .when {
   color: var(--text);
 }

@@ -1,0 +1,156 @@
+import { ClusterAgeFigure } from '../figures/ClusterAgeFigure';
+import { LeavittFigure } from '../figures/LeavittFigure';
+import { LifetimesFigure } from '../figures/LifetimesFigure';
+import { SunLifeFigure } from '../figures/SunLifeFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { PleiadesAge } from './checks/chapter17';
+
+A star is a balance: gravity squeezing in, hot gas pushing out, and fusion in the middle making up the heat that leaks away (Chapter 15). That balance can hold for billions of years, but not for ever, because the fuel runs out. This chapter follows what happens then, and finds out how astronomers can tell the age of stars that change too slowly for anyone to watch.
+
+## Living fast, dying young
+
+A heavier star has more fuel, so it might seem it should last longer. It doesn’t. Its heavier layers squeeze its middle harder, which makes it hotter and denser, and fusion runs far faster: a star of twice the Sun’s mass shines more than ten times as brightly (Chapter 14), and brightens further as it ages. It has twice the fuel but burns it about twenty times as fast, so it lasts about a tenth as long: a billion years or so.
+
+<Callout kind="maths">
+
+**How long a star lasts.** A star’s time on the main sequence is roughly its fuel divided by how fast it burns it: t ∝ M / L. With L ∝ M<sup>3.5</sup>, that is t ∝ M<sup>−2.5</sup>, or about 10 billion years × (M / M☉)<sup>−2.5</sup>. A star of 10 Suns: 10 billion ÷ 10<sup>2.5</sup> ≈ 30 million years.
+
+</Callout>
+
+<LifetimesFigure
+  number="17.1"
+  tryThis={
+    <p>
+      Answer the question first. Then find the mass that lives as long as the Galaxy has existed: every star lighter than that is still on its
+      main sequence. How much longer than the Sun does Proxima Centauri last?
+    </p>
+  }
+/>
+
+At the light end the numbers stop making everyday sense. A red dwarf of a tenth of the Sun’s mass burns so slowly, and mixes its whole body into its core by boiling, that it will shine for trillions of years. The Galaxy is about 13 billion years old, so no red dwarf has ever reached the end of its life. At the heavy end, a star of 40 Suns lives about 5 million years: shorter than the time since our ancestors split from chimpanzees.
+
+## When the hydrogen runs out
+
+As hydrogen in the middle turns into helium, the core shrinks and heats, and the star slowly brightens: the Sun is about 40% brighter now than when it was born, and in a billion years or so it will be warm enough to boil Earth’s oceans away. When the hydrogen at the very centre is gone, the helium core has no fuel it can burn yet. It contracts and heats, and hydrogen goes on burning in a shell around it, faster than before. The star’s outer layers swell enormously and cool: it becomes a <Term id="red-giant">red giant</Term>.
+
+For a star like the Sun the core keeps shrinking until, at about 100 million degrees, helium starts to fuse into carbon and oxygen. In the Sun’s core the electrons will be packed so tightly by then that the gas can’t expand to cool itself, so helium lights in a runaway, the <Term id="helium-flash">helium flash</Term>: for a few seconds the core makes as much power as a galaxy, all of it soaked up inside the star. The star settles, shrinks and burns helium quietly in its core for about a hundred million years. When that helium runs out too, it swells again, on the asymptotic giant branch, pulses, and sheds its outer layers into space. What is left is its core: a white dwarf (Chapter 18).
+
+<SunLifeFigure
+  number="17.2"
+  tryThis={
+    <p>
+      Press <b>Leaving the main sequence</b>, then switch time to <b>As time before the end</b> and drag slowly. How long does the Sun spend as
+      a red giant, compared with its main sequence? At <b>The biggest it gets</b>, where is Earth’s orbit, and why has it moved?
+    </p>
+  }
+/>
+
+Will the Sun swallow Earth? It will grow to about the size of Earth’s orbit today, but by then it will have lost about a third of its mass, and as its pull weakens the planets drift outwards. Mercury is surely lost, and probably Venus. For Earth it is close: the swollen Sun raises tides on Earth which drag it inwards, and detailed models disagree about which effect wins. Either way, Earth will have been baked dry long before.
+
+## Clusters as snapshots
+
+Stars live far longer than astronomers, so nobody can watch one age. Clusters solve that. A <Term id="star-cluster">star cluster</Term> is a family of stars born together from one cloud, so they have the same age and make-up and sit at nearly the same distance. On the HR diagram, a cluster is a snapshot of stars of every mass at one moment of their lives.
+
+The main sequence is not a road that stars travel along: a star stays close to where it arrived for nearly all of its life there. What changes with time is which stars are still there. Heavy stars run out of hydrogen first and peel off towards the giants, and the lighter ones follow later. The point where a cluster’s main sequence ends, its <Term id="turn-off">turn-off</Term>, marks the mass whose lifetime equals the cluster’s age. Young clusters still have blue stars on their main sequence; old ones have turned off at stars like the Sun. A line through every star of one age, from a model, is an isochrone (“equal time”).
+
+<ClusterAgeFigure
+  number="17.3"
+  tryThis={
+    <p>
+      Pick each cluster in turn, from the Pleiades to 47 Tucanae, and fit the age by the turn-off before you press <b>Show the published age</b>.
+      Which clusters have red giants, and which have none? Why does the Hyades’ main sequence stop higher than M67’s?
+    </p>
+  }
+/>
+
+The oldest clusters, the globular clusters such as 47 Tucanae, are about 12 billion years old, among the oldest things in the Galaxy. Their stars formed when the Galaxy was young and poor in heavy elements, so their stars are metal-poor too. Cluster ages are the backbone of stellar astronomy: they test the models of how stars live, and the models then give the ages of stars that aren’t in clusters.
+
+## Stars that breathe
+
+Some stars pulse, swelling and shrinking regularly. Cepheids, named after the first one found, δ Cephei, are yellow giants that brighten and fade every few days to a few months. A layer in their envelope, where helium is losing its second electron, acts like a valve: compressed, it soaks up heat and becomes more opaque, trapping the heat beneath until it pushes the layer out again. Arthur Eddington described the valve in 1917; Sergei Zhevakin found the helium layer that works it in 1953.
+
+In 1908 Henrietta Swan Leavitt, working at Harvard measuring photographic plates, listed 1,777 variable stars in the two Magellanic Clouds. Among those in the Small Cloud she noticed that the brighter ones pulsed more slowly. By 1912 she had periods for 25 of them, and found that their magnitudes fell on a straight line against the logarithm of the period. All the stars in the cloud are at about the same distance from us, so the brighter ones must be truly more powerful. A <Term id="cepheid">Cepheid</Term>’s period tells its luminosity, which makes it a yardstick: measure its period and how bright it looks, and the inverse-square law gives its distance.
+
+<LeavittFigure
+  number="17.4"
+  tryThis={
+    <p>
+      Switch between Leavitt’s two plots: which shows the straight line? Then pick <b>δ Cephei</b>: how close does the law come to the distance
+      by parallax? Make your own Cepheid of 30 days at magnitude 19: how far away is it?
+    </p>
+  }
+/>
+
+<Callout kind="maths">
+
+**Leavitt’s law.** For Milky Way Cepheids, the absolute magnitude in V is about M<sub>V</sub> = −2.43 (log P − 1) − 4.05, with P in days (Benedict et al. 2007). A Cepheid of 10 days has M<sub>V</sub> ≈ −4.05, some 3,500 times the Sun’s visible power. If it looks like magnitude m, its distance in parsecs is d = 10<sup>(m − M + 5) / 5</sup>, after correcting m for dust.
+
+</Callout>
+
+Ejnar Hertzsprung calibrated the law in 1913, with distances to a few nearby Cepheids. Edwin Hubble found Cepheids in the Andromeda nebula in 1923–24 and showed that it lies far beyond the Milky Way: a galaxy of its own. Cepheids are still a rung on the ladder of distances. Polaris is a Cepheid, pulsing every 4 days, though only slightly; RR Lyrae stars pulse in about half a day; Mira, a pulsing red giant, takes 332 days. Not every star that dims is pulsing: Betelgeuse faded to half its usual brightness in 2019–20, behind a dust cloud it had blown off itself, and in 2025 astronomers first saw the small companion whose orbit sets its six-year cycle of brightness.
+
+<DeepDive title="Why giants swell, and why it’s hard to say why">
+
+The usual answer, “the core contracts, so the envelope expands”, describes what the models do without explaining it. Detailed models of stars, which solve the equations of hydrostatic balance and heat flow layer by layer, do swell into giants; the trouble is finding a simple reason. Astronomers call the pattern the mirror principle: wherever a shell of burning sits, the layers on either side of it move in opposite directions. It holds in nearly every model, but it is a rule of thumb, not a law.
+
+What does seem to matter is the burning shell. Once a dense core has formed, the shell sits deep in its gravity, at high temperature, and burns fiercely. The envelope above has to carry that power outwards and stay in balance under a core whose gravity is concentrated almost to a point. Models show that above a certain ratio of core to envelope, no compact envelope can do both, and the envelope’s balance is reached only with it hugely extended and cool. Several papers have offered explanations in terms of the envelope’s thermal balance, the shell’s gravity, or the opacity of the gas; none is accepted as the whole story. It is a nice example of physics where the equations are clear, the computers agree, and the intuition is still argued about.
+
+</DeepDive>
+
+<Timeline from={1700} to={2030} chapter={17} only={[17]} title="Lives of the stars" />
+
+<CheckYourself>
+  <Question id="lives-longer" prompt="Which lives longer, a star of 10 solar masses or the Sun?">
+    <Choice label="The Sun, by hundreds of times" correct>
+      Right. The Sun lasts about 10 billion years on the main sequence; a star of 10 Suns about 25 million. It has ten times the fuel but shines
+      thousands of times as brightly.
+    </Choice>
+    <Choice label="The heavier star: it has ten times the fuel">
+      More fuel, but it burns it thousands of times faster. Heavy stars live fast and die young: about 25 million years against the Sun’s 10 billion.
+    </Choice>
+    <Choice label="They last about the same, since both burn hydrogen">
+      They burn the same fuel, but at very different rates. The heavy star’s lifetime is hundreds of times shorter.
+    </Choice>
+  </Question>
+
+  <Question id="cluster-age" prompt="How do astronomers find a star cluster’s age?">
+    <Choice label="From where its stars leave the main sequence" correct>
+      Right. The heaviest stars run out of hydrogen first, so the turn-off moves down the main sequence as the cluster ages. The mass at the turn-off has a lifetime equal to the cluster’s age.
+    </Choice>
+    <Choice label="From how red its stars are on average">
+      Colour depends mostly on mass, and every cluster has stars of many masses. What changes with age is which ones are still on the main sequence: the turn-off.
+    </Choice>
+    <Choice label="By counting how many stars it has">
+      Clusters lose stars as they age, but their numbers mostly depend on how big the cloud was. The turn-off gives the age.
+    </Choice>
+  </Question>
+
+  <Question id="sun-becomes" prompt="What will the Sun become?">
+    <Choice label="A red giant, then a white dwarf" correct>
+      Right. In about 5 billion years it will swell into a red giant, burn helium for a while, swell again and shed its outer layers, leaving a white dwarf of about half its mass.
+    </Choice>
+    <Choice label="A supernova, then a black hole">
+      The Sun is far too light to explode or collapse into a black hole. It will end as a white dwarf (Chapter 18).
+    </Choice>
+    <Choice label="It will keep shining as it is for ever">
+      Its hydrogen fuel lasts about 11 billion years in all; it is about halfway through.
+    </Choice>
+  </Question>
+
+  <Question id="cepheid-distance" prompt="Why can Cepheids be used to measure distances?">
+    <Choice label="Their period of pulsing tells their luminosity" correct>
+      Right. Leavitt found that slower Cepheids are more luminous. Measure a Cepheid’s period and you know its true power; compare that with how bright it looks, and the inverse-square law gives the distance.
+    </Choice>
+    <Choice label="They are all the same luminosity">
+      They aren’t: they range over a factor of a hundred or more. What makes them useful is that their period tells which luminosity each has.
+    </Choice>
+    <Choice label="Their pulses take time to reach us, which gives the distance">
+      The light travel time can’t be seen in the pulses. It is the period–luminosity law that turns a period into a luminosity, and that into a distance.
+    </Choice>
+  </Question>
+
+  <PleiadesAge />
+</CheckYourself>

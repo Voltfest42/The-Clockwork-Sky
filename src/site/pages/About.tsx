@@ -81,7 +81,12 @@ export function About() {
           of its luminosity and size at 4.57 billion years, never gain mass, and give heavier stars shorter lives. The Jeans mass and
           free-fall time are checked against the research notes, the dust law against its published ratios, the mass function against
           the shares it must give, the brown dwarfs’ cooling law against the models it summarises, and young stars’ arrival on the main
-          sequence against the times in the research notes. End-to-end tests open every page, use it by
+          sequence against the times in the research notes. Since Chapters 17 and 18, the engine’s isochrones must lie on Gaia’s main
+          sequences of the Pleiades, the Hyades and M67 to within a few tenths of a magnitude, the Sun must leave the main sequence after about
+          11 billion years and end as a white dwarf of about half its mass, white dwarfs must cool exactly as Hurley’s code cools them, the
+          fates of stars must change at about 8 and 20 solar masses, Leavitt’s own table must give back her slope, two Cepheids must land
+          within 6% of their distances by parallax, and the velocity curves of Gaia BH1 and Cygnus X-1 must swing as much as the measured
+          ones. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -430,6 +435,46 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 17</h3>
+        <ul>
+          <li>
+            <b>Figure 17.1, lifetimes.</b> SSE’s main-sequence lifetimes at the Sun’s make-up, without rotation; extrapolated below 0.5 and
+            above 50 solar masses.
+          </li>
+          <li>
+            <b>Figure 17.2, the Sun’s life.</b> SSE for one solar mass; the step from giant to white dwarf is treated roughly, and the planets’
+            orbits widen with the Sun’s mass loss but feel no tides.
+          </li>
+          <li>
+            <b>Figure 17.3, age a cluster.</b> Members chosen by position, motion and distance from Gaia; one distance and reddening per
+            cluster; SSE’s isochrones turned into Gaia’s colours with main-sequence corrections, which suit giants and cool dwarfs less well.
+          </li>
+          <li>
+            <b>Figure 17.4, Leavitt’s law.</b> Leavitt’s photographic magnitudes as she gave them; a drawn light curve; one modern
+            calibration for Milky Way Cepheids.
+          </li>
+        </ul>
+
+        <h3>Chapter 18</h3>
+        <ul>
+          <li>
+            <b>Figure 18.1, white dwarfs as clocks.</b> SSE’s modified Mestel cooling law, with no crystallisation; Gaia’s colours turned into
+            temperatures with main-sequence corrections.
+          </li>
+          <li>
+            <b>Figure 18.2, dead stars to scale.</b> A typical neutron-star radius of 12 km; a black hole’s horizon drawn as a black disc,
+            without the bending of light.
+          </li>
+          <li>
+            <b>Figure 18.3, weigh the invisible companion.</b> Exact Kepler orbits with published values; simulated measurements; the visible
+            star’s mass taken as known.
+          </li>
+          <li>
+            <b>Figure 18.4, the fork in the road.</b> SSE for single, non-rotating stars with its own winds and remnant masses; pair
+            instability from the final helium core; the band where other models leave nothing is drawn from those models.
+          </li>
+        </ul>
+
         <h3>Toolkit: Measurements and uncertainty</h3>
         <ul>
           <li>
@@ -638,6 +683,19 @@ export function About() {
             Zwintz and colleagues (2019), β Pictoris.
           </li>
           <li>
+            H. S. Leavitt and E. C. Pickering (1912), Harvard College Observatory Circular 173: periods of 25 variable stars in the Small
+            Magellanic Cloud. G. F. Benedict and colleagues (2002), The Astronomical Journal 124, 1695, and (2007), 133, 1810: Cepheid parallaxes
+            and the period–luminosity law. L. Casagrande and D. A. VandenBerg (2018), MNRAS 479, L102: Gaia’s reddening coefficients. T. Cantat-Gaudin
+            and colleagues (2018), Astronomy and Astrophysics 618, A93, and E. Vasiliev and H. Baumgardt (2021), MNRAS 505, 5978: clusters’
+            motions and parallaxes; H. Baumgardt and E. Vasiliev (2021), MNRAS 505, 5957: 47 Tucanae’s distance. S. E. Dahm (2015), The
+            Astrophysical Journal 813, 108: the Pleiades’ age; the other clusters’ ages from the papers named in the figure. K. El-Badry and
+            colleagues (2023), MNRAS 518, 1057: Gaia BH1; Gaia Collaboration, P. Panuzzo and colleagues (2024), Astronomy and Astrophysics
+            686, L2: Gaia BH3; J. C. A. Miller-Jones and colleagues (2021), Science 371, 1046: Cygnus X-1. M. V. Romani and colleagues (2022),
+            The Astrophysical Journal Letters 934, L17: PSR J0952−0607. P.-E. Tremblay and colleagues (2019), Nature 565, 202: white dwarfs
+            crystallising. C. Fransson and colleagues (2024), Science 383, 898: SN 1987A’s neutron star. S. J. Smartt (2015), Publications of
+            the Astronomical Society of Australia 32, e016: supernova progenitors.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -731,6 +789,11 @@ export function About() {
             <b>Stellar evolution:</b> SSE by Jarrod Hurley, Onno Pols and Christopher Tout, ported to TypeScript from the distribution AMUSE
             keeps unchanged, and tested against the original code; the Fortran itself isn’t part of the site. <b>Young stars and brown
             dwarfs:</b> BHAC15, from Isabelle Baraffe’s page, used with the citation it asks for.
+          </li>
+          <li>
+            <b>Star clusters:</b> the members of six clusters, chosen from Gaia Data Release 3 (ESA/Gaia/DPAC) by this course, shared under the
+            same Creative Commons Attribution-NonCommercial 3.0 IGO licence in the same folder as the HR diagram’s file. <b>Leavitt’s
+            Cepheids:</b> her 1912 table, in the public domain, read from the scan in NASA’s Astrophysics Data System.
           </li>
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons

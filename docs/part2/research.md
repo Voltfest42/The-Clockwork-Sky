@@ -306,7 +306,7 @@
 | helium cores above ~130 M☉ | direct collapse to a black hole |
 
 - Observations agree only roughly: the "red supergiant problem" (no type II-P supernova progenitor heavier than ~17–18 M☉ found; Smartt 2009, 2015). The initial–final mass relation for white dwarfs: Cummings et al. (2018) (std). Winds matter: at solar metallicity massive stars lose most of their mass, so pair instability needs low metallicity.
-- **Stardust** (std): AGB stars give back carbon, nitrogen and s-process elements; core-collapse supernovae oxygen, magnesium, silicon and some iron; Type Ia supernovae most of the iron; neutron-star mergers r-process elements such as gold (Part III, Ch. 23). Of the mass a generation of stars is born with (Kroupa), roughly a third is returned within 10 Gyr (verify with the engine in Stage 14).
+- **Stardust** (std): AGB stars give back carbon, nitrogen and s-process elements; core-collapse supernovae oxygen, magnesium, silicon and some iron; Type Ia supernovae most of the iron; neutron-star mergers r-process elements such as gold (Part III, Ch. 23). Of the mass a generation of stars is born with (Kroupa), roughly a third is returned within 10 Gyr (checked with the engine in Stage 14: 40% is returned and 13% locked in remnants, at solar metallicity).
 
 ---
 

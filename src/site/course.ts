@@ -324,6 +324,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Lifetimes, what happens when the hydrogen runs out, red giants, star clusters as snapshots, ages from the turn-off, and pulsating stars.',
     sections: ['Living fast, dying young', 'When the hydrogen runs out', 'Clusters as snapshots', 'Stars that breathe'],
     buildsOn: [13, 14, 15, 16],
+    load: () => import('../content/chapter17.mdx'),
   }),
   chapter({
     number: 18,
@@ -332,6 +333,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Planetary nebulae and white dwarfs, supernovae, neutron stars and pulsars, black holes, and the elements returned to space.',
     sections: ['A gentle end', 'Exploding stars', 'Neutron stars', 'Finding black holes', 'The fork in the road', 'Stardust'],
     buildsOn: [12, 14, 17],
+    load: () => import('../content/chapter18.mdx'),
   }),
   chapter({
     number: 19,
