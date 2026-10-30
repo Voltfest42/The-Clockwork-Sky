@@ -10,7 +10,9 @@
 
 **Stage 11 done** (29 Oct 2026): Chapters 12 and 13, the spectra core, the HR diagram component and its core, Gaia's 100-pc stars, ten X-shooter spectra, NIST's lines and Mamajek's table (see the master plan's Status).
 
-**Stage 12 done** (29 Oct 2026): Chapters 14 and 15 and Toolkit T6, the binaries core, the light-curve view, the binary workbench, the star cutaway with Model S, DEBCat and the sunspot record (see the master plan's Status). Figure 15.3 (the race from the Sun, a stretch) wasn't built, so the fuel gauge is Figure 15.3. Next: Stage 13, the stellar-evolution engine and Chapter 16, which first needs gfortran and make in WSL (§12, question 3).
+**Stage 12 done** (29 Oct 2026): Chapters 14 and 15 and Toolkit T6, the binaries core, the light-curve view, the binary workbench, the star cutaway with Model S, DEBCat and the sunspot record (see the master plan's Status). Figure 15.3 (the race from the Sun, a stretch) wasn't built, so the fuel gauge is Figure 15.3. 
+
+**Stage 13 done** (30 Oct 2026): the SSE port, tested step for step against Hurley's own code over 168 stars; brown-dwarf cooling, pair instability, the calibration map, the IMF, young-star tracks (BHAC15), the Jeans mass and the dust law; Chapter 16 (see the master plan's Status for details and deviations, including Barnard 68's radius and the heaviest stars' winds, which Stage 16's pair-instability preset must allow for). Next: Stage 14, Chapters 17 and 18.
 
 ---
 
@@ -308,7 +310,7 @@ Scripts in `scripts/` download the raw data once into `scripts/.cache/` (not com
 | `build-solar-model.ts` | Model S, 117 shells | Cited | 3 kB | 12 |
 | `build-sunspots.ts` | SILSO monthly numbers since 1749 → `src/data/silso/`; the butterfly diagram as a latitude–time grid | **CC BY-NC 4.0**; RGO/USAF/NOAA records (Hathaway) | 38 kB | 12 |
 | `scripts/sse/` | Hurley's code run in WSL over a grid of masses and metallicities → `tests/fixtures/sse/` | Fixtures only | test only | 13 |
-| `build-pms.ts` (optional) | BHAC15 tracks for 0.1–1.4 M☉ | Cited | < 20 kB | 13 |
+| `build-pms.ts` | BHAC15 tracks for 0.01–1.4 M☉ (done: 19 kB gzipped) | Cited | < 20 kB | 13 |
 | `build-clusters.ts` | Members of 6–7 clusters with distances and reddening → `src/data/gaia/` | **CC BY-NC 3.0 IGO** | < 80 kB | 14 |
 | `src/data/leavitt.ts` | Leavitt's 25 Cepheids (1912) | Public domain | small | 14 |
 | `src/data/supernovae.ts` | SN 1987A's and SN 2011fe's light curves | Cited (verify) | small | 14 |
@@ -342,7 +344,7 @@ Scripts in `scripts/` download the raw data once into `scripts/.cache/` (not com
 | Dust | The CCM extinction law with R_V = 3.1 |
 | Collapse or not | The Jeans criterion only, no dynamics (the collapse is Part III's) |
 | Arrival on the main sequence | Published tracks where licensed, or a labelled sketch |
-| Cooling for ever | Power-law fits, with no deuterium burning |
+| Cooling for ever | BHAC15's tracks, carried on by Burrows et al.'s power-law fit where they stop |
 | A new cluster's star masses | Exact sampling of a model mass function |
 | Lifetimes, the Sun's life, the fork in the road, the Star Forge | SSE's fitted formulas, with the calibration map; no rotation; the post-AGB crossing and planetary nebula phase not modelled (drawn as a dashed jump); fates near boundaries uncertain and shaded |
 | Age a cluster | SSE isochrones on real clusters; colours of cool dwarfs approximate; one distance and reddening per cluster from the literature |

@@ -43,28 +43,36 @@ function encodeSrgb(linear: number): number {
 }
 
 /**
- * The colour of a black body at a temperature (K), as sRGB channels 0–255,
- * scaled so the brightest channel is 255. The Planck spectrum is weighted by
- * the colour-matching functions from 380 to 780 nm, turned into linear sRGB
- * (D65 white, so a 6,500 K body is close to white), and encoded.
+ * The colour of light with a given spectrum, as sRGB channels 0–255, scaled so
+ * the brightest channel is 255. The spectrum (any units, as a function of
+ * wavelength in metres) is weighted by the colour-matching functions from 380
+ * to 780 nm, turned into linear sRGB (D65 white) and encoded.
  */
-export function blackBodyColour(kelvin: number): [number, number, number] {
+export function spectrumColour(spectrum: (wavelength: number) => number): [number, number, number] {
   let X = 0;
   let Y = 0;
   let Z = 0;
   for (let nm = 380; nm <= 780; nm += 5) {
-    const lambda = nm * 1e-9;
-    const planck = 1 / (lambda ** 5 * (Math.exp(C2 / (lambda * kelvin)) - 1));
+    const s = spectrum(nm * 1e-9);
     const [x, y, z] = colourMatching(nm);
-    X += planck * x;
-    Y += planck * y;
-    Z += planck * z;
+    X += s * x;
+    Y += s * y;
+    Z += s * z;
   }
   const r = 3.2406 * X - 1.5372 * Y - 0.4986 * Z;
   const g = -0.9689 * X + 1.8758 * Y + 0.0415 * Z;
   const b = 0.0557 * X - 0.204 * Y + 1.057 * Z;
   const max = Math.max(r, g, b);
   return [r, g, b].map((c) => Math.round(255 * encodeSrgb(Math.max(0, c) / max))) as [number, number, number];
+}
+
+/**
+ * The colour of a black body at a temperature (K), as sRGB channels 0–255,
+ * scaled so the brightest channel is 255 (D65 white, so a 6,500 K body is close
+ * to white).
+ */
+export function blackBodyColour(kelvin: number): [number, number, number] {
+  return spectrumColour((lambda) => 1 / (lambda ** 5 * (Math.exp(C2 / (lambda * kelvin)) - 1)));
 }
 
 /** A star's colour from its B−V index (white when it's unknown): sRGB channels 0–255. */

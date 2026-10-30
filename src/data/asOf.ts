@@ -75,6 +75,13 @@ export const AS_OF = {
     source: 'WDC-SILSO, Royal Observatory of Belgium (sidc.be/SILSO): the monthly numbers and the table of cycle minima and maxima',
     everyMonths: 12,
   },
+  records: {
+    checked: '2026-10',
+    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs',
+    where: 'src/data/records.ts (used by Chapter 16)',
+    source: 'the literature: Kalari et al. 2022 and later for R136a1; Luhman’s and the Backyard Worlds surveys for brown dwarfs',
+    everyMonths: 24,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

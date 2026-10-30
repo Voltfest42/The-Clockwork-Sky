@@ -75,7 +75,13 @@ export function About() {
           eclipses against the exact overlap of two discs and the tilt at which they must begin; the fit to β Aurigae’s eclipses against
           the radii it was simulated from; the mass–luminosity relation against DEBCat’s measured stars; the solar model against its
           published centre and convection zone; the Sun’s fuels against the research notes; the sunspot record against SILSO’s table of
-          cycles; and the search for a hidden signal against one planted in noise. End-to-end tests open every page, use it by
+          cycles; and the search for a hidden signal against one planted in noise. Since Chapter 16, the stellar-evolution engine, a
+          TypeScript port of Jarrod Hurley’s SSE, is checked step by step against Hurley’s own Fortran code, compiled and run over 168 stars
+          from 0.1 to 150 solar masses at seven metallicities, through every type of star and remnant a single star reaches; it must also keep the Sun within 10%
+          of its luminosity and size at 4.57 billion years, never gain mass, and give heavier stars shorter lives. The Jeans mass and
+          free-fall time are checked against the research notes, the dust law against its published ratios, the mass function against
+          the shares it must give, the brown dwarfs’ cooling law against the models it summarises, and young stars’ arrival on the main
+          sequence against the times in the research notes. End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -400,6 +406,30 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 16</h3>
+        <ul>
+          <li>
+            <b>Figure 16.1, dust dims and reddens.</b> A black-body star; Cardelli, Clayton and Mathis’s average dust law for the Milky Way,
+            carried on beyond 3.3 micrometres; the dust’s own glow left out.
+          </li>
+          <li>
+            <b>Figure 16.2, collapse or not.</b> Jeans’s criterion for a still, even ball of gas, in its energy form; no turbulence,
+            magnetic fields or rotation, and no collapse itself.
+          </li>
+          <li>
+            <b>Figure 16.3, arrival on the main sequence.</b> Published models (BHAC15) from half a million years on, for 0.1 to 1.4 solar
+            masses at the Sun’s make-up; heavier stars aren’t drawn.
+          </li>
+          <li>
+            <b>Figure 16.4, cooling for ever.</b> The same models, carried on by a power-law fit where they stop; the fit leaves out deuterium
+            burning.
+          </li>
+          <li>
+            <b>Figure 16.5, a new cluster’s star masses.</b> Kroupa’s mass function, drawn at random; each star’s light is its light on the
+            zero-age main sequence; brown dwarfs’ light left out.
+          </li>
+        </ul>
+
         <h3>Toolkit: Measurements and uncertainty</h3>
         <ul>
           <li>
@@ -592,6 +622,22 @@ export function About() {
             (2015), Living Reviews in Solar Physics 12, 4: the solar cycle.
           </li>
           <li>
+            J. R. Hurley, O. R. Pols and C. A. Tout (2000), Monthly Notices of the Royal Astronomical Society 315, 543: SSE, the
+            stellar-evolution formulas and code, with C. A. Tout and colleagues (1996), MNRAS 281, 257, for the zero-age main sequence. I.
+            Baraffe, D. Homeier, F. Allard and G. Chabrier (2015), Astronomy and Astrophysics 577, A42: young stars’ and brown dwarfs’ tracks.
+            A. Burrows and colleagues (2001), Reviews of Modern Physics 73, 719: brown dwarfs’ cooling. G. Chabrier and colleagues (2023),
+            Astronomy and Astrophysics 671, A119: the hydrogen-burning limit. J. A. Cardelli, G. C. Clayton and J. S. Mathis (1989), The
+            Astrophysical Journal 345, 245: the dust law. J. H. Jeans (1902), Philosophical Transactions of the Royal Society A 199, 1. J. F.
+            Alves, C. J. Lada and E. A. Lada (2001), Nature 409, 159: Barnard 68. E. E. Salpeter (1955), The Astrophysical Journal 121, 161,
+            and P. Kroupa (2001), MNRAS 322, 231: the initial mass function. A. Heger and S. E. Woosley (2002), The Astrophysical Journal 567,
+            532; S. E. Woosley (2017), The Astrophysical Journal 836, 244; K. Belczynski and colleagues (2016), Astronomy and Astrophysics
+            594, A97; R. Farmer and colleagues (2019), The Astrophysical Journal 887, 53: pair instability. V. M. Kalari and colleagues
+            (2022), The Astrophysical Journal 935, 162: R136a1. K. L. Luhman (2014), The Astrophysical Journal Letters 786, L18: WISE
+            0855−0714. The young stars’ temperatures and luminosities: S. M. Andrews and colleagues (2012), TW Hydrae; M. Keppler and
+            colleagues (2018), PDS 70; P. Plavchan and colleagues (2020), AU Microscopii; T. J. David and colleagues (2019), V1298 Tauri; K.
+            Zwintz and colleagues (2019), β Pictoris.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -680,6 +726,11 @@ export function About() {
             </a>{' '}
             licence, and so is this course’s file made from them, kept in a folder of its own. <b>The butterfly diagram:</b> the Royal Greenwich
             Observatory’s and USAF/NOAA’s sunspot records, compiled by David Hathaway.
+          </li>
+          <li>
+            <b>Stellar evolution:</b> SSE by Jarrod Hurley, Onno Pols and Christopher Tout, ported to TypeScript from the distribution AMUSE
+            keeps unchanged, and tested against the original code; the Fortran itself isn’t part of the site. <b>Young stars and brown
+            dwarfs:</b> BHAC15, from Isabelle Baraffe’s page, used with the citation it asks for.
           </li>
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons

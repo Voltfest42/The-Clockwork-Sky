@@ -315,6 +315,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Gas and dust between the stars, collapsing clouds, protostars, discs and jets, brown dwarfs, and why small stars far outnumber big ones.',
     sections: ['The space between the stars', 'Clouds that collapse', 'From protostar to star', 'Failed stars', 'Many small stars, few big ones'],
     buildsOn: [8, 13, 14],
+    load: () => import('../content/chapter16.mdx'),
   }),
   chapter({
     number: 17,

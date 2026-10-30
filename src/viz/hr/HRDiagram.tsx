@@ -1,6 +1,6 @@
 import { useEffect, useId, useMemo, useRef, type KeyboardEvent, type PointerEvent, type ReactNode } from 'react';
 import { bcGOf, luminosityFor, luminosityFromBolometric, temperatureFromBpRp, type HRPoint } from '../../core/stars/hr';
-import { HR_HEIGHT, HR_WIDTH, PAD, placeOf, PLOT_H, PLOT_W, pointAt, RANGES, type Axes } from './axes';
+import { HR_HEIGHT, HR_WIDTH, PAD, placeOf, PLOT_H, PLOT_W, pointAt, RANGES, type Axes, type AxisRange } from './axes';
 import { starCss } from '../star/colour';
 import styles from './HRDiagram.module.css';
 
@@ -52,6 +52,8 @@ interface HRDiagramProps {
   density?: DensityGrid;
   layers?: readonly HRLayer[];
   markers?: readonly HRMarker[];
+  /** A zoomed range (see physicistRange); the axes' full range by default. */
+  range?: AxisRange;
   /** Draw lines of equal radius (physicists' axes only). */
   radiusLines?: boolean;
   cursor?: HRPoint | null;
@@ -77,7 +79,8 @@ function cornersFor(grid: DensityGrid): { kelvin: number[]; bc: number[] } {
   return { kelvin, bc };
 }
 
-export function HRDiagram({ axes, density, layers = [], markers = [], radiusLines = false, cursor, onCursor, onPick, ariaLabel, children }: HRDiagramProps) {
+export function HRDiagram({ axes, range, density, layers = [], markers = [], radiusLines = false, cursor, onCursor, onPick, ariaLabel, children }: HRDiagramProps) {
+  const r = range ?? RANGES[axes];
   const canvas = useRef<HTMLCanvasElement>(null);
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
   const corners = useMemo(() => (density ? cornersFor(density) : null), [density]);
@@ -116,8 +119,8 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
             const mg0 = density.y0 + j * density.dy;
             const mg1 = mg0 + density.dy;
             if (axes === 'observer') {
-              const [x0, y0] = placeOf(axes, { bpRp: density.x0 + i * density.dx, mG: mg0, kelvin: 1, luminosity: 1 });
-              const [x1, y1] = placeOf(axes, { bpRp: density.x0 + (i + 1) * density.dx, mG: mg1, kelvin: 1, luminosity: 1 });
+              const [x0, y0] = placeOf(axes, { bpRp: density.x0 + i * density.dx, mG: mg0, kelvin: 1, luminosity: 1 }, r);
+              const [x1, y1] = placeOf(axes, { bpRp: density.x0 + (i + 1) * density.dx, mG: mg1, kelvin: 1, luminosity: 1 }, r);
               ctx.fillRect(x0, y0, x1 - x0 + 0.4, y1 - y0 + 0.4);
             } else {
               const quad = [
@@ -125,7 +128,7 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
                 [i + 1, mg0],
                 [i + 1, mg1],
                 [i, mg1],
-              ].map(([k, mg]) => placeOf(axes, { bpRp: 0, mG: 0, kelvin: corners.kelvin[k], luminosity: luminosityFromBolometric(mg + corners.bc[k]) }));
+              ].map(([k, mg]) => placeOf(axes, { bpRp: 0, mG: 0, kelvin: corners.kelvin[k], luminosity: luminosityFromBolometric(mg + corners.bc[k]) }, r));
               ctx.beginPath();
               ctx.moveTo(quad[0][0], quad[0][1]);
               for (const [x, y] of quad.slice(1)) ctx.lineTo(x, y);
@@ -137,13 +140,13 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
       }
 
       for (const layer of layers) {
-        const r = layer.size ?? 1.6;
+        const size = layer.size ?? 1.6;
         ctx.globalAlpha = layer.alpha ?? 0.85;
         for (const p of layer.points) {
-          const [x, y] = placeOf(axes, p);
+          const [x, y] = placeOf(axes, p, r);
           ctx.fillStyle = starCss(Math.min(40000, Math.max(1500, p.kelvin)));
           ctx.beginPath();
-          ctx.arc(x, y, r, 0, 2 * Math.PI);
+          ctx.arc(x, y, size, 0, 2 * Math.PI);
           ctx.fill();
         }
         ctx.globalAlpha = 1;
@@ -154,7 +157,7 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
     const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(draw) : null;
     observer?.observe(c);
     return () => observer?.disconnect();
-  }, [axes, density, corners, layers]);
+  }, [axes, density, corners, layers, r]);
 
   const toSvg = (e: PointerEvent<SVGSVGElement>): [number, number] => {
     const box = e.currentTarget.getBoundingClientRect();
@@ -164,20 +167,20 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
 
   const onKey = (e: KeyboardEvent<SVGSVGElement>) => {
     const step = e.shiftKey ? 30 : 8;
-    const [cx, cy] = cursor ? placeOf(axes, cursor) : [PAD.left + PLOT_W / 2, PAD.top + PLOT_H / 2];
+    const [cx, cy] = cursor ? placeOf(axes, cursor, r) : [PAD.left + PLOT_W / 2, PAD.top + PLOT_H / 2];
     const moves: Record<string, [number, number]> = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
     if (moves[e.key]) {
       e.preventDefault();
       const [dx, dy] = moves[e.key];
-      onCursor?.(pointAt(axes, cx + dx, cy + dy));
+      onCursor?.(pointAt(axes, cx + dx, cy + dy, r));
     } else if ((e.key === 'Enter' || e.key === ' ') && onPick) {
       e.preventDefault();
-      onPick(cursor ?? pointAt(axes, cx, cy));
+      onPick(cursor ?? pointAt(axes, cx, cy, r));
     }
   };
 
-  const ticks = axes === 'observer' ? observerTicks() : physicistTicks();
-  const place = (p: HRPoint) => placeOf(axes, p);
+  const ticks = axes === 'observer' ? observerTicks() : physicistTicks(r);
+  const place = (p: HRPoint) => placeOf(axes, p, r);
 
   return (
     <div className={styles.wrap}>
@@ -195,7 +198,7 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
             ? (e) => {
                 const [x, y] = toSvg(e);
                 if (!inPlot(x, y)) return;
-                const p = pointAt(axes, x, y);
+                const p = pointAt(axes, x, y, r);
                 onCursor?.(p);
                 onPick(p);
               }
@@ -231,7 +234,7 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
           {axes === 'observer' ? 'Absolute magnitude, M_G: brighter ↑' : 'Luminosity (Suns): brighter ↑'}
         </text>
         <g clipPath={`url(#plot${uid})`}>
-          {axes === 'physicist' && radiusLines && <RadiusLines />}
+          {axes === 'physicist' && radiusLines && <RadiusLines r={r} />}
           {children?.(place)}
           {markers.map((m) => {
             const [x, y] = place(m.point);
@@ -270,18 +273,18 @@ export function HRDiagram({ axes, density, layers = [], markers = [], radiusLine
 
 const RADII = [0.001, 0.01, 0.1, 1, 10, 100, 1000];
 
-function RadiusLines() {
-  const [, coolest] = RANGES.physicist.x;
-  const [faintest] = RANGES.physicist.y;
+function RadiusLines({ r: range }: { r: AxisRange }) {
+  const [, coolest] = range.x;
+  const [faintest] = range.y;
   return (
     <g>
       {RADII.map((r) => {
-        const pts = [45000, 2200].map((t) => placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: luminosityFor(r, t) }));
+        const pts = [45000, 2200].map((t) => placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: luminosityFor(r, t) }, range));
         // Label each line at the plot's right-hand edge, or, if it leaves through the bottom, just above the bottom edge.
-        const atEdge = placeOf('physicist', { bpRp: 0, mG: 0, kelvin: 10 ** coolest, luminosity: luminosityFor(r, 10 ** coolest) });
+        const atEdge = placeOf('physicist', { bpRp: 0, mG: 0, kelvin: 10 ** coolest, luminosity: luminosityFor(r, 10 ** coolest) }, range);
         const inside = atEdge[1] > PAD.top + 12 && atEdge[1] < PAD.top + PLOT_H - 4;
         const lowT = 5772 * (10 ** (faintest + 0.35) / (r * r)) ** 0.25;
-        const low = placeOf('physicist', { bpRp: 0, mG: 0, kelvin: lowT, luminosity: luminosityFor(r, lowT) });
+        const low = placeOf('physicist', { bpRp: 0, mG: 0, kelvin: lowT, luminosity: luminosityFor(r, lowT) }, range);
         const [x, y, anchor] = inside ? [PAD.left + PLOT_W - 4, atEdge[1] - 4, 'end' as const] : [low[0] + 4, low[1] - 4, 'start' as const];
         return (
           <g key={r}>
@@ -302,8 +305,16 @@ function observerTicks() {
   return { x, y };
 }
 
-function physicistTicks() {
-  const x = [40000, 20000, 10000, 6000, 4000, 3000].map((t) => ({ at: placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: 1 })[0], label: t.toLocaleString('en-GB') }));
-  const y = [-4, -2, 0, 2, 4, 6].map((e) => ({ at: placeOf('physicist', { bpRp: 0, mG: 0, kelvin: 5772, luminosity: 10 ** e })[1], label: (10 ** e).toLocaleString('en-GB', { maximumSignificantDigits: 1 }) }));
+function physicistTicks(r: AxisRange) {
+  const full = r === RANGES.physicist;
+  const [hot, cool] = [10 ** r.x[0], 10 ** r.x[1]];
+  const temps = full ? [40000, 20000, 10000, 6000, 4000, 3000] : [40000, 20000, 15000, 10000, 8000, 6000, 5000, 4000, 3000, 2500].filter((t) => t <= hot && t >= cool);
+  const x = temps.map((t) => ({ at: placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: 1 }, r)[0], label: t.toLocaleString('en-GB') }));
+  const decades: number[] = [];
+  for (let e = Math.ceil(r.y[0]); e <= Math.floor(r.y[1]); e++) decades.push(e);
+  const every = full ? 2 : decades.length > 7 ? 2 : 1;
+  const y = decades
+    .filter((e) => e % every === 0)
+    .map((e) => ({ at: placeOf('physicist', { bpRp: 0, mG: 0, kelvin: 5772, luminosity: 10 ** e }, r)[1], label: (10 ** e).toLocaleString('en-GB', { maximumSignificantDigits: 1 }) }));
   return { x, y };
 }

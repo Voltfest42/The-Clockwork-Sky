@@ -169,6 +169,30 @@ export const GLOSSARY = {
     term: 'Neutrino',
     definition: 'A tiny, nearly massless particle made in fusion that passes through almost anything. The Sun’s neutrinos reach us straight from its core.',
   },
+  'interstellar-medium': {
+    term: 'Interstellar medium',
+    definition: 'The gas and dust between the stars: on average about one atom per cubic centimetre, with about 1% of its mass in dust that dims and reddens starlight.',
+  },
+  'molecular-cloud': {
+    term: 'Molecular cloud',
+    definition: 'A cold, dense cloud of gas between the stars, 10 to 20 degrees above absolute zero, where hydrogen pairs into molecules. Stars are born in them.',
+  },
+  'jeans-mass': {
+    term: 'Jeans mass',
+    definition: 'The mass above which a cloud’s gravity beats its heat and it collapses. It is smaller in colder, denser gas.',
+  },
+  protostar: {
+    term: 'Protostar',
+    definition: 'A star still forming: a hot, shrinking ball of gas inside its birth cloud, still gathering mass from a disc around it, and seen only in infrared.',
+  },
+  't-tauri-star': {
+    term: 'T Tauri star',
+    definition: 'A young star of about the Sun’s mass or less, a few million years old, out of its cloud but still shrinking towards the main sequence.',
+  },
+  'initial-mass-function': {
+    term: 'Initial mass function',
+    definition: 'How many stars are born at each mass. Small stars far outnumber big ones: only about one star in 160 is born heavier than 8 Suns.',
+  },
   helioseismology: {
     term: 'Helioseismology',
     definition: 'Mapping the Sun’s inside from its vibrations: sound waves ringing through it, seen as the surface rising and falling every few minutes.',

@@ -16,9 +16,20 @@ export const RANGES = {
   physicist: { x: [Math.log10(45000), Math.log10(2200)], y: [-5, 6.2] },
 } as const;
 
+/** An axis range: x and y as RANGES gives them (log T decreasing and log L for the physicists' axes). */
+export interface AxisRange {
+  x: readonly [number, number];
+  y: readonly [number, number];
+}
+
+/** A zoomed range on the physicists' axes, from temperatures (K, hot first) and luminosities (L☉). */
+export const physicistRange = (hot: number, cool: number, faint: number, bright: number): AxisRange => ({
+  x: [Math.log10(hot), Math.log10(cool)],
+  y: [Math.log10(faint), Math.log10(bright)],
+});
+
 /** Where a point sits in the drawing, on a set of axes. */
-export function placeOf(axes: Axes, p: HRPoint): [number, number] {
-  const r = RANGES[axes];
+export function placeOf(axes: Axes, p: HRPoint, r: AxisRange = RANGES[axes]): [number, number] {
   const [xv, yv] = axes === 'observer' ? [p.bpRp, p.mG] : [Math.log10(p.kelvin), Math.log10(p.luminosity)];
   const fx = (xv - r.x[0]) / (r.x[1] - r.x[0]);
   const fy = axes === 'observer' ? (yv - r.y[0]) / (r.y[1] - r.y[0]) : (r.y[1] - yv) / (r.y[1] - r.y[0]);
@@ -26,8 +37,7 @@ export function placeOf(axes: Axes, p: HRPoint): [number, number] {
 }
 
 /** The point at a place in the drawing. */
-export function pointAt(axes: Axes, x: number, y: number): HRPoint {
-  const r = RANGES[axes];
+export function pointAt(axes: Axes, x: number, y: number, r: AxisRange = RANGES[axes]): HRPoint {
   const fx = Math.min(1, Math.max(0, (x - PAD.left) / PLOT_W));
   const fy = Math.min(1, Math.max(0, (y - PAD.top) / PLOT_H));
   if (axes === 'observer') return fromGaia(r.x[0] + fx * (r.x[1] - r.x[0]), r.y[0] + fy * (r.y[1] - r.y[0]));

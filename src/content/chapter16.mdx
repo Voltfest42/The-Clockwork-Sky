@@ -1,0 +1,168 @@
+import { BrownDwarfFigure } from '../figures/BrownDwarfFigure';
+import { CollapseFigure } from '../figures/CollapseFigure';
+import { DustFigure } from '../figures/DustFigure';
+import { NewClusterFigure } from '../figures/NewClusterFigure';
+import { YoungStarsFigure } from '../figures/YoungStarsFigure';
+import { COLDEST_BROWN_DWARF, HEAVIEST_STAR, NEAREST_BROWN_DWARFS, RECORDS_AS_OF } from '../data/records';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { SmallestCloud } from './checks/chapter16';
+
+Stars don’t last for ever, so they must be born, and they still are: some of the stars in Orion are younger than our species. This chapter follows a star from a cold, dark cloud to its arrival on the main sequence (Chapter 13). It also meets the ones that never make it, and finds out why the sky is full of small stars and has so few big ones.
+
+## The space between the stars
+
+The space between the stars isn’t empty. It holds the <Term id="interstellar-medium">interstellar medium</Term>: gas, mostly hydrogen and helium, at about one atom per cubic centimetre on average. That is a far better vacuum than any laboratory can make, but over light-years it adds up. Some of it is hot, near a million degrees, blown out by exploding stars; some is warm, at about 8,000 K; some is gathered into cold clouds.
+
+About 1% of its mass is dust: grains of rock and soot smaller than a micrometre, made in the winds of dying stars. Dust blocks light, and it blocks short wavelengths most. Starlight that passes through dust comes out fainter and redder, just as the Sun looks red through haze at sunset, though for a different reason. In 1930 Robert Trumpler found that distant star clusters looked fainter than their sizes said they should: dust was dimming them, by about one or two magnitudes for every thousand parsecs along the Milky Way’s disc. Towards the centre of our Galaxy the dust dims visible light by a factor of a trillion, but infrared light gets through. That is why infrared telescopes can see right to the centre.
+
+<DustFigure
+  number="16.1"
+  tryThis={
+    <p>
+      Pick the Sun-like star and slide the dust up slowly. Which end of the spectrum goes first? At <b>The centre of the Galaxy</b>, how much
+      visible light gets through, and how much infrared? Try the hot blue star: does enough dust make it look as red as the red dwarf?
+    </p>
+  }
+/>
+
+Where dust is thickest it hides the stars behind it completely. These dark clouds were once thought to be holes in the sky, until E. E. Barnard catalogued them and argued that they were clouds in front of the stars. Barnard 68, a small one about 400 light-years away, blots out every star behind it in visible light; in infrared, the stars shine through. And where a hot young star sits inside a cloud, its ultraviolet light strips the electrons off the hydrogen around it, and the gas glows red with hydrogen’s line, Hα: Kirchhoff’s bright lines (Chapter 12). The Orion Nebula, 1,300 light-years away, glows like that around its young stars.
+
+## Clouds that collapse
+
+Stars are born in the coldest places in the Galaxy. <Term id="molecular-cloud">Molecular clouds</Term> are at 10 to 20 degrees above absolute zero, cold enough for hydrogen atoms to pair up into molecules, and dense, with hundreds to millions of molecules per cubic centimetre. Hydrogen molecules give out almost no light at those temperatures, so astronomers trace the clouds by their dust and by carbon monoxide, which shines in radio waves.
+
+A cloud is pulled together by its own gravity and pushed apart by its heat: its molecules dart about, and the faster they go, the harder they push. Gravity wins if the cloud is heavy enough. James Jeans worked out the dividing line in 1902; above it, in the cloud’s <Term id="jeans-mass">Jeans mass</Term>, nothing stops the collapse. Cold gas pushes back weakly, and dense gas pulls hard, so the colder and denser a cloud, the smaller its Jeans mass. That is why stars form in the coldest, densest clouds.
+
+<Callout kind="maths">
+
+**The Jeans mass.** A cloud collapses if it is heavier than M<sub>J</sub> ∝ T<sup>3/2</sup> / √ρ, where T is its temperature and ρ its density. Halve the temperature and the Jeans mass falls by a factor of 2<sup>3/2</sup> ≈ 2.8; make the cloud 100 times denser and it falls by 10. For molecular gas at 10 K with 10,000 molecules per cubic centimetre it is about 5 solar masses, and a cloud like that falls in on itself in about 340,000 years, its free-fall time.
+
+</Callout>
+
+<CollapseFigure
+  number="16.2"
+  tryThis={
+    <p>
+      Start with <b>Warm gas between the stars</b>: how much heavier would it have to be to collapse? Then pick <b>A giant molecular cloud</b> and
+      warm it up: at what temperature does it stop collapsing? Try <b>Barnard 68</b>: how close is it to the edge?
+    </p>
+  }
+/>
+
+A giant molecular cloud is thousands of times heavier than its Jeans mass, so it doesn’t collapse as one. As it falls in, it gets denser, its Jeans mass shrinks, and it breaks into clumps, and the clumps into smaller ones. That is why stars are born in groups and clusters, from dozens to many thousands at once. Only a few per cent of a cloud’s gas ends up in stars: the newborn stars’ light and winds blow the rest away.
+
+## From protostar to star
+
+Each collapsing knot makes a <Term id="protostar">protostar</Term>. As its gas falls inwards, it speeds up and heats: half of the energy it gains from falling heats the gas, and the other half is shone away. The protostar is wrapped in a cocoon of dust, so it can be seen only in infrared, glowing from the heat of its own squeezing. Gas keeps falling onto it for a few hundred thousand years, mostly through a spinning disc, the same kind of disc in which planets form (Chapter 8). Some of the gas is flung out again along the spin axis in two narrow jets, which light up the gas they hit: George Herbig and Guillermo Haro found these glowing knots in 1951–52.
+
+Once the cocoon clears, the young star can be seen. Stars of about the Sun’s mass are then <Term id="t-tauri-star">T Tauri stars</Term>, named after the first one Alfred Joy described in 1945: flickering, still with their discs, and still shrinking. Nothing in them is fusing hydrogen yet; they shine on the heat of their own contraction, as Kelvin thought the Sun did (Chapter 15). As they shrink their middles heat up, until at about 10 million degrees hydrogen starts to fuse. The new heat holds the star up, the shrinking stops, and the star has arrived on the main sequence.
+
+<YoungStarsFigure
+  number="16.3"
+  tryThis={
+    <p>
+      Slide the age from a million years up. Which stars reach the main sequence first, the light ones or the heavy ones? Pick the 0.1 M☉ star:
+      how long does it take? Which of the famous young stars has already arrived?
+    </p>
+  }
+/>
+
+On the HR diagram, young stars come down from the upper right. The smallest come almost straight down, shrinking at nearly the same temperature, because they are boiling all the way through: Chushiro Hayashi worked out these tracks in 1961. Stars like the Sun then turn left, heating up at nearly the same brightness, once their middles stop boiling. The heavier the star, the faster it arrives: a star like the Sun takes about 40 million years, a red dwarf of a tenth of the Sun’s mass hundreds of millions, and the heaviest stars are on the main sequence while gas is still falling onto them.
+
+## Failed stars
+
+What if a ball of gas is too small? As it shrinks, the electrons in its middle get squeezed so tightly that they resist being squeezed further, whatever the temperature; physicists call this degeneracy pressure, and it is what holds up white dwarfs (Chapter 18). If that pressure stops the shrinking before the middle reaches the temperature for fusing hydrogen, fusion never gets going for good. The object is a <Term id="brown-dwarf">brown dwarf</Term>.
+
+The dividing line is about 0.075 times the Sun’s mass, or 78 times Jupiter’s, for stars made like the Sun; for stars poorer in heavy elements it is a little higher. Brown dwarfs do fuse a little: above about 13 Jupiter masses they burn their small store of deuterium, heavy hydrogen, for a while, and the heaviest burn their lithium. But with no lasting fuel they only cool, fading for ever and passing through the spectral classes M, L, T and, below about 500 K, Y.
+
+<BrownDwarfFigure
+  number="16.4"
+  tryThis={
+    <p>
+      Pick 50 Jupiter masses and slide the age from a million years to ten billion: how much does it fade? Then pick 0.1 M☉: when does it stop
+      fading? Find the stretch of the 13- to 30-Jupiter lines that runs nearly flat early on: that is deuterium burning.
+    </p>
+  }
+/>
+
+Brown dwarfs were predicted in 1962–63, by Shiv Kumar and by Hayashi and Takenori Nakano, but they are so faint that the first were confirmed only in 1995: Teide 1 in the Pleiades, and Gliese 229B, a companion of a nearby red dwarf, which turned out in 2024 to be a pair of brown dwarfs itself. Infrared surveys have since found thousands. As of {RECORDS_AS_OF}, the nearest are the pair {NEAREST_BROWN_DWARFS.name}, {NEAREST_BROWN_DWARFS.lightYears} light-years away, and the coldest known, {COLDEST_BROWN_DWARF.name}, is about {COLDEST_BROWN_DWARF.kelvin} K, the temperature of a cool spring day.
+
+## Many small stars, few big ones
+
+A cloud doesn’t make stars of every mass equally. In 1955 Edwin Salpeter counted stars near the Sun, corrected for the big ones that have already died, and found that with each doubling of mass, about two and a half times fewer stars are born. Later counts, such as Pavel Kroupa’s in 2001, found that the rule flattens below about half the Sun’s mass, but small stars still win: this <Term id="initial-mass-function">initial mass function</Term> seems to be much the same wherever stars are born.
+
+The result is a population of small stars. Only about one star in ten is born heavier than the Sun, and only one in 160 is heavier than 8 Suns, the stars that will end as supernovae. The average newborn star has about 0.6 of the Sun’s mass. But the few big stars matter far more than their numbers suggest: a star of 20 Suns shines about 40,000 times as brightly as the Sun, so a young cluster’s light comes almost all from its heaviest members. The heaviest star known, as of {RECORDS_AS_OF}, is {HEAVIEST_STAR.name} in {HEAVIEST_STAR.where}, at about {HEAVIEST_STAR.mass} solar masses ({HEAVIEST_STAR.range} by the latest estimate).
+
+<NewClusterFigure
+  number="16.5"
+  tryThis={
+    <p>
+      With 1,000 stars, how many will explode as supernovae? What share of the cluster’s light do they give out? Now draw clusters of 100 stars
+      several times: how often do you get a star of more than 8 Suns?
+    </p>
+  }
+/>
+
+Why does nature make so many small stars? It isn’t fully understood. Clouds break into clumps of many sizes; small clumps are common, and big stars can grow only by gathering more gas before their own light blows it away. Too small, and fusion never starts; too big, and a star’s light pushes its own outer layers off. Between those limits, stars are born from about a thirteenth of the Sun’s mass to a couple of hundred times it, and Chapter 17 follows what happens to them next.
+
+<Timeline from={1900} to={2030} chapter={16} only={[16]} title="How stars are born" />
+
+<CheckYourself>
+  <Question id="clouds-cold" prompt="Why are the clouds where stars form so cold?">
+    <Choice label="Cold gas pushes back weakly, so its gravity can win" correct>
+      Right. A cloud’s heat holds it up against its own gravity. Cold gas, with slow molecules, has a small Jeans mass, so a cold, dense cloud
+      collapses where a warm one wouldn’t.
+    </Choice>
+    <Choice label="Because they are far from any star">
+      Many are close to stars, and some contain them. What matters is that cold gas pushes back weakly, so gravity can win.
+    </Choice>
+    <Choice label="They aren’t: stars form in hot gas">
+      Hot gas pushes back hard and never collapses. Stars form in the coldest clouds, at 10 to 20 degrees above absolute zero.
+    </Choice>
+  </Question>
+
+  <Question id="what-brown-dwarf" prompt="What is a brown dwarf?">
+    <Choice label="A ball of gas too small to keep fusing hydrogen, which cools for ever" correct>
+      Right. Below about 0.075 solar masses, 78 Jupiters, the middle never gets hot enough to fuse hydrogen for good, so it shines only with
+      the heat of its birth and fades for ever.
+    </Choice>
+    <Choice label="A red dwarf near the end of its life">
+      No red dwarf has ever reached the end of its life: they last trillions of years. A brown dwarf is too small to be a star at all.
+    </Choice>
+    <Choice label="A planet that has lost its star">
+      Brown dwarfs form like stars, from collapsing clouds, and most are heavier than any planet. They are just too small to keep fusing hydrogen.
+    </Choice>
+  </Question>
+
+  <Question id="most-stars" prompt="Are most stars bigger or smaller than the Sun?">
+    <Choice label="Smaller" correct>
+      Right. Only about one star in ten is born heavier than the Sun, and most are red dwarfs of less than half its mass, too faint to see with
+      the eye alone.
+    </Choice>
+    <Choice label="Bigger">
+      The stars we see with the eye are mostly bigger, because big stars are bright enough to see far away. But they are rare: most stars are
+      smaller than the Sun.
+    </Choice>
+    <Choice label="About the same">
+      The Sun is heavier than about nine stars in ten. Most stars are red dwarfs.
+    </Choice>
+  </Question>
+
+  <Question id="infrared-birth" prompt="Why do astronomers look at newborn stars in infrared light?">
+    <Choice label="Dust blocks their visible light, but infrared gets through" correct>
+      Right. Newborn stars are wrapped in dusty clouds that block visible light completely, but longer, infrared wavelengths pass through. The
+      protostars also glow mostly in infrared themselves.
+    </Choice>
+    <Choice label="Because newborn stars are too hot to see">
+      Hotter stars give out more visible light, not less. It is the dust around them that hides them, and infrared gets through dust.
+    </Choice>
+    <Choice label="Because infrared telescopes are bigger">
+      Some of the biggest telescopes work in visible light. Infrared is used because it passes through the dust that hides newborn stars.
+    </Choice>
+  </Question>
+
+  <SmallestCloud />
+</CheckYourself>
