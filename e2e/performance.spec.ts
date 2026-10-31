@@ -90,3 +90,27 @@ test('the Orrery’s Pythagorean problem, in IAS15, on a slow phone @perf', asyn
   report('Orrery, Pythagorean problem', result);
   expect(result.fps).toBeGreaterThan(20);
 });
+
+test('the Star Forge scrubs through a life and forges new stars quickly on a slow phone @perf', async ({ page }) => {
+  await page.goto('/star-forge/?preset=sun');
+  await throttle(page);
+  const fate = page.locator('main div[aria-live="polite"]').filter({ hasText: 'Its end' });
+  await expect(fate).toContainText('white dwarf', { timeout: 20_000 });
+  // Scrubbing: the time slider stepped every frame or so while the frames are measured.
+  const time = page.getByRole('slider', { name: 'Time' });
+  await time.focus();
+  const measuring = measure(page, 3);
+  for (let i = 0; i < 60; i++) await page.keyboard.press('ArrowRight');
+  const result = await measuring;
+  report('Star Forge, scrubbing time', result);
+  // A new star: from the mass typed to its fate shown, worked out in the worker.
+  const started = Date.now();
+  const typed = page.getByRole('textbox', { name: 'or type (M☉)' });
+  await typed.fill('18');
+  await typed.press('Enter');
+  await expect(fate).toContainText('neutron star', { timeout: 20_000 });
+  const ms = Date.now() - started;
+  test.info().annotations.push({ type: 'performance', description: `Star Forge, a new star of 18 Suns: ${ms} ms from Enter to its fate` });
+  console.log(`Star Forge, a new star of 18 Suns: ${ms} ms from Enter to its fate`);
+  expect(result.fps).toBeGreaterThan(15);
+});

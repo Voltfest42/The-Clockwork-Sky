@@ -18,6 +18,8 @@
 
 **Stage 15 done** (31 Oct 2026): Chapter 19, the exoplanet core, the census of 6,451 planets from the NASA Exoplanet Archive and Figures 19.1–19.5; all of Part II's chapters are written (see the master plan's Status for details and deviations, including the census's 93 kB and transits integrated numerically rather than by Mandel & Agol's closed forms). Next: Stage 16, the Star Forge v1 and Part II polish.
 
+**Stage 16 done** (31 Oct 2026): the Star Forge v1 at `/star-forge/` (ten presets, up to four stars compared, clusters mode, the calibration map, links), brown dwarfs and other models' pair instability in the Forge's model, five glossary terms, the About page, the dated facts (moon counts updated), slow-phone and WebKit checks, and the Moving Parts card. **Part II is complete.** SSE's helium cores can't reach pair instability, so the 150 M☉ preset shows SSE's answer beside Heger & Woosley's; the winds preset is 20 M☉ rather than 25; no winds at all stalls SSE above about 90 M☉ and the Forge says so (see the master plan's Status). Your read-through of Part II is still to come.
+
 ---
 
 ## 1. What Part II does

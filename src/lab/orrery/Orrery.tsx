@@ -112,7 +112,7 @@ export default function OrreryPage() {
         </p>
         <p>
           It has a sequel: Part III’s version adds star clusters, colliding galaxies, the correction for relativity, and the Sun’s old age. For now,{' '}
-          {chapter(8)} has the tour of the real thing, and <a href={href('labs')}>the labs page</a> has the Star Forge to come.
+          {chapter(8)} has the tour of the real thing, and its sibling lab, <a href={href('star-forge')}>the Star Forge</a>, makes stars.
         </p>
       </div>
     </article>

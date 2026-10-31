@@ -266,6 +266,26 @@ export const GLOSSARY = {
     term: 'Black hole',
     definition: 'An object so compact that nothing, not even light, can escape from inside its horizon, 2GM/c² in radius: about 3 km for each solar mass.',
   },
+  isochrone: {
+    term: 'Isochrone',
+    definition: 'A line on the HR diagram through stars of every mass at one age and make-up: where a cluster’s stars would sit if they were born together that long ago.',
+  },
+  'stellar-wind': {
+    term: 'Stellar wind',
+    definition: 'Gas flowing off a star’s surface into space. The Sun’s is gentle; red giants and the most luminous stars can lose most of their mass this way.',
+  },
+  'wolf-rayet-star': {
+    term: 'Wolf–Rayet star',
+    definition: 'A very hot, luminous star whose hydrogen envelope has been blown or pulled away, leaving its helium (and heavier) insides bare, with a fierce wind.',
+  },
+  'pair-instability': {
+    term: 'Pair instability',
+    definition: 'In the hottest, heaviest stellar cores, light turns into pairs of electrons and positrons, the core loses pressure and shrinks, and its oxygen can burn all at once: enough to make the star pulse, or blow it apart entirely.',
+  },
+  convection: {
+    term: 'Convection',
+    definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as in a pan of soup. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',
+  },
   exoplanet: {
     term: 'Exoplanet',
     definition: 'A planet orbiting a star other than the Sun. The first round a Sun-like star, 51 Pegasi b, was found in 1995; thousands are known now.',

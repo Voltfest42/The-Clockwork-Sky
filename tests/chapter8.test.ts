@@ -170,10 +170,10 @@ describe('Jupiter’s moons (8.3)', () => {
 });
 
 describe('planet cards (8.2)', () => {
-  it('holds the NASA fact-sheet values, and moon counts as of March 2026', () => {
-    expect(MOONS_AS_OF).toBe('March 2026');
-    expect(worldById('saturn').moons).toBe(285);
-    expect(worldById('jupiter').moons).toBe(101);
+  it('holds the NASA fact-sheet values, and moon counts as of October 2026', () => {
+    expect(MOONS_AS_OF).toBe('October 2026');
+    expect(worldById('saturn').moons).toBe(293);
+    expect(worldById('jupiter').moons).toBe(115);
     expect(worldById('neptune').moons).toBe(16);
     // Saturn has the most known moons.
     expect([...WORLDS].sort((a, b) => b.moons - a.moons)[0].id).toBe('saturn');

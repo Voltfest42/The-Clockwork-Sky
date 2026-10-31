@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { computeStellar, requestKey, type StellarAnswer, type StellarRequest } from '../core/stellar/requests';
+import { computeStellar, requestKey, type LifeAnswer, type StellarAnswer, type StellarRequest } from '../core/stellar/requests';
 import type { Fate, IsochronePoint } from '../core/stellar/lives';
-import type { SseTrack } from '../core/stellar/sse/evolve';
 
 /**
  * Asks the stellar-evolution worker for an isochrone, a fate curve or a whole
@@ -50,7 +49,7 @@ function pump() {
   worker.postMessage({ id, request });
 }
 
-function useStellar(request: StellarRequest | null): StellarAnswer | null {
+export function useStellar(request: StellarRequest | null): StellarAnswer | null {
   const key = request ? requestKey(request) : null;
   // The last answer delivered to this figure, kept while a new request runs.
   const [delivered, setDelivered] = useState<StellarAnswer | null>(null);
@@ -81,4 +80,8 @@ export const useIsochrone = (age: number, z: number) => useStellar({ kind: 'isoc
 export const useFates = (z: number, wind: number) => useStellar({ kind: 'fates', z, wind }) as Fate[] | null;
 
 /** One star's whole life. */
-export const useLife = (mass: number, z: number, wind: number) => useStellar({ kind: 'life', mass, z, wind }) as SseTrack | null;
+export const useLife = (mass: number, z: number, wind: number) => useStellar({ kind: 'life', mass, z, wind }) as LifeAnswer | null;
+
+/** One star's whole life, or nothing when no star is asked for. */
+export const useLifeOf = (star: { mass: number; z: number; wind: number } | null) =>
+  useStellar(star ? { kind: 'life', mass: star.mass, z: star.z, wind: star.wind } : null) as LifeAnswer | null;

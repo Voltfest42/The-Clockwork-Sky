@@ -545,7 +545,7 @@ export const LABS: readonly LabInfo[] = [
         version: 1,
         part: 2,
         summary:
-          'Any single star from brown dwarfs to the most massive: its track on the HR diagram, its size and colour beside the Sun’s, its life on a timeline, and its fate.',
+          'Any single star from brown dwarfs to the most massive: its track on the HR diagram, its size and colour beside the Sun’s, its insides, its life on a timeline and its fate; up to four stars side by side; isochrones over real clusters; and a map of where the engine can be trusted.',
       },
       {
         version: 2,
@@ -553,6 +553,7 @@ export const LABS: readonly LabInfo[] = [
         summary: 'Pairs of stars: mass transfer, common envelopes, mergers and supernova kicks, with the outcome classified.',
       },
     ],
+    load: () => import('../lab/starForge/StarForge'),
   },
 ];
 

@@ -19,6 +19,7 @@ export const PHASE_SHORT: Record<number, string> = {
   13: 'Neutron star',
   14: 'Black hole',
   15: 'Nothing',
+  16: 'Brown dwarf, cooling',
 };
 
 /** Light fills, so dark text reads on all of them in both themes. */
@@ -38,9 +39,11 @@ export const FILL: Record<number, string> = {
   13: '#b8c0ff',
   14: '#6c757d',
   15: '#e9ecef',
+  16: '#d4a373',
 };
 
-export const isRemnant = (kw: number) => kw >= 10;
+/** SSE's remnants, types 10–15 (16, the Star Forge's brown dwarf, is a living object). */
+export const isRemnant = (kw: number) => kw >= 10 && kw <= 15;
 
 /** Where a time falls on the strip, as a fraction of the life's width (0–1). `end` is when the star becomes a remnant. */
 export function stripPosition(t: number, start: number, end: number, scale: StripScale): number {

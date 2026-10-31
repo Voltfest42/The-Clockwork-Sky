@@ -23,6 +23,8 @@ export interface ScatterLine {
   name: string;
   color: string;
   dashed?: boolean;
+  /** A dash pattern of its own (an SVG stroke-dasharray), in place of `dashed`'s. */
+  dash?: string;
   /** The line's value at x. */
   f: (x: number) => number;
 }
@@ -176,7 +178,7 @@ export function ScatterChart({
         {lines.map((l) => (
           <li key={l.name}>
             <svg width="22" height="10" aria-hidden="true">
-              <line x1="1" x2="21" y1="5" y2="5" stroke={l.color} strokeWidth="2" strokeDasharray={l.dashed ? '4 3' : undefined} />
+              <line x1="1" x2="21" y1="5" y2="5" stroke={l.color} strokeWidth="2" strokeDasharray={l.dash ?? (l.dashed ? '4 3' : undefined)} />
             </svg>
             {l.name}
           </li>
@@ -220,7 +222,7 @@ export function ScatterChart({
         </text>
         <g clipPath={`url(#${clipId})`}>
           {lines.map((l) => (
-            <path key={l.name} d={linePath(l.f)} fill="none" stroke={l.color} strokeWidth="2" strokeDasharray={l.dashed ? '6 4' : undefined} />
+            <path key={l.name} d={linePath(l.f)} fill="none" stroke={l.color} strokeWidth="2" strokeDasharray={l.dash ?? (l.dashed ? '6 4' : undefined)} />
           ))}
         </g>
         {groups.map((g) => (

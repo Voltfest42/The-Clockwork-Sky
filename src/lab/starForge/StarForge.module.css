@@ -1,0 +1,340 @@
+/* The Star Forge: the same frame as the Orrery, breaking out of the text column on big screens. */
+.lab {
+  margin: 8px 0 40px;
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.04);
+}
+
+@media (min-width: 1100px) {
+  .lab {
+    width: min(1180px, calc(100vw - var(--sidebar-width, 0px) - 72px));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .lab {
+    padding: 12px;
+  }
+}
+
+.placeholder {
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+
+.presetRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 6px;
+}
+
+.presetRow label {
+  font-weight: 600;
+}
+
+.presetRow select,
+.field input {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 10px;
+  max-width: 100%;
+}
+
+.blurb {
+  margin: 4px 0 6px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.tryThis {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+}
+
+.notes {
+  margin: 0 0 12px;
+  padding: 8px 12px 8px 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg);
+  max-width: 100%;
+}
+
+.chip button {
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 4px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-align: left;
+}
+
+.chip button[aria-pressed='true'] {
+  color: var(--text);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 14%, var(--bg));
+}
+
+.chip .remove {
+  border-left: 1px solid var(--border);
+  padding: 4px 9px;
+}
+
+.chip button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.inputs,
+.time {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.editing {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .inputRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.field {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.field input {
+  width: 6.5em;
+  font-size: 0.88rem;
+  padding: 3px 8px;
+}
+
+.main,
+.below {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.below {
+  margin-top: 18px;
+}
+
+@media (max-width: 960px) {
+  .main,
+  .below {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section {
+  margin-top: 18px;
+}
+
+.caption {
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+}
+
+.box {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+
+.box h3 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+}
+
+.box p {
+  margin: 6px 0 0;
+}
+
+.box[aria-busy='true'] {
+  opacity: 0.6;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.note {
+  margin: 8px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.true {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  background: var(--sky-bg);
+  border-radius: 6px;
+}
+
+.trueRow {
+  display: block;
+  width: 100%;
+  background: var(--sky-bg);
+  border-radius: 6px;
+}
+
+.inside {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: flex-start;
+}
+
+.insideSvg {
+  width: 200px;
+  max-width: 100%;
+  flex: none;
+}
+
+.layerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.86rem;
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+.layerList li {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.swatchSquare {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  flex: none;
+  border-radius: 2px;
+}
+
+.stripLabel {
+  margin: 8px 0 2px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.phaseList {
+  margin: 10px 0 0;
+  padding-left: 22px;
+  font-size: 0.9rem;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.pick {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pick[aria-pressed='true'] {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.map {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  cursor: crosshair;
+}

@@ -65,6 +65,8 @@ interface HRDiagramProps {
 }
 
 const PLOT_BG = '#070b16';
+/** The default for no layers, one array for every render, so the canvas isn't redrawn for nothing. */
+const NO_LAYERS: readonly HRLayer[] = [];
 const DENSITY = [150, 175, 255];
 
 /** The density grid's cell corners on the physicists' axes, worked out once per grid. */
@@ -79,7 +81,7 @@ function cornersFor(grid: DensityGrid): { kelvin: number[]; bc: number[] } {
   return { kelvin, bc };
 }
 
-export function HRDiagram({ axes, range, density, layers = [], markers = [], radiusLines = false, cursor, onCursor, onPick, ariaLabel, children }: HRDiagramProps) {
+export function HRDiagram({ axes, range, density, layers = NO_LAYERS, markers = [], radiusLines = false, cursor, onCursor, onPick, ariaLabel, children }: HRDiagramProps) {
   const r = range ?? RANGES[axes];
   const canvas = useRef<HTMLCanvasElement>(null);
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
@@ -274,12 +276,14 @@ export function HRDiagram({ axes, range, density, layers = [], markers = [], rad
 const RADII = [0.001, 0.01, 0.1, 1, 10, 100, 1000];
 
 function RadiusLines({ r: range }: { r: AxisRange }) {
-  const [, coolest] = range.x;
+  const [hottest, coolest] = range.x;
   const [faintest] = range.y;
+  // Across the plot, or the full diagram's width if that's wider (the lines are straight, and clipped).
+  const ends = [Math.max(45000, 10 ** hottest), Math.min(2200, 10 ** coolest)];
   return (
     <g>
       {RADII.map((r) => {
-        const pts = [45000, 2200].map((t) => placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: luminosityFor(r, t) }, range));
+        const pts = ends.map((t) => placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: luminosityFor(r, t) }, range));
         // Label each line at the plot's right-hand edge, or, if it leaves through the bottom, just above the bottom edge.
         const atEdge = placeOf('physicist', { bpRp: 0, mG: 0, kelvin: 10 ** coolest, luminosity: luminosityFor(r, 10 ** coolest) }, range);
         const inside = atEdge[1] > PAD.top + 12 && atEdge[1] < PAD.top + PLOT_H - 4;
@@ -314,7 +318,15 @@ function observerTicks(r: AxisRange) {
 function physicistTicks(r: AxisRange) {
   const full = r === RANGES.physicist;
   const [hot, cool] = [10 ** r.x[0], 10 ** r.x[1]];
-  const temps = full ? [40000, 20000, 10000, 6000, 4000, 3000] : [40000, 20000, 15000, 10000, 8000, 6000, 5000, 4000, 3000, 2500].filter((t) => t <= hot && t >= cool);
+  // A range wider than the full diagram's (the Star Forge's, with white dwarfs and brown dwarfs) gets sparser ticks.
+  const wide = r.x[0] - r.x[1] > RANGES.physicist.x[0] - RANGES.physicist.x[1] + 0.05;
+  const temps = (
+    full
+      ? [40000, 20000, 10000, 6000, 4000, 3000]
+      : wide
+        ? [200000, 100000, 50000, 20000, 10000, 5000, 3000, 2000, 1000, 500]
+        : [40000, 20000, 15000, 10000, 8000, 6000, 5000, 4000, 3000, 2500]
+  ).filter((t) => t <= hot * 1.001 && t >= cool * 0.999);
   const x = temps.map((t) => ({ at: placeOf('physicist', { bpRp: 0, mG: 0, kelvin: t, luminosity: 1 }, r)[0], label: t.toLocaleString('en-GB') }));
   const decades: number[] = [];
   for (let e = Math.ceil(r.y[0]); e <= Math.floor(r.y[1]); e++) decades.push(e);

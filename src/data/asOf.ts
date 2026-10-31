@@ -27,7 +27,7 @@ export interface DatedFact {
 
 export const AS_OF = {
   moons: {
-    checked: '2026-03',
+    checked: '2026-10',
     what: 'the planets’ moon counts',
     where: 'src/data/planets.ts (WORLDS[].moons)',
     source: 'NASA Science’s moon pages and the IAU Minor Planet Center’s announcements',

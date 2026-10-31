@@ -11,7 +11,16 @@ export type StellarRequest =
   | { kind: 'fates'; z: number; wind: number }
   | { kind: 'life'; mass: number; z: number; wind: number };
 
-export type StellarAnswer = IsochronePoint[] | Fate[] | SseTrack;
+/**
+ * A life as the worker sends it, with the wind it was run with. If SSE can't follow the star to its end (without
+ * winds, its formulas for stars above about 90 M☉ stall while they burn helium), it has no steps and says why.
+ */
+export interface LifeAnswer extends SseTrack {
+  wind: number;
+  error?: string;
+}
+
+export type StellarAnswer = IsochronePoint[] | Fate[] | LifeAnswer;
 
 /** A key that identifies a request, for caching. */
 export const requestKey = (r: StellarRequest): string => JSON.stringify(r);
@@ -24,6 +33,10 @@ export function computeStellar(r: StellarRequest): StellarAnswer {
       // Fates above 300 M☉ aren't asked for; between 150 and 300 the figure marks them unreliable.
       return fateCurve(r.z, { windScale: r.wind }, 110, 300);
     case 'life':
-      return lifeOf(r.mass, r.z, { windScale: r.wind });
+      try {
+        return { ...lifeOf(r.mass, r.z, { windScale: r.wind }), wind: r.wind };
+      } catch (e) {
+        return { m: r.mass, z: r.z, steps: [], types: [], wind: r.wind, error: e instanceof Error ? e.message : String(e) };
+      }
   }
 }

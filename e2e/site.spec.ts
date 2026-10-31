@@ -5,7 +5,7 @@ import { href } from '../src/site/router';
 import { accessibilityViolations, expectNoBrokenFigures, watchErrors } from './helpers';
 
 /** One page of each kind, for the checks that don't need every page. */
-const SAMPLE_PAGES = ['', 'part-1', 'part-2', 'part-3', 'a-sense-of-scale', 'the-moon', 'light-the-messenger', 'black-holes', 'toolkit', 'toolkit/powers-of-ten', 'toolkit/angles-in-the-sky', 'toolkit/logarithms-and-magnitudes', 'labs', 'orrery', 'glossary', 'about'];
+const SAMPLE_PAGES = ['', 'part-1', 'part-2', 'part-3', 'a-sense-of-scale', 'the-moon', 'light-the-messenger', 'black-holes', 'toolkit', 'toolkit/powers-of-ten', 'toolkit/angles-in-the-sky', 'toolkit/logarithms-and-magnitudes', 'labs', 'orrery', 'star-forge', 'glossary', 'about'];
 
 /** Every page of the site. */
 const ALL_PAGES = [
@@ -139,16 +139,16 @@ test('the Toolkit and the labs list their pages', async ({ page }) => {
   await expect(page.getByRole('heading', { level: 1, name: 'Angles in the sky' })).toBeVisible();
   await expect(main.getByRole('link', { name: 'Chapter 2, The turning sky' })).toBeVisible();
 
-  // The Star Forge isn't built: its card is marked "Coming soon" and isn't a link, but its plans are in the sidebar.
+  // Both labs are built: their cards are links, and the sidebar has them under their parts.
   await page.goto('/labs/');
-  await expect(page.locator('main').getByRole('link', { name: /The Star Forge/ })).toHaveCount(0);
-  await expect(page.locator('main').getByText('The Star Forge').locator('..')).toContainText('Coming soon');
+  await expect(page.locator('main').getByText('Coming soon')).toHaveCount(0);
+  await page.locator('main').getByRole('link', { name: /The Star Forge/ }).click();
+  await expect(page).toHaveURL(/\/star-forge\/$/);
+  await expect(page.getByRole('heading', { level: 1, name: 'The Star Forge' })).toBeVisible();
   const nav = page.getByRole('navigation', { name: 'Contents' });
   const partTwo = nav.getByRole('button', { name: 'Chapters of Part II', exact: true });
   if ((await partTwo.getAttribute('aria-expanded')) !== 'true') await partTwo.click();
-  await nav.getByRole('link', { name: /The Star Forge/ }).click();
-  await expect(page.getByRole('heading', { level: 1, name: 'The Star Forge' })).toBeVisible();
-  await expect(page.locator('main').getByText(/Version 1, with/)).toBeVisible();
+  await expect(nav.getByRole('link', { name: /The Star Forge/ })).toHaveAttribute('aria-current', 'page');
 });
 
 test('the glossary lists every term, and terms explain themselves on hover and focus', async ({ page }) => {

@@ -1,6 +1,7 @@
 import contentStyles from '../content/content.module.css';
 import { Timeline } from '../content/Timeline';
 import { href } from '../router';
+import { MOONS_AS_OF } from '../../data/planets';
 import styles from './pages.module.css';
 
 export function About() {
@@ -18,8 +19,9 @@ export function About() {
           <a href="https://moving-parts.dev" target="_blank" rel="noreferrer">
             Moving Parts
           </a>
-          , after <i>Beyond Dijkstra</i> and <i>From Black Box to Rulebook</i>. It is being built one part at a time: <a href={href('part-1')}>Part I</a>,
-          with its lab, <a href={href('orrery')}>the Orrery</a>, is complete, and Parts II and III are on the way.
+          , after <i>Beyond Dijkstra</i> and <i>From Black Box to Rulebook</i>. It is being built one part at a time: <a href={href('part-1')}>Part I</a>
+          and <a href={href('part-2')}>Part II</a> are complete, each with its lab, <a href={href('orrery')}>the Orrery</a> and{' '}
+          <a href={href('star-forge')}>the Star Forge</a>, and Part III is on the way.
         </p>
 
         <h2>The physics runs in your browser</h2>
@@ -90,6 +92,11 @@ export function About() {
           1% and 84 parts per million, a limb-darkened transit must match the exact depth at the centre and Mandel and Agol’s small-planet
           formula across the disc, the habitable zone must run from 0.95 to 1.68 AU round the Sun as Kopparapu and colleagues give it, a planted
           wobble or dip must be measured back within its uncertainty, and the census file must hold as many planets as the Archive counted.
+          With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
+          fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
+          every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
+          ready-made star must do what its description says: Betelgeuse a neutron star of 2 solar masses, the 20-solar-mass pair a neutron star
+          and a black hole, the star of 100 solar masses stripped to helium.
           End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
@@ -287,7 +294,7 @@ export function About() {
           </li>
           <li>
             <b>Figure 8.2, planet cards.</b> Real maps on smooth spheres: no mountains, no flattening of the giants, no glowing atmospheres. Gravity for the
-            giants is at their cloud tops. Moon counts are as of March 2026.
+            giants is at their cloud tops. Moon counts are as of {MOONS_AS_OF}.
           </li>
           <li>
             <b>Figure 8.3, Jupiter’s moons.</b> Jupiter and its four large moons pull on each other as points; the Sun and Jupiter’s bulge are left
@@ -527,6 +534,25 @@ export function About() {
           <li>Bodies are drawn at least a few pixels across, far bigger than they are.</li>
         </ul>
 
+        <h3>The Star Forge</h3>
+        <ul>
+          <li>
+            SSE’s fitted formulas for single, non-rotating stars without magnetic fields, from the zero-age main sequence, with its own winds
+            (scaled by the winds slider) and Belczynski and colleagues’ remnant masses. Fitted to detailed models from 0.5 to 50 solar masses and
+            Z = 0.0001–0.03; stretched outside that, as its calibration map shows. With no winds at all, SSE stalls for stars above about 90
+            solar masses, and the Forge says so.
+          </li>
+          <li>
+            Brown dwarfs follow BHAC15’s tracks, interpolated in mass, and Burrows and colleagues’ power laws beyond them, to 10 billion years.
+            Above 100 solar masses, other models’ outcomes come from Heger and Woosley’s helium cores for metal-free stars that keep their mass.
+          </li>
+          <li>
+            The step from giant to white dwarf is drawn as a dashed jump; the insides show only what SSE gives (the core, and the outer
+            convection zone), not the convective cores of heavy main-sequence stars; neutron stars and black holes are off the HR diagram.
+          </li>
+          <li>Clusters: as Figure 17.3.</li>
+        </ul>
+
         <h2>The people behind the course</h2>
         <Timeline title="Timeline" />
 
@@ -708,6 +734,13 @@ export function About() {
             0855−0714. The young stars’ temperatures and luminosities: S. M. Andrews and colleagues (2012), TW Hydrae; M. Keppler and
             colleagues (2018), PDS 70; P. Plavchan and colleagues (2020), AU Microscopii; T. J. David and colleagues (2019), V1298 Tauri; K.
             Zwintz and colleagues (2019), β Pictoris.
+          </li>
+          <li>
+            The Star Forge: SSE as above, from Hurley’s code as distributed with AMUSE (src/amuse_sse/src, the SSE distribution unchanged); K.
+            Belczynski, V. Kalogera and T. Bulik (2002), The Astrophysical Journal 572, 407: neutron-star and black-hole masses. G. Laughlin, P.
+            Bodenheimer and F. C. Adams (1997), The Astrophysical Journal 482, 420: the end of the smallest red dwarfs. J. Liebert and colleagues
+            (2005), The Astrophysical Journal 630, L69: the mass Sirius B was born with. M. Asplund, A. M. Amarsi and N. Grevesse (2021),
+            Astronomy and Astrophysics 653, A141: the Sun’s metallicity today.
           </li>
           <li>
             H. S. Leavitt and E. C. Pickering (1912), Harvard College Observatory Circular 173: periods of 25 variable stars in the Small

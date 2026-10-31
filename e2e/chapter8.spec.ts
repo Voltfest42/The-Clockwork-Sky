@@ -25,7 +25,7 @@ test('Chapter 8 shows its sections, five figures and a Check yourself @phone', a
     await expect(figure.getByText('Try this')).toBeVisible();
     await expect(figure.getByRole('button', { name: `Reset figure ${n}` })).toBeVisible();
   }
-  await expect(main.getByText(/as of March 2026, Saturn has 285 known moons, Jupiter 101, Uranus 29 and Neptune 16/)).toBeVisible();
+  await expect(main.getByText(/as of October 2026, Saturn has 293 known moons, Jupiter 115, Uranus 29 and Neptune 16/)).toBeVisible();
   await expect(main.getByRole('region', { name: 'Exploring the Solar System' })).toBeVisible();
   await expect(main.getByRole('region', { name: 'Check yourself' })).toBeVisible();
 

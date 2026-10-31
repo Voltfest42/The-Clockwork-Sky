@@ -26,6 +26,23 @@ export function pairFate(heCore: number): PairFate {
 }
 
 /**
+ * The helium core (M☉) a star of initial mass `mass` (M☉) ends with if it keeps its mass, as nearly metal-free
+ * stars with weak winds may: M_He ≈ (13/24)(M − 20 M☉), Heger & Woosley (2002) for non-rotating stars of zero
+ * metallicity. It puts pair-instability supernovae (helium cores of 65–135 M☉) at about 140–270 M☉. SSE can't
+ * reach these cores: its formulas stop growing above 100 M☉.
+ */
+export function heliumCoreIfKept(mass: number): number {
+  return Math.max(0, (13 / 24) * (mass - 20));
+}
+
+/** What other models say of a star that keeps its mass: the helium core, what pair instability does, and the remnant (M☉; at least the helium core for a direct collapse). */
+export function keptMassFate(mass: number): { heCore: number; pair: PairFate; remnant: number } {
+  const heCore = heliumCoreIfKept(mass);
+  const pair = pairFate(heCore);
+  return { heCore, pair, remnant: pairRemnant(heCore, heCore) };
+}
+
+/**
  * The remnant's mass (M☉) once pair instability is allowed for, given the helium core's mass and the remnant
  * mass the star would otherwise leave: pulsations shed mass down to at most 45 M☉; a pair-instability supernova
  * leaves nothing.
