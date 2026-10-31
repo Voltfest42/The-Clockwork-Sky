@@ -86,7 +86,11 @@ export function About() {
           11 billion years and end as a white dwarf of about half its mass, white dwarfs must cool exactly as Hurley’s code cools them, the
           fates of stars must change at about 8 and 20 solar masses, Leavitt’s own table must give back her slope, two Cepheids must land
           within 6% of their distances by parallax, and the velocity curves of Gaia BH1 and Cygnus X-1 must swing as much as the measured
-          ones. End-to-end tests open every page, use it by
+          ones. Since Chapter 19, Jupiter must swing the Sun by 12.5 m/s and Earth by 9 cm/s, Jupiter’s and Earth’s transits must dim it by
+          1% and 84 parts per million, a limb-darkened transit must match the exact depth at the centre and Mandel and Agol’s small-planet
+          formula across the disc, the habitable zone must run from 0.95 to 1.68 AU round the Sun as Kopparapu and colleagues give it, a planted
+          wobble or dip must be measured back within its uncertainty, and the census file must hold as many planets as the Archive counted.
+          End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
 
@@ -475,6 +479,29 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 19</h3>
+        <ul>
+          <li>
+            <b>Figure 19.1, find the planet.</b> Circular orbits; the simplest noise, with none of the stars’ own jitter; the signals measured at the
+            planet’s known period rather than searched for.
+          </li>
+          <li>
+            <b>Figure 19.2, a transit up close.</b> The quadratic limb-darkening law with the Sun’s coefficients; a circular orbit ten stellar radii
+            out; the planet a black disc, with no glow or air.
+          </li>
+          <li>
+            <b>Figure 19.3, the exoplanet census.</b> The Archive’s chosen values; masses and sizes worked out from each other left out; selection
+            effects shown, not corrected.
+          </li>
+          <li>
+            <b>Figure 19.4, habitable zones.</b> Kopparapu and colleagues’ limits for a planet of Earth’s mass; the Sun’s brightening from SSE.
+          </li>
+          <li>
+            <b>Figure 19.5, starlight through an atmosphere.</b> A toy model: each gas a few bands at their real wavelengths with sketched strengths,
+            Rayleigh scattering and a grey cloud deck, the planet one scale height bigger for each factor of e in absorption.
+          </li>
+        </ul>
+
         <h3>Toolkit: Measurements and uncertainty</h3>
         <ul>
           <li>
@@ -696,6 +723,17 @@ export function About() {
             the Astronomical Society of Australia 32, e016: supernova progenitors.
           </li>
           <li>
+            M. Mayor and D. Queloz (1995), Nature 378, 355: 51 Pegasi b. A. Wolszczan and D. A. Frail (1992), Nature 355, 145: the pulsar
+            planets. D. Charbonneau and colleagues (2000), The Astrophysical Journal 529, L45, and G. W. Henry and colleagues (2000), 529, L41:
+            the first transits. R. K. Kopparapu and colleagues (2013), The Astrophysical Journal 765, 131, and (2014), The Astrophysical Journal
+            Letters 787, L29: habitable zones. K. Mandel and E. Agol (2002), The Astrophysical Journal 580, L171: transit light curves. S. Seager
+            and G. Mallén-Ornelas (2003), The Astrophysical Journal 585, 1038: transit durations. A. Lecavelier des Etangs and colleagues
+            (2008), Astronomy and Astrophysics 481, L83: the planet’s size in its air’s bands. B. J. Fulton and colleagues (2017), The
+            Astronomical Journal 154, 109: the radius valley. J. T. Wright and colleagues (2012), The Astrophysical Journal 753, 160: how
+            common hot Jupiters are. JWST Transiting Exoplanet Community ERS Team (2023), Nature 614, 649: carbon dioxide on WASP-39 b. N.
+            Madhusudhan and colleagues (2023), The Astrophysical Journal Letters 956, L13: K2-18 b.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -794,6 +832,12 @@ export function About() {
             <b>Star clusters:</b> the members of six clusters, chosen from Gaia Data Release 3 (ESA/Gaia/DPAC) by this course, shared under the
             same Creative Commons Attribution-NonCommercial 3.0 IGO licence in the same folder as the HR diagram’s file. <b>Leavitt’s
             Cepheids:</b> her 1912 table, in the public domain, read from the scan in NASA’s Astrophysics Data System.
+          </li>
+          <li>
+            <b>Exoplanets:</b> the census of confirmed planets from the NASA Exoplanet Archive’s composite table. This research has made use of
+            the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National
+            Aeronautics and Space Administration under the Exoplanet Exploration Program (Christiansen and colleagues 2025, The Planetary
+            Science Journal).
           </li>
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons

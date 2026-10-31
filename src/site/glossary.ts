@@ -266,6 +266,22 @@ export const GLOSSARY = {
     term: 'Black hole',
     definition: 'An object so compact that nothing, not even light, can escape from inside its horizon, 2GM/c² in radius: about 3 km for each solar mass.',
   },
+  exoplanet: {
+    term: 'Exoplanet',
+    definition: 'A planet orbiting a star other than the Sun. The first round a Sun-like star, 51 Pegasi b, was found in 1995; thousands are known now.',
+  },
+  transit: {
+    term: 'Transit',
+    definition: 'A planet passing in front of its star, as seen from Earth, and blocking a little of its light: Jupiter would dim the Sun by 1%, Earth by 84 parts in a million.',
+  },
+  'habitable-zone': {
+    term: 'Habitable zone',
+    definition: 'The range of distances from a star where a planet like Earth could keep liquid water on its surface. Being in it says nothing about whether a planet has life.',
+  },
+  'transmission-spectrum': {
+    term: 'Transmission spectrum',
+    definition: 'How deep a planet’s transit is at each wavelength. Where the planet’s air absorbs, the planet looks slightly bigger, so its gases show up as bands.',
+  },
   'globular-cluster': {
     term: 'Globular cluster',
     definition: 'A ball of hundreds of thousands of old stars, held together by their own gravity. About 150 orbit the Milky Way.',

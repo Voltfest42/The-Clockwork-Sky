@@ -1,0 +1,179 @@
+import { AtmosphereSpectrumFigure } from '../figures/AtmosphereSpectrumFigure';
+import { CensusFigure } from '../figures/CensusFigure';
+import { FindPlanetFigure } from '../figures/FindPlanetFigure';
+import { HabitableZoneFigure } from '../figures/HabitableZoneFigure';
+import { TransitCloseUpFigure } from '../figures/TransitCloseUpFigure';
+import { CENSUS, K2_18B, PLATO } from '../data/exoplanets';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { DetectEarthTwin } from './checks/chapter19';
+
+For most of history, planets round other stars were a guess. Giordano Bruno imagined them in the 1580s; astronomers assumed them; nobody could see one. A planet is a billion times fainter than its star and, from light-years away, lost in its glare. The first were found in the 1990s, and as of {CENSUS.asOf} the count of confirmed <Term id="exoplanet">exoplanets</Term> is {CENSUS.count.toLocaleString('en-GB')}. Almost none of them has been seen. They were found with the tools of the last nine chapters: the Doppler shifts of a star’s lines, and the dips in its light.
+
+## A wobble in Pegasus
+
+A planet doesn’t orbit its star’s centre. Both circle their balance point (Chapter 7), and the star, hundreds of times heavier, makes a small circle of its own. Seen from the side, it moves towards us and away by turns, and its lines shift blue and red (Chapter 12), exactly as the stars of a spectroscopic binary do (Chapter 14). The difference is size: Jupiter moves the Sun by 12.5 m/s, about the speed of a sprinter; Earth by 9 cm/s, the pace of a tortoise.
+
+In the 1980s spectrographs reached 10 to 15 m/s, enough for a Jupiter. A signal round γ Cephei, seen by Bruce Campbell, Gordon Walker and Stephenson Yang in 1988, was too uncertain to claim; it was confirmed in 2003. The first planets confirmed were stranger: in 1992 Aleksander Wolszczan and Dale Frail found two planets of a few Earth masses round the pulsar PSR B1257+12, a dead star (Chapter 18), by the timing of its pulses.
+
+Then, on 6 October 1995, Michel Mayor and Didier Queloz announced a planet round 51 Pegasi, a Sun-like star 50 light-years away. Its star swung by about 59 m/s every 4.23 days: a planet of at least half Jupiter’s mass, seven times closer to its star than Mercury is to the Sun. Nobody expected it. Giant planets were thought to form only beyond the snow line (Chapter 8), and so they do; 51 Pegasi b must have moved inward later. Mayor and Queloz shared the Nobel Prize in 2019.
+
+<Callout kind="maths">
+
+**The wobble’s size.** A planet of mass m on a circular orbit swings its star by K = 28.4 m/s × (m sin i / M<sub>J</sub>) × (M<sub>★</sub> / M☉)<sup>−2/3</sup> × (P / 1 year)<sup>−1/3</sup>, where M<sub>J</sub> is Jupiter’s mass, M<sub>★</sub> the star’s and i is the orbit’s tilt (90° is edge-on). For 51 Pegasi b, 0.47 Jupiter masses in 4.23 days round a Sun-like star: K = 28.4 × 0.47 × (4.23/365)<sup>−1/3</sup> ≈ 59 m/s. Heavy, close planets round light stars give the biggest swings. Because we don’t know the tilt, the wobble gives only m sin i, the least mass the planet can have.
+
+</Callout>
+
+<FindPlanetFigure
+  number="19.1"
+  tryThis={
+    <p>
+      Start with <b>51 Pegasi b</b> and fold the measurements: the swing stands out after a month. Pick <b>An Earth twin</b>: how many nights
+      does its wobble need at 1 m/s? Then move the same Earth to <b>A red dwarf</b>: why is it so much easier to find?
+    </p>
+  }
+/>
+
+Spectrographs today measure a star’s speed to better than 1 m/s; ESPRESSO, on the Very Large Telescope in Chile, aims at about 10 cm/s. The limit now is the stars themselves. A Sun-like star’s surface boils (Chapter 15), and its spots turn with it, shifting its lines by about 1 m/s and mimicking or hiding a planet’s swing. Telling a planet from a star’s own weather is most of the work.
+
+## Shadows
+
+If a planet’s orbit is seen almost edge-on, the planet crosses its star’s face once an orbit and blocks a little of its light: a <Term id="transit">transit</Term>. Jupiter would dim the Sun by 1%; Earth by 84 parts in a million, 1 part in 12,000. In 1999 two teams, David Charbonneau’s and Gregory Henry’s, saw HD 209458 b, a hot Jupiter found by its wobble, dim its star by about 1.5%: the first transit, and the first planet whose size was known. It is 1.4 times as wide as Jupiter but lighter, puffed up by its star’s heat.
+
+<Callout kind="maths">
+
+**The transit’s depth.** A planet of radius R<sub>p</sub> covers a share (R<sub>p</sub> / R<sub>★</sub>)² of its star’s disc. For Earth and the Sun, (6,371 km / 695,700 km)² = 0.000084. The planet’s size comes straight from the depth, once the star’s size is known; with the wobble’s mass, it gives the density, and with it whether the planet is rock, water or gas.
+
+</Callout>
+
+<TransitCloseUpFigure
+  number="19.2"
+  tryThis={
+    <p>
+      Play the transit of <b>Jupiter</b>, then slide where it crosses towards the edge: when does the flat bottom disappear? Turn off limb darkening:
+      what changes in the shape? Then slide the orbit out from 0.05 AU to 1 AU: how many planets like Earth must there be for every one we see transit?
+    </p>
+  }
+/>
+
+Only a few orbits line up: for an orbit like Earth’s, about one in 215. So transit searches watch many stars at once and wait. NASA’s Kepler telescope, from 7 March 2009 to 30 October 2018, stared at one patch of sky in Cygnus and Lyra, measuring the light of about 150,000 stars every half hour; {CENSUS.kepler.toLocaleString('en-GB')} confirmed planets are credited to it, and {CENSUS.k2.toLocaleString('en-GB')} more to K2, its second mission. TESS, launched on 18 April 2018, watches nearly the whole sky in turn, looking for planets round the nearest, brightest stars, which are easiest to follow up: {CENSUS.tess.toLocaleString('en-GB')} confirmed as of {CENSUS.asOf}, and thousands of candidates still to check. ESA’s PLATO, to look for Earth twins round Sun-like stars, is due to launch in {PLATO.launch} (as of {PLATO.asOf}).
+
+Some planets go round two stars at once. Kepler-16 b, announced in 2011, crosses both stars of a pair that eclipse each other every 41 days, like Tatooine’s twin suns. The pair keeps it on a steady orbit, as [the Orrery](/orrery/?preset=kepler-16) shows.
+
+## What we’ve found
+
+Each method finds its own kind of planet. Wobbles favour heavy planets close in; transits, large ones close in; direct imaging, young giants far out, still warm from forming; and gravitational microlensing, in which a star’s gravity briefly magnifies a more distant star’s light, finds planets a few AU from faint stars. Together they show a galaxy full of planets, and few like ours.
+
+<CensusFigure
+  number="19.3"
+  tryThis={
+    <p>
+      Slide the year back to 1995 and forward again: when did transits take over from wobbles? Switch to <b>Size</b>: where is the gap between
+      super-Earths and sub-Neptunes? Find the Solar System’s planets: which part of the plot is empty, and why?
+    </p>
+  }
+/>
+
+**Hot Jupiters**, like 51 Pegasi b, were the first found because they are the easiest, but they are rare: about one Sun-like star in a hundred has one. The commonest planets found are between Earth and Neptune in size, a kind the Solar System doesn’t have: **super-Earths**, rocky and up to about 1.5 times Earth’s width, and **sub-Neptunes**, from about 2 to 4 times, with thick envelopes of gas or water. Between the two there are few planets: the radius valley, found in Kepler’s data in 2017, perhaps where young planets close to their stars lost their gas. Planets orbit red dwarfs, the commonest stars, as readily as Sun-like ones: Proxima Centauri, the nearest star, has at least two, and TRAPPIST-1, 40 light-years away, has seven the size of Earth, all closer to it than Mercury is to the Sun.
+
+The census is not a fair sample. Small planets far from their stars give tiny signals once in years, so most of them are still unseen; the empty corner where Earth sits is empty because we can’t yet look there. Allowing for what each method misses, estimates of how many Sun-like stars have an Earth-sized planet in the habitable zone range from about one in ten to about one in two.
+
+## Where water could be liquid
+
+Every star has a <Term id="habitable-zone">habitable zone</Term>: the range of distances where a planet like Earth could keep liquid water on its surface. Too close, and water vapour traps heat until the oceans boil away, as perhaps happened to Venus; too far, and even a thick blanket of carbon dioxide can’t keep the water from freezing. Round the Sun the zone runs from about 0.95 to 1.7 AU. Earth is inside it, Venus too close; Mars lies within the outer edge but is too small to have kept its air.
+
+<Callout kind="maths">
+
+**The zone’s distance.** A planet d AU from a star of luminosity L (Suns) gets L / d² of the starlight Earth gets. If the zone’s edges are set by the starlight S a planet can take, the zone lies at d = √(L / S). A red dwarf of a hundredth of the Sun’s power has its zone ten times closer: a few hundredths of an AU. Kopparapu and colleagues’ climate models (2014) give S at each edge as a curve in the star’s temperature, since red light warms a planet more than blue.
+
+</Callout>
+
+<HabitableZoneFigure
+  number="19.4"
+  tryThis={
+    <p>
+      For the Solar System, slide the Sun’s age from its birth to 11 billion years: when does Earth leave the zone? Pick <b>TRAPPIST-1</b>: which
+      planets are in it? Then try <b>Every known planet</b>: round what kind of star do most planets in the zone orbit?
+    </p>
+  }
+/>
+
+Red dwarfs’ zones lie so close in that a planet there is likely to be tidally locked, turning one face to its star for ever, as the Moon does to Earth (Chapter 7). Young red dwarfs also flare far more than the Sun (Chapter 15), and their flares may strip a planet’s air. And “in the habitable zone” means only that water could be liquid on a planet’s surface, if the planet has water and air at all. The Moon is in the Sun’s habitable zone, and dry.
+
+## Reading other worlds’ air
+
+During a transit, a little starlight passes through the planet’s atmosphere on its way to us. At wavelengths where the air’s gases absorb, the air is opaque higher up, so the planet looks slightly bigger and the transit slightly deeper. Measured wavelength by wavelength, the transit’s depth is a <Term id="transmission-spectrum">transmission spectrum</Term>, with each gas’s bands in it (Chapter 12). The signal is set by how far the air extends, its scale height, which is largest for hot planets of light hydrogen gas and weak gravity: the puffy hot Jupiters.
+
+<AtmosphereSpectrumFigure
+  number="19.5"
+  tryThis={
+    <p>
+      Start with the puffy hot Jupiter and turn its gases on and off: which band is carbon dioxide’s? Add high clouds. Then pick <b>Earth, seen
+      across the Sun</b>: how big are its bands? Why is the same rocky world easier round a small red dwarf?
+    </p>
+  }
+/>
+
+In 2022 the James Webb Space Telescope found carbon dioxide in the air of WASP-39 b, a hot Saturn 700 light-years away, and sulfur dioxide made by its starlight, the first chemistry driven by light seen on another world. In 2023 it found methane and carbon dioxide on K2-18 b, a sub-Neptune in its red dwarf’s habitable zone. Its team also reported hints of dimethyl sulfide, which on Earth is made by life; as of {K2_18B.asOf} the claim is {K2_18B.status}, and other teams’ analyses of the same data find no clear sign of it. JWST has also found that TRAPPIST-1 b and c, the innermost of the seven, have no thick air of carbon dioxide. Whether any rocky planet round a red dwarf can keep an atmosphere is one of the questions JWST is trying to answer now.
+
+<DeepDive title="Why the commonest planets are the ones the Solar System lacks">
+
+Nobody knows yet. One idea is that Jupiter formed early and fast, and its pull stopped the inward drift of the pebbles and gas that, round other stars, build sub-Neptunes close in. Another is that the Solar System once had super-Earths and lost them, pushed into the Sun as Jupiter moved inward and then back out, the “grand tack”. And some of the difference is ours: a sub-Neptune 1 AU from a Sun-like star would be hard to find even now, so we can’t yet say how unusual the Solar System is.
+
+</DeepDive>
+
+<Timeline from={1980} to={2030} chapter={19} only={[19]} title="Other worlds" />
+
+<CheckYourself>
+  <Question id="hot-jupiters-easiest" prompt="Why were hot Jupiters the first planets found round Sun-like stars, though they are rare?">
+    <Choice label="They are heavy and close in: big wobbles, and deep transits every few days" correct>
+      Right. A heavy planet close in swings its star fastest, and its short orbit repeats the signal every few days. Its transits are deep and, close in, likely to line up.
+    </Choice>
+    <Choice label="They are bright enough to see in photographs">
+      Almost no planets have been photographed, and hot Jupiters are lost in their stars’ glare. They were found by their stars’ wobbles and transits.
+    </Choice>
+    <Choice label="Most planets are hot Jupiters">
+      Only about one Sun-like star in a hundred has one. They were found first because they give the biggest, quickest signals.
+    </Choice>
+  </Question>
+
+  <Question id="earth-transit-depth" prompt="How much of the Sun’s light would Earth block, seen in transit from far away?">
+    <Choice label="About 1 part in 12,000" correct>
+      Right. Earth is about a hundredth of the Sun’s width, so it covers about a ten-thousandth of its disc: 84 parts in a million.
+    </Choice>
+    <Choice label="About 1%">
+      That is Jupiter, eleven times Earth’s width. Earth covers (1/109)² of the Sun’s disc, about 1 part in 12,000.
+    </Choice>
+    <Choice label="About a tenth">
+      Far less: Earth is about a hundredth of the Sun’s width, so it covers about 1 part in 12,000 of its disc.
+    </Choice>
+  </Question>
+
+  <Question id="habitable-means-life" prompt="A planet is in its star’s habitable zone. What does that tell us?">
+    <Choice label="That water could be liquid on its surface, if it has water and air" correct>
+      Right. The zone is about starlight, not life: the Moon is in the Sun’s habitable zone, and lifeless. Whether a planet there has air, water or life needs other evidence.
+    </Choice>
+    <Choice label="That it has life">
+      No: only that it gets the right amount of starlight for liquid water. The Moon is in the Sun’s zone, and lifeless.
+    </Choice>
+    <Choice label="That it has oceans">
+      Only that oceans would neither boil nor freeze there. Whether the planet has any water, or air to keep it, is a separate question.
+    </Choice>
+  </Question>
+
+  <Question id="mass-and-size" prompt="Which method gives a planet’s mass, and which its size?">
+    <Choice label="The wobble gives its mass (at least its least mass); the transit gives its size" correct>
+      Right. The swing’s size depends on the planet’s mass, times the sine of the tilt, so a wobble alone gives a least mass. A transit’s depth gives the planet’s size; together they give its density.
+    </Choice>
+    <Choice label="The transit gives its mass; the wobble gives its size">
+      The other way round: the depth of a transit depends on how much of the star the planet covers, its size; the swing of the star depends on the planet’s pull, its mass.
+    </Choice>
+    <Choice label="Either gives both">
+      Each gives one: the wobble the mass (only a least mass, unless the tilt is known), the transit the size. Planets seen both ways have known densities.
+    </Choice>
+  </Question>
+
+  <DetectEarthTwin />
+</CheckYourself>

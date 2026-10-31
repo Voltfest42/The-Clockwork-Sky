@@ -82,6 +82,27 @@ export const AS_OF = {
     source: 'the literature: Kalari et al. 2022 and later for R136a1; Luhman’s and the Backyard Worlds surveys for brown dwarfs; pulsar-timing and NICER papers for neutron stars; Gaia and X-ray binary papers for black holes',
     everyMonths: 24,
   },
+  exoplanets: {
+    checked: '2026-10',
+    what: 'the exoplanet census (6,451 confirmed planets, 1,012 from TESS)',
+    where: 'src/data/exoplanets.json (node scripts/fetch-exoplanets.ts --refresh) and the counts in src/data/exoplanets.ts (CENSUS)',
+    source: 'the NASA Exoplanet Archive (exoplanetarchive.ipac.caltech.edu), table PSCompPars',
+    everyMonths: 6,
+  },
+  exoplanetMissions: {
+    checked: '2026-10',
+    what: 'PLATO’s launch date (planned for January 2027)',
+    where: 'src/data/exoplanets.ts (PLATO), used by Chapter 19',
+    source: 'ESA’s Plato pages (esa.int/Science_Exploration/Space_Science/Plato)',
+    everyMonths: 6,
+  },
+  k218b: {
+    checked: '2026-10',
+    what: 'whether dimethyl sulfide on K2-18 b is confirmed (not, as of the last check)',
+    where: 'src/data/exoplanets.ts (K2_18B), and Chapter 19’s “Reading other worlds’ air”',
+    source: 'the literature: Madhusudhan et al. and the reanalyses (arXiv), and NASA’s JWST news',
+    everyMonths: 12,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

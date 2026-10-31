@@ -28,6 +28,7 @@ npm install
 npm run dev        # http://localhost:5173
 npm test           # Vitest unit and property tests
 npm run e2e        # Playwright + axe on the production build (first time: npx playwright install chromium)
+                   # if Windows has reserved ports 4175/4177: E2E_PORT=4275 E2E_DEV_PORT=4277 npm run e2e
 npm run lint
 npm run build      # type-check, build to dist/ and prerender every page
 npm run preview    # serve dist/ the way CloudFront does, at http://localhost:4175

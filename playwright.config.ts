@@ -6,6 +6,11 @@ import { defineConfig, devices } from '@playwright/test';
  * To test the live site instead: BASE_URL=<the site URL> npm run e2e
  */
 const liveUrl = process.env.BASE_URL;
+// The ports the two builds are served on. Windows sometimes reserves a range of ports that covers them
+// (netsh interface ipv4 show excludedportrange protocol=tcp); then set E2E_PORT and E2E_DEV_PORT.
+const port = Number(process.env.E2E_PORT ?? 4175);
+const devPort = Number(process.env.E2E_DEV_PORT ?? 4177);
+process.env.E2E_DEV_URL = `http://localhost:${devPort}`;
 
 export default defineConfig({
   testDir: 'e2e',
@@ -13,7 +18,7 @@ export default defineConfig({
   reporter: 'list',
   timeout: 60_000,
   use: {
-    baseURL: liveUrl ?? 'http://localhost:4175',
+    baseURL: liveUrl ?? `http://localhost:${port}`,
     trace: 'retain-on-failure',
   },
   projects: [
@@ -34,8 +39,8 @@ export default defineConfig({
     ? undefined
     : [
         {
-          command: 'npm run build && node scripts/serve.ts --port 4175',
-          url: 'http://localhost:4175',
+          command: `npm run build && node scripts/serve.ts --port ${port}`,
+          url: `http://localhost:${port}`,
           reuseExistingServer: !process.env.CI,
           timeout: 180_000,
         },
@@ -44,9 +49,9 @@ export default defineConfig({
           // mismatch (the production build stays quiet about some), for e2e/hydration.spec.ts.
           command:
             'npx vite build --mode development --outDir dist-dev && npx vite build --mode development --ssr src/entry-server.tsx --outDir dist-dev-server' +
-            ' && node scripts/prerender.ts --dist dist-dev --server dist-dev-server && node scripts/serve.ts --port 4177 --dist dist-dev',
+            ` && node scripts/prerender.ts --dist dist-dev --server dist-dev-server && node scripts/serve.ts --port ${devPort} --dist dist-dev`,
           env: { NODE_ENV: 'development' },
-          url: 'http://localhost:4177',
+          url: `http://localhost:${devPort}`,
           reuseExistingServer: !process.env.CI,
           timeout: 180_000,
         },

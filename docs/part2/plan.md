@@ -14,7 +14,9 @@
 
 **Stage 13 done** (30 Oct 2026): the SSE port, tested step for step against Hurley's own code over 168 stars; brown-dwarf cooling, pair instability, the calibration map, the IMF, young-star tracks (BHAC15), the Jeans mass and the dust law; Chapter 16 (see the master plan's Status for details and deviations, including Barnard 68's radius and the heaviest stars' winds, which Stage 16's pair-instability preset must allow for). 
 
-**Stage 14 done** (30 Oct 2026): Chapters 17 and 18, the lives core (lifetimes, isochrones, fates, white-dwarf cooling) with a stellar worker, the life strip, six clusters from Gaia DR3 and Leavitt's Cepheids (see the master plan's Status for details and deviations). Figures 18.2 and 18.6 (stretch) weren't built, so Chapter 18's figures are 18.1–18.4: dead stars to scale is 18.2, the invisible companion 18.3 and the fork in the road 18.4. Next: Stage 15, Chapter 19.
+**Stage 14 done** (30 Oct 2026): Chapters 17 and 18, the lives core (lifetimes, isochrones, fates, white-dwarf cooling) with a stellar worker, the life strip, six clusters from Gaia DR3 and Leavitt's Cepheids (see the master plan's Status for details and deviations). Figures 18.2 and 18.6 (stretch) weren't built, so Chapter 18's figures are 18.1–18.4: dead stars to scale is 18.2, the invisible companion 18.3 and the fork in the road 18.4.
+
+**Stage 15 done** (31 Oct 2026): Chapter 19, the exoplanet core, the census of 6,451 planets from the NASA Exoplanet Archive and Figures 19.1–19.5; all of Part II's chapters are written (see the master plan's Status for details and deviations, including the census's 93 kB and transits integrated numerically rather than by Mandel & Agol's closed forms). Next: Stage 16, the Star Forge v1 and Part II polish.
 
 ---
 

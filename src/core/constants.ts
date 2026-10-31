@@ -45,6 +45,15 @@ export const R_EARTH = 6.371_0e6;
 /** The Moon's mean radius, m. */
 export const R_MOON = 1.737_4e6;
 
+/** Jupiter's gravitational parameter G·M, m³/s² (IAU 2015 nominal). */
+export const GM_JUPITER = 1.266_865_3e17;
+
+/** Jupiter's mass, kg, from GM_JUPITER / G (about 1.898 × 10²⁷ kg, 317.8 Earths). */
+export const M_JUPITER = GM_JUPITER / G;
+
+/** Jupiter's equatorial radius, m (IAU 2015 nominal; 11.2 Earths). */
+export const R_JUPITER = 7.149_2e7;
+
 // ---------- light and heat (Part II) ----------
 
 /** Planck's constant, J s. Exact (SI definition of the kilogram, 2019). */

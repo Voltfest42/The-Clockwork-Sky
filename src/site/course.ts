@@ -343,6 +343,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['A wobble in Pegasus', 'Shadows', 'What we’ve found', 'Where water could be liquid', 'Reading other worlds’ air'],
     buildsOn: [7, 12, 14],
     toolkit: ['measurements-and-uncertainty'],
+    load: () => import('../content/chapter19.mdx'),
   }),
 
   // ---------- Part III · The Engine Room ----------
