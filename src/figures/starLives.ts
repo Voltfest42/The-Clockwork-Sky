@@ -199,6 +199,15 @@ export function isochroneHR(points: readonly IsochronePoint[]): HRPoint[] {
 /** The ages the cluster figure's slider spans, Myr. */
 export const AGE_RANGE: [number, number] = [10, 15000];
 
+/** Isochrone ages step by a hundredth of a power of ten (2.3%), the slider's step. */
+export const AGE_STEP = 0.01;
+
+/**
+ * An age (Myr) moved to the nearest step of an even grid in log age, 2.3% apart, rounded to three figures:
+ * 100, 102, 105, 107, 110, … Isochrones at these ages are worked out once and then come from the cache.
+ */
+export const snapAge = (age: number) => Number((10 ** (Math.round(Math.log10(age) / AGE_STEP) * AGE_STEP)).toPrecision(3));
+
 export function turnoffReadout(age: number, z: number) {
   const mass = turnoffMass(age, z);
   return { mass, lifetime: msLifetime(mass, z) };

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { dyingMass } from '../../core/stellar/lives';
 import { Slider } from '../../figures/Slider';
-import { CLUSTERS, clusterById, clusterPoints, clusterZ, formatMyr, isochroneHR, turnoffReadout } from '../../figures/starLives';
+import { AGE_STEP, CLUSTERS, clusterById, clusterPoints, clusterZ, formatMyr, isochroneHR, snapAge, turnoffReadout } from '../../figures/starLives';
 import { observerRange } from '../../viz/hr/axes';
 import { Legend } from '../../viz/Figure';
 import { HRDiagram } from '../../viz/hr/HRDiagram';
@@ -19,8 +19,6 @@ import styles from './StarForge.module.css';
  */
 
 const RANGE = observerRange(-0.6, 3.4, -6, 12);
-/** Ages snap to two significant figures, so isochrones repeat and come from the cache. */
-const snapAge = (age: number) => Number(age.toPrecision(2));
 
 export function ClusterMode({
   cluster: id,
@@ -57,7 +55,7 @@ export function ClusterMode({
         ))}
       </div>
       <div className={styles.inputs}>
-        <Slider label="Age" value={a} min={AGE_LIMITS[0]} max={AGE_LIMITS[1]} log step={0.005} format={(x) => formatMyr(snapAge(x))} onChange={(x) => onChange({ age: snapAge(x) })} />
+        <Slider label="Age" value={a} min={AGE_LIMITS[0]} max={AGE_LIMITS[1]} log step={AGE_STEP} format={(x) => formatMyr(snapAge(x))} onChange={(x) => onChange({ age: snapAge(x) })} />
         <Slider label="Metallicity" value={z} min={0.0001} max={0.03} log step={0.01} format={formatZ} onChange={(x) => onChange({ z: Number(x.toPrecision(2)) })} />
         <div className={styles.buttons} style={{ marginTop: 0 }}>
           <button type="button" className={figureStyles.toolButton} onClick={() => onChange({ z: null })} disabled={zOwn === null}>

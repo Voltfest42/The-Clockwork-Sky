@@ -71,8 +71,8 @@ export const LAYERS: readonly Layer[] = [
     from: CONVECTION_BASE,
     to: 1,
     colour: '#ff9f43',
-    what: `The outer 29% of the radius boils: hot gas rises, cools at the surface and sinks again, carrying the energy up in weeks. Its base, at ${Math.round(CONVECTION_BASE * 1000) / 10}% of the radius, is where the Sun’s magnetic field is thought to be wound up.`,
-    howWeKnow: 'Helioseismology measured the base of the convection zone, at 0.713 of the radius, in the early 1990s; the boiling shows on the surface as granules.',
+    what: `In the outer 29% of the radius the gas itself carries the heat: hot gas rises, cools at the surface and sinks again, carrying the energy up in weeks. Its base, at ${Math.round(CONVECTION_BASE * 1000) / 10}% of the radius, is where the Sun’s magnetic field is thought to be wound up.`,
+    howWeKnow: 'Helioseismology measured the base of the convection zone, at 0.713 of the radius, in the early 1990s; the convection shows on the surface as granules.',
   },
   {
     id: 'photosphere',

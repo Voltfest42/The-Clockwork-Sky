@@ -4,6 +4,7 @@ import fc from 'fast-check';
 import { describe, expect, it } from 'vitest';
 import { checkPleiadesAge, PLEIADES_ACCEPTED } from '../src/content/checks/chapter17Answers';
 import { isochrone } from '../src/core/stellar/lives';
+import { computeStellar, requestKey } from '../src/core/stellar/requests';
 import { LEAVITT, MILKY_WAY } from '../src/data/cepheids';
 import {
   AU_IN_R_SUN,
@@ -21,6 +22,7 @@ import {
   lifetimeCurve,
   lifetimeReadout,
   shortMyr,
+  snapAge,
   sunAt,
   sunMilestones,
   swallowed,
@@ -149,6 +151,32 @@ describe('Figure 17.3, the clusters', () => {
   it('turns off at hot B stars in the Pleiades and at Sun-like stars in M67', () => {
     expectNear(turnoffReadout(120, clusterZ(clusterById('pleiades'))).mass, 4.7, 0.4, 'Pleiades');
     expectNear(turnoffReadout(4000, clusterZ(clusterById('m67'))).mass, 1.3, 0.1, 'M67');
+  });
+});
+
+describe('Figure 17.3, the age slider', () => {
+  it('moves the age in even steps of 2.3%, to three figures, so isochrones repeat and come from the cache', () => {
+    expect([100, 102, 105, 107, 110, 112, 115, 117, 120, 123].map((a) => snapAge(a))).toEqual([100, 102, 105, 107, 110, 112, 115, 117, 120, 123]);
+    expect(snapAge(1000)).toBe(1000);
+    expect(snapAge(121)).toBe(120);
+    fc.assert(
+      fc.property(fc.double({ min: 1, max: 15000, noNaN: true }), (age) => {
+        const s = snapAge(age);
+        expect(snapAge(s)).toBe(s);
+        expect(Math.abs(Math.log10(s / age))).toBeLessThanOrEqual(0.0075); // half a step, and the rounding to three figures
+        const next = snapAge(s * 10 ** 0.01);
+        expectNear(Math.log10(next / s), 0.01, 0.0045, 'step'); // each end rounded to three figures
+      }),
+    );
+  });
+
+  it('gives a coarse isochrone while the slider moves: the same main sequence and turn-off, a quarter of the giants', () => {
+    const full = computeStellar({ kind: 'isochrone', age: 120, z: 0.02 }) as ReturnType<typeof isochrone>;
+    const coarse = computeStellar({ kind: 'isochrone', age: 120, z: 0.02, detail: 'coarse' }) as ReturnType<typeof isochrone>;
+    expect(coarse.length).toBeLessThan(full.length * 0.6);
+    const top = (pts: ReturnType<typeof isochrone>) => Math.max(...pts.filter((p) => p.kw <= 1).map((p) => p.mass));
+    expectNear(top(coarse), top(full), 1e-9, 'turn-off mass');
+    expect(requestKey({ kind: 'isochrone', age: 120, z: 0.02, detail: 'coarse' })).not.toBe(requestKey({ kind: 'isochrone', age: 120, z: 0.02 }));
   });
 });
 

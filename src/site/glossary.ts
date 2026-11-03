@@ -228,7 +228,7 @@ export const GLOSSARY = {
   },
   'helium-flash': {
     term: 'Helium flash',
-    definition: 'The runaway lighting of helium in the core of a red giant of less than about 2 solar masses. For a few seconds the core makes as much power as a galaxy, all of it soaked up inside the star.',
+    definition: 'The runaway lighting of helium in the tightly packed core of a red giant of less than about 2 solar masses. For a few seconds the core makes as much power as a galaxy, but none of it escapes: it goes into loosening the packed core, which then expands and cools until the runaway stops.',
   },
   'star-cluster': {
     term: 'Star cluster',
@@ -284,7 +284,7 @@ export const GLOSSARY = {
   },
   convection: {
     term: 'Convection',
-    definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as in a pan of soup. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',
+    definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',
   },
   exoplanet: {
     term: 'Exoplanet',

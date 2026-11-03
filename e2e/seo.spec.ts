@@ -177,5 +177,11 @@ test('reading progress survives a reload, and the sidebar shows it after hydrati
   await page.evaluate(() => localStorage.setItem('clockwork-sky:read-chapters', JSON.stringify(['a-sense-of-scale'])));
   await page.reload();
   const nav = page.getByRole('navigation', { name: 'Contents' });
-  await expect(nav.getByRole('link', { name: /A sense of scale \(read\)/ })).toBeVisible();
+  const read = nav.getByRole('link', { name: /A sense of scale \(read\)/ });
+  await expect(read).toBeVisible();
+  // The chapter keeps its number; the tick sits at the right-hand edge, after the title.
+  await expect(read).toContainText('1');
+  const [title, tick] = await Promise.all([read.getByText('A sense of scale').boundingBox(), read.locator('svg').boundingBox()]);
+  expect(tick!.x).toBeGreaterThan(title!.x + title!.width);
+  expect(tick!.width).toBeLessThan(12);
 });

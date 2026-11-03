@@ -154,15 +154,23 @@ function ChapterLink({ chapter, active, done }: { chapter: ChapterInfo; active: 
   return (
     <li>
       <a href={href(chapter.slug)} className={`${styles.chapterLink} ${active ? styles.active : ''}`} aria-current={active ? 'page' : undefined}>
-        <span className={`${styles.badge} ${done ? styles.badgeDone : ''}`} aria-hidden="true">
-          {done ? '✓' : chapter.number}
+        <span className={styles.badge} aria-hidden="true">
+          {chapter.number}
         </span>
-        <span>
+        <span className={styles.chapterTitle}>
           <span className="visually-hidden">Chapter {chapter.number}: </span>
           {chapter.title}
           {!chapter.load && <span className={styles.soon}>soon</span>}
           {done && <span className="visually-hidden"> (read)</span>}
         </span>
+        {/* Read chapters get a tick at the right-hand edge, so their numbers stay readable. */}
+        {done && (
+          <span className={styles.readTick} aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="9" height="9">
+              <path d="M3.5 8.5 L6.6 11.4 L12.5 4.8" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        )}
       </a>
       {active && chapter.load && chapter.sections.length > 0 && (
         <ol className={styles.sectionList}>

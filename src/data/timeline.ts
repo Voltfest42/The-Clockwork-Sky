@@ -108,7 +108,7 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1952, when: '1951–52', who: 'George Herbig and Guillermo Haro', what: 'find small glowing knots near young stars, later understood as where the stars’ jets hit the gas around them.', chapter: 16 },
   { year: 1953, when: '1953', who: 'Sergei Zhevakin', what: 'finds the layer of helium that drives Cepheids’ pulses.', chapter: 17 },
   { year: 1955, when: '1955', who: 'Edwin Salpeter', what: 'counts how many stars are born at each mass: many small ones for every big one.', chapter: 16 },
-  { year: 1961, when: '1961', who: 'Chushiro Hayashi', what: 'shows that young stars come down to the main sequence at nearly the same temperature, boiling right through.', chapter: 16 },
+  { year: 1961, when: '1961', who: 'Chushiro Hayashi', what: 'shows that young stars come down to the main sequence at nearly the same temperature, convective right through.', chapter: 16 },
   { year: 1962, when: '1962', who: 'Riccardo Giacconi', what: 'and his team fly an X-ray detector on a rocket and find the first X-ray source beyond the Sun, Scorpius X-1.', chapter: 10 },
   { year: 1962, when: '1962', who: 'Robert Leighton', what: 'and his colleagues find the Sun’s surface rising and falling every five minutes: the start of helioseismology.', chapter: 15 },
   { year: 1963, when: '1962–63', who: 'Shiv Kumar', what: 'predicts that the smallest balls of gas never get hot enough to fuse hydrogen: the objects now called brown dwarfs.', chapter: 16 },

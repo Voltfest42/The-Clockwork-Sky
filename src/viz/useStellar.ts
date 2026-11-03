@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState, useSyncExternalStore } from 'react';
 import { computeStellar, requestKey, type LifeAnswer, type StellarAnswer, type StellarRequest } from '../core/stellar/requests';
 import type { Fate, IsochronePoint } from '../core/stellar/lives';
 
 /**
  * Asks the stellar-evolution worker for an isochrone, a fate curve or a whole
- * life, and gives back the answer once it comes (until then, the last answer
- * this figure had, or null). Answers are
- * cached for the page's lifetime. Requests wait in a queue, newest first, and
- * leave it when no figure wants them any more, so a slider dragged quickly
- * doesn't queue up work.
- * Without workers, the work runs on the main thread after a frame.
+ * life, and gives back the answer once it comes. Answers are cached for the
+ * page's lifetime. Requests wait in a queue, newest first, and leave it when
+ * no figure wants them any more, so a slider dragged quickly doesn't queue up
+ * work. Without workers, the work runs on the main thread after a frame.
+ *
+ * Until the answer comes, a figure gets the newest answer it has already had
+ * for any of its earlier requests. While a slider moves faster than the
+ * worker, every answer is for a value the slider has already left; showing it
+ * anyway keeps the figure moving with the slider instead of freezing until it
+ * stops.
  */
 
 const cache = new Map<string, StellarAnswer>();
@@ -17,11 +21,21 @@ let worker: Worker | null = null;
 let busy = false;
 let nextId = 1;
 const waiting = new Map<string, StellarRequest>();
-const listeners = new Map<string, Set<() => void>>();
+/** How many mounted figures want each request now. */
+const wanted = new Map<string, number>();
+/** Each figure's requests, oldest first (by the figure's useId). */
+const histories = new Map<string, string[]>();
 
-function notify(key: string) {
-  for (const f of listeners.get(key) ?? []) f();
-}
+// Every answer bumps a version, so the figures waiting look again.
+let version = 0;
+const subscribers = new Set<() => void>();
+const subscribe = (f: () => void) => {
+  subscribers.add(f);
+  return () => {
+    subscribers.delete(f);
+  };
+};
+const getVersion = () => version;
 
 function pump() {
   if (busy || !waiting.size) return;
@@ -32,7 +46,8 @@ function pump() {
   const done = (answer: StellarAnswer | undefined) => {
     busy = false;
     if (answer) cache.set(key, answer);
-    notify(key);
+    version++;
+    for (const f of subscribers) f();
     pump();
   };
   if (typeof Worker === 'undefined') {
@@ -51,30 +66,65 @@ function pump() {
 
 export function useStellar(request: StellarRequest | null): StellarAnswer | null {
   const key = request ? requestKey(request) : null;
-  // The last answer delivered to this figure, kept while a new request runs.
-  const [delivered, setDelivered] = useState<StellarAnswer | null>(null);
+  const figure = useId();
+  useSyncExternalStore(subscribe, getVersion, getVersion);
+  useEffect(
+    () => () => {
+      histories.delete(figure);
+    },
+    [figure],
+  );
   useEffect(() => {
     if (!key || !request) return;
-    const listener = () => setDelivered(cache.get(key) ?? null);
-    if (!listeners.has(key)) listeners.set(key, new Set());
-    listeners.get(key)!.add(listener);
+    const history = histories.get(figure) ?? [];
+    histories.set(figure, history);
+    if (history[history.length - 1] !== key) history.push(key);
+    if (history.length > 100) history.shift();
+    wanted.set(key, (wanted.get(key) ?? 0) + 1);
     if (!cache.has(key)) {
       waiting.set(key, request);
       pump();
     }
     return () => {
-      listeners.get(key)?.delete(listener);
-      if (!listeners.get(key)?.size) waiting.delete(key);
+      const n = (wanted.get(key) ?? 1) - 1;
+      if (n > 0) wanted.set(key, n);
+      else {
+        wanted.delete(key);
+        waiting.delete(key);
+      }
     };
     // The key stands for the request.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
+  }, [key, figure]);
   if (!key) return null;
-  return cache.get(key) ?? delivered;
+  const answer = cache.get(key);
+  if (answer) return answer;
+  // Not ready yet: the newest answer to this figure's earlier requests.
+  const history = histories.get(figure) ?? [];
+  for (let i = history.length - 1; i >= 0; i--) {
+    const earlier = cache.get(history[i]);
+    if (earlier) return earlier;
+  }
+  return null;
 }
 
-/** Every star of one age (Myr) and metallicity still shining, from SSE. */
-export const useIsochrone = (age: number, z: number) => useStellar({ kind: 'isochrone', age, z }) as IsochronePoint[] | null;
+/** How long the age must rest before the full isochrone is asked for, ms. */
+const SETTLE = 250;
+
+/**
+ * Every star of one age (Myr) and metallicity still shining, from SSE. While the age or metallicity is changing
+ * (a slider being dragged), a coarse isochrone, about five times quicker, so the line keeps up; once they have
+ * rested for a quarter of a second, the full one.
+ */
+export function useIsochrone(age: number, z: number): IsochronePoint[] | null {
+  const [rested, setRested] = useState({ age, z });
+  useEffect(() => {
+    const timer = setTimeout(() => setRested({ age, z }), SETTLE);
+    return () => clearTimeout(timer);
+  }, [age, z]);
+  const settled = rested.age === age && rested.z === z;
+  return useStellar({ kind: 'isochrone', age, z, ...(settled ? {} : { detail: 'coarse' as const }) }) as IsochronePoint[] | null;
+}
 
 /** The fates of 110 initial masses from 0.01 to 300 M☉. */
 export const useFates = (z: number, wind: number) => useStellar({ kind: 'fates', z, wind }) as Fate[] | null;

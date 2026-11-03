@@ -112,8 +112,8 @@ describe('transits', () => {
       fc.property(fc.double({ min: 0.005, max: 0.3, noNaN: true }), fc.double({ min: 0, max: 1.3, noNaN: true }), (k, z) => {
         const light = lightWithPlanet(z, k, DEFAULT_LIMB, 200);
         expect(light).toBeLessThanOrEqual(1);
-        // To the rings' resolution: a thousandth of the depth.
-        expect(light - lightWithPlanet(0, k, DEFAULT_LIMB, 200)).toBeGreaterThan(-1e-3 * k * k);
+        // To the rings' resolution: a thousandth of the depth (and round-off, which can tip a planet at the very centre past it).
+        expect(light - lightWithPlanet(0, k, DEFAULT_LIMB, 200)).toBeGreaterThan(-1e-3 * k * k - 1e-12);
       }),
     );
   });

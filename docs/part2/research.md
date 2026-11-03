@@ -489,7 +489,7 @@
 - **Exoplanet:** a planet orbiting another star.
 - **Flux:** the power arriving per square metre: how bright a star looks.
 - **Fusion:** joining light nuclei into heavier ones, which releases energy.
-- **Granulation:** the boiling pattern of convection cells on the Sun's surface.
+- **Granulation:** the pattern of convection cells on the Sun's surface.
 - **Habitable zone:** the range of distances from a star where a planet could keep liquid water on its surface.
 - **Helium flash:** the runaway ignition of helium in a red giant's core.
 - **Hertzsprung–Russell diagram:** stars' luminosity against their temperature (or magnitude against colour).

@@ -7,7 +7,7 @@ import { fateCurve, isochrone, lifeOf, type Fate, type IsochronePoint } from './
 import type { SseTrack } from './sse/evolve';
 
 export type StellarRequest =
-  | { kind: 'isochrone'; age: number; z: number }
+  | { kind: 'isochrone'; age: number; z: number; detail?: 'coarse' }
   | { kind: 'fates'; z: number; wind: number }
   | { kind: 'life'; mass: number; z: number; wind: number };
 
@@ -28,7 +28,8 @@ export const requestKey = (r: StellarRequest): string => JSON.stringify(r);
 export function computeStellar(r: StellarRequest): StellarAnswer {
   switch (r.kind) {
     case 'isochrone':
-      return isochrone(r.age, r.z);
+      // A coarse isochrone has a quarter of the giant branch's points and takes about a fifth of the time.
+      return r.detail === 'coarse' ? isochrone(r.age, r.z, { giantPoints: 20 }) : isochrone(r.age, r.z);
     case 'fates':
       // Fates above 300 M☉ aren't asked for; between 150 and 300 the figure marks them unreliable.
       return fateCurve(r.z, { windScale: r.wind }, 110, 300);

@@ -143,7 +143,7 @@ export function FindPlanetFigure({ number, tryThis }: { number: string; tryThis:
       simplified={
         <p>
           The orbits are circular and the noise is the simplest kind, the same size for every measurement and independent of the last. Real stars
-          add their own: spots and the boiling of their surfaces shift a Sun-like star’s lines by about 1 m/s and its light by tens of parts per
+          add their own: spots and the convection at their surfaces shift a Sun-like star’s lines by about 1 m/s and its light by tens of parts per
           million, which is what really hides Earth twins. The signals are measured here at the planet’s known period; a real search tries
           thousands of periods (Toolkit T6), so this course, like Kepler, asks for 7.1σ, and for three transits.
         </p>

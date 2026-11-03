@@ -176,10 +176,23 @@
   color: var(--text-muted);
 }
 
-.badgeDone {
+.chapterTitle {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* A read chapter's tick, at the right-hand edge: 30% smaller than the number's circle, centred on the first line. */
+.readTick {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  border-radius: 50%;
   background: var(--accent-fill);
-  border-color: var(--accent-fill);
   color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .labBadge {
