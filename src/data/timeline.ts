@@ -1,7 +1,7 @@
 /**
  * The people and moments of the course, for the history timelines in the
  * chapters and on the About page. From the research briefs
- * (docs/part1/research.md §6 and §13; docs/part2/research.md §15). Years use astronomical numbering
+ * (docs/part1/research.md §6 and §13; docs/part2/research.md §15; docs/part3/research.md §17). Years use astronomical numbering
  * (1 BC = year 0), so "c. 270 BC" is −269; `when` is how the year is shown.
  */
 
@@ -62,12 +62,16 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1843, when: '1843', who: 'Heinrich Schwabe', what: 'finds that sunspots come and go in a cycle of about ten years.', chapter: 15 },
   { year: 1844, when: '1844', who: 'Bessel', what: 'predicts from Sirius’s weaving path that it circles an unseen companion.', chapter: 14 },
   { year: 1846, when: '1846', what: 'Neptune is found where Le Verrier predicted.', chapter: 7 },
+  { year: 1854, when: '1854', who: 'Hermann von Helmholtz', what: 'proposes that the Sun shines by slowly shrinking under its own weight.', chapter: 20 },
   { year: 1856, when: '1856', who: 'Norman Pogson', what: 'fixes the magnitude scale: five magnitudes are a factor of exactly 100 in brightness.', chapter: 11 },
   { year: 1859, when: '1859', who: 'Gustav Kirchhoff and Robert Bunsen', what: 'find that each element glows with its own lines, and that a cooler gas darkens the same lines: sodium is in the Sun.', chapter: 12 },
   { year: 1859, when: '1859', who: 'Richard Carrington and Richard Hodgson', what: 'see a flare on the Sun; the next day aurorae reach the tropics and telegraph lines spark.', chapter: 15 },
+  { year: 1859, when: '1859', who: 'Charles Darwin', what: 'reckons the erosion of the Weald, in south-east England, at about 300 million years.', chapter: 20 },
   { year: 1862, when: '1862', who: 'Alvan Graham Clark', what: 'sees Sirius B, a white dwarf, while testing a new telescope lens.', chapter: 14 },
+  { year: 1862, when: '1862', who: 'Lord Kelvin', what: 'argues in “On the age of the Sun’s heat” that the Sun has very probably shone for less than 100 million years.', chapter: 20 },
   { year: 1866, when: '1866', who: 'Daniel Kirkwood', what: 'notices gaps in the asteroid belt and explains them by Jupiter’s resonances.', chapter: 8 },
   { year: 1868, when: '1868', who: 'Jules Janssen and Norman Lockyer', what: 'see a yellow line at the Sun’s edge that belongs to no known element: helium.', chapter: 12 },
+  { year: 1870, when: '1870', who: 'Jonathan Homer Lane', what: 'builds the first model of a star’s insides from the balance of pressure and weight.', chapter: 20 },
   { year: 1879, when: '1879', who: 'Josef Stefan', what: 'finds that a hot body’s glow grows with the fourth power of its temperature; Ludwig Boltzmann explains why in 1884.', chapter: 11 },
   { year: 1885, when: '1885', who: 'Johann Balmer', what: 'finds the formula for hydrogen’s visible lines.', chapter: 12 },
   { year: 1887, when: '1887', who: 'Heinrich Hertz', what: 'makes and detects radio waves, light far beyond the red.', chapter: 10 },
@@ -75,12 +79,15 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1893, when: '1893', who: 'Wilhelm Wien', what: 'shows that a glowing body’s peak wavelength shrinks in proportion as its temperature rises.', chapter: 11 },
   { year: 1895, when: '1895', who: 'Wilhelm Röntgen', what: 'discovers X-rays.', chapter: 10 },
   { year: 1895, when: '1895', who: 'William Ramsay', what: 'finds helium on Earth, in a uranium mineral.', chapter: 12 },
+  { year: 1896, when: '1896', who: 'Henri Becquerel', what: 'discovers radioactivity.', chapter: 20 },
   { year: 1900, when: '1900', who: 'Max Planck', what: 'explains the glow of hot bodies by supposing light is given out in packets of energy.', chapter: 11 },
   { year: 1900, when: '1900', who: 'Paul Villard', what: 'finds gamma rays in the radiation of radium.', chapter: 10 },
   { year: 1901, when: '1901', who: 'Annie Jump Cannon', what: 'settles the order of the spectral classes, O, B, A, F, G, K, M; she goes on to classify some 350,000 stars.', chapter: 12 },
   { year: 1902, when: '1902', who: 'James Jeans', what: 'works out when a cloud of gas collapses under its own gravity: when it is heavier than what is now called its Jeans mass.', chapter: 16 },
+  { year: 1904, when: '1904', who: 'Ernest Rutherford', what: 'tells a lecture audience that includes Kelvin that radioactivity could supply the energy his clock lacked.', chapter: 20 },
   { year: 1905, when: '1905', who: 'Albert Einstein', what: 'proposes that light itself travels in packets: photons.', chapter: 10 },
   { year: 1906, when: '1906', who: 'Max Wolf', what: 'finds Achilles, the first Trojan asteroid, at Jupiter’s L4 point.' },
+  { year: 1907, when: '1907', who: 'Robert Emden', what: 'publishes Gaskugeln, the theory of polytropes: model stars from a single equation.', chapter: 20 },
   { year: 1908, when: '1908', who: 'George Ellery Hale', what: 'finds that sunspots are magnetic, from the splitting of their lines.', chapter: 15 },
   { year: 1911, when: '1911', who: 'Ejnar Hertzsprung', what: 'plots the Pleiades’ and Hyades’ stars by colour and brightness.', chapter: 13 },
   { year: 1912, when: '1912', who: 'Henrietta Swan Leavitt', what: 'finds that the slower a Cepheid pulses, the brighter it is: a yardstick for distances.', chapter: 17 },
@@ -92,10 +99,12 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1920, when: '1920', who: 'Albert Michelson and Francis Pease', what: 'measure Betelgeuse’s width with an interferometer on the Mount Wilson telescope: the first star measured.', chapter: 11 },
   { year: 1920, when: '1920', who: 'Arthur Eddington', what: 'suggests that stars shine by turning hydrogen into helium.', chapter: 15 },
   { year: 1920, when: '1920', who: 'Meghnad Saha', what: 'explains how heat ionises atoms, and so why the spectral classes are a temperature scale.', chapter: 12 },
+  { year: 1920, when: '1920', who: 'Francis Aston', what: 'finds that a helium atom weighs about 0.8% less than four hydrogen atoms.', chapter: 20 },
   { year: 1924, when: '1924', who: 'Arthur Eddington', what: 'explains why heavier stars are far more luminous: the mass–luminosity relation.', chapter: 14 },
   { year: 1924, when: '1923–24', who: 'Edwin Hubble', what: 'finds Cepheids in the Andromeda nebula and shows it is a galaxy far beyond the Milky Way.', chapter: 17 },
   { year: 1925, when: '1925', who: 'Cecilia Payne', what: 'shows that stars differ in temperature, not make-up, and are made mostly of hydrogen and helium.', chapter: 12 },
   { year: 1925, when: '1925', who: 'Walter Hohmann', what: 'works out the cheapest path from one planet’s orbit to another’s.', chapter: 7 },
+  { year: 1926, when: '1926', who: 'Arthur Eddington', what: 'publishes The Internal Constitution of the Stars, with his standard model.', chapter: 20 },
   { year: 1930, when: '1930', who: 'Clyde Tombaugh', what: 'finds Pluto.', chapter: 8 },
   { year: 1930, when: '1930', who: 'Robert Trumpler', what: 'shows that distant star clusters are dimmer than their sizes say: dust between the stars dims and reddens their light.', chapter: 16 },
   { year: 1930, when: '1930', who: 'Subrahmanyan Chandrasekhar', what: 'finds that a white dwarf can weigh no more than about 1.4 Suns.', chapter: 18 },
@@ -107,7 +116,9 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1945, when: '1945', who: 'Alfred Joy', what: 'describes the T Tauri stars, flickering young stars still in their birth clouds.', chapter: 16 },
   { year: 1952, when: '1951–52', who: 'George Herbig and Guillermo Haro', what: 'find small glowing knots near young stars, later understood as where the stars’ jets hit the gas around them.', chapter: 16 },
   { year: 1953, when: '1953', who: 'Sergei Zhevakin', what: 'finds the layer of helium that drives Cepheids’ pulses.', chapter: 17 },
+  { year: 1953, when: '1953', who: 'Fred Hoyle', what: 'argues that a collapsing cloud breaks into fragments within fragments.', chapter: 20 },
   { year: 1955, when: '1955', who: 'Edwin Salpeter', what: 'counts how many stars are born at each mass: many small ones for every big one.', chapter: 16 },
+  { year: 1956, when: '1956', who: 'Clair Patterson', what: 'dates Earth and the meteorites at 4.55 billion years.', chapter: 20 },
   { year: 1961, when: '1961', who: 'Chushiro Hayashi', what: 'shows that young stars come down to the main sequence at nearly the same temperature, convective right through.', chapter: 16 },
   { year: 1962, when: '1962', who: 'Riccardo Giacconi', what: 'and his team fly an X-ray detector on a rocket and find the first X-ray source beyond the Sun, Scorpius X-1.', chapter: 10 },
   { year: 1962, when: '1962', who: 'Robert Leighton', what: 'and his colleagues find the Sun’s surface rising and falling every five minutes: the start of helioseismology.', chapter: 15 },
@@ -115,6 +126,7 @@ export const TIMELINE: readonly TimelineEvent[] = [
   { year: 1967, when: '1967', who: 'Jocelyn Bell', what: 'finds the first pulsar, a spinning neutron star.', chapter: 18 },
   { year: 1968, when: '1968', who: 'Raymond Davis', what: 'catches the Sun’s neutrinos, a third as many as expected: the solar neutrino problem.', chapter: 15 },
   { year: 1972, when: '1972', what: 'Cygnus X-1’s unseen companion is weighed: too heavy for a neutron star, the first black hole widely accepted.', chapter: 18 },
+  { year: 1976, when: '1976', who: 'Cecilia Low and Donald Lynden-Bell, and Martin Rees', what: 'find the opacity limit: collapsing clouds make no fragments much lighter than a hundredth of the Sun.', chapter: 20 },
   { year: 1987, when: '1987', what: 'SN 1987A explodes in the Large Magellanic Cloud; its neutrinos arrive three hours before its light.', chapter: 18 },
   { year: 1988, when: '1988', who: 'Bruce Campbell, Gordon Walker and Stephenson Yang', what: 'see a hint of a giant planet round γ Cephei by its star’s wobble, confirmed in 2003.', chapter: 19 },
   { year: 1989, when: '1989', who: 'Jacques Laskar', what: 'shows that the planets’ orbits are chaotic over tens of millions of years.', chapter: 8 },

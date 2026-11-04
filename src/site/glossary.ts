@@ -1,7 +1,7 @@
 /**
  * Plain-language definitions, shown when a reader hovers over or taps a <Term>,
  * and listed on the Glossary page. Part I's terms come from its research brief
- * (docs/part1/research.md §14), Part II’s from its brief (docs/part2/research.md §16).
+ * (docs/part1/research.md §14), Part II’s from its brief (docs/part2/research.md §16), Part III’s from its brief (docs/part3/research.md §18).
  */
 interface Entry {
   term: string;
@@ -281,6 +281,26 @@ export const GLOSSARY = {
   'pair-instability': {
     term: 'Pair instability',
     definition: 'In the hottest, heaviest stellar cores, light turns into pairs of electrons and positrons, the core loses pressure and shrinks, and its oxygen can burn all at once: enough to make the star pulse, or blow it apart entirely.',
+  },
+  'hydrostatic-equilibrium': {
+    term: 'Hydrostatic equilibrium',
+    definition: 'The balance in every layer of a star between the weight of the gas above it and the pressure of the gas below. It holds a star at one size for billions of years.',
+  },
+  'virial-theorem': {
+    term: 'Virial theorem',
+    definition: 'In a star or cluster held together by gravity, the heat or motion energy is half the size of the (negative) gravitational energy. So a star that loses energy shrinks and heats up.',
+  },
+  'kelvin-helmholtz-time': {
+    term: 'Kelvin–Helmholtz time',
+    definition: 'How long a star could shine by shrinking alone: about GM²/RL, some 30 million years for the Sun, far too short to explain Earth’s age.',
+  },
+  polytrope: {
+    term: 'Polytrope',
+    definition: 'A model star in which pressure follows a power of density, P = Kρ^(1+1/n). Its structure comes from a single equation, the Lane–Emden equation.',
+  },
+  'degeneracy-pressure': {
+    term: 'Degeneracy pressure',
+    definition: 'The pressure of particles packed as tightly as quantum physics allows: no two electrons can share a state, so squeezed ones must move fast. It doesn’t depend on temperature.',
   },
   convection: {
     term: 'Convection',

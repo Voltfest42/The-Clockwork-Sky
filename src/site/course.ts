@@ -369,6 +369,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Weight and pressure', 'Losing energy, getting hotter', 'Kelvin’s clock', 'Why clouds make many stars', 'A star from one equation'],
     buildsOn: [7, 15, 16, 17],
     toolkit: ['rates-of-change', 'adding-up-small-pieces', 'estimating-with-orders-of-magnitude'],
+    load: () => import('../content/chapter20.mdx'),
   }),
   chapter({
     number: 21,
@@ -544,6 +545,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Derivatives as slopes and speeds, and the few rules you need to work them out.',
     part: 3,
     firstNeeded: 20,
+    load: () => import('../content/toolkit/rates-of-change.mdx'),
   },
   {
     slug: 'adding-up-small-pieces',
@@ -552,6 +554,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Integrals as sums of thin slices: a star’s mass from its density, energy from power.',
     part: 3,
     firstNeeded: 20,
+    load: () => import('../content/toolkit/adding-up-small-pieces.mdx'),
   },
   {
     slug: 'differential-equations',
@@ -568,6 +571,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Back-of-the-envelope physics: getting within a factor of ten, and why that is often enough.',
     part: 3,
     firstNeeded: 20,
+    load: () => import('../content/toolkit/estimating-with-orders-of-magnitude.mdx'),
   },
 ];
 

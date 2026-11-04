@@ -4,7 +4,7 @@
 
 ## Status
 
-**Planned** (4 Nov 2026, Stage 17). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. Nothing in §4–§10 is built yet. **Agreed** (4 Nov 2026): the defaults for all eleven open questions in §13 stand. Next: Stage 18, Chapter 20 and Toolkit T8, T9 and T11.
+**Planned** (4 Nov 2026, Stage 17). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. **Agreed** (4 Nov 2026): the defaults for all eleven open questions in §13 stand. **Stage 18 is done** (4 Nov 2026): Chapter 20, Toolkit T8, T9 and T11, the structure core's solver, polytropes, equations of state and contraction sequences, the profile plot and the core's map (deviations in the master plan's Status). Next: Stage 19, Chapter 21 and Toolkit T10.
 
 ---
 

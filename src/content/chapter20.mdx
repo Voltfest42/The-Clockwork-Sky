@@ -1,0 +1,210 @@
+import { ContractionFigure } from '../figures/ContractionFigure';
+import { FragmentationFigure } from '../figures/FragmentationFigure';
+import { HotCentreFigure } from '../figures/HotCentreFigure';
+import { LaneEmdenFigure } from '../figures/LaneEmdenFigure';
+import { HEAVIEST_STAR, RECORDS_AS_OF } from '../data/records';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { SunPolytrope } from './checks/chapter20';
+
+Part II read the stars from outside: their temperatures, make-up, masses and lives, all from their light. Part III goes inside. This chapter asks the simplest question about a star, why it doesn’t fall in on itself, and finds that the answer alone says how hot its centre must be, what it does when it loses energy, how long gravity could keep it shining and why clouds make stars in crowds. It ends with a whole star built from a single equation.
+
+From here on the boxes hold real equations, with derivatives and integrals. The three Toolkit pages this chapter leans on, [Rates of change](/toolkit/rates-of-change/), [Adding up small pieces](/toolkit/adding-up-small-pieces/) and [Estimating with orders of magnitude](/toolkit/estimating-with-orders-of-magnitude/), cover what they need, and the figures carry the ideas for anyone who skips the boxes.
+
+## Weight and pressure
+
+Every layer of a star is pulled inward by the mass beneath it, and pressed on by the weight of all the layers above. It stays where it is only if the gas below pushes up harder than the gas above pushes down, by exactly its weight. That balance, <Term id="hydrostatic-equilibrium">hydrostatic equilibrium</Term>, holds in every layer of every star, all the time, except in the seconds when one collapses or explodes.
+
+<Callout kind="maths" title="Hydrostatic balance">
+
+Take a thin shell at radius r, of thickness dr and density ρ, with mass m(r) inside it. Gravity there is g = Gm/r², so each cubic metre of the shell weighs ρg, and the pressure must fall outward by that much per metre:
+
+dP/dr = −G m(r) ρ / r²,  dm/dr = 4πr²ρ.
+
+The first is a rate of change, the second a sum of thin shells. Two equations in three unknowns, P, ρ and m: the gas’s own physics has to supply the rest, and that is what the next two chapters do.
+
+</Callout>
+
+How exact is the balance? Take the pressure away and the Sun would fall in on itself in its free-fall time, (3π / 32Gρ̄)<sup>½</sup> for its mean density ρ̄ of 1.4 g/cm³: about 30 minutes. It has kept its size for 4.6 billion years.
+
+The balance also says what the centre must be like, with no nuclear physics at all. The weight of the Sun bearing down on its middle is roughly its whole mass pulled by its whole gravity, GM/R² × M, spread over an area of about R²: a central pressure of GM²/R⁴, about 10¹⁵ Pa. For an ideal gas, pressure is density times temperature (P = ρkT / μm<sub>u</sub>, with μ the mass of a particle in atomic mass units), and the same rough sum gives a central temperature of about GMμm<sub>u</sub>/kR, 14 million degrees. Model S, the standard model of the Sun’s insides checked against its vibrations (Chapter 15), has 2.35 × 10¹⁶ Pa and 15.7 million degrees. The pressure estimate is low because most of the Sun’s mass is crowded into its middle; the temperature is close.
+
+<Callout kind="key">
+
+The Sun’s centre is hot because gravity squeezes it: that temperature is what it takes for gas to hold up the Sun’s weight. Fusion doesn’t make the Sun hot. It replaces the heat the Sun loses as light.
+
+</Callout>
+
+<HotCentreFigure
+  number="20.1"
+  tryThis={
+    <p>
+      Slide the shell from the surface to near the centre: does the weight of the gas above ever differ from the pressure? Then pick <b>Jupiter</b>:
+      which of the two estimates fails, and by how much?
+    </p>
+  }
+/>
+
+The estimates fail for Jupiter in an instructive way. Its pressure comes out about right, but its temperature seven times too high: the real centre is about 20,000 K. Jupiter is held up mostly by its electrons, packed so tightly that they push back however cold they are. That pressure, <Term id="degeneracy-pressure">degeneracy pressure</Term>, holds up brown dwarfs, white dwarfs and the cores of dying stars, and Chapter 24 is about it.
+
+## Losing energy, getting hotter
+
+A star shines, and so loses energy. What happens to it? A hot coal cools down, and so, it seems, should a star. It does the opposite.
+
+<Callout kind="maths" title="The virial theorem">
+
+Multiply the balance equation by 4πr³ and add it up over the whole star. The left side becomes 3∫P dV, the right side the gravitational energy Ω = −∫Gm dm / r, which is negative because the star is bound:
+
+3∫P dV = −Ω.
+
+For an ideal gas of single atoms, pressure is two-thirds of the heat energy per cubic metre, so 3∫P dV is twice the gas’s heat energy U. Then 2U + Ω = 0, and the total energy is E = U + Ω = Ω/2 = −U.
+
+</Callout>
+
+This is the <Term id="virial-theorem">virial theorem</Term>, and it holds for any star in balance. Its total energy is negative, and equal to minus its heat. Take energy away, by shining, and E becomes more negative: Ω must grow more negative too, so the star shrinks, and U, which is −E, grows. The star gets hotter. Of the energy its shrinking releases, half heats the gas and half escapes as light.
+
+Physicists call this a negative heat capacity, and it is the rule for anything held together by gravity. A satellite skimming the air loses energy to drag and speeds up as it sinks (Chapter 7); a star cluster’s core that loses stars shrinks and heats up (Chapter 30). It is how a protostar heats its own centre to the point of fusion (Chapter 16): by shining.
+
+<ContractionFigure
+  number="20.2"
+  tryThis={
+    <p>
+      Answer the question first, then press play with <b>The Sun</b>: watch the two bars stay level as the centre heats. Now try <b>A brown dwarf</b>:
+      when does its centre stop heating, and where does gravity’s energy go instead? Slide the mass to find the lightest ball that ignites.
+    </p>
+  }
+/>
+
+The figure introduces Part III’s recurring diagram, the core’s map: the centre’s density against its temperature, like a phase diagram for water, with the regions where light, hot gas or packed electrons supply most of the pressure. A shrinking ball of hot gas climbs a straight line on it, three steps of density for each step of temperature. Sun-like balls reach hydrogen’s ignition, and fusion then pays for the light, so they stop shrinking: a star is born. A ball lighter than about 0.08 Suns runs into the region of packed electrons first, which hold it up without needing heat. Its centre peaks, then cools as it shines: a brown dwarf (Chapter 16). In this simple model the line falls at 0.084 Suns; detailed models put it at 0.075.
+
+## Kelvin’s clock
+
+The virial theorem gave the 19th century a clock. If shrinking powers the Sun, the energy it can release, a sizeable fraction of GM²/R, divided by the power it shines with, says how long it can have shone. This is the <Term id="kelvin-helmholtz-time">Kelvin–Helmholtz time</Term>.
+
+<Callout kind="maths" title="The Kelvin–Helmholtz time">
+
+t<sub>KH</sub> = GM² / RL ≈ 1 × 10¹⁵ s ≈ 31 million years for the Sun. Model S’s gravitational energy is 1.6 GM²/R, half of which a shrinking Sun radiates: 25 million years at today’s brightness. Either way, tens of millions of years.
+
+</Callout>
+
+Hermann von Helmholtz proposed the idea in 1854, and William Thomson, later Lord Kelvin, made it a weapon. In “On the age of the Sun’s heat” (1862) he wrote that the Sun had very probably shone for less than 100 million years, and almost certainly for less than 500 million; by 1897 he had narrowed it towards 20 to 40 million. Geology needed far longer. In *On the Origin of Species* (1859) Charles Darwin reckoned the erosion of the Weald, in south-east England, at about 300 million years, and dropped the sum from later editions under Kelvin’s fire.
+
+The way out came from physics Kelvin didn’t know. Henri Becquerel found radioactivity in 1896; in a lecture in 1904, with Kelvin in the audience, Ernest Rutherford said it could supply the missing energy. In 1920 Francis Aston measured that a helium atom weighs about 0.8% less than four hydrogen atoms, and Arthur Eddington saw at once what that meant: “subatomic energy”, enough to run the Sun for billions of years (Chapter 15 tells how fusion won). In 1956 Clair Patterson dated Earth from meteorites at 4.55 billion years.
+
+Kelvin’s physics wasn’t wrong, only incomplete. Shrinking does power stars, before fusion starts (the tens of millions of years in Figure 20.2) and between one fuel and the next, when a giant’s core contracts and heats until helium ignites (Chapter 17).
+
+<Timeline from={1850} to={1980} chapter={20} only={[20]} title="Gravity, heat and the age of the Sun" />
+
+## Why clouds make many stars
+
+Chapter 16 used Jeans’s criterion to say when a cloud collapses: when its gravity beats its heat. That criterion is the virial theorem again (a cloud collapses when |Ω| > 2U), and it says more. A cold molecular cloud radiates the heat of its collapse as fast as it is made, so it stays at about 10 K while it falls in and grows denser. Its <Term id="jeans-mass">Jeans mass</Term> goes as T<sup>3/2</sup> ρ<sup>−½</sup>: at a fixed temperature it falls as the cloud gets denser, halving with every fourfold rise in density. A cloud that was one Jeans mass becomes two, then four: it breaks into pieces, each of which collapses and breaks again, as Fred Hoyle argued in 1953.
+
+The cascade stops when the fragments become so dense that their own heat can no longer get out. Then they warm as they shrink, their Jeans mass stops falling, and they collapse as single objects. This opacity limit, worked out by Low and Lynden-Bell and by Rees in 1976, comes to about 0.007 to 0.01 solar masses, 7 to 10 times Jupiter’s mass: the smallest objects that form the way stars do.
+
+<FragmentationFigure
+  number="20.3"
+  tryThis={
+    <p>
+      Slide the density up from where the cloud starts to collapse, and watch the tree branch. At what density does the gas turn opaque? Change the
+      cloud’s mass: does that change the smallest fragments?
+    </p>
+  }
+/>
+
+The fragments are seeds, not finished stars: most grow by gathering gas from around them, and the cloud’s turbulence and magnetic fields break it unevenly. But the limit explains why star formation makes brown dwarfs, and free-floating objects of planetary mass that no planet-forming disc ever held.
+
+## A star from one equation
+
+Hydrostatic balance needs one more relation between pressure and density. Suppose, as a guess, that pressure follows a power of density throughout the star: P = Kρ<sup>1 + 1/n</sup>, with n the polytropic index. Then the two structure equations become one, and a model star, a <Term id="polytrope">polytrope</Term>, follows from it.
+
+<Callout kind="maths" title="The Lane–Emden equation">
+
+Write the density as ρ = ρ<sub>c</sub>θ<sup>n</sup> and the radius as r = aξ, with a fixed by K, n and the central density ρ<sub>c</sub>. Hydrostatic balance and the mass equation together become
+
+(1/ξ²) d/dξ (ξ² dθ/dξ) = −θ<sup>n</sup>,  with θ = 1 and dθ/dξ = 0 at the centre.
+
+The surface is where θ first reaches zero, at ξ₁. Jonathan Homer Lane wrote it down in 1870 and Robert Emden explored it in 1907.
+
+</Callout>
+
+The index stands for the physics. Gas that convects keeps P ∝ ρ<sup>5/3</sup> all the way through, so n = 1.5 is a fully convective star, such as a red dwarf or a protostar; cold white dwarfs follow the same law (Chapter 24). Eddington’s standard model, with radiation carrying a fixed share of the pressure, is n = 3, as are white dwarfs near their limit. Only n = 0, 1 and 5 can be solved with a formula; every other n is solved by stepping out from the centre (Toolkit: [Solving by stepping](/toolkit/solving-by-stepping/)), and n = 5 never reaches a surface at all.
+
+| n | Surface ξ₁ | Centre ÷ average density | Stands for |
+|---|---|---|---|
+| 0 | 2.449 | 1 | Even density throughout |
+| 1.5 | 3.654 | 5.99 | Fully convective stars, cold white dwarfs |
+| 3 | 6.897 | 54.2 | Eddington’s standard model |
+| 4 | 14.97 | 622 | Very centrally crowded |
+| 5 | none | infinite | A finite mass of infinite size |
+
+<LaneEmdenFigure
+  number="20.4"
+  tryThis={
+    <p>
+      Step out with <b>Show each step</b>: where does the solver take its shortest steps? Then slide n from 0 to 5 and watch the surface move out.
+      With the Sun’s mass and radius, compare n = 3 with the Sun’s real density on the <b>Density</b> view.
+    </p>
+  }
+/>
+
+Given the Sun’s mass and radius, an n = 3 polytrope has a centre of 76 g/cm³ and 12 million degrees, against Model S’s 150 g/cm³ and 15.7 million. Not bad, for a star made of one assumption; the real Sun is more crowded in the middle, because its core has turned half its hydrogen into helium. To do better, the structure needs the physics that the power law skips: how energy gets out of a star, which is Chapter 21.
+
+<DeepDive title="Eddington’s standard model and his quartic">
+
+In 1926 Eddington supposed that gas supplies a fixed share β of a star’s pressure throughout, and radiation the rest. That makes the star an n = 3 polytrope, and its mass then fixes β through his quartic equation, 1 − β = 0.003 μ⁴β⁴ (M/M☉)². For gas like the Sun’s, radiation supplies 0.04% of the Sun’s pressure, 4% of the pressure of a star of ten Suns and 43% of one of a hundred. As radiation’s share grows, the star’s gas behaves less like atoms and more like light, its total energy creeps towards zero and it is barely bound: a small push can set it pulsing or shed its outer layers. This is why stars much heavier than a hundred Suns are rare and unstable, and why the heaviest star known as of {RECORDS_AS_OF}, {HEAVIEST_STAR.name}, at about {HEAVIEST_STAR.mass} Suns, sheds mass so fiercely (Chapter 16).
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="why-centre-hot" prompt="Why is the Sun’s centre about 15 million degrees?">
+    <Choice label="Gas has to be that hot to hold up the weight of the Sun above it" correct>
+      Right. The rough sum GMμm/kR gives 14 million degrees with no nuclear physics at all. Fusion only replaces the heat the Sun loses as light.
+    </Choice>
+    <Choice label="Fusion heats it">
+      Fusion pays for the light the Sun leaks, but the temperature is set by gravity: it is what gas needs to hold up the Sun’s weight. A ball of gas with no fusion at all would be as hot.
+    </Choice>
+    <Choice label="It is heat left over from the Sun’s birth">
+      Left alone, the Sun would radiate that heat away in tens of millions of years. The centre stays hot because gravity’s squeeze demands it, and fusion pays the running cost.
+    </Choice>
+  </Question>
+
+  <Question id="no-fuel-star" prompt="A ball of gas with no fuel keeps shining. What happens to its centre?">
+    <Choice label="It heats up, as the ball shrinks" correct>
+      Right. By the virial theorem, losing energy makes it shrink, and half of the energy gravity releases heats the gas. Stars have a negative heat capacity.
+    </Choice>
+    <Choice label="It cools down, like a coal">
+      A coal is held together by chemical bonds, not by gravity. A ball held up by its own heat shrinks when it loses energy, and gets hotter.
+    </Choice>
+    <Choice label="It stays at the same temperature">
+      Its total energy is minus its heat energy, so losing energy means more heat, not the same. It heats up, until fusion starts or packed electrons hold it up.
+    </Choice>
+  </Question>
+
+  <Question id="kelvin-helmholtz" prompt="How long could shrinking alone keep the Sun shining at today’s brightness?">
+    <Choice label="About 30 million years" correct>
+      Right: GM²/RL, the Kelvin–Helmholtz time. Far too short for Earth’s 4.5 billion years, which is why the Sun must be powered by something else: fusion.
+    </Choice>
+    <Choice label="About 5 billion years">
+      That is about how long it has shone, but shrinking could pay for only some tens of millions of years of it. The rest has come from fusion.
+    </Choice>
+    <Choice label="About 5,000 years">
+      That is a Sun made of burning coal. Shrinking does much better, about 30 million years, but still far too little.
+    </Choice>
+  </Question>
+
+  <Question id="convective-polytrope" prompt="Which polytrope stands for a fully convective star, such as a red dwarf?">
+    <Choice label="n = 1.5" correct>
+      Right. Convecting gas keeps P ∝ ρ<sup>5/3</sup> throughout, which is n = 1.5. Cold white dwarfs follow the same law, for a different reason (Chapter 24).
+    </Choice>
+    <Choice label="n = 3">
+      n = 3 is Eddington’s standard model, a star whose radiation carries a fixed share of the pressure. A convecting star is n = 1.5.
+    </Choice>
+    <Choice label="n = 5">
+      n = 5 never reaches a surface. A convecting star, with P ∝ ρ<sup>5/3</sup>, is n = 1.5.
+    </Choice>
+  </Question>
+
+  <SunPolytrope />
+</CheckYourself>

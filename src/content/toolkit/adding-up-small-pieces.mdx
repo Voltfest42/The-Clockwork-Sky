@@ -1,0 +1,51 @@
+import { ShellsFigure } from '../../figures/ShellsFigure';
+import { Callout } from '../../site/content/blocks';
+
+How much does the Sun weigh, given how dense it is at every depth? Its density runs from 150 times water’s at the centre to almost nothing at the surface, so there is no single density to multiply by its volume. The answer is to cut it into thin pieces, each nearly even inside, and add them up. In the limit of very thin pieces the sum is an integral. This page shows how, with the Sun’s mass, and how the same idea gives energy from power and the area under any curve.
+
+## A sum of thin slices
+
+Cut the Sun into shells like an onion’s. A shell at radius r, of thickness Δr, has an area of about 4πr² and so a volume of about 4πr² Δr; with density ρ, its mass is
+
+Δm ≈ 4πr² ρ Δr.
+
+Add up the shells from the centre to the surface and you have the Sun’s mass. With thick shells the sum is rough, because each shell takes one density for a slab of very different gas. Make them thinner and the sum settles down to one number. That limit is the integral of 4πr²ρ from the centre to the surface:
+
+M = ∫₀ᴿ 4πr² ρ(r) dr.
+
+<Callout kind="key">
+
+An integral adds up a quantity that changes from place to place, by cutting it into pieces small enough to treat as even and summing them, in the limit of very thin pieces. The ∫ is a stretched S, for sum.
+
+</Callout>
+
+<ShellsFigure
+  number="T9.1"
+  tryThis={
+    <p>
+      Start with one shell and add more: how many does it take to get within 1% of the Sun’s mass? With 20 or more, which shell holds the most
+      mass? Why isn’t it the densest one, at the centre?
+    </p>
+  }
+/>
+
+The same sum, written as a rate, is the second of Chapter 20’s structure equations, dm/dr = 4πr²ρ: the mass inside grows, as you step out, by the mass of each new shell. Adding up and rates of change undo each other. Integrate a rate and you get the total; take the rate of change of a running total and you get back what was being added up.
+
+## Energy from power, and area under a curve
+
+Power is energy per second. If a star’s luminosity L changes over time, the energy it gives out between two times is not L times the time, but the sum of L Δt over short intervals, the integral ∫L dt. Chapter 20’s Kelvin–Helmholtz time turns that around: the energy a shrinking Sun can release, divided by its power, is how long it can shine.
+
+On a graph, the integral of a curve is the area under it. The distance a car covers is the area under its speed against time; the energy a star radiates is the area under its luminosity against time. A computer finds such areas the way the figure finds the Sun’s mass: thin strips, added up. Simpson’s rule, which fits a parabola through each pair of strips, is accurate enough with a few hundred strips for every integral in this course.
+
+| What is added up | Over | Gives |
+|---|---|---|
+| Density × shell volume, 4πr²ρ dr | radius | the mass inside |
+| Luminosity × time, L dt | time | energy radiated |
+| Weight per cubic metre, ρg dr | radius, from r to the surface | the pressure at r (Chapter 20) |
+| Pressure × volume, 3P dV | the whole star | minus its gravitational energy (the virial theorem) |
+
+<Callout kind="note" title="In games">
+
+Physics engines integrate every frame: each step adds velocity × time step to position, a sum of thin slices of time (Toolkit: [Solving by stepping](/toolkit/solving-by-stepping/)). Lighting does too: the light reaching a point is an integral over every direction it can come from, which a path tracer estimates by adding up random samples.
+
+</Callout>

@@ -1,0 +1,50 @@
+import { EstimateFigure } from '../../figures/EstimateFigure';
+import { Callout } from '../../site/content/blocks';
+
+Physicists often want an answer to within a factor of ten before they want it to within 1%. Is the Sun’s centre a thousand degrees, a million or a billion? Could gravity power it for a thousand years or a billion? A rough answer settles which physics matters, tells you whether a careful calculation came out right, and is often all the question needs. This page is about getting those answers fast: keep the powers of ten, check the units, and drop the factors of two.
+
+## Keep the powers of ten
+
+Write every quantity as a number times a power of ten (Toolkit: [Powers of ten](/toolkit/powers-of-ten/)), round the numbers to one figure, and multiplying becomes mostly adding exponents. The Sun’s mass is 2 × 10³⁰ kg, its radius 7 × 10⁸ m, Newton’s constant 7 × 10⁻¹¹ in SI units. The pull of the whole Sun on itself, GM²/R, is then about 7 × 4 / 7 × 10⁻¹¹⁺⁶⁰⁻⁸ = 4 × 10⁴¹ joules, which is within a factor of two of a careful sum over the Sun’s shells.
+
+<Callout kind="key">
+
+An estimate keeps how the answer scales (with M², with 1/R) and drops the numbers in front (3/5, 1/8π). If it comes out within a factor of ten, it has done its job: it says which physics matters, and roughly how much.
+
+</Callout>
+
+## Check the units
+
+The fastest way to build an estimate is to ask which combination of the quantities that matter has the right units. A star’s central pressure can depend only on G, M and R if nothing else enters: pressure is force per area, N/m², and G M² / R⁴ has exactly those units (G is N m² kg⁻², so G M²/R⁴ is N m² kg⁻² × kg² / m⁴ = N/m²). Its central temperature needs energy turned into temperature, so Boltzmann’s constant k must appear, and the mass of a gas particle, μm: GMμm/(kR). The same trick gives the free-fall time, 1/√(Gρ), since G times a density has units of one over time squared.
+
+This is dimensional analysis. It can’t find the numbers in front, but it finds the shape of the answer, and a wrong shape is the commonest mistake in physics.
+
+<EstimateFigure
+  number="T11.1"
+  tryThis={
+    <p>
+      Build the <b>Central temperature</b> one factor at a time and watch the answer walk along the ruler. Which estimate comes closest to the
+      true value? Which is furthest off, and why?
+    </p>
+  }
+/>
+
+## When a factor of ten is good enough
+
+The estimate machine’s five answers land between twice and a twentieth of the true values. That is enough to draw strong conclusions. The Sun’s centre is millions of degrees, not thousands: hot enough for nuclei to fuse, which a few thousand degrees would never allow. Shrinking could power the Sun for tens of millions of years, not billions: so something else must. Sunlight’s energy takes thousands of years or more to get out, not eight minutes.
+
+An estimate goes wrong when the shape of the problem is wrong, not when a number is rounded. The central pressure comes out twenty times too low because the Sun is not an even ball: most of its mass is crowded into the middle. Jupiter’s central temperature comes out seven times too high because its interior isn’t an ideal gas at all (Chapter 20, Figure 20.1). A big miss is a clue that some physics was left out.
+
+| Quantity | Estimate | Careful value |
+|---|---|---|
+| The Sun’s central pressure | GM²/R⁴ ≈ 1 × 10¹⁵ Pa | 2.35 × 10¹⁶ Pa (Model S) |
+| The Sun’s central temperature | GMμm/kR ≈ 14 million K | 15.7 million K (Model S) |
+| Its free-fall time | 1/√(Gρ̄) ≈ 54 minutes | 30 minutes |
+| Its Kelvin–Helmholtz time | GM²/RL ≈ 31 million years | 25 million years |
+| A photon’s escape | R²/ℓc ≈ 5,000 years | 10,000 to 170,000 years |
+
+<Callout kind="note" title="In games">
+
+Game developers estimate the same way when budgeting: a million particles at 60 frames a second, each needing a hundred operations, is 6 × 10⁹ operations a second, which a GPU can afford and a single CPU core can’t. Getting the order of magnitude right decides the design before a line of code is written.
+
+</Callout>

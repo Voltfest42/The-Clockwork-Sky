@@ -92,6 +92,11 @@ export function About() {
           1% and 84 parts per million, a limb-darkened transit must match the exact depth at the centre and Mandel and Agol’s small-planet
           formula across the disc, the habitable zone must run from 0.95 to 1.68 AU round the Sun as Kopparapu and colleagues give it, a planted
           wobble or dip must be measured back within its uncertainty, and the census file must hold as many planets as the Archive counted.
+          Since Chapter 20, the stepping solver must give Chandrasekhar’s polytrope constants to every figure he quotes and the exact
+          solutions for n = 0, 1 and 5; every polytrope must obey the virial theorem; Model S must hold itself up, the weight of the gas above
+          each layer equal to the pressure there to 1%; Eddington’s quartic must give radiation 0.04% of the Sun’s pressure; and a contracting
+          ball of gas must account for every joule its gravity releases, heat its gas by exactly as much as it radiates while the gas is
+          ideal, and ignite hydrogen only above about 0.08 solar masses.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -509,6 +514,45 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 20</h3>
+        <ul>
+          <li>
+            <b>Figure 20.1, how hot must the centre be?</b> The Sun’s shells are Model S’s; the rough sums drop the numbers in front and take
+            ionised gas of 0.61 atomic mass units per particle for every star. Jupiter’s centre is from interior models, which disagree on its
+            temperature (20,000–35,000 K).
+          </li>
+          <li>
+            <b>Figure 20.2, the star that heats as it cools.</b> A polytrope of index 1.5 shrinking through balanced states, with exact energy
+            bookkeeping; electrons partly degenerate by Paczyński’s interpolation; a surface temperature from a fit to Baraffe and colleagues’
+            young stars; no real opacity, so its times are Kelvin–Helmholtz estimates; ignition when a simple pp-chain rate could pay for the
+            light. Its dividing line falls at 0.084 solar masses, against detailed models’ 0.075.
+          </li>
+          <li>
+            <b>Figure 20.3, fragmentation.</b> A cloud at exactly 10 K that splits in two at every halving of its Jeans mass; the opacity limit is
+            a published estimate.
+          </li>
+          <li>
+            <b>Figure 20.4, the Lane–Emden solver.</b> Exact to one part in ten billion; polytropes are idealised stars, with one rule for pressure
+            throughout.
+          </li>
+          <li>
+            <b>The core’s map.</b> Its regions show which pressure is largest, from ideal gas, black-body light and electrons at zero temperature;
+            the boundaries are where two are equal, and the change from one to the other is gradual.
+          </li>
+        </ul>
+
+        <h3>Toolkit: Rates of change, Adding up small pieces, and Estimating with orders of magnitude</h3>
+        <ul>
+          <li>
+            <b>Figures T8.1 and T9.1.</b> Model S’s pressure as a smooth curve through its tabulated shells, and its density between them by
+            straight lines.
+          </li>
+          <li>
+            <b>Figure T11.1, the estimate machine.</b> Each estimate keeps how the answer scales and drops the numbers in front; the photon’s
+            escape takes one step length, 1 cm, throughout.
+          </li>
+        </ul>
+
         <h3>Toolkit: Measurements and uncertainty</h3>
         <ul>
           <li>
@@ -765,6 +809,18 @@ export function About() {
             Astronomical Journal 154, 109: the radius valley. J. T. Wright and colleagues (2012), The Astrophysical Journal 753, 160: how
             common hot Jupiters are. JWST Transiting Exoplanet Community ERS Team (2023), Nature 614, 649: carbon dioxide on WASP-39 b. N.
             Madhusudhan and colleagues (2023), The Astrophysical Journal Letters 956, L13: K2-18 b.
+          </li>
+          <li>
+            J. H. Lane (1870), American Journal of Science 50, 57, and R. Emden (1907), <i>Gaskugeln</i>: polytropes. S. Chandrasekhar (1939),{' '}
+            <i>An Introduction to the Study of Stellar Structure</i>, and G. P. Horedt (2004), <i>Polytropes</i>: the Lane–Emden constants. A. S.
+            Eddington (1926), <i>The Internal Constitution of the Stars</i>: the standard model. W. Thomson (1862), Macmillan’s Magazine 5, 388: on
+            the age of the Sun’s heat. C. C. Patterson (1956), Geochimica et Cosmochimica Acta 10, 230: the age of Earth. F. Hoyle (1953), The
+            Astrophysical Journal 118, 513: fragmentation. C. Low and D. Lynden-Bell (1976), Monthly Notices of the Royal Astronomical Society 176,
+            367, and M. J. Rees (1976), 176, 483: the opacity limit. B. Paczyński (1983), The Astrophysical Journal 267, 315: partly degenerate
+            electrons. R. Kippenhahn, A. Weigert and A. Weiss (2012), <i>Stellar Structure and Evolution</i>: the pp chain’s rate. J. R. Dormand and
+            P. J. Prince (1980), Journal of Computational and Applied Mathematics 6, 19: the stepping solver. B. Militzer and colleagues (2016),
+            Journal of Geophysical Research: Planets 121, 1552, and F. Debras and G. Chabrier (2019), The Astrophysical Journal 872, 100: Jupiter’s
+            interior. R. Mitalas and K. R. Sills (1992), The Astrophysical Journal 401, 759: a photon’s escape from the Sun.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

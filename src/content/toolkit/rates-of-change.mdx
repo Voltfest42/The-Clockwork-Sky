@@ -1,0 +1,60 @@
+import { SlopesFigure } from '../../figures/SlopesFigure';
+import { Callout } from '../../site/content/blocks';
+
+Part III is full of equations about how one thing changes with another: how fast pressure falls as you climb out of a star, how steeply a fusion rate climbs with temperature, how fast an orbit shrinks. The tool for all of them is the derivative. This page shows what it means, as a slope and as a speed, the few rules that work most of them out, and the log slope, which says how steeply one thing grows with another.
+
+## A slope and a speed
+
+Drop a ball from a tower 100 metres high. Its height falls slowly at first, then faster: the curve of height against time bends downward. How fast is it falling at 2 seconds? Over the whole fall the average is easy, but the speed changes all the time, so the question is about one instant.
+
+Take a short time either side of 2 seconds, see how far the ball fell, and divide. The shorter the time, the closer the answer gets to one number: 19.6 m/s. That limit is the derivative of height with respect to time, written dh/dt. On the graph it is the slope of the line that just touches the curve at that point, its tangent. Zoom in close enough on any smooth curve and it looks straight: that straight line is the tangent, and its slope is the derivative.
+
+<Callout kind="key">
+
+The derivative dy/dx is the slope of y against x at a point: how much y changes for a small change in x, in the limit of very small changes. If x is time, it is a speed.
+
+</Callout>
+
+<SlopesFigure
+  number="T8.1"
+  tryThis={
+    <p>
+      Slide the point along <b>A falling ball</b>: how does its slope change? Zoom in until the curve and its tangent can’t be told apart. Then switch to <b>The Sun’s
+      pressure</b>: where inside the Sun does the pressure fall fastest?
+    </p>
+  }
+/>
+
+## Small changes
+
+A derivative turns into a tool for estimating. If y changes by dy/dx for every unit of x, a small change Δx changes y by about
+
+Δy ≈ (dy/dx) Δx.
+
+At 2 seconds the ball falls at 19.6 m/s, so in the next tenth of a second it drops about 2 metres. The rule is exact only in the limit, but it is how a computer steps a physical law forward (Toolkit: [Solving by stepping](/toolkit/solving-by-stepping/)), and how Chapter 20 reads the balance in a star: across a thin shell of thickness dr, the pressure changes by dP = −(Gmρ/r²) dr, the weight of the shell.
+
+## The rules
+
+Most derivatives in the course come from three rules.
+
+| Rule | In symbols | Example |
+|---|---|---|
+| Powers | d(xⁿ)/dx = n xⁿ⁻¹ | d(t²)/dt = 2t, so a ball with h = 100 − 4.9t² falls at 9.8t m/s |
+| Products | d(uv)/dx = u dv/dx + v du/dx | the rate of change of a star’s luminosity 4πR²σT⁴ as both R and T change |
+| Chains | d f(g(x))/dx = f′(g) × dg/dx | a planet’s speed squared, v², changes at 2v times its acceleration |
+
+Powers include negative and fractional ones: d(1/r)/dr = −1/r², which is how the gravitational potential −GM/r gives the inverse-square pull, and d(√x)/dx = 1/(2√x).
+
+## The log slope
+
+Many laws in astrophysics are powers: luminosity grows as about the fourth power of mass, a fusion rate as a high power of temperature. The natural question then is not “how fast?” but “how steeply?”: if x grows by 1%, by how many per cent does y grow? That is the log slope,
+
+d ln y / d ln x = (x / y) dy/dx.
+
+For y = k xⁿ it is exactly n, whatever k is: on a log–log plot a power law is a straight line, and the log slope is its slope (Toolkit: [Ratios and scaling](/toolkit/ratios-and-scaling/)). Chapter 22 uses it to say that the pp chain’s rate grows as about T⁴ at the Sun’s centre, and the CNO cycle’s as T¹⁶ to T²⁰, which is why heavier stars, with hotter cores, burn by the CNO cycle.
+
+<Callout kind="note" title="In games">
+
+A game engine meets derivatives every frame: velocity is the derivative of position, acceleration of velocity, and a normal map stores a surface’s slopes so that lighting can be worked out from them. Finite differences, the change between neighbouring samples divided by their spacing, are how a shader estimates a slope from a texture.
+
+</Callout>
