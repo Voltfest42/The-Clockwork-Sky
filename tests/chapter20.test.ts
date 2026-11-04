@@ -140,6 +140,5 @@ describe('the registry', () => {
     for (const slug of ['rates-of-change', 'adding-up-small-pieces', 'estimating-with-orders-of-magnitude']) {
       expect(TOOLKIT.find((t) => t.slug === slug)!.load, slug).toBeDefined();
     }
-    expect(TOOLKIT.find((t) => t.slug === 'differential-equations')!.load).toBeUndefined();
   });
 });

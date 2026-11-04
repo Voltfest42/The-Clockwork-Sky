@@ -4,7 +4,7 @@
 
 ## Status
 
-**Planned** (4 Nov 2026, Stage 17). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. **Agreed** (4 Nov 2026): the defaults for all eleven open questions in §13 stand. **Stage 18 is done** (4 Nov 2026): Chapter 20, Toolkit T8, T9 and T11, the structure core's solver, polytropes, equations of state and contraction sequences, the profile plot and the core's map (deviations in the master plan's Status). Next: Stage 19, Chapter 21 and Toolkit T10.
+**Planned** (4 Nov 2026, Stage 17). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. **Agreed** (4 Nov 2026): the defaults for all eleven open questions in §13 stand. **Stage 18 is done** (4 Nov 2026): Chapter 20, Toolkit T8, T9 and T11, the structure core's solver, polytropes, equations of state and contraction sequences, the profile plot and the core's map (deviations in the master plan's Status). **Stage 19 is done** (4 Nov 2026): Chapter 21 and Toolkit T10, opacities, burning rates, Saha ionisation and the star builder in the stellar worker (its opacity fit and accuracy are in the master plan's Status). Next: Stage 20, Chapter 22.
 
 ---
 

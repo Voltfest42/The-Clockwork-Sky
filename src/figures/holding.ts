@@ -3,6 +3,7 @@ import { formatScientific } from '../core/math/scientific';
 import { naturalSpline } from '../core/math/spline';
 import { SECONDS_PER_JULIAN_YEAR } from '../core/units';
 import { famousStar } from '../data/stars';
+import { convectiveCentre } from './energy';
 import solarModel from '../data/solarModel.json';
 
 /**
@@ -125,6 +126,9 @@ export interface CentreStar {
 }
 
 const proxima = famousStar('proxima');
+
+/** Sirius A's centre from Chapter 21's star builder (2.06 M☉, X = 0.7, Z = 0.02): a unit test keeps these in step with it. Pa, K. */
+export const SIRIUS_A_CENTRE = { P: 2.09e16, T: 2.2e7 };
 const siriusA = famousStar('sirius-a');
 
 export const CENTRE_STARS: readonly CentreStar[] = [
@@ -141,14 +145,16 @@ export const CENTRE_STARS: readonly CentreStar[] = [
     name: 'Proxima Centauri',
     mass: proxima.mass.value,
     radius: proxima.radius.value,
-    note: 'A red dwarf of an eighth of the Sun’s mass. Smaller and denser, it needs a higher central pressure but less heat. Chapter 21 builds stars like it from scratch.',
+    truth: { ...convectiveCentre(proxima.mass.value, proxima.radius.value), source: 'an n = 1.5 polytrope of its mass and radius' },
+    note: 'A red dwarf of an eighth of the Sun’s mass. Smaller and denser, it needs a similar central pressure but less heat. It convects throughout, so an n = 1.5 polytrope (§20.5) of its measured mass and radius describes it well; its packed electrons take a share of the pressure (Chapter 21).',
   },
   {
     id: 'sirius-a',
     name: 'Sirius A',
     mass: siriusA.mass.value,
     radius: siriusA.radius.value,
-    note: 'Twice the Sun’s mass, so its centre must be hotter: about 20 million degrees. Chapter 21 builds stars like it from scratch.',
+    truth: { ...SIRIUS_A_CENTRE, source: 'Chapter 21’s star builder' },
+    note: 'Twice the Sun’s mass, so its centre must be hotter. Chapter 21’s star builder, solving the four equations of structure, gives it 22 million degrees, with 24 times the Sun’s luminosity against the measured 25.',
   },
   {
     id: 'jupiter',

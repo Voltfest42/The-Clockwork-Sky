@@ -96,7 +96,12 @@ export function About() {
           solutions for n = 0, 1 and 5; every polytrope must obey the virial theorem; Model S must hold itself up, the weight of the gas above
           each layer equal to the pressure there to 1%; Eddington’s quartic must give radiation 0.04% of the Sun’s pressure; and a contracting
           ball of gas must account for every joule its gravity releases, heat its gas by exactly as much as it radiates while the gas is
-          ideal, and ignite hydrogen only above about 0.08 solar masses.
+          ideal, and ignite hydrogen only above about 0.08 solar masses. Since Chapter 21, the opacity fits must follow Model S’s within 20%
+          through the Sun’s radiative zone, the burning rates must match Model S’s within 30%, and Saha’s ionisation must leave the Sun’s
+          surface gas neutral; random walks must spread as √N, and light must take 10,000 to 170,000 years to leave the Sun; the star builder
+          must conserve its energy and hold each star up, build today’s Sun within 15% of Model S with its convection zone near 0.71 of the
+          radius, Sirius A within 10% of its measured luminosity and radius, and from 0.8 to 20 solar masses a main sequence within a factor
+          of 1.5 in luminosity of Tout and colleagues’ fits to detailed models; the cannon and the red dwarf must be hit in ten tries or fewer.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -541,6 +546,38 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 21</h3>
+        <ul>
+          <li>
+            <b>Figure 21.1, the random walk.</b> Steps of one length in directions picked evenly; it is the energy that random-walks, not one
+            photon. The Sun’s mean free path is from Model S’s opacity and density, and its escape time treats the radiative zone as pure
+            diffusion.
+          </li>
+          <li>
+            <b>Figure 21.2, what blocks the light.</b> Analytic fits for ionised gas (electron scattering, Kramers’ two laws, H⁻ and a floor for
+            molecules), with Kramers’ correction factor refitted to Model S’s opacities; no iron bump, no ionisation peak near the surface, no
+            conduction.
+          </li>
+          <li>
+            <b>Figure 21.3, convection or not.</b> A parcel of ideal gas with a little drag, its bobbing slowed down; the Sun’s gradients are
+            Model S’s own.
+          </li>
+          <li>
+            <b>Figure 21.4, build a star.</b> The four equations with ideal gas, Saha ionisation for hydrogen and helium, partly degenerate
+            electrons and light; the fitted opacities and textbook pp and CNO rates; convection exactly adiabatic; a grey photosphere. Freshly
+            mixed stars, except today’s Sun, which takes Model S’s hydrogen. Good to tens of per cent from 0.8 solar masses up; red dwarfs come
+            out two to three times too faint.
+          </li>
+        </ul>
+
+        <h3>Toolkit: Differential equations</h3>
+        <ul>
+          <li>
+            <b>Figure T10.1, shooting.</b> Figure 7.1’s cannon, without air; the red dwarf is an n = 1.5 polytrope with Proxima’s mass and radius;
+            corrections are secant steps.
+          </li>
+        </ul>
+
         <h3>Toolkit: Rates of change, Adding up small pieces, and Estimating with orders of magnitude</h3>
         <ul>
           <li>
@@ -821,6 +858,20 @@ export function About() {
             P. J. Prince (1980), Journal of Computational and Applied Mathematics 6, 19: the stepping solver. B. Militzer and colleagues (2016),
             Journal of Geophysical Research: Planets 121, 1552, and F. Debras and G. Chabrier (2019), The Astrophysical Journal 872, 100: Jupiter’s
             interior. R. Mitalas and K. R. Sills (1992), The Astrophysical Journal 401, 759: a photon’s escape from the Sun.
+          </li>
+          <li>
+            K. Schwarzschild (1906), Nachrichten der Königlichen Gesellschaft der Wissenschaften zu Göttingen 1906, 41: radiative equilibrium and
+            convection. H. A. Kramers (1923), Philosophical Magazine 46, 836: absorption by ions. R. Wildt (1939), The Astrophysical Journal 89,
+            295: the H⁻ ion. B. W. Carroll and D. A. Ostlie (2017), <i>An Introduction to Modern Astrophysics</i>, and C. J. Hansen, S. D.
+            Kawaler and V. Trimble (2004), <i>Stellar Interiors</i>: the opacity fits, the fitting method and the textbook star builders. G. M.
+            Caughlan and W. A. Fowler (1988), Atomic Data and Nuclear Data Tables 40, 283, by way of Kippenhahn, Weigert and Weiss: the pp and
+            CNO rates. E. E. Salpeter (1954), Australian Journal of Physics 7, 373: screening. E. Böhm-Vitense (1958), Zeitschrift für
+            Astrophysik 46, 108: mixing-length theory. M. Schwarzschild (1958), <i>Structure and Evolution of the Stars</i>. L. G. Henyey and
+            colleagues (1959), The Astrophysical Journal 129, 628: the relaxation method. C. A. Iglesias and F. J. Rogers (1996), The
+            Astrophysical Journal 464, 943: the OPAL opacities. B. Paxton and colleagues (2011), The Astrophysical Journal Supplement Series 192,
+            3: MESA. S. Basu and H. M. Antia (1997), Monthly Notices of the Royal Astronomical Society 287, 189: the base of the Sun’s convection
+            zone. C. A. Tout, O. R. Pols, P. P. Eggleton and Z. Han (1996), Monthly Notices of the Royal Astronomical Society 281, 257: zero-age
+            main-sequence luminosities and radii.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

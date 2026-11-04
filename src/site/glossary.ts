@@ -302,6 +302,18 @@ export const GLOSSARY = {
     term: 'Degeneracy pressure',
     definition: 'The pressure of particles packed as tightly as quantum physics allows: no two electrons can share a state, so squeezed ones must move fast. It doesn’t depend on temperature.',
   },
+  opacity: {
+    term: 'Opacity',
+    definition: 'How strongly matter blocks light passing through it, as a blocking area per kilogram. Light goes about 1/(opacity × density) between absorptions: a fraction of a millimetre inside the Sun.',
+  },
+  'mean-free-path': {
+    term: 'Mean free path',
+    definition: 'How far something travels, on average, before it hits or is absorbed by something else. For light at the Sun’s centre, about a twentieth of a millimetre.',
+  },
+  adiabatic: {
+    term: 'Adiabatic',
+    definition: 'Without heat flowing in or out, as when a rising parcel of gas expands and cools. If a star’s temperature falls faster with height than that, the gas convects.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

@@ -141,3 +141,65 @@ export function dominantPressure(rho: number, T: number, mix: Mix): Regime {
 export function radiationGasBoundary(T: number, mix: Mix): number {
   return (A_RAD * meanMolecularWeight(mix) * AMU * T ** 3) / (3 * K_B);
 }
+
+/**
+ * The density (kg/m³) at which gas of make-up `mix` at temperature T (K) has
+ * pressure P (Pa): the equation of state turned round, as a star builder needs
+ * it. Ions and electrons are ideal, plus light; with `packed`, the electrons
+ * are partly degenerate (Paczyński's interpolation), found by Newton's method
+ * in ln ρ from the ideal-gas answer, which is the largest the density can be.
+ * NaN when light alone pushes harder than P.
+ */
+export function densityFor(P: number, T: number, mix: Mix, packed = true): number {
+  const gas = P - radiationPressure(T);
+  if (!(gas > 0) || !(T > 0)) return NaN;
+  const ideal = (gas * meanMolecularWeight(mix) * AMU) / (K_B * T);
+  if (!packed) return ideal;
+  const mui = ionMolecularWeight(mix);
+  const mue = electronMolecularWeight(mix);
+  let lnRho = Math.log(ideal);
+  for (let i = 0; i < 40; i++) {
+    const rho = Math.exp(lnRho);
+    const ions = idealPressure(rho, T, mui);
+    const n = electronDensity(rho, mue);
+    const thermal = n * K_B * T;
+    const deg = degeneratePressure(n);
+    const electrons = Math.hypot(thermal, deg);
+    // d P/d ln ρ: ions and hot electrons go as ρ; packed electrons as n dP/dn = n m_e c² x² / 3√(1 + x²).
+    const x = relativityParameter(n);
+    const dDeg = (n * M_E * C * C * x * x) / (3 * Math.sqrt(1 + x * x));
+    const slope = ions + (thermal * thermal + deg * dDeg) / electrons;
+    const step = (ions + electrons - gas) / slope;
+    lnRho -= step;
+    if (Math.abs(step) < 1e-12) break;
+  }
+  return Math.exp(lnRho);
+}
+
+/** The share of the pressure from gas rather than light, β = P_gas / P. */
+export function gasShare(P: number, T: number): number {
+  return Math.max(0, Math.min(1, 1 - radiationPressure(T) / P));
+}
+
+/**
+ * The adiabatic gradient ∇_ad = (∂ ln T / ∂ ln P) at constant entropy, for a
+ * mix of ideal gas and light with gas share β: (8 − 6β)/(32 − 24β − 3β²).
+ * 0.4 for gas alone, 0.25 for light alone. A rising parcel of gas cools at
+ * this rate as it expands; if the star's own temperature falls faster, the
+ * parcel stays warmer than its surroundings and keeps rising: convection.
+ * (Packed electrons that move slower than light also keep 0.4.)
+ */
+export function adiabaticGradient(beta: number): number {
+  return (8 - 6 * beta) / (32 - 24 * beta - 3 * beta * beta);
+}
+
+/**
+ * The first adiabatic exponent Γ₁ = (∂ ln P / ∂ ln ρ) at constant entropy for
+ * ideal gas and light (Chandrasekhar): β + (4 − 3β)²(γ − 1)/(β + 12(γ − 1)(1 − β)),
+ * with γ = 5/3: from 5/3 for gas alone to 4/3 for light alone. How stiffly the
+ * gas resists squeezing; a star whose average Γ₁ falls to 4/3 can't hold itself up.
+ */
+export function gamma1(beta: number): number {
+  const g = 2 / 3;
+  return beta + ((4 - 3 * beta) ** 2 * g) / (beta + 12 * g * (1 - beta));
+}

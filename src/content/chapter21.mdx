@@ -1,0 +1,213 @@
+import { BuildStarFigure } from '../figures/BuildStarFigure';
+import { ConvectionFigure } from '../figures/ConvectionFigure';
+import { OpacityMapFigure } from '../figures/OpacityMapFigure';
+import { RandomWalkFigure } from '../figures/RandomWalkFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { TwoSuns } from './checks/chapter21';
+
+Chapter 20 held a star up: gravity squeezes it, and its centre must be millions of degrees hot to push back. But a hot ball in cold space leaks heat, and the leak is what we see as starlight. This chapter follows the energy out: how slowly light gets through the gas, what blocks it, where the gas gives up on radiation and carries the heat out by convection instead, and how four equations, solved together, make a whole star from its mass and make-up. The answer to the chapter’s last question is a surprise: a star’s brightness is set by its leak, not by its furnace.
+
+The boxes solve differential equations, step by step, with the conditions at both ends of a star; Toolkit: [Differential equations](/toolkit/differential-equations/) shows how.
+
+## A photon’s random walk
+
+Sunlight takes 8.3 minutes to reach us from the Sun’s surface. Getting to the surface takes far longer. Deep inside, the gas is so dense and hot that light goes only a fraction of a millimetre before an electron or an ion absorbs or scatters it, and sends it on, or another photon in its place, in a random direction. The distance between those encounters is the <Term id="mean-free-path">mean free path</Term>, ℓ.
+
+A walk of random steps doesn’t get far. After N steps of length ℓ, the walker is typically only √N ℓ from where it started: forward and backward steps mostly cancel. To get a distance R away takes about (R/ℓ)² steps, so twice as far takes four times as long. With the Sun’s radius and steps of a millimetre, that is some 10²³ steps.
+
+<Callout kind="maths" title="Radiative diffusion">
+
+A random walk with steps of length ℓ at the speed of light spreads out like heat in a bar: a diffusion, with coefficient D = ℓc/3. The time to diffuse from the centre to a radius R, when ℓ changes with depth, is
+
+t = ∫₀<sup>R</sup> r dr / (ℓ c) = (1/c) ∫₀<sup>R</sup> κρ r dr,
+
+which is R²/2ℓc when ℓ is the same everywhere. The same diffusion sets how much energy flows: the luminosity a layer can carry is
+
+L(r) = −(64πr²σT³ / 3κρ) dT/dr.
+
+Light leaks down the temperature slope, and the more opaque the gas (the larger κρ), the steeper the slope it needs to carry the same luminosity.
+
+</Callout>
+
+Model S’s densities and opacities give the mean free path at each depth: 0.05 mm at the centre, about a millimetre halfway out, 2.5 mm at the base of the convection zone. Added up shell by shell, light takes about 31,000 years to random-walk out through the radiative zone; careful published sums give 10,000 to 170,000 years, depending on what they count. Then the convecting gas carries the energy up through the outer 29% of the radius in weeks, and light makes its last 150 million kilometres in 8.3 minutes.
+
+<RandomWalkFigure
+  number="21.1"
+  tryThis={
+    <p>
+      Take a few single steps, then play the walk to 2,000: how far from the start does it end, against √2,000 ≈ 45? Try <b>A new walk</b> a few times.
+      Then pick <b>The Sun</b>: where is the mean free path shortest, and where do the years pile up?
+    </p>
+  }
+/>
+
+It isn’t one photon that makes the trip. Each absorption ends one photon and the hot gas gives out another, usually of a different colour; what random-walks out is the energy. Game engines meet the same physics in skin, wax and marble, where light enters, scatters many times and comes out somewhere else: subsurface scattering, which they often model as diffusion.
+
+## What blocks the light
+
+How opaque the gas is decides everything about how light gets out, and it depends on what the light can do to the gas. Physicists measure it as the <Term id="opacity">opacity</Term> κ, the blocking area per kilogram: a mean free path is 1/κρ. Four processes do most of the blocking in stars.
+
+- **Free electrons scatter light** of every colour, a little each: κ = 0.2(1 + X) cm²/g, 0.35 cm²/g for the Sun’s hydrogen fraction X = 0.74. It is the floor in hot, thin gas, the insides of the heaviest stars.
+- **Ions absorb light.** An ion can swallow a photon to free one of its electrons (bound–free), and a free electron passing an ion can swallow one (free–free). Both are stronger the cooler and denser the gas: Kramers’ law (1923), κ ∝ ρT<sup>−3.5</sup>. Metals, with their many electrons, do much of it, though they are 2% of the gas.
+- **The H⁻ ion** blocks most of the light in cool outer layers, the Sun’s surface among them: a hydrogen atom holding a second electron, so loosely that any visible photon can free it (Rupert Wildt, 1939). It is fragile: it rises steeply with temperature, as T⁹ near 5,000 K, until hydrogen itself ionises.
+- **Molecules and dust** block the light of the coolest stars and of brown dwarfs.
+
+Real opacities come from tables of every atom’s millions of spectral lines (OPAL, 1996, and OP), and textbook laws are rough sketches of them. Through the Sun’s radiative zone, Kramers’ law with its usual correction factor runs from 1.8 times too opaque at the centre to 2.5 times too clear at 2 million degrees, where oxygen and iron still hold some of their electrons. The figures in this chapter refit the factor to Model S’s own opacities, which they then follow within about 20%. The fits also miss the iron bump near 200,000 K, a peak of iron’s absorption that drives the pulsations of some massive stars, as helium’s drives Cepheids’ (Chapter 17).
+
+<OpacityMapFigure
+  number="21.2"
+  tryThis={
+    <p>
+      Follow the white line, the Sun from centre to surface: which source blocks the light at its centre, and which at its surface? Move the
+      cross-hair to the hot, thin top left of the map. Switch to <b>Few metals</b>: which regions shrink? Then pick <b>Along the Sun</b> and
+      compare the textbook fits with the tables.
+    </p>
+  }
+/>
+
+## When convection takes over
+
+Radiation can carry any luminosity, if the temperature falls steeply enough. But gas won’t sit still under too steep a fall. Take a parcel of gas and nudge it upward. It finds lower pressure, expands and cools, without time to trade heat with its neighbours: it cools along the <Term id="adiabatic">adiabat</Term>. If the gas around it is cooler still, because the star’s temperature falls faster with height than the parcel’s does, the parcel is left warmer and lighter than its surroundings, and keeps rising. Gas that has risen sinks elsewhere in its place: the layer <Term id="convection">convects</Term>.
+
+<Callout kind="maths" title="Schwarzschild’s criterion">
+
+Measure how steeply temperature falls by ∇ = d ln T / d ln P, the power of the pressure the temperature follows. A rising parcel follows the adiabatic gradient ∇<sub>ad</sub>, 0.4 for ideal gas of single atoms, less in an ionisation zone, where ionising soaks up the heat of compression. Radiation alone would need
+
+∇<sub>rad</sub> = 3κLP / (16πacGmT⁴),
+
+with a the radiation constant. The gas is stable while ∇<sub>rad</sub> < ∇<sub>ad</sub>, and radiation carries the energy. Where ∇<sub>rad</sub> > ∇<sub>ad</sub> it convects (Karl Schwarzschild, 1906), and convection is so efficient that the temperature then falls almost exactly along the adiabat.
+
+</Callout>
+
+∇<sub>rad</sub> is large where the gas is opaque (large κ) or where a great deal of power crosses a small sphere (large L/m). The first makes the Sun convect: below 2 million degrees its opacity climbs steeply, and from 0.71 of its radius outward radiation can’t keep up. The second makes heavier stars convect in their cores. Above about 1.2 Suns, the CNO cycle, which climbs as the 17th power of temperature or so (Chapter 22), crowds the burning into a small hot core, and so much power pours out of it that radiation can’t carry it. Below about a third of a Sun, cool, dense and opaque, a red dwarf convects throughout.
+
+<ConvectionFigure
+  number="21.3"
+  tryThis={
+    <p>
+      Set the star’s gradient below 0.4 and nudge the parcel: what does it do? Now set it above 0.4. Then slide the cursor across the Sun:
+      where does the actual gradient leave the one radiation needs and sit on the adiabat?
+    </p>
+  }
+/>
+
+Model S shows it directly. From the centre out to 0.712 of the radius, its temperature gradient is exactly the one radiation needs; there the two lines part, ∇<sub>rad</sub> shoots up past a hundred thousand near the surface, and the actual gradient sits on the adiabat, to the three figures shown, until the last few thousandths of the radius. Helioseismology, listening to the Sun’s vibrations (Chapter 15), puts the base of the convection zone at 0.713 ± 0.001 of the radius. Near the surface, where hydrogen and helium are ionising, the adiabat itself dips to 0.1: the gas convects all the more readily, and it is those ionisation zones that set how deep the Sun’s convection reaches.
+
+## Four equations make a star
+
+Put it together. Two equations came from Chapter 20: the mass in each shell, and hydrostatic balance. Two more say what happens to the energy: how much each shell’s burning adds, and how the temperature must fall to carry the total, by radiation or by convection. Three properties of the gas close them: its pressure (the equation of state), its opacity, and its burning rate, which Chapter 22 opens up.
+
+<Callout kind="maths" title="The equations of stellar structure">
+
+dm/dr = 4πr²ρ  (mass)
+
+dP/dr = −Gmρ / r²  (balance)
+
+dL/dr = 4πr²ρε  (energy)
+
+dT/dr = ∇ (T/P) dP/dr, with ∇ = ∇<sub>rad</sub> or ∇<sub>ad</sub>  (transport)
+
+with P(ρ, T, X, Z), κ(ρ, T, X, Z) and ε(ρ, T, X, Z). At the centre, m = 0 and L = 0. At the surface, m = M, and the photosphere has T = T<sub>eff</sub>, with L = 4πR²σT<sub>eff</sub>⁴ and a pressure of about ⅔ g/κ.
+
+</Callout>
+
+Four equations, four unknowns, and conditions at both ends: given its mass and its make-up, a star in balance has only one way to be. This is the Vogt–Russell theorem, after Heinrich Vogt (1926) and Henry Norris Russell (1927). It is why a main sequence is a line, not a smear: stars of one make-up line up by mass.
+
+Solving it is the hard part. Two of the conditions are at the centre and two at the surface, so stepping out from one end alone can’t be done: half of what the start needs isn’t known. Martin Schwarzschild’s fitting method guesses it. Guess the centre’s pressure and temperature, and step out to a point halfway out in mass; guess the radius and luminosity, and step in from the surface to the same point. The two halves won’t agree there, in radius, pressure, luminosity or temperature. Nudge each guess, see how each miss changes, and Newton’s method works out a better set of four. Repeat until they meet, usually in ten tries or so. Toolkit: [Differential equations](/toolkit/differential-equations/) shows the same trick with one guess and a cannon.
+
+<BuildStarFigure
+  number="21.4"
+  tryThis={
+    <p>
+      Play the tries for <b>The young Sun</b>, then look <b>Inside</b>: where does it convect? Pick <b>Today’s Sun</b> and compare with Model S. Now
+      slide the mass up until a convective core appears. Then open the <b>HR diagram</b> and <b>Build a main sequence</b>: does it lie on Gaia’s stars?
+    </p>
+  }
+/>
+
+Built from Model S’s own make-up, with its centre already half burnt to helium, the builder gives today’s Sun 0.88 of its luminosity and 0.87 of its radius, a centre of 15.1 million degrees and 166 g/cm³ against Model S’s 15.7 million and 154, and convection below 0.68 of its radius against 0.71. That is good to about 15%, from a few equations and textbook physics; built fresh, as it was 4.6 billion years ago, the Sun shines with 0.59 of today’s light. Sirius A, at 2.06 Suns, comes out at 24 times the Sun’s luminosity and 1.60 of its radius, against the measured 25 and 1.71. Research codes, MESA among them, solve the same equations in thousands of layers with tabulated opacities and equations of state, every reaction, and the star’s history, by Louis Henyey’s relaxation method (1959), which corrects every layer at once.
+
+<Timeline from={1900} to={2015} chapter={21} only={[21]} title="Radiation, convection and model stars" />
+
+## The thermostat
+
+Here is the surprise. Why does a star of two Suns shine twenty times brighter than the Sun? Not because its furnace is fiercer, in the first place. Its luminosity is set by how fast radiation can leak out of it, and its burning adjusts to match.
+
+<Callout kind="maths" title="Homology: why mass sets brightness">
+
+For stars of the same structure, scaled (homologous), the balance gives P<sub>c</sub> ∝ M²/R⁴ and the gas law T<sub>c</sub> ∝ μM/R. Put them into radiative diffusion, L ∝ R T⁴/κρ with ρ ∝ M/R³:
+
+L ∝ μ⁴ M³ / κ.
+
+The radius cancels: a radiative star’s luminosity depends on its mass, its mean particle mass μ and its opacity, not on its size or its burning. With Kramers’ opacity, L ∝ μ<sup>7.5</sup> M<sup>5.5</sup> R<sup>−0.5</sup>; with electron scattering, L ∝ M³. Real main-sequence stars run between, about M⁴ near the Sun (Chapter 14).
+
+</Callout>
+
+Fusion then follows the luminosity. If the core makes more power than leaks out, it gains heat, expands, cools, and its burning, which rises as T⁴ or faster, slows; if it makes too little, it shrinks and heats up (the virial theorem of Chapter 20) until the burning catches up. The core sits at the temperature at which burning pays exactly for the leak. That is why the Sun’s centre is 15 million degrees and not 30: at 15 million, the pp chain already pays.
+
+The builder can test it. Make the young Sun’s burning ten times faster, and it does not shine ten times brighter: its centre settles 3.7 million degrees cooler, at 9.1 million, and the star is a third fainter, because cooler gas is more opaque. Make the burning ten times slower, and the centre heats up to 18.9 million degrees until it pays.
+
+The thermostat fails in one place: packed gas. In a core held up by degenerate electrons (Chapter 20), the pressure doesn’t depend on the temperature, so a hotter core doesn’t expand. Burning heats it, heat speeds the burning, and the burning runs away: in a red giant’s helium core, the helium flash (Chapter 17); in a white dwarf, a thermonuclear supernova (Chapter 25). Chapter 24 says why packed electrons behave so.
+
+<DeepDive title="Mixing-length theory, and why the Sun’s convection is calibrated">
+
+Convection is turbulent, three-dimensional and far too fast and small to follow in a star’s model. Stellar models replace it with a recipe, Erika Böhm-Vitense’s mixing-length theory (1958): a blob of gas rises a distance ℓ = α<sub>MLT</sub> H<sub>P</sub>, a multiple of the pressure scale height, then dissolves and gives up its heat. From that, the theory says how much hotter the rising gas must be than its surroundings to carry the luminosity, and so how much steeper than the adiabat the temperature falls.
+
+Deep inside the Sun the answer is: hardly at all, by far less than Model S’s numbers here can show, which is why this chapter’s builder simply follows the adiabat. Near the surface, where the gas is thin and loses heat as it rises, convection is inefficient, and the excess becomes large. It is this thin, inefficient layer that sets the adiabat of the whole convection zone below, and so the star’s radius. Nothing in the theory fixes α<sub>MLT</sub>. So modellers calibrate it: they choose α, with the starting helium fraction, so that a model of the Sun has today’s radius and luminosity at its age. The answer is 1.7 to 2, depending on the code (Model S’s is 1.99), and it is then used for every other star, which is one of the larger uncertainties in stellar models, especially for red giants. Three-dimensional simulations of the surface layers are slowly replacing the calibration.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="photon-escape" prompt="How long does the energy made at the Sun’s centre take to reach its surface?">
+    <Choice label="Tens of thousands of years or more" correct>
+      Right. Light random-walks out through the radiative zone, wandering only √N steps in N; Model S gives about 31,000 years, and published sums 10,000 to 170,000. The 8.3 minutes is the trip from the surface to us.
+    </Choice>
+    <Choice label="About 8 minutes">
+      That is the last leg, from the surface to Earth. Inside, light goes a fraction of a millimetre before it is absorbed and sent off in a random direction, so the energy takes tens of thousands of years to diffuse out.
+    </Choice>
+    <Choice label="About 2 seconds, at the speed of light">
+      In empty space light would cross the Sun’s radius in 2.3 seconds, but inside it is absorbed every fraction of a millimetre and sent off in a random direction. The energy takes tens of thousands of years to get out.
+    </Choice>
+  </Question>
+
+  <Question id="what-sets-luminosity" prompt="What sets how bright a main-sequence star is?">
+    <Choice label="How fast radiation can leak out of it: its mass and its opacity" correct>
+      Right. L ∝ μ⁴M³/κ for a radiative star, whatever its radius. The burning adjusts to supply the leak: the thermostat.
+    </Choice>
+    <Choice label="How fast its fusion runs">
+      Fusion follows the leak, not the other way round. Make the burning faster and the core expands, cools and slows it again; in Figure 21.4, ten times the burning rate makes the young Sun a third fainter, not ten times brighter.
+    </Choice>
+    <Choice label="Its size: bigger stars have more surface to shine from">
+      The surface is where the light leaves, but how much arrives there is set by radiation leaking out through the inside. For a radiative star the radius cancels: L ∝ μ⁴M³/κ.
+    </Choice>
+  </Question>
+
+  <Question id="sun-convection" prompt="Where in the Sun does the gas convect?">
+    <Choice label="In its outer 29%, from 0.71 of its radius to the surface" correct>
+      Right. Below 2 million degrees the gas is so opaque that radiation can’t carry the energy; helioseismology puts the base of the convection zone at 0.713 of the radius.
+    </Choice>
+    <Choice label="In its core, where the energy is made">
+      That happens in stars heavier than about 1.2 Suns, whose CNO burning crowds the power into a small core. The Sun’s core is radiative; its outer 29% convects.
+    </Choice>
+    <Choice label="All the way through">
+      Only red dwarfs below about a third of a Sun convect throughout. The Sun convects from 0.71 of its radius outward.
+    </Choice>
+  </Question>
+
+  <Question id="convective-cores" prompt="Why do stars heavier than about 1.2 Suns have convective cores?">
+    <Choice label="Their CNO burning crowds the power into a small, hot core, and radiation can’t carry it all" correct>
+      Right. The CNO cycle climbs as about the 17th power of temperature, so nearly all the power comes from the hottest middle; L/m there is so large that ∇<sub>rad</sub> exceeds ∇<sub>ad</sub>.
+    </Choice>
+    <Choice label="Their cores are more opaque">
+      Hotter cores are less opaque, not more: they are closer to the floor of electron scattering. It is the power crowded into the middle that radiation can’t carry.
+    </Choice>
+    <Choice label="They spin faster">
+      Spin mixes stars a little, but the convective core comes from the burning: the CNO cycle crowds the power into the middle, more than radiation can carry.
+    </Choice>
+  </Question>
+
+  <TwoSuns />
+</CheckYourself>

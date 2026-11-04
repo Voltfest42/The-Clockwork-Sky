@@ -1,6 +1,7 @@
 import { useEffect, useId, useState, useSyncExternalStore } from 'react';
 import { computeStellar, requestKey, type LifeAnswer, type StellarAnswer, type StellarRequest } from '../core/stellar/requests';
 import type { Fate, IsochronePoint } from '../core/stellar/lives';
+import type { StarModel, StarSummary } from '../core/structure/zams';
 
 /**
  * Asks the stellar-evolution worker for an isochrone, a fate curve or a whole
@@ -135,3 +136,11 @@ export const useLife = (mass: number, z: number, wind: number) => useStellar({ k
 /** One star's whole life, or nothing when no star is asked for. */
 export const useLifeOf = (star: { mass: number; z: number; wind: number } | null) =>
   useStellar(star ? { kind: 'life', mass: star.mass, z: star.z, wind: star.wind } : null) as LifeAnswer | null;
+
+/** A star built from the four equations of structure (Figure 21.4), or none. */
+export const useBuiltStar = (r: { mass: number; X: number; Z: number; burning: number; today?: boolean } | null) =>
+  useStellar(r ? { kind: 'star', ...r } : null) as StarModel | null;
+
+/** A main sequence built star by star (Figure 21.4), once asked for. */
+export const useMainSequence = (r: { masses: readonly number[]; X: number; Z: number } | null) =>
+  useStellar(r ? { kind: 'main-sequence', ...r } : null) as StarSummary[] | null;

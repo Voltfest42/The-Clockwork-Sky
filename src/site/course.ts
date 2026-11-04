@@ -379,6 +379,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['A photon’s random walk', 'What blocks the light', 'When convection takes over', 'Four equations make a star', 'The thermostat'],
     buildsOn: [11, 14, 15, 20],
     toolkit: ['differential-equations'],
+    load: () => import('../content/chapter21.mdx'),
   }),
   chapter({
     number: 22,
@@ -563,6 +564,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Equations about change, and how a computer solves them one step at a time.',
     part: 3,
     firstNeeded: 21,
+    load: () => import('../content/toolkit/differential-equations.mdx'),
   },
   {
     slug: 'estimating-with-orders-of-magnitude',

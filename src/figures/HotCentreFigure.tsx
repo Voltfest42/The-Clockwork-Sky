@@ -66,8 +66,9 @@ export function HotCentreFigure({ number, tryThis }: { number: string; tryThis: 
         <p>
           The shells are Model S’s, the Sun as it is today. The rough sums drop every number in front (they are estimates to a factor of ten or
           so) and take fully ionised gas like the Sun’s, 0.61 atomic mass units per particle, for every star. Jupiter’s values are from
-          interior models, which disagree about its centre’s temperature (20,000–35,000 K). Red dwarfs’ and Sirius A’s centres come from
-          models built in Chapter 21.
+          interior models, which disagree about its centre’s temperature (20,000–35,000 K). Proxima’s centre is an n = 1.5 polytrope of its
+          measured mass and radius, with its temperature from the gas laws with packed electrons; Sirius A’s is from Chapter 21’s star builder,
+          good to tens of per cent.
         </p>
       }
     >

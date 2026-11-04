@@ -1,0 +1,54 @@
+import { ShootingFigure } from '../../figures/ShootingFigure';
+import { Callout } from '../../site/content/blocks';
+
+A differential equation is a rule about change: it says how fast something changes, given where it is now. Most of physics is written this way, from a falling ball to the inside of a star, and most of it can’t be solved with a formula. This page shows what such equations say, how a computer solves them by stepping, and the trick for the hard case that every star poses: conditions to meet at both ends.
+
+## Equations about change
+
+A ball falling without air gains 9.8 m/s of speed every second: dv/dt = −g. A cup of tea cools faster the hotter it is than the room: dT/dt = −k(T − T<sub>room</sub>). A star’s pressure falls outward by the weight of each layer: dP/dr = −Gmρ/r². Each says how a quantity changes (its derivative, Toolkit: [Rates of change](/toolkit/rates-of-change/)) in terms of where things stand.
+
+Their **order** is the highest derivative they hold. Newton’s second law is second-order, d²x/dt² = F/m: acceleration, a rate of a rate. A second-order equation is the same as two first-order ones, dx/dt = v and dv/dt = F/m, and computers always take them that way: a list of quantities, the state, and a rule for how each one changes.
+
+A rule of change isn’t enough to say what happens: a falling ball’s rule is the same whether it was dropped from 10 metres or 100. The solution also needs conditions. With all of them at the start (where the ball was, how fast it was going) it is an **initial-value problem**: step forward from there.
+
+<Callout kind="key">
+
+A differential equation gives the change; conditions pick out one solution. With every condition at the start, step forward. With some at each end, it takes a guess.
+
+</Callout>
+
+## Stepping, and how big a step
+
+Toolkit: [Solving by stepping](/toolkit/solving-by-stepping/) stepped orbits forward: new value = old value + rate × step, with better methods (leapfrog, RK4) that look ahead within each step. The size of the step is the craft. Too long and the answer drifts; too short and it costs too much.
+
+An **adaptive** solver chooses for itself. Each step it makes two estimates of different accuracy from the same trial slopes, and their difference is its error. If the error is too big, it takes the step again, shorter; if it is tiny, it lengthens the next one. The Dormand–Prince method behind the course’s star builders does this: in a star it takes long strides through the quiet middle and short ones near the surface, where pressure falls a millionfold in a few thousand kilometres (Chapter 20’s Figure 20.4 shows its steps).
+
+## Conditions at both ends
+
+A star is not an initial-value problem. At its centre, the mass inside and the luminosity are zero, but the pressure and temperature aren’t known. At its surface, the mass inside is the star’s mass and the temperature is the photosphere’s, but the radius and luminosity aren’t known. Half the conditions are at each end: a **boundary-value problem**.
+
+The **shooting method** turns it back into stepping. Guess what’s missing at one end, step to the other, and see how far off you land. Then correct the guess and shoot again. Two misses are enough to aim: draw a straight line through them (guess against miss) and read off the guess that would miss by nothing, the **secant** step. Each try lands closer, and near the answer the error shrinks faster with every one.
+
+<ShootingFigure
+  number="T10.1"
+  tryThis={
+    <p>
+      Watch the first two shots miss, then press <b>Correct from the last two misses</b> until the ball hits. How many tries did it take? Now fire
+      your own speed far off and correct from there. Then pick <b>A red dwarf</b> and do the same with its central density.
+    </p>
+  }
+/>
+
+With more than one guess, the same idea becomes Newton’s method: nudge each guess a little, see how each miss changes, and solve for the corrections that would cancel all the misses together. Chapter 21’s star builder guesses four things, the centre’s pressure and temperature and the surface’s radius and luminosity, and shoots from both ends to a meeting point halfway out.
+
+Research codes such as MESA use a different method, **relaxation** (Henyey’s, from 1959): guess the whole star, every layer at once, and correct all the layers together until every equation holds everywhere. It is steadier for big models and follows a star from one moment of its life to the next.
+
+## Stiff equations, in a sentence
+
+Some systems change on wildly different timescales at once: in a star’s burning, some nuclei react in microseconds while the fuel lasts billions of years. Stepped the ordinary way, the fastest part forces steps of microseconds for the whole life. Such equations are **stiff**, and they are solved by implicit methods, which work out each step from where it ends rather than where it starts, and stay steady with long steps. Chapter 22’s reaction networks are stiff.
+
+<Callout kind="note" title="In games">
+
+Game physics is initial-value stepping, one frame at a time. Shooting turns up where a game must hit a target: a turret’s ballistic aim, or an AI throwing a grenade over a wall, often solved by simulating a few trial arcs and correcting the angle from the miss. Cloth and soft bodies, with their stiff springs, are why engines step them implicitly.
+
+</Callout>
