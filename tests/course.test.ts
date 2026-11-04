@@ -10,6 +10,8 @@ import {
   LABS,
   PARTS,
   partOfPage,
+  partReady,
+  partsComplete,
   RESERVED_PAGES,
   sectionId,
   TOOLKIT,
@@ -36,10 +38,9 @@ describe('the course registry', () => {
     expect(findChapter('keplers-laws')?.number).toBe(6);
   });
 
-  it('gives Part I’s and Part II’s chapters their planned sections, with unique ids', () => {
+  it('gives every chapter its planned sections, with unique ids', () => {
     for (const c of CHAPTERS) {
-      if (c.part !== 3) expect(c.sections.length, `Chapter ${c.number}`).toBeGreaterThanOrEqual(4);
-      else expect(c.sections, `Chapter ${c.number}`).toEqual([]);
+      expect(c.sections.length, `Chapter ${c.number}`).toBeGreaterThanOrEqual(4);
       const ids = c.sections.map(sectionId);
       expect(new Set(ids).size).toBe(ids.length);
       for (const id of ids) expect(id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/);
@@ -49,8 +50,7 @@ describe('the course registry', () => {
 
   it('builds only on earlier chapters, and every planned chapter says what it builds on', () => {
     for (const c of CHAPTERS) {
-      if (c.part !== 3) expect(c.buildsOn, `Chapter ${c.number}`).toBeDefined();
-      else expect(c.buildsOn, `Chapter ${c.number}`).toBeUndefined();
+      expect(c.buildsOn, `Chapter ${c.number}`).toBeDefined();
       for (const n of c.buildsOn ?? []) {
         expect(n).toBeLessThan(c.number);
         expect(n).toBeGreaterThanOrEqual(1);
@@ -60,6 +60,8 @@ describe('the course registry', () => {
     expect(findChapter('the-stars-are-suns')?.buildsOn).toEqual([1, 6, 7]);
     expect(findChapter('light-the-messenger')?.buildsOn).toEqual([1, 9]);
     expect(findChapter('other-worlds')?.buildsOn).toEqual([7, 12, 14]);
+    expect(findChapter('holding-a-star-up')?.buildsOn).toEqual([7, 15, 16, 17]);
+    expect(findChapter('colliding-galaxies')?.buildsOn).toEqual([7, 27, 30]);
   });
 
   it('links chapters and Toolkit pages both ways', () => {
@@ -77,6 +79,32 @@ describe('the course registry', () => {
       ['Logarithms and magnitudes', 11],
       ['Measurements and uncertainty', 14],
     ]);
+    // Part III's: three first needed in Chapter 20, then Chapter 21 and Chapter 26.
+    expect(TOOLKIT.filter((t) => t.part === 3).map((t) => [t.title, t.firstNeeded])).toEqual([
+      ['Vectors', 26],
+      ['Rates of change', 20],
+      ['Adding up small pieces', 20],
+      ['Differential equations', 21],
+      ['Estimating with orders of magnitude', 20],
+    ]);
+  });
+
+  it('says which parts are complete, for the coming-soon pages', () => {
+    const done = PARTS.filter(partReady);
+    const sentence = partsComplete();
+    if (done.length === 0) expect(sentence).toBeNull();
+    else {
+      expect(sentence).toMatch(done.length === 1 ? /^Part [IV]+ is complete$/ : /^Parts [IV, ]+ and [IV]+ are complete$/);
+      for (const p of done) expect(sentence).toContain(p.numeral);
+    }
+  });
+
+  it('gives every part its outcomes and reading time', () => {
+    for (const p of PARTS) {
+      expect(p.outcomes?.length, p.slug).toBeGreaterThanOrEqual(10);
+      expect(p.minutes, p.slug).toMatch(/^about \d+–\d+ minutes each$/);
+    }
+    expect(findPart('part-3')?.outcomes).toHaveLength(chaptersOf(3).length);
   });
 
   it('gives each part its lab: the Orrery after Part I, the Star Forge after Part II, both upgraded in Part III', () => {

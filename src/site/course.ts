@@ -7,9 +7,8 @@ import { slugify } from './router';
  * the Toolkit pages and the labs. The sidebar, the part pages, "Builds on" lines,
  * "Next chapter" links and reading progress all read from here.
  *
- * Parts I and II are planned in detail (docs/part1/plan.md, docs/part2/plan.md),
- * so their chapters list their sections. Part III is an outline (docs/plan.md §3):
- * its chapters get sections and "Builds on" links in its planning stage.
+ * All three parts are planned in detail (docs/part1/plan.md, docs/part2/plan.md,
+ * docs/part3/plan.md), so every chapter lists its sections and what it builds on.
  */
 
 export type PartNumber = 1 | 2 | 3;
@@ -148,6 +147,21 @@ export const PARTS: readonly PartInfo[] = [
       text: 'When the fuel runs out, stranger forces take over. Quantum (degeneracy) pressure holds up white dwarfs and neutron stars, up to a limit. Beyond that limit nothing can, and the result is a black hole.',
     },
     startHere: 'Start here if you know some physics.',
+    outcomes: [
+      'why a star’s centre must be millions of degrees hot, and why a star heats up as it loses energy;',
+      'how energy gets out of a star, and why its mass sets how brightly it shines;',
+      'how stars fuse at “only” millions of degrees, and how they burn hydrogen, helium and heavier fuels;',
+      'where the chemical elements were made, from carbon to gold and uranium;',
+      'what holds up a white dwarf, and why none can be much heavier than 1.4 Suns;',
+      'how massive stars collapse and explode, and what makes a supernova shine for months;',
+      'what neutron stars are made of, and why pulsars are nature’s best clocks;',
+      'what happens near a black hole, and why black holes power the brightest things known;',
+      'why stars in pairs lead strange lives, and where cataclysmic variables, X-ray binaries and merging black holes come from;',
+      'what gravitational waves are, and what hundreds of collisions have taught us;',
+      'how star clusters dissolve, how the Milky Way turns, and why we think most of its mass is dark;',
+      'what happens when galaxies collide, and whether the Milky Way will merge with Andromeda.',
+    ],
+    minutes: 'about 30–40 minutes each',
     labs: [
       { slug: 'orrery', version: 2 },
       { slug: 'star-forge', version: 2 },
@@ -352,72 +366,110 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     part: 3,
     title: 'Holding a star up',
     blurb: 'Hydrostatic equilibrium, the virial theorem, the Kelvin–Helmholtz timescale and the age-of-the-Sun puzzle, Jeans collapse, and polytropes.',
+    sections: ['Weight and pressure', 'Losing energy, getting hotter', 'Kelvin’s clock', 'Why clouds make many stars', 'A star from one equation'],
+    buildsOn: [7, 15, 16, 17],
+    toolkit: ['rates-of-change', 'adding-up-small-pieces', 'estimating-with-orders-of-magnitude'],
   }),
   chapter({
     number: 21,
     part: 3,
     title: 'Getting the energy out',
     blurb: 'A photon’s random walk, opacity, convection and when it starts, and the four equations of stellar structure.',
+    sections: ['A photon’s random walk', 'What blocks the light', 'When convection takes over', 'Four equations make a star', 'The thermostat'],
+    buildsOn: [11, 14, 15, 20],
+    toolkit: ['differential-equations'],
   }),
   chapter({
     number: 22,
     part: 3,
     title: 'The nuclear furnace',
     blurb: 'Quantum tunnelling and the Gamow peak, the pp chains and the CNO cycle, triple-alpha, the late burning stages and neutrino cooling.',
+    sections: ['Too cold for fusion', 'The Gamow peak', 'Four protons make helium', 'Hoyle’s resonance', 'The last days of a massive star'],
+    buildsOn: [12, 15, 20, 21],
+    toolkit: ['estimating-with-orders-of-magnitude'],
   }),
   chapter({
     number: 23,
     part: 3,
     title: 'Where the elements come from',
     blurb: 'Binding energy and the iron peak, slow and rapid neutron capture, and the origin of every element.',
+    sections: ['The iron peak', 'Slow neutron captures', 'Rapid neutron captures', 'Every element’s birthplace'],
+    buildsOn: [12, 18, 22],
   }),
   chapter({
     number: 24,
     part: 3,
     title: 'Matter at its limit',
     blurb: 'Degeneracy pressure, white dwarfs (heavier ones are smaller), the Chandrasekhar mass, and white dwarfs that cool and crystallise.',
+    sections: ['Packed electrons', 'Heavier is smaller', 'Chandrasekhar’s limit', 'Embers that crystallise'],
+    buildsOn: [18, 20, 22],
   }),
   chapter({
     number: 25,
     part: 3,
     title: 'Stellar explosions',
     blurb: 'Core collapse and the neutrinos of SN 1987A, the types of supernova, light curves powered by radioactive nickel, and pair-instability supernovae.',
+    sections: ['A core that can’t hold', 'The kinds of supernova', 'White dwarfs that explode', 'Light from radioactive nickel', 'Stars that leave nothing behind'],
+    buildsOn: [18, 22, 23, 24],
   }),
   chapter({
     number: 26,
     part: 3,
     title: 'Neutron stars',
     blurb: 'Their structure and maximum mass, pulsars as clocks, spin-down, and magnetars.',
+    sections: ['A nucleus the size of a city', 'The heaviest neutron star', 'Lighthouses', 'Clocks that slow down', 'Magnetars'],
+    buildsOn: [18, 24, 25],
+    toolkit: ['vectors'],
   }),
   chapter({
     number: 27,
     part: 3,
     title: 'Black holes',
     blurb: 'Horizons, orbits and light near a black hole, accretion discs and jets, X-ray binaries, and imaging the shadow.',
+    sections: ['Where escape needs light speed', 'Orbits near a black hole', 'Light near a black hole', 'The brightest engines', 'Seeing the shadow'],
+    buildsOn: [7, 10, 18, 26],
+    toolkit: ['vectors'],
   }),
   chapter({
     number: 28,
     part: 3,
     title: 'Two stars are stranger than one',
     blurb: 'The Roche potential, mass transfer and what it does to the orbit, the Algol paradox, common envelopes, and the binary zoo.',
+    sections: ['The Roche potential', 'Mass transfer changes the orbit', 'The Algol paradox', 'Common envelopes', 'The binary zoo'],
+    buildsOn: [7, 14, 17, 24, 26],
+    toolkit: ['vectors'],
   }),
   chapter({
     number: 29,
     part: 3,
     title: 'Ripples in spacetime',
     blurb: 'Gravitational waves: the Hulse–Taylor pulsar, LIGO’s detections, chirps, neutron-star mergers and kilonovae.',
+    sections: ['A clock in orbit', 'What a gravitational wave is', 'The chirp', 'Hundreds of collisions', 'Merging neutron stars'],
+    buildsOn: [26, 27, 28],
   }),
   chapter({
     number: 30,
     part: 3,
     title: 'Crowds of stars',
-    blurb: 'Star clusters and how they evaporate, the Milky Way’s structure, the rotation curve and dark matter, and the black hole at the centre.',
+    blurb: 'Star clusters and how they evaporate, the Milky Way’s shape, the rotation curve and dark matter, spiral arms, and the black hole at the centre.',
+    sections: [
+      'A cluster is a gas of stars',
+      'Clusters evaporate',
+      'The shape of the Milky Way',
+      'The rotation curve',
+      'Spiral arms',
+      'The black hole at the centre',
+    ],
+    buildsOn: [7, 9, 17, 27],
+    toolkit: ['vectors'],
   }),
   chapter({
     number: 31,
     part: 3,
     title: 'Colliding galaxies',
-    blurb: 'Tidal tails and bridges, galaxy mergers, active nuclei, and the door to cosmology.',
+    blurb: 'Tidal tails and bridges, why stars don’t collide when galaxies do, the Milky Way and Andromeda, active nuclei, and the door to cosmology.',
+    sections: ['Bridges and tails', 'Stars don’t collide', 'The Milky Way and Andromeda', 'Engines in the middle', 'The door to cosmology'],
+    buildsOn: [7, 27, 30],
     optional: true,
   }),
 ];
@@ -483,6 +535,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Vectors',
     blurb: 'Quantities with a direction: adding and scaling them, and the dot and cross products.',
     part: 3,
+    firstNeeded: 26,
   },
   {
     slug: 'rates-of-change',
@@ -490,6 +543,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Rates of change',
     blurb: 'Derivatives as slopes and speeds, and the few rules you need to work them out.',
     part: 3,
+    firstNeeded: 20,
   },
   {
     slug: 'adding-up-small-pieces',
@@ -497,6 +551,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Adding up small pieces',
     blurb: 'Integrals as sums of thin slices: a star’s mass from its density, energy from power.',
     part: 3,
+    firstNeeded: 20,
   },
   {
     slug: 'differential-equations',
@@ -504,6 +559,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Differential equations',
     blurb: 'Equations about change, and how a computer solves them one step at a time.',
     part: 3,
+    firstNeeded: 21,
   },
   {
     slug: 'estimating-with-orders-of-magnitude',
@@ -511,6 +567,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     title: 'Estimating with orders of magnitude',
     blurb: 'Back-of-the-envelope physics: getting within a factor of ten, and why that is often enough.',
     part: 3,
+    firstNeeded: 20,
   },
 ];
 
@@ -530,7 +587,8 @@ export const LABS: readonly LabInfo[] = [
       {
         version: 2,
         part: 3,
-        summary: 'Star clusters, colliding galaxies, a correction for general relativity, and the fate of the planets as the Sun swells and loses mass.',
+        summary:
+          'Star clusters with every star pulling on every other, colliding galaxies of up to 100,000 stars, general relativity’s correction (Mercury’s extra 43″ a century), and the planets’ fate as the Sun swells and loses mass.',
       },
     ],
     load: () => import('../lab/orrery/Orrery'),
@@ -550,7 +608,8 @@ export const LABS: readonly LabInfo[] = [
       {
         version: 2,
         part: 3,
-        summary: 'Pairs of stars: mass transfer, common envelopes, mergers and supernova kicks, with the outcome classified.',
+        summary:
+          'Pairs of stars: Roche lobes, mass transfer, common envelopes, mergers and supernova kicks, with the outcome classified, from Algols to merging black holes.',
       },
     ],
     load: () => import('../lab/starForge/StarForge'),
@@ -575,6 +634,14 @@ export function chaptersOf(part: PartNumber): readonly ChapterInfo[] {
 /** Whether a part is out: every one of its chapters is written. Until then the start page shows it as coming soon. */
 export function partReady(part: PartInfo): boolean {
   return chaptersOf(part.number).every((c) => c.load !== undefined);
+}
+
+/** "Part I is complete", "Parts I and II are complete", or null before any part is: for the coming-soon pages. */
+export function partsComplete(): string | null {
+  const done = PARTS.filter(partReady).map((p) => p.numeral);
+  if (done.length === 0) return null;
+  if (done.length === 1) return `Part ${done[0]} is complete`;
+  return `Parts ${done.slice(0, -1).join(', ')} and ${done[done.length - 1]} are complete`;
 }
 
 export function findPart(slug: string): PartInfo | undefined {

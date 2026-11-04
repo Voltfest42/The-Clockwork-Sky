@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { CHAPTERS, chaptersOf, LABS, partNumbered, PARTS, partReady, TOOLKIT } from '../src/site/course';
+import { CHAPTERS, chaptersOf, LABS, partNumbered, PARTS, partReady, partsComplete, TOOLKIT } from '../src/site/course';
 import { GLOSSARY } from '../src/site/glossary';
 import { href } from '../src/site/router';
 import { accessibilityViolations, expectNoBrokenFigures, watchErrors } from './helpers';
@@ -80,13 +80,25 @@ test('Part II’s page lists its chapters, the lab and what readers will be able
   await expect(main.getByText('0 of 10 read')).toBeVisible();
 });
 
+test('Part III’s page lists its chapters, both labs and what readers will be able to explain', async ({ page }) => {
+  await page.goto('/part-3/');
+  await expect(page.getByRole('heading', { level: 1, name: 'The Engine Room' })).toBeVisible();
+  const main = page.locator('main');
+  for (const c of chaptersOf(3)) await expect(main.getByRole('link', { name: new RegExp(`Chapter ${c.number} .*${c.title}`) })).toBeVisible();
+  await expect(main.getByText('what holds up a white dwarf, and why none can be much heavier than 1.4 Suns;')).toBeVisible();
+  await expect(main.getByText('20–31, about 30–40 minutes each')).toBeVisible();
+  await expect(main.getByText('0 of 12 read')).toBeVisible();
+  await expect(main.getByText('is planned in outline')).toHaveCount(0);
+});
+
 test('a planned chapter shows what it builds on and its planned sections, numbered', async ({ page }) => {
-  for (const chapter of [...chaptersOf(1), ...chaptersOf(2)].filter((c) => !c.load)) {
+  for (const chapter of CHAPTERS.filter((c) => !c.load)) {
     await page.goto(href(chapter.slug));
     const main = page.locator('main');
     await expect(main.getByRole('heading', { level: 1, name: chapter.title })).toBeVisible();
     await expect(main.getByText(`Part ${partNumbered(chapter.part).numeral} · Chapter ${chapter.number}`)).toBeVisible();
     await expect(main.getByText('Builds on:')).toBeVisible();
+    await expect(main.getByText(`one part at a time; ${partsComplete()}.`)).toBeVisible();
     for (const [i, title] of chapter.sections.entries()) {
       await expect(main.getByRole('listitem').filter({ hasText: `${chapter.number}.${i + 1} ${title}` })).toHaveCount(1);
     }

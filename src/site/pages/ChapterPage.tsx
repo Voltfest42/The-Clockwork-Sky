@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useRef } from 'react';
-import { chapterNumbered, partNumbered, sectionId, type ChapterInfo } from '../course';
+import { chapterNumbered, partNumbered, partsComplete, sectionId, type ChapterInfo } from '../course';
 import { mdxComponents } from '../content/mdxComponents';
 import { chapterContent } from '../pageContent';
 import { markChapterRead } from '../progress';
@@ -55,10 +55,11 @@ export function ChapterPage({ chapter, section }: { chapter: ChapterInfo; sectio
 /** A chapter that isn't written yet: what it will cover, as far as it is planned. */
 function PlannedChapter({ chapter }: { chapter: ChapterInfo }) {
   const part = partNumbered(chapter.part);
+  const complete = partsComplete();
   return (
     <div className={contentStyles.prose}>
       <p>
-        <SoonTag /> This chapter isn’t written yet. The course is being built one part at a time; Part I is complete.
+        <SoonTag /> This chapter isn’t written yet. The course is being built one part at a time{complete ? `; ${complete}.` : '.'}
       </p>
       {chapter.sections.length > 0 ? (
         <>

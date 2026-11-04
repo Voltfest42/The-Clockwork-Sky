@@ -387,7 +387,25 @@
 - A Stage 15 property test (a transit never brightens the star) failed once on a rare sample, missing its bound by 7 × 10⁻¹⁸; it now allows for round-off.
 - Tests: 1,035 unit tests (new: the age grid and the coarse isochrone) and 235 end-to-end tests (the reading-progress test now checks the sidebar tick's place and size).
 
-**Next: Stage 17, Part III research and detailed plan** (master plan §11): a research brief and a plan for Part III (Chapters 20–31, the BSE and many-body engines, both labs' version 2), including whether Chapter 31 stays, then your agreement before Stage 18 builds anything.
+**Stage 17 (Part III research and plan) is done** (4 Nov 2026).
+- **The research brief** ([part3/research.md](part3/research.md)): what readers believe at this level (thinner research than for Parts I and II: tunnelling, relativity's rubber sheet, negative heat capacity, black holes that "suck") and the figure that meets each wrong idea; the facts for every chapter, marked checked, standard, to verify or computed (the Gamow peaks, the Chandrasekhar mass, the n = 3 Sun, spin-down numbers, the Hulse–Taylor merger time, S2's mass and precession, recomputed by a script); the labs' engines; data and licences; algorithms; a timeline, a glossary and readers' questions.
+- **The plan** ([part3/plan.md](part3/plan.md)): twelve chapters with 32 key figures, 13 smaller and 3 stretch; Toolkit T7–T11; the Star Forge v2 (binaries on a BSE port) and the Orrery v2 (clusters, galaxies, general relativity, the Sun's death); the building blocks (a structure core, the core's map, the profile plot, the chart of nuclides, the potential and particle views); the data pipeline; what's simplified; Stages 18–29; risks; and eleven open questions with my defaults.
+- **The registry** (`course.ts`): Part III's outcomes and reading time (about 30–40 minutes a chapter), its chapters' sections, "Builds on" lines and Toolkit links (T8, T9 and T11 first needed in Chapter 20, T10 in 21, T7 in 26), new blurbs for Chapters 30 and 31, and both labs' version-2 summaries, so the Part III page and the coming-soon pages show the plan. Chapter titles, and so addresses, are unchanged.
+- **Fixed on the way**: the coming-soon pages still said "Part I is complete"; they now say which parts are complete, from the registry (`partsComplete()`), so the sentence keeps itself right.
+- **Tests:** the registry test now expects sections and "Builds on" for every chapter, checks Part III's Toolkit pages, every part's outcomes and reading time, and the coming-soon sentence; a new end-to-end test checks Part III's page; the planned-chapter test runs over every unwritten chapter (now Part III's twelve) and checks the sentence. 1,037 unit tests, lint, the type-check and the build pass, and the 27 site, search-engine and hydration end-to-end tests pass (desktop and phone). They ran on ports 4275 and 4277: Windows no longer reserves 4093–4192 here, but another project's preview server held 4175, and Playwright's `reuseExistingServer` would have tested that site instead.
+
+**Decisions and deviations in Stage 17**
+- **Twelve stages for Part III, not ten**: its figures are engines (a stellar-structure solver, reaction networks, a toy r-process, white-dwarf and neutron-star solvers, toy collapse hydrodynamics, geodesics, BSE, chirps, direct n-body, restricted galaxies), so most stages take one chapter. Chapters 24–25 and 26–27 are paired; Chapter 31 has a stage of its own that goes if it is cut (§11 below; Part III plan §11).
+- **Chapter 31 stays by default**, optional, ending at the door to cosmology without teaching it: its engine is the one the Orrery v2's galaxy mode needs anyway, so the extra cost is its text and two figures (Part III plan §13, question 1).
+- **The ATNF Pulsar Catalogue states no open licence** (checked): its data "remain the property of" ATNF/CSIRO, free "for bona fide research purposes", under CSIRO's legal notice, whose site-wide terms ask for consent beyond personal and research use. Figure 26.4 needs ATNF's permission for the full catalogue (v2.9.0, 6 Oct 2026, 4,503 pulsars), with about sixty famous pulsars from their papers as the fallback (question 2).
+- **GWOSC's data are CC BY 4.0** (checked), so the merger census (GWTC-5.0, 26 May 2026: 390 candidates; GWOSC lists 391) and GW150914's strain can ship with its acknowledgement.
+- **Nuclear data:** the IAEA's terms allow adapting and copying for teaching with acknowledgement, and its LiveChart API serves every ground state (checked); KADoNiS v0.3 is online with downloads (checked).
+- **BSE shares SSE's routines unchanged**: AMUSE's BSE at commit 9f8c7af, the SSE fixtures' commit, has byte-identical copies of hrdiag, star, zfuncs, zcnsts, mlwind, mrenv, deltat and evolv1 (checked by `diff -w`), so the port is the binary routines alone, about 3,600 lines of Fortran with `evolv2.f` at 2,340. Its `binary.in` sets α = 3 and eddfac = 10 where `bse.f`'s comments call 1.0 normal (question 4).
+- **The Solar System showcase's question is engulfment, not escape**: whether the red-giant Sun swallows Earth depends on its mass loss and its tides (Schröder & Smith 2008); §4 below is corrected.
+- **Facts checked for the plan**: GWTC-5.0's counts; O4 ended 18 Nov 2025; GW250114's signal-to-noise of 80 and the area law; GW231123's 190–265 M☉; the Milky Way–Andromeda merger at about even odds (Sawala et al. 2025); the rotation-curve debate (Ou et al. 2024; Jiao et al. 2023; a 2026 review); M87\*'s polarisation flip (2025); the double detonation in SNR 0509−67.5 (2025); JWST's evidence for SN 1987A's neutron star; NICER's 11.4 km for J0437−4715 and its 2025 reanalysis; Solar Fusion III's S₁₁(0); the Hulse–Taylor ratio 0.9983 ± 0.0016 and the double pulsar's 1.3 × 10⁻⁴; Gaia DR4 still due on 2 Dec 2026; T Coronae Borealis still quiet; WebGPU in Chrome, Edge, Safari 26 and Firefox on Windows and Apple-silicon Macs, not yet Firefox on Linux or Android.
+- Section titles avoid "boiling" for convection, as Stage 16b asked.
+
+**Next: your agreement on the Part III plan's open questions** ([part3/plan.md](part3/plan.md) §13), then **Stage 18: Chapter 20 and Toolkit T8, T9 and T11** (the structure core, the profile plot and the core's map).
 
 ## Decisions so far
 
@@ -477,7 +495,7 @@ Answers stay in the browser, and no scores are sent anywhere.
 
 ## 3. The course map
 
-Parts I and II are planned in detail in [part1/plan.md](part1/plan.md) and [part2/plan.md](part2/plan.md); Part II's rows below list the key figures that plan settled on. Part III is outlined here and will be refined, and probably trimmed, in its planning stage. ★ marks the (candidate) key figures.
+All three parts are planned in detail, in [part1/plan.md](part1/plan.md), [part2/plan.md](part2/plan.md) and [part3/plan.md](part3/plan.md); Part II's and Part III's rows below list the key figures those plans settled on. ★ marks the key figures.
 
 ### Part I · The Clockwork (beginner): the sky and the Solar System
 
@@ -522,21 +540,21 @@ Parts I and II are planned in detail in [part1/plan.md](part1/plan.md) and [part
 
 | Ch | Title | What it covers | Candidate key figures |
 |---|---|---|---|
-| 20 | Holding a star up | Hydrostatic equilibrium; the virial theorem (a star heats up as it shrinks); the Kelvin–Helmholtz timescale and the 19th-century age-of-the-Sun puzzle; Jeans collapse; polytropes | ★ Lane–Emden solver: build a polytrope and compare it with the Sun's real profile |
-| 21 | Getting the energy out | Radiative diffusion (a photon's random walk), opacity, convection and when it starts, the four structure equations | ★ A star built from the equations: mass and composition in, structure and luminosity out, and the mass–luminosity relation emerges |
-| 22 | The nuclear furnace | Why fusion needs quantum tunnelling, the Gamow peak, the pp chains and the CNO cycle, triple-alpha and Hoyle's resonance, the late burning stages, neutrino cooling | ★ The Gamow peak; the last days of a massive star |
-| 23 | Where the elements come from | Binding energy and the iron peak; slow and rapid neutron capture (giant stars, neutron-star mergers); the origin of every element | ★ Neutron captures step by step on the chart of nuclides (s-process against r-process) |
-| 24 | Matter at its limit | Degeneracy pressure, white dwarfs (heavier ones are smaller), the Chandrasekhar mass, cooling and crystallizing white dwarfs | ★ Build a white dwarf: its radius shrinks to nothing at the limit |
-| 25 | Stellar explosions | Core collapse and the neutrinos of SN 1987A, supernova types, thermonuclear supernovae, light curves powered by radioactive nickel, pair-instability supernovae | ★ A supernova's light curve from radioactive decay |
-| 26 | Neutron stars | Structure and maximum mass, pulsars as clocks, spin-down, magnetars | ★ The P–Ṗ diagram of real pulsars; the pulsar lighthouse |
-| 27 | Black holes | Horizons; orbits and light near a black hole; accretion disks and their efficiency; jets; X-ray binaries; imaging the shadow | ★ Orbits near a black hole, computed with general relativity; *(stretch)* a ray-traced black hole |
-| 28 | Two stars are stranger than one | The Roche potential, mass transfer and what it does to the orbit, the Algol paradox, common envelopes, the binary zoo (novae, X-ray binaries, blue stragglers, Type Ia progenitors) | ★ Roche potential explorer; ★ the Algol paradox, step by step |
-| 29 | Ripples in spacetime | Gravitational waves: the Hulse–Taylor pulsar, LIGO's detections, chirps and chirp mass, neutron-star mergers and kilonovae, the black-hole mass gap | ★ Make a chirp, and hear it |
-| 30 | Crowds of stars | Star clusters and how they evolve and evaporate, the Milky Way's structure, the rotation curve and the evidence for dark matter, spiral arms, Sagittarius A\* weighed by the stars that orbit it | ★ A cluster evaporates (n-body); ★ the rotation curve; S2's orbit |
-| 31 | *(optional)* Colliding galaxies | Toomre's tidal tails and bridges, galaxy mergers, active nuclei, and the door to cosmology | ★ Galaxy collision with 100,000 stars |
-| Labs | **Version 2 of both** | Binary stars in the Star Forge; star clusters, galaxy collisions and the Sun's death in the Orrery (§4) | |
+| 20 | Holding a star up | Hydrostatic equilibrium; the virial theorem (a star heats up as it shrinks); the Kelvin–Helmholtz timescale and the 19th-century age-of-the-Sun puzzle; Jeans collapse and fragmentation; polytropes | ★ The star that heats as it cools; ★ Lane–Emden solver against the Sun's real profile |
+| 21 | Getting the energy out | Radiative diffusion (a photon's random walk), opacity, convection and when it starts, the four structure equations, the thermostat | ★ The random walk; ★ convection or not (Model S); ★ build a star: mass and composition in, structure and luminosity out, and the mass–luminosity relation emerges |
+| 22 | The nuclear furnace | Why fusion needs quantum tunnelling, the Gamow peak, the pp chains and the CNO cycle, triple-alpha and Hoyle's resonance, the late burning stages, neutrino cooling | ★ The Gamow peak; ★ the pp chains and the CNO cycle; ★ the last days of a massive star, on the core's map |
+| 23 | Where the elements come from | Binding energy and the iron peak; slow and rapid neutron capture (giant stars, neutron-star mergers); the origin of every element | ★ The chart of nuclides; ★ neutron captures step by step (s-process against r-process); ★ every element's birthplace |
+| 24 | Matter at its limit | Degeneracy pressure, white dwarfs (heavier ones are smaller), the Chandrasekhar mass, cooling and crystallising white dwarfs | ★ Filling the Fermi sea; ★ build a white dwarf: its radius shrinks to nothing at the limit |
+| 25 | Stellar explosions | Core collapse and the neutrinos of SN 1987A, supernova types, thermonuclear supernovae, light curves powered by radioactive nickel, pair-instability supernovae | ★ Collapse and bounce (a toy); ★ a supernova's light curve from radioactive decay; ★ the pair-instability wedge |
+| 26 | Neutron stars | Structure and maximum mass, pulsars as clocks, spin-down, magnetars | ★ Build a neutron star (TOV); ★ the pulsar lighthouse; ★ the P–Ṗ diagram |
+| 27 | Black holes | Horizons; orbits and light near a black hole; accretion discs and their efficiency; jets; X-ray binaries; imaging the shadow | ★ Orbits near a black hole, computed with general relativity; ★ the accretion disc; *(stretch)* a ray-traced black hole |
+| 28 | Two stars are stranger than one | The Roche potential, mass transfer and what it does to the orbit, the Algol paradox, common envelopes, the binary zoo (novae, X-ray binaries, blue stragglers, Type Ia progenitors) | ★ Roche potential explorer; ★ the Algol paradox, step by step; ★ the binary zoo (a BSE outcome map) |
+| 29 | Ripples in spacetime | Gravitational waves: the Hulse–Taylor pulsar, LIGO's detections, chirps and chirp mass, neutron-star mergers and kilonovae, the black-hole mass gap | ★ The shrinking orbit; ★ make a chirp, and hear it; ★ the merger census |
+| 30 | Crowds of stars | Star clusters and how they evolve and evaporate, the Milky Way's structure, the rotation curve and the evidence for dark matter, spiral arms, Sagittarius A\* weighed by the stars that orbit it | ★ A cluster evaporates (n-body); ★ the rotation curve; ★ S2's orbit |
+| 31 | *(optional)* Colliding galaxies | Toomre's tidal tails and bridges, why stars don't collide, the Milky Way and Andromeda, active nuclei, and the door to cosmology | ★ Galaxy collision with 100,000 stars; ★ will we collide? |
+| Labs | **Version 2 of both** | Binary stars in the Star Forge; star clusters, galaxy collisions, general relativity and the Sun's death in the Orrery (§4; Part III plan §5–6) | |
 
-*Engines and data:* adaptive differential-equation solvers, the Lane–Emden and main-sequence structure solvers, reaction rates, a toy neutron-capture network, white-dwarf and neutron-star (TOV) structure, a supernova light-curve model, orbits in Schwarzschild spacetime, the **BSE binary-evolution engine**, the gravitational-wave chirp with Web Audio, many-body and restricted n-body simulation, a rotation-curve model, and the ATNF pulsar and LIGO–Virgo–KAGRA catalogues.
+*Engines and data:* a structure core (adaptive differential-equation solvers, Lane–Emden, a main-sequence solver, equations of state from ideal gas to degenerate and pair-rich), reaction rates and small networks, the chart of nuclides (IAEA) and a toy neutron-capture network, white-dwarf and neutron-star (TOV) structure, toy collapse hydrodynamics and supernova light curves, orbits and light in Schwarzschild spacetime, the **BSE binary-evolution engine**, Peters' inspirals and the gravitational-wave chirp with Web Audio, many-body and restricted n-body simulation, rotation-curve models, and the pulsar and LIGO–Virgo–KAGRA catalogues (Part III research §15).
 
 ---
 
@@ -566,12 +584,13 @@ Phones are several times slower. The systems worth teaching with are cheap. The 
   - an adaptive 15th-order integrator in the style of IAS15, for close encounters and chaos;
   - leapfrog, for teaching (Chapter 7) and for clusters.
 
-**Version 2 (Part III)**
-- Star clusters with every star attracting every other (up to ~2,000 stars, softened).
-- Galaxy collisions in Toomre's restricted style (~100,000 stars, drawn with WebGL).
-- An optional general-relativity correction (Mercury's extra 43″ per century).
+**Version 2 (Part III; planned in detail in [part3/plan.md](part3/plan.md) §6)**
+- Star clusters with every star attracting every other (up to ~2,000 stars, softened, Hermite integration with block steps, in the Galaxy's tide).
+- Galaxy collisions in Toomre's restricted style (~100,000 stars, drawn with WebGL), with extended halos and dynamical friction.
+- An optional general-relativity correction (Mercury's extra 43″ per century; S2's 12′ an orbit round Sagittarius A\*).
 - The coupling showcase (below).
-- *(Stretch)* Self-gravitating galaxies on the GPU with WebGPU, which ships in current browsers but not yet on every device.
+- An automatic integrator switch that can switch back after a close pass.
+- *(Stretch)* Self-gravitating galaxies on the GPU with WebGPU, which ships in current browsers but not yet on every device (not Firefox on Linux or Android, as of November 2026).
 
 ### The Star Forge (stellar evolution)
 
@@ -598,14 +617,15 @@ Both are still at the core of the population codes used today to predict gravita
   - ultra-metal-poor stars, flagged.
 - **Proposed in Part II planning (Stage 9):** no "detailed models" mode in version 1. MIST's site says "© MIST. All rights reserved" and gives no licence, so its tracks can't be shipped without permission. The calibration map, and an optional switch to modern winds and remnant masses, show instead that the formulas are models (Part II plan §5 and §12, question 2).
 
-**Version 2 (Part III).** Binaries:
-- **Inputs.** Companion mass, orbital period and eccentricity.
-- **What the reader sees:** the Roche lobes; episodes of mass transfer, common envelopes, mergers and supernova kicks; and the outcome, classified (cataclysmic variable, X-ray binary, double white dwarf, Type Ia supernova, double neutron star with its merger time, and so on).
+**Version 2 (Part III; planned in detail in [part3/plan.md](part3/plan.md) §5).** Binaries:
+- **Inputs.** Both masses, orbital period and eccentricity, metallicity; and the uncertain physics as sliders: the common-envelope efficiency, the supernova kick (seeded, with a reroll), winds and tides.
+- **What the reader sees:** the pair to scale with its Roche lobes; both tracks on the HR diagram; episodes of mass transfer, common envelopes, mergers and supernova kicks, as strips and against time; and the outcome, classified (cataclysmic variable, X-ray binary, double white dwarf, Type Ia supernova, double neutron star or black hole with its merger time, and so on).
+- **Engine:** BSE ported from Hurley's Fortran onto the SSE port (it shares SSE's routines unchanged; Part III research §14) and tested against his code.
 - *(Stretch)* A population mode that runs thousands of binaries in a worker and shows the outcomes as histograms.
 
 ### Coupling the two labs
 
-BSE already couples stellar evolution to an orbit, in averaged form. Coupling the Star Forge to the full n-body Orrery is the expensive version, so it is done once, as a showcase: **the fate of the Solar System.** The Sun follows its 1 M☉ track and loses about half its mass, so the planets' orbits widen as the red giant swells. Whether Earth escapes is still a genuine research question, and the figure shows why it's close.
+BSE already couples stellar evolution to an orbit, in averaged form. Coupling the Star Forge to the full n-body Orrery is the expensive version, so it is done once, as a showcase: **the fate of the Solar System.** The Sun follows its 1 M☉ track and loses about half its mass, so the planets' orbits widen as the red giant swells, while tides in its envelope drag the inner planets in. Whether Earth is swallowed is still a genuine research question, and the figure shows why it's close. *(Stage 17 corrected "whether Earth escapes": the question is engulfment.)*
 
 ### Solvers that are figures, not labs
 
@@ -638,9 +658,11 @@ Built once and reused across the course.
 | HR diagram | Real stars, tracks and isochrones | Part II |
 | Star cutaway | A star's layers, burning zones and convection, to scale | Part II |
 | Light-curve view | Brightness against time (binaries, transits, supernovae) | Part II |
-| Profile plot | Quantities against radius or mass inside a star | Part III |
-| Particle view | WebGL points for up to ~100,000 stars | Part III |
-| Potential view | Roche and other potentials as contours and 3D surfaces | Part III |
+| Profile plot | Quantities against radius or mass inside a star | Part III (Stage 18) |
+| The core's map | Central density against temperature: pressure regimes, ignition lines, degeneracy, pair instability, and cores' tracks | Part III (Stage 18) |
+| Chart of nuclides | Every nuclide by protons and neutrons, with reactions and neutron-capture paths as layers | Part III (Stage 21) |
+| Potential view | Roche and other potentials as contours and 3D surfaces | Part III (Stage 24) |
+| Particle view | WebGL points for up to ~100,000 stars | Part III (Stage 26) |
 
 **Visual language.** These rules hold everywhere. The palette is colour-blind-safe, and colour is never the only cue.
 - Sky views are always night-dark, whatever the page theme, with stars in their true colours (from temperature).
@@ -723,9 +745,11 @@ Each part's research brief records the details. The About page lists every credi
 | SILSO sunspot number | The solar cycle | CC BY-NC 4.0 (checked in Stage 9); the site is free with no ads, so it fits, but it's your call (Part II plan §12) | II |
 | MIST stellar tracks | Optional detailed-model mode | No licence: "All rights reserved" (checked in Stage 9); not used | II |
 | Others for Part II (XSL spectra, DEBCat, a solar model, Mamajek's sequence, BHAC15, cluster members) | See [part2/research.md](part2/research.md) §13 | Mostly citation-only; each checked in its stage | II |
-| SSE/BSE (Hurley et al.) | Stellar evolution | Implemented from the papers; the original code only makes test fixtures | II–III |
-| ATNF pulsar catalogue | The P–Ṗ diagram | To check | III |
-| GWTC (LIGO–Virgo–KAGRA, via GWOSC) | The merger population | To check (believed CC BY 4.0) | III |
+| SSE/BSE (Hurley et al.) | Stellar evolution | Implemented from the papers and code; the original code only makes test fixtures (BSE from AMUSE, commit 9f8c7af, checked in Stage 17) | II–III |
+| ATNF pulsar catalogue (v2.9.0, 4,503 pulsars) | The P–Ṗ diagram | **No open licence** (checked in Stage 17): ATNF/CSIRO property, "for bona fide research purposes"; needs permission, with famous pulsars from their papers as the fallback (Part III plan §13) | III |
+| GWTC (LIGO–Virgo–KAGRA, via GWOSC) | The merger population; GW150914's strain | **CC BY 4.0** with GWOSC's acknowledgement (checked in Stage 17) | III |
+| IAEA LiveChart (ENSDF, NUBASE2020, AME2020); KADoNiS | The chart of nuclides; neutron-capture cross sections | IAEA terms allow teaching use with acknowledgement; KADoNiS asks for a citation (checked in Stage 17) | III |
+| Others for Part III (SPARC rotation curves, supernova light curves, measured compact stars, rate fits, S2, the Local Group) | See [part3/research.md](part3/research.md) §15 | Mostly citation-only; each checked in its stage | III |
 
 ---
 
@@ -781,11 +805,21 @@ If a session runs low before the stage is finished, it stops at a clean point, c
 | 14 | II | **Chapters 17 and 18**, isochrones and Gaia clusters | Chapters 17 and 18 are live |
 | 15 | II | **Chapter 19**, the exoplanet core and census | Part II's chapters are live |
 | 16 | II | **The Star Forge v1 and Part II polish** | Part II is complete ✔ |
-| 17 | III | **Part III research and detailed plan** | Plan agreed |
-| 18–26 | III | Part III chapters, one or two per stage; the BSE and many-body engines | Part III's chapters are live |
-| 27 | III | **Both labs v2 and final polish** | Done |
+| 17 | III | **Part III research and detailed plan** | Plan written ✔; agreement pending |
+| 18 | III | **Chapter 20** and Toolkit T8, T9, T11; the structure core, the profile plot, the core's map | Chapter 20 is live |
+| 19 | III | **Chapter 21** and Toolkit T10; opacities and the main-sequence solver | Chapter 21 is live |
+| 20 | III | **Chapter 22**; the nuclear core and networks | Chapter 22 is live |
+| 21 | III | **Chapter 23**; the chart of nuclides and neutron captures | Chapter 23 is live |
+| 22 | III | **Chapters 24 and 25**; white dwarfs, a toy collapse, supernova light curves, pair instability | Chapters 24 and 25 are live |
+| 23 | III | **Chapters 26 and 27** and Toolkit T7; neutron stars, pulsars, geodesics, discs | Chapters 26 and 27 are live |
+| 24 | III | **The BSE engine** (tested against Hurley's code) **and Chapter 28** | BSE's tests pass; Chapter 28 is live |
+| 25 | III | **Chapter 29**; inspirals, chirps and the merger census | Chapter 29 is live |
+| 26 | III | **Chapter 30**; the many-body engine and the particle view | Chapter 30 is live |
+| 27 | III | **Chapter 31** *(optional)*; restricted galaxy collisions | Chapter 31 is live |
+| 28 | III | **The Star Forge v2** (binaries) | The Forge's binaries mode is live |
+| 29 | III | **The Orrery v2 and final polish** | Part III is complete ✔ |
 
-That makes about 28 stages. The counts for Parts II and III are estimates that their planning stages will fix. The site is worth visiting from Stage 8 on, and each part can be released on its own.
+That makes 30 numbered stages, plus Stages 3b, 8b, 8c and 16b. Part III's twelve (18–29) replace the ten first estimated, because its figures are engines; the Part III plan (§11) names the fallbacks, and cutting Chapter 31 would remove Stage 27. The site is worth visiting from Stage 8 on, and each part can be released on its own.
 
 ---
 
@@ -810,4 +844,4 @@ That makes about 28 stages. The counts for Parts II and III are estimates that t
 - **Name, scope and structure:** as in the Decisions table (agreed 22 Oct 2026, with my defaults for the open points).
 - **Confirmed in Stage 1:** the GitHub repository `Voltfest42/The-Clockwork-Sky`, and the `sky.moving-parts.dev` subdomain.
 - **Part II's open questions** are in [part2/plan.md](part2/plan.md) §12, with my defaults (non-commercial data, no MIST mode, gfortran in WSL for the SSE fixtures, real spectra, young stars' tracks, supernova light curves, section titles, the Moving Parts card).
-- **To decide in Part III's planning stage:** whether Chapter 31 stays.
+- **Part III's open questions** are in [part3/plan.md](part3/plan.md) §13, with my defaults (Chapter 31 stays as an optional chapter; ask ATNF for permission to ship pulsar data; the IAEA's and KADoNiS's nuclear data; BSE's own defaults for the fixtures and α = 1 for the Forge; published supernova light curves; a handful of SPARC galaxies; gfortran in WSL for the BSE fixtures; Web Audio on a click; WebGL first, WebGPU only as a stretch; section titles; the Moving Parts card). Awaiting your agreement (Stage 17).
