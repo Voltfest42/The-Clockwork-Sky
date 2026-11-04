@@ -405,7 +405,9 @@
 - **Facts checked for the plan**: GWTC-5.0's counts; O4 ended 18 Nov 2025; GW250114's signal-to-noise of 80 and the area law; GW231123's 190–265 M☉; the Milky Way–Andromeda merger at about even odds (Sawala et al. 2025); the rotation-curve debate (Ou et al. 2024; Jiao et al. 2023; a 2026 review); M87\*'s polarisation flip (2025); the double detonation in SNR 0509−67.5 (2025); JWST's evidence for SN 1987A's neutron star; NICER's 11.4 km for J0437−4715 and its 2025 reanalysis; Solar Fusion III's S₁₁(0); the Hulse–Taylor ratio 0.9983 ± 0.0016 and the double pulsar's 1.3 × 10⁻⁴; Gaia DR4 still due on 2 Dec 2026; T Coronae Borealis still quiet; WebGPU in Chrome, Edge, Safari 26 and Firefox on Windows and Apple-silicon Macs, not yet Firefox on Linux or Android.
 - Section titles avoid "boiling" for convection, as Stage 16b asked.
 
-**Next: your agreement on the Part III plan's open questions** ([part3/plan.md](part3/plan.md) §13), then **Stage 18: Chapter 20 and Toolkit T8, T9 and T11** (the structure core, the profile plot and the core's map).
+- Agreed on 4 Nov 2026: the defaults for the Part III plan's eleven open questions (§13) stand.
+
+**Next: Stage 18: Chapter 20 and Toolkit T8, T9 and T11** (the structure core, the profile plot and the core's map; Part III plan §11).
 
 ## Decisions so far
 
@@ -805,7 +807,7 @@ If a session runs low before the stage is finished, it stops at a clean point, c
 | 14 | II | **Chapters 17 and 18**, isochrones and Gaia clusters | Chapters 17 and 18 are live |
 | 15 | II | **Chapter 19**, the exoplanet core and census | Part II's chapters are live |
 | 16 | II | **The Star Forge v1 and Part II polish** | Part II is complete ✔ |
-| 17 | III | **Part III research and detailed plan** | Plan written ✔; agreement pending |
+| 17 | III | **Part III research and detailed plan** | Plan written and agreed ✔ |
 | 18 | III | **Chapter 20** and Toolkit T8, T9, T11; the structure core, the profile plot, the core's map | Chapter 20 is live |
 | 19 | III | **Chapter 21** and Toolkit T10; opacities and the main-sequence solver | Chapter 21 is live |
 | 20 | III | **Chapter 22**; the nuclear core and networks | Chapter 22 is live |
@@ -844,4 +846,4 @@ That makes 30 numbered stages, plus Stages 3b, 8b, 8c and 16b. Part III's twelve
 - **Name, scope and structure:** as in the Decisions table (agreed 22 Oct 2026, with my defaults for the open points).
 - **Confirmed in Stage 1:** the GitHub repository `Voltfest42/The-Clockwork-Sky`, and the `sky.moving-parts.dev` subdomain.
 - **Part II's open questions** are in [part2/plan.md](part2/plan.md) §12, with my defaults (non-commercial data, no MIST mode, gfortran in WSL for the SSE fixtures, real spectra, young stars' tracks, supernova light curves, section titles, the Moving Parts card).
-- **Part III's open questions** are in [part3/plan.md](part3/plan.md) §13, with my defaults (Chapter 31 stays as an optional chapter; ask ATNF for permission to ship pulsar data; the IAEA's and KADoNiS's nuclear data; BSE's own defaults for the fixtures and α = 1 for the Forge; published supernova light curves; a handful of SPARC galaxies; gfortran in WSL for the BSE fixtures; Web Audio on a click; WebGL first, WebGPU only as a stretch; section titles; the Moving Parts card). Awaiting your agreement (Stage 17).
+- **Part III's open questions** are in [part3/plan.md](part3/plan.md) §13, with my defaults (Chapter 31 stays as an optional chapter; ask ATNF for permission to ship pulsar data; the IAEA's and KADoNiS's nuclear data; BSE's own defaults for the fixtures and α = 1 for the Forge; published supernova light curves; a handful of SPARC galaxies; gfortran in WSL for the BSE fixtures; Web Audio on a click; WebGL first, WebGPU only as a stretch; section titles; the Moving Parts card). Agreed on 4 Nov 2026: the defaults stand.

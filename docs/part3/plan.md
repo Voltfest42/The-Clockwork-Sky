@@ -4,7 +4,7 @@
 
 ## Status
 
-**Planned** (4 Nov 2026, Stage 17). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. **Awaiting your agreement** on the open questions in §13 (my defaults are given) before Stage 18 builds anything.
+**Planned** (4 Nov 2026, Stage 17). The chapters' sections, "Builds on" lines and Toolkit links are in the course registry, so the "coming soon" pages show them. Nothing in §4–§10 is built yet. **Agreed** (4 Nov 2026): the defaults for all eleven open questions in §13 stand. Next: Stage 18, Chapter 20 and Toolkit T8, T9 and T11.
 
 ---
 
@@ -430,7 +430,7 @@ Each stage is one session and ends as the master plan says (§11): tests, Status
 
 ---
 
-## 13. Open questions (my defaults apply unless you say otherwise)
+## 13. Open questions (decided 4 Nov 2026: the defaults below stand)
 
 1. **Does Chapter 31 stay?** *My default: yes, as the optional closing chapter, in a stage of its own (27).* Its engine is the one the Orrery v2's galaxy mode needs anyway, so the extra cost is the text and two figures; it ends at the door to cosmology without teaching it, and the Milky Way–Andromeda question is fresh (2025). If you cut it, Stage 27 goes, the galaxy engine moves to Stage 29, and Chapter 30 closes the course with a short look outward.
 2. **ATNF's pulsar data.** Its terms don't clearly allow shipping a derived file (research §8). *My default: ask ATNF for permission to ship each pulsar's P, Ṗ and type, credited* (an email from you, since it's outward-facing; I can draft it). Meanwhile Figure 26.4 is built so that its data can be either the catalogue's or about sixty famous pulsars taken from their papers.
