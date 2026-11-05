@@ -49,6 +49,8 @@ test('the landing page introduces the course and its three parts @phone', async 
 });
 
 test('every page of the course opens without errors', async ({ page }) => {
+  // It opens every page, so it grows with the course.
+  test.slow();
   const errors = watchErrors(page);
   await page.goto('/');
   for (const path of ALL_PAGES) {

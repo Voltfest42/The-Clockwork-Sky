@@ -21,3 +21,6 @@ export const HEAVIEST_NEUTRON_STAR = { name: 'PSR J0952−0607', mass: 2.35, err
 
 /** The heaviest black hole known from a star in our Galaxy: Gaia BH3, 33 M☉, 590 pc away (Gaia Collaboration, Panuzzo et al. 2024). */
 export const HEAVIEST_GALACTIC_BLACK_HOLE = { name: 'Gaia BH3', mass: 33, parsecs: 590 } as const;
+
+/** The heaviest white dwarf measured well: ZTF J1901+1458, 1.327–1.365 M☉ and 2,140 km across its radius, about the Moon's size (Caiazzo et al. 2021). */
+export const HEAVIEST_WHITE_DWARF = { name: 'ZTF J1901+1458', mass: '1.33–1.37', radiusKm: 2140 } as const;

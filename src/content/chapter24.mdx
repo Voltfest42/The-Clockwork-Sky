@@ -1,0 +1,200 @@
+import { BuildWhiteDwarfFigure } from '../figures/BuildWhiteDwarfFigure';
+import { CrystalliseFigure } from '../figures/CrystalliseFigure';
+import { FermiSeaFigure } from '../figures/FermiSeaFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { EarthSizedWhiteDwarf } from './checks/chapter24';
+
+Every star so far has held itself up with heat: hot gas pushes back against gravity, and when it loses heat it shrinks, gets hotter and pushes harder (Chapter 20). Twice that rule has failed. A ball lighter than 0.08 Suns stopped shrinking before it was hot enough to burn hydrogen, and became a brown dwarf; and the iron core at the end of Chapter 22 was held up by its electrons alone, with nothing left to burn. This chapter is about the pressure that took over in both: electrons packed so tightly that they push back however cold they are. It holds up the white dwarfs that most stars, the Sun among them, will become, and it has a limit.
+
+## Packed electrons
+
+Two rules of quantum mechanics make matter hard to squeeze. Wolfgang Pauli’s (1925): no two electrons can be in the same state, so in any box there is room for only two electrons (one of each spin) for each state of motion. And Werner Heisenberg’s (1927): an electron confined to a small space can’t be still; the smaller the space, the faster it must move. Put the two together and squeeze a crowd of electrons into a small volume, and the slow states fill up first, like water filling a basin from the bottom. The rest must take faster and faster states. The fastest electrons, at the top of this <Term id="fermi-energy">Fermi sea</Term>, move fast however cold the gas is, and fast electrons push.
+
+In ordinary gas this hardly matters: the electrons are so far apart, and so hot, that only a few of the states open to them are taken, and their pressure is the ideal gas’s nkT. At the Sun’s centre, 150 g/cm³ and 15.7 million K, a seventh of the slow states are full and the electrons push only 4% harder than an ideal gas would. Squeeze the gas to a million grams per cubic centimetre, a sugar cube weighing a tonne, and the sea fills to an energy of 140 keV. Its electrons are packed: at 10 million K, every state below the top is taken, and they push 60 times as hard as a hot gas at that temperature would. That push is <Term id="degeneracy-pressure">degeneracy pressure</Term>.
+
+<Callout kind="maths" title="The Fermi sea and its pressure">
+
+Electrons packed n per unit volume fill every state up to the Fermi momentum
+
+p<sub>F</sub> = ħ(3π²n)<sup>1/3</sup>.
+
+Each carries momentum across the gas as it moves, so the pressure is about n p<sub>F</sub> v. While they move well below light’s speed, v = p<sub>F</sub>/m<sub>e</sub>, and
+
+P = (3π²)<sup>2/3</sup> ħ² n<sup>5/3</sup> / 5m<sub>e</sub>;
+
+once the fastest move near it, v → c, and
+
+P = (3π²)<sup>1/3</sup> ħc n<sup>4/3</sup> / 4.
+
+Neither depends on temperature. The switch comes where p<sub>F</sub> = m<sub>e</sub>c, at about 2 × 10⁶ g/cm³ for gas with two nucleons per electron. The gas is packed where its Fermi energy E<sub>F</sub> is well above kT: for slow electrons E<sub>F</sub> ∝ n<sup>2/3</sup>, so the line E<sub>F</sub> = kT climbs across the core’s map as ρ ∝ T<sup>3/2</sup>.
+
+</Callout>
+
+A packed core breaks the thermostat of Chapter 21. Its pressure doesn’t rise when it is heated, so it doesn’t swell and cool: it just burns faster and heats more. That is the helium flash in a red giant (Chapter 17), whose helium core, at about a million g/cm³, lights at 100 million K with its electrons packed, and runs away until the heat has lifted the packing. Ralph Fowler saw in 1926, the year the statistics of packed electrons were worked out, that the same pressure must hold up the white dwarfs.
+
+<FermiSeaFigure
+  number="24.1"
+  tryThis={
+    <p>
+      Start at <b>The Sun’s centre</b>: how full are the slow states? Then squeeze: slide the density up to 10⁶ g/cm³ and watch the edge of the
+      sea grow and sharpen. Raise the temperature until the edge smears: at what temperature do the electrons stop being packed? Find where on
+      the core’s map a red giant’s core and Sirius B’s centre sit.
+    </p>
+  }
+/>
+
+## Heavier is smaller
+
+A white dwarf is a star’s core with the star gone: the carbon and oxygen a Sun-like star made from its helium (Chapter 18), about the mass of the Sun in a ball the size of Earth, with nothing left to burn and its electrons packed. Because their pressure doesn’t need heat, it can hold the white dwarf up for ever. And because it depends only on how tightly they are packed, a white dwarf’s mass decides its size.
+
+The surprise is which way. A heavier white dwarf weighs more on its centre, so it needs more pressure there, and packed electrons push harder only when they are packed tighter. So the heavier the white dwarf, the smaller it is. Sirius B, of 1.02 Suns, is 5,600 km in radius, smaller than Earth; Procyon B, of 0.59 Suns, is 8,600 km, larger than Earth. ZTF J1901+1458, 1.33–1.37 Suns, is the size of the Moon.
+
+<Callout kind="maths" title="Why heavier is smaller">
+
+A star’s central pressure is about the weight on it: P<sub>c</sub> ∼ GM²/R⁴ (Chapter 20). Packed slow electrons give P ∝ ρ<sup>5/3</sup>, and the density is about M/R³, so balance needs
+
+(M/R³)<sup>5/3</sup> ∝ M²/R⁴, that is, R ∝ M<sup>−1/3</sup>:
+
+twice the mass, a fifth smaller. The white dwarf is a polytrope of index 1.5 (Chapter 20) while its electrons are slow.
+
+The figure does it properly. At zero temperature the pressure and the electrons’ Fermi energy ε<sub>F</sub> are tied by dP = n dε<sub>F</sub>, so hydrostatic balance becomes
+
+dε<sub>F</sub>/dr = −μ<sub>e</sub>m<sub>u</sub> Gm/r²,  dm/dr = 4πr²ρ(ε<sub>F</sub>),
+
+which the solver steps out from the centre (Toolkit: [Differential equations](/toolkit/differential-equations/)) until ε<sub>F</sub> falls to the rest energy m<sub>e</sub>c²: the surface, where nothing is left to push.
+
+</Callout>
+
+<BuildWhiteDwarfFigure
+  number="24.2"
+  tryThis={
+    <p>
+      Answer the question first. Then slide the central density up from 10⁴ g/cm³: which way does the radius go? Find a white dwarf the size of
+      Earth, and one the size of the Moon. Then push the density towards 10¹² g/cm³: how much heavier does it get? Switch to <b>Iron</b> and
+      compare the limit.
+    </p>
+  }
+/>
+
+The measured white dwarfs sit close to the solver’s curve: Sirius B within 1% of it, 40 Eridani B within 0.1% and Procyon B within 4%, which is as close as a model with no heat and no charge between its particles should come. A white dwarf of half a Sun is a little larger than Earth; one of 0.91 Suns, the solver says, is exactly Earth’s size.
+
+## Chandrasekhar’s limit
+
+Squeeze a white dwarf hard enough and its fastest electrons approach light’s speed, which they can’t pass. More packing then makes them heavier rather than faster, and their pressure grows only as n<sup>4/3</sup>. That is too slow. Pressure must grow with squeezing faster than gravity’s pull does, and gravity’s pull on a shrinking ball grows as the same 4/3 power. A white dwarf of relativistic electrons can balance at only one mass, and above it no amount of squeezing helps: it can’t stand.
+
+Subrahmanyan Chandrasekhar worked this out in 1930, aged 19, on the voyage from India to England to study with Fowler; Wilhelm Anderson (1929) and Edmund Stoner (1930) had found limits by rougher sums, and Lev Landau found it independently in 1932. Its value is about 1.4 Suns: the limit on every white dwarf, and on the iron core of every massive star.
+
+<Callout kind="maths" title="The Chandrasekhar mass">
+
+With P ∝ ρ<sup>4/3</sup> the balance of the last box reads (M/R³)<sup>4/3</sup> ∝ M²/R⁴, and R cancels: only M is fixed. Worked out exactly, with the n = 3 polytrope that relativistic electrons make (Chapter 20), it is
+
+M<sub>Ch</sub> = (√(3π)/2) (ħc/G)<sup>3/2</sup> ω₃ / (μ<sub>e</sub>m<sub>u</sub>)² = 5.83/μ<sub>e</sub>² M☉,
+
+with ω₃ = 2.018 and μ<sub>e</sub> the mass per electron in atomic mass units: 1.46 M☉ for helium, carbon or oxygen (μ<sub>e</sub> = 2), 1.26 M☉ for iron (μ<sub>e</sub> = 56/26). The constants are the Planck constant, the speed of light, gravity and the proton’s mass: the limit is set by the laws of physics, not by any star.
+
+</Callout>
+
+Real white dwarfs fall a little short of it. The electric pull between electrons and ions softens their pressure; near the limit, electrons are squeezed into the nuclei, which takes them away; and general relativity strengthens gravity. A real carbon–oxygen white dwarf can’t be heavier than about 1.38 Suns. An iron core is hot, and its heat adds pressure, so a massive star’s core grows to 1.3–2 Suns of iron before it falls in: 1.45 in Chapter 22’s star of 15 Suns. What happens then is Chapter 25.
+
+## Embers that crystallise
+
+A white dwarf makes no energy. It shines only on the heat its ions kept from the star’s core, leaking out through a thin skin of ordinary gas, and it fades for ever: hot and blue at first, then white, yellow and red, and at last too dark to see. Leon Mestel worked out how fast in 1952. The packed electrons carry heat as well as metal carries it, so the inside is at one temperature, and the skin, opaque like ordinary gas, sets the leak. A white dwarf billions of years old still has a core of a few million degrees.
+
+<Callout kind="maths" title="Mestel’s law, and freezing">
+
+Through a skin with Kramers’ opacity (Chapter 21), the light leaking out goes as L = C M T<sub>c</sub><sup>7/2</sup>, while the heat stored is (3/2)kT<sub>c</sub> for each ion. Losing one at the rate of the other,
+
+(3/2)(M/Am<sub>u</sub>) k dT<sub>c</sub>/dt = −C M T<sub>c</sub><sup>7/2</sup>, so L ∝ M t<sup>−7/5</sup>,
+
+a white dwarf’s age from its luminosity and mass alone: a clock (Chapter 18).
+
+The ions freeze when their electric energy against their neighbours outweighs their heat by a factor Γ = Z<sup>5/3</sup>e²/(4πε₀a<sub>e</sub>kT) = 175, with a<sub>e</sub> the radius of a sphere holding one electron. Denser gas freezes warmer (T ∝ ρ<sup>1/3</sup>), so a white dwarf freezes from the centre out: a 0.6 M☉ one starts when its centre cools to 3.8 million K. Each ion that freezes gives out about 0.77 kT, and the crystal then holds twice as much heat per ion, both of which slow the fading.
+
+</Callout>
+
+That a white dwarf should <Term id="crystallisation">crystallise</Term> was predicted in 1960–61 by David Kirzhnits, Alexei Abrikosov and Edwin Salpeter, and the heat it gives out by Hugh Van Horn in 1968. It was seen in 2019. Gaia’s second release put tens of thousands of white dwarfs on the HR diagram, and Pier-Emmanuel Tremblay and his colleagues found them piling up along a line where, at each mass, the centre starts to freeze: the heat given out slows their fading, so they linger there. In time, a crystal of carbon and oxygen the size of Earth is what most stars become.
+
+Gaia also found a stranger pile-up, the Q branch, among white dwarfs of about 1.1 Suns. About one in 15 of them seems to stop cooling for billions of years. Antoine Bédard and his colleagues (2024) explained how: in those with a little neon-22, the first crystals to form are poor in neon and lighter than the liquid, so they float up, pushing neon-rich liquid down; that sinking releases gravity’s energy and holds the white dwarf’s temperature, as a heated bath would.
+
+<CrystalliseFigure
+  number="24.3"
+  tryThis={
+    <p>
+      Slide the age to 3 billion years with <b>Crystallisation</b> on, then switch it off: how much fainter would the white dwarf be? When does a
+      white dwarf of <b>0.9 M☉</b> start to freeze, and one of <b>1.1 M☉</b>? Find the Q branch and the line where freezing begins on the HR
+      diagram.
+    </p>
+  }
+/>
+
+<Timeline from={1920} to={2025} chapter={24} only={[18, 24]} title="Matter at its limit" />
+
+<DeepDive title="Chandrasekhar and Eddington">
+
+Arthur Eddington was the most famous astrophysicist in the world when Chandrasekhar arrived in Cambridge, and he had written the book on the stars (1926). He accepted Fowler’s packed electrons; he couldn’t accept what Chandrasekhar’s relativistic version implied, that a star heavier than the limit must go on shrinking without end. In January 1935, at a meeting of the Royal Astronomical Society, he followed Chandrasekhar’s talk with one of his own that called the result absurd: there should be, he said, “a law of Nature to prevent a star from behaving in this absurd way”. He argued that relativity and quantum mechanics had been combined wrongly.
+
+Physicists such as Niels Bohr and Wolfgang Pauli agreed in private that Chandrasekhar was right, but none of them said so in public, and the astronomers followed Eddington. Chandrasekhar turned to other problems, wrote the limit into a book (1939), and moved to Chicago. Eddington never accepted it.
+
+He was answered by the sky. Baade and Zwicky had already proposed neutron stars (1934), and Oppenheimer and his students showed that a heavy enough core collapses past them (1939). Pulsars (1967) proved neutron stars exist; Type Ia supernovae turned out to be white dwarfs pushed to the limit (Chapter 25). Chandrasekhar shared the Nobel Prize in Physics in 1983, for his work on the structure and evolution of stars, half a century after the voyage.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="what-holds-up" prompt="What holds up a white dwarf?">
+    <Choice label="Electrons packed so tightly that they push back however cold they are" correct>
+      Right. No two electrons can share a state, so squeezed ones must move fast, and their pressure doesn’t need heat: it holds the white dwarf
+      up for ever, while it cools.
+    </Choice>
+    <Choice label="The heat of its gas, like any star">
+      Heat holds ordinary stars up, but a white dwarf has no fuel to replace what it loses. Its packed electrons push back whatever its
+      temperature, which is why it can cool for ever without shrinking.
+    </Choice>
+    <Choice label="Fusion in its core">
+      A white dwarf burns nothing: it is the ash of a star’s core. Packed electrons hold it up.
+    </Choice>
+  </Question>
+
+  <Question id="heavier-smaller" prompt="Why is a heavier white dwarf smaller?">
+    <Choice label="It needs more pressure to hold its weight, and packed electrons push harder only when packed tighter" correct>
+      Right. More weight on the centre needs more pressure, and the only way packed electrons give more is to be packed into less room, so
+      R ∝ M<sup>−1/3</sup> while they are slow: Sirius B, of 1.02 Suns, is smaller than Procyon B, of 0.59.
+    </Choice>
+    <Choice label="It has burnt more of its fuel, so it has shrunk more">
+      A white dwarf burns nothing. Its size is set by its mass alone: more mass, more pressure needed, electrons packed tighter.
+    </Choice>
+    <Choice label="It is colder, and cold things shrink">
+      Packed electrons’ pressure doesn’t depend on temperature, so a white dwarf hardly shrinks as it cools. Its mass sets its size.
+    </Choice>
+  </Question>
+
+  <Question id="above-limit" prompt="What happens to a white dwarf, or an iron core, pushed above about 1.4 solar masses?">
+    <Choice label="Its electrons can’t hold it, and it collapses or explodes" correct>
+      Right. Near light speed, packed electrons’ pressure grows only as fast as gravity’s pull, so above Chandrasekhar’s mass there is no balance.
+      An iron core collapses into a neutron star; a carbon–oxygen white dwarf near the limit lights its carbon and explodes (Chapter 25).
+    </Choice>
+    <Choice label="It grows a little larger and settles">
+      Heavier white dwarfs are smaller, and at the limit the radius falls to nothing: there is no larger white dwarf to settle into.
+    </Choice>
+    <Choice label="It starts burning hydrogen again">
+      A white dwarf has no hydrogen left in its core to burn. Above the limit, its electrons simply can’t hold it up.
+    </Choice>
+  </Question>
+
+  <Question id="shine-how" prompt="How do white dwarfs shine?">
+    <Choice label="On heat left over from the star they were, leaking out as they cool" correct>
+      Right. They make no energy, so they fade for ever, more and more slowly: Mestel’s law makes them clocks. Freezing into a crystal gives
+      out a little heat and slows the fading.
+    </Choice>
+    <Choice label="By fusing carbon and oxygen">
+      Their cores are far too cool, a few million degrees, to fuse carbon, which needs about 800 million. They are cooling embers.
+    </Choice>
+    <Choice label="By shrinking, as young stars do">
+      Young stars shine by shrinking, but packed electrons stop a white dwarf shrinking. It shines on stored heat alone.
+    </Choice>
+  </Question>
+
+  <EarthSizedWhiteDwarf />
+</CheckYourself>

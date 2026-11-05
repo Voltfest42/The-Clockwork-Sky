@@ -354,6 +354,26 @@ export const GLOSSARY = {
     term: 'Kilonova',
     definition: 'The glow of the debris thrown out when two neutron stars merge, heated by the decay of the heavy elements the rapid process made in it. It fades from blue to red within days.',
   },
+  'fermi-energy': {
+    term: 'Fermi energy',
+    definition: 'The energy of the fastest electrons in a packed gas, at the top of the “Fermi sea” of filled states. Where it is well above kT, the electrons are packed and push however cold they are.',
+  },
+  crystallisation: {
+    term: 'Crystallisation',
+    definition: 'A cooling white dwarf’s carbon and oxygen freezing into a crystal, from the centre outwards, once their electric pull on each other outweighs their heat. The heat it gives out slows the white dwarf’s fading.',
+  },
+  'core-collapse-supernova': {
+    term: 'Core-collapse supernova',
+    definition: 'The explosion of a massive star whose iron core has collapsed into a neutron star or a black hole: Types II, Ib and Ic. Nearly all its energy leaves as neutrinos.',
+  },
+  'type-ia-supernova': {
+    term: 'Type Ia supernova',
+    definition: 'A carbon–oxygen white dwarf blown apart when its carbon catches fire: no hydrogen in its spectrum, silicon instead, about 0.6 solar masses of radioactive nickel made, and nothing left.',
+  },
+  'arnetts-rule': {
+    term: 'Arnett’s rule',
+    definition: 'At its peak, a supernova shines as brightly as its radioactive nickel and cobalt are heating it then, so the peak weighs the nickel the explosion made.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

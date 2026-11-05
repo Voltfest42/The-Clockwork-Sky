@@ -114,6 +114,15 @@ export function About() {
           must keep every nucleus, pile up first at N = 50, fall in steps at N = 50, 82 and 126, follow the classical formula for a spread of
           exposures, and match all but one of the Sun’s s-only isotopes from mass 96 to 150 within a quarter with τ₀ = 0.3 per millibarn; and the toy rapid
           process, averaged over bursts of every length, must leave its peaks near masses 80, 130 and 195.
+          Since Chapters 24 and 25, the Fermi–Dirac integrals must give Chandrasekhar’s cold pressure and an ideal gas’s in their limits, keep the
+          net charge with pairs, and never push less than either; Γ₁ must match Chandrasekhar’s formula for gas and light where pairs and packing
+          don’t matter; the white-dwarf solver must give the Chandrasekhar mass, 5.83/μₑ² M☉, as its centre is squeezed without end, R ∝ M^−1/3
+          for slow electrons, Nauenberg’s fit within 3% below a solar mass, and Sirius B, 40 Eridani B and Procyon B within 2%, 1% and 5%; cooling
+          without freezing must be SSE’s Mestel law, and freezing must always slow it; the toy collapse must bounce at nuclear density with an
+          inner core of about 0.6 solar masses falling together, keep its energy books to a part in a thousand, stall without heating and explode
+          with strong heating; Arnett’s light curves must obey Arnett’s rule and Katz’s integral, fade at cobalt-56’s 0.98 magnitudes per
+          100 days while their γ-rays are caught, and fit SN 2011fe’s peak with 0.52 solar masses of nickel; and the pair-instability wedge must
+          lie between about 0.4 and 3.5 billion K below about 10⁶ g/cm³, with cores’ gas shares from Eddington’s quartic.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -622,7 +631,50 @@ export function About() {
           </li>
         </ul>
 
-                <h3>Toolkit: Differential equations</h3>
+        <h3>Chapter 24</h3>
+        <ul>
+          <li>
+            <b>Figure 24.1, filling the Fermi sea.</b> The electrons’ pressure is exact (Fermi–Dirac integrals, with relativity), but the ions’
+            own pressure, the electric pull between electrons and ions and electron–positron pairs are left out; the slice through momentum space
+            is a picture of far more, far closer states.
+          </li>
+          <li>
+            <b>Figure 24.2, build a white dwarf.</b> Cold white dwarfs held up by electrons alone, with Chandrasekhar’s exact pressure, so helium
+            and carbon–oxygen ones come out the same. The electric pull between electrons and ions (a few per cent), the white dwarf’s heat and
+            hydrogen skin, electron captures at the highest densities and general relativity are left out; together they bring a real
+            carbon–oxygen white dwarf’s limit to about 1.38 solar masses and make ZTF J1901+1458 smaller than the model.
+          </li>
+          <li>
+            <b>Figure 24.3, cooling and crystallising.</b> Mestel’s law with SSE’s constant, the latent heat of freezing and a crystal’s larger
+            heat capacity; no separation of oxygen from carbon, no neon sinking, no neutrinos, no faster cooling of an old crystal. It cools
+            white dwarfs too fast at the faint end, and its freezing line runs hotter than detailed models’ for the heaviest white dwarfs.
+          </li>
+        </ul>
+
+        <h3>Chapter 25</h3>
+        <ul>
+          <li>
+            <b>Figure 25.1, collapse and bounce.</b> A toy: one-dimensional Newtonian hydrodynamics with artificial viscosity, a made-up
+            equation of state softened between 10⁸ g/cm³ and nuclear density, a fixed cost for splitting iron, neutrinos as a “light bulb”
+            heating the gas behind the shock, and the settled neutron star held fixed. Its bounce and inner core are like detailed models’; its
+            shock stalls further out, and it explodes above about 2 × 10⁵² erg/s.
+          </li>
+          <li>
+            <b>Figure 25.2, supernova spectra, sorted.</b> The spectra are sketches, not observations, and the tree leaves out Type II’s own
+            kinds and the in-between Type IIb.
+          </li>
+          <li>
+            <b>Figure 25.3, light from radioactive nickel.</b> Arnett’s one-zone model with one opacity, a fixed γ-ray opacity and Popov’s
+            analytic plateau; the supernovae are their published peaks, not whole light curves.
+          </li>
+          <li>
+            <b>Figure 25.4, the pair-instability wedge.</b> The wedge is exact for oxygen, its electrons and pairs, and light; the cores follow
+            Eddington’s standard model, without general relativity, so their average Γ₁ first dips below 4/3 for about 27 solar masses, against
+            about 35 in detailed models; the outcomes are Heger and Woosley’s and Woosley’s.
+          </li>
+        </ul>
+
+        <h3>Toolkit: Differential equations</h3>
         <ul>
           <li>
             <b>Figure T10.1, shooting.</b> Figure 7.1’s cannon, without air; the red dwarf is an n = 1.5 polytrope with Proxima’s mass and radius;
@@ -960,6 +1012,34 @@ export function About() {
             colleagues (2024), Nature 626, 737: tellurium. D. M. Siegel, J. Barnes and B. D. Metzger (2019), Nature 569, 241: collapsars. A.
             Patel, B. D. Metzger and colleagues (2025), The Astrophysical Journal Letters (arXiv:2501.09181): a magnetar’s flare. A. P. Ji, A. Frebel, A.
             Chiti and J. D. Simon (2016), Nature 531, 610: Reticulum II.
+          </li>
+          <li>
+            R. H. Fowler (1926), Monthly Notices of the Royal Astronomical Society 87, 114: dense matter. S. Chandrasekhar (1931), The
+            Astrophysical Journal 74, 81, and (1939), An Introduction to the Study of Stellar Structure: the limit. M. Nauenberg (1972), The
+            Astrophysical Journal 175, 417: the mass–radius fit. L. Mestel (1952), Monthly Notices of the Royal Astronomical Society 112, 583:
+            cooling. H. M. Van Horn (1968), The Astrophysical Journal 151, 227: crystallisation’s heat. H. E. Bond and colleagues (2015, 2017),
+            The Astrophysical Journal 813, 106, 840, 70 and 848, 16, B. D. Mason and colleagues (2017), and A. D. Romero and colleagues (2019),
+            Monthly Notices of the Royal Astronomical Society 484, 2711: Procyon B, Sirius B and 40 Eridani B. I. Caiazzo and colleagues (2021),
+            Nature 595, 39: ZTF J1901+1458. P.-E. Tremblay and colleagues (2019), Nature 565, 202: Gaia’s pile-up. S. Cheng, J. D. Cummings and
+            B. Ménard (2019), The Astrophysical Journal 886, 100, and A. Bédard and colleagues (2024), Nature 627, 286: the Q branch.
+          </li>
+          <li>
+            H.-T. Janka, T. Zwerger and R. Mönchmeyer (1993), Astronomy and Astrophysics 268, 360, and H. Dimmelmeier, J. A. Font and E. Müller
+            (2002), Astronomy and Astrophysics 388, 917: the hybrid equation of state. H.-T. Janka (2001), Astronomy and Astrophysics 368, 527:
+            neutrino heating and cooling. S. A. Colgate and R. H. White (1966), The Astrophysical Journal 143, 626, and H. A. Bethe and J. R.
+            Wilson (1985), The Astrophysical Journal 295, 14: neutrino-driven explosions. A. Burrows and D. Vartanyan (2021), Nature 589, 29:
+            explosions in three dimensions. R. Minkowski (1941), Publications of the Astronomical Society of the Pacific 53, 224: the types. W. D.
+            Arnett (1982), The Astrophysical Journal 253, 785: radioactive light curves. A. Clocchiatti and J. C. Wheeler (1997), The
+            Astrophysical Journal 491, 375: γ-ray escape. B. Katz, D. Kushnir and S. Dong (2013), arXiv:1301.6766: the integral. D. V. Popov
+            (1993), The Astrophysical Journal 414, 712, and D. Kasen and S. E. Woosley (2009), The Astrophysical Journal 703, 2205: plateaus. R.
+            Pereira and colleagues (2013), Astronomy and Astrophysics 554, A27: SN 2011fe. F. Taddia and colleagues (2012), Astronomy and
+            Astrophysics 537, A140, and P. Bouchet and colleagues (1991), Astronomy and Astrophysics 245, 490: SN 1987A’s light. M. M. Phillips
+            (1993), The Astrophysical Journal Letters 413, L105: the width–luminosity relation. J. Whelan and I. Iben (1973), I. Iben and A. V.
+            Tutukov (1984) and R. F. Webbink (1984): Type Ia progenitors. P. Das and colleagues (2025), Nature Astronomy 9, 1356: SNR 0509−67.5.
+            C. Fransson and colleagues (2024), Science 383, 898: SN 1987A’s neutron star. W. A. Fowler and F. Hoyle (1964), The Astrophysical
+            Journal Supplement Series 9, 201, and Z. Barkat, G. Rakavy and N. Sack (1967), Physical Review Letters 18, 379: pair instability.
+            A. Heger and S. E. Woosley (2002), The Astrophysical Journal 567, 532, and S. E. Woosley (2017), The Astrophysical Journal 836, 244:
+            its outcomes. S. Schulze and colleagues (2024), Astronomy and Astrophysics 683, A223: SN 2018ibb.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

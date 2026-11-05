@@ -1,0 +1,199 @@
+import { BounceFigure } from '../figures/BounceFigure';
+import { NickelLightFigure } from '../figures/NickelLightFigure';
+import { PairWedgeFigure } from '../figures/PairWedgeFigure';
+import { SupernovaTypesFigure } from '../figures/SupernovaTypesFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { NickelForPeak } from './checks/chapter25';
+
+Chapter 24 ended at a limit: packed electrons can hold up about 1.4 Suns and no more. A massive star’s iron core grows past it, and a white dwarf fed by a companion can be pushed up to it. Either way the result is a <Term id="supernova">supernova</Term>, for a few weeks as bright as a whole galaxy, but they are different explosions with different engines. One is a collapse, powered by gravity and carried off by neutrinos; the other is a nuclear bomb the size of Earth. This chapter takes them apart, then follows the light they give for months afterwards, which comes from neither, and ends with the heaviest stars, which blow themselves apart for a third reason and leave nothing behind.
+
+## A core that can’t hold
+
+At the end of Chapter 22, the iron core of a star of 15 Suns weighs 1.45 Suns, the size of Earth and hotter than 3 billion K, held up by its electrons alone, and silicon burning in a shell around it keeps adding iron. Two things then take its pressure away. Its electrons are squeezed into its nuclei, turning protons into neutrons and giving out neutrinos that leave at once: fewer electrons, less pressure. And its light is hot enough to break iron apart into helium nuclei and neutrons, which costs 124 MeV for each iron nucleus, heat taken straight out of the gas. Past the limit and losing pressure as it shrinks, the core falls in.
+
+It falls in a few tenths of a second. The inner part, about 0.6 Suns, falls together, like a ball shrinking without changing its shape, at up to a quarter of light’s speed at its edge; the rest falls behind. At its centre the density climbs to that of an atomic nucleus, 2.7 × 10¹⁴ g/cm³, and there matter stops being soft: neutrons and protons packed against each other resist, and the inner core stiffens, overshoots and bounces, like a ball dropped onto the floor. The bounce slams into the outer core still falling in and drives a shock out through it. The inner core has become a new neutron star (Chapter 26), a few tens of kilometres across and hot.
+
+<Callout kind="maths" title="The energy of a collapse">
+
+Shrinking 1.4 Suns from the size of Earth to a neutron star 12 km in radius releases its gravitational energy,
+
+E ≈ (3/5) GM²/R ≈ 3 × 10⁴⁶ J,
+
+about 250 times what the Sun gives out in its whole life, in a second. Almost none of it is light. The new neutron star is so dense that even neutrinos take a few seconds to diffuse out of it, and they carry off 99% of the energy; about 10⁴⁴ J (10⁵¹ erg, a “foe”) goes into the explosion’s motion, and about 10⁴² J into its light. The free-fall time of gas at density ρ is √(3π/32Gρ): 0.02 s at 10¹⁰ g/cm³, which is why the last stage of the collapse is so fast.
+
+</Callout>
+
+The shock should blow the star apart, and in the first computer models of the 1960s it seemed to. It doesn’t. On its way out it heats the iron it runs into enough to break it apart, paying 8.8 MeV for every nucleon, and it loses more to neutrinos that the hot gas behind it gives out. Within a tenth of a second it has stalled, 100–200 km out in detailed models, held back by the matter still raining onto it. What revives it is the neutrinos themselves. Stirling Colgate and Richard White proposed in 1966 that the neutrinos pouring out of the new neutron star push the star off; Hans Bethe and James Wilson showed in 1985 how: a small share of them is caught in the gas behind the stalled shock, heating it, and if the heating wins against the infall, the shock moves out again. In one dimension it rarely wins. In three, where the heated gas boils and sloshes, it does: since about 2015 the best simulations explode, as Adam Burrows and David Vartanyan’s did for most of a set of stars in 2021.
+
+<BounceFigure
+  number="25.1"
+  tryThis={
+    <p>
+      Press <b>Play</b> with no heating: when does the core bounce, and where does the shock stall? Then try <b>Weak heating</b> and{' '}
+      <b>Strong heating</b>, and find the weakest heating that makes the star explode. How does the explosion’s energy grow with the heating?
+    </p>
+  }
+/>
+
+Two dozen of the neutrinos from one such collapse were caught. When SN 1987A exploded in the Large Magellanic Cloud, three detectors in Japan, the United States and Russia recorded about two dozen neutrinos within 13 seconds, about three hours before its light was seen, with energies of 10–40 MeV: from their number and energies, about 3 × 10⁴⁶ J had come out as neutrinos, just as the collapse picture says. Whether a neutron star was left was argued over for 37 years; in 2024 the James Webb Space Telescope found lines of argon and sulphur at the remnant’s centre, lit by something hot and small, most likely the neutron star.
+
+## The kinds of supernova
+
+Rudolph Minkowski sorted supernovae by their spectra in 1941: those without hydrogen lines he called Type I, those with them Type II. Type I later split three ways. Type Ia show silicon, absorbing near 615 nm; Type Ib show helium; Type Ic show neither. The names are history, not physics: Type Ib and Ic have more in common with Type II than with Type Ia.
+
+<SupernovaTypesFigure
+  number="25.2"
+  tryThis={
+    <p>
+      Pick each type and follow its path down the tree. Which lines in <b>Type Ia</b>’s spectrum say “white dwarf”? Compare <b>Type Ib</b> and{' '}
+      <b>Type Ic</b>: what is missing from each, and what does that say about the star before it exploded?
+    </p>
+  }
+/>
+
+Type II, Ib and Ic are all <Term id="core-collapse-supernova">core-collapse supernovae</Term>, and the difference is what the star still wore. Type II supernovae come from supergiants with their hydrogen envelopes on; Type Ib from stars stripped of their hydrogen, and Type Ic from stars stripped of their helium too. A star of 25 Suns or more can blow its envelope away with its own wind (Chapter 18), but most stripped stars lost theirs to a companion, which pulled it off (Chapter 28). The broadest-lined Type Ic come with long gamma-ray bursts: their collapsing core shoots out jets near light’s speed. Type Ia supernovae are white dwarfs, and leave nothing behind. In a galaxy like ours, about two supernovae go off each century; the last seen in the Milky Way was in 1604.
+
+## White dwarfs that explode
+
+A carbon–oxygen white dwarf can’t simply collapse when it is pushed near its limit. Long before, its centre, squeezed to billions of grams per cubic centimetre, lights its carbon. In a normal star that would make the core swell and cool. In packed matter it can’t: the pressure doesn’t answer the heat, the thermostat fails, as in the helium flash (Chapter 24), and the burning runs away. A flame races out through the white dwarf, turning carbon and oxygen into silicon, calcium and, where it is densest, nickel-56, and in about a second the whole star burns and flies apart at 10,000 km/s. Nothing is left.
+
+All <Term id="type-ia-supernova">Type Ia supernovae</Term> are made this way, so they are much alike: at their peak each is a few billion times as bright as the Sun. The brighter ones also fade more slowly (Mark Phillips, 1993), so measuring how fast one fades gives its true brightness, and its faintness then gives its distance across billions of light years: astronomers used them to measure how the universe expands, a story for another course.
+
+How the white dwarf gets there is still argued. A companion star may feed it gas until it nears the limit (John Whelan and Icko Iben, 1973); or two white dwarfs in a tight pair, drawn together by gravitational waves (Chapter 29), may merge (Iben and Alexander Tutukov, and Ronald Webbink, 1984). Lighter white dwarfs may explode too, in a “double detonation”: a helium shell taken from a companion explodes first and sends a shock into the white dwarf, which sets off its carbon. In 2025 Priyam Das and colleagues found what that should leave: two separate shells of calcium in the supernova remnant SNR 0509−67.5, one from each detonation. Some Type Ia supernovae probably come each way; their companions, if any, are still being looked for (Chapter 28).
+
+## Light from radioactive nickel
+
+The blast itself is over in seconds, and the gas it throws out is opaque: light made inside can’t get out until the gas has thinned. So a supernova’s light for its first months isn’t the explosion’s heat, which is lost to the gas’s expansion, but a radioactive afterglow. The explosion makes nickel-56, which decays to cobalt-56 with a mean life of 8.8 days, and cobalt-56 decays to iron-56 with one of 111 days; their γ-rays heat the gas from inside. A Type Ia supernova makes about 0.6 Suns of nickel; a collapsing core makes less, 0.07 Suns in SN 1987A. All the iron in your blood was once nickel-56, and much of it was made in Type Ia supernovae (Chapter 23).
+
+<Callout kind="maths" title="Arnett’s light curves">
+
+Per kilogram of the nickel made, the decays heat the gas at
+
+Q(t) = ε<sub>Ni</sub> e<sup>−t/τ<sub>Ni</sub></sup> + ε<sub>Co</sub> (e<sup>−t/τ<sub>Co</sub></sup> − e<sup>−t/τ<sub>Ni</sub></sup>),
+
+with ε<sub>Ni</sub> = 3.9 × 10⁶ W/kg, ε<sub>Co</sub> = 6.8 × 10⁵ W/kg, τ<sub>Ni</sub> = 8.8 days and τ<sub>Co</sub> = 111.3 days. The heat diffuses out over a time set by the mass thrown out M<sub>ej</sub>, its speed v and its opacity κ,
+
+τ<sub>m</sub> = (2κM<sub>ej</sub>/βcv)<sup>1/2</sup>, β ≈ 13.8,
+
+about two weeks for a white dwarf’s 1.4 Suns at 10,000 km/s. W. David Arnett (1982) solved the diffusion for gas expanding evenly:
+
+L(t) = (2/τ<sub>m</sub>²) e<sup>−(t/τ<sub>m</sub>)²</sup> ∫₀<sup>t</sup> t′ e<sup>(t′/τ<sub>m</sub>)²</sup> M<sub>Ni</sub>Q(t′) dt′.
+
+Its slope is (2t/τ<sub>m</sub>²)(M<sub>Ni</sub>Q − L), so at the peak, L = M<sub>Ni</sub>Q: the light equals the heating then. That is <Term id="arnetts-rule">Arnett’s rule</Term>, and it weighs the nickel.
+
+</Callout>
+
+<NickelLightFigure
+  number="25.3"
+  tryThis={
+    <p>
+      With <b>A white dwarf (Type Ia)</b>, change the nickel until the peak sits on SN 2011fe’s. Then double the mass thrown out: what happens to
+      the peak’s height, and to its date? Try <b>A blue supergiant (like SN 1987A)</b>: does one nickel mass fit both its peak and its tail?
+      Then switch on the hydrogen envelope and watch the plateau.
+    </p>
+  }
+/>
+
+After the peak the light follows the decays down, with one twist. As the gas thins, more of the γ-rays escape without heating it, so the light falls faster than the cobalt decays; a white dwarf’s thin, fast debris lets out most of its γ-rays within a few months. The proof was in plain sight. SN 1987A’s light faded for over a year at exactly cobalt-56’s rate, 0.98 magnitudes every 100 days, and NASA’s Solar Maximum Mission caught the γ-ray lines of the cobalt itself, at 847 and 1,238 keV, as they leaked out (1987); INTEGRAL caught them from the Type Ia SN 2014J in 2014. Red supergiants’ explosions add a plateau: their thick hydrogen envelope recombines layer by layer as it cools, and lets the light out at a steady rate for about 100 days before the tail takes over (Type II-P).
+
+## Stars that leave nothing behind
+
+The heaviest stars die a third way. A star born with more than about 140 Suns, and poor in metals so that its winds are weak and it keeps its mass, builds a helium core of 65 Suns or more, held up mostly by light. Once helium burning has made it a ball of oxygen, it contracts and heats past a billion kelvin, and its light becomes energetic enough to make pairs of electrons and positrons. Each pair costs 1.02 MeV of the light’s energy, energy that no longer pushes. Squeezing the core now mostly makes more pairs, and its pressure grows too slowly to hold it: the core goes soft. Fowler and Hoyle saw that it would (1964), and Zalman Barkat, Gideon Rakavy and Neal Sack worked out what follows (1967).
+
+<Callout kind="maths" title="Why 4/3">
+
+Squeeze a ball of gas so its radius shrinks a little. The weight on each square metre grows as GM²/R⁴, as R<sup>−4</sup>; the pressure, if the gas is squeezed without time to lose heat, grows as ρ<sup>Γ₁</sup>, as R<sup>−3Γ₁</sup>. The pressure wins, and the ball springs back, only if 3Γ₁ > 4: Γ₁ > 4/3, averaged over the star, weighted by its pressure. An ideal gas has Γ₁ = 5/3; light alone has exactly 4/3, which is why stars held up mostly by light are close to the edge (Chapter 20’s deep dive). Making pairs soaks up the work of squeezing, and pushes Γ₁ below 4/3 in a wedge on the core’s map, at about half a billion to 3 billion K and below about 10⁶ g/cm³.
+
+</Callout>
+
+The core collapses, and heats so fast that its oxygen burns all at once. If it burns enough before the collapse is turned round, the energy blows the whole star apart: a pair-instability supernova, which leaves no neutron star and no black hole, only a cloud thrown out at thousands of kilometres a second, with tens of Suns of fresh nickel in it. In published models, helium cores of about 65 to 135 Suns end this way. Lighter ones, from about 35 Suns, survive the first collapse but throw off shells in a series of pulses before their cores finally collapse; heavier ones collapse whole, too tightly bound to be blown apart. The heaviest black hole that ordinary stars can make is therefore about 45–50 Suns, and none should form between that and about 130: a gap in black holes’ masses that LIGO and Virgo now test (Chapter 29). The best candidate seen is SN 2018ibb, which faded so slowly that it needed 25–44 Suns of nickel to power it.
+
+<PairWedgeFigure
+  number="25.4"
+  tryThis={
+    <p>
+      Slide the helium core from 10 to 200 Suns: which cores’ paths cross the wedge, and which only touch it? At what mass does the average Γ₁
+      first dip below 4/3, and how does that compare with where published models start the pulses? Why does a heavier core cross lower on the
+      map?
+    </p>
+  }
+/>
+
+The figure’s cores follow Eddington’s standard model, in which a heavier core is held up more by light and so sits at lower density for its temperature. Light-dominated gas is already close to 4/3, so a small dip from pairs is enough to tip it; a lighter core, held up mostly by its ions, passes through the wedge’s edge and holds. In this simple model the average Γ₁ first falls below 4/3 for a helium core of about 27 Suns, near where detailed models start the pulses.
+
+<Timeline from={1930} to={2025} chapter={25} only={[18, 25]} title="Stellar explosions" />
+
+<DeepDive title="SN 1987A, the supernova next door">
+
+On 23 February 1987 a blue supergiant in the Large Magellanic Cloud, 160,000 light years away, exploded: the nearest supernova seen since Kepler’s in 1604, and the first whose star had been photographed before. It has been the test of nearly everything in this chapter.
+
+Its neutrinos came first. The two dozen caught in Japan, the United States and Russia arrived within 13 seconds, three hours before the light, as the neutrinos leave the core at once while the light takes hours to reach the surface. Their energies and number matched a collapse to a neutron star; their arrival together, after 160,000 years, put a limit on the neutrino’s mass.
+
+It was odd. Its star was a blue supergiant, Sanduleak −69° 202, not the red one models expected, perhaps the product of two stars that merged; its compact envelope gave it no plateau, and its light rose slowly to a peak about 85 days after the explosion. Then it faded at cobalt-56’s rate, and its tail weighed the nickel at 0.07 Suns; the Solar Maximum Mission saw the cobalt’s γ-rays leaking out earlier than models predicted, showing that the nickel had been stirred far out into the debris, as only an explosion in more than one dimension could stir it.
+
+In the years since, the debris has lit up a ring of gas the star had shed thousands of years before, and the Hubble Space Telescope has watched the ring brighten spot by spot as the blast reaches it. The neutron star took longest. In 2024, JWST’s spectra of the centre showed lines of argon and sulphur ionised by something small and very hot: the cooling neutron star, or the nebula of a young pulsar.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="why-collapse" prompt="Why does a massive star’s iron core collapse?">
+    <Choice label="It grows past what its electrons can hold, and electron captures and the splitting of iron take its pressure away" correct>
+      Right. Above the limit packed electrons can’t balance gravity, and as it shrinks the core loses electrons into its nuclei and heat to
+      breaking iron apart, so it loses pressure just when it needs more.
+    </Choice>
+    <Choice label="Its fuel runs out, so its fire goes out">
+      Iron is no fuel, and the core was never held up by fire: its electrons held it. It falls because it has grown past what they can hold,
+      and captures and the splitting of iron take its pressure away.
+    </Choice>
+    <Choice label="The outer layers fall onto it and crush it">
+      The outer layers hardly change in the last days (Chapter 22). The core falls in under its own weight, past Chandrasekhar’s limit.
+    </Choice>
+  </Question>
+
+  <Question id="where-energy" prompt="Where does most of a core-collapse supernova’s energy go?">
+    <Choice label="Into neutrinos" correct>
+      Right. About 99% of the 3 × 10⁴⁶ J leaves as neutrinos, from the hot new neutron star. About 1% drives the explosion, and a hundredth of
+      that comes out as light: still enough to outshine a galaxy.
+    </Choice>
+    <Choice label="Into light">
+      The light, dazzling as it is, is about 10⁴² J: a ten-thousandth of the total. Neutrinos carry off 99%.
+    </Choice>
+    <Choice label="Into the motion of the gas thrown out">
+      The explosion’s motion takes about 10⁴⁴ J, a foe, about 1% of what the collapse releases. Neutrinos carry off the rest.
+    </Choice>
+  </Question>
+
+  <Question id="ia-light" prompt="What powers a Type Ia supernova’s light for months?">
+    <Choice label="The decay of radioactive nickel-56 to cobalt and of cobalt to iron" correct>
+      Right. The explosion makes about 0.6 Suns of nickel-56; its decay, and its cobalt’s, heat the expanding gas from inside, and the light
+      peaks when it equals that heating (Arnett’s rule).
+    </Choice>
+    <Choice label="The heat of the explosion, slowly leaking out">
+      The explosion’s own heat is lost to the gas’s expansion within days. What shines for months is the radioactive decay of the nickel it
+      made.
+    </Choice>
+    <Choice label="A neutron star left at its centre">
+      A Type Ia supernova leaves nothing: the white dwarf is blown apart. Its light comes from radioactive nickel and cobalt.
+    </Choice>
+  </Question>
+
+  <Question id="nothing-left" prompt="Why can a very heavy star leave nothing behind when it dies?">
+    <Choice label="Its light makes electron–positron pairs, the core goes soft and collapses, and its oxygen burns at once and blows it apart" correct>
+      Right. Pair instability: making pairs soaks up the work of squeezing, Γ₁ falls below 4/3, and the collapse sets off the oxygen
+      explosively. Helium cores of about 65 to 135 Suns are destroyed.
+    </Choice>
+    <Choice label="It is too heavy to hold together, so it flies apart">
+      Heavy cores are held together more tightly, not less, and the heaviest collapse whole into black holes. Pair instability is what blows the
+      middle range apart.
+    </Choice>
+    <Choice label="Its black hole evaporates">
+      A star’s black hole would take far longer than the age of the universe to evaporate. A pair-instability supernova leaves no black hole at
+      all.
+    </Choice>
+  </Question>
+
+  <NickelForPeak />
+</CheckYourself>

@@ -1,5 +1,7 @@
 import { useEffect, useId, useState, useSyncExternalStore } from 'react';
-import { computeStellar, requestKey, type LifeAnswer, type StellarAnswer, type StellarRequest } from '../core/stellar/requests';
+import { computeStellar, requestKey, type LifeAnswer, type PairMap, type StellarAnswer, type StellarRequest } from '../core/stellar/requests';
+import type { CollapseRun } from '../core/supernova/collapse';
+import type { CoreHistory } from '../core/supernova/pairs';
 import type { Fate, IsochronePoint } from '../core/stellar/lives';
 import type { StarModel, StarSummary } from '../core/structure/zams';
 
@@ -144,3 +146,13 @@ export const useBuiltStar = (r: { mass: number; X: number; Z: number; burning: n
 /** A main sequence built star by star (Figure 21.4), once asked for. */
 export const useMainSequence = (r: { masses: readonly number[]; X: number; Z: number } | null) =>
   useStellar(r ? { kind: 'main-sequence', ...r } : null) as StarSummary[] | null;
+
+/** Chapter 25's toy collapse and bounce, with neutrino heating of L × 10⁵² erg/s behind the shock. */
+export const useCollapse = (neutrinoLuminosity: number) => useStellar({ kind: 'collapse', neutrinoLuminosity }) as CollapseRun | null;
+
+/** The pair-instability wedge and the paths of helium cores through it (Figure 25.4). */
+export const usePairMap = (r: { logT: readonly [number, number]; logRho: readonly [number, number]; masses: readonly number[] }) =>
+  useStellar({ kind: 'pair-map', ...r }) as PairMap | null;
+
+/** One helium core's Γ₁ along its path, at its centre and on average (Figure 25.4). */
+export const usePairCore = (mass: number, logT: readonly [number, number]) => useStellar({ kind: 'pair-core', mass, logT }) as CoreHistory | null;

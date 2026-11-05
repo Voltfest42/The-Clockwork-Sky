@@ -407,6 +407,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Degeneracy pressure, white dwarfs (heavier ones are smaller), the Chandrasekhar mass, and white dwarfs that cool and crystallise.',
     sections: ['Packed electrons', 'Heavier is smaller', 'Chandrasekhar’s limit', 'Embers that crystallise'],
     buildsOn: [18, 20, 22],
+    load: () => import('../content/chapter24.mdx'),
   }),
   chapter({
     number: 25,
@@ -415,6 +416,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Core collapse and the neutrinos of SN 1987A, the types of supernova, light curves powered by radioactive nickel, and pair-instability supernovae.',
     sections: ['A core that can’t hold', 'The kinds of supernova', 'White dwarfs that explode', 'Light from radioactive nickel', 'Stars that leave nothing behind'],
     buildsOn: [18, 22, 23, 24],
+    load: () => import('../content/chapter25.mdx'),
   }),
   chapter({
     number: 26,

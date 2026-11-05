@@ -7,6 +7,8 @@
 import solarModel from '../../data/solarModel.json';
 import { M_SUN } from '../constants';
 import { buildStar, mainSequence, type StarModel, type StarSummary } from '../structure/zams';
+import { runCollapse, type CollapseRun } from '../supernova/collapse';
+import { coreHistory, pairWedge, type CoreHistory, type WedgeColumn } from '../supernova/pairs';
 import { fateCurve, isochrone, lifeOf, type Fate, type IsochronePoint } from './lives';
 import type { SseTrack } from './sse/evolve';
 
@@ -16,7 +18,19 @@ export type StellarRequest =
   | { kind: 'life'; mass: number; z: number; wind: number }
   /** A star built from the four equations of structure (Chapter 21); `today` gives it Model S's hydrogen, burnt down in the core, and its mass. */
   | { kind: 'star'; mass: number; X: number; Z: number; burning: number; today?: boolean }
-  | { kind: 'main-sequence'; masses: readonly number[]; X: number; Z: number };
+  | { kind: 'main-sequence'; masses: readonly number[]; X: number; Z: number }
+  /** The toy collapse and bounce of Chapter 25, with neutrinos of luminosity L (10⁵² erg/s) heating behind the shock. */
+  | { kind: 'collapse'; neutrinoLuminosity: number }
+  /** Chapter 25's pair-instability wedge on the core's map, and the paths of helium cores of these masses (M☉) through it. */
+  | { kind: 'pair-map'; logT: readonly [number, number]; logRho: readonly [number, number]; masses: readonly number[] }
+  /** One core's Γ₁, at its centre and on average, along its path (Figure 25.4). */
+  | { kind: 'pair-core'; mass: number; logT: readonly [number, number] };
+
+/** The wedge where Γ₁ < 4/3, and each core's path. */
+export interface PairMap {
+  wedge: WedgeColumn[];
+  histories: CoreHistory[];
+}
 
 /**
  * A life as the worker sends it, with the wind it was run with. If SSE can't follow the star to its end (without
@@ -27,7 +41,7 @@ export interface LifeAnswer extends SseTrack {
   error?: string;
 }
 
-export type StellarAnswer = IsochronePoint[] | Fate[] | LifeAnswer | StarModel | StarSummary[];
+export type StellarAnswer = IsochronePoint[] | Fate[] | LifeAnswer | StarModel | StarSummary[] | CollapseRun | PairMap | CoreHistory;
 
 /** Model S's hydrogen against the mass fraction: today's Sun, its core a little over half burnt. */
 export const SUN_TODAY_HYDROGEN: readonly (readonly [number, number])[] = solarModel.shells.map((s) => [s.m, s.X] as const);
@@ -57,5 +71,11 @@ export function computeStellar(r: StellarRequest): StellarAnswer {
         : buildStar({ mass: r.mass, X: r.X, Z: r.Z, burning: r.burning });
     case 'main-sequence':
       return mainSequence(r.masses, r.X, r.Z);
+    case 'collapse':
+      return runCollapse({ neutrinoLuminosity: r.neutrinoLuminosity });
+    case 'pair-map':
+      return { wedge: pairWedge(r.logT, r.logRho, 64), histories: r.masses.map((m) => coreHistory(m, r.logT)) };
+    case 'pair-core':
+      return coreHistory(r.mass, r.logT, 40);
   }
 }
