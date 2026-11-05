@@ -36,3 +36,13 @@ export async function runFigureToEnd(page: Page, index: number) {
 export function figureByNumber(page: Page, number: string) {
   return page.locator(`figure[aria-labelledby="figure-${number}"]`);
 }
+
+/**
+ * Waits until the page has hydrated: then no figure still shows its
+ * prerendered description. Controls touched before then can be reset when
+ * React takes the page over, which happens late on a busy machine.
+ */
+export async function waitForHydration(page: Page) {
+  await expect(page.locator('main h1')).toBeVisible();
+  await expect(page.locator('figure [data-figure-placeholder]')).toHaveCount(0, { timeout: 15_000 });
+}

@@ -334,6 +334,26 @@ export const GLOSSARY = {
     term: 'CNO cycle',
     definition: 'The way stars heavier than about 1.3 Suns turn hydrogen into helium, with carbon, nitrogen and oxygen nuclei as catalysts. Its slowest step piles the catalysts up as nitrogen.',
   },
+  'binding-energy': {
+    term: 'Binding energy',
+    definition: 'The energy that holds a nucleus together, and that came out when it formed: the nucleus weighs that much less, by E = mc², than its protons and neutrons apart. Per nucleon it peaks at iron and nickel.',
+  },
+  'magic-number': {
+    term: 'Magic number',
+    definition: 'A number of protons or neutrons (2, 8, 20, 28, 50, 82 or 126) that fills a shell of energy levels, making a nucleus extra stable and slow to catch another neutron.',
+  },
+  's-process': {
+    term: 's-process',
+    definition: 'The slow neutron-capture process: in red giants, nuclei catch a neutron every few years to centuries, slower than most unstable ones decay, so the path climbs the valley of stability from iron to lead and bismuth.',
+  },
+  'r-process': {
+    term: 'r-process',
+    definition: 'The rapid neutron-capture process: in a flood of neutrons, as when neutron stars merge, nuclei catch them in milliseconds, far faster than they decay, then decay back to make about half the elements heavier than iron, and nearly all the gold and uranium.',
+  },
+  kilonova: {
+    term: 'Kilonova',
+    definition: 'The glow of the debris thrown out when two neutron stars merge, heated by the decay of the heavy elements the rapid process made in it. It fades from blue to red within days.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

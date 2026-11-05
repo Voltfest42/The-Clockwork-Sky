@@ -398,6 +398,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Binding energy and the iron peak, slow and rapid neutron capture, and the origin of every element.',
     sections: ['The iron peak', 'Slow neutron captures', 'Rapid neutron captures', 'Every element’s birthplace'],
     buildsOn: [12, 18, 22],
+    load: () => import('../content/chapter23.mdx'),
   }),
   chapter({
     number: 24,

@@ -1,0 +1,196 @@
+import { BirthplaceFigure } from '../figures/BirthplaceFigure';
+import { NeutronCaptureFigure } from '../figures/NeutronCaptureFigure';
+import { NuclidesFigure } from '../figures/NuclidesFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { FirstPileUp } from './checks/chapter23';
+
+Chapter 22 left a massive star with a core of iron and nothing left to burn. This chapter asks why iron is the end of the line, and where everything else came from: the carbon and oxygen of the furnaces, and the elements heavier than iron, which no furnace can make. Most of those were built one neutron at a time, slowly inside giant stars or in a few seconds when neutron stars merge, and the Solar System’s mix of elements is the record of both.
+
+## The iron peak
+
+A nucleus weighs less than the protons and neutrons in it. The missing mass, times c², is its <Term id="binding-energy">binding energy</Term>: the energy that came out when it was put together, and that it would take to pull it apart. Shared out per nucleon, it climbs steeply from deuterium’s 1.1 MeV to helium-4’s 7.07 MeV, then slowly through carbon-12 (7.68 MeV) and oxygen-16 (7.98 MeV) to a broad peak: iron-56 at 8.790 MeV and, highest of all, nickel-62 at 8.795 MeV. Beyond the peak it falls gently, to 7.57 MeV for uranium-238.
+
+That one curve sets what stars can do. Fusing light nuclei into heavier ones climbs the curve and releases energy, which is what every furnace in Chapter 22 did. Past the peak the curve runs downhill: fusing costs energy, and splitting releases it, which is why uranium can be split in a reactor. A star can burn its way up to the peak and no further. Silicon burning ends at nickel-56, with 28 protons and 28 neutrons, and nickel-56 decays through cobalt-56 to iron-56 within months (its half-lives are 6.1 and 77 days). That is why iron is the commonest element beyond oxygen’s neighbours.
+
+<Callout kind="maths" title="The liquid drop">
+
+Carl Friedrich von Weizsäcker (1935), and Hans Bethe and Robert Bacher (1936), treated a nucleus of Z protons and N neutrons, A = Z + N, as a drop of nuclear liquid. Its binding energy is about
+
+B ≈ a<sub>V</sub>A − a<sub>S</sub>A<sup>2/3</sup> − a<sub>C</sub>Z(Z − 1)/A<sup>1/3</sup> − a<sub>A</sub>(N − Z)²/A ± a<sub>P</sub>/√A,
+
+with a<sub>V</sub> = 15.8, a<sub>S</sub> = 18.3, a<sub>C</sub> = 0.714, a<sub>A</sub> = 23.2 and a<sub>P</sub> = 12 MeV in one standard fit. Each nucleon is held by its neighbours (the volume term), but those at the surface have fewer (the surface term, which costs small nuclei most). Every proton repels every other (the Coulomb term, which grows faster than the nucleus). The strong force favours equal numbers of protons and neutrons (the asymmetry term), and like nucleons pair up (the last term: + for even Z and N, − for odd).
+
+Per nucleon, the surface’s cost falls as A<sup>−1/3</sup> and the repulsion’s grows as about A<sup>2/3</sup>, so binding peaks where the two together are smallest: near A = 60. For a given A, the formula is most bound at Z = A/2 for light nuclei, and at fewer protons for heavy ones, whose extra neutrons dilute the repulsion: Z = 82 for A = 208. That line is the valley of stability.
+
+</Callout>
+
+The drop misses one thing. Nuclei with 2, 8, 20, 28, 50, 82 or 126 protons or neutrons are bound more tightly than the formula says, are rounder, and catch neutrons reluctantly. Maria Goeppert Mayer and, separately, Hans Jensen explained these <Term id="magic-number">magic numbers</Term> in 1949: protons and neutrons fill shells of energy levels, as electrons do in atoms, and a nucleus with a full shell is especially stable. Helium-4, oxygen-16, calcium-40 and lead-208 are doubly magic, with both shells full; tin, with 50 protons, has ten stable isotopes, more than any other element.
+
+Laid out by protons and neutrons, the known nuclei make the chart of nuclides: more than 3,300 of them, of which only about 250 are stable. They sit in a narrow valley. A nucleus with too many neutrons for its protons turns one into a proton by β⁻ decay, giving out an electron, and moves up and left, towards the valley; one with too many protons does the opposite, by β⁺ decay or by catching one of its own electrons. Far enough out, a nucleus can’t hold another neutron or proton at all: those are the drip lines. The heaviest nuclei, whose protons’ repulsion is strongest, shed helium nuclei (α decay) or split.
+
+<NuclidesFigure
+  number="23.1"
+  tryThis={
+    <p>
+      With <b>Decay</b> on, find where the β⁻ and β⁺ regions meet: that is the valley. Switch on <b>Valley of stability</b> and see where the
+      liquid drop puts it. Go to <b>⁵⁶Ni</b> and follow its decay to iron. Then open <b>The binding curve</b> and <b>Split into the drop’s
+      terms</b>: which term costs light nuclei most, and which heavy ones?
+    </p>
+  }
+/>
+
+## Slow neutron captures
+
+Iron ends fusion, but not the periodic table: more than half the elements are heavier. They can’t be made by fusing charged nuclei, whose barriers past iron are enormous and whose fusion costs energy anyway. Neutrons have no charge, so they meet no barrier at all. A nucleus that catches a neutron becomes a heavier isotope of the same element; if that is unstable it β-decays, turning a neutron into a proton, and becomes the next element up. Repeat, and iron becomes everything else.
+
+Free neutrons don’t last (a free neutron decays in about ten minutes), so they must be made where they are caught. In red giants of about 1 to 3 Suns, near the ends of their lives (Chapter 17), a thin layer of carbon-13 meets helium between the flashes of helium burning, and ¹³C(α,n)¹⁶O fills it with about 10⁷ free neutrons per cubic centimetre for thousands of years. During the flashes, and in the cores of massive stars, ²²Ne(α,n)²⁵Mg gives short bursts of 10¹⁰ to 10¹¹. At 10⁸ neutrons per cm³, a nucleus with a cross section of 100 millibarns, a typical one, catches a neutron every 13 years; one with 10 mb every 130. Most unstable nuclei the path makes decay within hours or days, long before the next neutron arrives. So the path climbs the valley of stability, one nucleus at a time: the slow process, or <Term id="s-process">s-process</Term>.
+
+<Callout kind="maths" title="σN: the flow along the path">
+
+Count the neutrons that have passed through a unit area, the exposure τ = ∫n<sub>n</sub>v<sub>T</sub> dt, measured in neutrons per millibarn. A nucleus of mass A is made by captures on its lighter neighbour and lost by captures of its own:
+
+dN<sub>A</sub>/dτ = σ<sub>A−1</sub>N<sub>A−1</sub> − σ<sub>A</sub>N<sub>A</sub>.
+
+Given time, the flow settles where each nucleus passes on what it receives: σ<sub>A</sub>N<sub>A</sub> ≈ σ<sub>A−1</sub>N<sub>A−1</sub>. A nucleus that catches neutrons badly piles up until its small σ times its large N carries the flow on, so σN is nearly the same all along the path. The magic nuclei are the exception: strontium-88 (N = 50) has σ = 6.1 mb, barium-138 (N = 82) 4.0 mb, and lead-208 (N = 126) 0.36 mb, against hundreds for their neighbours. Each is a bottleneck, and σN falls in a step there.
+
+If the seeds met a spread of exposures, exponentially distributed with mean τ₀, the flow has a simple form (Clayton and colleagues, 1961):
+
+σ<sub>A</sub>N<sub>A</sub> = (N<sub>seed</sub>/τ₀) Π [1 + 1/(σ<sub>i</sub>τ₀)]<sup>−1</sup>,
+
+the product over every nucleus from the seed to A. With τ₀ = 0.3 per millibarn it matches the Sun’s isotopes that only the s-process can make; Figure 23.2’s network, with real cross sections and half-lives, reproduces all but one of those from mass 96 to 150 within a quarter (the exception, barium-136, sits beside a branch point).
+
+</Callout>
+
+Where an unstable nucleus on the path lives long enough to catch a neutron before it decays, the path splits. Krypton-85 (half-life 10.7 years), zirconium-95 (64 days) and samarium-151 (90 years) are such branch points, and the share of nuclei taking each branch depends on the neutron density and the temperature, so the isotopes on either side are a thermometer and a gauge of the star where they were made. The path ends at bismuth-209: a neutron makes bismuth-210, which decays in 5 days to polonium-210, which throws out a helium nucleus 138 days later and is lead-206 again. The slow process goes round that loop for ever, and lead piles up.
+
+It happens now. In 1952 Paul Merrill found the lines of technetium in the spectra of some red giants. Technetium has no stable isotope; technetium-99, which the slow process makes, has a half-life of 211,000 years, far shorter than the stars’ ages. It must have been made inside them, recently, and brought to their surfaces.
+
+<NeutronCaptureFigure
+  number="23.2"
+  tryThis={
+    <p>
+      In <b>The slow process</b>, slide the exposure up (or press <b>Play</b>) and watch where the nuclei pile up first, then next. Switch to
+      <b> The pattern</b> and turn on <b>Exposures spread as in the Sun</b>: how well does σN follow the Sun’s points? Raise the density to
+      10¹⁰ per cm³ and look at the branch points. Then try <b>The rapid process</b> and play its 20 seconds.
+    </p>
+  }
+/>
+
+## Rapid neutron captures
+
+The slow process can’t make everything. Its path loops back at bismuth, so it never reaches thorium and uranium. And some isotopes are shielded from it: xenon-134 and -136 sit beyond the path, on the neutron-rich side, where a slow process can’t reach. Something else makes about half of the heavy isotopes, and almost all of the europium, platinum, gold and uranium.
+
+Where neutrons are dense enough, more than 10²⁰ per cm³ at one to two billion K, a nucleus catches them in milliseconds, much faster than it can decay. It soaks up neutrons until it can’t hold more: at that heat, light knocks a loosely held neutron out as fast as one comes in. Each element’s isotopes settle into a balance far out on the neutron-rich side, 10 to 25 neutrons beyond its heaviest stable isotope, where the last neutron is bound by only 2 to 3 MeV, against 8 MeV in the valley. There the element waits for a β decay to turn a neutron into a proton and move it on: this is the rapid process, or <Term id="r-process">r-process</Term>.
+
+<Callout kind="maths" title="The waiting points">
+
+With captures and their undoing in balance, (n,γ) ⇌ (γ,n), neighbouring isotopes follow Saha’s equation for neutrons, as ionisation stages followed it for electrons (Chapter 12):
+
+Y(A + 1)/Y(A) ≈ n<sub>n</sub> (λ³/2) e<sup>S<sub>n</sub>/kT</sup>, with λ = h/√(2πm<sub>u</sub>kT),
+
+where S<sub>n</sub> is the energy binding the last neutron of A + 1. The two are equal where S<sub>n</sub> = kT ln(2/n<sub>n</sub>λ³): for 10²⁴ neutrons per cm³ at 1.5 billion K, kT = 129 keV and that is 3.1 MeV. Each element’s isotopes crowd just short of it: the waiting point.
+
+A full shell of neutrons binds the next one weakly, so at N = 50, 82 and 126 the waiting point stops moving out, and element after element waits there: zinc-80 (N = 50) has a half-life of 0.56 s and cadmium-130 (N = 82) 0.16 s, longer than their neighbours on the path. The flow piles up at those rungs, and when the neutrons run out, every nucleus decays back along its mass number to the first stable one, leaving peaks near A = 80, 130 and 195.
+
+</Callout>
+
+The rapid process’s peaks sit a few mass units below the slow process’s, at 88, 138 and 208: its path meets each magic number of neutrons at fewer protons, so at lower mass. The two sets of peaks in the Sun’s abundances, side by side, were the clue to both processes. Switch Figure 23.2 to <b>The rapid process</b> to watch the toy version: the path runs far out to the right, waits at the magic numbers, and the pattern it leaves after decaying back has its three peaks where the Sun’s are. It is a toy (the note says what it leaves out), but the peaks come from nothing more than the shells.
+
+Where it happens was argued over for sixty years. On 17 August 2017, LIGO and Virgo heard two neutron stars spiral together (GW170817; Chapter 29), and telescopes found a new light in the galaxy NGC 4993: a <Term id="kilonova">kilonova</Term>. Within days it faded from blue to red, as expected if the debris held lanthanides, which the rapid process makes and whose countless lines block blue light (Daniel Kasen and colleagues had predicted the colour in 2013). Darach Watson and colleagues found strontium in its spectrum (2019), the first element named in a kilonova. In 2023 the James Webb Space Telescope found tellurium, from the second peak at A = 130, in the kilonova after the gamma-ray burst GRB 230307A (Andrew Levan and colleagues, 2024).
+
+## Every element’s birthplace
+
+Put together, the processes account for the whole table. Hydrogen and most of the helium were made in the Big Bang’s first minutes; how is cosmology, and this course stops at that door. Lithium, beryllium and boron are made by cosmic rays, fast protons that chip pieces off carbon, nitrogen and oxygen nuclei in space (Hubert Reeves, William Fowler and Fred Hoyle, 1970); stars destroy these fragile nuclei, which is why there is so little of them. Carbon and nitrogen come mostly from dying stars of a few Suns, blown off in their winds. Oxygen to calcium come from exploding massive stars, which burnt them in their cores. About two-thirds of the iron comes from white dwarfs that explode, burning to nickel-56 (Chapter 25), and the rest from massive stars. The slow process in giant stars makes most of the strontium, barium and lead; the rapid process most of the europium, gold, platinum and all of the thorium and uranium. A rarer process makes 35 proton-rich isotopes, the p-nuclei, by knocking neutrons out of heavier ones in supernovae.
+
+Margaret and Geoffrey Burbidge, William Fowler and Fred Hoyle laid this plan out in 1957, in a 104-page paper known by their initials, B²FH, and Alastair Cameron reached much the same plan in the same year. Their evidence was the pattern of the Sun’s abundances, with its peaks at iron, at the slow process’s magic numbers and, a little lighter, at the rapid process’s. The figure below draws the plan as Jennifer Johnson drew it (2017): every element split by where the Solar System’s supply was made.
+
+<BirthplaceFigure
+  number="23.3"
+  tryThis={
+    <p>
+      Find the elements made by just one kind of source, and those made by three. Compare <b>iron</b> with its neighbours <b>cobalt</b> and
+      <b> nickel</b>, and <b>barium</b> with <b>europium</b> two rows down. Where are the dips in the Sun’s abundances, and why are they there?
+      Then pick <b>oxygen</b>, <b>carbon</b> and <b>hydrogen</b>, most of your mass.
+    </p>
+  }
+/>
+
+You are a mix of the same sources. By mass, about 65% of your body is oxygen, 18% carbon and 10% hydrogen, with 3% nitrogen and smaller shares of calcium and phosphorus. So nearly three-quarters of you was made in exploding massive stars, a sixth in dying low-mass stars, and a tenth, the hydrogen, in the Big Bang. The iron in your blood is mostly from exploding white dwarfs.
+
+<Timeline from={1930} to={2025} chapter={23} only={[23]} title="Where the elements come from" />
+
+<DeepDive title="Where gold comes from: mergers, collapsars or magnetar flares">
+
+Gold, platinum and europium are almost all made by the rapid process: Nikos Prantzos and colleagues’ model of the Galaxy (2020) gives the slow process only 6% of the Sun’s gold, 8% of its platinum and 5% of its europium. So the question of where gold comes from is the question of where the rapid process runs.
+
+Merging neutron stars do it: GW170817’s kilonova settled that. Its debris weighed a few hundredths of the Sun’s mass, and if mergers happen as often as LIGO and Virgo now count them, they could have made all the rapid-process elements in the Galaxy. But there are doubts about whether they made them all. Pairs of neutron stars take a long time to merge, from tens of millions to billions of years after the stars that made them died, and their kicks at birth can throw them out of small galaxies before they merge. Yet some of the oldest stars in the Galaxy, born when it was young and poor in metals, are already rich in europium. Reticulum II, a tiny faint galaxy, has stars that seem to have been enriched by a single rare event, which fits a merger, or something like one.
+
+Other candidates may help. Collapsars, massive stars that spin fast and collapse into black holes surrounded by discs, could throw out neutron-rich gas from the disc (Daniel Siegel, Jennifer Barnes and Brian Metzger, 2019); they would follow the deaths of massive stars without delay, but no one has yet caught one making heavy elements. And in 2025 Anirudh Patel, Metzger and colleagues argued that a hard glow of gamma rays seen minutes to hours after the giant flare of the magnetar SGR 1806−20 in December 2004 came from about a millionth of a solar mass of freshly made rapid-process elements: such flares might make 1 to 10% of the Galaxy’s supply.
+
+So the gold in a ring was most likely made in neutron stars merging before the Sun was born, perhaps with some help from collapsing stars or flaring magnetars. How much each contributes is still argued.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="iron-end" prompt="Why does a star’s core stop fusing when it reaches iron?">
+    <Choice label="Beyond the iron peak, fusing nuclei costs energy instead of releasing it" correct>
+      Right. Binding energy per nucleon peaks at iron and nickel (nickel-62, 8.795 MeV). Fusing up to the peak releases energy; beyond it,
+      fusion only takes energy from the core, so there is nothing left to burn.
+    </Choice>
+    <Choice label="The core isn’t hot enough to fuse iron">
+      The collapsing core gets hotter than ever, billions of degrees. It is the binding curve that stops it: past the iron peak, fusion costs
+      energy rather than releasing it.
+    </Choice>
+    <Choice label="Iron nuclei repel each other too strongly to touch">
+      They repel strongly, but hot enough cores could still get them through by tunnelling. The real reason is that past the iron peak fusion
+      costs energy, so it can’t pay for the star’s light.
+    </Choice>
+  </Question>
+
+  <Question id="technetium" prompt="Paul Merrill found technetium in some red giants’ spectra in 1952. What does that prove?">
+    <Choice label="The stars are making elements now: technetium decays far too fast to be left over from their birth" correct>
+      Right. Technetium has no stable isotope; technetium-99 lasts 211,000 years, far shorter than the stars’ ages. It must have been made by
+      the slow process inside them, recently, and brought to the surface.
+    </Choice>
+    <Choice label="The stars were born from the debris of a recent supernova">
+      Technetium from the stars’ birth cloud would have decayed long ago: technetium-99 lasts 211,000 years, a sliver of a red giant’s age. The
+      stars made it themselves, by the slow process.
+    </Choice>
+    <Choice label="The stars are hot enough to fuse molybdenum into technetium">
+      Fusing that heavy a nucleus would cost energy, and their insides are far too cool. Technetium is made by slow neutron captures on
+      molybdenum, followed by a β decay.
+    </Choice>
+  </Question>
+
+  <Question id="peaks" prompt="Why do the abundances of the heavy elements have peaks?">
+    <Choice label="Neutron captures pile up at nuclei with magic numbers of neutrons, which catch neutrons reluctantly" correct>
+      Right. A full shell of neutrons (50, 82, 126) makes a nucleus catch the next neutron badly, so the flow piles up there: at masses 88, 138
+      and 208 for the slow process, and a little lighter, 80, 130 and 195, for the rapid one.
+    </Choice>
+    <Choice label="Those elements have the highest binding energy per nucleon">
+      Binding peaks at iron, not at barium or lead. The heavy peaks come from the magic numbers of neutrons, where neutron captures stall.
+    </Choice>
+    <Choice label="Stars fuse helium into them most easily">
+      Elements past iron aren’t made by fusion at all, but by neutron captures, which stall at the magic numbers of neutrons and pile up there.
+    </Choice>
+  </Question>
+
+  <Question id="gold" prompt="Where was the gold in a gold ring most likely made?">
+    <Choice label="In merging neutron stars, by the rapid process, before the Sun was born" correct>
+      Right. About 94% of the Sun’s gold comes from the rapid process, which GW170817’s kilonova showed happens in merging neutron stars.
+      Collapsing stars and magnetar flares may have made some too; how much is still argued.
+    </Choice>
+    <Choice label="In the Sun’s core">
+      The Sun has never made anything heavier than helium, and nothing past iron can be made by fusion. The gold came with the cloud the Sun
+      formed from, made mostly in merging neutron stars.
+    </Choice>
+    <Choice label="In red giants, by the slow process">
+      The slow process makes only about 6% of gold. Almost all of it comes from the rapid process, most likely in merging neutron stars.
+    </Choice>
+  </Question>
+
+  <FirstPileUp />
+</CheckYourself>

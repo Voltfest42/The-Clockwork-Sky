@@ -48,6 +48,8 @@ test.describe('with JavaScript off', () => {
   });
 
   test('written chapters have their full text, section headings and figures in the HTML', async ({ page }) => {
+    // It visits every written page and checks every figure, so it grows with the course.
+    test.slow();
     for (const meta of PAGES.filter((p) => p.kind === 'chapter' || p.kind === 'toolkit')) {
       const item = findChapter(meta.page) ?? findToolkitPage(meta.page)!;
       if (!item.load) continue;

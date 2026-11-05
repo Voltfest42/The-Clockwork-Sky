@@ -108,6 +108,12 @@ export function About() {
           Model S’s burning rate at the Sun’s centre within 5%, and, added up over Model S, give the Sun its luminosity within 10% with 85% of
           its helium from ppI, 15% from ppII and 0.02% from ppIII; the triple-alpha rate must climb as T⁴¹ at 100 million K; and the
           late fuels must light within about 10% of the balanced-power temperatures Woosley, Heger and Weaver give.
+          Since Chapter 23, binding energies worked out from the IAEA’s masses must match its own table, with nickel-62 the most tightly bound
+          and the brief’s values for helium-4 to uranium-238; the liquid drop must stay within about 1% of the measured binding beyond calcium,
+          and its valley must put Z = 82 at A = 208; the course’s mass formula must fit the measured masses to about 2 MeV; the slow process
+          must keep every nucleus, pile up first at N = 50, fall in steps at N = 50, 82 and 126, follow the classical formula for a spread of
+          exposures, and match all but one of the Sun’s s-only isotopes from mass 96 to 150 within a quarter with τ₀ = 0.3 per millibarn; and the toy rapid
+          process, averaged over bursts of every length, must leave its peaks near masses 80, 130 and 195.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -597,7 +603,26 @@ export function About() {
           </li>
         </ul>
 
-        <h3>Toolkit: Differential equations</h3>
+        <h3>Chapter 23</h3>
+        <ul>
+          <li>
+            <b>Figure 23.1, the chart of nuclides.</b> Ground states only, without the long-lived excited states; a quarter of the masses are
+            extrapolated from their neighbours’ trends; the drip lines beyond the measured masses come from the course’s own mass formula, the
+            liquid drop with a shell correction, good to about 2 MeV.
+          </li>
+          <li>
+            <b>Figure 23.2, neutron captures step by step.</b> The slow process at one neutron density and kT = 30 keV, with laboratory half-lives
+            (some change in a star’s heat) and an iron seed alone. The rapid process is a toy: each element’s isotopes in the (n,γ) ⇌ (γ,n)
+            balance, masses from the course’s formula, unmeasured half-lives from a rule fitted to measured ones, and no fission, β-delayed
+            neutrons or late captures; its pattern is drawn smoothed.
+          </li>
+          <li>
+            <b>Figure 23.3, every element’s birthplace.</b> Jennifer Johnson’s shares, read off her figure: models, good to ten or twenty per
+            cent, and argued over where the rapid process is concerned.
+          </li>
+        </ul>
+
+                <h3>Toolkit: Differential equations</h3>
         <ul>
           <li>
             <b>Figure T10.1, shooting.</b> Figure 7.1’s cannon, without air; the red dwarf is an n = 1.5 polytrope with Proxima’s mass and radius;
@@ -917,6 +942,26 @@ export function About() {
             the Sun’s pp and CNO neutrinos. A. Formicola and colleagues (2004), Physics Letters B 591, 61: LUNA’s ¹⁴N + p.
           </li>
           <li>
+            C. F. von Weizsäcker (1935), Zeitschrift für Physik 96, 431, and H. A. Bethe and R. F. Bacher (1936), Reviews of Modern Physics 8, 82:
+            the liquid drop. M. Goeppert Mayer (1949), Physical Review 75, 1969, and O. Haxel, J. H. D. Jensen and H. E. Suess (1949), Physical
+            Review 75, 1766: the shell model. W. D. Myers and W. J. Swiatecki (1966), Nuclear Physics 81, 1: the shell correction’s form. F. G.
+            Kondev and colleagues (2021), Chinese Physics C 45, 030001 (NUBASE2020), and W. J. Huang, M. Wang and colleagues (2021), Chinese
+            Physics C 45, 030002–3 (AME2020): masses and half-lives. P. W. Merrill (1952), The Astrophysical Journal 116, 21: technetium in
+            stars. E. M. Burbidge, G. R. Burbidge, W. A. Fowler and F. Hoyle (1957), Reviews of Modern Physics 29, 547, and A. G. W. Cameron
+            (1957), Chalk River report CRL-41: the making of the elements. D. D. Clayton, W. A. Fowler, T. E. Hull and B. A. Zimmerman (1961),
+            Annals of Physics 12, 331, and P. A. Seeger, W. A. Fowler and D. D. Clayton (1965), The Astrophysical Journal Supplement Series 11,
+            121: σN and the spread of exposures. F. Käppeler, R. Gallino, S. Bisterzo and W. Aoki (2011), Reviews of Modern Physics 83, 157: the
+            s-process. K.-L. Kratz and colleagues (1993), The Astrophysical Journal 403, 216: the waiting-point approximation. N. Prantzos, C.
+            Abia, S. Cristallo, M. Limongi and A. Chieffi (2020), Monthly Notices of the Royal Astronomical Society 491, 1832: the s- and r-shares
+            of the Sun’s isotopes, with K. Lodders, H. Palme and H.-P. Gail’s (2009) abundances. M. Asplund, A. M. Amarsi and N. Grevesse (2021),
+            Astronomy and Astrophysics 653, A141: the Sun’s abundances. J. A. Johnson (2019), Science 363, 474: the elements’ origins. H.
+            Reeves, W. A. Fowler and F. Hoyle (1970), Nature 226, 727: cosmic rays. D. Kasen, N. R. Badnell and J. Barnes (2013), The
+            Astrophysical Journal 774, 25: the kilonova’s colour. D. Watson and colleagues (2019), Nature 574, 497: strontium. A. J. Levan and
+            colleagues (2024), Nature 626, 737: tellurium. D. M. Siegel, J. Barnes and B. D. Metzger (2019), Nature 569, 241: collapsars. A.
+            Patel, B. D. Metzger and colleagues (2025), The Astrophysical Journal Letters (arXiv:2501.09181): a magnetar’s flare. A. P. Ji, A. Frebel, A.
+            Chiti and J. D. Simon (2016), Nature 531, 610: Reticulum II.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -1025,6 +1070,20 @@ export function About() {
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons
             Attribution-ShareAlike 4.0 licence, in a file of their own.
+          </li>
+          <li>
+            <b>Nuclides:</b> the ground states of every known nucleus from the IAEA’s LiveChart of Nuclides (IAEA Nuclear Data Section), with
+            ENSDF’s half-lives and decays and NUBASE2020’s and AME2020’s masses, adapted for teaching as the IAEA allows, with this
+            acknowledgement. <b>Neutron-capture cross sections:</b> KADoNiS v0.3, the Karlsruhe Astrophysical Database of Nucleosynthesis in
+            Stars (I. Dillmann and colleagues), used with the citation it asks for.
+          </li>
+          <li>
+            <b>The elements’ origins:</b> Jennifer Johnson’s periodic table of the origins of the elements (Ohio State University), as read off
+            her figure by C. M. G. Lee (Wikimedia Commons), both shared under the{' '}
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution-ShareAlike 4.0
+            </a>{' '}
+            licence, and so is this course’s file made from them, kept in a folder of its own.
           </li>
         </ul>
         <p>Chapter 1’s sizes and distances are published values, typed into the code with their sources (see above).</p>

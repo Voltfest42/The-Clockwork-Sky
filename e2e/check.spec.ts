@@ -1,5 +1,5 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { accessibilityViolations, watchErrors } from './helpers';
+import { accessibilityViolations, waitForHydration, watchErrors } from './helpers';
 
 /** Chapter 1's Check yourself block. */
 const CHAPTER = '/a-sense-of-scale/';
@@ -30,6 +30,7 @@ async function slideTo(page: Page, slider: Locator, position: number) {
 test('a wrong answer is explained, and the right one confirmed @phone', async ({ page }) => {
   const errors = watchErrors(page);
   await page.goto(CHAPTER);
+  await waitForHydration(page);
   const question = neptuneDistanceQuestion(page);
   const check = question.getByRole('button', { name: 'Check' });
   await expect(check).toBeDisabled();
@@ -50,6 +51,7 @@ test('a wrong answer is explained, and the right one confirmed @phone', async ({
 
 test('every answer can be explained at once', async ({ page }) => {
   await page.goto(CHAPTER);
+  await waitForHydration(page);
   const question = neptuneDistanceQuestion(page);
   await question.getByRole('radio', { name: '30 m' }).check();
   await question.getByRole('button', { name: 'Check' }).click();
@@ -64,6 +66,7 @@ test('every answer can be explained at once', async ({ page }) => {
 
 test('an interactive question checks the state of its control, and can be worked by keyboard', async ({ page }) => {
   await page.goto(CHAPTER);
+  await waitForHydration(page);
   const question = guessQuestion(page);
   const slider = question.getByRole('slider', { name: 'Your guess' });
   await expect(question.getByText('10 Earths')).toBeVisible();
@@ -83,6 +86,7 @@ test('an interactive question checks the state of its control, and can be worked
 
 test('answers are remembered in the browser, and can be cleared', async ({ page }) => {
   await page.goto(CHAPTER);
+  await waitForHydration(page);
   await neptuneDistanceQuestion(page).getByRole('radio', { name: '30 m' }).check();
   await neptuneDistanceQuestion(page).getByRole('button', { name: 'Check' }).click();
   await slideTo(page, guessQuestion(page).getByRole('slider'), 300);
@@ -90,6 +94,7 @@ test('answers are remembered in the browser, and can be cleared', async ({ page 
   await expect(sample(page).getByText('You’ve answered 2 of 5, and got 1 right.')).toBeVisible();
 
   await page.reload();
+  await waitForHydration(page);
   await expect(sample(page).getByText('You’ve answered 2 of 5, and got 1 right.')).toBeVisible();
   await expect(neptuneDistanceQuestion(page).getByRole('radio', { name: '30 m' })).toBeChecked();
   await expect(guessQuestion(page).getByText('1,000 Earths')).toBeVisible();
@@ -113,6 +118,7 @@ test('the questions still work when the browser blocks storage', async ({ page }
   });
   const errors = watchErrors(page);
   await page.goto(CHAPTER);
+  await waitForHydration(page);
   await neptuneDistanceQuestion(page).getByRole('radio', { name: '30 m' }).check();
   await neptuneDistanceQuestion(page).getByRole('button', { name: 'Check' }).click();
   await expect(neptuneDistanceQuestion(page).getByText('Right.')).toBeVisible();
@@ -125,6 +131,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
 
     test('right and wrong answers pass the accessibility checks', async ({ page }) => {
       await page.goto(CHAPTER);
+      await waitForHydration(page);
       const question = neptuneDistanceQuestion(page);
       await question.getByRole('radio', { name: '30 m' }).check();
       await question.getByRole('button', { name: 'Check' }).click();
@@ -138,6 +145,7 @@ for (const colorScheme of ['light', 'dark'] as const) {
 
 test('an interactive question can embed a figure: zoom until Neptune’s orbit fits', async ({ page }) => {
   await page.goto(CHAPTER);
+  await waitForHydration(page);
   const question = neptuneOrbitQuestion(page);
   const slider = question.getByRole('slider', { name: 'Zoom' });
   await question.getByRole('button', { name: 'Check' }).click();
