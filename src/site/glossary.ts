@@ -314,6 +314,26 @@ export const GLOSSARY = {
     term: 'Adiabatic',
     definition: 'Without heat flowing in or out, as when a rising parcel of gas expands and cools. If a star’s temperature falls faster with height than that, the gas convects.',
   },
+  'coulomb-barrier': {
+    term: 'Coulomb barrier',
+    definition: 'The electric repulsion two nuclei must get through to fuse: nearly a million electronvolts for two protons, hundreds of times what a proton at the Sun’s centre has. They tunnel through it.',
+  },
+  tunnelling: {
+    term: 'Tunnelling',
+    definition: 'A quantum particle passing through a barrier it hasn’t the energy to climb, because it is partly a wave and part of the wave leaks through. It is how protons fuse in stars.',
+  },
+  'gamow-peak': {
+    term: 'Gamow peak',
+    definition: 'The narrow window of energies at which fusion actually happens in a star: high enough to tunnel, not so high that almost no nuclei have it. About 6 keV for protons at the Sun’s centre.',
+  },
+  'pp-chain': {
+    term: 'Proton–proton chain',
+    definition: 'The way the Sun turns four protons into a helium nucleus, starting with two protons fusing into deuterium, a step so slow that a proton waits billions of years for it.',
+  },
+  'cno-cycle': {
+    term: 'CNO cycle',
+    definition: 'The way stars heavier than about 1.3 Suns turn hydrogen into helium, with carbon, nitrogen and oxygen nuclei as catalysts. Its slowest step piles the catalysts up as nitrogen.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

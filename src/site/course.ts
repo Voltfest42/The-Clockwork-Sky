@@ -389,6 +389,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Too cold for fusion', 'The Gamow peak', 'Four protons make helium', 'Hoyle’s resonance', 'The last days of a massive star'],
     buildsOn: [12, 15, 20, 21],
     toolkit: ['estimating-with-orders-of-magnitude'],
+    load: () => import('../content/chapter22.mdx'),
   }),
   chapter({
     number: 23,

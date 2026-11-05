@@ -1,0 +1,228 @@
+import { GamowPeakFigure } from '../figures/GamowPeakFigure';
+import { HoyleFigure } from '../figures/HoyleFigure';
+import { LastDaysFigure } from '../figures/LastDaysFigure';
+import { PpCnoFigure } from '../figures/PpCnoFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { Crossover } from './checks/chapter22';
+
+Chapter 21 ended with a thermostat: a star’s centre settles at whatever temperature makes its burning pay for the light it leaks. For the Sun that is 15.7 million degrees. This chapter opens the furnace. By the rules of classical physics, 15.7 million degrees is far too cold for any two protons ever to fuse; quantum mechanics lets a few through, and how few sets the pace of a star’s whole life. Then the two ways stars turn hydrogen into helium, the near-miracle in carbon that lets helium burn at all, and the heavier fuels that a massive star burns faster and faster, until the last of them lasts a day.
+
+The boxes estimate rates by keeping powers of ten and dropping factors of two; Toolkit: [Estimating with orders of magnitude](/toolkit/estimating-with-orders-of-magnitude/) shows the habit.
+
+## Too cold for fusion
+
+Two protons repel each other, and the closer they get the harder they push. Only when they touch, less than two femtometres apart, does the strong force take over and hold them. To get that close they must climb the <Term id="coulomb-barrier">Coulomb barrier</Term>, an electric hill nearly a million electronvolts high. At the Sun’s centre a typical pair has about 1.35 keV, a six-hundredth of that.
+
+Some protons are faster than typical: heat is a spread of speeds, and the fastest few are many times the average. But the spread’s tail falls off exponentially. The share of pairs with enough energy to climb the barrier is about e<sup>−630</sup>, a decimal point followed by 273 zeros. The Sun holds about 10<sup>57</sup> protons. Classically, not one pair of them would ever fuse, in the Sun’s lifetime or a billion of them.
+
+<Callout kind="maths" title="The barrier and the tunnel">
+
+Two charges Z₁e and Z₂e a distance r apart have the electric energy
+
+E<sub>C</sub> = Z₁Z₂e² / 4πε₀r ≈ 1.44 MeV × Z₁Z₂ / (r in femtometres),
+
+0.86 MeV for two protons touching at 1.7 fm. Against kT = 1.35 keV at 15.7 million K, the share of pairs above it is about e<sup>−E<sub>C</sub>/kT</sup> = e<sup>−630</sup>.
+
+Quantum mechanics gives a proton a wave, and a wave leaks through a barrier it can’t climb, fading inside it. George Gamow worked out how much (1928), to explain why radioactive nuclei give out alpha particles: the chance of getting through at energy E is about
+
+P(E) ≈ e<sup>−√(E<sub>G</sub>/E)</sup>, with the Gamow energy E<sub>G</sub> = 2μc²(παZ₁Z₂)²,
+
+where μ is the pair’s reduced mass and α ≈ 1/137. For two protons E<sub>G</sub> = 493 keV, and at 6 keV the chance is about 1 in 8,000.
+
+</Callout>
+
+Robert Atkinson and Fritz Houtermans saw what this meant for stars (1929): nuclei don’t need to climb the barrier; they tunnel through it. Tunnelling isn’t borrowing energy, and the proton doesn’t arrive with less: it is a wave, and part of the wave is on the other side. Even so, a chance of 1 in 8,000 per close encounter, at an energy few protons have, makes fusion rare. That rareness is what lets the Sun last.
+
+## The Gamow peak
+
+Two curves decide where fusion happens. Pairs with high energy are rare, and get rarer exponentially. Pairs with low energy can’t tunnel. Multiply the two, and the product is a narrow hump at an energy several times the typical one: the <Term id="gamow-peak">Gamow peak</Term>. For protons at the Sun’s centre it sits at 6.1 keV, 4.5 times the typical energy, and is 6.6 keV wide. Fusion comes almost entirely from pairs in that window, far out on the tail of the spread and far below the barrier’s top.
+
+<Callout kind="maths" title="The Gamow peak">
+
+The reaction rate per pair adds up every energy’s share times its chance:
+
+⟨σv⟩ ∝ (kT)<sup>−3/2</sup> ∫ S(E) e<sup>−E/kT − √(E<sub>G</sub>/E)</sup> dE,
+
+where S(E), the nuclear physics left over, changes slowly with energy and is measured in laboratories. The exponent is largest at
+
+E₀ = (E<sub>G</sub>(kT)²/4)<sup>1/3</sup>, with width Δ = 4(E₀kT/3)<sup>1/2</sup>,
+
+and there it is −3E₀/kT. So the rate goes as T<sup>−2/3</sup>e<sup>−3E₀/kT</sup>, and since E₀ grows as T<sup>2/3</sup>, it climbs with temperature as T<sup>ν</sup> with ν = (3E₀/kT − 2)/3: 3.8 for two protons at the Sun’s centre, 18 for a proton and nitrogen-14 at 20 million K, 30 for two carbon nuclei at 800 million K.
+
+</Callout>
+
+Heavier nuclei repel more. The Gamow energy grows as the square of the charges, so the window moves out to higher energies and the core must be hotter to reach it: a proton and carbon-12 need about 20 million K, two carbon nuclei 800 million, two oxygen nuclei 2 billion. And the steeper the barrier, the more steeply the rate climbs with temperature: a 10% hotter core burns hydrogen by the pp chains 45% faster, but carbon 17 times faster. That steepness is why each fuel lights at a nearly fixed temperature, and why a star’s thermostat holds so tightly.
+
+<GamowPeakFigure
+  number="22.1"
+  tryThis={
+    <p>
+      Slide the cursor across the peak for <b>p + p</b>, then switch on <b>Without tunnelling</b>: what happens to the rate? Switch it off and
+      choose <b>¹²C + ¹²C</b>: how hot must the core be before its peak looks like the protons’? Then try <b>The peak up close</b> and compare the
+      window with kT.
+    </p>
+  }
+/>
+
+## Four protons make helium
+
+Four protons can’t meet at once. The Sun makes helium in steps, the <Term id="pp-chain">proton–proton chains</Term>, and the first step is the hard one. When two protons tunnel together they almost always fall apart again at once: there is no stable nucleus of two protons. Only if, in that instant, one of them turns into a neutron, giving out a positron and a neutrino, do they stay together as a deuteron. That change goes by the weak interaction, and it is so unlikely that a proton at the Sun’s centre waits about six billion years for it, longer further out. This is the bottleneck that lets the Sun shine for ten billion years.
+
+After that, everything is quick. The deuteron catches another proton within a second or two, making helium-3. Two helium-3 nuclei, each waiting about 150,000 years for the other, make helium-4 and give back two protons: the ppI chain. Or a helium-3 joins a helium-4 to make beryllium-7, which catches an electron within months to become lithium-7, and lithium-7 and a proton split into two helium-4 nuclei (ppII); or, rarely, the beryllium-7 catches a proton and becomes boron-8, which decays into two helium nuclei (ppIII). Added up over the Sun’s core, 85% of helium is made by ppI, 15% by ppII and 0.02% by ppIII. Every way, four protons become one helium nucleus and release 26.7 MeV, 0.7% of their mass; the neutrinos take about 2% of it straight out.
+
+Heavier stars have another route. In the <Term id="cno-cycle">CNO cycle</Term> (Carl Friedrich von Weizsäcker, 1938, and Hans Bethe, 1939), carbon-12 catches a proton, decays, catches a second and a third, decays again, and catches a fourth, when it spits out a helium nucleus and is carbon-12 again. The carbon is a catalyst: it comes out as it went in. But the barriers of carbon and nitrogen are six and seven times the proton’s, so the cycle’s rate climbs as about the 18th power of temperature, against the pp chains’ fourth. Below about 20 million K the pp chains win; above it, the CNO cycle. The Sun gets under 1% of its heat from it; stars heavier than about 1.3 Suns get most of theirs.
+
+The cycle’s slowest step is nitrogen-14 catching a proton: about 300 million years at the Sun’s centre, against under a million for each of the others. So the catalysts pile up where they wait longest, as nitrogen. A core that has burnt by the CNO cycle has turned almost all its carbon into nitrogen-14, and when red giants later stir their insides up to their surfaces (Chapter 17), the nitrogen shows.
+
+<PpCnoFigure
+  number="22.2"
+  tryThis={
+    <p>
+      Pick each step from the list: which one waits longest, and which shortest? Slide the temperature from 10 to 30 million K and watch the
+      arrows thicken: where does the CNO cycle take over? Then look at <b>Catalysts over time</b>: how long does the carbon take to turn into
+      nitrogen at the Sun’s centre?
+    </p>
+  }
+/>
+
+None of this is fierce. The Sun’s centre makes about 260 watts per cubic metre, a fifth of what a resting human body makes in the same space. The Sun is bright because it is big: its core alone is 2 × 10<sup>25</sup> cubic metres of slow, steady burning, each proton waiting billions of years for its turn.
+
+## Hoyle’s resonance
+
+When the core runs out of hydrogen, it shrinks and heats until helium burns. Helium has a problem: two helium-4 nuclei make beryllium-8, and beryllium-8 is unstable. It falls apart again in about 10<sup>−16</sup> seconds. Carbon forms only if a third helium nucleus hits the beryllium-8 in that instant (Ernst Öpik, 1951, and Edwin Salpeter, 1952). Even in a dense core at 100 million K, a tiny equilibrium amount of beryllium-8 exists at any moment, about one nucleus in a billion, and a third helium nucleus must tunnel into it.
+
+Fred Hoyle realised in 1953 that this was far too slow to make the carbon there is, unless carbon-12 has an energy level just where the helium nuclei arrive, so that beryllium-8 and helium-4 fuse in resonance, the way a swing goes high when it is pushed in time. He predicted the level’s energy, 7.65 MeV above carbon’s ground state, and persuaded Ward Whaling’s group at Caltech to look for it. They found it within months; in 1957 William Fowler and his colleagues showed that carbon forms through it. It sits 380 keV above three separate helium nuclei, at the top of the window in which they meet, and almost all the carbon in the universe, and in you, came through it.
+
+<Callout kind="maths" title="Triple-alpha’s steepness">
+
+Through the resonance, the rate depends on how many helium nuclei have the 380 keV between them, as a Boltzmann factor: per unit volume,
+
+r<sub>3α</sub> ∝ ρ²Y³ T<sup>−3</sup> e<sup>−4.40/T₉</sup>,
+
+with Y the helium mass fraction and T₉ the temperature in billions of kelvin. Its temperature exponent is ν = 4.40/T₉ − 3, about 41 at 100 million K: a core 2% hotter burns its helium more than twice as fast. That steepness, in a core of packed electrons that doesn’t expand when heated, is what makes the helium flash run away (Chapter 17).
+
+</Callout>
+
+Carbon then catches more helium to become oxygen, ¹²C(α,γ)¹⁶O, a reaction with no convenient resonance. How fast it goes decides how much of the carbon a star leaves: the carbon-to-oxygen ratio of white dwarfs, and even where the gap in black holes’ masses begins (Chapter 25). It is still uncertain by 10–20% after seventy years of measurement, the most wanted rate in nuclear astrophysics.
+
+<HoyleFigure
+  number="22.3"
+  tryThis={
+    <p>
+      Move the Hoyle state up by 60 keV: how much slower is triple-alpha at 100 million K, and how much carbon does the core leave? Move it down
+      instead. Then switch on <b>No Hoyle state</b>: how hot must the core get, and what does it make?
+    </p>
+  }
+/>
+
+The figure’s toy core makes the point that made Hoyle’s resonance famous. With the level 60 keV higher, carbon forms some 300 times more slowly at 100 million K; the core heats until helium burns anyway, and at that heat carbon catches helium as fast as it forms, so it ends almost all oxygen. Without the level, it makes no carbon at all. Some physicists read this as a sign that the laws of nature are finely tuned for life; others doubt that it means much. Either way, the argument came long after Hoyle’s prediction, which was simply physics: carbon exists, so the level must.
+
+## The last days of a massive star
+
+After helium, a star heavier than about 8 Suns goes on. Its carbon–oxygen core shrinks and heats until carbon fuses, at about 800 million K; then neon, which light breaks apart at 1.5 billion K (neon gives up a helium nucleus that another neon catches, making oxygen and magnesium); then oxygen, at 2 billion K; then silicon, at over 3 billion K, which light melts into nickel-56 and the nuclei near iron. Each fuel’s ashes are the next fuel, and each burns at the centre while the earlier ones go on burning in shells around it. The star grows layers like an onion, with iron at the middle.
+
+The pace quickens savagely. For a star of 15 Suns, Stan Woosley, Alexander Heger and Tom Weaver’s models give hydrogen 11 million years, helium 2 million, carbon 2,000 years, neon 9 months, oxygen 2½ years and silicon 18 days. A star of 25 Suns burns its silicon in 18 hours. Each fuel gives less energy per gram than hydrogen did, a thirteenth to a sixtieth as much, but that isn’t the main reason.
+
+The reason is <Term id="neutrino">neutrinos</Term>. Above about 500 million K, the hottest photons in the core can make pairs of electrons and positrons, and very occasionally a pair annihilates into a neutrino and an antineutrino, which leave the star at once, through everything. That loss climbs so steeply with temperature that from carbon burning on it outruns the light: in the 15-Sun model, neutrinos carry off a thousand times the star’s light by the end of carbon burning, and millions of times it a day before the end. Each fuel burns where its burning just pays for the neutrinos, “balanced power”, and the fuel goes in the time it takes neutrinos to carry its energy away. The surface, whose light leaks out over thousands of years, can’t keep up. To an astronomer watching, the star looks almost the same the day it explodes as it did a thousand years before.
+
+<Callout kind="maths" title="Why each stage is so short">
+
+A stage lasts about the energy its fuel holds divided by the rate the core loses it. Per gram, carbon burning gives about 4 × 10<sup>17</sup> erg, oxygen 5 × 10<sup>17</sup>, silicon 2 × 10<sup>17</sup> (hydrogen gave 6 × 10<sup>18</sup>). Pair neutrinos carry off about
+
+ε<sub>ν</sub> ≈ 4.9 × 10<sup>18</sup> T₉³ e<sup>−11.86/T₉</sup> / ρ erg g<sup>−1</sup> s<sup>−1</sup>
+
+(Clayton’s approximation for gas that is neither packed nor too hot; above 2 billion K it rises faster still): the exponential is the cost of making an electron–positron pair, 1.02 MeV, from heat. From carbon burning at 0.83 billion K to silicon burning at 3.3 billion K, it rises about 30,000 times per gram, while the energy per gram changes by a factor of two. The stages shrink by about as much, from 2,000 years to 18 days.
+
+</Callout>
+
+<LastDaysFigure
+  number="22.4"
+  tryThis={
+    <p>
+      Step through the stages for <b>15 Suns</b>: where on the core’s map does each fuel light, and how far past its line does the core burn it?
+      How do the light and the neutrinos compare a year before the collapse? Then switch to <b>25 Suns</b>: which stages are shorter, and which
+      longer?
+    </p>
+  }
+/>
+
+The core’s map shows the climb. Each fuel lights where its burning first pays for what the core loses, a line that is nearly vertical because rates climb so steeply with temperature, and the core, shrinking and heating between stages, crosses the lines one by one. Heavier stars are less dense at each stage: the core of a 25-Sun star is half as dense as a 15-Sun star’s when it burns carbon. The order is also a little different. The 15-Sun star’s carbon burns convectively at its centre, mixing in fresh fuel, and lasts four times longer; other codes’ carbon burning can last three times longer or shorter than these models’, which is why the figure gives its numbers as one model’s.
+
+At the end, the iron core, 1.45 solar masses in the 15-Sun star and 1.62 in the 25-Sun star, has nothing left to burn: iron is the most tightly bound nucleus there is (Chapter 23). Held up by its electrons alone, it collapses in under a second (Chapter 25). Whether a nearby giant such as Betelgeuse is a few thousand years from that or a hundred thousand can’t be read from its surface: its core changes, and its face doesn’t.
+
+<Timeline from={1920} to={2025} chapter={22} only={[22]} title="The nuclear furnace" />
+
+<DeepDive title="Neutrinos from the Sun’s core, and what Borexino measured">
+
+Every helium nucleus the Sun makes sends out two neutrinos, and they leave the core at once: about 65 billion of them cross each square centimetre of you every second (Chapter 15). Each step of the pp chains and the CNO cycle makes neutrinos of its own energies, so a detector that can tell their energies apart can read the furnace step by step.
+
+Most come from the first step, p + p, with energies below 0.42 MeV: about 60 billion per square centimetre per second. Beryllium-7’s capture of an electron makes a line at 0.86 MeV, from ppII. Boron-8’s decay, from the rare ppIII branch, makes neutrinos of up to 15 MeV; only 2 chains in 10,000 end that way, yet those energetic neutrinos were most of what the first detectors, Raymond Davis’s tank of cleaning fluid and later Kamiokande and the Sudbury Neutrino Observatory, could see. The CNO cycle’s decays of nitrogen-13 and oxygen-15 make neutrinos of up to 1.2 and 1.7 MeV.
+
+Borexino, 300 tonnes of liquid scintillator under the Gran Sasso mountain in Italy, was built to see the low-energy ones. It measured the beryllium-7 line (2007), then the pp neutrinos themselves (2014), confirming that the first step of the pp chain is happening at the rate the Sun’s light needs, now, rather than tens of thousands of years ago when that light set out. In 2020 it found the CNO neutrinos: the first direct proof that the CNO cycle runs in stars, at about 1% of the Sun’s power, as models say. Their number also depends on how much carbon and nitrogen there is in the Sun’s core, a check on a long argument about the Sun’s make-up that is not yet settled.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="cold-fusion" prompt="At 15.7 million K, a typical pair of protons at the Sun’s centre has about a six-hundredth of the energy it needs to climb their repulsion. How do any fuse?">
+    <Choice label="They tunnel through the barrier, quantum mechanically, at energies several times the typical one" correct>
+      Right. The Gamow peak: fast protons are rare and slow ones can’t tunnel, so fusion happens in a window around 6 keV, where about 1 pair
+      in 8,000 that meet gets through.
+    </Choice>
+    <Choice label="A few protons are fast enough to climb it">
+      The share fast enough is about e<sup>−630</sup>: not one pair in the Sun’s lifetime. They tunnel through instead, from far below the top.
+    </Choice>
+    <Choice label="The pressure pushes them together">
+      Pressure makes the gas dense, so pairs meet often, but each pair still has to get through its repulsion. Quantum tunnelling lets a few
+      through.
+    </Choice>
+  </Question>
+
+  <Question id="why-so-long" prompt="Why does the Sun last ten billion years?">
+    <Choice label="The pp chain’s first step needs a proton to turn into a neutron, which the weak interaction makes very rare" correct>
+      Right. Two protons that tunnel together almost always fall apart again; only rarely does one turn into a neutron in time. A proton at
+      the Sun’s centre waits about six billion years for that.
+    </Choice>
+    <Choice label="Its hydrogen is mostly too far from the centre to burn">
+      Only the core burns, and that does set how much fuel the Sun uses (about a tenth of its hydrogen on the main sequence), but the slow pace
+      is set by the first step’s weak interaction.
+    </Choice>
+    <Choice label="Its core is too cool to burn faster">
+      If the core were hotter it would burn faster, but the thermostat keeps it where burning pays for the light. That the light needs so slow a
+      burn at all is down to the pp chain’s weak first step.
+    </Choice>
+  </Question>
+
+  <Question id="heavy-stars-cno" prompt="Why do stars heavier than about 1.3 Suns burn their hydrogen mostly by the CNO cycle?">
+    <Choice label="Their cores are hotter, and the CNO cycle’s rate climbs far more steeply with temperature" correct>
+      Right. Carbon and nitrogen repel a proton six and seven times as hard, so the cycle’s rate climbs as about the 18th power of
+      temperature against the pp chains’ fourth. Above about 20 million K it wins.
+    </Choice>
+    <Choice label="They have more carbon and nitrogen">
+      They have the same make-up as the Sun at birth. It is their hotter cores that favour the cycle, whose rate climbs far more steeply with
+      temperature.
+    </Choice>
+    <Choice label="The CNO cycle releases more energy per helium nucleus">
+      Both turn four protons into helium and release 26.7 MeV (the CNO cycle loses a little more to neutrinos). The difference is how fast
+      each runs at a given temperature.
+    </Choice>
+  </Question>
+
+  <Question id="hoyle" prompt="Why did Hoyle predict an energy level in carbon-12 before anyone had seen it?">
+    <Choice label="Without a resonance there, stars couldn’t make as much carbon as there is" correct>
+      Right. Beryllium-8 lasts 10<sup>−16</sup> s, so carbon forms fast enough only if beryllium-8 and helium fuse in resonance. The level was
+      found at Caltech months later, 380 keV above three helium nuclei.
+    </Choice>
+    <Choice label="To make the Sun shine for long enough">
+      The Sun burns hydrogen, not helium. Hoyle’s argument was about the carbon in the universe: helium can’t make it fast enough without the
+      level.
+    </Choice>
+    <Choice label="To explain where life comes from">
+      The life-and-fine-tuning reading came later. Hoyle’s argument was simply that carbon exists in the amounts we see, so the level must.
+    </Choice>
+  </Question>
+
+  <Crossover />
+</CheckYourself>

@@ -102,6 +102,12 @@ export function About() {
           must conserve its energy and hold each star up, build today’s Sun within 15% of Model S with its convection zone near 0.71 of the
           radius, Sirius A within 10% of its measured luminosity and radius, and from 0.8 to 20 solar masses a main sequence within a factor
           of 1.5 in luminosity of Tout and colleagues’ fits to detailed models; the cannon and the red dwarf must be hit in ten tries or fewer.
+          Since Chapter 22, the Gamow peak must give the energies, widths and temperature exponents of the research notes and its numerical
+          area must match the textbook approximation; the rates built from measured S-factors must match Caughlan and Fowler’s fits within 15%
+          (and ¹⁴N + p half of theirs, as LUNA found); the reaction network must keep every nucleon, settle the CN cycle at ¹²C/¹³C ≈ 3.5, make
+          Model S’s burning rate at the Sun’s centre within 5%, and, added up over Model S, give the Sun its luminosity within 10% with 85% of
+          its helium from ppI, 15% from ppII and 0.02% from ppIII; the triple-alpha rate must climb as T⁴¹ at 100 million K; and the
+          late fuels must light within about 10% of the balanced-power temperatures Woosley, Heger and Weaver give.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -570,6 +576,27 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 22</h3>
+        <ul>
+          <li>
+            <b>Figure 22.1, the Gamow peak.</b> Exact for reactions without resonances; the S-factor, which changes slowly with energy, is left out
+            of the curves; the barrier’s top is where the nuclei touch; screening by the gas’s electrons is left out.
+          </li>
+          <li>
+            <b>Figure 22.2, the pp chains and the CNO cycle.</b> Steady burning at one temperature and density, every short-lived nucleus in
+            balance; rates from measured S-factors through the Gamow peak with weak screening; the CN cycle alone, without oxygen’s branch.
+          </li>
+          <li>
+            <b>Figure 22.3, Hoyle’s resonance.</b> Caughlan and Fowler’s triple-alpha rate, with the Hoyle state moved by its energy alone; a
+            one-zone core of pure helium burning at a steady power: a toy.
+          </li>
+          <li>
+            <b>Figure 22.4, the last days of a massive star.</b> Woosley, Heger and Weaver’s models, with the gaps between stages left out of the
+            clock; the onion drawn by mass, with some of its edges rough; ignition lines from textbook rates and an approximate law for pair
+            neutrinos that leaves out degeneracy.
+          </li>
+        </ul>
+
         <h3>Toolkit: Differential equations</h3>
         <ul>
           <li>
@@ -872,6 +899,22 @@ export function About() {
             3: MESA. S. Basu and H. M. Antia (1997), Monthly Notices of the Royal Astronomical Society 287, 189: the base of the Sun’s convection
             zone. C. A. Tout, O. R. Pols, P. P. Eggleton and Z. Han (1996), Monthly Notices of the Royal Astronomical Society 281, 257: zero-age
             main-sequence luminosities and radii.
+          </li>
+          <li>
+            G. Gamow (1928), Zeitschrift für Physik 51, 204: tunnelling. R. d’E. Atkinson and F. G. Houtermans (1929), Zeitschrift für Physik 54,
+            656: fusion in stars. W. A. Fowler, G. R. Caughlan and B. A. Zimmerman (1967), Annual Review of Astronomy and Astrophysics 5, 525:
+            non-resonant rates. B. Acharya and colleagues (2025), Reviews of Modern Physics (Solar Fusion III, arXiv:2405.06470), and E. G.
+            Adelberger and colleagues (2011), Reviews of Modern Physics 83, 195 (Solar Fusion II): S-factors. C. Angulo and colleagues (1999),
+            Nuclear Physics A 656, 3: NACRE. G. R. Caughlan and W. A. Fowler (1988), Atomic Data and Nuclear Data Tables 40, 283, as coded by F.
+            X. Timmes in AMReX Microphysics: triple-alpha, carbon, neon, oxygen and silicon burning. R. J. deBoer and colleagues (2017), Reviews
+            of Modern Physics 89, 035007: ¹²C(α,γ)¹⁶O. M. Asplund and colleagues (2009), Annual Review of Astronomy and Astrophysics 47, 481: the
+            Sun’s carbon, nitrogen and oxygen. F. Hoyle (1954), The Astrophysical Journal Supplement Series 1, 121, and D. N. F. Dunbar and
+            colleagues (1953), Physical Review 92, 649: the Hoyle state. C. W. Cook, W. A. Fowler, C. C. Lauritsen and T. Lauritsen (1957),
+            Physical Review 107, 508: carbon from beryllium-8. E. E. Salpeter (1952), The Astrophysical Journal 115, 326: helium burning. S. E.
+            Woosley, A. Heger and T. A. Weaver (2002), Reviews of Modern Physics 74, 1015, and S. E. Woosley’s lecture notes (UC Santa Cruz,
+            2019): the late burning stages. D. D. Clayton (1968), <i>Principles of Stellar Evolution and Nucleosynthesis</i>: pair neutrinos. B.
+            Paxton and colleagues (2011), as above: how codes differ. Borexino Collaboration (2014), Nature 512, 383, and (2020), Nature 587, 577:
+            the Sun’s pp and CNO neutrinos. A. Formicola and colleagues (2004), Physics Letters B 591, 61: LUNA’s ¹⁴N + p.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

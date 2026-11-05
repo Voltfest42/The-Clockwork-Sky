@@ -29,6 +29,15 @@ export interface CoreTrack {
   points: readonly { T: number; rho: number }[];
 }
 
+/** A line across the map, such as where a fuel ignites, labelled at its top. */
+export interface CoreLine {
+  name: string;
+  label: string;
+  color?: string;
+  /** Temperature (K) and density (kg/m³) along it. */
+  points: readonly { T: number; rho: number }[];
+}
+
 export interface CorePoint {
   T: number;
   rho: number;
@@ -42,6 +51,8 @@ interface CoreMapProps {
   logT: readonly [number, number];
   logRho: readonly [number, number];
   tracks?: readonly CoreTrack[];
+  /** Lines drawn under the tracks: ignition lines. */
+  lines?: readonly CoreLine[];
   /** Labelled points (the Sun's centre today); the last is drawn largest, as the moving core. */
   points?: readonly CorePoint[];
   /** The moving core, drawn on top. */
@@ -54,7 +65,7 @@ interface CoreMapProps {
 
 const PAD = { left: 60, right: 14, top: 12, bottom: 42 };
 
-export function CoreMap({ mix, logT, logRho, tracks = [], points = [], marker, ariaLabel, width = 560, height = 360, children }: CoreMapProps) {
+export function CoreMap({ mix, logT, logRho, tracks = [], lines = [], points = [], marker, ariaLabel, width = 560, height = 360, children }: CoreMapProps) {
   const W = width;
   const H = height;
   const regions = useMemo(() => coreMapRegions(mix, logT, logRho), [mix, logT, logRho]);
@@ -136,6 +147,29 @@ export function CoreMap({ mix, logT, logRho, tracks = [], points = [], marker, a
           );
         })}
         <g clipPath={`url(#${clipId})`}>
+          {lines.map((l) => (
+            <polyline
+              key={l.name}
+              points={l.points
+                .map(at)
+                .map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`)
+                .join(' ')}
+              fill="none"
+              stroke={l.color ?? 'var(--text)'}
+              strokeWidth="1.5"
+              strokeOpacity={0.85}
+            />
+          ))}
+          {lines.map((l, k) => {
+            const top = l.points.filter(inside).reduce<{ T: number; rho: number } | undefined>((b, p) => (!b || p.rho > b.rho ? p : b), undefined);
+            if (!top) return null;
+            const q = at(top);
+            return (
+              <text key={`${l.name}-label`} x={q.x + 4} y={Math.max(PAD.top + 12, q.y + 12) + (k % 2) * 13} fontSize="11" fontWeight="600" fill={l.color ?? 'var(--text)'}>
+                {l.label}
+              </text>
+            );
+          })}
           {tracks.map((t) => (
             <polyline
               key={t.name}

@@ -23,8 +23,8 @@ import type { Mix } from './eos';
 /** The carbon and nitrogen that catalyse the CNO cycle, as ¹⁴N, per unit of metals (Model S's starting mix). */
 export const CN_SHARE = 0.23;
 
-/** Salpeter's weak-screening factor for charges Z₁ and Z₂ (ρ in g/cm³, T₇ in 10⁷ K). */
-function screening(z1z2: number, rhoGcc: number, T7: number, { X, Z }: Mix): number {
+/** Salpeter’s weak-screening factor for charges Z₁ and Z₂ (ρ in g/cm³, T₇ in 10⁷ K): the electrons round each nucleus soften its repulsion. */
+export function screening(z1z2: number, rhoGcc: number, T7: number, { X, Z }: Mix): number {
   // ζ = Σ (Z_i² + Z_i) X_i / A_i: 2 for hydrogen, 1.5 for helium, about 4 for the metals.
   const zeta = 2 * X + 1.5 * (1 - X - Z) + 4 * Z;
   return Math.exp(0.00592 * z1z2 * Math.sqrt((zeta * rhoGcc) / T7 ** 3));
