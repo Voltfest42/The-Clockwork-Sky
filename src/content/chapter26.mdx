@@ -1,0 +1,195 @@
+import { BuildNeutronStarFigure } from '../figures/BuildNeutronStarFigure';
+import { InsideNeutronStarFigure } from '../figures/InsideNeutronStarFigure';
+import { LighthouseFigure } from '../figures/LighthouseFigure';
+import { PulsarDiagramFigure } from '../figures/PulsarDiagramFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { FASTEST_PULSAR, HEAVIEST_NEUTRON_STAR, RECORDS_AS_OF } from '../data/records';
+import { PULSAR_COUNTS, PULSAR_SET } from '../data/pulsars';
+import { TooSoftForTheHeaviest } from './checks/chapter26';
+
+When an iron core collapses (Chapter 25), its electrons can’t stop it, and it falls until something stiffer does: the neutrons themselves, packed as tightly as the nucleons in an atomic nucleus. What is left is a ball of about 1.4 Suns, 20 to 25 km across, spinning many times a second, with a magnetic field a trillion times Earth’s. This chapter opens one up, finds out how heavy one can be, and follows the radio beams that make some of them the steadiest clocks in nature.
+
+## A nucleus the size of a city
+
+Squeeze matter past a white dwarf’s densities and its electrons’ Fermi energy (Chapter 24) climbs past a million electronvolts. Then it pays for an electron to join a proton and make a neutron and a neutrino, as it would in a nucleus that had too many protons. Above about 10¹¹ g/cm³ the nuclei fill with neutrons; above about 10¹⁴, they dissolve. What remains is a <Term id="neutron-star">neutron star</Term>: mostly neutrons, with 5 to 10% protons and as many electrons, the mix at which no more of them want to change. A neutron on its own decays in 15 minutes; here there is no room for the electron it would make.
+
+The average density of a star of 1.4 Suns, 12 km in radius, is 3.8 × 10¹⁴ g/cm³, more than an atomic nucleus’s 2.7 × 10¹⁴. Its gravity at the surface is 10¹¹ times Earth’s, and to escape from it you would need 60% of the speed of light. A mountain on it would be millimetres high.
+
+It isn’t uniform. Under an atmosphere centimetres thick lies a crust about a kilometre deep: a solid lattice of nuclei in a sea of electrons, like a metal. Going down, the electrons are squeezed into the nuclei’s protons, so the nuclei grow ever richer in neutrons, past the edge of the chart of nuclides that laboratories reach (Chapter 23), until at 4 × 10¹¹ g/cm³ neutrons drip out of them and fill the gaps. At the crust’s base the nuclei, crowded together, merge into rods and sheets, nicknamed pasta, and then dissolve into the core: a liquid of neutrons and protons in which the neutrons flow without friction, as a superfluid, and the protons carry current without resistance, as a superconductor. What fills the very centre, at several times a nucleus’s density, nobody knows.
+
+<InsideNeutronStarFigure
+  number="26.1"
+  tryThis={
+    <p>
+      Pick each layer in turn: how thick is the crust, and what share of the mass does it hold? Then switch to <b>2.0 M☉</b>: is the heavier star
+      bigger or smaller, and what happens to its crust and its inner core? How much would a teaspoon of its centre weigh?
+    </p>
+  }
+/>
+
+## The heaviest neutron star
+
+A white dwarf has a heaviest mass, Chandrasekhar’s, because its electrons’ pressure grows too slowly when they are squeezed (Chapter 24). Neutrons don’t have that problem: the forces between them make their pressure climb steeply. A neutron star’s limit comes from gravity instead. In general relativity, pressure itself has weight: it is energy, and energy gravitates like mass. So a neutron star that squeezes harder to hold itself up also pulls harder on itself, and beyond some mass the extra pressure only adds to the problem. Nothing can hold it up, and it collapses into a black hole (Chapter 27).
+
+<Callout kind="maths" title="The TOV equation">
+
+Hydrostatic balance (Chapter 20) in general relativity was worked out by Richard Tolman and by Robert Oppenheimer and George Volkoff in 1939:
+
+dP/dr = −G (ρ + P/c²)(m + 4πr³P/c²) / [r² (1 − 2Gm/rc²)],  dm/dr = 4πr²ρ,
+
+with ρ the density of all the energy, rest mass included, over c². Newton’s dP/dr = −Gmρ/r² gains three factors: the pressure adds to the weight of each layer (ρ + P/c²), it adds to the pull of what is inside (m + 4πr³P/c²), and space itself is stretched (1 − 2Gm/rc²). Each makes gravity stronger, and each grows with P, so squeezing harder can’t win. The solver steps the two equations out from the centre, as Chapter 20’s did for polytropes (Toolkit: [Differential equations](/toolkit/differential-equations/)), until the pressure falls to nothing at the surface.
+
+</Callout>
+
+Oppenheimer and Volkoff treated the neutrons as a free gas, like Chandrasekhar’s electrons, and found a limit of 0.7 Suns: far too light, it turned out, because the strong force between neutrons pushes them apart when they are squeezed. How hard is the open question. Nuclear experiments reach only about a nucleus’s density, and the centre of a neutron star is several times that, so its <Term id="equation-of-state">equation of state</Term>, how its pressure rises with density, is a theorist’s model, and there are dozens. Jocelyn Read and her colleagues (2009) showed that almost every published one can be matched to within a few per cent by three simple pieces above a shared crust, and the figure builds stars from ten of them, from soft (pressure rising slowly, small light stars) to stiff (large heavy ones).
+
+So the limit is measured instead. Weighing a neutron star needs a companion: a white dwarf whose orbit shows in the pulsar’s timing, or whose gravity delays the pulses as they pass it. PSR J1614−2230 came out at about two Suns in 2010, and PSR J0348+0432 at 2.01 ± 0.04 in 2013; PSR J0740+6620 weighs 2.08 ± 0.07. The heaviest, {HEAVIEST_NEUTRON_STAR.name}, eating its companion, is {HEAVIEST_NEUTRON_STAR.mass} ± {HEAVIEST_NEUTRON_STAR.error} Suns. Every equation of state whose heaviest star is lighter than these is ruled out.
+
+Radii are harder. NICER, an X-ray telescope on the International Space Station, times the pulses of hot spots on millisecond pulsars’ surfaces, whose light is bent round the star by its gravity: the bending depends on how compact the star is. It has measured three, all 11 to 14 km in radius, with two teams’ analyses of the same data differing by a kilometre or so. The merger GW170817 (Chapter 29) gave another handle: the two neutron stars squeezed each other out of shape before they touched, and the gravitational waves recorded how much, which says a 1.4 Sun neutron star is 11.9 ± 1.4 km. Together they point to stiff-ish matter, a heaviest neutron star of about 2.2 to 2.4 Suns, and radii of 11.5 to 13 km.
+
+<BuildNeutronStarFigure
+  number="26.2"
+  tryThis={
+    <p>
+      Slide the central density up and watch the star grow heavier and then, past its heaviest, lighter again. Which equations of state reach the
+      band of PSR J0740+6620? Which pass through NICER’s boxes? Switch on <b>Newton only</b> for SLy: how heavy a star does the same matter hold up
+      without pressure’s weight?
+    </p>
+  }
+/>
+
+Every curve also stops short of the grey corner on the left. No star can be smaller than 2.9 GM/c² for its mass, whatever it is made of: a smaller one would need sound to cross its centre faster than light. The stiffest equations of state hug that line near their heaviest stars, and several of the fits cross it there, a sign that the original models break down at those densities.
+
+## Lighthouses
+
+In the summer of 1967 Jocelyn Bell found pulses every 1.337 seconds from one patch of sky (Chapter 18). That same year, before the discovery was announced, Franco Pacini had suggested that a spinning, magnetised neutron star could power the Crab Nebula. In 1968 Thomas Gold put the two together: the pulses come from a spinning neutron star, whose beams sweep past us like a lighthouse’s. Nothing else could spin so fast without flying apart: a white dwarf turning once in 33 milliseconds, as the Crab pulsar does, would be torn to pieces. Gold predicted that pulsars should slow down as they spend their spin, and within a year the Crab pulsar was caught doing so. A <Term id="pulsar">pulsar</Term> doesn’t pulsate; it turns.
+
+Its beams come out along its magnetic axis, from above its poles, and the magnetic axis is tilted to the spin axis, as Earth’s is by about 10°. As the star turns, each beam sweeps a cone round the sky. We see a pulse each time a beam crosses our line of sight, and how long it lasts depends on how squarely the beam hits us. If our line of sight never enters a beam, we see nothing: most pulsars’ beams miss us, so for every pulsar seen there are several unseen. If the magnetic axis is nearly at right angles to the spin axis, and so is our line of sight, both beams can cross it, half a turn apart: a pulse and an interpulse. A game developer would recognise the set-up: a cone light on a turret, and the test of whether a point is lit is a dot product (Toolkit: [Vectors](/toolkit/vectors/)).
+
+<LighthouseFigure
+  number="26.3"
+  tryThis={
+    <p>
+      Press <b>Turn the star</b> and watch the pulses build up. Tilt the line of sight away until the pulse vanishes: how far is that? Try{' '}
+      <b>Through the middle</b>: how many peaks does the pulse have, and why? Then set the magnetic axis to 90° and the line of sight to 90°.
+    </p>
+  }
+/>
+
+Each pulse has its own shape, steady over thousands of turns though single pulses vary, and the shapes fit a beam with a bright core and a hollow cone round it (Joanna Rankin, 1983 and 1993). A line of sight through the middle sees three parts, one through the cone’s edge sees one or two. The radio waves come from electrons and positrons streaming out along the field lines above the poles, a few hundred kilometres up, and pulsars also beam X-rays and gamma rays, from further out.
+
+## Clocks that slow down
+
+A spinning magnet radiates. A pulsar’s magnetic field, tilted to its spin, whirls round with it and sends out a wave at its spin frequency, and the wave carries off energy taken from the spin. So every pulsar slows: the Crab pulsar’s period grows by 4.2 × 10⁻¹³ seconds every second, 13 microseconds a year. From the period P and its rate of change Ṗ, a pulsar tells us its magnetic field, its age and its power.
+
+<Callout kind="maths" title="Spin-down">
+
+A star with moment of inertia I spinning at Ω = 2π/P has energy ½IΩ², so slowing at Ω̇ it gives out Ė = −IΩΩ̇ = 4π²IṖ/P³. A magnetic dipole of surface field B and radius R turning in a vacuum radiates Ė = B²R⁶Ω⁴ sin²α/6c³ (in Gaussian units). Equating the two, with I = 10³⁸ kg m², R = 10 km and the axes at right angles,
+
+B ≈ 3.2 × 10¹⁹ √(PṖ) gauss.
+
+A dipole slows as Ω̇ ∝ −Ω³, so PṖ stays fixed: on the P–Ṗ diagram, a pulsar moves along a line of constant field. If it was born spinning much faster than now, its age is
+
+τ = P/2Ṗ,
+
+the characteristic age. For the Crab pulsar, P = 33.4 ms and Ṗ = 4.2 × 10⁻¹³: B = 3.8 × 10¹² gauss, τ = 1,260 years (its true age, from the supernova of 1054, is 972) and Ė = 4.5 × 10³¹ W, 120,000 times the Sun’s output. How fast Ω̇ changes, the braking index n = ΩΩ̈/Ω̇², is 3 for a dipole; the Crab’s is 2.5 (Andrew Lyne and his colleagues, 2015), so it isn’t quite a dipole in a vacuum.
+
+</Callout>
+
+That 120,000 Suns is what lights the Crab Nebula. Pacini was right: the pulsar’s spin, turned into a wind of particles and magnetic field, keeps the nebula shining in everything from radio waves to gamma rays, and the pulses are a sliver of it.
+
+Plot pulsars by P and Ṗ and they fall into families. Young pulsars, a few thousand years old and often still inside their supernova remnants, sit high on the left: fast and slowing fast. Most pulsars sit in a broad cloud in the middle, with periods near a second, fields of about 10¹² gauss and ages of millions of years. As each slows, its beams weaken, and below the death line it can no longer make the electron–positron pairs that make its radio waves: it falls silent, into the graveyard at the bottom right. A typical pulsar shines for ten million years or so.
+
+And low on the far left sit the <Term id="millisecond-pulsar">millisecond pulsars</Term>: turning hundreds of times a second, but slowing so little that their fields are only 10⁸ to 10⁹ gauss and their ages billions of years. Don Backer and his colleagues found the first, PSR B1937+21, in 1982, turning 642 times a second; the fastest known, {FASTEST_PULSAR.name}, turns {FASTEST_PULSAR.hertz} times ({RECORDS_AS_OF}). Most are in pairs, with white dwarfs. They are old pulsars, dead and in the graveyard, spun up again by a companion: as the companion swells (Chapter 17) and spills gas onto the neutron star (Chapter 28), the gas brings angular momentum, and it buries the field. Mark Alpar and his colleagues, and Venkatraman Radhakrishnan and G. Srinivasan, proposed this recycling in 1982. In 2009 PSR J1023+0038 was caught switching between a radio pulsar and a star fed by its companion’s gas.
+
+<PulsarDiagramFigure
+  number="26.4"
+  tryThis={
+    <p>
+      Find the Crab pulsar and the first pulsar, CP 1919: which is older? Slide your pulsar’s age up to a billion years: when does it cross the
+      death line? Press <b>Recycle it</b> and age it again: how long will it shine now? Find the magnetars, and turn on <b>Equal power</b>.
+    </p>
+  }
+/>
+
+The diagram shows {PULSAR_SET.pulsars.length} famous pulsars; {PULSAR_COUNTS.pulsarsRounded} are known ({PULSAR_COUNTS.asOf}). With so little slowing and so few glitches, millisecond pulsars are clocks that rival atomic ones over years. Timed for decades, a set of them spread over the sky is a detector the size of the Galaxy: gravitational waves light-years long passing through stretch and squeeze the space between us and each pulsar, and shift its pulses by tens of nanoseconds. In 2023 the pulsar timing arrays reported evidence of a background of such waves, most likely from pairs of giant black holes in merging galaxies (Chapter 29).
+
+## Magnetars
+
+At the top right of the diagram are pulsars that turn every 1 to 12 seconds yet slow so fast that their fields come out at 10¹⁴ to 10¹⁵ gauss, a thousand times an ordinary pulsar’s and above the field at which empty space itself behaves strangely, 4.4 × 10¹³ gauss. Robert Duncan and Christopher Thompson predicted such <Term id="magnetar">magnetars</Term> in 1992; in 1998 Chryssa Kouveliotou and her colleagues measured SGR 1806−20 slowing exactly as one should. Their slowing gives out far less power than they shine with: magnetars run on their magnetic fields, not their spin.
+
+The field strains the crust until it cracks, in starquakes that make bursts of X-rays and gamma rays. A few times in recorded history one has made a giant flare. On 27 December 2004 SGR 1806−20, tens of thousands of light-years away, released in a fifth of a second more energy than the Sun gives out in a hundred thousand years; it disturbed Earth’s upper atmosphere, and it threw out freshly made heavy elements (Chapter 23). On 28 April 2020 the magnetar SGR 1935+2154 made a fast radio burst, a millisecond flash of radio waves of the kind seen from distant galaxies, and the first ever traced to a known source. About {PULSAR_COUNTS.magnetars} magnetars are known in the Galaxy ({PULSAR_COUNTS.asOf}).
+
+Since 2022, radio telescopes have also found sources that flash every 18 to 54 minutes, slower than any pulsar should be able to shine. Whether they are magnetars, or white dwarfs, or something else, is argued over.
+
+<Timeline from={1930} to={2025} chapter={26} only={[18, 26]} title="Neutron stars" />
+
+<DeepDive title="Oppenheimer and Volkoff’s 0.7 Suns">
+
+In 1938 Lev Landau suggested that stars might have neutron cores, and that their energy came from matter falling onto them. Oppenheimer, then at Berkeley, set out to see whether such cores could exist, and with his student George Volkoff, using equations Tolman had derived, built the first relativistic neutron stars in the winter of 1938–39. They treated the neutrons as a gas of free particles, the only thing they could calculate, and integrated the equations by hand. The result, published in February 1939: no neutron star could weigh more than about 0.7 Suns, half Chandrasekhar’s limit for white dwarfs.
+
+They knew the forces between neutrons were left out, and said so. Taken at face value, heavier cores must collapse, and that September Oppenheimer and Hartland Snyder followed one in: the first calculation of what is now called a black hole. Then the war came, and none of them returned to it.
+
+The answer turned out to depend on what they had left out. Squeezed tighter than a nucleus, neutrons repel strongly, and the pressure that gives lifts the limit to two Suns or more. Every measured neutron star weighs more than 0.7 Suns, most about 1.3 to 1.4, and the TOV equation, with better matter in it, is the equation in Figure 26.2.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="why-pulse" prompt="Why do pulsars pulse?">
+    <Choice label="They spin, and a beam from their magnetic poles sweeps past us each turn" correct>
+      Right. The beams come out along the magnetic axis, tilted to the spin axis, so they sweep round the sky like a lighthouse’s. We see a pulse
+      only if a beam crosses our line of sight.
+    </Choice>
+    <Choice label="They swell and shrink, like Cepheids">
+      Cepheids do (Chapter 17), over days. A neutron star is far too stiff and small to pulsate once a second; the pulses come from its spin.
+    </Choice>
+    <Choice label="Their surfaces flare at regular intervals">
+      Magnetars flare, but not regularly. The clockwork regularity comes from the star’s spin: a beam sweeping past.
+    </Choice>
+  </Question>
+
+  <Question id="made-of" prompt="What is a neutron star made of?">
+    <Choice label="Mostly neutrons, with a few per cent of protons and electrons, under a crust of nuclei" correct>
+      Right. The core is a liquid of neutrons with 5–10% protons and electrons; the kilometre-deep crust is a lattice of ever more neutron-rich
+      nuclei; and nobody knows what fills the very centre.
+    </Choice>
+    <Choice label="Neutrons and nothing else">
+      Pure neutrons would decay. A few per cent of protons and electrons are needed to block that, and the crust is made of nuclei.
+    </Choice>
+    <Choice label="Iron, like the core it collapsed from">
+      Only the surface is iron. Deeper down, electrons are squeezed into the nuclei until they dissolve into neutrons.
+    </Choice>
+  </Question>
+
+  <Question id="heaviest" prompt="Why is there a heaviest neutron star?">
+    <Choice label="In relativity pressure adds to gravity, so beyond some mass more pressure only makes it worse" correct>
+      Right. Pressure is energy, and energy weighs. A heavier star needs more pressure, which pulls harder still, and past about 2.2 to 2.4 Suns
+      nothing can win: it collapses into a black hole.
+    </Choice>
+    <Choice label="Neutrons can’t be packed any tighter than in a nucleus">
+      They can, and they are: the centre is several times a nucleus’s density. The limit comes from gravity, through pressure’s weight.
+    </Choice>
+    <Choice label="Heavier ones would spin too fast and fly apart">
+      Spin helps a little, but even a star that doesn’t spin has a limit, set by general relativity.
+    </Choice>
+  </Question>
+
+  <Question id="millisecond" prompt="Where do millisecond pulsars come from?">
+    <Choice label="Old pulsars spun up again by gas from a companion" correct>
+      Right. A dead pulsar in a pair is fed by its companion as that star swells; the gas spins it up to hundreds of turns a second and buries its
+      field, so it slows only very slowly and shines for billions of years.
+    </Choice>
+    <Choice label="They are born that fast in supernovae">
+      Young pulsars are fast, but they slow quickly. Millisecond pulsars have weak fields and great ages, and most have white-dwarf companions: the
+      marks of recycling.
+    </Choice>
+    <Choice label="They are white dwarfs">
+      A white dwarf turning a thousand times a second would fly apart. Only a neutron star is small and dense enough.
+    </Choice>
+  </Question>
+
+  <TooSoftForTheHeaviest />
+</CheckYourself>

@@ -5,7 +5,7 @@
  */
 
 /** The month the records were last checked, as the pages show it. */
-export const RECORDS_AS_OF = 'October 2026';
+export const RECORDS_AS_OF = 'November 2026';
 
 /** The heaviest star known: R136a1 in the Tarantula Nebula (Kalari et al. 2022: 170–230 M☉; earlier estimates 250–320). */
 export const HEAVIEST_STAR = { name: 'R136a1', where: 'the Tarantula Nebula in the Large Magellanic Cloud', mass: 200, range: '170 to 230' } as const;
@@ -24,3 +24,6 @@ export const HEAVIEST_GALACTIC_BLACK_HOLE = { name: 'Gaia BH3', mass: 33, parsec
 
 /** The heaviest white dwarf measured well: ZTF J1901+1458, 1.327–1.365 M☉ and 2,140 km across its radius, about the Moon's size (Caiazzo et al. 2021). */
 export const HEAVIEST_WHITE_DWARF = { name: 'ZTF J1901+1458', mass: '1.33–1.37', radiusKm: 2140 } as const;
+
+/** The fastest-spinning pulsar known: PSR J1748−2446ad in the globular cluster Terzan 5, 716 turns a second (Hessels et al. 2006). */
+export const FASTEST_PULSAR = { name: 'PSR J1748−2446ad', hertz: 716 } as const;

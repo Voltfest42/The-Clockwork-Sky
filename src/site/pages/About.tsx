@@ -123,6 +123,15 @@ export function About() {
           with strong heating; Arnett’s light curves must obey Arnett’s rule and Katz’s integral, fade at cobalt-56’s 0.98 magnitudes per
           100 days while their γ-rays are caught, and fit SN 2011fe’s peak with 0.52 solar masses of nickel; and the pair-instability wedge must
           lie between about 0.4 and 3.5 billion K below about 10⁶ g/cm³, with cores’ gas shares from Eddington’s quartic.
+          Since Chapters 26 and 27, the TOV solver must give every one of Read and colleagues’ ten fitted equations of state’s heaviest star to
+          0.1% and its 1.4-solar-mass radius to 0.2%, agree with Newton for light stars and have no heaviest star in Newton’s gravity, and keep
+          its stable stars outside the causality limit; the spin-down formulas must give the research brief’s fields, ages and powers for the
+          Crab, Vela, J0437−4715 and the Hulse–Taylor pulsar, a pulsar must age along its line of constant field, and only the three pulsars
+          known to lie past the death line must lie past it; the lighthouse’s pulses must be as wide as spherical geometry says; Schwarzschild
+          orbits must put the innermost stable orbit at 6GM/c², precess by the exact elliptic integral when stepped, and give Mercury’s 43″ a
+          century and S2’s 12′ an orbit; light must be bent by 4GM/c²b plus the next term far out, 1.75″ at the Sun’s edge, and captured inside
+          √27 GM/c², giving shadows of 53 and 40 microarcseconds for Sagittarius A* and M87*; and discs must add up to their luminosity, with
+          efficiencies of 5.7%, 32% and 42% and the innermost orbit at 6, 1.237 and 1 GM/c² for spins of 0, 0.998 and 1.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -674,6 +683,49 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 26</h3>
+        <ul>
+          <li>
+            <b>Figure 26.1, inside a neutron star.</b> The SLy equation of state’s star, as fitted by Read and colleagues; its layers’ edges are set
+            by density, the pasta’s and the inner core’s by round numbers; the atmosphere and ocean are too thin to draw, and what fills the inner
+            core isn’t known.
+          </li>
+          <li>
+            <b>Figure 26.2, build a neutron star.</b> The TOV equation is exact for each equation of state, which is Read and colleagues’ fit to a
+            published one, good to about 1%; the stars don’t spin. NICER’s and GW170817’s numbers depend on their models; “Newton only” takes
+            gravity from the rest mass alone.
+          </li>
+          <li>
+            <b>Figure 26.3, the pulsar lighthouse.</b> Geometric beams with a core and a ring; real beams are patchier, and their widths depend on
+            the period. The star turns far more slowly than any real pulsar, and the beams are drawn far longer than it.
+          </li>
+          <li>
+            <b>Figure 26.4, the P–Ṗ diagram.</b> Fields, ages and powers assume a magnetic dipole spinning in empty space, with a moment of inertia
+            of 10³⁸ kg m²; recycling is a sketch; the death line is one of several. The pulsars are about sixty famous ones from their papers, not
+            the catalogue’s 4,500.
+          </li>
+        </ul>
+
+        <h3>Chapter 27</h3>
+        <ul>
+          <li>
+            <b>Figures 27.1 and 27.2, orbits and light near a black hole.</b> Exact geodesics round a black hole that doesn’t spin; the body is
+            small, feels no drag or tides and gives off no gravitational waves.
+          </li>
+          <li>
+            <b>Figure 27.3, the accretion disc.</b> Shakura and Sunyaev’s thin disc, with each ring a black body and its inner edge at
+            relativity’s innermost stable orbit, scaled to the luminosity chosen; no redshift, light bending or Doppler boost, no corona and no
+            scattering in the disc’s skin; seen face-on.
+          </li>
+        </ul>
+
+        <h3>Toolkit: Vectors</h3>
+        <ul>
+          <li>
+            <b>Figure T7.1, dot and cross.</b> The arrows lie in a plane, so their cross product always points straight up or down from it.
+          </li>
+        </ul>
+
         <h3>Toolkit: Differential equations</h3>
         <ul>
           <li>
@@ -1042,6 +1094,44 @@ export function About() {
             its outcomes. S. Schulze and colleagues (2024), Astronomy and Astrophysics 683, A223: SN 2018ibb.
           </li>
           <li>
+            W. Baade and F. Zwicky (1934), Proceedings of the National Academy of Sciences 20, 254: neutron stars. R. C. Tolman (1939), Physical
+            Review 55, 364, and J. R. Oppenheimer and G. M. Volkoff (1939), Physical Review 55, 374: the TOV equation. J. S. Read, B. D. Lackey,
+            B. J. Owen and J. L. Friedman (2009), Physical Review D 79, 124032: piecewise-polytrope equations of state. F. Douchin and P. Haensel
+            (2001), Astronomy and Astrophysics 380, 151: SLy. P. B. Demorest and colleagues (2010), Nature 467, 1081; J. Antoniadis and colleagues
+            (2013), Science 340, 1233232; E. Fonseca and colleagues (2021), The Astrophysical Journal Letters 915, L12; R. W. Romani and
+            colleagues (2022), The Astrophysical Journal Letters 934, L17: heavy neutron stars. T. E. Riley and colleagues (2019, 2021) and M. C.
+            Miller and colleagues (2019, 2021), The Astrophysical Journal Letters 887, L21 and L24, and 918, L27 and L28; D. Choudhury and
+            colleagues (2024), The Astrophysical Journal Letters 971, L20: NICER’s radii. LIGO Scientific and Virgo Collaborations (2018),
+            Physical Review Letters 121, 161101: GW170817’s radius. J. M. Lattimer and M. Prakash (2007), Physics Reports 442, 109: the causality
+            limit.
+          </li>
+          <li>
+            A. Hewish, S. J. Bell and colleagues (1968), Nature 217, 709: the first pulsar. F. Pacini (1967), Nature 216, 567, and T. Gold
+            (1968), Nature 218, 731: spinning neutron stars. A. G. Lyne and colleagues (2015), Monthly Notices of the Royal Astronomical Society
+            446, 857: the Crab’s braking index. J. M. Rankin (1983, 1993), The Astrophysical Journal 274, 333 and 405, 285: cores and cones. D. C.
+            Backer and colleagues (1982), Nature 300, 615: the first millisecond pulsar. M. A. Alpar and colleagues (1982), Nature 300, 728, and
+            V. Radhakrishnan and G. Srinivasan (1982), Current Science 51, 1096: recycling. D. Bhattacharya and colleagues (1992), Astronomy and
+            Astrophysics 254, 198: the death line. A. M. Archibald and colleagues (2009), Science 324, 1411: PSR J1023+0038. J. W. T. Hessels and
+            colleagues (2006), Science 311, 1901: the fastest pulsar. R. C. Duncan and C. Thompson (1992), The Astrophysical Journal Letters 392,
+            L9, and C. Kouveliotou and colleagues (1998), Nature 393, 235: magnetars. CHIME/FRB Collaboration (2020) and C. D. Bochenek and
+            colleagues (2020), Nature 587, 54 and 59: a fast radio burst from a magnetar. G. Agazie and colleagues (2023), The Astrophysical
+            Journal Letters 951, L8: the nanohertz background. R. N. Manchester, G. B. Hobbs, A. Teoh and M. Hobbs (2005), The Astronomical
+            Journal 129, 1993: the ATNF Pulsar Catalogue (its count of pulsars only). Each famous pulsar’s period and slowing come from the
+            paper named on its card in Figure 26.4.
+          </li>
+          <li>
+            J. Michell (1784), Philosophical Transactions of the Royal Society 74, 35: dark stars. K. Schwarzschild (1916), Sitzungsberichte der
+            Königlich Preussischen Akademie der Wissenschaften, 189: the solution. F. W. Dyson, A. S. Eddington and C. Davidson (1920),
+            Philosophical Transactions of the Royal Society A 220, 291: light bending. J. M. Bardeen, W. H. Press and S. A. Teukolsky (1972), The
+            Astrophysical Journal 178, 347: orbits round a spinning black hole. N. I. Shakura and R. A. Sunyaev (1973), Astronomy and Astrophysics
+            24, 337: thin discs. K. S. Thorne (1974), The Astrophysical Journal 191, 507: the spin limit. S. A. Balbus and J. F. Hawley (1991), The
+            Astrophysical Journal 376, 214: the disc’s friction. R. D. Blandford and R. L. Znajek (1977), Monthly Notices of the Royal
+            Astronomical Society 179, 433: jets. J. C. A. Miller-Jones and colleagues (2021), Science 371, 1046: Cygnus X-1. M. Schmidt (1963),
+            Nature 197, 1040: 3C 273. Event Horizon Telescope Collaboration (2019, 2022), The Astrophysical Journal Letters 875, L1 and 930, L12:
+            M87* and Sagittarius A*. GRAVITY Collaboration (2020), Astronomy and Astrophysics 636, L5: S2’s precession. B. C. Carlson (1995),
+            Numerical Algorithms 10, 13: elliptic integrals.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -1164,6 +1254,15 @@ export function About() {
               Creative Commons Attribution-ShareAlike 4.0
             </a>{' '}
             licence, and so is this course’s file made from them, kept in a folder of its own.
+          </li>
+          <li>
+            <b>Pulsars:</b> the periods and spin-down rates of about sixty famous pulsars, each from the paper that found or timed it. The ATNF
+            Pulsar Catalogue (Manchester and colleagues 2005;{' '}
+            <a href="https://www.atnf.csiro.au/research/pulsar/psrcat/" target="_blank" rel="noreferrer">
+              atnf.csiro.au
+            </a>
+            ) is the source for how many pulsars are known; its data aren’t shipped with this course. <b>Neutron-star equations of state:</b>{' '}
+            Read and colleagues’ (2009) published fits.
           </li>
         </ul>
         <p>Chapter 1’s sizes and distances are published values, typed into the code with their sources (see above).</p>

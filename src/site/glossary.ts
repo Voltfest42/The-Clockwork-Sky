@@ -374,6 +374,30 @@ export const GLOSSARY = {
     term: 'Arnett’s rule',
     definition: 'At its peak, a supernova shines as brightly as its radioactive nickel and cobalt are heating it then, so the peak weighs the nickel the explosion made.',
   },
+  'equation-of-state': {
+    term: 'Equation of state',
+    definition: 'How a material’s pressure depends on its density (and temperature). For the matter inside neutron stars it isn’t known; dozens of models are tested against the stars’ measured masses and radii.',
+  },
+  'millisecond-pulsar': {
+    term: 'Millisecond pulsar',
+    definition: 'An old neutron star spun up to hundreds of turns a second by gas from a companion, which also buried its magnetic field: it slows so little that it is among the steadiest clocks known.',
+  },
+  magnetar: {
+    term: 'Magnetar',
+    definition: 'A neutron star with a magnetic field of 10¹⁴ to 10¹⁵ gauss, a thousand times an ordinary pulsar’s. It shines on its field’s energy, not its spin, and its crust cracks in bursts and giant flares.',
+  },
+  'innermost-stable-orbit': {
+    term: 'Innermost stable circular orbit',
+    definition: 'The closest a body can circle a black hole without plunging in: 6GM/c², three times the horizon’s radius, for one that doesn’t spin. Accretion discs end there.',
+  },
+  'photon-sphere': {
+    term: 'Photon sphere',
+    definition: 'Where light can circle a black hole, at 1.5 times its horizon’s radius. Light aimed within 2.6 horizon radii of the centre is captured, which gives the hole its shadow.',
+  },
+  'accretion-disc': {
+    term: 'Accretion disc',
+    definition: 'Gas orbiting a star or black hole in a flat disc, spiralling slowly inward as friction carries its angular momentum out, and glowing with the energy it gives up as it falls.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

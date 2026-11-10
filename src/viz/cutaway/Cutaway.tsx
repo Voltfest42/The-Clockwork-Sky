@@ -24,10 +24,14 @@ interface CutawayProps {
   /** Layers beyond 1 are drawn squeezed into this much of the radius beyond the edge. */
   atmosphere?: number;
   size?: number;
+  /** The colour of the uncut surface (the Sun's orange by default). */
+  surface?: string;
+  /** A note in the corner; none if null. */
+  footnote?: string | null;
   ariaLabel: string;
 }
 
-export function Cutaway({ layers, depth, selected, onSelect, atmosphere = 0.22, size = 300, ariaLabel }: CutawayProps) {
+export function Cutaway({ layers, depth, selected, onSelect, atmosphere = 0.22, size = 300, surface = '#ffb347', footnote = 'Outer atmosphere not to scale', ariaLabel }: CutawayProps) {
   const c = size / 2;
   const R = (size / 2) * (1 / (1 + atmosphere)) - 4;
   // Outside the star, radii from 1 to the outermost layer's edge are squeezed into [1, 1 + atmosphere].
@@ -58,7 +62,7 @@ export function Cutaway({ layers, depth, selected, onSelect, atmosphere = 0.22, 
         </g>
       ))}
       {/* The uncut three quarters: the surface. */}
-      <path d={ring(0, R)} fill="#ffb347" />
+      <path d={ring(0, R)} fill={surface} />
       <circle cx={c} cy={c} r={R} fill="none" stroke="#fde68a" strokeWidth="1.5" />
       {inside.map((l) => (
         <g key={l.id} role="button" tabIndex={0} aria-label={l.name} aria-pressed={selected === l.id} onClick={() => onSelect(l.id)} onKeyDown={keys(l.id)} style={{ cursor: 'pointer' }}>
@@ -72,9 +76,11 @@ export function Cutaway({ layers, depth, selected, onSelect, atmosphere = 0.22, 
       ))}
       <line x1={c} y1={c} x2={c + d * Math.cos(angle)} y2={c + d * Math.sin(angle)} stroke="#0f172a" strokeWidth="1.5" strokeDasharray="4 3" />
       <circle cx={c + d * Math.cos(angle)} cy={c + d * Math.sin(angle)} r="4.5" fill="#0f172a" stroke="#fff" strokeWidth="1.5" />
-      <text x={8} y={size - 10} fontSize="10.5" fill="#cbd5e1">
-        Outer atmosphere not to scale
-      </text>
+      {footnote && (
+        <text x={8} y={size - 10} fontSize="10.5" fill="#cbd5e1">
+          {footnote}
+        </text>
+      )}
     </svg>
   );
 }

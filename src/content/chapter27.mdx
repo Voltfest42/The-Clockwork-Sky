@@ -1,0 +1,182 @@
+import { AccretionDiscFigure } from '../figures/AccretionDiscFigure';
+import { BendingLightFigure } from '../figures/BendingLightFigure';
+import { BlackHoleOrbitsFigure } from '../figures/BlackHoleOrbitsFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { SmallestStableOrbit } from './checks/chapter27';
+
+A neutron star heavier than its limit can’t stop, and neither can anything else: nothing known can push back harder than neutrons do. The core falls until it is inside its own horizon, and is a black hole. Chapter 18 met them from outside: Cygnus X-1, Gaia’s quiet black holes, the giant at the Milky Way’s centre. This chapter goes closer, to the orbits and light paths near a horizon, and to why the things that swallow matter are the brightest in the universe.
+
+## Where escape needs light speed
+
+In 1784 John Michell, a Yorkshire clergyman, asked what would happen if a star were so dense that the speed needed to escape it exceeded light’s. With Newton’s gravity and light as particles, he found that a star of the Sun’s density and 500 times its radius would hold its light in: a dark star, which could be found only by its pull on other stars. Pierre-Simon Laplace made the same argument in 1796.
+
+The real answer came from Einstein’s general relativity (1915), in which gravity is the shape of spacetime. Within weeks Karl Schwarzschild, serving on the Russian front, found its exact solution outside a ball of mass M. It has a boundary at a radius set by the mass alone: inside it, every path through spacetime, even light’s, leads further in. That boundary is the horizon, and what lies inside it is a <Term id="black-hole">black hole</Term>, John Wheeler’s name for it (1967).
+
+<Callout kind="maths" title="The Schwarzschild radius">
+
+The horizon of a black hole of mass M that doesn’t spin is at
+
+r<sub>s</sub> = 2GM/c²,
+
+2.95 km for each solar mass: 30 km for a black hole of 10 Suns, 12.7 million km, a twelfth of the Earth–Sun distance, for the Milky Way’s 4.3 million Suns. Michell’s escape speed √(2GM/r) = c gives the same formula, by a coincidence of Newtonian sums. In general relativity it means something else: not that light rises and falls back, but that at the horizon even light aimed straight out can’t move outward at all. The figures in this chapter measure distances in GM/c², half the horizon’s radius, so that they fit a black hole of any mass.
+
+</Callout>
+
+The horizon is not a surface. There is nothing there to hit or see, and someone falling through it notices nothing special at that moment: only later do they find every path leads inward. What they would notice is the tide, the difference in pull between head and feet. For a black hole of 10 Suns it would tear them apart long before the horizon; for one of 4 million Suns it is gentle at the horizon, which they would cross whole.
+
+And far from a black hole, it pulls exactly as any other mass does. If the Sun were replaced by a black hole of the same mass, 3 km in radius, Earth would carry on in the same orbit, in the dark. Black holes don’t suck. Only within a few times their horizon’s radius do they behave unlike any other mass.
+
+## Orbits near a black hole
+
+Newton’s orbits are ellipses that close: after one turn a planet is back where it started. In general relativity they don’t quite. Each turn, the closest point moves on a little in the direction of the orbit: it precesses. Urbain Le Verrier found in 1859 that Mercury’s closest point moves on 43 seconds of arc a century more than the other planets’ pulls explain, and in November 1915 Einstein found that his theory gave exactly that. Near a black hole the same effect is enormous, and close in it does something Newton’s gravity never could: it pulls orbits in.
+
+<Callout kind="maths" title="The effective potential">
+
+A body of energy E and angular momentum L per unit mass, orbiting a mass M, moves in and out as a marble would roll along a track whose height is its effective potential. In Newton’s gravity, per unit mass,
+
+½ (dr/dt)² + V(r) = E,  V(r) = −GM/r + L²/2r²:
+
+gravity’s pull, and the centrifugal barrier that keeps an orbiting body from falling in. General relativity, with r changing in the body’s own time, adds one term:
+
+V(r) = −GM/r + L²/2r² − GML²/c²r³.
+
+Far out the new term is tiny, and orbits precess slowly, by 6πGM/c²a(1 − e²) a turn: 43″ a century for Mercury, 12′ an orbit for the star S2 round the Milky Way’s black hole. Close in it wins: the barrier has a top, and a body with enough energy goes over it and falls in. Circular orbits sit where V is flat; the stable ones, at the bottom of a well, exist only outside 6GM/c², three times the horizon’s radius: the <Term id="innermost-stable-orbit">innermost stable circular orbit</Term>. Inside it, gas can’t stay in a circle, and plunges.
+
+</Callout>
+
+The rubber-sheet picture of spacetime, a ball sagging a stretched sheet, needs gravity underneath to make the sheet sag, and draws space where it should draw spacetime. The figure draws what can be computed instead: the paths themselves, from Schwarzschild’s geometry, and the effective potential as a curve of energy against distance, the track the marble rolls on.
+
+<BlackHoleOrbitsFigure
+  number="27.1"
+  tryThis={
+    <p>
+      Answer the question first. Then pick <b>Far away</b>: can you see the two orbits differ? Pick <b>Precessing</b>, then <b>Zoom and whirl</b>,
+      and lower the angular momentum a little at a time: when does the orbit stop coming back out? Find the innermost stable orbit, and nudge its
+      energy up.
+    </p>
+  }
+/>
+
+## Light near a black hole
+
+Light passing a mass is bent. Treating light as particles, Newton’s gravity would bend it a little; general relativity bends it twice as much, by 4GM/c²b for light passing at distance b, which is 1.75 seconds of arc at the Sun’s edge. Frank Dyson, Arthur Eddington and Charles Davidson measured it in the eclipse of 29 May 1919, and Einstein became famous overnight.
+
+Closer to a black hole the bending grows without limit. At 3GM/c², one and a half times the horizon’s radius, light can circle the hole: the <Term id="photon-sphere">photon sphere</Term>. Light aimed a little wide of it loops round once, or twice, before escaping. Light aimed closer than √27 GM/c², 2.6 times the horizon’s radius, spirals in and is lost. So a black hole against a bright background shows a dark disc two and a half times as wide as its horizon: its shadow, ringed by light bent round its edge.
+
+<BendingLightFigure
+  number="27.2"
+  tryThis={
+    <p>
+      Slide the aim down from 60 GM/c² and watch the bending grow. Find the aim at which light first loops right round the hole. What is the
+      widest aim at which it is captured? How much does the weak-field rule miss by at 10 GM/c²?
+    </p>
+  }
+/>
+
+## The brightest engines
+
+Gas rarely falls straight into a black hole: it has angular momentum, and settles into a disc orbiting it, an <Term id="accretion-disc">accretion disc</Term>. Friction in the disc, mostly from tangled magnetic fields (Steven Balbus and John Hawley, 1991), slowly passes angular momentum outward, so the gas spirals in, ring by ring, and heats up as it falls. When it reaches the innermost stable orbit it plunges, and what it gave out on the way is light.
+
+<Callout kind="maths" title="How much light, and how much at most">
+
+Gas on the innermost stable orbit of a black hole that doesn’t spin has energy E = √(1 − 2GM/3rc²) = √(8/9) of its rest-mass energy, so falling there from far away gave out 1 − √(8/9) = 5.7%. A spinning black hole lets the orbit move in, to GM/c² for one spinning as fast as it can, and the share rises to 42%. Hydrogen fusion gives 0.7%.
+
+The light pushes back. Light carrying power L pushes each electron with Thomson’s cross-section σ<sub>T</sub>, and the electrons pull their protons along, so gravity on the gas loses to the light when
+
+L > L<sub>Edd</sub> = 4πGMm<sub>p</sub>c/σ<sub>T</sub> = 1.26 × 10³¹ W per solar mass,
+
+33,000 times the Sun’s luminosity for each Sun of mass: the Eddington limit (Chapter 20’s heaviest stars meet it too). A black hole fed faster than that blows the extra away.
+
+</Callout>
+
+Nikolai Shakura and Rashid Sunyaev worked out how a thin disc shines in 1973. Each ring glows nearly as a black body (Chapter 11), hotter further in, with the temperature falling as r<sup>−3/4</sup>, so the disc’s light is a broad hump, the sum of every ring’s. The hottest rings are hotter round small black holes: about ten million degrees for a black hole of 10 Suns, which shines in X-rays, and about a hundred thousand degrees for one of a hundred million, which shines in ultraviolet.
+
+That is what the X-ray sky shows. Cygnus X-1, a black hole of 21 Suns feeding on a blue supergiant’s wind, was among the first X-ray sources found; about twenty black holes in X-ray binaries have been weighed by their companions’ orbits, with dozens more candidates. Giant black holes in galaxies’ centres, fed by gas from their surroundings, are quasars: the first, 3C 273, found by Maarten Schmidt in 1963, shines like four trillion Suns from a region not much bigger than the Solar System. Many also fire jets of particles at nearly light speed, powered by the black hole’s spin through the magnetic fields threading it (Roger Blandford and Roman Znajek, 1977).
+
+<AccretionDiscFigure
+  number="27.3"
+  tryThis={
+    <p>
+      Compare the hottest ring and the peak of the light for <b>10 M☉</b> and <b>10⁸ M☉</b>: which band does each shine in? Spin the hole up to
+      0.998: where does the inner edge move, and what happens to the efficiency? How does it compare with a neutron star’s?
+    </p>
+  }
+/>
+
+## Seeing the shadow
+
+A shadow 2.6 horizon radii across is tiny on the sky. The Milky Way’s black hole, Sagittarius A\*, of 4.3 million Suns 27,000 light-years away, should cast one 53 microarcseconds across, the size of a doughnut on the Moon; M87\*, of 6.5 billion Suns in the galaxy M87, 55 million light-years away, one of 40. Seeing that needs a telescope the size of Earth (Chapter 10): the Event Horizon Telescope links radio dishes on four continents, observing at the same moment at 1.3 mm and combining their recordings afterwards, to reach about 20 microarcseconds.
+
+Its image of M87\*, released on 10 April 2019, shows a ring 42 ± 3 microarcseconds across, brighter on one side, where the gas orbiting the hole comes towards us; its image of Sagittarius A\*, on 12 May 2022, a ring of 51.8 ± 2.3. Both are the size general relativity predicts for their masses, which were weighed independently, from the stars orbiting Sagittarius A\* (Chapter 30) and the motions of M87’s stars. Later images showed the light’s polarisation, tracing the magnetic fields in the swirl, and in 2025 the EHT reported that M87\*’s pattern of polarisation had turned round between 2017 and 2021, while the ring stayed the same size: the gas changes, the shadow doesn’t.
+
+<Timeline from={1780} to={2025} chapter={27} only={[18, 27]} title="Black holes" />
+
+<DeepDive title="Mercury’s 43 seconds of arc">
+
+By 1859 Urbain Le Verrier had found Neptune from the way it pulled on Uranus, and he turned to Mercury. Its closest point to the Sun moves on a little each orbit, mostly because of the other planets’ pulls. He added them all up, and they fell short: 38 seconds of arc a century were left over (Simon Newcomb later made it 43). Le Verrier did what had worked before, and proposed an unseen planet inside Mercury’s orbit. It was named Vulcan, and astronomers searched for it at every eclipse for half a century. It wasn’t there.
+
+Einstein knew of the puzzle and used it as a test while he worked towards general relativity. In November 1915, with the theory nearly done, he calculated Mercury’s orbit in it and found the extra 43″ a century with nothing adjusted. He later wrote that he was beside himself with joy for days. The light-bending of 1919 made him famous, but Mercury was the first sign the theory was right.
+
+Today the same sum is done for orbits far more extreme. S2, a star orbiting the Milky Way’s black hole every 16 years, swings to within 120 times the Earth–Sun distance of it, and the GRAVITY collaboration measured its orbit precessing by 12 minutes of arc a turn in 2020, as relativity says. In the double pulsar (Chapter 29) the orbit precesses by 17° a year.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="suck" prompt="Does a black hole suck everything near it in?">
+    <Choice label="No: outside a few times its horizon’s radius, things orbit it as they would any mass" correct>
+      Right. Far out its pull is just GM/r², and orbits are as stable as round a star. Only within 6GM/c² are there no stable circular orbits.
+    </Choice>
+    <Choice label="Yes: its gravity is stronger than any star’s">
+      Only close in. At a given distance a black hole pulls exactly as hard as a star of the same mass; it is just much smaller, so you can get
+      much closer to it.
+    </Choice>
+    <Choice label="Yes, but only things made of matter, not light">
+      Light passing far away is barely bent; light passing close can be captured. Matter and light both follow the same geometry.
+    </Choice>
+  </Question>
+
+  <Question id="inside-isco" prompt="What happens to gas inside three horizon radii (6GM/c²)?">
+    <Choice label="No circular orbit there is stable, so it spirals in and plunges" correct>
+      Right. The effective potential has no well inside 6GM/c²: gas reaching the inner edge of the disc falls in within an orbit or two, which is
+      why the disc ends there.
+    </Choice>
+    <Choice label="It stops and piles up on the horizon">
+      There is nothing at the horizon to stop it. Seen from far away, infalling gas fades and reddens near the horizon, but it doesn’t pile up.
+    </Choice>
+    <Choice label="It orbits for ever, more and more slowly">
+      Close in, relativity’s extra pull wins over the centrifugal barrier: circular orbits there are unstable, and gas plunges.
+    </Choice>
+  </Question>
+
+  <Question id="bright" prompt="Why are discs round black holes so bright?">
+    <Choice label="Gas falling that deep gives out far more of its energy than fusion does" correct>
+      Right. Spiralling down to the innermost stable orbit releases 6% of the gas’s rest-mass energy, up to 42% round a spinning hole, against
+      fusion’s 0.7%. The light comes from the gas outside the horizon.
+    </Choice>
+    <Choice label="Light escapes from inside the horizon">
+      Nothing escapes from inside the horizon. The light comes from the hot gas in the disc, outside it.
+    </Choice>
+    <Choice label="The black hole burns the gas">
+      There is no burning: the gas is heated by friction as it spirals in, and glows. Gravity is the fuel.
+    </Choice>
+  </Question>
+
+  <Question id="eht" prompt="What does the Event Horizon Telescope’s image show?">
+    <Choice label="The black hole’s shadow, ringed by light bent round it" correct>
+      Right. The dark middle is the shadow, 2.6 horizon radii across, the size relativity predicts for the hole’s mass; the bright ring is hot gas
+      near the hole, its light bent round the edge.
+    </Choice>
+    <Choice label="The horizon itself, as a black surface">
+      The horizon isn’t a surface, and the dark patch is larger than it: light aimed within 2.6 horizon radii is captured, so the shadow is that
+      wide.
+    </Choice>
+    <Choice label="A photograph taken with visible light">
+      It was made from radio waves 1.3 mm long, recorded by dishes across the Earth and combined afterwards.
+    </Choice>
+  </Question>
+
+  <SmallestStableOrbit />
+</CheckYourself>

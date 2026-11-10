@@ -426,6 +426,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['A nucleus the size of a city', 'The heaviest neutron star', 'Lighthouses', 'Clocks that slow down', 'Magnetars'],
     buildsOn: [18, 24, 25],
     toolkit: ['vectors'],
+    load: () => import('../content/chapter26.mdx'),
   }),
   chapter({
     number: 27,
@@ -435,6 +436,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Where escape needs light speed', 'Orbits near a black hole', 'Light near a black hole', 'The brightest engines', 'Seeing the shadow'],
     buildsOn: [7, 10, 18, 26],
     toolkit: ['vectors'],
+    load: () => import('../content/chapter27.mdx'),
   }),
   chapter({
     number: 28,
@@ -542,6 +544,7 @@ export const TOOLKIT: readonly ToolkitInfo[] = [
     blurb: 'Quantities with a direction: adding and scaling them, and the dot and cross products.',
     part: 3,
     firstNeeded: 26,
+    load: () => import('../content/toolkit/vectors.mdx'),
   },
   {
     slug: 'rates-of-change',

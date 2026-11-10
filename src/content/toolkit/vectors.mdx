@@ -1,0 +1,58 @@
+import { DotCrossFigure } from '../../figures/DotCrossFigure';
+import { Callout } from '../../site/content/blocks';
+
+Some quantities are just a size: a mass, a temperature, a distance. Others have a direction too: a velocity, a force, a magnetic field, the way a pulsar’s beam points. These are vectors, and a few rules for handling them carry a long way: through orbits, spinning stars and the forces on a turning planet. This page gives the rules, and shows what the two ways of multiplying vectors mean.
+
+## Arrows
+
+A vector is an arrow: a length and a direction. Moving it about doesn’t change it, as long as its length and direction stay the same, so the same arrow can describe a velocity here or there. Its length is its size, or magnitude, written |**a**|: a speed is the length of a velocity.
+
+Multiplying a vector by a number scales it: 2**a** is twice as long, in the same direction; −**a** points the other way. Adding two vectors puts them tip to tail: **a** + **b** goes from the start of **a** to the end of **b**, the diagonal of the parallelogram they make. Two forces pulling on one body add this way, and so do a boat’s speed through the water and the water’s speed over the riverbed.
+
+## Components
+
+Set up axes, and any vector is a sum of steps along them: **a** = (a<sub>x</sub>, a<sub>y</sub>, a<sub>z</sub>), so far along x, so far along y, so far along z. Its components are just numbers, so vectors are added and scaled component by component, and its length is Pythagoras’s: |**a**| = √(a<sub>x</sub>² + a<sub>y</sub>² + a<sub>z</sub>²). The components depend on the axes chosen; the arrow doesn’t. Every orbit integrator in this course (Toolkit: [Solving by stepping](/toolkit/solving-by-stepping/)) keeps positions and velocities as components, three numbers each.
+
+## The dot product
+
+The dot product of two vectors is a number:
+
+**a** · **b** = a<sub>x</sub>b<sub>x</sub> + a<sub>y</sub>b<sub>y</sub> + a<sub>z</sub>b<sub>z</sub> = |**a**| |**b**| cos θ,
+
+with θ the angle between them. It says how much one points along the other: the length of **b**’s shadow on **a**, times **a**’s length. It is largest when they point the same way, zero when they are at right angles, and negative when they point apart. The work a force does is a dot product (force · distance moved): pushing at right angles to the motion does none, which is why a circular orbit neither speeds up nor slows down.
+
+A pulsar’s beam reaches us when the angle between the beam’s axis and our line of sight is less than the beam’s half-width: when the dot product of the two directions, as unit vectors, is more than the cosine of that width (Chapter 26). Written out, that is the formula behind Figure 26.3.
+
+## The cross product
+
+The cross product of two vectors is a vector, at right angles to both:
+
+**a** × **b** = (a<sub>y</sub>b<sub>z</sub> − a<sub>z</sub>b<sub>y</sub>, a<sub>z</sub>b<sub>x</sub> − a<sub>x</sub>b<sub>z</sub>, a<sub>x</sub>b<sub>y</sub> − a<sub>y</sub>b<sub>x</sub>),
+
+as long as the area of the parallelogram they make, |**a**| |**b**| sin θ, and pointing the way your right thumb points when your fingers curl from **a** to **b**. It is zero when they point along one line, and swapping them flips it: **b** × **a** = −**a** × **b**.
+
+Angular momentum is a cross product, **L** = m **r** × **v**: position crossed with velocity. Gravity pulls along **r**, towards the centre, so it can’t change **L**: neither its size, which is Kepler’s equal areas in equal times (Chapter 6), nor its direction, which is why an orbit stays in one plane. A spinning star’s angular momentum points along its spin axis, and a magnet’s pull on a moving charge is a cross product too, which is what makes particles spiral round magnetic field lines.
+
+<DotCrossFigure
+  number="T7.1"
+  tryThis={
+    <p>
+      With <b>Dot product</b> on, turn b until the dot product is zero: what angle is that? Keep turning: when is it negative? Switch to{' '}
+      <b>Cross product</b> and make a and b point along one line. Then swap their directions: which way does a × b point now?
+    </p>
+  }
+/>
+
+## Turning frames
+
+Physics is simplest seen from a frame that isn’t turning. Standing on a turning Earth, or riding with two stars round their orbit (Chapter 28), it is easier to describe things as they look from the turning frame, at the price of two forces that aren’t really there. With the frame turning at angular velocity **Ω**, a body moving at **v** in it seems to feel, per unit mass,
+
+the centrifugal force, −**Ω** × (**Ω** × **r**), pushing out from the axis, and the Coriolis force, −2**Ω** × **v**, at right angles to its motion.
+
+The centrifugal force is why Earth bulges at the equator and why the Roche lobes of Chapter 28 have the shape they do. The Coriolis force turns the winds round storms, anticlockwise in the north, and bends the stream of gas from one star to another in a pair. Both are cross products: the vectors tell you which way.
+
+<Callout kind="note" title="In games">
+
+Game engines are built on vectors. A dot product decides whether an enemy can see the player (is the player within its field of view?), how brightly a surface is lit (Lambert’s law: the dot product of the surface’s normal and the direction to the light), and whether a face points at the camera. A cross product gives a triangle’s normal from two of its edges, and the torque that spins a body when it is pushed off-centre. A pulsar’s beam is a cone light, lit or not by a dot product.
+
+</Callout>

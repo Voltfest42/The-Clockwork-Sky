@@ -76,9 +76,9 @@ export const AS_OF = {
     everyMonths: 12,
   },
   records: {
-    checked: '2026-10',
-    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs, the heaviest white dwarf, the heaviest neutron star and the heaviest black hole known from a star in the Galaxy',
-    where: 'src/data/records.ts (used by Chapters 16, 18 and 24)',
+    checked: '2026-11',
+    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs, the heaviest white dwarf, the heaviest neutron star, the fastest pulsar and the heaviest black hole known from a star in the Galaxy',
+    where: 'src/data/records.ts (used by Chapters 16, 18, 24 and 26)',
     source: 'the literature: Kalari et al. 2022 and later for R136a1; Luhman’s and the Backyard Worlds surveys for brown dwarfs; Caiazzo et al. 2021 and later for massive white dwarfs; pulsar-timing and NICER papers for neutron stars; Gaia and X-ray binary papers for black holes',
     everyMonths: 24,
   },
@@ -102,6 +102,20 @@ export const AS_OF = {
     where: 'src/data/exoplanets.ts (K2_18B), and Chapter 19’s “Reading other worlds’ air”',
     source: 'the literature: Madhusudhan et al. and the reanalyses (arXiv), and NASA’s JWST news',
     everyMonths: 12,
+  },
+  pulsars: {
+    checked: '2026-10',
+    what: 'the number of pulsars known (4,503 in the ATNF catalogue v2.9.0, 6 October 2026) and of magnetars (about 30)',
+    where: 'src/data/pulsars.ts (PULSAR_COUNTS), used by Chapter 26',
+    source: 'the ATNF Pulsar Catalogue’s version history (atnf.csiro.au/research/pulsar/psrcat/catalogueHistory.html) and the McGill Online Magnetar Catalog',
+    everyMonths: 12,
+  },
+  nicer: {
+    checked: '2026-11',
+    what: 'NICER’s neutron-star radii and the heaviest pulsars’ masses',
+    where: 'src/data/neutronStars.ts, used by Figure 26.2',
+    source: 'the literature: NICER papers (Riley, Miller, Choudhury, Salmi et al.) and pulsar-timing masses',
+    everyMonths: 24,
   },
   deltaT: {
     checked: '2026-01',
