@@ -446,6 +446,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['The Roche potential', 'Mass transfer changes the orbit', 'The Algol paradox', 'Common envelopes', 'The binary zoo'],
     buildsOn: [7, 14, 17, 24, 26],
     toolkit: ['vectors'],
+    load: () => import('../content/chapter28.mdx'),
   }),
   chapter({
     number: 29,

@@ -398,6 +398,30 @@ export const GLOSSARY = {
     term: 'Accretion disc',
     definition: 'Gas orbiting a star or black hole in a flat disc, spiralling slowly inward as friction carries its angular momentum out, and glowing with the energy it gives up as it falls.',
   },
+  'roche-lobe': {
+    term: 'Roche lobe',
+    definition: 'The region round a star in a pair inside which its gas is held by its own gravity. The two stars’ lobes meet at the inner Lagrange point, L1; a star that swells past its lobe spills gas to its companion.',
+  },
+  'mass-transfer': {
+    term: 'Mass transfer',
+    definition: 'Gas passing from one star of a pair to the other, through the inner Lagrange point when the giver overfills its Roche lobe, or caught from its wind. It changes both stars’ lives and the orbit.',
+  },
+  'common-envelope': {
+    term: 'Common envelope',
+    definition: 'A shared envelope engulfing both stars of a pair, when one swells over the other faster than it can take the gas. Drag pulls the cores together, and the orbit’s lost energy throws the envelope off, or the stars merge.',
+  },
+  'cataclysmic-variable': {
+    term: 'Cataclysmic variable',
+    definition: 'A white dwarf feeding on gas from a close companion that overfills its Roche lobe, usually through a disc. Its disc flares as a dwarf nova; hydrogen piled on the white dwarf ignites as a nova.',
+  },
+  'x-ray-binary': {
+    term: 'X-ray binary',
+    definition: 'A neutron star or black hole feeding on gas from a companion star, its disc so hot that it shines in X-rays.',
+  },
+  'blue-straggler': {
+    term: 'Blue straggler',
+    definition: 'A star in a cluster still on the main sequence though heavier and bluer than the turn-off: rejuvenated by gas from a companion, or by merging with one.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

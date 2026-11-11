@@ -117,6 +117,13 @@ export const AS_OF = {
     source: 'the literature: NICER papers (Riley, Miller, Choudhury, Salmi et al.) and pulsar-timing masses',
     everyMonths: 24,
   },
+  tcrb: {
+    checked: '2026-11',
+    what: 'whether T Coronae Borealis has erupted (not, as of the last check)',
+    where: 'src/data/novae.ts (T_CRB), used by Chapter 28’s “The binary zoo”',
+    source: 'AAVSO’s alerts and light curve for T CrB, and the astronomical news (ATel, CBET)',
+    everyMonths: 6,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

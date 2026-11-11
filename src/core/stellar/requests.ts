@@ -10,6 +10,7 @@ import { buildStar, mainSequence, type StarModel, type StarSummary } from '../st
 import { runCollapse, type CollapseRun } from '../supernova/collapse';
 import { coreHistory, pairWedge, type CoreHistory, type WedgeColumn } from '../supernova/pairs';
 import { fateCurve, isochrone, lifeOf, type Fate, type IsochronePoint } from './lives';
+import { binaryRun, zooRow, type BinaryRun, type FigureSwitches, type ZooCell } from './bse/runs';
 import type { SseTrack } from './sse/evolve';
 
 export type StellarRequest =
@@ -24,7 +25,11 @@ export type StellarRequest =
   /** Chapter 25's pair-instability wedge on the core's map, and the paths of helium cores of these masses (M☉) through it. */
   | { kind: 'pair-map'; logT: readonly [number, number]; logRho: readonly [number, number]; masses: readonly number[] }
   /** One core's Γ₁, at its centre and on average, along its path (Figure 25.4). */
-  | { kind: 'pair-core'; mass: number; logT: readonly [number, number] };
+  | { kind: 'pair-core'; mass: number; logT: readonly [number, number] }
+  /** One binary's life from BSE (Chapter 28). */
+  | ({ kind: 'binary'; m1: number; m2: number; period: number; ecc: number; z: number; seed?: number } & FigureSwitches)
+  /** One row of the binary zoo's map (Figure 28.4): a primary of m1 M☉, companions of q m1, at each period (days). */
+  | ({ kind: 'zoo-row'; m1: number; q: number; z: number; periods: readonly number[] } & FigureSwitches);
 
 /** The wedge where Γ₁ < 4/3, and each core's path. */
 export interface PairMap {
@@ -41,7 +46,17 @@ export interface LifeAnswer extends SseTrack {
   error?: string;
 }
 
-export type StellarAnswer = IsochronePoint[] | Fate[] | LifeAnswer | StarModel | StarSummary[] | CollapseRun | PairMap | CoreHistory;
+export type StellarAnswer =
+  | IsochronePoint[]
+  | Fate[]
+  | LifeAnswer
+  | StarModel
+  | StarSummary[]
+  | CollapseRun
+  | PairMap
+  | CoreHistory
+  | BinaryRun
+  | ZooCell[];
 
 /** Model S's hydrogen against the mass fraction: today's Sun, its core a little over half burnt. */
 export const SUN_TODAY_HYDROGEN: readonly (readonly [number, number])[] = solarModel.shells.map((s) => [s.m, s.X] as const);
@@ -77,5 +92,9 @@ export function computeStellar(r: StellarRequest): StellarAnswer {
       return { wedge: pairWedge(r.logT, r.logRho, 64), histories: r.masses.map((m) => coreHistory(m, r.logT)) };
     case 'pair-core':
       return coreHistory(r.mass, r.logT, 40);
+    case 'binary':
+      return binaryRun(r);
+    case 'zoo-row':
+      return zooRow(r);
   }
 }

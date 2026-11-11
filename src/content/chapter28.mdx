@@ -1,0 +1,197 @@
+import { AlgolFigure } from '../figures/AlgolFigure';
+import { BinaryZooFigure } from '../figures/BinaryZooFigure';
+import { RocheFigure } from '../figures/RocheFigure';
+import { TransferOrbitFigure } from '../figures/TransferOrbitFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { T_CRB } from '../data/novae';
+import { StreamMissesCompanion } from './checks/chapter28';
+
+Most stars aren’t alone. About half of stars like the Sun have a companion, and among the heaviest stars nearly all do: about seven O stars in ten will one day trade mass with theirs (Sana and colleagues, 2012). Chapter 14 weighed stars by their orbits as if each lived its own life. In a wide pair they do. In a close one they can’t: when one star swells, it reaches its companion’s grip, and from then on the two lives are one story. This chapter follows that story, from the shape of the space round a pair to the strange things pairs become.
+
+## The Roche potential
+
+Gas in a pair feels both stars’ pulls. Seen from a frame that turns with the orbit, where the stars stand still, it also feels the frame’s turning, as a centrifugal push outward and, when it moves, the Coriolis force sideways (Toolkit: Vectors). Pulls and push together make a landscape: a deep hollow round each star, joined by a mountain pass between them. Édouard Roche worked out its shape in 1849, and the pass is the inner Lagrange point, L1, which Part I met in the Earth–Sun system.
+
+<Callout kind="maths" title="The Roche potential and the lobe">
+
+In the frame turning with the pair at angular speed ω, gas at distances r₁ and r₂ from stars of masses M₁ and M₂, and distance ϖ from the axis through their centre of mass, feels the force −∇Φ of the potential
+
+Φ = −GM₁/r₁ − GM₂/r₂ − ½ ω² ϖ²,
+
+plus, if it moves, the Coriolis force −2ω × v, which does no work. A star spinning with the orbit settles into a shape along a surface of constant Φ. The deepest closed surface round each star, through L1, is its <Term id="roche-lobe">Roche lobe</Term>. No formula gives its size exactly, but Peter Eggleton (1983) fitted the radius of a sphere of the same volume, to 1% for any mass ratio q = M₁/M₂:
+
+r<sub>L</sub>/a = 0.49 q<sup>2/3</sup> / (0.6 q<sup>2/3</sup> + ln(1 + q<sup>1/3</sup>)),
+
+where a is the separation: 0.38a for equal masses, 0.21a for a star a tenth of its companion’s mass. The figure’s own integration of the lobe’s volume agrees with it to better than 1%.
+
+</Callout>
+
+A star smaller than its lobe keeps its gas: the pair is detached. A star that swells to fill its lobe, as stars do when they leave the main sequence, has gas at L1 with nothing holding it, and it spills over the pass into the companion’s hollow: the pair is semi-detached, and if both fill their lobes, in contact (Zdeněk Kopal’s classes, 1959). The spilt gas doesn’t fall straight across. In the turning frame the Coriolis force swings it sideways, so the stream curves round the companion. If it passes closer than the companion’s radius, it hits it. If not, it goes round, collides with itself and settles into a ring at the radius where gas with its angular momentum would orbit, which spreads into an <Term id="accretion-disc">accretion disc</Term> (Chapter 27). Stephen Lubow and Frank Shu followed the stream in 1975; for equal masses it passes 0.049a from the companion’s centre, and the figure’s integration gives the same. A white dwarf, a neutron star or a black hole is so small that the stream always misses it, which is why such accretors have discs.
+
+<RocheFigure
+  number="28.1"
+  tryThis={
+    <p>
+      Turn the 3D landscape: where is the pass? Swell the donor to fill its lobe. Make the donor lighter than its companion, then heavier: which
+      way does the stream swing, and when does it miss? Shrink the companion to a white dwarf’s size.
+    </p>
+  }
+/>
+
+## Mass transfer changes the orbit
+
+Gas passing from one star to the other carries angular momentum with it, and the orbit has to make room. The simplest case is <Term id="mass-transfer">mass transfer</Term> that loses nothing: every gram the donor gives, the companion keeps, and the pair’s total angular momentum stays as it was.
+
+<Callout kind="maths" title="Conservative transfer">
+
+A circular orbit of stars of masses M₁ and M₂, total M, separation a, has angular momentum
+
+J = M₁M₂ √(Ga/M).
+
+If M and J are fixed, a ∝ (M₁M₂)⁻². The product M₁M₂ is largest when the masses are equal, so as mass moves from the heavier star to the lighter, the orbit shrinks until they are equal and widens after; and the period, P ∝ a<sup>3/2</sup>, follows. A pair of 3 and 1.5 Suns shrinks to 0.79 of its first separation at equal masses, and if the donor goes down to 0.4 Suns, opens to 7 times it.
+
+</Callout>
+
+Real pairs lose some of the gas, and it takes angular momentum with it: the orbit then widens less, or shrinks more. Whether the transfer stays gentle depends on how the donor and its lobe respond. A donor heavier than its companion sees its lobe shrink as it gives mass away; if its own radius shrinks faster, the transfer stays slow, set by how fast the donor swells by itself. If not, the donor overfills its lobe more and more, and the transfer runs away. Giants with deep convective envelopes swell when they lose mass, which makes them dangerous donors: Hurley, Tout and Pols’s binary-star code (BSE, 2002) calls the transfer unstable when a giant is heavier than its companion by a factor of more than 0.36 + 1/[3(1 − M<sub>core</sub>/M)] (Hjellming and Webbink, 1987), about 0.7 for a giant with a small core, and when a main-sequence star is three times heavier.
+
+<TransferOrbitFigure
+  number="28.2"
+  tryThis={
+    <p>
+      Slide the mass given from zero to the end: where is the orbit smallest? Let the companion keep only half of what it gets: how much less does
+      the orbit widen? Start with the donor lighter than its companion: what does the orbit do then?
+    </p>
+  }
+/>
+
+## The Algol paradox
+
+Algol, β Persei, dims every 2.87 days as one star of a pair passes in front of the other (John Goodricke timed it in 1783, Part II). Its spectra give its stars: a B star of 3.2 Suns on the main sequence, and a K-type subgiant of 0.7 Suns that has already left it. That is backwards. Heavier stars use up their hydrogen faster (Chapter 17), so the heavier star should be the more evolved. Yet here the lighter star is the old one, though the two were born together. This was the Algol paradox.
+
+John Crawford and Fred Hoyle answered it in 1955: the subgiant was once the heavier star. It swelled first, filled its Roche lobe and gave most of its mass to its companion, which grew into the B star. The numbers fit: the two stars are 13.3 Suns’ radii apart, so the subgiant’s Roche lobe is 3.45 Suns’ radii, about its own size. It fills its lobe, and is still giving. Rudolf Kippenhahn and Alfred Weigert computed such a pair in 1967, and pairs like Algol, now known by the hundred, became the first proof that stars in pairs live different lives.
+
+The figure lets Hurley’s binary-star code do the same. BSE, which Figure 28.4 also runs and this course has ported from his Fortran, follows each star with the fitted formulae of Part II’s Star Forge and the pair with recipes for winds, tides, magnetic braking, overflow and its stability, and common envelopes: a state machine that moves the pair from phase to phase. Started with 2.8 and 1.0 Suns 1.8 days apart, the heavier star fills its lobe at 427 million years, while both are still on the main sequence. Within 16 million years it has given away so much that the masses are equal, and the orbit is at its tightest, 0.82 days. After that every gram it gives widens the orbit, and 900 million years after birth the pair is 0.70 and 3.1 Suns, 2.88 days apart: Algol.
+
+<AlgolFigure
+  number="28.3"
+  tryThis={
+    <p>
+      Start at <b>Born</b> and step through the moments: when do the masses swap? Find when the orbit is tightest, and compare the masses then.
+      Play to <b>Algol today</b>: which star is the more evolved, and which the heavier? What happens when the companion swells in turn?
+    </p>
+  }
+/>
+
+## Common envelopes
+
+Algol’s transfer stayed gentle. When it doesn’t, the donor pours its envelope out faster than the companion can take it, and the gas swells round both stars: a <Term id="common-envelope">common envelope</Term>, which Bohdan Paczyński proposed in 1976. Inside it, the companion and the giant’s core orbit through gas that drags on them, and they spiral together within years to centuries. The orbital energy they lose heats the envelope. Either it is enough to throw the envelope off, leaving the core and the companion in a far tighter orbit, or it isn’t, and they merge.
+
+<Callout kind="maths" title="The energy budget">
+
+The envelope, of mass M − M<sub>c</sub> round a core M<sub>c</sub>, is bound to a giant of radius R by
+
+E<sub>bind</sub> = G M (M − M<sub>c</sub>) / λR,
+
+where λ, about 0.5 to 1, describes how the envelope is spread out. The orbit of the core and the companion M₂ gives up E<sub>orb</sub> = −GM<sub>c</sub>M₂/2a as it shrinks, and a fraction α of that goes into unbinding the envelope (Webbink 1984):
+
+α (GM<sub>c</sub>M₂/2a<sub>f</sub> − GM<sub>c</sub>M₂/2a<sub>i</sub>) = E<sub>bind</sub>.
+
+A giant of 1.5 Suns, with a core of 0.5, filling its lobe 200 Suns’ radii from a red dwarf of 0.5 Suns (a period of 232 days), has a radius of 95 Suns’ radii. With λ = 0.5 and α = 1 the pair comes out 3.9 Suns’ radii apart, 21 hours round. With α = 0.3 it comes out 1.2 apart, and the red dwarf barely fits in its lobe; with α = 3, BSE’s original choice, 11 apart.
+
+</Callout>
+
+α is one of the least-known numbers in astrophysics. In principle it is at most 1, if only the orbit’s energy does the work, but the gas’s recombination energy, jets from the accreting companion and the envelope’s slow escape all muddle it, and three-dimensional simulations of a common envelope still struggle to eject it whole. Pairs that came out of one, such as white dwarfs with red dwarfs in orbits of hours, suggest low values for some and high ones for others. BSE’s paper used 3 (counting other energies in); most codes today use about 1, and Figure 28.4 starts there, with BSE’s 3 a slider away. The results move a lot.
+
+## The binary zoo
+
+Mass transfer, common envelopes, mergers and supernova kicks make a zoo of pairs that single stars never could.
+
+- **Cataclysmic variables.** A white dwarf with a red dwarf in an orbit of hours, the white dwarf drawing gas from its companion, usually through a disc. The disc flares every few weeks or months (a dwarf nova); hydrogen piling up on the white dwarf ignites every few thousand years or more (a nova). The orbits are tight because they went through a common envelope, and they shrink further as magnetic braking and gravitational waves drain their angular momentum (<Term id="cataclysmic-variable">cataclysmic variables</Term>). Recurrent novae erupt every few decades: RS Ophiuchi last did in 2021, and T Coronae Borealis, a white dwarf fed by a red giant every {T_CRB.orbitDays} days, which erupted in {T_CRB.eruptions[0]} and {T_CRB.eruptions[1]}, {T_CRB.erupted ? `erupted again on ${T_CRB.erupted}` : `has been expected to erupt since 2023 and hadn’t yet (${T_CRB.asOf})`}.
+- **X-ray binaries.** A neutron star or black hole fed by a companion (Chapter 27): with a heavy companion, from its wind, as in Cygnus X-1; with a light one, through a disc, for billions of years (<Term id="x-ray-binary">X-ray binaries</Term>). The gas spins the neutron star up, and an old pulsar spun to hundreds of turns a second is a millisecond pulsar (Chapter 26). Some, the “black widows” and “redbacks”, are now boiling their companions away; PSR J1023+0038 switches between a pulsar and an accreting X-ray source.
+- **Blue stragglers.** Stars in old clusters still on the main sequence but heavier and bluer than the turn-off (Allan Sandage found them in 1953). Some were fed by a companion, as William McCrea proposed in 1964; others are two stars merged (<Term id="blue-straggler">blue stragglers</Term>). In the old cluster NGC 188 most have companions, many of them white dwarfs: the stars that gave them the mass (Robert Mathieu and Aaron Geller, 2009).
+- **Mergers.** In 2008 V1309 Scorpii flared up, and old images showed it had been a contact pair whose orbit shrank for years: the first merger seen. A merger predicted for 2022 in KIC 9832227 turned out, in 2018, to rest on a mistyped time in old data: a reminder of how such predictions are made, and checked.
+- **Stripped stars.** Massive stars that lose their hydrogen to a companion become hot helium stars, the ancestors of Type Ib and Ic supernovae (Chapter 25); Maria Drout, Ylva Götberg and colleagues found the first population of them, in the Magellanic Clouds, in 2023.
+- **Pairs of white dwarfs, neutron stars and black holes.** Two white dwarfs in orbits of minutes, such as HM Cancri (5.4 minutes) and ZTF J1539+5027 (6.9), are drawn together by gravitational waves and may merge as Type Ia supernovae (Chapter 25). Two neutron stars that survive both supernovae, such as the Hulse–Taylor pulsar, or two black holes, merge in the same way, which is what LIGO hears (Chapter 29).
+
+Which pair becomes which depends on its masses and its orbit at birth, and on the uncertain physics: α, how much mass a companion keeps, and the kicks that new neutron stars get. BSE’s successors (COSMIC, COMPAS, MOBSE, SEVN, StarTrack, BPASS, POSYDON) keep its skeleton and change those recipes, and their populations differ: binary outcomes are only as good as the recipes. The figure runs BSE as it was published, but with α as a slider.
+
+<BinaryZooFigure
+  number="28.4"
+  tryThis={
+    <p>
+      Pick a cell in each region and read its story. Where do pairs merge, and where do they never touch? Change α from 1 to 0.3 and to 3: which
+      regions grow and shrink? Switch to metal-poor stars and to companions of 0.9 times the primary’s mass: where do pairs of black holes appear?
+    </p>
+  }
+/>
+
+<Timeline from={1780} to={2025} chapter={28} only={[14, 28]} title="Two stars" />
+
+<DeepDive title="The merger that wasn’t">
+
+In January 2017 Lawrence Molnar and colleagues at Calvin College announced that KIC 9832227, a contact binary in Cygnus with an orbit of 11 hours, would merge in 2022 and flare up as a red nova, bright enough to see with the naked eye. It was the first prediction of a stellar merger. They had timed its eclipses for years, and with older observations from 1999 to 2013 the orbit seemed to be shrinking faster and faster, as V1309 Scorpii’s had before it merged.
+
+The press loved it. In 2018 Quentin Socia and colleagues at San Diego State went back to the 1999 data and found the time of one eclipse had been written half an hour off. With the right time, the orbit wasn’t shrinking faster at all. The prediction was withdrawn, by its own authors among others, and KIC 9832227 is still there.
+
+Nobody was careless in a way that stands out: an old measurement was trusted, and it mattered because a prediction rested on a single trend. The way the error was found, by someone checking the oldest data again, is how such claims should be tested. Pairs do merge (Figure 28.4 shows where), and astronomers now watch contact binaries whose orbits are shrinking for the next V1309 Scorpii.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="algol-paradox" prompt="Why is Algol’s lighter star the more evolved?">
+    <Choice label="It was once the heavier star, and gave most of its mass to its companion" correct>
+      Right. It used up its hydrogen first, swelled, filled its Roche lobe and passed its envelope across, so its companion grew into the heavier
+      star.
+    </Choice>
+    <Choice label="It was born later, from the companion’s leftover gas">
+      Both stars were born together. The paradox is that the lighter one is older in its life, which only mass changing hands explains.
+    </Choice>
+    <Choice label="Light stars evolve faster than heavy ones">
+      The opposite: heavy stars burn through their hydrogen much faster (Chapter 17). That is why Algol was a paradox.
+    </Choice>
+  </Question>
+
+  <Question id="orbit-transfer" prompt="If no mass or angular momentum is lost, what happens to the orbit as the heavier star gives mass to the lighter?">
+    <Choice label="It shrinks until the masses are equal, then widens" correct>
+      Right. With the angular momentum M₁M₂√(Ga/M) fixed, a goes as (M₁M₂)⁻², and the product of the masses is largest when they are equal.
+    </Choice>
+    <Choice label="It widens all the time">
+      Only once the donor is the lighter star. While it is heavier, the orbit shrinks, which can make the transfer run away.
+    </Choice>
+    <Choice label="It stays the same, as the total mass is the same">
+      The total mass is the same, but how it is shared changes the orbit: Figure 28.2 shows it.
+    </Choice>
+  </Question>
+
+  <Question id="common-envelope" prompt="What is a common envelope?">
+    <Choice label="A giant’s envelope engulfing both stars of a pair, which drags them together" correct>
+      Right. The companion and the giant’s core spiral in through the gas; the orbital energy they lose may throw the envelope off, leaving a far
+      tighter pair, or they merge.
+    </Choice>
+    <Choice label="The disc of gas round the accreting star">
+      That is an accretion disc. A common envelope surrounds both stars.
+    </Choice>
+    <Choice label="The gas shared by two stars in contact, which keeps them apart">
+      Contact pairs do share an envelope, but a common envelope is the runaway case, in which drag pulls the cores together.
+    </Choice>
+  </Question>
+
+  <Question id="millisecond-pulsars" prompt="Where do millisecond pulsars come from?">
+    <Choice label="Old neutron stars spun up by gas from a companion" correct>
+      Right. Gas falling from a disc carries angular momentum onto the neutron star, spinning it up to hundreds of turns a second: X-ray binaries
+      are their nurseries.
+    </Choice>
+    <Choice label="Newly born neutron stars, before they slow down">
+      Young pulsars such as the Crab’s spin tens of times a second and slow quickly. Millisecond pulsars are old, with weak fields, and slow
+      hardly at all.
+    </Choice>
+    <Choice label="White dwarfs that have collapsed">
+      A white dwarf pushed over its limit can collapse to a neutron star, but its spin comes mostly from accretion first.
+    </Choice>
+  </Question>
+
+  <StreamMissesCompanion />
+</CheckYourself>

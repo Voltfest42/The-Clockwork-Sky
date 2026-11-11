@@ -84,8 +84,13 @@ const TINY = 1.0e-14;
 const EPS = 1.0e-6;
 const ALPHA2 = 0.09;
 
-/** The wind's mass-loss rate, M☉ per year (mlwind.f), for a single star (no Roche lobe). */
-export function mlwind(kw: number, lum: number, r: number, mt: number, mc: number, z: number, o: SseOptions): number {
+/**
+ * The wind's mass-loss rate, M☉ per year (mlwind.f). rl is the Roche lobe's radius at periastron (R☉; 0 for a
+ * single star), which enhances the Reimers wind by bwind (Tout & Eggleton 1988); BSE passes it, SSE doesn't.
+ */
+export function mlwind(
+  kw: number, lum: number, r: number, mt: number, mc: number, z: number, o: SseOptions & { bwind?: number }, rl = 0,
+): number {
   let dms = 0;
   // Nieuwenhuijzen & de Jager (1990) for massive stars, all over the HR diagram
   if (lum > 4000) {
@@ -96,6 +101,7 @@ export function mlwind(kw: number, lum: number, r: number, mt: number, mc: numbe
   if (kw >= 2 && kw <= 9) {
     // Reimers
     let dml = (o.neta * 4.0e-13 * r * lum) / mt;
+    if (rl > 0) dml = dml * (1 + (o.bwind ?? 0) * Math.min(0.5, r / rl) ** 6);
     // Vassiliadis & Wood (1993) for long pulsation periods on the AGB
     if (kw === 5 || kw === 6) {
       let p0 = -2.07 - 0.9 * Math.log10(mt) + 1.94 * Math.log10(r);
@@ -128,7 +134,7 @@ export function mlwind(kw: number, lum: number, r: number, mt: number, mc: numbe
 }
 
 /** The next time step for changes in radius and mass, and the time left in the phase (deltat.f), Myr. */
-function deltat(kw: number, age: number, lm: Landmarks, dtIn: number, o: SseOptions): { dt: number; dtr: number } {
+export function deltat(kw: number, age: number, lm: Landmarks, dtIn: number, o: SseOptions): { dt: number; dtr: number } {
   const { tm, tn, tscls } = lm;
   let dt: number;
   let dtr: number;

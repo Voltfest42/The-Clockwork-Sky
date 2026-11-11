@@ -258,11 +258,10 @@ describe('vectors (Toolkit T7)', () => {
 });
 
 describe('Chapter 27 in the course', () => {
-  it('is written, with its sections and glossary terms; Chapter 28 is not yet', () => {
+  it('is written, with its sections and glossary terms', () => {
     const ch = CHAPTERS.find((c) => c.number === 27)!;
     expect(ch.load).toBeDefined();
     expect(ch.sections).toEqual(['Where escape needs light speed', 'Orbits near a black hole', 'Light near a black hole', 'The brightest engines', 'Seeing the shadow']);
-    expect(CHAPTERS.find((c) => c.number === 28)!.load).toBeUndefined();
     expect(TOOLKIT.find((t) => t.code === 'T7')!.load).toBeDefined();
     for (const id of ['innermost-stable-orbit', 'photon-sphere', 'accretion-disc', 'black-hole']) expect(GLOSSARY).toHaveProperty(id);
   });

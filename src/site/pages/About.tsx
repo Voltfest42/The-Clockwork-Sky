@@ -132,6 +132,13 @@ export function About() {
           century and S2’s 12′ an orbit; light must be bent by 4GM/c²b plus the next term far out, 1.75″ at the Sun’s edge, and captured inside
           √27 GM/c², giving shadows of 53 and 40 microarcseconds for Sagittarius A* and M87*; and discs must add up to their luminosity, with
           efficiencies of 5.7%, 32% and 42% and the innermost orbit at 6, 1.237 and 1 GM/c² for spins of 0, 0.998 and 1.
+          Since Chapter 28, the binary-star engine, a TypeScript port of Hurley’s BSE, is checked step by step against Hurley’s own Fortran
+          over 604 pairs (primaries of 0.6 to 80 solar masses, three mass ratios, periods of 1 to 10,000 days, round and eccentric orbits,
+          three metallicities, kicks off and on): every event and step must agree up to the first phase boundary where the two codes’ last
+          binary digit sends the step either side of it, the step must realign after it, and every pair must end as the same two kinds of
+          star; the Roche lobe integrated from the potential must match Eggleton’s formula to 1%, the stream from L1 must pass within 5% of
+          Ulrich and Burger’s fit (0.049 separations for equal masses, as Lubow and Shu found), and conservative transfer must make the orbit
+          smallest at equal masses.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -719,6 +726,25 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 28</h3>
+        <ul>
+          <li>
+            <b>Figure 28.1, the Roche potential explorer.</b> Point masses on a circular orbit, each spinning with it; the stream is single
+            particles released at L1 with a thousandth of the orbital speed, falling freely; the disc forms where gas with the stream’s angular
+            momentum would orbit in a circle; the landscape’s wells are cut off.
+          </li>
+          <li>
+            <b>Figure 28.2, the orbit as mass changes hands.</b> Points on a circular orbit; mass lost from the pair leaves from the companion
+            with its orbital speed; Eggleton’s volume-equivalent lobes.
+          </li>
+          <li>
+            <b>Figures 28.3 and 28.4, the Algol paradox and the binary zoo.</b> Hurley, Tout and Pols’s BSE (2002): fitted single-star formulae
+            and recipes for winds, tides, magnetic braking, overflow, common envelopes and kicks, not the stars’ structure; binary.in’s switches
+            except α = 1; kicks drawn from a Maxwellian of 190 km/s, one seeded draw per pair; circular orbits from the zero-age main sequence;
+            the zoo’s classes are this course’s. Algol’s ancestors were picked from a search of BSE runs, and its third star is left out.
+          </li>
+        </ul>
+
         <h3>Toolkit: Vectors</h3>
         <ul>
           <li>
@@ -1132,6 +1158,24 @@ export function About() {
             Numerical Algorithms 10, 13: elliptic integrals.
           </li>
           <li>
+            É. Roche (1849), Mémoires de l’Académie des sciences et lettres de Montpellier: the shapes of bodies held by two masses. Z. Kopal
+            (1959), Close Binary Systems (Chapman &amp; Hall). P. P. Eggleton (1983), The Astrophysical Journal 268, 368: the Roche lobe’s
+            radius. S. H. Lubow and F. H. Shu (1975), The Astrophysical Journal 198, 383, and R. K. Ulrich and H. L. Burger (1976), The
+            Astrophysical Journal 206, 509: the stream and its closest approach. J. R. Hurley, C. A. Tout and O. R. Pols (2002), Monthly Notices
+            of the Royal Astronomical Society 329, 897: BSE. R. F. Webbink (1984), The Astrophysical Journal 277, 355: the common envelope’s
+            energy. B. Paczyński (1976), in Structure and Evolution of Close Binary Systems, IAU Symposium 73, 75: the common envelope. M. S.
+            Hjellming and R. F. Webbink (1987), The Astrophysical Journal 318, 794: giants’ stability. J. A. Crawford (1955), The Astrophysical
+            Journal 121, 71, and R. Kippenhahn and A. Weigert (1967), Zeitschrift für Astrophysik 65, 251: the Algol paradox. F. Baron and
+            colleagues (2012), The Astrophysical Journal 752, 20: Algol’s stars. H. Sana and colleagues (2012), Science 337, 444: O stars’
+            companions. P. Hut (1981), Astronomy and Astrophysics 99, 126, and J.-P. Zahn (1977), Astronomy and Astrophysics 57, 383: tides.
+            S. Rappaport, F. Verbunt and P. C. Joss (1983), The Astrophysical Journal 275, 713: magnetic braking. P. C. Peters (1964), Physical
+            Review 136, B1224: merging by gravitational waves. A. Sandage (1953), The Astronomical Journal 58, 61, W. H. McCrea (1964), Monthly
+            Notices of the Royal Astronomical Society 128, 147, and R. D. Mathieu and A. M. Geller (2009), Nature 462, 1032: blue stragglers. R.
+            Tylenda and colleagues (2011), Astronomy and Astrophysics 528, A114: V1309 Scorpii. L. A. Molnar and colleagues (2017), The
+            Astrophysical Journal 840, 1, and Q. J. Socia and colleagues (2018), The Astrophysical Journal Letters 864, L32: KIC 9832227. M. R.
+            Drout and colleagues (2023), Science 382, 1287: stripped stars. K. B. Burdge and colleagues (2019), Nature 571, 528: ZTF J1539+5027.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -1222,8 +1266,9 @@ export function About() {
             Observatory’s and USAF/NOAA’s sunspot records, compiled by David Hathaway.
           </li>
           <li>
-            <b>Stellar evolution:</b> SSE by Jarrod Hurley, Onno Pols and Christopher Tout, ported to TypeScript from the distribution AMUSE
-            keeps unchanged, and tested against the original code; the Fortran itself isn’t part of the site. <b>Young stars and brown
+            <b>Stellar evolution:</b> SSE by Jarrod Hurley, Onno Pols and Christopher Tout, and BSE by Jarrod Hurley, Christopher Tout and Onno
+            Pols, ported to TypeScript from the distributions AMUSE keeps (src/amuse_sse/src and src/amuse_bse/src), and tested against the
+            original code; the Fortran itself isn’t part of the site. <b>Young stars and brown
             dwarfs:</b> BHAC15, from Isabelle Baraffe’s page, used with the citation it asks for.
           </li>
           <li>

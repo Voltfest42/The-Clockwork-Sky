@@ -4,6 +4,7 @@ import type { CollapseRun } from '../core/supernova/collapse';
 import type { CoreHistory } from '../core/supernova/pairs';
 import type { Fate, IsochronePoint } from '../core/stellar/lives';
 import type { StarModel, StarSummary } from '../core/structure/zams';
+import type { BinaryRun, FigureSwitches, ZooCell } from '../core/stellar/bse/runs';
 
 /**
  * Asks the stellar-evolution worker for an isochrone, a fate curve or a whole
@@ -156,3 +157,11 @@ export const usePairMap = (r: { logT: readonly [number, number]; logRho: readonl
 
 /** One helium core's Γ₁ along its path, at its centre and on average (Figure 25.4). */
 export const usePairCore = (mass: number, logT: readonly [number, number]) => useStellar({ kind: 'pair-core', mass, logT }) as CoreHistory | null;
+
+/** One binary's whole life from BSE (Chapter 28), or none. */
+export const useBinary = (r: ({ m1: number; m2: number; period: number; ecc: number; z: number; seed?: number } & FigureSwitches) | null) =>
+  useStellar(r ? { kind: 'binary', ...r } : null) as BinaryRun | null;
+
+/** One row of the binary zoo's map (Figure 28.4). */
+export const useZooRow = (r: { m1: number; q: number; z: number; periods: readonly number[] } & FigureSwitches) =>
+  useStellar({ kind: 'zoo-row', ...r }) as ZooCell[] | null;

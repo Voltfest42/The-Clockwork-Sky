@@ -5,7 +5,8 @@
  * metallicity's MSCFF block (`msp`) or GBCFF block (`gbp`), 1-based.
  *
  * Units are SSE's: masses in M☉, luminosities in L☉, radii in R☉, times in Myr.
- * The derivatives and inverses SSE uses only for binaries are left out.
+ * The inverses, the derivative and the two extra formulae that only BSE uses
+ * (mheif, mbagbf, lbgbdf, vrotf, celamf) are at the end.
  */
 
 /** A metallicity's constants, as zcnsts sets them (see zcnsts.ts). Arrays are 1-based. */
@@ -357,4 +358,98 @@ export function rpertf(m: number, mew: number, r: number, rc: number): number {
   const facmax = -14 / Math.log10(mew);
   const fac = Math.min(a / q, facmax);
   return ((1 + b ** c) * (mew / b) ** c * mew ** fac) / (1 + (mew / b) ** c);
+}
+
+/** The derivative of lbgbf with mass, L☉ per M☉ (valid for low and intermediate masses; used by BSE's gntage). */
+export function lbgbdf(m: number, c: ZConstants): number {
+  const a = c.gbp;
+  const f = a[1] * m ** a[5] + a[2] * m ** a[8];
+  const df = a[5] * a[1] * m ** (a[5] - 1) + a[8] * a[2] * m ** (a[8] - 1);
+  const g = a[3] + a[4] * m ** a[7] + m ** a[6];
+  const dg = a[7] * a[4] * m ** (a[7] - 1) + a[6] * m ** (a[6] - 1);
+  return (df * g - f * dg) / (g * g);
+}
+
+/** The mass at the BGB or at helium ignition (by mchefl) for a core mass, M☉: mcheif inverted (BSE). */
+export function mheif(mc: number, mhefl: number, mchefl: number, c: ZConstants): number {
+  const a = c.gbp;
+  const m1 = mbagbf(mc / 0.95, c);
+  const a3 = mchefl ** 4 - a[33] * mhefl ** a[34];
+  const m2 = ((mc ** 4 - a3) / a[33]) ** (1 / a[34]);
+  return Math.max(m1, m2);
+}
+
+/** The mass at the base of the AGB for a core mass, M☉: mcagbf inverted (BSE); 0 below the least. */
+export function mbagbf(mc: number, c: ZConstants): number {
+  const a = c.gbp;
+  const mc4 = mc ** 4;
+  if (mc4 > a[37]) return ((mc4 - a[37]) / a[35]) ** (1 / a[36]);
+  return 0;
+}
+
+/** A zero-age main-sequence star's equatorial rotation speed, km/s (Lang 1992, as BSE fits it). */
+export function vrotf(m: number): number {
+  return (330 * m ** 3.3) / (15 + m ** 3.45);
+}
+
+/**
+ * The envelope's binding-energy factor λ for common-envelope evolution (BSE's celamf, fitted by Pols to
+ * detailed models). fac ≥ 0 uses the fits, adding that fraction of the recombination energy; fac < 0 means
+ * λ = −fac. menv is the convective envelope's mass as a fraction of the whole envelope's.
+ */
+export function celamf(kw: number, m: number, lum: number, rad: number, rzams: number, menv: number, fac: number): number {
+  if (fac < 0) return -1 * fac;
+  // No fits yet for naked helium stars
+  if (kw > 6) return 0.5;
+  let lam1 = 0;
+  let lam2 = 0;
+  if (menv > 0) {
+    // Giant-like stars; also HG and CHeB stars close to the Hayashi track
+    const logl = Math.log10(lum);
+    const logm = Math.log10(m);
+    if (kw <= 5) {
+      let m1 = m;
+      if (kw > 3) m1 = 100;
+      lam1 = 3 / (2.4 + 1 / m1 ** (3 / 2)) - 0.15 * logl;
+      lam1 = Math.min(lam1, 0.8);
+    } else {
+      lam1 = -3.5 - 0.75 * logm + logl;
+    }
+    if (kw > 3) {
+      lam2 = Math.min(0.9, 0.58 + 0.75 * logm) - 0.08 * logl;
+      if (kw < 6) {
+        lam1 = Math.min(lam2, lam1);
+      } else {
+        lam1 = Math.max(lam2, lam1);
+        lam1 = Math.min(lam1, 1);
+      }
+    }
+    lam1 = 2 * lam1;
+    if (fac > 0) {
+      // A fraction fac of the ionisation energy in the balance
+      let aa: number;
+      if (kw <= 3) aa = Math.min(1.2 * (logm - 0.25) ** 2 - 0.7, -0.5);
+      else aa = Math.max(-0.2 - logm, -0.5);
+      const bb = Math.max(3 - 5 * logm, 1.5);
+      const cc = Math.max(3.7 + 1.6 * logm, 3.3 + 2.1 * logm);
+      lam2 = aa + Math.atan(bb * (cc - logl));
+      if (kw <= 3) {
+        const dd = Math.max(0, Math.min(0.15, 0.15 - 0.25 * logm));
+        lam2 = lam2 + dd * (logl - 2);
+      }
+      lam2 = Math.max(lam2, 1e-2);
+      lam2 = Math.max(1 / lam2, lam1);
+      if (fac >= 1) lam1 = lam2;
+      else lam1 = lam1 + fac * (lam2 - lam1);
+    }
+  }
+  if (menv < 1) {
+    // HG stars; also reasonable for CHeB stars in a blue loop
+    lam2 = 0.42 * (rzams / rad) ** 0.4;
+    lam2 = 2 * lam2;
+  }
+  if (menv <= 0) return lam2;
+  if (menv >= 1) return lam1;
+  // Between the HG and GB values by the convective envelope's mass
+  return lam2 + Math.sqrt(menv) * (lam1 - lam2);
 }
