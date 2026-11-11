@@ -422,6 +422,30 @@ export const GLOSSARY = {
     term: 'Blue straggler',
     definition: 'A star in a cluster still on the main sequence though heavier and bluer than the turn-off: rejuvenated by gas from a companion, or by merging with one.',
   },
+  'gravitational-wave': {
+    term: 'Gravitational wave',
+    definition: 'A ripple in spacetime, travelling at the speed of light, that stretches distances one way and squeezes them the other as it passes. Made by masses that move unevenly, such as two black holes orbiting each other.',
+  },
+  strain: {
+    term: 'Strain',
+    definition: 'How much a gravitational wave stretches a length, as a fraction of it. The waves LIGO hears have strains of about 10⁻²¹: they change its 4-km arms by a thousandth of a proton’s width.',
+  },
+  interferometer: {
+    term: 'Interferometer',
+    definition: 'An instrument that splits light, sends it along two paths and brings it back together; where the paths differ by half a wavelength the light cancels. LIGO’s measures tiny changes in its arms’ lengths this way.',
+  },
+  'chirp-mass': {
+    term: 'Chirp, chirp mass',
+    definition: 'The rising pitch and loudness of gravitational waves from two bodies spiralling together, and the combination of their masses, (m₁m₂)^(3/5)/(m₁ + m₂)^(1/5), that sets how fast the pitch rises.',
+  },
+  ringdown: {
+    term: 'Ringdown',
+    definition: 'The last gravitational waves of a merger: the new black hole rings like a struck bell, at a pitch and for a time set by its mass and spin, and settles in a few milliseconds.',
+  },
+  'pulsar-timing-array': {
+    term: 'Pulsar timing array',
+    definition: 'A set of millisecond pulsars timed for years, whose ticks a passing gravitational wave of nanohertz frequency makes arrive early or late in a pattern across the sky.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

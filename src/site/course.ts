@@ -455,6 +455,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     blurb: 'Gravitational waves: the Hulse–Taylor pulsar, LIGO’s detections, chirps, neutron-star mergers and kilonovae.',
     sections: ['A clock in orbit', 'What a gravitational wave is', 'The chirp', 'Hundreds of collisions', 'Merging neutron stars'],
     buildsOn: [26, 27, 28],
+    load: () => import('../content/chapter29.mdx'),
   }),
   chapter({
     number: 30,

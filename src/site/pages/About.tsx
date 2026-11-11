@@ -139,6 +139,13 @@ export function About() {
           star; the Roche lobe integrated from the potential must match Eggleton’s formula to 1%, the stream from L1 must pass within 5% of
           Ulrich and Burger’s fit (0.049 separations for equal masses, as Lubow and Shu found), and conservative transfer must make the orbit
           smallest at equal masses.
+          Since Chapter 29, Peters’ equations must give the Hulse–Taylor pulsar’s decay (−2.40 × 10⁻¹² s/s), its periastron’s advance (4.23° a
+          year) and its merger in 301 million years, and the double pulsar’s decay and advance as Kramer and colleagues predict them; a circular
+          orbit must merge in exactly the analytic time, and an eccentric track must keep Peters’ constant; the chirp must give its chirp mass
+          back from its sweep, run on the analytic clock when stepped at leading order, and agree with the leading order far from the merger at
+          3.5 post-Newtonian order; GW150914’s model must radiate 3.2 solar masses and leave a black hole of 63 spinning at 0.68, ringing at about
+          250 Hz; the Fourier transform must undo itself, whitening must flatten coloured noise, and a hidden template must be found at its true
+          shift with an overlap of 1; GWOSC’s strain must show the chirp above unit noise, and the merger list must match the counts quoted.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -745,6 +752,33 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 29</h3>
+        <ul>
+          <li>
+            <b>Figure 29.1, the shrinking orbit.</b> Peters’ equations: point masses at relativity’s leading order, averaged over each orbit;
+            the last orbits by the circular formula; the Galaxy’s pull on the Hulse–Taylor pulsar already taken out of the measured decay.
+          </li>
+          <li>
+            <b>Figure 29.2, stretch and squeeze.</b> The stretch exaggerated about 10²⁰ times and the wave slowed to a cycle every few seconds;
+            the detector square to the wave, and its arms as single passes of light.
+          </li>
+          <li>
+            <b>Figure 29.3, make a chirp.</b> The inspiral to 3.5 post-Newtonian order (TaylorT4) for black holes that don’t spin; the merger a
+            smooth join to the ringdown of the black hole left (its mass and spin from fits to numerical relativity, its ringing from Berti, Cardoso
+            and Will’s fits); the strain for a pair seen face-on from overhead; neutron stars followed until they touch. Because the merger is
+            only sketched, the chirp mass that fits GW150914’s data best is about a tenth below LIGO’s.
+          </li>
+          <li>
+            <b>Figure 29.4, the merger census.</b> Medians and 90% intervals as GWOSC lists them; candidates without mass estimates counted but
+            not drawn; neutron stars told apart by mass alone; the gaps’ edges approximate.
+          </li>
+          <li>
+            <b>Figure 29.5, the gravitational-wave spectrum.</b> Analytic curves: Advanced LIGO’s design fit, LISA’s planned noise with the
+            Galaxy’s white dwarfs, and only the shape of a pulsar timing array’s reach; sources averaged over orientation, the million-Sun pair
+            without the stretching of its waves on the way.
+          </li>
+        </ul>
+
         <h3>Toolkit: Vectors</h3>
         <ul>
           <li>
@@ -1176,6 +1210,25 @@ export function About() {
             Drout and colleagues (2023), Science 382, 1287: stripped stars. K. B. Burdge and colleagues (2019), Nature 571, 528: ZTF J1539+5027.
           </li>
           <li>
+            A. Einstein (1916, 1918), Sitzungsberichte der Preußischen Akademie der Wissenschaften: gravitational waves and the quadrupole
+            formula. P. C. Peters and J. Mathews (1963), Physical Review 131, 435, and P. C. Peters (1964), Physical Review 136, B1224: the orbit’s
+            decay. R. A. Hulse and J. H. Taylor (1975), The Astrophysical Journal Letters 195, L51: the binary pulsar. J. H. Taylor, L. A. Fowler
+            and P. M. McCulloch (1979), Nature 277, 437, and J. M. Weisberg and Y. Huang (2016), The Astrophysical Journal 829, 55: its decay
+            measured. M. Burgay and colleagues (2003), Nature 426, 531, A. G. Lyne and colleagues (2004), Science 303, 1153, and M. Kramer and
+            colleagues (2021), Physical Review X 11, 041050: the double pulsar. B. P. Abbott and colleagues (2016), Physical Review Letters 116,
+            061102: GW150914; (2017), Physical Review Letters 119, 161101: GW170817; (2019), Physical Review X 9, 031040: GWTC-1. The LIGO,
+            Virgo and KAGRA Collaborations (2025), Physical Review Letters 135: GW250114; (2025), arXiv:2507.08219: GW231123; (2026),
+            arXiv:2605.27225: GWTC-5.0. M. Boyle and colleagues (2007), Physical Review D 76, 124038, and A. Buonanno, B. R. Iyer, E. Ochsner,
+            Y. Pan and B. S. Sathyaprakash (2009), Physical Review D 80, 084043: the inspiral to 3.5 post-Newtonian order. E. Berti, V. Cardoso
+            and C. M. Will (2006), Physical Review D 73, 064030: black holes’ ringing. E. Barausse, V. Morozova and L. Rezzolla (2012), The
+            Astrophysical Journal 758, 63, and L. Rezzolla and colleagues (2008), The Astrophysical Journal Letters 674, L29: the black hole left.
+            F. Pretorius (2005), Physical Review Letters 95, 121101: numerical relativity’s first merger. B. S. Sathyaprakash and B. F. Schutz
+            (2009), Living Reviews in Relativity 12, 2: Advanced LIGO’s noise. T. Robson, N. J. Cornish and C. Liu (2019), Classical and Quantum
+            Gravity 36, 105011: LISA’s noise. C. J. Moore, R. H. Cole and C. P. L. Berry (2015), Classical and Quantum Gravity 32, 015014: the
+            sensitivity picture. G. Agazie and colleagues (2023), The Astrophysical Journal Letters 951, L8: the nanohertz background. S. W.
+            Hawking (1971), Physical Review Letters 26, 1344: the area theorem.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -1285,6 +1338,27 @@ export function About() {
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons
             Attribution-ShareAlike 4.0 licence, in a file of their own.
+          </li>
+          <li>
+            <b>Gravitational waves:</b> the merger catalogue and GW150914’s strain from the Gravitational Wave Open Science Center (GWOSC), shared
+            under the{' '}
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">
+              Creative Commons Attribution 4.0
+            </a>{' '}
+            licence, as are this course’s files made from them, kept in a folder of their own (the strain whitened and band-passed; see its
+            README). The LIGO, Virgo and KAGRA Collaborations, “Open Data from LIGO, Virgo, and KAGRA through the Second Part of the Fourth
+            Observing Run”, arXiv:2605.27090, and R. Abbott and colleagues (2021), “Open data from the first and second observing runs of
+            Advanced LIGO and Advanced Virgo”, SoftwareX 13, 100658. This research has made use of data or software obtained from the
+            Gravitational Wave Open Science Center (gwosc.org), a service of the LIGO Scientific Collaboration, the Virgo Collaboration, and
+            KAGRA. This material is based upon work supported by NSF’s LIGO Laboratory which is a major facility fully funded by the National
+            Science Foundation, as well as the Science and Technology Facilities Council (STFC) of the United Kingdom, the Max-Planck-Society
+            (MPS), and the State of Niedersachsen/Germany for support of the construction of Advanced LIGO and construction and operation of the
+            GEO600 detector. Additional support for Advanced LIGO was provided by the Australian Research Council. Virgo is funded, through the
+            European Gravitational Observatory (EGO), by the French Centre National de Recherche Scientifique (CNRS), the Italian Istituto
+            Nazionale di Fisica Nucleare (INFN) and the Dutch Nikhef, with contributions by institutions from Belgium, Germany, Greece, Hungary,
+            Ireland, Japan, Monaco, Poland, Portugal, Spain. KAGRA is supported by Ministry of Education, Culture, Sports, Science and Technology
+            (MEXT), Japan Society for the Promotion of Science (JSPS) in Japan; National Research Foundation (NRF) and Ministry of Science and
+            ICT (MSIT) in Korea; Academia Sinica (AS) and National Science and Technology Council (NSTC) in Taiwan.
           </li>
           <li>
             <b>Nuclides:</b> the ground states of every known nucleus from the IAEA’s LiveChart of Nuclides (IAEA Nuclear Data Section), with

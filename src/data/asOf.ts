@@ -77,8 +77,8 @@ export const AS_OF = {
   },
   records: {
     checked: '2026-11',
-    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs, the heaviest white dwarf, the heaviest neutron star, the fastest pulsar and the heaviest black hole known from a star in the Galaxy',
-    where: 'src/data/records.ts (used by Chapters 16, 18, 24 and 26)',
+    what: 'record holders: the heaviest star, the coldest and the nearest brown dwarfs, the heaviest white dwarf, the heaviest neutron star, the fastest pulsar, the heaviest black hole known from a star in the Galaxy, and the heaviest and loudest mergers heard',
+    where: 'src/data/records.ts (used by Chapters 16, 18, 24, 26 and 29)',
     source: 'the literature: Kalari et al. 2022 and later for R136a1; Luhman’s and the Backyard Worlds surveys for brown dwarfs; Caiazzo et al. 2021 and later for massive white dwarfs; pulsar-timing and NICER papers for neutron stars; Gaia and X-ray binary papers for black holes',
     everyMonths: 24,
   },
@@ -122,6 +122,20 @@ export const AS_OF = {
     what: 'whether T Coronae Borealis has erupted (not, as of the last check)',
     where: 'src/data/novae.ts (T_CRB), used by Chapter 28’s “The binary zoo”',
     source: 'AAVSO’s alerts and light curve for T CrB, and the astronomical news (ATel, CBET)',
+    everyMonths: 6,
+  },
+  mergers: {
+    checked: '2026-11',
+    what: 'the gravitational-wave merger census (391 candidates in GWOSC’s cumulative list, 282 with masses; the latest catalogue GWTC-5.0)',
+    where: 'src/data/gwosc/events.json (node scripts/fetch-gwtc.ts --refresh) and the counts in src/data/mergers.ts (MERGER_CENSUS, LATEST_CATALOGUE, RUNS)',
+    source: 'GWOSC’s event portal (gwosc.org/eventapi/html/GWTC/) and the LVK’s catalogue papers',
+    everyMonths: 6,
+  },
+  lvkRun: {
+    checked: '2026-11',
+    what: 'what LIGO, Virgo and KAGRA plan next (an intermediate run, IR1, aimed at mid-January 2027; O5’s timeline in discussion)',
+    where: 'src/data/mergers.ts (NEXT_RUN), used by Chapter 29',
+    source: 'the LVK’s observing plans (observing.docs.ligo.org/plan)',
     everyMonths: 6,
   },
   deltaT: {

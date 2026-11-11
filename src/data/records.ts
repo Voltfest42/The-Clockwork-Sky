@@ -27,3 +27,9 @@ export const HEAVIEST_WHITE_DWARF = { name: 'ZTF J1901+1458', mass: '1.33–1.37
 
 /** The fastest-spinning pulsar known: PSR J1748−2446ad in the globular cluster Terzan 5, 716 turns a second (Hessels et al. 2006). */
 export const FASTEST_PULSAR = { name: 'PSR J1748−2446ad', hertz: 716 } as const;
+
+/** The heaviest merger heard: GW231123, two fast-spinning black holes of about 137 and 101 M☉ at the source, 190–265 M☉ in all (LVK 2025, arXiv:2507.08219; GWOSC's GWTC-4.1). */
+export const HEAVIEST_MERGER = { name: 'GW231123', total: '190–265' } as const;
+
+/** The loudest merger heard: GW250114, two black holes of about 34 and 32 M☉, with a signal-to-noise ratio of about 80 (LVK 2025, Phys. Rev. Lett. 135). */
+export const LOUDEST_MERGER = { name: 'GW250114', snr: 80 } as const;

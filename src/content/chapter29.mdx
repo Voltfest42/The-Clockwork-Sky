@@ -1,0 +1,213 @@
+import { ChirpFigure } from '../figures/ChirpFigure';
+import { MergerCensusFigure } from '../figures/MergerCensusFigure';
+import { ShrinkingOrbitFigure } from '../figures/ShrinkingOrbitFigure';
+import { StretchSqueezeFigure } from '../figures/StretchSqueezeFigure';
+import { WaveSpectrumFigure } from '../figures/WaveSpectrumFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { LATEST_CATALOGUE, MERGER_CENSUS, NEXT_RUN, O4 } from '../data/mergers';
+import { HEAVIEST_MERGER, LOUDEST_MERGER } from '../data/records';
+import { GW170817_RADIUS } from '../data/neutronStars';
+import { MatchTheChirp } from './checks/chapter29';
+
+Newton’s gravity acts at once: move the Sun, and Earth feels it the same instant. Einstein’s can’t, because nothing travels faster than light, and in 1916 he found that changes in gravity spread outward as waves, at light’s speed. They are almost absurdly weak. A pair of stars must be compact and close, orbiting hundreds of times a second, before its waves carry off much energy, and even then they arrive at Earth as a stretch of space smaller than a proton. This chapter follows them from the first indirect proof, a clock in orbit, to the hundreds of collisions heard since 2015.
+
+## A clock in orbit
+
+In 1974 Russell Hulse, a student, and Joseph Taylor found a pulsar at Arecibo whose 59-millisecond pulses arrived early and late in a cycle of 7.75 hours: it was orbiting something unseen. A pulsar is the best clock in nature (Chapter 26), and one in orbit is a clock carried round a lap, its ticks timed to microseconds at every point. Over the next few years the timing gave everything. The orbit is eccentric (0.617), and its periastron advances by 4.2° a year, 35,000 times faster than Mercury’s (Chapter 27), which weighs the pair at 2.83 Suns. A second effect, the clock running slow and fast as it swings in towards its companion and out again, splits that into 1.44 Suns for the pulsar and 1.39 for its companion, another neutron star (Joel Weisberg and Yuping Huang’s values, 2016).
+
+Then the test. If the pair radiates gravitational waves, the orbit must lose energy and shrink, and its period must shorten. Einstein’s formula, applied by Philip Peters and Jon Mathews in 1963, predicts by how much from the masses and the orbit alone, with nothing to adjust: 2.40 × 10⁻¹² seconds every second, 76 microseconds a year. Taylor, Lee Fowler and Peter McCulloch saw it in 1979. Weisberg and Huang’s timing to 2016 measures 0.9983 ± 0.0016 of the prediction, once the Galaxy’s own pull on the pair is taken out. Hulse and Taylor were awarded the Nobel Prize in 1993. The pair will merge in about 300 million years.
+
+<Callout kind="maths" title="Peters’ equations">
+
+Two masses m₁ and m₂ (total M) on an orbit of semi-major axis a and eccentricity e lose energy and angular momentum to <Term id="gravitational-wave">gravitational waves</Term>. Averaged over an orbit, at relativity’s leading order (Peters 1964):
+
+da/dt = −(64/5) (G³m₁m₂M / c⁵a³) f(e),  f(e) = (1 + 73e²/24 + 37e⁴/96) / (1 − e²)<sup>7/2</sup>,
+
+de/dt = −(304/15) e (G³m₁m₂M / c⁵a⁴) (1 + 121e²/304) / (1 − e²)<sup>5/2</sup>.
+
+Both run faster as the orbit shrinks, so the end comes suddenly. An eccentric orbit radiates most at periastron and rounds off as it shrinks. A circular orbit merges after
+
+T = (5/256) c⁵a⁴ / (G³m₁m₂M),
+
+and the period decays at Ṗ<sub>b</sub> = −(192π/5) (2πG𝓜/c³P<sub>b</sub>)<sup>5/3</sup> f(e), where 𝓜 = (m₁m₂)<sup>3/5</sup>/M<sup>1/5</sup>. For the Hulse–Taylor pulsar, stepping the equations from today gives 301 million years; the circular formula with the (1 − e²)<sup>7/2</sup> shortcut gives 306.
+
+</Callout>
+
+The double pulsar, J0737−3039, found by Marta Burgay, Andrew Lyne and colleagues in 2003 and 2004, is better still: two neutron stars 2.45 hours apart, both seen as pulsars, its orbit nearly edge-on. Sixteen years of its timing confirm the quadrupole formula to 1.3 × 10⁻⁴ (Michael Kramer and colleagues, 2021), and test relativity in five other ways at once. The figure steps Peters’ equations for these pairs and others.
+
+<ShrinkingOrbitFigure
+  number="29.1"
+  tryThis={
+    <p>
+      Drag the time left towards the merger: when does the Hulse–Taylor orbit become round? Compare the double pulsar’s merger time with the
+      Hulse–Taylor pulsar’s. Find out how long the Sun and Jupiter would take. Make your own pair of black holes an hour apart.
+    </p>
+  }
+/>
+
+## What a gravitational wave is
+
+A gravitational wave is a ripple in the shape of spacetime itself, travelling at the speed of light. It doesn’t push things; it changes the distances between them. Free masses on a ring, square to the wave’s path, are stretched apart along one axis while they are squeezed together along the other, then the reverse, once a cycle. That is one <i>polarisation</i>, called plus; the other, cross, is the same turned by 45°. How much a length L changes, ΔL/L, is the wave’s <Term id="strain">strain</Term>, h. It is a strain on space, not a sound in air: nothing makes a noise, and there is no medium to carry one.
+
+Making waves takes masses moving unevenly. A ball spinning smoothly sends none, nor does a star breathing in and out evenly in every direction; a dumbbell twirling end over end does. Two stars in orbit are a dumbbell, and the power they radiate grows as the fifth power of how close they are, which is why only the most compact, closest pairs radiate enough to notice. Whether the waves carry real energy was argued over for forty years after Einstein. Richard Feynman’s answer at a conference in 1957 was a bead on a rod: the wave would rub it along the rod, and the rubbing would warm it.
+
+To catch the waves, LIGO uses Michelson’s instrument (Chapter 11), an <Term id="interferometer">interferometer</Term>, on a heroic scale. A laser beam is split and sent down two arms 4 km long at right angles, bounced back by mirrors hung as pendulums in vacuum, and recombined so that the two halves cancel: the output is dark. A wave stretching one arm and squeezing the other upsets the cancelling, and light leaks out. The strain of a real signal, 10⁻²¹, changes an arm by hL/2, about 2 × 10⁻¹⁸ m: a thousandth of a proton’s width. Light bouncing hundreds of times in each arm, mirrors of 40 kg, and isolation from the shaking ground make that measurable. There are two LIGOs, at Hanford in Washington and Livingston in Louisiana, 3,000 km apart, so a real wave reaches both within 10 milliseconds while local noise doesn’t. Virgo in Italy and KAGRA in Japan, with 3-km arms, join them.
+
+<StretchSqueezeFigure
+  number="29.2"
+  tryThis={
+    <p>
+      Let the wave pass with the plus polarisation, then the cross. Turn the detector by 45° with the plus polarisation: what do the arms do? Pick
+      both polarisations at once and watch the ring.
+    </p>
+  }
+/>
+
+Is space a rubber sheet that the wave ripples? The picture misleads: a sheet sags only because gravity pulls things down onto it, which explains gravity by gravity. The ring of masses is the honest picture. What waves is the geometry itself, the distances between free things; and since GW170817 (below), we know the waves travel at the speed of light to within about one part in 10¹⁵.
+
+## The chirp
+
+As two compact stars spiral together, the orbit shrinks and speeds up, and the waves, at twice the orbit’s frequency, rise in pitch and in loudness: a <Term id="chirp-mass">chirp</Term>. How fast the pitch rises depends on one combination of the masses, the chirp mass, so measuring the sweep weighs the pair. The loudness, compared with what that chirp mass should give, then says how far away it is.
+
+<Callout kind="maths" title="The chirp">
+
+At leading order, the waves’ frequency f rises at
+
+ḟ = (96/5) π<sup>8/3</sup> (G𝓜/c³)<sup>5/3</sup> f<sup>11/3</sup>,  𝓜 = (m₁m₂)<sup>3/5</sup> / (m₁ + m₂)<sup>1/5</sup>,
+
+so f grows as (t<sub>c</sub> − t)<sup>−3/8</sup> towards the merger at t<sub>c</sub>, and 𝓜 = (c³/G) [(5/96) π<sup>−8/3</sup> f<sup>−11/3</sup> ḟ]<sup>3/5</sup> comes straight from the sweep. A pair at distance D, seen face-on, makes a strain h = (4/D) (G𝓜/c²)<sup>5/3</sup> (πf/c)<sup>2/3</sup>. The orbit can’t shrink smoothly for ever: below the innermost stable orbit (Chapter 27) the stars plunge, at a wave frequency of about 4,400 Hz × M☉/M for a total mass M, 68 Hz for 65 Suns. Two neutron stars (𝓜 = 1.19 M☉) sweep from 10 Hz in 17 minutes and from 30 Hz in about a minute; two black holes like GW150914’s spend a fifth of a second above 35 Hz.
+
+</Callout>
+
+Near the end, relativity’s corrections pile up: the post-Newtonian terms, which this course’s models carry to 3.5 orders beyond Newton, quicken the last cycles, and the merger itself can only be computed on supercomputers by numerical relativity, which first succeeded in 2005 (Frans Pretorius). What comes out is one black hole, lopsided at first, which rings like a struck bell at a pitch and for a time set by its mass and spin and settles within milliseconds: the <Term id="ringdown">ringdown</Term>. Its tones are Kerr black holes’ own (Chapter 27).
+
+On 14 September 2015 at 09:50:45 UTC, both LIGO detectors, days before their first run officially began, recorded a chirp rising from 35 Hz to about 250 Hz in a fifth of a second, 7 milliseconds apart. GW150914 was two black holes of about 36 and 29 Suns, more than a billion light-years away, merging into one of 62 Suns and spinning at 0.69 of the most a black hole can. Three Suns’ worth of mass became waves in a fifth of a second, peaking at 3.6 × 10⁴⁹ W, for a few milliseconds more than all the stars in the observable universe shine. Its chirp mass is about 28 Suns at the source, about 30 as LIGO measured it (the waves were stretched about 9% on their way, which makes every mass look that much heavier from here). It was the first direct detection of gravitational waves, and the first proof that pairs of black holes exist and merge. Rainer Weiss, Barry Barish and Kip Thorne shared the Nobel Prize in 2017.
+
+Can we hear gravitational waves? Not with our ears: they stretch space, not air. But a chirp between 20 Hz and 20 kHz is at a pitch we could hear, so we turn the strain into sound, sample by sample, as the figure does. Black holes of tens of Suns make a low whoop; neutron stars, a long rising whistle.
+
+<ChirpFigure
+  number="29.3"
+  tryThis={
+    <p>
+      Play GW150914’s chirp, then Hanford’s real data. Make both black holes heavier: what happens to the pitch and the length? Try the neutron
+      stars, and listen to the last seconds of their minute-long chirp. Switch the spectrogram to Hanford’s data and move the masses until the
+      model’s track runs along the arc.
+    </p>
+  }
+/>
+
+## Hundreds of collisions
+
+LIGO and Virgo have listened in runs, with years of upgrades between them: O1 in 2015–16, O2 in 2016–17, O3 in 2019–20, and O4, the longest, from {O4.from} to {O4.to}, which sent out about {O4.alerts} alerts as candidates came in. Their catalogues, GWTC-1 to {LATEST_CATALOGUE.name} ({LATEST_CATALOGUE.published}), list {LATEST_CATALOGUE.total} candidates more likely real than not; the open-data centre’s cumulative list held {MERGER_CENSUS.count} as of {MERGER_CENSUS.asOf}, {MERGER_CENSUS.withMasses} of them with their masses estimated. As of {NEXT_RUN.asOf}, the detectors are being upgraded, with a {NEXT_RUN.length} run, {NEXT_RUN.name}, aimed at {NEXT_RUN.target}, before the fifth long run.
+
+Most are pairs of black holes of 10 to 40 Suns, with the heavier crowding near 10 and 35. That alone was news: X-ray binaries in the Galaxy hold black holes of about 5 to 20 Suns, and in 2015 nobody had seen black holes this heavy. Heavy black holes need stars poor in metals, whose winds are weak (Chapter 18), and how such pairs come to be close enough to merge is still argued: through common envelopes (Chapter 28), through stars so close and fast-spinning that they mix right through and never swell, or by meeting in crowded clusters. A few events involve neutron stars: two pairs of them, and a handful of neutron stars swallowed by black holes. GW190814 had a partner of 2.6 Suns, either the heaviest neutron star known or the lightest black hole, and GW230529 one of 2.5 to 4.5, in the gap where none had been seen.
+
+At the top, pair instability (Chapter 25) should leave no black holes between about 50 and 130 Suns. Yet dozens of the catalogue’s heavier black holes have masses above 50 Suns, most with wide uncertainties: the gap may start higher than the models said, or be filled by black holes made in earlier mergers. GW190521 left one of about 150 Suns, the first of intermediate mass seen forming, and its heavier partner, of 85 to 100 Suns by different analyses, sat in the gap. {HEAVIEST_MERGER.name}, the heaviest merger yet, {HEAVIEST_MERGER.total} Suns in all, had both black holes spinning fast and the lighter in the gap. Spinning fast is what a black hole made by an earlier merger would do, so these may be second-generation mergers, in dense clusters where black holes meet again. {LOUDEST_MERGER.name}, the loudest yet, with a signal-to-noise ratio of about {LOUDEST_MERGER.snr}, rang clearly enough to show two tones of the ringdown, and to test a rule Stephen Hawking proved in 1971: the area of black holes’ horizons never shrinks. Before, two holes of about 33 and 32 Suns; after, one with more horizon area than both.
+
+<MergerCensusFigure
+  number="29.4"
+  tryThis={
+    <p>
+      Step the slider from O1 to O4b and watch the census grow. Find the mergers with neutron stars, and the ones in the pair-instability gap. Pick
+      GW231123 and GW250114 and compare their cards. Where do most of the heavier black holes lie in the histogram?
+    </p>
+  }
+/>
+
+## Merging neutron stars
+
+On 17 August 2017 LIGO and Virgo heard two neutron stars spiral together for about 100 seconds: GW170817, 40 Mpc away, the loudest signal of its first decade. 1.7 seconds after the merger, NASA’s Fermi and ESA’s INTEGRAL satellites caught a short burst of gamma rays from the same patch of sky. After a journey of 130 million years, gravity and light had arrived within two seconds of each other, so they travel at the same speed to about one part in 10¹⁵. Eleven hours later, telescopes found a new light in the galaxy NGC 4993: a <Term id="kilonova">kilonova</Term>, glowing with freshly made heavy elements and fading from blue to red (Chapter 23). About seventy observatories, on all seven continents and in space, watched it across the spectrum. Before they touched, the stars had squeezed each other out of shape, and the waves recorded how much: a neutron star of 1.4 Suns is {GW170817_RADIUS.radius} ± {GW170817_RADIUS.error} km in radius (Chapter 26).
+
+LIGO hears tens to thousands of hertz: stellar remnants in their last seconds. Slower waves need longer arms. LISA, three spacecraft 2.5 million km apart that ESA adopted in 2024 for launch about 2035, will hear millihertz waves: pairs of black holes of millions of Suns merging in galaxies’ centres, and the hum of the Galaxy’s white-dwarf pairs. Slower still, at nanohertz, a single cycle takes years, and the detector is the Galaxy: <Term id="pulsar-timing-array">pulsar timing arrays</Term> time dozens of millisecond pulsars for decades, looking for ticks that arrive early or late in the pattern a passing wave would make across the sky. In 2023 they found the first evidence of a background of such waves, most likely from pairs of supermassive black holes orbiting every few years throughout the universe.
+
+<WaveSpectrumFigure
+  number="29.5"
+  tryThis={
+    <p>
+      Go to LIGO, LISA and pulsar timing in turn: how long is one cycle, and how long is the wave? Which sources sit above each detector’s
+      curve? Find where two black holes like GW150914’s spend the years before LIGO hears them.
+    </p>
+  }
+/>
+
+<Timeline from={1910} to={2026} chapter={29} only={[29]} title="Listening to gravity" />
+
+<DeepDive title="Where the chirp comes from">
+
+The chirp follows from Kepler and one formula of Einstein’s. Two masses on a circle of radius a, with orbital angular frequency ω, have orbital energy
+
+E = −Gm₁m₂ / 2a,  ω² = GM / a³ (Kepler’s third law),
+
+so, eliminating a and writing the waves’ frequency f = ω/π, E = −½ 𝓜 (πG𝓜f)<sup>2/3</sup>: half the chirp mass times a speed squared. The power they radiate, by the quadrupole formula, is
+
+P = (32/5) (G/c⁵) μ² a⁴ ω⁶,  μ = m₁m₂/M,
+
+which, with Kepler again, becomes P = (32/5) (c⁵/G) (πG𝓜f/c³)<sup>10/3</sup>. Every combination of the masses has collapsed into 𝓜. Energy balance, dE/dt = −P, with dE/dt = (dE/df) ḟ and dE/df = −⅓ 𝓜 (πG𝓜)<sup>2/3</sup> f<sup>−1/3</sup>, gives
+
+ḟ = (96/5) π<sup>8/3</sup> (G𝓜/c³)<sup>5/3</sup> f<sup>11/3</sup>,
+
+the chirp. Integrating, f<sup>−8/3</sup> falls linearly in time, which is the (t<sub>c</sub> − t)<sup>−3/8</sup> law. The steep power, 11/3, is why the end comes all at once: halving the gap to the merger raises the pitch by 30%, and the last tenth of the frequency’s climb takes almost no time.
+
+Relativity adds corrections in powers of v/c, which grow to tens of per cent in the last orbits, when the stars move at a third of the speed of light. Each correction carries a different combination of the masses (and of the spins), which is how LIGO separates the two masses, not just their chirp mass, and how the waves test relativity term by term.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="hulse-taylor" prompt="What did the Hulse–Taylor pulsar show?">
+    <Choice label="Its orbit shrinks just as gravitational waves carrying energy away predict" correct>
+      Right. The orbital period shortens by 2.40 × 10⁻¹² seconds every second, as Peters’ equations predict from the masses with nothing to
+      adjust, and the timing agrees to 0.2%. It was the first evidence that gravitational waves exist.
+    </Choice>
+    <Choice label="Gravitational waves arriving at Earth">
+      The waves from the pair are far too weak and slow to detect here; what was measured is their effect on the orbit. Waves themselves were
+      first detected in 2015.
+    </Choice>
+    <Choice label="That neutron stars spin up as they age">
+      Pulsars slow down as they age (Chapter 26). The Hulse–Taylor pulsar’s spin was the clock; what changed was its orbit.
+    </Choice>
+  </Question>
+
+  <Question id="chirp-rises" prompt="Why does a chirp rise in pitch?">
+    <Choice label="The orbit shrinks and speeds up as the waves carry its energy away" correct>
+      Right. A tighter orbit is a faster one, and the waves come at twice the orbit’s frequency, so the pitch rises, faster and faster, until the
+      merger.
+    </Choice>
+    <Choice label="The pair comes closer to Earth">
+      The pair stays where it is; its orbit shrinks. The Doppler effect has nothing to do with it.
+    </Choice>
+    <Choice label="The black holes grow as they swallow gas">
+      There is next to no gas round merging black holes, and heavier would mean lower in pitch, not higher.
+    </Choice>
+  </Question>
+
+  <Question id="chirp-mass" prompt="What sets how fast a chirp’s pitch rises?">
+    <Choice label="The chirp mass, (m₁m₂)^(3/5) / (m₁ + m₂)^(1/5)" correct>
+      Right. At leading order the sweep depends on the masses only through this combination, so measuring it weighs the pair; the corrections near
+      the end separate the two masses.
+    </Choice>
+    <Choice label="The distance to the pair">
+      Distance makes a chirp fainter, not slower: the rise in pitch depends only on the masses (and, at the end, the spins).
+    </Choice>
+    <Choice label="The total mass alone">
+      Close, but the inspiral’s sweep depends on the chirp mass. The total mass sets where the inspiral ends and the ringing’s pitch.
+    </Choice>
+  </Question>
+
+  <Question id="hear-waves" prompt="Can we hear gravitational waves?">
+    <Choice label="Not directly: they stretch space, not air, so we turn the strain into sound" correct>
+      Right. Nothing vibrates the air, but many chirps fall at frequencies we can hear, so playing the strain through a speaker sounds as the waves’
+      rhythm would.
+    </Choice>
+    <Choice label="Yes, with a sensitive enough microphone">
+      A microphone measures pressure in air. A gravitational wave changes distances, by 10⁻²¹ of them: it needs an interferometer.
+    </Choice>
+    <Choice label="No, they are far too high-pitched">
+      The chirps LIGO hears are at tens to hundreds of hertz, low notes in the range of hearing.
+    </Choice>
+  </Question>
+
+  <MatchTheChirp />
+</CheckYourself>

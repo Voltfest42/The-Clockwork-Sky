@@ -116,3 +116,10 @@ The values in `src/data/scale.ts`, `src/data/everyday.ts` and `src/data/places.t
 - `novae.ts`: T Coronae Borealis's past eruptions (1866, 1946), its orbit (228 days) and whether it has erupted again (not as of 11 Nov 2026). Facts. Dated: `asOf.ts` "tcrb" (every 6 months, until it erupts).
 - Algol's masses and period for Figure 28.3 (Baron et al. 2012, *ApJ* 752, 20) and the pair BSE starts from to reach them are in `src/figures/binaries28.ts`. Facts, cited.
 
+## Gravitational waves (Stage 25)
+
+- `gwosc/events.json` and `gwosc/gw150914.json` (`scripts/fetch-gwtc.ts`): GWOSC's cumulative merger catalogue (391 events, fetched 11 Nov 2026) and two seconds of GW150914's strain from both LIGO detectors, whitened and band-passed, with each detector's noise spectrum. **CC BY 4.0**, in their own folder with a README giving the citations and GWOSC's acknowledgement in full. Dated: `asOf.ts` "mergers" (every 6 months).
+- `mergers.ts`: the census's counts (checked against the file by tests/chapter29.test.ts), the observing runs, GWTC-5.0's totals (LVK, arXiv:2605.27225), O4's dates, the famous events' notes, and what LVK plan next (their observing-plans page, 15 Oct 2026 update: upgrades now, a six-month intermediate run IR1 aimed at mid-January 2027, O5's timeline in discussion). Facts. Dated: `asOf.ts` "lvkRun" (every 6 months).
+- `records.ts`: the heaviest merger, GW231123 (LVK 2025, arXiv:2507.08219), and the loudest, GW250114 (LVK 2025, *Phys. Rev. Lett.* 135).
+- The pairs of Figure 29.1 are in `src/figures/ripples.ts`: the Hulse–Taylor pulsar (Weisberg & Huang 2016, *ApJ* 829, 55), the double pulsar (Kramer et al. 2021, *Phys. Rev. X* 11, 041050) and ZTF J1539+5027 (Burdge et al. 2019, *Nature* 571, 528). Facts, cited.
+- The analytic sensitivity curves in `src/core/gr/sensitivity.ts`: Advanced LIGO's design fit (Sathyaprakash & Schutz 2009, *Living Rev. Relativ.* 12, 2), LISA's noise with the Galaxy's confusion (Robson, Cornish & Liu 2019, *CQG* 36, 105011), NANOGrav's 15-year amplitude (Agazie et al. 2023, *ApJL* 951, L8); the pulsar timing array's reach is only a shape, labelled.
