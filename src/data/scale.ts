@@ -183,7 +183,7 @@ export const STARS: readonly StarFact[] = [
  * The Milky Way. The Sun is about 26,700 light-years (8.2 kpc) from the centre
  * (GRAVITY Collaboration 2019 and 2021 found 8.18 and 8.28 kpc), and the
  * stellar disc is roughly 100,000 light-years across (it has no sharp edge).
- * The Sun goes round at about 230 km/s, once every 230 million years or so.
+ * The Sun goes round at about 230 km/s, once every 220 million years or so.
  */
 export const MILKY_WAY = {
   sunFromCentreLy: 26_700,

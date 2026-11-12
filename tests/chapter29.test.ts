@@ -402,11 +402,11 @@ describe('the gravitational-wave spectrum and stretch and squeeze', () => {
 });
 
 describe('Chapter 29 in the course', () => {
-  it('is written, with its sections and glossary terms; Chapter 30 is not yet', () => {
+  it('is written, with its sections and glossary terms; Chapter 31 is not yet', () => {
     const ch = CHAPTERS.find((c) => c.number === 29)!;
     expect(ch.load).toBeDefined();
     expect(ch.sections).toEqual(['A clock in orbit', 'What a gravitational wave is', 'The chirp', 'Hundreds of collisions', 'Merging neutron stars']);
-    expect(CHAPTERS.find((c) => c.number === 30)!.load).toBeUndefined();
+    expect(CHAPTERS.find((c) => c.number === 31)!.load).toBeUndefined();
     for (const id of ['gravitational-wave', 'strain', 'interferometer', 'chirp-mass', 'ringdown', 'pulsar-timing-array']) expect(GLOSSARY).toHaveProperty(id);
   });
 

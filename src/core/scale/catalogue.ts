@@ -129,7 +129,7 @@ export function zoomCatalogue(jdTT: number): ZoomObject[] {
     label: [19.9, 22],
     priority: 90,
     goTo: 21,
-    fact: 'Our galaxy: a few hundred billion stars in a flat disc with spiral arms, all going round its centre. The Sun takes about 230 million years to go round once.',
+    fact: 'Our galaxy: a few hundred billion stars in a flat disc with spiral arms, all going round its centre. The Sun takes about 220 million years to go round once.',
   });
   objects.push({
     id: 'sgr-a',

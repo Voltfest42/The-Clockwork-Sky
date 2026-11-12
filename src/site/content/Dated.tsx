@@ -2,6 +2,10 @@ import { usePageTime } from '../hydration';
 import { GAIA } from '../../data/gaia';
 import { dayLabel, durationWords, jdTTFromMs, nextOpposition, nextTotalLunarEclipse, nextTotalSolarEclipses, placeList } from './upcoming';
 import { voyagerHasReachedLightDay, voyagerYears } from './voyagerDates';
+import { fractionalYear } from '../../core/binaries/visual';
+import { nextPericentre } from '../../core/galaxy/s2';
+import { S2_ORBIT } from '../../data/s2';
+import { yearLabel } from '../../core/galaxy/s2';
 
 /**
  * Sentences whose tense depends on today's date, so the text stays right
@@ -66,4 +70,11 @@ export function NextEclipses({ now: given }: { now?: number }) {
 export function NextMarsOpposition({ now: given }: { now?: number }) {
   const pageTime = usePageTime();
   return <>Its next opposition is on {dayLabel(nextOpposition('mars', jdTTFromMs(given ?? pageTime)))}.</>;
+}
+
+/** When the star S2 next passes closest to the Milky Way's black hole, from its published orbit (Chapter 30). */
+export function NextS2Pericentre({ now: given }: { now?: number }) {
+  const pageTime = usePageTime();
+  const year = fractionalYear(given ?? pageTime);
+  return <>{yearLabel(nextPericentre(S2_ORBIT, year))}</>;
 }

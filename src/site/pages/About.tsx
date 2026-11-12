@@ -146,6 +146,16 @@ export function About() {
           3.5 post-Newtonian order; GW150914’s model must radiate 3.2 solar masses and leave a black hole of 63 spinning at 0.68, ringing at about
           250 Hz; the Fourier transform must undo itself, whitening must flatten coloured noise, and a hidden template must be found at its true
           shift with an overlap of 1; GWOSC’s strain must show the chirp above unit noise, and the merger list must match the counts quoted.
+          Since Chapter 30, the cluster’s Hermite integrator must keep a two-star orbit’s energy and shape and converge at fourth order; a
+          Plummer sphere must start in balance (twice its kinetic energy equal to its potential energy, within the noise of its sampling) with
+          half its mass inside 1.305 scale radii; Kroupa’s mix must have its exact mean; a star at rest at the Jacobi radius must feel no force,
+          and the Jacobi integral must hold to better than 10⁻³ while a cluster loses stars through L1 and L2 into a leading and a trailing tail,
+          its heavy stars sinking; the relaxation time must be 15 million years for 1,000 stars of half a Sun within a parsec. The Bessel
+          functions must match their series and asymptotic forms, an exponential disc’s speed must peak at 2.2 scale lengths and fall to
+          Kepler’s far out, and the Milky Way’s model must turn at 230 km/s at the Sun with a halo fitted to Eilers and colleagues’ and Ou and
+          colleagues’ curves. Arms of fixed stars must wind as the formula says; Kalnajs’s pattern must keep its shape. S2’s orbit must weigh
+          Sagittarius A* at GRAVITY’s 4.26 million Suns by Kepler’s law, pass 119 AU from it at 7,700 km/s, turn by 12′ a lap and gain about
+          200 km/s of redshift at pericentre and 6 at apocentre.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -779,6 +789,32 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 30</h3>
+        <ul>
+          <li>
+            <b>Figure 30.1, a cluster evaporates.</b> Direct summation softened over a fiftieth of the half-mass radius (which slows relaxation a
+            little); Hill’s tide for a circular orbit in a flat rotation curve of 230 km/s, with the disc’s pull out of the plane; no stellar
+            evolution, no pairs of stars at the start, no gas, spiral arms or passing clouds; Kroupa’s mix cut at 3 solar masses.
+          </li>
+          <li>
+            <b>Figure 30.2, the Galaxy from outside.</b> A model from simple formulas with measured sizes, not a map; the number of dots per part
+            chosen for the picture, not by mass; the arms as the course’s sketch; the dark halo not drawn.
+          </li>
+          <li>
+            <b>Figure 30.3, the rotation curve.</b> Standard shapes: a Hernquist bulge, thin exponential discs and an NFW halo whose concentration
+            follows its mass; SPARC’s own speeds for the stars and gas of its galaxies, with only the mass-to-light ratio and the halo’s mass free;
+            the Milky Way’s parts close to McMillan’s (2017) model.
+          </li>
+          <li>
+            <b>Figure 30.4, the winding problem.</b> Kinematic sketches: stars on circles or fixed ovals that don’t pull on each other; the ovals made
+            to turn together.
+          </li>
+          <li>
+            <b>Figure 30.5, S2’s orbit.</b> GRAVITY’s Keplerian ellipse with relativity’s precession and redshift added to first order; light’s
+            travel time across the orbit, its bending and the Galaxy’s motion left out; the precession drawn 40 times larger.
+          </li>
+        </ul>
+
         <h3>Toolkit: Vectors</h3>
         <ul>
           <li>
@@ -1229,6 +1265,34 @@ export function About() {
             Hawking (1971), Physical Review Letters 26, 1344: the area theorem.
           </li>
           <li>
+            H. C. Plummer (1911), Monthly Notices of the Royal Astronomical Society 71, 460: the Plummer sphere. S. J. Aarseth, M. Hénon and R.
+            Wielen (1974), Astronomy and Astrophysics 37, 183: sampling it. J. Makino and S. J. Aarseth (1992), Publications of the Astronomical
+            Society of Japan 44, 141: the Hermite scheme with block steps. S. J. Aarseth (2003), Gravitational N-Body Simulations (Cambridge
+            University Press). L. Spitzer (1987), Dynamical Evolution of Globular Clusters (Princeton University Press): relaxation. J.
+            Binney and S. Tremaine (2008), Galactic Dynamics (Princeton University Press): Hill’s tide and the winding problem. D.
+            Lynden-Bell and R. Wood (1968), Monthly Notices of the Royal Astronomical Society 138, 495: the gravothermal catastrophe. P. Kroupa
+            (2001), Monthly Notices of the Royal Astronomical Society 322, 231: the mass function. E. Holmberg (1941), The Astrophysical Journal
+            94, 385: galaxies of light bulbs. M. Odenkirchen and colleagues (2001), The Astrophysical Journal Letters 548, L165: Palomar 5’s tails.
+            S. Röser and colleagues (2019), Astronomy and Astrophysics 621, L2, and S. Meingast and J. Alves (2019), Astronomy and Astrophysics
+            621, L3: the Hyades’ tails. H. J. G. L. M. Lamers and colleagues (2005), Astronomy and Astrophysics 441, 117: clusters’ dissolution.
+            J. Bland-Hawthorn and O. Gerhard (2016), Annual Review of Astronomy and Astrophysics 54, 529: the Galaxy’s structure. P. J. McMillan
+            (2017), Monthly Notices of the Royal Astronomical Society 465, 76: its mass model. A. Helmi and colleagues (2018), Nature 563, 85,
+            and V. Belokurov and colleagues (2018), Monthly Notices of the Royal Astronomical Society 478, 611: Gaia–Enceladus. R. A. Ibata, G.
+            Gilmore and M. J. Irwin (1994), Nature 370, 194: the Sagittarius dwarf. V. C. Rubin and W. K. Ford (1970), The Astrophysical Journal
+            159, 379, A. Bosma (1978, thesis), and T. S. van Albada and colleagues (1985), The Astrophysical Journal 295, 305: rotation curves.
+            F. Zwicky (1933), Helvetica Physica Acta 6, 110. J. P. Ostriker and P. J. E. Peebles (1973), The Astrophysical Journal 186, 467. M.
+            Milgrom (1983), The Astrophysical Journal 270, 365: MOND. K. C. Freeman (1970), The Astrophysical Journal 160, 811: exponential discs.
+            L. Hernquist (1990), The Astrophysical Journal 356, 359. J. F. Navarro, C. S. Frenk and S. D. M. White (1996), The Astrophysical
+            Journal 462, 563, and A. A. Dutton and A. V. Macciò (2014), Monthly Notices of the Royal Astronomical Society 441, 3359: dark halos.
+            F. Lelli, S. S. McGaugh and J. M. Schombert (2016), The Astronomical Journal 152, 157: SPARC. A.-C. Eilers, D. W. Hogg, H.-W. Rix and
+            M. K. Ness (2019), The Astrophysical Journal 871, 120, X. Ou, A.-C. Eilers, L. Necib and A. Frebel (2024), Monthly Notices of the
+            Royal Astronomical Society 528, 693, and Y. Jiao and colleagues (2023), Astronomy and Astrophysics 678, A208: the Milky Way’s curve.
+            C. C. Lin and F. H. Shu (1964), The Astrophysical Journal 140, 646: density waves. A. J. Kalnajs (1973), Proceedings of the
+            Astronomical Society of Australia 2, 174: kinematic spirals. J. A. Sellwood and R. G. Carlberg (1984), The Astrophysical Journal 282,
+            61: transient arms. B. Balick and R. L. Brown (1974), The Astrophysical Journal 194, 265: Sagittarius A*. GRAVITY Collaboration
+            (2018), Astronomy and Astrophysics 615, L15: S2’s redshift; (2020), Astronomy and Astrophysics 636, L5: its precession and orbit.
+          </li>
+          <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal
             values for the Sun and Earth).
           </li>
@@ -1338,6 +1402,11 @@ export function About() {
           <li>
             <b>The nearest stars:</b> the stars within 10 parsecs, cut from the same HYG database and shared under the same Creative Commons
             Attribution-ShareAlike 4.0 licence, in a file of their own.
+          </li>
+          <li>
+            <b>Rotation curves:</b> five galaxies’ curves and mass models from SPARC (F. Lelli, S. S. McGaugh and J. M. Schombert 2016, The
+            Astronomical Journal 152, 157), used with that citation as SPARC asks, in a folder of their own; the Milky Way’s from the tables of
+            Eilers and colleagues (2019) and Ou and colleagues (2024).
           </li>
           <li>
             <b>Gravitational waves:</b> the merger catalogue and GW150914’s strain from the Gravitational Wave Open Science Center (GWOSC), shared

@@ -1,0 +1,247 @@
+import { ClusterFigure } from '../figures/ClusterFigure';
+import { GalaxyOutsideFigure } from '../figures/GalaxyOutsideFigure';
+import { RotationCurveFigure } from '../figures/RotationCurveFigure';
+import { S2OrbitFigure } from '../figures/S2OrbitFigure';
+import { WindingFigure } from '../figures/WindingFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { GaiaDr4, NextS2Pericentre } from '../site/content/Dated';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { MILKY_WAY, ROTATION_DEBATE } from '../data/galaxy';
+import { WeighSagittarius } from './checks/chapter30';
+
+Every chapter so far has been about one star, or two. Stars are seldom alone: most are born in clusters, and every one of them belongs to a galaxy. A crowd of stars obeys the same gravity as a pair, but it behaves like something new: a cluster is a gas whose molecules are suns, it cools by losing its fastest stars, and the Galaxy that holds it turns in a way its visible stars can’t explain. This chapter follows gravity from clusters of a thousand stars to the hundred billion of the Milky Way, and to the black hole at its centre.
+
+## A cluster is a gas of stars
+
+An open cluster such as the Pleiades holds a few hundred to a few thousand stars, born together from one cloud (Chapter 17) and still close together, a few parsecs across. A <Term id="globular-cluster">globular cluster</Term> holds a hundred thousand to a million, packed tens of thousands of times more densely in its middle than the stars round the Sun. Each star moves through the cluster’s combined pull, and the whole is held up the way a star is: not by pressure, but by motion. The <Term id="virial-theorem">virial theorem</Term> of Chapter 20 applies unchanged. Twice the stars’ kinetic energy balances the cluster’s gravitational energy, 2K + W = 0, so the bigger and heavier a cluster, the faster its stars must move: about a kilometre a second in an open cluster, ten in a globular.
+
+In a gas, molecules collide and share their energy. Stars almost never touch, but they do pass close enough to tug on each other, and over many passes these small, random tugs reshuffle their energies just as collisions do. How long that takes is the cluster’s <Term id="relaxation-time">relaxation time</Term>. Once it has passed, the stars have forgotten their starting orbits, and a cluster behaves as a gas does: it heads towards sharing its energy out evenly. A heavy star and a light one with the same energy move at different speeds, so the heavy stars slow, give up energy and sink to the middle, and the light ones speed up and spread out. A few gain so much that they leave.
+
+<Callout kind="maths" title="Crossing and relaxation times">
+
+A cluster of N stars of mass m, with half its mass within a radius r<sub>h</sub>, has a typical speed σ from the virial theorem, σ² ≈ GM / (2.6 r<sub>h</sub>), and a star crosses it in
+
+t<sub>cr</sub> ≈ r<sub>h</sub> / σ.
+
+Encounters change a star’s orbit completely after about N / (8 ln N) crossings (derived in the deep dive below). Lyman Spitzer’s form of it, the half-mass relaxation time, is
+
+t<sub>rh</sub> = 0.138 N<sup>1/2</sup> r<sub>h</sub><sup>3/2</sup> / (m<sup>1/2</sup> G<sup>1/2</sup> ln 0.4N).
+
+For 1,000 stars of half a Sun within a parsec, σ ≈ 0.9 km/s, a crossing takes about a million years, and the relaxation time is 15 million years. For a galaxy of 10¹¹ stars it is far longer than the Galaxy’s age: a galaxy’s stars move in its smooth, combined pull, as if their neighbours weren’t there.
+
+</Callout>
+
+A cluster has a strange thermodynamics, as a star does. Stars that leave the middle carry energy outwards, and a core that loses energy shrinks and its stars speed up: it heats as it cools (Chapter 20). The hotter core then loses energy faster, and the shrinking runs away: Donald Lynden-Bell and Roger Wood called it the gravothermal catastrophe in 1968. A cluster of equal stars would collapse to a point at its centre after about 15 relaxation times. Real cores stop collapsing when tight pairs of stars form there; each close encounter with a pair hardens it and flings the other star out, and that energy holds the core up, like the nuclear burning of a star.
+
+How do we know any of this? By building clusters in computers. Every star pulls on every other, so N stars need N² pulls at every step: like a game’s particle system with no spatial grid to cheat with, where every particle checks every other. Erik Holmberg did the first such experiment in 1941 without a computer, with two model galaxies of 37 light bulbs each, measuring the light’s brightness with photocells as a stand-in for gravity. Since the 1960s Sverre Aarseth’s NBODY codes have done it with each star on its own clock: stars in the dense middle take tiny steps, stars on the outskirts long ones, using a fourth-order method due to Junichiro Makino and Aarseth. The figure below runs the same scheme in your browser.
+
+## Clusters evaporate
+
+A cluster alone in space would lose its stars only slowly, as the occasional star picks up enough speed to escape: Viktor Ambartsumian (1938) and Spitzer (1940) worked out that it would last about a hundred relaxation times. No cluster is alone. The Galaxy’s pull is stronger on the side of the cluster nearer its centre than on the far side, and it stretches the cluster just as the Moon stretches Earth’s oceans (Chapter 7). Out at the cluster’s <Term id="jacobi-radius">Jacobi radius</Term>, the Galaxy’s tide beats the cluster’s own pull. A star that wanders past it is lost.
+
+<Callout kind="maths" title="The Jacobi radius">
+
+Follow the cluster in a frame that goes round the Galaxy with it, at angular speed Ω, with x pointing away from the centre. A star there feels the cluster, the Coriolis force, and the Galaxy’s pull less the centrifugal force, which along x is a stretch (4Ω² − κ²) x, where κ is the epicyclic frequency, how fast a star nudged off its circle bobs in and out. Along the line to the centre the stretch matches the cluster’s pull, GM / r², at
+
+r<sub>J</sub> = (GM / (4Ω² − κ²))<sup>1/3</sup>.
+
+For a flat rotation curve, κ² = 2Ω², and r<sub>J</sub> = R (M / 2M<sub>G</sub>)<sup>1/3</sup>, where M<sub>G</sub> is the Galaxy’s mass inside the cluster’s orbit of radius R. A cluster of 400 Suns at the Sun’s distance has a Jacobi radius of 10 parsecs; at 4 kpc from the centre, 6. The two points where the Jacobi sphere meets the line to the centre are Lagrange points, L1 and L2, as for the Roche lobes of Chapter 28 (the Toolkit’s page on vectors has the Coriolis force).
+
+</Callout>
+
+Escaping stars don’t leave in all directions. They spill through L1 and L2, the passes in the cluster’s landscape, and then drift: a star let out through L1, nearer the Galaxy’s centre, is on a slightly smaller orbit and runs ahead; one let out through L2 lags behind. The cluster grows two <Term id="tidal-tail">tidal tails</Term>, one leading and one trailing along its orbit. The globular cluster Palomar 5 trails tails more than 20° across the sky, found by Michael Odenkirchen and colleagues in 2001 and followed further since. In 2019 Gaia’s measurements showed the Hyades, the nearest cluster at 47 parsecs, with tails hundreds of parsecs long (Siegfried Röser and colleagues; Stefan Meingast and João Alves). Most open clusters dissolve within a few hundred million years, shaken apart too by passing giant clouds; the Sun’s own siblings left long ago, and are scattered round the Galaxy now.
+
+<ClusterFigure
+  number="30.1"
+  tryThis={
+    <p>
+      Press <b>Run the cluster</b> and watch the first stars leave through L1 and L2. Which way does each tail point? With <b>Kroupa’s mix</b>,
+      watch the heaviest stars’ half-mass radius fall below the cluster’s. Move the cluster to 4 kpc from the centre: how much faster does it
+      dissolve? Switch to <b>Bound or escaped</b> and <b>Whole tails</b> to see the tails.
+    </p>
+  }
+/>
+
+## The shape of the Milky Way
+
+Chapter 9 put the Sun in a disc. From inside, through the dust, the rest has been pieced together star by star, by counting, by distances from parallax, and above all by motions, which show where the mass is and where the stars came from. The <Term id="galaxy">Galaxy</Term> has a bar in the middle about 10 kpc long, turned about 27° from the line to the Sun, and puffed up into a boxy bulge of old stars. Round it, a thin disc of young and middle-aged stars, gas and dust, about 300 parsecs thick, with the spiral arms, holds most of the stars. A thicker disc of older stars, about 900 parsecs thick, overlaps it. Round everything lies a sparse halo of the oldest stars, out past 50 kpc, with about {MILKY_WAY.globularClusters} globular clusters.
+
+The halo is partly made of eaten galaxies. Gaia found that many of its stars move on long, narrow orbits that are nearly the same, the remains of a galaxy perhaps a quarter of the Milky Way’s mass at the time, which merged with it {MILKY_WAY.enceladus} billion years ago: Gaia–Enceladus, or the Gaia Sausage, named by Amina Helmi’s and Vasily Belokurov’s teams in 2018. The Sagittarius dwarf galaxy, found by Rodrigo Ibata, Gerry Gilmore and Mike Irwin in 1994 on the far side of the centre, is being torn apart now, its stars strewn in streams round the whole sky.
+
+The Sun is {MILKY_WAY.sunRadius} kpc from the centre and about {Math.round(MILKY_WAY.sunHeight * 1000)} parsecs above the disc’s midplane, and it goes round at about {MILKY_WAY.circularSpeed} km/s, once every 220 million years: about twenty laps since it formed. The Galaxy’s stars weigh about 5 × 10¹⁰ Suns, in {MILKY_WAY.stars} stars. The Sun’s orbit says more: holding it on a circle takes 1.0 × 10¹¹ Suns inside it.
+
+<GalaxyOutsideFigure
+  number="30.2"
+  tryThis={
+    <p>
+      Turn the Galaxy <b>Edge on</b> and switch the parts off one by one: which is flattest, and which is roundest? Find the Sun, then go{' '}
+      <b>Behind the Sun</b> and look past it towards the centre, along the disc. Where do the globular clusters crowd?
+    </p>
+  }
+/>
+
+## The rotation curve
+
+The planets slow down with distance from the Sun, as Kepler found: Neptune moves at about a ninth of Mercury’s speed. Beyond nearly all of a galaxy’s light, its stars and gas should do the same, their speed falling as one over the square root of the distance. A galaxy’s <Term id="rotation-curve">rotation curve</Term>, its speed against distance, should rise through the stars and then fall.
+
+<Callout kind="maths" title="Speed and the mass inside">
+
+A star on a circle of radius r round a spherical mass moves at
+
+v² = GM(r) / r,
+
+where M(r) is the mass inside its orbit (in a flattened disc, only roughly; the figure uses the exact formulas). Beyond the mass, M stays the same and v ∝ r<sup>−1/2</sup>, Kepler’s fall. A flat curve, v the same at every r, needs M(r) ∝ r: the mass inside goes on growing with the radius, in step, past the last light. At the Sun, 230 km/s at 8.2 kpc needs 1.0 × 10¹¹ M☉ inside; 173 km/s at 27 kpc, Ou and colleagues’ farthest point, needs 1.9 × 10¹¹.
+
+</Callout>
+
+The curves don’t fall. Horace Babcock found Andromeda’s outer parts turning fast in 1939, and Vera Rubin and Kent Ford measured them precisely in 1970: the speed rose, then stayed flat as far as they could see the gas glow. Radio astronomers followed the cold hydrogen far beyond the stars, by the radio waves it gives out at 21 cm (Chapter 10), and found it still flat there: Albert Bosma in 1978, and Tjeerd van Albada and colleagues in 1985 for NGC 3198, far beyond its stars. Galaxies hold far more mass than they show, spread far beyond their stars. Fritz Zwicky had said as much of the galaxies of the Coma cluster in 1933, which moved too fast to stay together; Jeremiah Ostriker and Jim Peebles (1973) and Jaan Einasto, Ants Kaasik and Enn Saar (1974) gave galaxies <Term id="dark-matter">dark</Term> halos.
+
+Most astronomers think the halos are dark matter, some kind of particle that neither shines nor absorbs light and feels only gravity. A few argue instead that gravity itself changes at very small accelerations: Mordehai Milgrom’s MOND (1983), with one constant, a₀ ≈ 1.2 × 10⁻¹⁰ m/s², fits galaxies’ rotation curves remarkably well from their visible matter alone. The case for dark matter rests also on clusters of galaxies and on the early universe, which this course doesn’t teach; the figure shows only what rotation curves need.
+
+<RotationCurveFigure
+  number="30.3"
+  tryThis={
+    <p>
+      Press <b>No halo</b> for NGC 3198: where does the visible matter fall short? Try to fit the curve with the stars alone by raising their
+      mass-to-light ratio: what goes wrong in the middle? Then press <b>Best halo for these stars</b>. Compare DDO 154, a dwarf, with UGC 2885, a
+      giant. Pick the Milky Way: does the model follow the fall beyond 20 kpc?
+    </p>
+  }
+/>
+
+The Milky Way’s own curve, measured from the motions of tens of thousands of red giants with Gaia, APOGEE and WISE, falls gently beyond the Sun: from 229 km/s at the Sun by about 1.7 km/s every kiloparsec out to 25 kpc (Anna-Christina Eilers and colleagues, 2019), and from about {ROTATION_DEBATE.ou.from} km/s at 5 kpc to about {ROTATION_DEBATE.ou.to} at {ROTATION_DEBATE.ou.at} kpc (Xiaowei Ou and colleagues, 2024). How much dark mass that implies is argued over now. Yongjun Jiao and colleagues (2023) found the curve falling as Kepler’s would between {ROTATION_DEBATE.jiao.from} and {ROTATION_DEBATE.jiao.to} kpc, and a Galaxy of only {(ROTATION_DEBATE.jiao.mass / 1e11).toFixed(1)} × 10¹¹ Suns in all; reviews argue that the fall rests on delicate assumptions about how the outer stars move, and that streams, satellite galaxies and the Milky Way’s approach to Andromeda point to a halo several times heavier. As of {ROTATION_DEBATE.asOf}, it is unsettled. <GaiaDr4 />
+
+## Spiral arms
+
+The arms are the most striking thing about a spiral galaxy, and the hardest to explain. Stars near the centre go round in less time than stars further out. Arms made of the same stars would therefore wind up, the inside lapping the outside: the Sun has gone round about twenty times, and arms that old would be wound tighter than a watch spring. Real arms are open, with pitches of 10° to 25°.
+
+<Callout kind="maths" title="The winding problem">
+
+A star at radius R goes round at Ω(R) = v(R) / R. An arm of stars that starts with a pitch p₀ (the angle between it and a circle) has, after a time t,
+
+tan p = 1 / (1 / tan p₀ − R t dΩ/dR),
+
+and for a flat rotation curve, R dΩ/dR = −Ω, so tan p = 1 / (1 / tan p₀ + Ωt). At the Sun, Ω = 28 km/s per kpc, which is 29 radians in a billion years: an arm that started at 25° would be wound to about 2° by then.
+
+</Callout>
+
+So the arms can’t be made of the same stars all the time. In 1964 Chia-Chiao Lin and Frank Shu proposed that they are density waves: a pattern of crowding that turns more slowly than the stars, which pass through it the way cars pass through a traffic jam on a motorway, slowing and bunching in it and speeding up again beyond. The jam stays put while the cars change. Gas piles up in the crowding too, and is squeezed into new stars, which is why arms are lined with young blue stars and glowing nebulae. Agris Kalnajs showed in 1973 how such a pattern can be made of orbits: in a frame turning at the right speed, each star’s orbit is an oval, and ovals each turned a little from the one inside crowd together along a spiral. The other view is that arms are short-lived, breaking and reforming as the disc’s own gravity amplifies small disturbances (Alar Toomre in 1981; Jerry Sellwood and Raymond Carlberg since 1984). Galaxies probably have both kinds, and which dominates in the Milky Way is still argued.
+
+<WindingFigure
+  number="30.4"
+  tryThis={
+    <p>
+      Play a billion years. How long do the arms of fixed stars keep a shape like a real spiral’s? Follow the marked star in each panel: which one
+      stays in its arm? Scrub back to 250 million years, a little more than one lap of the Sun’s.
+    </p>
+  }
+/>
+
+## The black hole at the centre
+
+In 1974 Bruce Balick and Robert Brown found a tiny, bright radio source at the Galaxy’s centre: Sagittarius A\*. Something heavy should sit there, and the stars round it would weigh it, if they could be seen. Dust dims the centre’s light by a factor of a trillion at visible wavelengths, so the stars were followed in the infrared, from 1992 by Reinhard Genzel’s group at ESO’s telescopes in Chile, and from 1995 by Andrea Ghez’s at the Keck telescopes in Hawaii, with adaptive optics sharpening the images to a few hundredths of an arcsecond.
+
+One star, S2, a hot main-sequence star of about 14 Suns, goes round Sagittarius A\* every 16.05 years on an orbit so eccentric (0.88) that it swings from 1,900 AU out to 120 AU in, where it moves at 7,700 km/s, 2.6% of the speed of light. It passed pericentre in 2002 and in May 2018, and comes round again in <NextS2Pericentre />. Its orbit is the Galaxy’s own version of Chapter 7’s scales: a ruler and a stopwatch.
+
+<Callout kind="maths" title="Weighing Sagittarius A*">
+
+In the Sun’s units (Chapter 7), Kepler’s third law gives the mass an orbit goes round:
+
+M = a³ / P²  (a in AU, P in years, M in M☉).
+
+S2’s orbit is 0.1251″ across its semi-major axis on the sky, which at 8,247 parsecs is 1,031 AU, and it takes 16.05 years: M = 1,031³ / 16.05² = 4.26 million Suns, all inside 120 AU. Relativity adds two effects at pericentre (Chapter 27): the orbit turns by 6πGM / (c²a(1 − e²)), about 12 minutes of arc a lap, and the star’s light is reddened by its fall into the black hole’s well and by the slowing of its moving clock, by about 200 km/s’ worth.
+
+</Callout>
+
+The GRAVITY instrument, which combines the four 8-metre telescopes of ESO’s Very Large Telescope into one, followed S2 through its 2018 pericentre to tens of microarcseconds. It saw the extra redshift, as relativity predicts (2018), and in 2020 the orbit’s turning, 1.10 ± 0.19 times relativity’s 12′. Any spread-out mass inside S2’s orbit, such as a cluster of dark stars, is under about a thousandth of the central mass: only a black hole fits. Genzel and Ghez shared the 2020 Nobel Prize in Physics, with Roger Penrose, who showed that black holes form. In 2022 the Event Horizon Telescope imaged the shadow of Sagittarius A\* (Chapter 27), its size just as a black hole of this mass should cast.
+
+<S2OrbitFigure
+  number="30.5"
+  tryThis={
+    <p>
+      Turn the orbit <b>Face on</b> and stretch the ruler across the long axis. Play the years, start the stopwatch as S2 passes the black hole
+      and stop it when it comes round again: what does Sagittarius A* weigh? Switch on <b>relativity’s turning</b>. Find the moment in 2018 when
+      the extra redshift peaks.
+    </p>
+  }
+/>
+
+<Timeline from={1900} to={2026} chapter={30} only={[30]} title="Crowds of stars" />
+
+<DeepDive title="Why relaxation takes N / (8 ln N) crossings">
+
+A star of speed v passing another of mass m at a distance b is pulled sideways while it passes, and comes away with a sideways kick of about
+
+δv ≈ 2Gm / (bv)
+
+(the pull Gm/b² acting for a time about 2b/v). The kicks come from every direction, so they don’t add up; their squares do, like the steps of a random walk (Chapter 21). In one crossing of a cluster of radius R holding N stars, the number of passes at distances between b and b + db is the number of stars in a ring of that area, N × 2πb db / πR². Adding up the squares,
+
+Δv² ≈ ∫ (2Gm / bv)² (2N b db / R²) = 8N (Gm / Rv)² ln (b<sub>max</sub> / b<sub>min</sub>).
+
+Each range of distances, from close to far, contributes equally per factor of e; that is the logarithm. The farthest passes are as far as the cluster is wide, b<sub>max</sub> ≈ R; the closest that count are those that deflect a star completely, b<sub>min</sub> ≈ Gm / v². The virial theorem gives v² ≈ GNm / R, so Gm / Rv = v / N and b<sub>max</sub> / b<sub>min</sub> ≈ N:
+
+Δv² / v² ≈ 8 ln N / N per crossing.
+
+A star has forgotten its orbit when Δv² reaches v², after N / (8 ln N) crossings: 18 for a thousand stars, and for a galaxy of 10¹¹, 5 × 10⁸, each of about a hundred million years. That is why clusters behave like gases and galaxies don’t: in a galaxy, close passes never matter, and its stars move in the smooth pull of the whole.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="clusters-lose-stars" prompt="Why do star clusters lose their stars?">
+    <Choice label="Close passes give some stars enough energy to cross the Jacobi radius, where the Galaxy’s tide wins" correct>
+      Right. Encounters keep reshuffling the stars’ energies; a star pushed past the Jacobi radius leaves through L1 or L2 and drifts off into
+      a tidal tail. Heavy stars sink, light ones are the likeliest to go.
+    </Choice>
+    <Choice label="Their stars collide and are destroyed">
+      Stars in a cluster almost never touch; they only pass close enough to tug on each other. Those tugs are what fling stars out.
+    </Choice>
+    <Choice label="Their stars burn out and fade away">
+      Faded stars still pull and are still pulled. A cluster loses stars by dynamics; the figure’s stars never age at all, and still leave.
+    </Choice>
+  </Question>
+
+  <Question id="flat-curve" prompt="What does a flat rotation curve mean?">
+    <Choice label="The mass inside each radius keeps growing with the radius, beyond the visible stars" correct>
+      Right. v² = GM(r)/r, so a speed that stays the same needs M(r) to grow in step with r. Past the stars and gas, the extra mass is dark.
+    </Choice>
+    <Choice label="All the galaxy’s mass is in its centre">
+      A central mass would give Kepler’s fall, with speeds dropping as one over the square root of the distance, like the planets’.
+    </Choice>
+    <Choice label="The galaxy turns as a solid wheel">
+      A solid wheel’s speed grows in proportion to the radius. A flat curve means the same speed everywhere, so the outer stars take longer
+      to go round.
+    </Choice>
+  </Question>
+
+  <Question id="arms-same-stars" prompt="Are spiral arms made of the same stars all the time?">
+    <Choice label="No: stars move through them, as cars through a traffic jam" correct>
+      Right. Arms made of fixed stars would wind up within a few turns of the disc. The arms are patterns of crowding that stars enter and
+      leave, whether they last for billions of years or keep reforming.
+    </Choice>
+    <Choice label="Yes, the arms turn as a whole with their stars">
+      Then the inner parts, which go round faster, would lap the outer ones, and the arms would be wound tight after a few hundred million
+      years.
+    </Choice>
+    <Choice label="Yes, but the arms are only a few million years old">
+      Arms are seen in nearly every big disc galaxy, so they can’t all be newborn. Young blue stars line them because the crowding squeezes gas
+      into new stars.
+    </Choice>
+  </Question>
+
+  <Question id="weighed-sgr-a" prompt="How was Sagittarius A* weighed?">
+    <Choice label="From the orbits of stars round it, such as S2’s, by Kepler’s third law" correct>
+      Right. S2’s orbit, 1,031 AU across its semi-major axis and 16 years round, gives 4.3 million Suns, all within 120 AU: only a black hole
+      can be that heavy and that small.
+    </Choice>
+    <Choice label="From how much light it gives out">
+      Sagittarius A* is faint for its mass: little gas falls into it. Its brightness says how much it eats, not how heavy it is.
+    </Choice>
+    <Choice label="From the size of the Galaxy’s bulge">
+      Black holes’ masses do track their galaxies’ bulges, but loosely; the Milky Way’s was weighed directly, from its stars’ orbits.
+    </Choice>
+  </Question>
+
+  <WeighSagittarius />
+</CheckYourself>

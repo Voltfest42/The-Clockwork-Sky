@@ -446,6 +446,30 @@ export const GLOSSARY = {
     term: 'Pulsar timing array',
     definition: 'A set of millisecond pulsars timed for years, whose ticks a passing gravitational wave of nanohertz frequency makes arrive early or late in a pattern across the sky.',
   },
+  'relaxation-time': {
+    term: 'Relaxation time',
+    definition: 'How long the small tugs of passing stars take to change a cluster star’s orbit completely: about N / (8 ln N) crossings of a cluster of N stars. A few tens of millions of years for an open cluster; far longer than its age for a galaxy.',
+  },
+  'jacobi-radius': {
+    term: 'Jacobi radius',
+    definition: 'The distance from a star cluster’s centre where the Galaxy’s tide balances the cluster’s own pull. Stars that wander beyond it are lost to the Galaxy.',
+  },
+  'tidal-tail': {
+    term: 'Tidal tail',
+    definition: 'A stream of stars drawn out of a cluster or galaxy by tides: escaping stars run ahead along the orbit on the inner side and lag behind on the outer side, making two tails.',
+  },
+  'rotation-curve': {
+    term: 'Rotation curve',
+    definition: 'How fast a galaxy’s stars and gas go round, against their distance from its centre. Flat curves, where Kepler’s laws say they should fall, show that galaxies hold far more mass than we see.',
+  },
+  'dark-matter': {
+    term: 'Dark matter',
+    definition: 'Mass that neither shines nor absorbs light and shows itself only by its gravity, as in galaxies’ flat rotation curves. Most astronomers think it is an unknown kind of particle; a few think gravity itself differs instead.',
+  },
+  'density-wave': {
+    term: 'Density wave',
+    definition: 'A pattern of crowding that moves through a disc of stars more slowly than the stars themselves, which pass through it like cars through a traffic jam. One explanation of spiral arms.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

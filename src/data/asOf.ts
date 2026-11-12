@@ -138,6 +138,13 @@ export const AS_OF = {
     source: 'the LVK’s observing plans (observing.docs.ligo.org/plan)',
     everyMonths: 6,
   },
+  rotationCurve: {
+    checked: '2026-11',
+    what: 'the argument over the Milky Way’s outer rotation curve and dark mass (Jiao et al. 2023’s Keplerian fall against heavier halos)',
+    where: 'src/data/galaxy.ts (ROTATION_DEBATE), used by Chapter 30’s “The rotation curve”',
+    source: 'recent Gaia-based rotation curves and reviews (after Gaia DR4, due 2 December 2026)',
+    everyMonths: 24,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

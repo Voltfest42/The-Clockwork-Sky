@@ -472,6 +472,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     ],
     buildsOn: [7, 9, 17, 27],
     toolkit: ['vectors'],
+    load: () => import('../content/chapter30.mdx'),
   }),
   chapter({
     number: 31,
