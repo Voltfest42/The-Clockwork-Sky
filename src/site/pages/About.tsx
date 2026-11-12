@@ -156,6 +156,15 @@ export function About() {
           colleagues’ curves. Arms of fixed stars must wind as the formula says; Kalnajs’s pattern must keep its shape. S2’s orbit must weigh
           Sagittarius A* at GRAVITY’s 4.26 million Suns by Kepler’s law, pass 119 AU from it at 7,700 km/s, turn by 12′ a lap and gain about
           200 km/s of redshift at pericentre and 6 at apocentre.
+          Since Chapter 31, the colliding galaxies’ leapfrog must keep the pair’s energy and angular momentum with friction off, retrace its
+          steps when run backwards, and keep the pair’s momentum with friction on; the Plummer sphere’s force, density and velocity spread must
+          agree with each other (Poisson’s and Jeans’s equations); Chandrasekhar’s friction must match its slow and fast limits; a disc of test
+          stars on its own must stay circular; a prograde pass must pull out a tail and a bridge and a retrograde one hardly any, as Toomre and
+          Toomre found; friction must make a pair that would part sink together and merge; a companion through the middle must make a ring and
+          one passing wide must not. The Local Group’s frame must put the Sun and the Galactic Centre where Astropy does, and Andromeda’s
+          sampled sideways speed must have Sawala and colleagues’ median, about 75 km/s; their method must give their odds of a merger within a
+          few per cent for each set of galaxies (44%, 63%, 37% and 54%), and Wu and colleagues’ measurements theirs (90%); the same futures
+          must come from steps of one and two million years, and from the same seed.
           With the Star Forge, its inputs must always land inside their limits; brown dwarfs’ cooling must fade steadily and meet Burrows’s
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
@@ -815,6 +824,24 @@ export function About() {
           </li>
         </ul>
 
+        <h3>Chapter 31</h3>
+        <ul>
+          <li>
+            <b>Figure 31.1, galaxy collision.</b> Toomre’s restricted method: rigid Plummer spheres (softened point masses) whose test stars
+            feel both galaxies but pull on nothing, so the discs can’t make arms or bars, and the galaxies keep their shapes; dynamical friction by
+            Chandrasekhar’s formula with a Coulomb logarithm of 2, on the lighter galaxy in the heavier one’s sphere, which only sketches a merger’s
+            last stages and can’t capture galaxies meeting on open orbits; flat, cold discs; no gas and no
+            dark halo beyond each sphere. Toomre and Toomre’s and Lynds and Toomre’s set-ups scaled to discs of 20 kpc in galaxies of 2 × 10¹¹
+            suns.
+          </li>
+          <li>
+            <b>Figure 31.2, will we collide?</b> Sawala and colleagues’ method (2025): standard (NFW) dark halos pulling as points softened over
+            20 kpc, Chandrasekhar’s friction on the lighter of each pair within the heavier one’s halo (its Coulomb logarithm never allowed below
+            zero), mergers within 20 kpc; measured values drawn from bell curves cut at two standard deviations; stars, gas, spin, the Small
+            Magellanic Cloud and the smaller galaxies left out; steps of two million years.
+          </li>
+        </ul>
+
         <h3>Toolkit: Vectors</h3>
         <ul>
           <li>
@@ -1291,6 +1318,26 @@ export function About() {
             Astronomical Society of Australia 2, 174: kinematic spirals. J. A. Sellwood and R. G. Carlberg (1984), The Astrophysical Journal 282,
             61: transient arms. B. Balick and R. L. Brown (1974), The Astrophysical Journal 194, 265: Sagittarius A*. GRAVITY Collaboration
             (2018), Astronomy and Astrophysics 615, L15: S2’s redshift; (2020), Astronomy and Astrophysics 636, L5: its precession and orbit.
+          </li>
+          <li>
+            A. Toomre and J. Toomre (1972), The Astrophysical Journal 178, 623: galactic bridges and tails. R. Lynds and A. Toomre (1976), The
+            Astrophysical Journal 209, 382: ring galaxies. A. Toomre (1977), in The Evolution of Galaxies and Stellar Populations (Yale University
+            Observatory), 401: mergers and ellipticals. H. Arp (1966), Atlas of Peculiar Galaxies, The Astrophysical Journal Supplement 14, 1. S.
+            Chandrasekhar (1943), The Astrophysical Journal 97, 255: dynamical friction. B. C. Whitmore and F. Schweizer (1995), The Astronomical
+            Journal 109, 960: the Antennae’s young clusters. V. M. Slipher (1913), Lowell Observatory Bulletin 1, 56: Andromeda’s approach. R. P.
+            van der Marel and colleagues (2012), The Astrophysical Journal 753, 8 and 9: Andromeda’s velocity and the collision foretold. T. Salomon
+            and colleagues (2021), Monthly Notices of the Royal Astronomical Society 507, 2592: its motion from Gaia. T. Sawala and colleagues
+            (2025), Nature Astronomy 9, 1206: the Local Group’s futures, and their code (github.com/TillSawala/MW-M31). H. Wu, Y. Huang, H. Zhang,
+            G. Sun and S. Shao (2026), The Astrophysical Journal Letters (arXiv:2603.22863), and H. Wu and colleagues (2025), Astronomy and
+            Astrophysics 701, A265: Andromeda’s and M33’s motions corrected. A. R. Zentner and J. S. Bullock (2003), The Astrophysical Journal
+            598, 49: a halo’s velocity spread. P. Jethwa, D. Erkal and V. Belokurov (2016), Monthly Notices of the Royal Astronomical Society 461,
+            2212: the Coulomb logarithm. Planck Collaboration (2020), Astronomy and Astrophysics 641, A6: the critical density. Astropy
+            Collaboration (2022), The Astrophysical Journal 935, 167: the Galactocentric frame. C. K. Seyfert (1943), The Astrophysical Journal
+            97, 28. M. Schmidt (1963), Nature 197, 1040: 3C 273. E. E. Salpeter (1964), The Astrophysical Journal 140, 796, and Ya. B. Zel’dovich
+            (1964), Soviet Physics Doklady 9, 195: accretion. D. Lynden-Bell (1969), Nature 223, 690: dead quasars. L. Ferrarese and D. Merritt
+            (2000), The Astrophysical Journal Letters 539, L9, and K. Gebhardt and colleagues (2000), The Astrophysical Journal Letters 539, L13.
+            GRAVITY Collaboration (2018), Nature 563, 657: 3C 273’s black hole. G. Lemaître (1927), Annales de la Société Scientifique de
+            Bruxelles A47, 49, and E. Hubble (1929), Proceedings of the National Academy of Sciences 15, 168: redshift and distance.
           </li>
           <li>
             International Astronomical Union, Resolutions B2 of 2012 (the astronomical unit) and B2 and B3 of 2015 (the parsec and the nominal

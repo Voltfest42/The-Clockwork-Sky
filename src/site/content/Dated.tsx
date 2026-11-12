@@ -43,6 +43,17 @@ export function GaiaDr4({ now: given }: { now?: number }) {
   );
 }
 
+/** Gaia's fourth data release and Andromeda's motion (Chapter 31), in the right tense for today. */
+export function GaiaDr4Andromeda({ now: given }: { now?: number }) {
+  const pageTime = usePageTime();
+  const now = given ?? pageTime;
+  return now >= Date.parse(GAIA.dr4.when) ? (
+    <>Gaia’s fourth data release, on {GAIA.dr4.date}, measures the same stars over five and a half years rather than three, which should sharpen Andromeda’s motion.</>
+  ) : (
+    <>Gaia’s fourth data release, due on {GAIA.dr4.date}, will measure the same stars over five and a half years rather than three, which should sharpen Andromeda’s motion.</>
+  );
+}
+
 /**
  * The next three total eclipses of the Sun and the next total eclipse of the
  * Moon, from today, with where they can be seen (Chapter 4).

@@ -43,7 +43,9 @@ test('the landing page introduces the course and its three parts @phone', async 
   await expect(main.getByRole('link', { name: 'Start with Chapter 1, A sense of scale →' })).toHaveAttribute('href', '/a-sense-of-scale/');
   // Part II is out: every chapter is written, so "Where to start" links to its first chapter.
   await expect(main.getByRole('link', { name: 'Start with Chapter 10, Light, the messenger →' })).toHaveAttribute('href', '/light-the-messenger/');
-  await expect(main.getByText('Part III, The Engine Room:')).toContainText('Coming soon');
+  // So is Part III, since Chapter 31 (Stage 27)
+  await expect(main.getByRole('link', { name: 'Start with Chapter 20, Holding a star up →' })).toHaveAttribute('href', '/holding-a-star-up/');
+  await expect(main.getByText('Coming soon')).toHaveCount(0);
   expect(await accessibilityViolations(page)).toEqual([]);
   expect(errors).toEqual([]);
 });

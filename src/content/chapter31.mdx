@@ -1,0 +1,182 @@
+import { GalaxyCollisionFigure } from '../figures/GalaxyCollisionFigure';
+import { LocalGroupFigure } from '../figures/LocalGroupFigure';
+import { CheckYourself, Choice, Question } from '../site/check/CheckYourself';
+import { Callout, DeepDive } from '../site/content/blocks';
+import { GaiaDr4Andromeda } from '../site/content/Dated';
+import { Term } from '../site/content/Term';
+import { Timeline } from '../site/content/Timeline';
+import { LOCAL_GROUP_ODDS, TEXTBOOK_COLLISION } from '../data/localGroup';
+import { MakeARing } from './checks/chapter31';
+
+Galaxies are far apart for their size, but not very far. The Milky Way’s nearest big neighbour, Andromeda, is only about 25 Milky Ways away, and smaller galaxies circle both. Over billions of years galaxies pass close, tear at each other and often merge, and many of the strangest pictures in astronomy are galaxies caught in the act: long curved tails, bridges of stars between two galaxies, rings, and galaxies whose middles blaze with light. This last chapter follows gravity one step further out, to galaxies themselves, and asks whether our own is on a collision course. It ends at the door to a different subject.
+
+## Bridges and tails
+
+In 1966 Halton Arp published an atlas of 338 peculiar galaxies: galaxies with plumes, loops, jets and rings, many of them in pairs joined by threads of stars. Fritz Zwicky had argued in the 1950s that some were torn by tides, but most astronomers suspected magnetic fields or explosions. In 1972 two brothers, Alar and Juri Toomre, settled it with a small computer and a simple idea. Put a disc of stars round each of two galaxies, let the galaxies swing past each other, and let each star feel both galaxies’ pull. The stars themselves pull on nothing: they are too light to matter to the galaxies, and each other. Like the particles of a game’s explosion, which follow a physics object around without pushing back, they only show where the galaxies’ gravity carries them. Toomre and Toomre’s paper, *Galactic Bridges and Tails*, reproduced the Antennae, a pair about 20 Mpc away with two long curved tails, and the Mice, a pair about 90 Mpc away, each with one long tail.
+
+The cause is the tide of Chapter 7, on a grand scale. A companion pulls harder on the near side of a disc than on its centre, and harder on the centre than on the far side. The disc is stretched along the line between them: the near side is drawn out towards the companion into a <Term id="tidal-tail">bridge</Term>, and the far side, left behind, into a tail. Earth’s oceans are stretched the same way twice a day, but the Moon’s tide is a gentle one. A galaxy’s companion can be as heavy as the galaxy itself and pass within a disc’s width.
+
+<Callout kind="maths" title="The tide across a disc">
+
+A star at distance R from its galaxy’s centre, on the line to a companion of mass M at distance D, feels the companion pull it away from its own centre with the difference of the two pulls:
+
+Δa ≈ GM/(D − R)² − GM/D² ≈ 2GMR / D³.
+
+Its own galaxy, of mass M<sub>g</sub>, holds it with about GM<sub>g</sub>/R². The ratio is
+
+Δa / a ≈ 2 (M / M<sub>g</sub>) (R / D)³.
+
+For two equal galaxies passing at 26 kpc, a star 20 kpc from its centre, at the edge of its disc, feels a tide nearly as strong as its own galaxy’s pull: the disc can’t hold its outer stars. A companion a tenth as heavy at the same distance tugs at a tenth of that, and only bends the disc’s edge.
+
+</Callout>
+
+Toomre and Toomre found something less obvious too. The tails are long only when the disc turns the same way as the companion goes round it. Then, for a while, the companion and the disc’s outer stars move together, and the tide pulls each star the same way for a large part of its orbit; its small kicks add up, as a child on a swing goes higher when pushed in time with the swing. A disc turning the other way meets the companion head on, the kicks change direction too fast to add up, and the disc comes through almost untouched. A companion that plunges straight through the middle of a disc does something else again: it pulls every star inwards at once, the stars fall in together, overshoot and swing out, and their outward swings crowd into a ring that spreads like a ripple in a pond. Richard Lynds and Alar Toomre made such <Term id="ring-galaxy">ring galaxies</Term> by computer in 1976; the Cartwheel, about 150 Mpc away, is the famous one.
+
+<GalaxyCollisionFigure
+  number="31.1"
+  tryThis={
+    <p>
+      Press <b>Run the collision</b> and watch the Antennae’s tails grow. Which stars end up in them? Switch to <b>By starting radius</b>. Now
+      make the main disc turn <b>against</b> the orbit and run it again: what becomes of its tail? Pick <b>A ring galaxy</b>, look at it <b>In
+      the orbit’s plane</b>, and watch the ring spread. Then turn <b>Dynamical friction</b> off and run the Mice: do the galaxies still merge?
+    </p>
+  }
+/>
+
+## Stars don’t collide
+
+When galaxies merge, their stars almost never touch. Shrink the Sun to a grain of sand and the nearest star is another grain 30 kilometres away; even in a galaxy’s crowded middle, stars are a great deal of empty space apart. Two galaxies of a hundred billion stars each pass through each other the way two swarms of gnats might, with every gnat that much smaller.
+
+<Callout kind="maths" title="How many stars hit?">
+
+Two Sun-like stars collide if their centres come within two solar radii, so a star sweeps out a target of area σ = π(2R☉)² as it moves. Through n stars per cubic parsec it travels on average
+
+λ = 1 / (nσ)
+
+before hitting one. Near the Sun, n is about 0.1, so λ is about 1.6 × 10¹⁵ parsecs: fifty billion times the width of a galaxy. A star crossing 30 kpc of such a crowd has a chance of 2 × 10⁻¹¹ of a hit, and among a hundred billion crossing stars, about two collide. Gravity draws stars towards each other as they pass and widens the target, by a factor 1 + v<sub>esc</sub>²/v², where v<sub>esc</sub> = 620 km/s is the speed needed to escape from two touching Suns; at 300 km/s that is about five, so perhaps ten collisions in all, counted generously.
+
+</Callout>
+
+The gas is another matter. A galaxy’s clouds of gas fill a good share of its disc, so when two galaxies meet their clouds do collide, are squeezed, and burst into new stars. The Hubble Space Telescope found thousands of young star clusters in the Antennae, born in the last few hundred million years.
+
+What makes galaxies merge rather than swing past each other and part is <Term id="dynamical-friction">dynamical friction</Term>. A heavy body moving through a crowd of stars or dark matter pulls the crowd towards it as it passes; by the time they arrive it has moved on, so the crowd piles up just behind it, in a wake, and the wake pulls it back. Subrahmanyan Chandrasekhar worked it out in 1943. The galaxies lose orbital energy into their stars’ and dark matter’s random motions, sink together, and merge. Two big spirals that merge lose their discs: their stars, thrown onto every kind of orbit by the merger, settle into a smooth ball, an <Term id="elliptical-galaxy">elliptical galaxy</Term>. Alar Toomre suggested in 1977 that this is where many ellipticals came from.
+
+<Callout kind="maths" title="Chandrasekhar’s dynamical friction">
+
+A body of mass M moving at speed v through a crowd of density ρ, whose own speeds are spread with dispersion σ, is slowed at
+
+dv/dt = −(4πG²Mρ ln Λ / v²) [erf(X) − (2X/√π) e<sup>−X²</sup>],  X = v / (√2 σ).
+
+The bracket is the share of the crowd moving slower than the body: only they can gather behind it. ln Λ, the Coulomb logarithm, counts the range of distances at which the crowd is deflected (Chapter 30’s ln N), and for galaxies is a few. The drag grows with the body’s mass, which is why only heavy things sink: a star in a galaxy feels none worth counting, a galaxy in another’s halo sinks within a few orbits. The deep dive below shows where the M and the 1/v² come from.
+
+</Callout>
+
+## The Milky Way and Andromeda
+
+In 1912 Vesto Slipher measured the Doppler shift of Andromeda’s light and found it coming towards us at about 300 km/s, one of the very few galaxies whose light is shifted to the blue. Most of that is the Sun’s own motion round the Galaxy; take it away, and Andromeda, about 765 kpc from the Galaxy’s centre, is falling towards it at about 110 km/s. The two galaxies, with M33 and the Large Magellanic Cloud the biggest of about a hundred smaller ones, make up the <Term id="local-group">Local Group</Term>.
+
+Whether the fall is a collision depends on Andromeda’s sideways motion, which is far harder to measure: at that distance, 100 km/s sideways moves it across the sky by 28 millionths of an arcsecond a year. In 2012 Roeland van der Marel and colleagues measured it with the Hubble Space Telescope, against the background of distant galaxies, and found it small, 17 ± 17 km/s. Andromeda was falling almost straight at us. They predicted a first close pass in {TEXTBOOK_COLLISION.firstPass} billion years and a merger {TEXTBOOK_COLLISION.merger} billion years from now, and this became the textbook story: the Milky Way and Andromeda will merge into one elliptical galaxy, sometimes called Milkomeda.
+
+Gaia’s measurements of Andromeda’s stars gave a larger sideways speed, about 80 km/s, if with a large uncertainty (Tobias Salomon and colleagues, 2021). In 2025 Till Sawala and colleagues followed the Local Group’s four biggest galaxies, as halos of dark matter with dynamical friction, from thousands of possible presents, each drawn from the measured masses, distances and motions within their uncertainties. With the Milky Way and Andromeda alone, {Math.round(LOCAL_GROUP_ODDS.sawala2025.two * 100)}% of the futures ended in a merger within 10 billion years. M33, Andromeda’s companion, raised that to {Math.round(LOCAL_GROUP_ODDS.sawala2025.withM33 * 100)}%; the Large Magellanic Cloud, whose orbit runs across the line between the two galaxies and which tugs the Milky Way sideways, lowered it to {Math.round(LOCAL_GROUP_ODDS.sawala2025.withLmc * 100)}%. With all four, the odds were about even, and a merger within 5 billion years came in only about one future in fifty.
+
+The answer turns on a sideways speed of a few tens of km/s at 2.5 million light-years. In 2026 Hao Wu and colleagues repeated Sawala and colleagues’ calculation with a new measurement of Andromeda’s motion, from its brightest supergiant stars with Gaia’s known errors corrected; it made the motion more nearly head on, and the odds of a merger rose to {Math.round(LOCAL_GROUP_ODDS.wu2026.four * 100)}%, in a median {LOCAL_GROUP_ODDS.wu2026.median} billion years. Across that measurement’s own uncertainty, though, the odds still run from {Math.round(LOCAL_GROUP_ODDS.wu2026.range[0] * 100)}% to {Math.round(LOCAL_GROUP_ODDS.wu2026.range[1] * 100)}%; to settle it, Andromeda’s motion must be known to about {LOCAL_GROUP_ODDS.wu2026.needed} millionths of an arcsecond a year, the width of a hair seen from 10,000 km. As of {LOCAL_GROUP_ODDS.asOf} the question is open. <GaiaDr4Andromeda /> In every future, the Large Magellanic Cloud falls into the Milky Way first, within the next few billion years. Long before any of this, in about 5 billion years, the Sun swells into a red giant (Chapter 17).
+
+<LocalGroupFigure
+  number="31.2"
+  tryThis={
+    <p>
+      With Sawala and colleagues’ measurements, how often do the Milky Way and Andromeda merge? Leave out <b>The Large Magellanic Cloud</b>, then
+      M33: which way does each move the odds? Narrow the <b>uncertainty in Andromeda’s sideways motion</b> to 0%: do the futures stop
+      spreading? Then switch to <b>Wu et al. 2026</b>, and switch <b>Dynamical friction</b> off.
+    </p>
+  }
+/>
+
+## Engines in the middle
+
+In 1943 Carl Seyfert described a handful of spiral galaxies with tiny, brilliant centres whose spectra showed broad lines of hot gas, moving at thousands of km/s. Twenty years later Maarten Schmidt found what the radio source 3C 273, a faint blue “star”, was: its spectral lines were hydrogen’s, stretched to longer wavelengths by 16%. It was not a star but the core of a galaxy so distant and so bright that it outshines the hundred billion stars round it: a <Term id="quasar">quasar</Term>. Its light flickers within months, so the source is no more than light-months across.
+
+Only one engine can make so much light in so small a space: gas falling into a black hole, as in Chapter 27, where gas spiralling in through a disc turns between 6% and 42% of its mass into light, depending on the black hole’s spin, far more than nuclear burning’s 0.7%. Edwin Salpeter and Yakov Zel’dovich proposed it in 1964, and Donald Lynden-Bell argued in 1969 that dead quasars, black holes of millions of suns, should sit in the middles of nearby galaxies. They do. Sagittarius A\* weighs 4.3 million Suns (Chapter 30); M87’s, whose shadow the Event Horizon Telescope imaged in 2019, 6.5 billion; and in 2018 GRAVITY resolved the gas orbiting 3C 273’s black hole and weighed it at about 300 million. Every big galaxy seems to have one, and in 2000 Laura Ferrarese and David Merritt, and Karl Gebhardt and colleagues, found that its mass follows the speeds of the stars in its galaxy’s bulge closely: the black hole weighs a few thousandths of the bulge, as if the two had grown together.
+
+Mergers may be what feeds them. When galaxies collide, their gas loses its spin in the shocks and falls to the middle, where it makes stars and can pour into the black hole; many quasars sit in disturbed, merging galaxies. A merger also brings two black holes together: they sink to the middle by dynamical friction, pair up and, in the end, merge themselves, ringing out gravitational waves in the millihertz band that LISA will listen to (Chapter 29).
+
+## The door to cosmology
+
+3C 273’s stretched light is a clue to something bigger. Slipher measured dozens of galaxies after Andromeda, and nearly all were reddened, moving away. Georges Lemaître (1927) and Edwin Hubble (1929) found that the farther a galaxy, the more its light is stretched, a <Term id="redshift">redshift</Term> that grows with distance. Andromeda and a few neighbours, bound to us by gravity in the Local Group, are the exceptions.
+
+Behind that door lie the expanding universe, its beginning in the Big Bang, the faint glow left from it, and the questions of what most of the universe is made of. They are a subject of their own, with their own evidence, and this course stops here. From a person’s height to quasars, every step has rested on the same few ideas: light carries the message, gravity sets the stage, and the stars are engines whose workings we can compute.
+
+<Timeline from={1900} to={2026} chapter={31} only={[31]} title="Colliding galaxies" />
+
+<DeepDive title="Why the drag grows as the mass squared">
+
+Follow a body of mass M moving at speed v through a crowd of much lighter stars, at rest on average. A star passing at a distance b is pulled towards the body’s path and crosses it behind the body, deflected through an angle of about 2GM/(bv²) (as in Chapter 30’s deep dive, the pull GM/b² acting for a time 2b/v, divided by v). The closer stars are deflected more, so behind the body, within a distance r of it, the crowd is denser than in front, a wake.
+
+How much denser? The stars that pass within b are focused into a column behind the body, and the extra density they make there is about ρ × (GM/(bv²)) × a few, in proportion to M. The wake’s extra mass within a distance r of the body is then about ρ × (GM/v²) × r², up to a slowly varying logarithm, and it pulls back on the body with a force about G × M × (wake mass) / r²:
+
+F ≈ G M × ρ G M r² / (v² r²) = G²M²ρ / v²,
+
+times the logarithm of how far the wake reaches over how close the strongest deflections come. Divide by M for the deceleration: G²Mρ ln Λ / v², Chandrasekhar’s result to within the factor 4π. Twice the mass makes twice the wake, pulling on twice the mass: the drag force grows as M², the deceleration as M. A faster body raises a weaker wake, because the stars have less time to fall towards it, so it slows less; a body much slower than the crowd raises a wake the crowd’s own motions smear out, which is what the bracket in the formula counts.
+
+</DeepDive>
+
+<CheckYourself>
+  <Question id="why-tails" prompt="Why do colliding galaxies grow long tails?">
+    <Choice label="Tides: the companion pulls harder on the disc’s near side than on its far side, stretching it, as the Moon stretches the sea" correct>
+      Right. The near side is drawn out into a bridge towards the companion and the far side left behind as a tail. The tails are longest when the
+      disc turns the same way as the companion goes round, so the tide pulls each star the same way for longer.
+    </Choice>
+    <Choice label="The galaxies’ stars collide and splash outwards">
+      Stars almost never collide, even when galaxies merge. Toomre and Toomre’s stars didn’t pull on each other at all, and still made tails.
+    </Choice>
+    <Choice label="Exploding stars blow gas and stars out of the galaxies">
+      Supernovae can blow gas out of a galaxy, but not its stars, and not into long curved tails a hundred kiloparsecs long. Gravity alone makes
+      them.
+    </Choice>
+  </Question>
+
+  <Question id="stars-crash" prompt="When two galaxies of a hundred billion stars merge, how many of their stars hit another star?">
+    <Choice label="Almost none: perhaps ten" correct>
+      Right. Stars are so small for the space between them that a star could cross a galaxy fifty billion times before hitting one. The gas
+      clouds, which are big, do collide, and burst into new stars.
+    </Choice>
+    <Choice label="About half of them">
+      Stars are about as far apart for their size as grains of sand 30 km apart. Even crossing a whole galaxy, a star has a chance of about one
+      in fifty billion of a hit.
+    </Choice>
+    <Choice label="Most of them, which is why merged galaxies are smooth ellipticals">
+      Mergers do make ellipticals, but by gravity: the stars are thrown onto new orbits of every kind, not smashed together.
+    </Choice>
+  </Question>
+
+  <Question id="mw-andromeda" prompt="Will the Milky Way merge with Andromeda?">
+    <Choice label="Perhaps: it depends on Andromeda’s sideways motion, which isn’t known well enough yet" correct>
+      Right. Andromeda is falling towards us at about 110 km/s, but whether it hits depends on a sideways speed of a few tens of km/s. With the
+      uncertainties included, one study gave even odds within ten billion years (2025), another 90% (2026).
+    </Choice>
+    <Choice label="Certainly, in about 4 billion years">
+      That was the textbook story from Hubble’s measurement in 2012. Gaia’s measurements and the pulls of M33 and the Large Magellanic Cloud have
+      made it uncertain.
+    </Choice>
+    <Choice label="No: Andromeda is moving away, like other galaxies">
+      Andromeda’s light is shifted to the blue: it is coming towards us, bound to the Milky Way by gravity. Only more distant galaxies all move
+      away.
+    </Choice>
+  </Question>
+
+  <Question id="quasar-power" prompt="What powers a quasar?">
+    <Choice label="Gas falling into a supermassive black hole" correct>
+      Right. A disc of gas spiralling into a black hole of hundreds of millions of suns turns up to 42% of its mass into light, far more than
+      fusion can, from a region light-months across.
+    </Choice>
+    <Choice label="Millions of supernovae going off together">
+      They couldn’t fit: a quasar’s light flickers within months, so it comes from a region only light-months across, and supernovae turn far
+      less of their mass into light.
+    </Choice>
+    <Choice label="Stars colliding as galaxies merge">
+      Stars almost never collide. Mergers may feed quasars, but by driving gas into the black hole in the middle.
+    </Choice>
+  </Question>
+
+  <MakeARing />
+</CheckYourself>

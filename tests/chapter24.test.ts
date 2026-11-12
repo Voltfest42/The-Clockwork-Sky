@@ -256,11 +256,10 @@ describe('cooling and crystallising (compact/cooling.ts)', () => {
 });
 
 describe('Chapter 24 in the course', () => {
-  it('is written, with its sections, as is Chapter 25; Chapter 31 is not yet', () => {
+  it('is written, with its sections, as is Chapter 25', () => {
     const ch = CHAPTERS.find((c) => c.number === 24)!;
     expect(ch.load).toBeDefined();
     expect(ch.sections).toEqual(['Packed electrons', 'Heavier is smaller', 'Chandrasekhar’s limit', 'Embers that crystallise']);
     expect(CHAPTERS.find((c) => c.number === 25)!.load).toBeDefined();
-    expect(CHAPTERS.find((c) => c.number === 31)!.load).toBeUndefined();
   });
 });

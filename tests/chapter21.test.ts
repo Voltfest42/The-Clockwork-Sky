@@ -353,6 +353,5 @@ describe('the registry', () => {
   it('Chapter 21 and Toolkit T10 are written', () => {
     expect(CHAPTERS.find((c) => c.number === 21)!.load).toBeDefined();
     expect(TOOLKIT.find((t) => t.slug === 'differential-equations')!.load).toBeDefined();
-    expect(CHAPTERS.find((c) => c.number === 31)!.load).toBeUndefined();
   });
 });

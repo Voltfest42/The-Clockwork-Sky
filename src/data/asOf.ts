@@ -145,6 +145,13 @@ export const AS_OF = {
     source: 'recent Gaia-based rotation curves and reviews (after Gaia DR4, due 2 December 2026)',
     everyMonths: 24,
   },
+  localGroup: {
+    checked: '2026-11',
+    what: 'the odds of a Milky Way–Andromeda merger (Sawala et al. 2025: about even; Wu et al. 2026: 90%) and the measurements behind them',
+    where: 'src/data/localGroup.ts (LOCAL_GROUP_ODDS, SAWALA_2025, WU_2026), used by Chapter 31’s “The Milky Way and Andromeda” and Figure 31.2',
+    source: 'new proper motions of Andromeda and M33 (Gaia DR4, due 2 December 2026; Hubble) and the papers that use them',
+    everyMonths: 24,
+  },
   deltaT: {
     checked: '2026-01',
     what: 'the measured values of ΔT',

@@ -470,6 +470,30 @@ export const GLOSSARY = {
     term: 'Density wave',
     definition: 'A pattern of crowding that moves through a disc of stars more slowly than the stars themselves, which pass through it like cars through a traffic jam. One explanation of spiral arms.',
   },
+  'dynamical-friction': {
+    term: 'Dynamical friction',
+    definition: 'The drag on a heavy body moving through a crowd of stars or dark matter: its gravity gathers a wake of the crowd behind it, which pulls it back. It makes galaxies that pass close sink together and merge.',
+  },
+  'ring-galaxy': {
+    term: 'Ring galaxy',
+    definition: 'A galaxy with a bright ring of stars round a mostly empty middle, made when a companion plunges through the centre of a disc and its stars swing in and back out together, like a ripple in a pond. The Cartwheel is the best known.',
+  },
+  'elliptical-galaxy': {
+    term: 'Elliptical galaxy',
+    definition: 'A smooth, round or oval galaxy of old stars on orbits of every tilt, with little gas and no disc. Many were made when spiral galaxies merged.',
+  },
+  'local-group': {
+    term: 'Local Group',
+    definition: 'The Milky Way, Andromeda, M33 and about a hundred smaller galaxies round them, held together by their gravity, a few million light-years across.',
+  },
+  quasar: {
+    term: 'Quasar',
+    definition: 'The brilliant core of a distant galaxy, outshining all its stars from a region light-months across: gas falling into a black hole of millions to billions of suns.',
+  },
+  redshift: {
+    term: 'Redshift',
+    definition: 'The stretching of light to longer, redder wavelengths. A galaxy moving away is redshifted by the Doppler effect; the farther galaxies are, the more their light is stretched.',
+  },
   convection: {
     term: 'Convection',
     definition: 'Heat carried by moving gas: hot gas rises, cools and sinks again, as warm air rises above a radiator. It carries the energy through the outer third of the Sun and through the whole of a red dwarf.',

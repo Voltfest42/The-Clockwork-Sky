@@ -278,11 +278,10 @@ describe('Figures 28.3 and 28.4', () => {
 });
 
 describe('Chapter 28 in the course', () => {
-  it('is written, with its sections and glossary terms; Chapter 31 is not yet', () => {
+  it('is written, with its sections and glossary terms', () => {
     const ch = CHAPTERS.find((c) => c.number === 28)!;
     expect(ch.load).toBeDefined();
     expect(ch.sections).toEqual(['The Roche potential', 'Mass transfer changes the orbit', 'The Algol paradox', 'Common envelopes', 'The binary zoo']);
-    expect(CHAPTERS.find((c) => c.number === 31)!.load).toBeUndefined();
     for (const id of ['roche-lobe', 'mass-transfer', 'common-envelope', 'cataclysmic-variable', 'x-ray-binary', 'blue-straggler']) expect(GLOSSARY).toHaveProperty(id);
   });
 

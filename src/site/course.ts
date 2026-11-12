@@ -482,6 +482,7 @@ export const CHAPTERS: readonly ChapterInfo[] = [
     sections: ['Bridges and tails', 'Stars don’t collide', 'The Milky Way and Andromeda', 'Engines in the middle', 'The door to cosmology'],
     buildsOn: [7, 27, 30],
     optional: true,
+    load: () => import('../content/chapter31.mdx'),
   }),
 ];
 
