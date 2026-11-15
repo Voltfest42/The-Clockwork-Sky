@@ -23,7 +23,7 @@ import { rocheLobe as rl } from '../../binaries/roche';
 import { comenv, type CommonEnvelopeSwitches } from './comenv';
 import { corerd, KTYPE as ktype } from './collisions';
 import { gntage } from './gntage';
-import { kick } from './kick';
+import { kick, type KickReport } from './kick';
 import { mix } from './mix';
 import { Ran3 } from './ran3';
 
@@ -105,6 +105,8 @@ export interface BseResult {
   warnings: string[];
   /** The systemic velocity's components after every kick, km/s. */
   kicks: [number, number, number][];
+  /** Not in the Fortran: every supernova's kick, with the time (Myr), including those inside a common envelope. */
+  supernovae: (KickReport & { t: number })[];
 }
 
 /** bcm's columns (1-based). Star 2's are star 1's + 14 (kw2 = 16, … r2/rl2 = 29). */
@@ -127,7 +129,9 @@ const MR23YR = 0.4311;
  * step (as the fixtures do), and a positive dtp also limits the steps so as to land on the output times.
  */
 export function evolveBinary(input: BinaryInput, options: Partial<BseOptions> = {}, dtp = 0): BseResult {
-  const o: BseOptions = { ...BSE_DEFAULTS, ...options };
+  const supernovae: (KickReport & { t: number })[] = [];
+  // tphys is declared below; the callback only runs once the evolution has started.
+  const o: BseOptions = { ...BSE_DEFAULTS, ...options, onKick: (k: KickReport) => supernovae.push({ ...k, t: tphys }) };
   const { neta, beta, xi, acc2, epsnov, eddfac, gamma, tflag } = o;
   const z = input.z;
   const c = zcnsts(z);
@@ -1700,7 +1704,7 @@ export function evolveBinary(input: BinaryInput, options: Partial<BseOptions> = 
           bpp.push(row);
         }
         if ((isave && tphys >= tsave) || iplot) saveBcm(...rlofRates());
-        return { bcm, bpp, warnings, kicks };
+        return { bcm, bpp, warnings, kicks, supernovae };
       }
     }
   }

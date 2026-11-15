@@ -162,6 +162,19 @@ describe('the zodiac, by the IAU boundaries', () => {
     expect(named(186.65, -63.1)).toBe('Crux'); // Acrux
   });
 
+  it('puts both halves of Serpens where they are: Caput by Unukalhai, Cauda by Alya’s neighbours', () => {
+    expect(named(236.07, 6.43)).toBe('Serpens Caput'); // Unukalhai, α Serpentis
+    expect(named(275.33, -2.9)).toBe('Serpens Cauda'); // η Serpentis
+    // The whole sky on a grid: every direction in exactly one constellation (Stage 28 found Caput missing)
+    let none = 0;
+    for (let dec = -88.5; dec < 90; dec += 3)
+      for (let ra = 1.5; ra < 360; ra += 3) {
+        const n = constellations.filter((c) => constellationAt([c], fromSpherical(ra * DEG, dec * DEG))).length;
+        if (n !== 1) none++;
+      }
+    expect(none).toBe(0);
+  });
+
   it('puts every direction in exactly one constellation', () => {
     const unit = fc.tuple(fc.double({ min: 0, max: 360, noNaN: true }), fc.double({ min: -1, max: 1, noNaN: true }));
     fc.assert(

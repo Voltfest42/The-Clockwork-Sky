@@ -93,6 +93,25 @@ test('the binary zoo: a map of fates, a cell’s story, and the keyboard', async
   expect(errors).toEqual([]);
 });
 
+test('Figures 28.3 and 28.4 open their pairs in the Star Forge', async ({ page }) => {
+  const errors = watchErrors(page);
+  await openChapter(page, 'the-algol-paradox');
+  await waitForHydration(page);
+  const algol = figureByNumber(page, '28.3');
+  await algol.getByRole('button', { name: 'Masses equal' }).click();
+  await expect(algol.getByRole('link', { name: 'Open this in the Star Forge →' })).toHaveAttribute('href', '/star-forge/?preset=algol&t=443.4');
+  const zoo = figureByNumber(page, '28.4');
+  await zoo.scrollIntoViewIfNeeded();
+  await expect(caption(zoo, /: white dwarf fed by a companion\./)).toBeVisible({ timeout: 20_000 });
+  const link = zoo.getByRole('link', { name: 'Open this in the Star Forge →' });
+  await expect(link).toHaveAttribute('href', /^\/star-forge\/\?mode=binary&m1=1\.58&m2=0\.79&p=54\.8&z=0\.02&seed=\d+$/);
+  await link.click();
+  await expect(page.locator('main').getByRole('heading', { level: 3, name: 'How it ends: white dwarf fed by a companion' })).toBeVisible({ timeout: 20_000 });
+  await page.goto('/star-forge/?preset=algol&t=443.4');
+  await expect(page.locator('main p[aria-live="polite"]').filter({ hasText: /^443 million years after birth\./ })).toBeVisible({ timeout: 20_000 });
+  expect(errors).toEqual([]);
+});
+
 test('the interactive question: a stream that misses its companion', async ({ page }) => {
   await openChapter(page);
   await waitForHydration(page);

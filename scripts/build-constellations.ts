@@ -107,7 +107,9 @@ const names = info.features.map((f) => {
 const boundaries: Record<string, [number, number][][]> = {};
 for (const feature of bounds.features) {
   const rings = (feature.geometry.type === 'Polygon' ? [feature.geometry.coordinates] : feature.geometry.coordinates) as Position[][][];
-  boundaries[feature.id] = rings.flatMap((polygon) => polygon.map((ring) => ring.map(([lon, lat]) => [round(ra360(lon), 3), round(lat, 3)] as [number, number])));
+  // Serpens comes as two features with one id, Caput and Cauda: keep both
+  const own = rings.flatMap((polygon) => polygon.map((ring) => ring.map(([lon, lat]) => [round(ra360(lon), 3), round(lat, 3)] as [number, number])));
+  boundaries[feature.id] = [...(boundaries[feature.id] ?? []), ...own];
 }
 
 // ---------- the Milky Way ----------

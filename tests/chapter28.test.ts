@@ -17,7 +17,7 @@ import {
 import { mergerTime } from '../src/core/gr/peters';
 import { contourLines, sampleGrid } from '../src/core/math/contour';
 import { evolveBinary } from '../src/core/stellar/bse/evolve';
-import { classify, stepOf, UNIVERSE_AGE } from '../src/core/stellar/bse/outcome';
+import { classify, compactPair, eventOf, stepOf, UNIVERSE_AGE } from '../src/core/stellar/bse/outcome';
 import { Ran3 } from '../src/core/stellar/bse/ran3';
 import { binaryRun, FIGURE_SWITCHES, zooRow } from '../src/core/stellar/bse/runs';
 import { KTYPE } from '../src/core/stellar/bse/collisions';
@@ -270,7 +270,12 @@ describe('Figures 28.3 and 28.4', () => {
         if (c.outcome === 'bbh') expect([a, b]).toEqual([14, 14]);
         if (c.outcome === 'nsbh') expect([a, b].sort()).toEqual([13, 14]);
         if (c.outcome === 'detached') expect(r.bpp.some((row) => [3, 5, 7].includes(row[10]))).toBe(false);
-        if (c.mergeTime !== undefined) expect(c.merges).toBe(r.bpp.at(-1)![1] + c.mergeTime < UNIVERSE_AGE);
+        if (c.mergeTime !== undefined) {
+          // On Peters' clock from when the pair formed, or merged by BSE itself within the run
+          const pair = compactPair(r.bpp.map(eventOf))!;
+          expect(c.formed).toBe(pair.formed.t);
+          expect(c.merges).toBe(!!pair.coalesced || pair.formed.t + c.mergeTime < UNIVERSE_AGE);
+        }
       }),
       { numRuns: 30 },
     );

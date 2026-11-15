@@ -15,19 +15,24 @@ import { ScatterChart, type ScatterLine } from '../../viz/ScatterChart';
 import { useLifeOf } from '../../viz/useStellar';
 import figureStyles from '../../figures/figures.module.css';
 import skyStyles from '../../figures/sky/sky.module.css';
+import { clampPair, type ForgePair } from './binary';
+import { BinaryMode } from './BinaryMode';
+import { findPairPreset, PAIR_PRESETS } from './binaryPresets';
 import { ClusterMode } from './ClusterMode';
 import { formatSuns, formatWind, formatZ, msun, starLabel, STAR_STYLES } from './format';
 import { fromQuery, presetState, toQuery, type ForgeState } from './link';
 import { findPreset, PRESETS } from './presets';
 import { describeNow, forgeRange, withArticle, ZONE_STYLE } from './model';
+import { NumberField } from './NumberField';
 import { CalibrationMap, DrawnTrue, FateCard, ForgeHR, Inside, LifeTable, type Shown } from './views';
 import styles from './StarForge.module.css';
 
 /**
  * The Star Forge: set a star's mass, metals and winds, and follow its whole
  * life, worked out at once by the SSE engine (in the stellar worker) and
- * scrubbed through with a time slider. Up to four stars side by side, or an
- * isochrone over a real cluster. The state can be shared as a link.
+ * scrubbed through with a time slider. Up to four stars side by side, an
+ * isochrone over a real cluster, or a pair of stars run by BSE. The state can
+ * be shared as a link.
  */
 
 type Quantity = 'L' | 'R' | 'T' | 'M';
@@ -94,7 +99,10 @@ export function StarForgeLab() {
   const [quantity, setQuantity] = useState<Quantity>('L');
   const [density, setDensity] = useState<DensityGrid | undefined>();
   const [copied, setCopied] = useState<string | null>(null);
+  /** Counts loads, so that binaries mode starts afresh (its time scale and chart) for each preset. */
+  const [loads, setLoads] = useState(0);
   const lastStars = useRef<ForgeStar[]>(state.mode === 'stars' ? state.stars : [{ mass: 1, z: 0.02, wind: 1 }]);
+  const lastPair = useRef<{ pair: ForgePair; preset: string | null } | null>(state.mode === 'binary' ? { pair: state.pair, preset: state.preset } : null);
 
   useEffect(() => {
     let live = true;
@@ -115,10 +123,13 @@ export function StarForgeLab() {
   const n = stars.length;
   const range = useMemo(() => forgeRange([s0.life, s1.life, s2.life, s3.life].slice(0, n).filter((l): l is ForgeLife => l !== null)), [s0.life, s1.life, s2.life, s3.life, n]);
   const compare = stars.length > 1;
-  const preset = state.preset ? findPreset(state.preset) : undefined;
+  const preset = state.preset && state.mode !== 'binary' ? findPreset(state.preset) : undefined;
+  const pairPreset = state.mode === 'binary' && state.preset ? findPairPreset(state.preset) : undefined;
+  const shownPreset = preset ?? pairPreset;
 
   const load = (next: ForgeState, newNotes: string[] = []) => {
     if (next.mode === 'stars') lastStars.current = next.stars;
+    if (next.mode === 'binary') lastPair.current = { pair: next.pair, preset: next.preset };
     setState(next);
     setNotes(newNotes);
     setActive(0);
@@ -127,6 +138,7 @@ export function StarForgeLab() {
     setScale('linear');
     setAgeLog(null);
     setCopied(null);
+    setLoads((n) => n + 1);
   };
 
   const editStar = (patch: Partial<ForgeStar>, typed = false) => {
@@ -135,6 +147,15 @@ export function StarForgeLab() {
     const next = stars.map((s, i) => (i === sel ? c.star : s));
     lastStars.current = next;
     setState({ mode: 'stars', stars: next, preset: null });
+    if (typed || notes.length) setNotes(c.notes);
+    setCopied(null);
+  };
+
+  const editPair = (patch: Partial<ForgePair>, typed = false) => {
+    if (state.mode !== 'binary') return;
+    const c = clampPair({ ...state.pair, ...patch });
+    lastPair.current = { pair: c.pair, preset: null };
+    setState({ mode: 'binary', pair: c.pair, preset: null, t: state.t });
     if (typed || notes.length) setNotes(c.notes);
     setCopied(null);
   };
@@ -187,15 +208,33 @@ export function StarForgeLab() {
           id="forge-preset"
           value={state.preset ?? 'custom'}
           onChange={(e) => {
-            if (findPreset(e.target.value)) load(presetState(e.target.value));
+            if (findPreset(e.target.value) || findPairPreset(e.target.value)) load(presetState(e.target.value));
           }}
         >
-          {!state.preset && <option value="custom">{state.mode === 'cluster' ? 'Your own cluster settings' : compare ? 'Your own stars' : 'Your own star'}</option>}
-          {PRESETS.map((p) => (
-            <option key={p.id} value={p.id}>
-              {p.name}
-            </option>
-          ))}
+          {!state.preset && (
+            <option value="custom">{state.mode === 'cluster' ? 'Your own cluster settings' : state.mode === 'binary' ? 'Your own pair' : compare ? 'Your own stars' : 'Your own star'}</option>
+          )}
+          <optgroup label="Stars">
+            {PRESETS.filter((p) => p.stars).map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Clusters">
+            {PRESETS.filter((p) => p.cluster).map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Pairs of stars">
+            {PAIR_PRESETS.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.name}
+              </option>
+            ))}
+          </optgroup>
         </select>
         <button type="button" className={figureStyles.toolButton} onClick={() => load(state.preset ? presetState(state.preset) : start.state, state.preset ? [] : start.notes)}>
           Start again
@@ -207,19 +246,26 @@ export function StarForgeLab() {
           <button type="button" aria-pressed={state.mode === 'cluster'} onClick={() => state.mode !== 'cluster' && load({ mode: 'cluster', cluster: 'pleiades', age: 120, z: null, preset: 'pleiades' })}>
             A cluster
           </button>
+          <button
+            type="button"
+            aria-pressed={state.mode === 'binary'}
+            onClick={() => state.mode !== 'binary' && load(lastPair.current ? { mode: 'binary', ...lastPair.current, t: null } : presetState(PAIR_PRESETS[0].id))}
+          >
+            A pair
+          </button>
         </span>
       </div>
-      {preset ? (
+      {shownPreset ? (
         <>
-          <p className={styles.blurb}>{preset.blurb}</p>
+          <p className={styles.blurb}>{shownPreset.blurb}</p>
           <p className={styles.tryThis}>
-            <b>Try this:</b> {preset.tryThis}
+            <b>Try this:</b> {shownPreset.tryThis}
           </p>
         </>
       ) : (
         <p className={styles.blurb}>
-          {state.mode === 'cluster' ? 'A cluster with an age and make-up of your choosing.' : compare ? 'Your own stars, side by side.' : 'Your own star.'} Choose a preset to start again from one of
-          the ready-made stars.
+          {state.mode === 'cluster' ? 'A cluster with an age and make-up of your choosing.' : state.mode === 'binary' ? 'Your own pair of stars.' : compare ? 'Your own stars, side by side.' : 'Your own star.'} Choose a
+          preset to start again from one of the ready-made {state.mode === 'binary' ? 'pairs' : 'stars'}.
         </p>
       )}
       {notes.length > 0 && (
@@ -230,7 +276,20 @@ export function StarForgeLab() {
         </ul>
       )}
 
-      {state.mode === 'cluster' ? (
+      {state.mode === 'binary' ? (
+        <BinaryMode
+          key={loads}
+          pair={state.pair}
+          t={state.t}
+          presetT={pairPreset ? pairPreset.t : null}
+          density={density}
+          onPair={editPair}
+          onTime={(t) => {
+            setState({ ...state, t });
+            setCopied(null);
+          }}
+        />
+      ) : state.mode === 'cluster' ? (
         <ClusterMode
           cluster={state.cluster}
           age={state.age}
@@ -464,7 +523,7 @@ export function StarForgeLab() {
 
       <div className={styles.buttons}>
         <button type="button" className={figureStyles.toolButton} onClick={copyLink}>
-          {state.mode === 'cluster' ? 'Copy a link to this cluster' : compare ? 'Copy a link to these stars' : 'Copy a link to this star'}
+          {state.mode === 'cluster' ? 'Copy a link to this cluster' : state.mode === 'binary' ? 'Copy a link to this pair, at this moment' : compare ? 'Copy a link to these stars' : 'Copy a link to this star'}
         </button>
         {copied && (
           <span className={styles.note} style={{ margin: 0, wordBreak: 'break-all' }} role="status">
@@ -479,6 +538,19 @@ export function StarForgeLab() {
           <p>
             Every star is single, doesn’t spin and has no magnetic field. Its life comes from SSE’s fitted formulas (Hurley, Pols and Tout, 2000), not
             from solving the equations of its structure.
+          </p>
+        </details>
+      )}
+      {state.mode === 'binary' && (
+        <details className={styles.box} style={{ marginTop: 12 }}>
+          <summary>What’s simplified here?</summary>
+          {pairPreset && <p>{pairPreset.simplified}</p>}
+          <p>
+            BSE (Hurley, Tout and Pols, 2002) follows each star with SSE’s fitted formulas and the pair with recipes for winds and their capture,
+            tides, magnetic braking, gravitational waves (inside 10 solar radii), Roche-lobe overflow and its stability, common envelopes, mergers,
+            novae and supernova kicks. It doesn’t solve either star’s structure, and its stars don’t feel each other’s heat. The stars are drawn as
+            spheres of their own radius, except while one fills its lobe, when it is drawn filling it; for an eccentric orbit BSE measures the
+            lobes at the average separation. A pair is born on the zero-age main sequence, both stars at once.
           </p>
         </details>
       )}
@@ -614,35 +686,5 @@ function LifeChart({
       height={320}
       ariaLabel={`The star’s ${q.name.toLowerCase()} through its life, against ${before ? 'time left' : 'age'}.`}
     />
-  );
-}
-
-/** A number typed in, applied on Enter or when the field loses focus; the Forge clamps it and says so. */
-function NumberField({ label, value, onCommit }: { label: string; value: number; onCommit: (v: number) => void }) {
-  const [text, setText] = useState(String(value));
-  const [seen, setSeen] = useState(value);
-  if (seen !== value) {
-    setSeen(value);
-    setText(String(value));
-  }
-  const commit = () => {
-    const v = Number(text.replace('−', '-').replace(',', '.'));
-    if (text.trim() === '' || v === value) return;
-    onCommit(v);
-  };
-  return (
-    <label className={styles.field}>
-      {label}
-      <input
-        value={text}
-        inputMode="decimal"
-        size={7}
-        onChange={(e) => setText(e.target.value)}
-        onBlur={commit}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') commit();
-        }}
-      />
-    </label>
   );
 }

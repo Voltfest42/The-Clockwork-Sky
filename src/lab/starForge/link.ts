@@ -1,12 +1,16 @@
 import { clampStar, parseStars, starToken, type ForgeStar } from '../../core/stellar/forge';
+import { momentFrom, pairFromQuery, pairQuery, type ForgePair } from './binary';
+import { findPairPreset, PAIR_PRESETS } from './binaryPresets';
 import { findPreset, PRESETS } from './presets';
 
 /**
  * The Star Forge's state in its address, so a link opens the same stars:
  * ?preset=sun, ?mass=18&z=0.02&wind=1, ?stars=20,0.02,1;20,0.001,1, or
- * ?cluster=pleiades&age=120 (with &z= to override the cluster's own).
+ * ?cluster=pleiades&age=120 (with &z= to override the cluster's own), or a
+ * pair: ?mode=binary&m1=2.8&m2=1&p=1.8&z=0.02 (&t= for a moment, in Myr).
  * Chapters 17 and 18 link in with ?mass=, ?preset=sun, ?cluster=&age= and
- * ?mass=&z=. Values outside the limits are clamped, with a note.
+ * ?mass=&z=; Chapter 28 with ?preset=algol&t= and a zoo cell's pair. Values
+ * outside the limits are clamped, with a note.
  */
 
 export const CLUSTER_IDS = ['pleiades', 'hyades', 'praesepe', 'm67', 'ngc188', '47tuc'] as const;
@@ -14,9 +18,13 @@ export const AGE_LIMITS = [1, 15000] as const;
 
 export type ForgeState =
   | { mode: 'stars'; stars: ForgeStar[]; preset: string | null }
-  | { mode: 'cluster'; cluster: string; age: number; z: number | null; preset: string | null };
+  | { mode: 'cluster'; cluster: string; age: number; z: number | null; preset: string | null }
+  /** A pair, and the moment shown (Myr; null for the preset's own, or the start). */
+  | { mode: 'binary'; pair: ForgePair; preset: string | null; t: number | null };
 
 export function presetState(id: string): ForgeState {
+  const pp = findPairPreset(id);
+  if (pp) return { mode: 'binary', pair: { ...pp.pair }, preset: pp.id, t: null };
   const p = findPreset(id) ?? PRESETS[0];
   if (p.cluster) return { mode: 'cluster', cluster: p.cluster.id, age: p.cluster.age, z: null, preset: p.id };
   return { mode: 'stars', stars: [...p.stars!], preset: p.id };
@@ -27,6 +35,14 @@ export function fromQuery(search: string): { state: ForgeState; notes: string[] 
   const q = new URLSearchParams(search);
   const notes: string[] = [];
   const num = (key: string) => (q.has(key) ? Number(q.get(key)) : undefined);
+
+  const pairPreset = findPairPreset(q.get('preset') ?? '');
+  if (pairPreset) return { state: { ...(presetState(pairPreset.id) as Extract<ForgeState, { mode: 'binary' }>), t: momentFrom(q) }, notes };
+  if (q.get('mode') === 'binary') {
+    if (!q.has('m1') && !q.has('m2')) return { state: { ...(presetState(PAIR_PRESETS[0].id) as Extract<ForgeState, { mode: 'binary' }>), t: momentFrom(q) }, notes };
+    const read = pairFromQuery(q);
+    return { state: { mode: 'binary', pair: read.pair, preset: null, t: read.t }, notes: read.notes };
+  }
 
   const cluster = q.get('cluster');
   if (cluster !== null) {
@@ -69,6 +85,10 @@ export function fromQuery(search: string): { state: ForgeState; notes: string[] 
 
 /** The query that opens a state again: the preset's own when it is one, otherwise the values. */
 export function toQuery(state: ForgeState): string {
+  if (state.mode === 'binary') {
+    if (state.preset) return `?preset=${state.preset}${state.t === null ? '' : `&t=${Number(state.t.toPrecision(4))}`}`;
+    return `?${pairQuery(state.pair, state.t)}`;
+  }
   if (state.preset) return `?preset=${state.preset}`;
   if (state.mode === 'cluster') return `?cluster=${state.cluster}&age=${state.age}${state.z === null ? '' : `&z=${state.z}`}`;
   if (state.stars.length === 1) {

@@ -614,7 +614,7 @@ export const LABS: readonly LabInfo[] = [
     slug: 'star-forge',
     title: 'The Star Forge',
     subject: 'Stellar evolution',
-    blurb: 'Set a star’s mass and make-up, and follow its whole life, from the main sequence to what it leaves behind.',
+    blurb: 'Set a star’s mass and make-up, or a pair’s, and follow its whole life, from the main sequence to what it leaves behind.',
     versions: [
       {
         version: 1,

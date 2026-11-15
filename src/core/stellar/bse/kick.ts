@@ -22,6 +22,20 @@ export interface KickSwitches {
   sigma: number;
   /** 0: black holes get no kick. */
   bhflag: number;
+  /** Not in the Fortran: told of every kick, so a run can report it (the Star Forge's outcome card). */
+  onKick?: (k: KickReport) => void;
+}
+
+/** What a kick did: the remnant's type and new mass (M☉), the kick's speed and the centre of mass's new velocity (km/s), and the orbit after. */
+export interface KickReport {
+  kw: number;
+  mass: number;
+  kick: number;
+  vs: [number, number, number];
+  ecc: number;
+  sep: number;
+  /** False when there was no companion (a single star's supernova). */
+  paired: boolean;
 }
 
 /**
@@ -128,5 +142,6 @@ export function kick(kw: number, m1: number, m1n: number, m2: number, orbit: Kic
   orbit.ecc = ecc;
   orbit.sep = sep;
   orbit.jorb = jorb;
+  sw.onKick?.({ kw, mass: m1n, kick: vk, vs: [vs[0], vs[1], vs[2]], ecc, sep, paired: m2 > 0 });
   return vs;
 }

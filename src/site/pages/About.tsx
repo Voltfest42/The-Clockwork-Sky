@@ -169,7 +169,16 @@ export function About() {
           fits; the pair-instability range must fall at 140–270 solar masses by Heger and Woosley’s helium cores, out of reach of SSE’s own;
           every life must keep its phases in order and its remnant lighter than the star; a link must open the same stars again; and every
           ready-made star must do what its description says: Betelgeuse a neutron star of 2 solar masses, the 20-solar-mass pair a neutron star
-          and a black hole, the star of 100 solar masses stripped to helium.
+          and a black hole, the star of 100 solar masses stripped to helium. Its pairs must stay inside their limits and come back from a link;
+          Kepler’s law as BSE writes it must turn a period into a separation and back; the winds and tides switches must reach the engine (no
+          winds keep a lone giant’s mass, no tides leave an eccentric orbit eccentric); every supernova’s kick must be reported for the right
+          star; every cell of three rows of Figure 28.4 must open in the Forge as the same pair, with the same kick, and end the same; and every
+          ready-made pair must do what its description says: Algol at 911 million years; a cataclysmic variable whose period bottoms out near
+          70 minutes; a white dwarf destroyed by a helium star’s gas at 161 million years; white dwarfs of 0.98 and 0.63 solar masses merging
+          after four billion years; a blue straggler of 1.62 solar masses, heavier than the turn-off of its age; a stripped star of 2.7 solar
+          masses exploding beside a 17-solar-mass companion; a neutron star gaining 0.7 solar masses beside a helium white dwarf 51 days
+          round; a black hole of 16 solar masses beside an O star nearly filling its lobe; neutron stars of 1.46 and 1.33 solar masses 7.8
+          hours apart, merging 1.8 billion years on; and black holes of 31 and 30 solar masses merging 610 million years after they formed.
           End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
@@ -911,6 +920,14 @@ export function About() {
             convection zone), not the convective cores of heavy main-sequence stars; neutron stars and black holes are off the HR diagram.
           </li>
           <li>Clusters: as Figure 17.3.</li>
+          <li>
+            Pairs: BSE’s recipes as in Figures 28.3 and 28.4, with α = 1 to start (BSE’s own 3 a click away), the kicks’ spread, the winds and
+            tides as switches, and one seeded draw of kicks per pair. BSE follows gravitational waves only inside 10 solar radii; wider compact
+            pairs are timed by Peters’ formula from when they formed. It doesn’t track the kicks’ directions relative to each other, so after two
+            kicks the pair’s speed is given as a range. Each ready-made pair was found by a search of BSE runs for the kind of system named; the
+            ones like Cygnus X-1 and GW150914 need winds a quarter of BSE’s to make black holes that heavy, and BSE ends the Hulse–Taylor
+            pulsar’s ancestors in a circular orbit, as its second supernova goes off inside a shared envelope.
+          </li>
         </ul>
 
         <h2>The people behind the course</h2>
@@ -1100,7 +1117,8 @@ export function About() {
             Belczynski, V. Kalogera and T. Bulik (2002), The Astrophysical Journal 572, 407: neutron-star and black-hole masses. G. Laughlin, P.
             Bodenheimer and F. C. Adams (1997), The Astrophysical Journal 482, 420: the end of the smallest red dwarfs. J. Liebert and colleagues
             (2005), The Astrophysical Journal 630, L69: the mass Sirius B was born with. M. Asplund, A. M. Amarsi and N. Grevesse (2021),
-            Astronomy and Astrophysics 653, A141: the Sun’s metallicity today.
+            Astronomy and Astrophysics 653, A141: the Sun’s metallicity today. Its pairs: BSE as above, from Hurley’s code as distributed with
+            AMUSE (src/amuse_bse/src); G. E. Brown (1995), The Astrophysical Journal 440, 270: neutron stars from twins sharing an envelope.
           </li>
           <li>
             H. S. Leavitt and E. C. Pickering (1912), Harvard College Observatory Circular 173: periods of 25 variable stars in the Small

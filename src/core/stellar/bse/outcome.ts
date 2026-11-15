@@ -111,11 +111,28 @@ export interface Classified {
   outcome: Outcome;
   /** For a pair of compact stars: whether gravitational waves bring them together within the universe’s age. */
   merges?: boolean;
-  /** Peters’ merger time, Myr, for a compact pair. */
+  /** For a compact pair: Peters’ merger time from when the pair formed, or the time BSE took to merge them, Myr. */
   mergeTime?: number;
+  /** When the compact pair formed, Myr. */
+  formed?: number;
   /** The final types and masses. */
   kw: [number, number];
   m: [number, number];
+}
+
+/**
+ * A pair of neutron stars or black holes: the event at which both had formed, bound, and BSE's coalescence of them, if
+ * gravitational waves (which BSE follows inside 10 R☉) brought them together within the run. Null if the pair never
+ * became one, or a supernova broke it.
+ */
+export function compactPair(events: readonly BinaryEvent[]): { formed: BinaryEvent; coalesced?: BinaryEvent } | null {
+  const i = events.findIndex((e) => isCompact(e.kw[0]) && isCompact(e.kw[1]) && e.sep > 0 && e.ecc >= 0 && e.ecc < 1);
+  if (i < 0) return null;
+  const formed = events[i];
+  const coalesced = events.slice(i + 1).find((e) => e.label === 6);
+  const last = events[events.length - 1];
+  const bound = isCompact(last.kw[0]) && isCompact(last.kw[1]) && last.sep > 0 && last.ecc >= 0 && last.ecc < 1;
+  return bound || coalesced ? { formed, coalesced } : null;
 }
 
 const isWd = (k: number) => k >= 10 && k <= 12;
@@ -124,7 +141,8 @@ const isStar = (k: number) => k <= 9;
 
 /**
  * Sorts a BSE run into the binary zoo, by what it became or did, in this order: a white dwarf destroyed (a Type Ia
- * candidate); a pair of neutron stars or black holes still bound at the end; a pair come apart; an X-ray binary
+ * candidate; not one swallowed by its companion); a pair of neutron stars or black holes still bound at the end, or
+ * merged by gravitational waves (their types and masses are then those the pair formed with); a pair come apart; an X-ray binary
  * (a neutron star or black hole fed by an overflowing star) or a cataclysmic variable (a white dwarf fed so); a pair
  * of white dwarfs; two stars merged into one; any other pair that traded mass or shared an envelope; or none of
  * these: two stars that never touched.
@@ -135,16 +153,22 @@ export function classify(result: BseResult): Classified {
   const kw = last.kw;
   const m = last.m;
   const base = { kw, m };
-  // A white dwarf that ends as nothing exploded (or was destroyed by igniting helium)
+  // A white dwarf that ends as nothing exploded (or was destroyed by igniting helium), unless its companion swallowed
+  // it: in a common envelope or a coalescence that leaves the other star standing, the white dwarf's mass joins it.
   for (let i = 1; i < events.length; i++) {
+    const e = events[i];
     for (const s of [0, 1]) {
-      if (isWd(events[i - 1].kw[s]) && events[i - 1].kw[s] !== 12 && events[i].kw[s] === 15) return { ...base, outcome: 'typeIa' };
+      if (!isWd(events[i - 1].kw[s]) || events[i - 1].kw[s] === 12 || e.kw[s] !== 15) continue;
+      const swallowed = (e.label === 6 || e.label === 7) && e.kw[1 - s] !== 15;
+      if (!swallowed) return { ...base, outcome: 'typeIa' };
     }
   }
-  if (isCompact(kw[0]) && isCompact(kw[1]) && last.sep > 0 && last.ecc >= 0 && last.ecc < 1) {
-    const outcome = kw[0] === 13 && kw[1] === 13 ? 'dns' : kw[0] === 14 && kw[1] === 14 ? 'bbh' : 'nsbh';
-    const t = mergerTime(m[0] * M_SUN, m[1] * M_SUN, last.sep * R_SUN, last.ecc) / (1e6 * 365.25 * 86400);
-    return { ...base, outcome, merges: last.t + t < UNIVERSE_AGE, mergeTime: t };
+  const pair = compactPair(events);
+  if (pair) {
+    const { formed, coalesced } = pair;
+    const outcome = formed.kw[0] === 13 && formed.kw[1] === 13 ? 'dns' : formed.kw[0] === 14 && formed.kw[1] === 14 ? 'bbh' : 'nsbh';
+    const t = coalesced ? coalesced.t - formed.t : mergerTime(formed.m[0] * M_SUN, formed.m[1] * M_SUN, formed.sep * R_SUN, formed.ecc) / (1e6 * 365.25 * 86400);
+    return { kw: formed.kw, m: formed.m, outcome, merges: !!coalesced || formed.t + t < UNIVERSE_AGE, mergeTime: t, formed: formed.t };
   }
   if (events.some((e) => e.label === 11)) return { ...base, outcome: 'disrupted' };
   const overflow = events.filter((e) => e.label === 3);

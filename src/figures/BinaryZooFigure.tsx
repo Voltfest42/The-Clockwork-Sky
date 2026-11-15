@@ -1,10 +1,10 @@
 import { useState, type KeyboardEvent, type ReactNode } from 'react';
 import { EVENT_LABELS } from '../core/stellar/bse/evolve';
 import { EVENT_WORDS, TYPE_NAMES } from '../core/stellar/bse/outcome';
-import { zooSeed, type ZooCell } from '../core/stellar/bse/runs';
+import { zooCompanion, zooSeed, type ZooCell } from '../core/stellar/bse/runs';
 import { Caption, Figure } from '../viz/Figure';
 import { useBinary, useZooRow } from '../viz/useStellar';
-import { ZOO_KINDS, ZOO_MASSES, ZOO_METALLICITIES, ZOO_PERIODS, ZOO_RATIOS, ZOO_START, zooKind } from './binaries28';
+import { ZOO_KINDS, ZOO_MASSES, ZOO_METALLICITIES, ZOO_PERIODS, ZOO_RATIOS, ZOO_START, zooForgeQuery, zooKind } from './binaries28';
 import { Slider } from './Slider';
 import figureStyles from './figures.module.css';
 import styles from './sky/sky.module.css';
@@ -72,7 +72,10 @@ export function BinaryZooFigure({ number, tryThis }: { number: string; tryThis: 
   };
   const m1 = ZOO_MASSES[sel.i];
   const period = ZOO_PERIODS[sel.j];
-  const run = useBinary({ m1, m2: q * m1, period, ecc: 0, z, alpha, sigma, seed: zooSeed(m1, period) });
+  const m2 = zooCompanion(m1, q);
+  const seed = zooSeed(m1, period);
+  const run = useBinary({ m1, m2, period, ecc: 0, z, alpha, sigma, seed });
+  const forge = zooForgeQuery(m1, q, period, z, alpha);
 
   const onKeyDown = (e: KeyboardEvent<SVGSVGElement>) => {
     const moves: Record<string, [number, number]> = { ArrowUp: [1, 0], ArrowDown: [-1, 0], ArrowLeft: [0, -1], ArrowRight: [0, 1] };
@@ -92,7 +95,7 @@ export function BinaryZooFigure({ number, tryThis }: { number: string; tryThis: 
 
   const outcome = run?.outcome;
   const kind = outcome ? zooKind(outcome.outcome) : null;
-  const pairWords = `${fmtMass(m1)} + ${fmtMass(q * m1)} M☉ in a ${fmtPeriod(period)}-day orbit`;
+  const pairWords = `${fmtMass(m1)} + ${fmtMass(m2)} M☉ in a ${fmtPeriod(period)}-day orbit`;
   const story = run ? run.events.filter((e) => e.label !== 1 && e.label !== 10 && e.label !== 12 && e.label !== 13) : [];
   const end = outcome ? `${TYPE_NAMES[outcome.kw[0]]}${outcome.kw[1] !== 15 && outcome.kw[0] !== 15 ? ` and ${TYPE_NAMES[outcome.kw[1]]}` : outcome.kw[0] === 15 ? '' : ''}` : '';
   const finalWords = outcome
@@ -115,6 +118,7 @@ export function BinaryZooFigure({ number, tryThis }: { number: string; tryThis: 
       height={1100}
       tryThis={tryThis}
       onReset={reset}
+      starForge={forge}
       legend={ZOO_KINDS.map((k) => ({
         label: `${k.letter ? `${k.letter}: ` : 'blank: '}${k.name}`,
         symbol: <rect x="-7" y="-6" width="14" height="12" fill={k.colour} />,

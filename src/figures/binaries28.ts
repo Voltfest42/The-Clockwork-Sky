@@ -6,6 +6,7 @@
 import { sampleGrid, type Grid } from '../core/math/contour';
 import { fillPotential, l1Stream, lagrangePoints, muOf, rochePotential, rocheLobe, surfaceRadius, type Stream } from '../core/binaries/roche';
 import type { Outcome } from '../core/stellar/bse/outcome';
+import { zooCompanion, zooSeed } from '../core/stellar/bse/runs';
 
 /** Figure 28.1's starting state: the donor twice the accretor’s mass, three-quarters of the way to filling its lobe. */
 export const ROCHE_START = { q: 2, fill: 0.75, r2: 0.08 } as const;
@@ -114,3 +115,12 @@ export const ZOO_KINDS: readonly { id: Outcome; letter: string; name: string; co
 ];
 
 export const zooKind = (id: Outcome) => ZOO_KINDS.find((k) => k.id === id)!;
+
+/**
+ * A zoo cell's pair as a Star Forge address's query, so that it opens there unchanged: the companion to four figures,
+ * as both keep it, and the cell's own seed (Ran2 starts the same from a seed and from its negative).
+ */
+export function zooForgeQuery(m1: number, q: number, period: number, z: number, alpha: number): string {
+  const seed = Math.abs(zooSeed(m1, period)) || 1;
+  return `mode=binary&m1=${m1}&m2=${zooCompanion(m1, q)}&p=${period}&z=${z}${alpha === 1 ? '' : `&alpha=${alpha}`}&seed=${seed}`;
+}

@@ -110,6 +110,7 @@ export function AlgolFigure({ number, tryThis }: { number: string; tryThis: Reac
       height={1250}
       tryThis={tryThis}
       onReset={reset}
+      starForge={`preset=algol&t=${t}`}
       legend={[
         { label: 'star 1, born the heavier', symbol: <circle r="6" fill="#f97316" /> },
         { label: 'star 2, born the lighter', symbol: <circle r="6" fill="#60a5fa" /> },

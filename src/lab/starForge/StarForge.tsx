@@ -4,6 +4,7 @@ import { useHydrated } from '../../site/hydration';
 import { href } from '../../site/router';
 import contentStyles from '../../site/content/content.module.css';
 import pageStyles from '../../site/pages/pages.module.css';
+import { PAIR_PRESETS } from './binaryPresets';
 import { PRESETS } from './presets';
 import { StarForgeLab } from './StarForgeLab';
 import styles from './StarForge.module.css';
@@ -26,7 +27,7 @@ export default function StarForgePage() {
       <header className={pageStyles.chapterHeader}>
         <p className={pageStyles.kicker}>Lab · Stellar evolution</p>
         <h1>The Star Forge</h1>
-        <p className={pageStyles.lede}>Set a star’s mass and make-up, and follow its whole life, from the main sequence to what it leaves behind.</p>
+        <p className={pageStyles.lede}>Set a star’s mass and make-up, or a pair’s, and follow its whole life, from the main sequence to what it leaves behind.</p>
       </header>
       <div className={contentStyles.prose}>
         <p>
@@ -34,6 +35,10 @@ export default function StarForgePage() {
           strong its winds are, and the Forge works out its whole life at once: how long it stays on the main sequence, how large and bright it
           swells, how much of itself it blows away, and whether it ends as a white dwarf, a neutron star, a black hole, or nothing at all. Then
           slide through time and watch. It puts {chapter(16)}, {chapter(17)} and {chapter(18)} in your hands.
+        </p>
+        <p>
+          Or forge <em>a pair</em>: two stars and their orbit, with mass flowing between them, shared envelopes, mergers and supernova kicks,
+          as in {chapter(28)}. The uncertain physics is yours to set too, and the Forge shows how much the ending depends on it.
         </p>
       </div>
 
@@ -46,7 +51,9 @@ export default function StarForgePage() {
             clusters: {PRESETS.map((p) => p.name).join(', ')}. You can forge any star from 0.01 to 300 Suns, with metallicities from almost none to
             more than the Sun’s and winds from none to three times their usual strength; compare up to four stars; and lay a line of stars of one
             age over six real clusters measured by Gaia. Each star is shown on the HR diagram, drawn to scale beside the Sun, cut open, charted
-            through its life and placed on a map of where the engine can be trusted.
+            through its life and placed on a map of where the engine can be trusted. In <em>A pair</em>, two stars of 0.1 to 100 Suns orbit
+            each other from hours to centuries apart, and {PAIR_PRESETS.length} ready-made pairs run from Algol and a cataclysmic variable to two
+            kinds of Type Ia supernova, a millisecond pulsar, the Hulse–Taylor pulsar’s ancestors and black holes like GW150914’s.
           </p>
           <noscript>
             <p>The Star Forge is interactive and needs JavaScript.</p>
@@ -110,6 +117,27 @@ export default function StarForgePage() {
             Heger and Woosley’s rule that the helium core is about 13/24 of the mass above 20 Suns.
           </li>
         </ul>
+        <h3>Pairs of stars</h3>
+        <p>
+          Most heavy stars have a companion close enough to change their lives, and in <em>A pair</em> the Forge runs <strong>BSE</strong>, the
+          Binary Star Evolution code of Jarrod Hurley, Christopher Tout and Onno Pols (2002), built on the same fitted formulas. It follows both
+          stars at once, and between them: the winds each throws at the other, tides that round off the orbit and lock the spins, magnetic
+          braking and gravitational waves that shrink it, a star swelling past its <Term id="roche-lobe">Roche lobe</Term> and pouring gas onto its
+          companion, transfer that runs away into a <Term id="common-envelope">common envelope</Term>, stars that touch and merge, novae, and
+          supernovae whose kicks can tear the pair apart. A pair’s whole life takes a few hundredths of a second.
+        </p>
+        <p>
+          As with SSE, the Forge runs a line-by-line translation of Hurley’s code, checked against it over 604 pairs from 0.6 to 80 Suns: the same
+          events in the same order, at the same times, with the same masses and separations, and every pair ending as the same two kinds of
+          star. The outcome is sorted into the classes of {chapter(28)}’s binary zoo, a pair of compact stars is timed to its merger by
+          gravitational waves, and every supernova’s kick is reported.
+        </p>
+        <p>
+          The recipes for the uncertain parts are the field’s biggest open questions: when transfer runs away, how efficiently a shared
+          envelope is thrown off (α), how hard supernovae kick, how strong the winds are. BSE’s own α is 3; the Forge starts at 1, as BSE’s
+          code comments and most modern codes do, and the panel <em>Where it can be trusted</em> runs the same pair again with other values and
+          other kicks. Modern codes built on BSE’s skeleton, such as COSMIC and COMPAS, change exactly these recipes.
+        </p>
         <h3>Clusters</h3>
         <p>
           In <em>A cluster</em>, the engine runs about 130 stars of different masses to the same age and lays them on the HR diagram as one line,
@@ -125,7 +153,10 @@ export default function StarForgePage() {
         </p>
         <h3>What’s simplified</h3>
         <ul>
-          <li>Stars are single, don’t spin, and have no magnetic fields. Most heavy stars have a companion close enough to strip or merge with them.</li>
+          <li>
+            Single stars don’t spin and have no magnetic fields. In a pair, BSE follows the stars’ spins only as tides and braking set them, and
+            the stars don’t heat each other.
+          </li>
           <li>
             A star’s life starts on the zero-age main sequence, when it first burns hydrogen steadily; its birth is in {chapter(16)}. SSE’s
             quick crossing from giant to white dwarf, when the shed layers glow as a planetary nebula, is drawn as a dashed jump.
@@ -139,14 +170,14 @@ export default function StarForgePage() {
         </ul>
         <h3>Where the numbers come from</h3>
         <p>
-          The engine: Hurley, Pols and Tout (2000), from Hurley’s code as distributed with AMUSE. Brown dwarfs: Baraffe, Homeier, Allard and
+          The engines: Hurley, Pols and Tout (2000) for single stars and Hurley, Tout and Pols (2002) for pairs, from Hurley’s code as distributed
+          with AMUSE. Brown dwarfs: Baraffe, Homeier, Allard and
           Chabrier (2015) and Burrows, Hubbard, Lunine and Liebert (2001). Pair instability: Heger and Woosley (2002), Woosley (2017), Belczynski and
           others (2016), Farmer and others (2019). The background stars and the clusters: ESA’s Gaia mission, third data release. The tests that
           check the engine are listed on the <a href={href('about')}>About page</a>.
         </p>
         <p>
-          It has a sequel: Part III’s version adds a companion star, with mass flowing between the two, shared envelopes, mergers and supernova
-          kicks. Its sibling lab, <a href={href('orrery')}>the Orrery</a>, runs the planets.
+          Its sibling lab, <a href={href('orrery')}>the Orrery</a>, runs the planets.
         </p>
       </div>
     </article>

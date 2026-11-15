@@ -49,18 +49,29 @@ export interface MilkyWay {
 
 const vec = ([raDeg, decDeg]: readonly [number, number]): Vec3 => fromSpherical(raDeg * DEG, decDeg * DEG);
 
-/** Unpacks the constellation file. Serpens's two halves share a name and come out as one entry each. */
+/**
+ * Unpacks the constellation file. Serpens's two halves share an id and come out as one entry each; the file gives
+ * them a boundary ring each, in the same order (Caput, then Cauda), and each half gets its own.
+ */
 export function parseConstellations(raw: RawConstellationFile): Constellation[] {
-  return raw.names.map((c) => ({
-    id: c.id,
-    name: c.name,
-    genitive: c.genitive,
-    english: c.english,
-    rank: c.rank,
-    label: vec(c.label),
-    strokes: (raw.figures[c.id] ?? []).map((stroke) => stroke.map((p) => (typeof p === 'number' ? { star: p } : { fixed: vec(p) }))),
-    boundaries: (raw.boundaries[c.id] ?? []).map((ring) => ring.map(vec)),
-  }));
+  const seen = new Map<string, number>();
+  return raw.names.map((c) => {
+    const k = seen.get(c.id) ?? 0;
+    seen.set(c.id, k + 1);
+    const halves = raw.names.filter((n) => n.id === c.id).length;
+    const rings = raw.boundaries[c.id] ?? [];
+    const own = halves > 1 && rings.length === halves ? [rings[k]] : rings;
+    return {
+      id: c.id,
+      name: c.name,
+      genitive: c.genitive,
+      english: c.english,
+      rank: c.rank,
+      label: vec(c.label),
+      strokes: (raw.figures[c.id] ?? []).map((stroke) => stroke.map((p) => (typeof p === 'number' ? { star: p } : { fixed: vec(p) }))),
+      boundaries: own.map((ring) => ring.map(vec)),
+    };
+  });
 }
 
 export function parseMilkyWay(raw: RawMilkyWayFile): MilkyWay {
