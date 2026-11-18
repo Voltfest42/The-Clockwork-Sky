@@ -21,6 +21,8 @@ const chapter = (n: number) => {
 };
 
 const list = (names: readonly string[]) => (names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0]);
+/** A name in mid-sentence: "The Hyades’ tails" → "the Hyades’ tails". */
+const midSentence = (name: string) => name.charAt(0).toLowerCase() + name.slice(1);
 
 export default function OrreryPage() {
   const hydrated = useHydrated();
@@ -53,8 +55,8 @@ export default function OrreryPage() {
             The Orrery runs in your browser once the page has loaded. It starts with the Sun, the planets and Pluto where JPL puts them on 1 January
             2026, and has {PRESETS.length} systems to choose from: {list(PRESETS.map((p) => p.name))}. You can add bodies on any orbit, change
             masses and velocities, follow any body, turn with a pair of bodies to see their Lagrange points, switch relativity on, and speed time up
-            to thousands of years a second. Its cluster mode has {list(CLUSTER_PRESETS.map((p) => p.name.toLowerCase()))}; its galaxy mode has{' '}
-            {list(GALAXY_PRESETS.map((p) => PRESET_INFO[p].label))}.
+            to thousands of years a second. Its cluster mode has {list(CLUSTER_PRESETS.map((p) => midSentence(p.name)))}; its galaxy mode has{' '}
+            {list(GALAXY_PRESETS.map((p) => midSentence(PRESET_INFO[p].label)))}.
           </p>
           <noscript>
             <p>The Orrery is interactive and needs JavaScript.</p>
