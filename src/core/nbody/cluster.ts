@@ -4,7 +4,7 @@ import { PARSEC, SECONDS_PER_JULIAN_YEAR } from '../units';
 
 /**
  * A star cluster, every star pulling on every other (Chapter 30, and the
- * Orrery's cluster mode in Stage 29): direct summation, softened, stepped by
+ * Orrery's cluster mode): direct summation, softened, stepped by
  * the fourth-order Hermite scheme with block time steps (Makino & Aarseth
  * 1992), the method of Aarseth's NBODY codes, in the Galaxy's tide.
  *
@@ -500,6 +500,8 @@ export interface ClusterReading {
   bound: Uint8Array;
   /** Radii (pc) holding 10%, 50% and 90% of the bound mass. */
   lagrangian: [number, number, number];
+  /** Radii (pc) holding 2%, 10%, 50% and 90% of the bound mass about the density centre (the dense core, found by shrinking spheres), which the centre of mass can miss as the core wanders. */
+  core: [number, number, number, number];
   /** The radius (pc) holding half the mass of the heaviest tenth of the bound stars. */
   heavyHalfMass: number;
 }
@@ -565,5 +567,51 @@ export function readCluster(mass: Float64Array, x: Float64Array, tide: Tide | nu
   const lagrangian: [number, number, number] = [radiusHolding(inside, 0.1), radiusHolding(inside, 0.5), radiusHolding(inside, 0.9)];
   const byMass = [...inside].sort((p, q) => mass[q] - mass[p]).slice(0, Math.max(1, Math.round(inside.length / 10)));
   byMass.sort((p, q) => r2[p] - r2[q]);
-  return { centre: c, boundMass, jacobi: rJ, boundCount, bound, lagrangian, heavyHalfMass: radiusHolding(byMass, 0.5) };
+  // About the density centre, of the bound stars
+  const dc = densityCentre(mass, x, inside, c);
+  const d2 = new Float64Array(n);
+  for (const i of inside) d2[i] = (x[3 * i] - dc[0]) ** 2 + (x[3 * i + 1] - dc[1]) ** 2 + (x[3 * i + 2] - dc[2]) ** 2;
+  const fromCore = [...inside].sort((p, q) => d2[p] - d2[q]);
+  const holding = (share: number) => {
+    let m = 0;
+    for (const i of fromCore) {
+      m += mass[i];
+      if (m >= share * boundMass) return Math.sqrt(d2[i]);
+    }
+    return fromCore.length ? Math.sqrt(d2[fromCore[fromCore.length - 1]]) : 0;
+  };
+  const core: [number, number, number, number] = [holding(0.02), holding(0.1), holding(0.5), holding(0.9)];
+  return { centre: c, boundMass, jacobi: rJ, boundCount, bound, lagrangian, core, heavyHalfMass: radiusHolding(byMass, 0.5) };
+}
+
+/**
+ * The density centre of some stars (pc), by shrinking spheres (Power et al.
+ * 2003): the centre of mass of those within a sphere, again and again, with
+ * the sphere shrinking by 10% each time, until it holds a twentieth of them
+ * (at least 20). A cluster's dense core drifts about its centre of mass, so
+ * radii measured from the core need this centre.
+ */
+export function densityCentre(mass: Float64Array, x: Float64Array, stars: readonly number[], start: readonly number[]): [number, number, number] {
+  const c: [number, number, number] = [start[0], start[1], start[2]];
+  if (stars.length === 0) return c;
+  let r = 0;
+  for (const i of stars) r = Math.max(r, Math.hypot(x[3 * i] - c[0], x[3 * i + 1] - c[1], x[3 * i + 2] - c[2]));
+  const target = Math.max(20, Math.ceil(stars.length / 20));
+  for (let iteration = 0; iteration < 200; iteration++) {
+    let m = 0;
+    let count = 0;
+    const s = [0, 0, 0];
+    for (const i of stars) {
+      const d2 = (x[3 * i] - c[0]) ** 2 + (x[3 * i + 1] - c[1]) ** 2 + (x[3 * i + 2] - c[2]) ** 2;
+      if (d2 <= r * r) {
+        m += mass[i];
+        count++;
+        for (let k = 0; k < 3; k++) s[k] += mass[i] * x[3 * i + k];
+      }
+    }
+    if (m === 0 || count < target) break;
+    for (let k = 0; k < 3; k++) c[k] = s[k] / m;
+    r *= 0.9;
+  }
+  return c;
 }

@@ -27,6 +27,8 @@ export interface WisdomHolman {
   /** Advances x and v (in place, inertial frame) by dt, kick–drift–kick. */
   step(x: Float64Array, v: Float64Array, dt: number, emit?: (stage: StepStage) => void): void;
   invalidate(): void;
+  /** Reads the masses again, after a body's G·m has changed in place (the Sun losing mass). */
+  refresh(): void;
   readonly evaluations: number;
 }
 
@@ -43,11 +45,14 @@ export function createWisdomHolman(gm: Float64Array, acceleration: Acceleration,
   const size = 3 * n;
   // eta[k]: total G·m of the first k + 1 bodies in Jacobi order.
   const eta = new Float64Array(n);
-  let sum = 0;
-  for (let k = 0; k < n; k++) {
-    sum += gm[ord[k]];
-    eta[k] = sum;
-  }
+  const sums = () => {
+    let sum = 0;
+    for (let k = 0; k < n; k++) {
+      sum += gm[ord[k]];
+      eta[k] = sum;
+    }
+  };
+  sums();
   if (!(eta[0] > 0)) throw new Error('The central body needs a mass.');
   const a = new Float64Array(size);
   const xj = new Float64Array(size);
@@ -133,6 +138,10 @@ export function createWisdomHolman(gm: Float64Array, acceleration: Acceleration,
       return evaluations;
     },
     invalidate() {
+      fresh = false;
+    },
+    refresh() {
+      sums();
       fresh = false;
     },
     step(x, v, dt, emit) {

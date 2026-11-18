@@ -139,6 +139,7 @@ export function S2OrbitFigure({ number, tryThis }: { number: string; tryThis: Re
     <Figure
       number={number}
       title="S2’s orbit"
+      orrery="preset=s2"
       description="The star S2’s orbit round Sagittarius A*, the Milky Way’s black hole, from the GRAVITY collaboration’s published elements: a 16-year ellipse that brings it within 120 AU of the black hole at 7,700 km/s. A ruler and a stopwatch weigh the black hole by Kepler’s third law, at about 4.3 million Suns. Relativity turns the orbit by 12 arcminutes each lap and adds about 200 km/s to the star’s redshift at pericentre."
       height={1080}
       tryThis={tryThis}

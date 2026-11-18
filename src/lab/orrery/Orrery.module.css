@@ -325,3 +325,17 @@
   font-size: 0.82rem;
   color: var(--text-muted);
 }
+
+.modes {
+  margin: 0 0 12px;
+}
+
+.verdicts {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+  font-size: 0.92rem;
+}
+
+.verdicts li {
+  margin: 2px 0;
+}

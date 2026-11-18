@@ -19,9 +19,9 @@ export function About() {
           <a href="https://moving-parts.dev" target="_blank" rel="noreferrer">
             Moving Parts
           </a>
-          , after <i>Beyond Dijkstra</i> and <i>From Black Box to Rulebook</i>. It is being built one part at a time: <a href={href('part-1')}>Part I</a>
-          and <a href={href('part-2')}>Part II</a> are complete, each with its lab, <a href={href('orrery')}>the Orrery</a> and{' '}
-          <a href={href('star-forge')}>the Star Forge</a>, and Part III is on the way.
+          , after <i>Beyond Dijkstra</i> and <i>From Black Box to Rulebook</i>. All three parts are written,{' '}
+          <a href={href('part-1')}>Part I</a>, <a href={href('part-2')}>Part II</a> and <a href={href('part-3')}>Part III</a>, with their two
+          labs, <a href={href('orrery')}>the Orrery</a> and <a href={href('star-forge')}>the Star Forge</a>, each in its second version.
         </p>
 
         <h2>The physics runs in your browser</h2>
@@ -179,6 +179,16 @@ export function About() {
           masses exploding beside a 17-solar-mass companion; a neutron star gaining 0.7 solar masses beside a helium white dwarf 51 days
           round; a black hole of 16 solar masses beside an O star nearly filling its lobe; neutron stars of 1.46 and 1.33 solar masses 7.8
           hours apart, merging 1.8 billion years on; and black holes of 31 and 30 solar masses merging 610 million years after they formed.
+          The Orrery’s second version is checked too. With relativity on, Mercury’s orbit round the Sun alone must turn by Einstein’s 42.98″ a
+          century, and not at all with it off; in the whole Solar System Mercury’s must turn about 532″ a century under Newton and 43″ more with
+          relativity, as astronomers measure; S2’s orbit round Sagittarius A* must turn by 12′ a lap; the correction must keep the momentum,
+          and the energy with its own term. After a close pass the engine must switch back to Wisdom–Holman, and not while a comet is caught.
+          King’s models must have King’s concentrations (0.67, 1.26 and 2.12 for W₀ = 3, 6 and 9), and a sampled one must start in balance;
+          a cluster alone must keep everything bound and its energy; shrinking spheres must find a clump’s dense core where the centre of mass
+          misses it. For the Sun’s death, an orbit must widen as the Sun loses mass so that its size times the Sun’s mass stays the same; without
+          tides a planet must be swallowed exactly when the Sun reaches its widened orbit; the tide must grow as the eighth power of the Sun’s
+          size over the orbit’s; the line inside which a Jupiter is swallowed must fall between the published 1.6 AU (Nordhaus and colleagues)
+          and 2.7 AU (Mustill and Villaver), whose models lose mass later; and the n-body run must keep pace with the averaged equations, to 1%.
           End-to-end tests open every page, use it by
           keyboard, and run accessibility checks (WCAG 2.1 AA) in light and dark mode and on a phone-sized screen.
         </p>
@@ -889,8 +899,20 @@ export function About() {
         <h3>The Orrery</h3>
         <ul>
           <li>
-            Every body is a point mass pulling by Newton’s law: no relativity (Mercury ends a century about 20″ from JPL’s position), no tides, no
-            flattened planets. Bodies that touch merge completely, keeping their mass and momentum.
+            Every body is a point mass pulling by Newton’s law: no tides, no flattened planets. Bodies that touch merge completely, keeping their
+            mass and momentum. Relativity, when switched on, is only its turning of orbits about the heaviest body, added as Nobili and
+            Roxburgh’s extra pull; with it off, Mercury ends a century about 20″ from JPL’s position.
+          </li>
+          <li>
+            The Sun’s death: the Sun follows SSE’s track for one solar mass with its winds scaled, and its clock runs faster than the planets’,
+            paced so that every change is still slow beside their orbits. Orbits widen as the Sun loses mass, and Zahn’s tide, with Mustill and
+            Villaver’s settings, drags the planets in; the planets’ own tides, the drag of the Sun’s wind, its rotation, and Saturn and the planets
+            beyond are left out.
+          </li>
+          <li>
+            Clusters: softened direct summation, with no pairs of stars at the start, stars that don’t age, and Hill’s tide for a circular orbit.
+            Galaxies: Toomre’s rigid Plummer spheres with test stars and Chandrasekhar’s friction; the Milky Way and Andromeda are a sketch, the
+            plane of their orbit unknown.
           </li>
           <li>
             In the Solar System preset each planet with moons is one body at its system’s centre of mass, carrying the moons’ mass; asteroids are
@@ -1039,6 +1061,17 @@ export function About() {
             (2000), Annals of Mathematics 152, 881, with C. Simó’s initial conditions: the figure-eight. C. Burrau (1913) and V. Szebehely and C.
             F. Peters (1967), The Astronomical Journal 72, 876: the Pythagorean problem. L. R. Doyle and colleagues (2011), Science 333, 1602:
             Kepler-16. E. Agol and colleagues (2021), The Planetary Science Journal 2, 1: TRAPPIST-1, via the NASA Exoplanet Archive.
+          </li>
+          <li>
+            The Orrery’s second version: A. M. Nobili and I. W. Roxburgh (1986), in Relativity in Celestial Mechanics and Astrometry (IAU
+            Symposium 114), 105, for the relativistic potential, as REBOUNDx (D. Tamayo and colleagues 2020, MNRAS 491, 2885) has it; U. J. Le
+            Verrier (1859), Comptes rendus 49, 379, and A. Einstein (1915), Sitzungsberichte der Preußischen Akademie der Wissenschaften, 831,
+            for Mercury’s turning; GRAVITY Collaboration (2020), Astronomy &amp; Astrophysics 636, L5, for S2. A. J. Mustill and E. Villaver
+            (2012), The Astrophysical Journal 761, 121, for the tide on the planets of a giant, after J.-P. Zahn (1977), Astronomy &amp;
+            Astrophysics 57, 383; J. Nordhaus and colleagues (2010), MNRAS 408, 631; K.-P. Schröder and R. C. Smith (2008), MNRAS 386, 155, on
+            Earth’s fate. I. R. King (1966), The Astronomical Journal 71, 64, and J. Binney and S. Tremaine, Galactic Dynamics, 2nd edition
+            (Princeton, 2008), §4.3.3, for King’s models; C. Power and colleagues (2003), MNRAS 338, 14, for shrinking spheres. H. Rein and
+            colleagues (2019), MNRAS 485, 5490, for MERCURIUS, the hybrid integrator whose idea the Orrery’s switch back borrows.
           </li>
           <li>
             M. Planck (1901), Annalen der Physik 4, 553: the law of black-body radiation. The SI’s exact values of the speed of light,

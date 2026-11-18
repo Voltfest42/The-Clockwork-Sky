@@ -593,7 +593,7 @@ export const LABS: readonly LabInfo[] = [
     slug: 'orrery',
     title: 'The Orrery',
     subject: 'Orbital mechanics',
-    blurb: 'Build any planetary system, from the Solar System to three-body chaos, and watch gravity run it.',
+    blurb: 'Build any planetary system, from the Solar System to three-body chaos, run a star cluster or a collision of galaxies, and watch gravity at work.',
     versions: [
       {
         version: 1,

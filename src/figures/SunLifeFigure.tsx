@@ -70,6 +70,7 @@ export function SunLifeFigure({ number, tryThis }: { number: string; tryThis: Re
       tryThis={tryThis}
       onReset={reset}
       starForge="preset=sun"
+      orrery="preset=suns-death"
       legend={[
         { label: 'the Sun’s track', symbol: <path d="M-10 6 L0 0 L10 -8" stroke="#cdd6f4" strokeWidth="2" fill="none" /> },
         { label: 'the Sun at the chosen time', symbol: <circle r="5" fill="#ffd27a" stroke="var(--accent)" strokeWidth="2" /> },

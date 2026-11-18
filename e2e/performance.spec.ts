@@ -114,3 +114,34 @@ test('the Star Forge scrubs through a life and forges new stars quickly on a slo
   console.log(`Star Forge, a new star of 18 Suns: ${ms} ms from Enter to its fate`);
   expect(result.fps).toBeGreaterThan(15);
 });
+
+test('the Orrery’s Sun’s death runs at a thousand years a second on a slow phone @perf', async ({ page }) => {
+  await page.goto('/orrery/?preset=suns-death');
+  await throttle(page);
+  await expect(page.locator('main p[aria-live="polite"]').first()).toContainText('The Sun at', { timeout: 15_000 });
+  await page.getByRole('button', { name: '▶ Run' }).click();
+  await page.getByRole('application').scrollIntoViewIfNeeded();
+  const result = await measure(page);
+  report('Orrery, the Sun’s death at 1,000 years a second', result);
+  expect(result.fps).toBeGreaterThan(20);
+});
+
+test('the Orrery’s cluster mode runs 500 stars on a slow phone @perf', async ({ page }) => {
+  await page.goto('/orrery/?mode=cluster&preset=young-open');
+  await throttle(page);
+  await page.getByRole('button', { name: '▶ Run the cluster' }).click({ timeout: 20_000 });
+  await page.locator('canvas').first().scrollIntoViewIfNeeded();
+  const result = await measure(page);
+  report('Orrery, a cluster of 500 stars', result);
+  expect(result.fps).toBeGreaterThan(20);
+});
+
+test('the Orrery’s galaxy mode runs 20,000 stars on a slow phone @perf', async ({ page }) => {
+  await page.goto('/orrery/?mode=galaxies&encounter=antennae');
+  await throttle(page);
+  await page.getByRole('button', { name: '▶ Run the collision' }).click({ timeout: 20_000 });
+  await page.locator('canvas').first().scrollIntoViewIfNeeded();
+  const result = await measure(page);
+  report('Orrery, colliding galaxies of 20,000 stars', result);
+  expect(result.fps).toBeGreaterThan(20);
+});

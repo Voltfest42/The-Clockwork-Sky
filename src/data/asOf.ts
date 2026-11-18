@@ -55,7 +55,7 @@ export const AS_OF = {
     everyMonths: 24,
   },
   gaiaDr4: {
-    checked: '2026-10',
+    checked: '2026-11',
     what: 'the date of Gaia’s fourth data release',
     where: 'src/data/gaia.ts',
     source: 'ESA’s Gaia news (cosmos.esa.int/web/gaia)',
@@ -90,7 +90,7 @@ export const AS_OF = {
     everyMonths: 6,
   },
   exoplanetMissions: {
-    checked: '2026-10',
+    checked: '2026-11',
     what: 'PLATO’s launch date (planned for January 2027)',
     where: 'src/data/exoplanets.ts (PLATO), used by Chapter 19',
     source: 'ESA’s Plato pages (esa.int/Science_Exploration/Space_Science/Plato)',

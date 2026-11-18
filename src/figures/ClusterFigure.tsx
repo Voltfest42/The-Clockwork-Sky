@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { CLUSTER_DEFAULTS, type ClusterConfig, type ClusterInfo, type ClusterMessage, type ClusterSample } from '../core/nbody/clusterHost';
+import { clusterQuery } from '../lab/orrery/manyLinks';
 import { Caption, Figure } from '../viz/Figure';
 import { LineChart } from '../viz/LineChart';
 import { useOnScreen, useReducedMotion } from '../viz/hooks';
@@ -162,6 +163,7 @@ export function ClusterFigure({ number, tryThis }: { number: string; tryThis: Re
     <Figure
       number={number}
       title="A cluster evaporates"
+      orrery={`mode=cluster&${clusterQuery(config)}`}
       description="A star cluster of 500 to 2,000 stars in the Galaxy’s tide, every star pulling every other, computed in the reader’s browser. Stars that gain energy in close passes cross the Jacobi radius, where the Galaxy’s pull wins, and drift away through the two Lagrange points into a leading and a trailing tail; the heavy stars sink to the middle. Charts follow the share of the mass still bound and the cluster’s size, in relaxation times."
       height={1180}
       tryThis={tryThis}

@@ -6,11 +6,16 @@ import { parentage, type Parentage } from '../../core/orrery/hierarchy';
 import type { OrreryMessage, OrrerySnapshot } from '../../core/orrery/protocol';
 import { lagrangePoints } from '../../core/orbits/lagrange';
 import { gmToAuDay, GM_SUN_AU_DAY } from '../../core/nbody/system';
-import { DEG } from '../../core/units';
+import { R_SUN_AU } from '../../core/orrery/dyingSun';
+import { einsteinPrecession } from '../../core/orrery/relativity';
+import { blackBodyColour } from '../../core/stars/photometry';
+import { ARCSEC, DEG } from '../../core/units';
 import { useOnScreen, useReducedMotion } from '../../viz/hooks';
 import { decodeSystem, encodeSystem } from './link';
 import { EARTH_GM, formatClock, formatDistance, formatError, formatMass, formatSize, formatSpan, formatSpeed, JUPITER_GM, maxRateIndex, nearestRate, RATES } from './format';
 import { findPreset, PRESETS, type Preset } from './presets';
+import { sunWords } from './sunsDeath';
+import { SunsDeathPanel } from './SunsDeathPanel';
 import { TopView, type ViewModel } from './TopView';
 import { useOrrery } from './useOrrery';
 import figureStyles from '../../figures/figures.module.css';
@@ -26,6 +31,19 @@ import styles from './Orrery.module.css';
 const Scene3DView = lazy(() => import('./Scene3DView'));
 
 const KM = 1 / 149_597_870.7;
+
+const surfaceColours = new Map<number, string>();
+/** A star's surface colour from its luminosity and radius (L☉, AU), by its temperature rounded to 50 K. */
+function surfaceColour(star: { L: number; radius: number }): string {
+  const T = Math.round((5772 * (star.L / (star.radius / R_SUN_AU) ** 2) ** 0.25) / 50) * 50;
+  let colour = surfaceColours.get(T);
+  if (!colour) {
+    const [r, g, b] = blackBodyColour(Math.min(40_000, Math.max(2000, T)));
+    colour = `rgb(${r}, ${g}, ${b})`;
+    surfaceColours.set(T, colour);
+  }
+  return colour;
+}
 const R_SUN = 695_700 * KM;
 
 /** Ready-made masses for a new body: G·m in AU³/day² and radius in AU. */
@@ -48,6 +66,13 @@ const TRAILS = [
   { laps: 30, label: 'Thirty laps' },
 ];
 
+/** Relativity's settings: off, true, or exaggerated a hundredfold. */
+const RELATIVITY_CHOICES = [
+  { value: 0, label: 'Off (Newton’s gravity)' },
+  { value: 1, label: 'On' },
+  { value: 100, label: 'On, × 100 (exaggerated)' },
+] as const;
+
 const METHOD_CHOICES: { value: MethodChoice; label: string }[] = [
   { value: 'auto', label: 'Automatic' },
   { value: 'whfast', label: METHOD_NAMES.whfast },
@@ -61,19 +86,21 @@ interface Readout {
 }
 
 /** What the page's address asks for: ?preset=galilean&method=leapfrog, or ?system=… from "Copy a link". */
-function fromAddress(): { preset: Preset; method?: MethodChoice; bodies?: OrreryBody[]; problem?: string } {
+function fromAddress(): { preset: Preset; method?: MethodChoice; bodies?: OrreryBody[]; problem?: string; relativity?: number } {
   const query = new URLSearchParams(window.location.search);
   const preset = findPreset(query.get('preset') ?? '') ?? PRESETS[0];
   const method = METHOD_CHOICES.find((m) => m.value === query.get('method'))?.value;
+  const gr = Number(query.get('relativity'));
+  const relativity = RELATIVITY_CHOICES.find((r) => r.value === gr && query.has('relativity'))?.value;
   const system = query.get('system');
   if (system) {
     try {
-      return { preset, method, bodies: decodeSystem(system) };
+      return { preset, method, relativity, bodies: decodeSystem(system) };
     } catch {
-      return { preset, method, problem: 'The system in this link couldn’t be read, so the Solar System is shown instead.' };
+      return { preset, method, relativity, problem: 'The system in this link couldn’t be read, so the Solar System is shown instead.' };
     }
   }
-  return { preset, method };
+  return { preset, method, relativity };
 }
 
 export function OrreryLab() {
@@ -87,13 +114,17 @@ export function OrreryLab() {
   const [trailLaps, setTrailLaps] = useState(start.preset.trailLaps);
   const [zoom, setZoom] = useState(start.preset.zoom);
   const [pan, setPan] = useState<readonly [number, number]>([0, 0]);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(() => (start.bodies ? null : (start.preset.watch ?? null)));
   const [problem, setProblem] = useState<string | null>(start.problem ?? null);
   const [events, setEvents] = useState<OrreryEvent[]>([]);
   const [readout, setReadout] = useState<Readout | null>(null);
   const [version, setVersion] = useState(0);
   const [cameraReset, setCameraReset] = useState(0);
   const [copied, setCopied] = useState<string | null>(null);
+  const [relativity, setRelativity] = useState<number>(start.relativity ?? start.preset.relativity ?? 0);
+  // The Sun's death: the settings chosen, and those of the run on screen.
+  const [dying, setDying] = useState(start.preset.dying ?? { windScale: 1, tide: 1 });
+  const [runDying, setRunDying] = useState(start.preset.dying ?? null);
   const model = useRef<ViewModel>({ bodies: [], trails: new Map(), lagrange: null, arrow: null, selected: null });
   const latest = useRef<OrrerySnapshot | null>(null);
   const periods = useRef(new Map<string, number>());
@@ -101,7 +132,7 @@ export function OrreryLab() {
   const box = useRef<HTMLDivElement>(null);
   const onScreen = useOnScreen(box);
   const reducedMotion = useReducedMotion();
-  const ids = { preset: useId(), follow: useId(), turn: useId(), trails: useId(), method: useId(), warp: useId() };
+  const ids = { preset: useId(), follow: useId(), turn: useId(), trails: useId(), method: useId(), warp: useId(), relativity: useId() };
 
   const settings = useRef({ frame, trailLaps, selected, playing });
   useEffect(() => {
@@ -113,7 +144,16 @@ export function OrreryLab() {
     const { frame: spec, selected: picked, playing: running } = settings.current;
     const f = frameOf(spec, s.ids, s.gm, s.x, s.v);
     const m = model.current;
-    m.bodies = s.ids.map((id, i) => ({ id, name: s.names[i], colour: s.colours[i], radius: s.radii[i], gm: s.gm[i], p: toFrame(f, [s.x[3 * i], s.x[3 * i + 1], s.x[3 * i + 2]]) }));
+    // A dying Sun is drawn in the colour of its surface: orange-red as a giant, white-blue as a white dwarf.
+    const sun = s.star ? s.ids.indexOf('sun') : -1;
+    m.bodies = s.ids.map((id, i) => ({
+      id,
+      name: s.names[i],
+      colour: i === sun && s.star ? surfaceColour(s.star) : s.colours[i],
+      radius: s.radii[i],
+      gm: s.gm[i],
+      p: toFrame(f, [s.x[3 * i], s.x[3 * i + 1], s.x[3 * i + 2]]),
+    }));
     m.selected = picked;
     m.lagrange = null;
     if (spec.rotate) {
@@ -182,9 +222,10 @@ export function OrreryLab() {
   });
 
   const load = useCallback(
-    (p: Preset, given?: OrreryBody[], chosen?: MethodChoice) => {
+    (p: Preset, given?: OrreryBody[], chosen?: MethodChoice, chosenDying?: { windScale: number; tide: number }) => {
       const bodies = given ?? p.bodies();
       const method = chosen ?? p.method;
+      const dyingNow = given ? undefined : (chosenDying ?? p.dying);
       setPreset(p);
       setPlaying(false);
       setFrame(p.frame);
@@ -197,7 +238,11 @@ export function OrreryLab() {
       setRateIndex(nearestRate(p.rate));
       setCameraReset((c) => c + 1);
       settings.current = { ...settings.current, frame: p.frame, trailLaps: p.trailLaps, selected: null, playing: false };
-      post({ type: 'load', bodies, method, frame: p.frame });
+      setRelativity(p.relativity ?? 0);
+      setRunDying(dyingNow ?? null);
+      if (dyingNow) setDying(dyingNow);
+      post({ type: 'load', bodies, method, frame: p.frame, relativity: p.relativity ?? 0, dying: dyingNow, watch: p.watch ?? null });
+      if (p.watch) setSelected(p.watch);
     },
     [post],
   );
@@ -205,10 +250,21 @@ export function OrreryLab() {
   // The first system. (In development React mounts twice, with a new worker each time; each gets the load.)
   // The state already starts from the address, so only the engine needs telling.
   useEffect(() => {
-    post({ type: 'load', bodies: start.bodies ?? start.preset.bodies(), method: start.method ?? start.preset.method, frame: start.preset.frame });
+    const p = start.preset;
+    const watch = start.bodies ? null : (p.watch ?? null);
+    post({
+      type: 'load',
+      bodies: start.bodies ?? p.bodies(),
+      method: start.method ?? p.method,
+      frame: p.frame,
+      relativity: start.relativity ?? p.relativity ?? 0,
+      dying: start.bodies ? undefined : p.dying,
+      watch,
+    });
   }, [post, start]);
 
-  const maxRate = readout ? maxRateIndex(readout.snap.timescale) : RATES.length - 1;
+  // The Sun's death runs its own clock, so its time warp isn't capped by the planets' laps.
+  const maxRate = readout ? (readout.snap.star ? RATES.length - 1 : maxRateIndex(readout.snap.timescale)) : RATES.length - 1;
   const rate = RATES[Math.min(rateIndex, maxRate)];
 
   useEffect(() => {
@@ -226,6 +282,7 @@ export function OrreryLab() {
   const pick = (id: string | null) => {
     setSelected(id);
     settings.current = { ...settings.current, selected: id };
+    post({ type: 'watch', id });
     if (latest.current) {
       rebuildModel(latest.current, readout?.parents ?? null);
       setVersion((v) => v + 1);
@@ -294,7 +351,7 @@ export function OrreryLab() {
   const rotateValue = frame.rotate ? `${frame.rotate[0]}|${frame.rotate[1]}` : '';
   const pairListed = !frame.rotate || pairs.some(([a, b]) => `${a}|${b}` === rotateValue);
 
-  const clock = snap ? formatClock(snap.t, custom ? undefined : preset.epochTT) : '';
+  const clock = snap ? (snap.star ? sunWords(snap.star) : formatClock(snap.t, custom ? undefined : preset.epochTT)) : '';
   const viewLabel = view === 'top' ? 'The Orrery, seen from above' : 'The Orrery in 3D';
   const following = frame.rotate ? `turning with ${nameOf(index(frame.rotate[0]))} and ${nameOf(index(frame.rotate[1]))}` : frame.centre ? `centred on ${nameOf(index(frame.centre))}` : 'centred on the centre of mass';
   const caption = snap ? `${clock}. ${snap.ids.length} bodies, ${following}, ${playing ? `running at ${rate.label}` : 'paused'}.${sel >= 0 ? ` ${snap.names[sel]} is picked.` : ''}` : 'Loading the Orrery…';
@@ -423,6 +480,26 @@ export function OrreryLab() {
             ))}
           </select>
         </label>
+        <label className={styles.field} htmlFor={ids.relativity}>
+          Relativity
+          <select
+            id={ids.relativity}
+            value={relativity}
+            disabled={!!snap?.star}
+            onChange={(e) => {
+              const value = Number(e.target.value);
+              setProblem(null);
+              setRelativity(value);
+              post({ type: 'relativity', strength: value });
+            }}
+          >
+            {RELATIVITY_CHOICES.map((r) => (
+              <option key={r.value} value={r.value}>
+                {r.label}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
 
       <div className={styles.main}>
@@ -488,12 +565,18 @@ export function OrreryLab() {
               <span>
                 Integrator <b>{METHOD_NAMES[snap.method]}</b>, step <b>{formatSpan(snap.stepSize)}</b>
               </span>
-              <span>
-                Energy error <b>{formatError(snap.energyError)}</b>
-              </span>
-              <span>
-                Angular momentum error <b>{formatError(snap.angularMomentumError)}</b>
-              </span>
+              {snap.star ? (
+                <span>Energy and angular momentum aren’t kept: the Sun is losing mass, and its tides drag on the planets.</span>
+              ) : (
+                <>
+                  <span>
+                    Energy error <b>{formatError(snap.energyError)}</b>
+                  </span>
+                  <span>
+                    Angular momentum error <b>{formatError(snap.angularMomentumError)}</b>
+                  </span>
+                </>
+              )}
               {playing && snap.achievedRate > 0 && snap.achievedRate < 0.8 * rate.days && <span>The computer is keeping up at {formatSpan(snap.achievedRate)} a second.</span>}
             </p>
           )}
@@ -512,6 +595,7 @@ export function OrreryLab() {
               index={sel}
               parents={parents}
               playing={playing}
+              relativity={relativity}
               onCircular={() => post({ type: 'circular', id: snap.ids[sel] })}
               onDelete={() => {
                 post({ type: 'remove', id: snap.ids[sel] });
@@ -543,7 +627,8 @@ export function OrreryLab() {
                   .sort((a, b) => b.t - a.t)
                   .map((e, k) => (
                     <li key={`${e.t}-${k}`}>
-                      <time>{formatClock(e.t, custom ? undefined : preset.epochTT)}</time>
+                      {/* The Sun's death runs on the Sun's clock, which its events give in words. */}
+                      {!snap?.star && <time>{formatClock(e.t, custom ? undefined : preset.epochTT)}</time>}
                       {e.text}
                     </li>
                   ))}
@@ -552,6 +637,17 @@ export function OrreryLab() {
           </div>
         </div>
       </div>
+
+      {runDying && (
+        <SunsDeathPanel
+          windScale={dying.windScale}
+          tide={dying.tide}
+          age={snap?.star ? snap.star.t : null}
+          onChange={setDying}
+          changed={dying.windScale !== runDying.windScale || dying.tide !== runDying.tide}
+          onRunAgain={() => load(preset, undefined, undefined, dying)}
+        />
+      )}
 
       {snap && parents && <BodyTable snap={snap} parents={parents} selected={selected} onPick={pick} />}
 
@@ -584,6 +680,7 @@ function BodyCard({
   index: i,
   parents,
   playing,
+  relativity,
   onCircular,
   onDelete,
   onMass,
@@ -595,6 +692,7 @@ function BodyCard({
   index: number;
   parents: Parentage;
   playing: boolean;
+  relativity: number;
   onCircular: () => void;
   onDelete: () => void;
   onMass: (gm: number) => void;
@@ -647,6 +745,7 @@ function BodyCard({
           </>
         )}
       </dl>
+      {orbit && p >= 0 && orbit.a > 0 && <Precession snap={snap} id={snap.ids[i]} gm={snap.gm[p] + gm} a={orbit.a} e={orbit.e} period={orbit.period} relativity={relativity} />}
       <div className={styles.buttons} role="group" aria-label={`Change ${snap.names[i]}`}>
         {p >= 0 && (
           <button type="button" className={figureStyles.toolButton} onClick={onCircular}>
@@ -690,6 +789,37 @@ function BodyCard({
       )}
       {p >= 0 && <p className={styles.note}>{playing ? 'Pause to drag its velocity arrow in the view from above.' : 'Or drag the arrow in the view from above: it shows its velocity relative to what it goes round.'}</p>}
     </div>
+  );
+}
+
+/** An angle per day (radians) as arcseconds a century, or arcminutes or degrees a lap when that reads better. */
+function turning(rate: number, period: number): string {
+  const perCentury = (rate * 36_525) / ARCSEC;
+  const perLap = (rate * period) / ARCSEC;
+  if (Math.abs(perLap) >= 3600) return `${(perLap / 3600).toFixed(1)}° a lap`;
+  if (Math.abs(perLap) >= 60) return `${(perLap / 60).toFixed(1)}′ a lap`;
+  return `${Math.abs(perCentury) >= 100 ? Math.round(perCentury).toLocaleString('en-GB') : perCentury.toFixed(1)}″ a century`;
+}
+
+/**
+ * How fast the picked body's periapsis turns, measured as the run goes (a
+ * straight line fitted to its direction), beside what relativity alone gives
+ * by Einstein's formula, 6πGM / (c²a(1 − e²)) a lap.
+ */
+function Precession({ snap, id, gm, a, e, period, relativity }: { snap: OrrerySnapshot; id: string; gm: number; a: number; e: number; period: number; relativity: number }) {
+  const w = snap.precession && snap.precession.id === id ? snap.precession : null;
+  const einstein = einsteinPrecession(gm, a, e) / period;
+  const enough = w && w.span >= 3 * period && w.samples > 20;
+  return (
+    <p className={styles.note}>
+      {!w
+        ? 'Its periapsis, the point of closest approach, is watched from now: run it to see whether the orbit turns.'
+        : !enough
+          ? 'Measuring how fast its periapsis turns: run it a few more laps.'
+          : `Its periapsis turns ${turning(w.rate, period)} (${w.rate >= 0 ? 'forwards' : 'backwards'}), measured over ${formatSpan(w.span)}.`}{' '}
+      {`Relativity alone would turn it ${turning(einstein, period)}`}
+      {relativity === 1 ? ', and is switched on.' : relativity > 1 ? `; here it is exaggerated ${relativity} times.` : '; it is switched off.'}
+    </p>
   );
 }
 

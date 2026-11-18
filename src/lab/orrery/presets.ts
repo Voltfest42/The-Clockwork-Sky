@@ -5,9 +5,12 @@ import { stateFromElements } from '../../core/orbits/elements';
 import type { MethodChoice, OrreryBody } from '../../core/orrery/engine';
 import type { FrameSpec } from '../../core/orrery/frame';
 import { DEG } from '../../core/units';
+import { semiMajorAxisAu } from '../../core/galaxy/s2';
+import { LIGHT_AU_DAY } from '../../core/orrery/relativity';
 import galilean from '../../data/galilean.json';
 import horizons from '../../data/orrery.json';
 import { WORLDS, type WorldId } from '../../data/planets';
+import { S2_ORBIT, SGR_A_STAR } from '../../data/s2';
 
 /**
  * The Orrery's ready-made systems. Each gives its bodies (AU, AU/day, G·m in
@@ -18,7 +21,9 @@ import { WORLDS, type WorldId } from '../../data/planets';
  * January 2026) and Jupiter's moons (JUP365); Simó's numbers for the
  * figure-eight (Chenciner & Montgomery 2000); Burrau (1913) and Szebehely &
  * Peters (1967) for the Pythagorean problem; Doyle et al. (2011) for Kepler-16;
- * Agol et al. (2021) for TRAPPIST-1.
+ * Agol et al. (2021) for TRAPPIST-1; GRAVITY (2020) for S2 and Sagittarius
+ * A*; SSE's 1 M☉ track (Hurley, Pols & Tout 2000) and Mustill & Villaver's
+ * (2012) tide for the Sun's death.
  */
 
 export type PresetId =
@@ -32,7 +37,9 @@ export type PresetId =
   | 'trappist-1'
   | 'comet'
   | 'heavy-jupiter'
-  | 'one-planet';
+  | 'one-planet'
+  | 's2'
+  | 'suns-death';
 
 export interface Preset {
   id: PresetId;
@@ -56,6 +63,12 @@ export interface Preset {
   lagrange?: boolean;
   /** The calendar date of the start, as a Julian Date (TT), when the system is the real one. */
   epochTT?: number;
+  /** Relativity's correction at the start: 0 (the default) off, 1 on. */
+  relativity?: number;
+  /** The body whose periapsis is watched from the start. */
+  watch?: string;
+  /** The Sun follows its own future (SSE's track), with the winds and tide given. */
+  dying?: { windScale: number; tide: number };
 }
 
 const KM = 1 / 149_597_870.7;
@@ -314,6 +327,34 @@ function onePlanet(): OrreryBody[] {
   return centred([sun, onOrbit(sun, { id: 'planet', name: 'Planet', gm: M_EARTH, radius: R_EARTH, colour: colourOf('earth') }, { a: 1, e: 0.5 })]);
 }
 
+/** Sagittarius A* and S2 (GRAVITY 2020), on S2's orbit seen face on, where S2 was at the start of 2026: near the far end of its orbit. */
+export const S2_YEAR0 = 2026;
+
+function s2System(): OrreryBody[] {
+  const gm = SGR_A_STAR.mass * M_SUN;
+  const a = semiMajorAxisAu(S2_ORBIT, SGR_A_STAR.distance);
+  const hole: OrreryBody = {
+    id: 'sgr-a',
+    name: 'Sagittarius A*',
+    gm,
+    // Its horizon, 2GM/c²: about 0.08 AU, nearly the size of Mercury's orbit.
+    radius: (2 * gm) / LIGHT_AU_DAY ** 2,
+    colour: '#c4b5fd',
+    x: [0, 0, 0],
+    v: [0, 0, 0],
+  };
+  const M = (360 * (S2_YEAR0 - S2_ORBIT.periastron)) / S2_ORBIT.period;
+  // S2 weighs about 14 Suns (Habibi et al. 2017), nothing beside the black hole; its own size is too small to matter here.
+  const star = onOrbit(hole, { id: 's2', name: 'S2', gm: 14 * M_SUN, radius: 0, colour: '#9fd3ff' }, { a, e: S2_ORBIT.e, M: ((M % 360) + 360) % 360 });
+  return centred([hole, star]);
+}
+
+/** The Sun, the four rocky planets and Jupiter, from JPL's positions on 1 January 2026, for the Sun's death. */
+function innerSolarSystem(): OrreryBody[] {
+  const keep = ['sun', 'mercury', 'venus', 'earth', 'mars', 'jupiter'];
+  return solarSystem().filter((b) => keep.includes(b.id));
+}
+
 const day = (n: number) => n;
 const year = (n: number) => 365.25 * n;
 
@@ -452,6 +493,36 @@ export const PRESETS: readonly Preset[] = [
     trailLaps: 1,
     rate: year(5),
     epochTT: horizons.epochTT,
+  },
+  {
+    id: 's2',
+    name: 'S2 round Sagittarius A*',
+    blurb: 'The star S2 going round the Milky Way’s central black hole every 16 years, passing within 120 AU of it at 7,700 km/s. With relativity on, its orbit turns by 12 minutes of arc a lap, as GRAVITY measured in 2020.',
+    tryThis: 'Read the turning in S2’s card as it runs, then set relativity to ×100: the turning is a hundred times larger and the trail becomes a rosette. Switch relativity off and the orbit closes on itself, as Newton’s would.',
+    simplified: 'S2’s orbit is drawn face on, not as we see it tilted on the sky. Relativity is added as a small extra pull towards the black hole, which turns the orbit by just the amount Einstein’s theory gives; its other effects, such as the light’s extra redshift at pericentre, aren’t part of the motion. The other stars round Sagittarius A* are left out.',
+    bodies: s2System,
+    method: 'auto',
+    frame: { centre: 'sgr-a', rotate: null },
+    zoom: 2200,
+    trailLaps: 5,
+    rate: year(5),
+    epochTT: horizons.epochTT,
+    relativity: 1,
+    watch: 's2',
+  },
+  {
+    id: 'suns-death',
+    name: 'The Sun’s death',
+    blurb: 'The Sun follows its future from today, as the Star Forge works it out: it swells into a red giant, loses mass in its wind, swells again and shrinks to a white dwarf. As it loses mass the planets drift outwards; tides in its swollen envelope drag them back in.',
+    tryThis: 'Run it, and watch Mercury and Venus at the red giant’s tip. Does Earth escape? Weaken the winds, or strengthen the tide, until it doesn’t: the charts show the answer at once, and the run plays it out.',
+    simplified: 'The Sun follows SSE’s track for a star of one solar mass, with its winds scaled; the tide is Zahn’s, as Mustill and Villaver (2012) wrote it, with their settings. The Sun’s clock runs far faster than the planets’ (see the note below the charts). Saturn and the planets beyond are left out, as they are never in reach, and so are the planets’ own tides and the drag of the Sun’s wind.',
+    bodies: innerSolarSystem,
+    method: 'whfast',
+    frame: { centre: 'sun', rotate: null },
+    zoom: 3.2,
+    trailLaps: 1,
+    rate: year(1000),
+    dying: { windScale: 1, tide: 1 },
   },
   {
     id: 'one-planet',

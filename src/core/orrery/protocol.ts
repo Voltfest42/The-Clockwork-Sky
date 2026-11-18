@@ -1,4 +1,6 @@
 import type { Vec3 } from '../math/vec3';
+import { lifeOf } from '../stellar/lives';
+import { DyingStar, SUN_NOW, SUN_Z, type StarNow } from './dyingSun';
 import { Orrery, type MethodChoice, type NewBodyOnOrbit, type OrreryBody, type OrreryEvent, type OrreryMethod } from './engine';
 import { frameOf, toFrame, type FrameSpec, FIXED_FRAME } from './frame';
 import { parentage } from './hierarchy';
@@ -18,8 +20,16 @@ import { parentage } from './hierarchy';
  * Units: AU, days, AU/day; rates in simulated days per real second.
  */
 
+/** The Sun's death: SSE's 1 M☉ track with its winds scaled, and the tide's strength (1 is Mustill & Villaver's). The Sun is the body with id `star`. */
+export interface DyingSunSettings {
+  windScale: number;
+  tide: number;
+  /** The Sun's age at the start, Myr (default: now). */
+  age?: number;
+}
+
 export type OrreryRequest =
-  | { type: 'load'; bodies: readonly OrreryBody[]; method: MethodChoice; frame?: FrameSpec }
+  | { type: 'load'; bodies: readonly OrreryBody[]; method: MethodChoice; frame?: FrameSpec; relativity?: number; dying?: DyingSunSettings; watch?: string | null }
   /** Runs at `rate` days per second, sending a snapshot every `postEvery` seconds (default 1/30). */
   | { type: 'run'; rate: number; postEvery?: number }
   | { type: 'pause' }
@@ -32,7 +42,11 @@ export type OrreryRequest =
   | { type: 'mass'; id: string; gm: number }
   | { type: 'velocity'; id: string; v: Vec3 }
   | { type: 'circular'; id: string }
-  | { type: 'undo' };
+  | { type: 'undo' }
+  /** Relativity's correction about the heaviest body: 0 off, 1 on, more to exaggerate. */
+  | { type: 'relativity'; strength: number }
+  /** Watches a body's periapsis turn from now (null to stop). */
+  | { type: 'watch'; id: string | null };
 
 export interface OrrerySnapshot {
   type: 'state';
@@ -64,11 +78,17 @@ export interface OrrerySnapshot {
   /** A time to go once round the system's fastest orbit, days: for sizing the time warp. */
   timescale: number;
   size: number;
+  /** Relativity's strength (0 off). */
+  relativity: number;
+  /** The watched periapsis: the rate it turns (radians a day), over how long (days), and the net turn (radians). */
+  precession: { id: string; parent: string; rate: number; span: number; turned: number; samples: number } | null;
+  /** The dying star now, or null. */
+  star: StarNow | null;
 }
 
 export type OrreryMessage = OrrerySnapshot | { type: 'error'; message: string };
 
-/** Most trail points per body in one snapshot; more are thinned evenly. */
+/** Most trail points per body in one snapshot. A snapshot that covers more (at a high time warp) keeps the latest: a trail of a few laps needs no more. */
 export const MAX_TRAIL_PER_BODY = 600;
 const POINTS_PER_LAP = 90;
 
@@ -139,7 +159,7 @@ export function createOrreryHost(post: (message: OrreryMessage) => void, now: ()
       const count = list.length / 4;
       const keep = Math.min(count, MAX_TRAIL_PER_BODY);
       for (let k = 0; k < keep; k++) {
-        const at = keep === count ? k : Math.round(((k + 1) * count) / keep) - 1;
+        const at = count - keep + k;
         trail.push(i, list[4 * at], list[4 * at + 1], list[4 * at + 2], list[4 * at + 3]);
       }
     });
@@ -170,6 +190,9 @@ export function createOrreryHost(post: (message: OrreryMessage) => void, now: ()
       canUndo: orrery.canUndo,
       timescale: orrery.timescale,
       size: orrery.size,
+      relativity: orrery.relativity,
+      precession: orrery.precession(),
+      star: orrery.dying ? orrery.dying.now() : null,
     });
     trailReset = false;
   };
@@ -209,6 +232,13 @@ export function createOrreryHost(post: (message: OrreryMessage) => void, now: ()
         switch (request.type) {
           case 'load':
             orrery = new Orrery(request.bodies, request.method);
+            if (request.relativity) orrery.setRelativity(request.relativity);
+            if (request.dying) {
+              const track = lifeOf(1, SUN_Z, { windScale: request.dying.windScale });
+              orrery.setDyingStar(new DyingStar(track, request.dying.age ?? SUN_NOW, request.dying.tide));
+            }
+            orrery.events.length = 0;
+            if (request.watch) orrery.watch(request.watch);
             frame = request.frame ?? FIXED_FRAME;
             running = false;
             sentEvents = 0;
@@ -260,6 +290,13 @@ export function createOrreryHost(post: (message: OrreryMessage) => void, now: ()
             return edit((o) => o.circularise(request.id));
           case 'undo':
             return edit((o) => o.undo());
+          case 'relativity':
+            return edit((o) => o.setRelativity(request.strength));
+          case 'watch':
+            if (!orrery) throw new Error('Nothing is loaded.');
+            orrery.watch(request.id);
+            snapshot();
+            return;
         }
       });
     },

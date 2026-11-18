@@ -454,6 +454,18 @@ export const GLOSSARY = {
     term: 'Jacobi radius',
     definition: 'The distance from a star cluster’s centre where the Galaxy’s tide balances the cluster’s own pull. Stars that wander beyond it are lost to the Galaxy.',
   },
+  'king-model': {
+    term: 'King model',
+    definition: 'Ivan King’s (1966) model of a star cluster: a gas of stars with the fastest ones left out, as if the Galaxy’s tide had stripped them away, so the cluster has an edge. One number, the depth of its central potential, sets how concentrated it is.',
+  },
+  'core-collapse-cluster': {
+    term: 'Core collapse',
+    definition: 'In a star cluster, the runaway in which close passes carry energy outwards: the core shrinks and heats while the outskirts swell (the gravothermal catastrophe), until close pairs of stars form in the middle and stop it. Not the collapse of a star’s core in a supernova.',
+  },
+  'orbital-precession': {
+    term: 'Precession of an orbit',
+    definition: 'The slow turning of an orbit’s long axis, so that its closest point moves round from lap to lap: the pulls of other planets do it, and so does relativity, which turns Mercury’s orbit an extra 43 seconds of arc a century.',
+  },
   'tidal-tail': {
     term: 'Tidal tail',
     definition: 'A stream of stars drawn out of a cluster or galaxy by tides: escaping stars run ahead along the orbit on the inner side and lag behind on the outer side, making two tails.',

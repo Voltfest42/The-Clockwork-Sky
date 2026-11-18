@@ -10,6 +10,7 @@ import {
   type CollisionSample,
   type DiscSetting,
 } from '../core/nbody/collisionHost';
+import { collisionQuery } from '../lab/orrery/manyLinks';
 import { Caption, Figure } from '../viz/Figure';
 import { LineChart } from '../viz/LineChart';
 import { useOnScreen, useReducedMotion } from '../viz/hooks';
@@ -186,6 +187,7 @@ export function GalaxyCollisionFigure({ number, tryThis }: { number: string; try
     <Figure
       number={number}
       title="Galaxy collision"
+      orrery={`mode=galaxies&${collisionQuery(config)}`}
       description="Two disc galaxies meet, each a cloud of up to 50,000 test stars round an extended mass, computed in the reader’s browser by Toomre’s method. Presets after Toomre and Toomre’s Antennae and Mice, a ring galaxy and a flyby; the masses, the closest approach, the orbit, each disc’s tilt and spin, and dynamical friction can be changed. Charts follow the galaxies’ separation and the share of stars pulled into tails or taken by the other galaxy."
       height={1360}
       tryThis={tryThis}

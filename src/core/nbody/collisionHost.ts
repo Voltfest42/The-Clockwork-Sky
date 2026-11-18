@@ -1,14 +1,14 @@
 import { discAxis, GalaxyEncounter, KMS_KPC, ringReading, type EncounterSpec, type Fates, type GalaxySpec, type RingReading } from './restricted';
 
 /**
- * The colliding galaxies' message protocol (Figure 31.1, and later the
- * Orrery's galaxy mode), spoken between the figure and the Web Worker that
+ * The colliding galaxies' message protocol (Figure 31.1 and the Orrery's
+ * galaxy mode), spoken between the figure and the Web Worker that
  * steps the encounter. The host holds the encounter and answers; the worker
  * only wires it to `postMessage` and a timer, and a page without workers runs
  * the same host on the main thread. Units: kpc, Myr, M☉; speeds in km/s.
  */
 
-export type CollisionPreset = 'antennae' | 'mice' | 'ring' | 'flyby';
+export type CollisionPreset = 'antennae' | 'mice' | 'ring' | 'flyby' | 'milky-way';
 
 /** One disc's orientation to the orbit: Toomre & Toomre's tilt i (0–90°) and ω, and which way it turns. */
 export interface DiscSetting {
@@ -52,6 +52,9 @@ export const COLLISION_PRESETS: Record<CollisionPreset, Omit<CollisionConfig, 's
   ring: { preset: 'ring', massRatio: 0.3, pericentre: 1, eccentricity: 2, main: { tilt: 90, omega: 0, spin: 1 }, companion: null, friction: true, duration: 600 },
   // A companion a third as heavy passing once, prograde, in the disc's plane
   flyby: { preset: 'flyby', massRatio: 0.3, pericentre: 30, eccentricity: 1, main: { tilt: 0, omega: 0, spin: 1 }, companion: null, friction: true, duration: 1200 },
+  // A sketch of the Milky Way meeting Andromeda: the measured masses (1.0 and 1.3 × 10¹² M☉, Sawala et al. 2025) on a bound orbit
+  // like the Antennae's. The orbit's plane is unknown (Andromeda's sideways motion is), so the discs' tilts are one possibility.
+  'milky-way': { preset: 'milky-way', massRatio: 0.75, pericentre: 30, eccentricity: 0.5, main: { tilt: 70, omega: -30, spin: 1 }, companion: { tilt: 30, omega: 60, spin: 1 }, friction: true, duration: 2000 },
 };
 
 export const STAR_CHOICES = [20_000, 50_000, 100_000] as const;

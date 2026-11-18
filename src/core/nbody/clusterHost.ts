@@ -11,10 +11,11 @@ import {
   relaxationTime,
   type Tide,
 } from './cluster';
+import { kingSphere } from './king';
 
 /**
- * The many-body engine's message protocol, spoken between Figure 30.1 (and,
- * later, the Orrery's cluster mode) and the Web Worker that runs a cluster.
+ * The many-body engine's message protocol, spoken between Figure 30.1 (and
+ * the Orrery's cluster mode) and the Web Worker that runs a cluster.
  * The host holds the simulation and answers; the worker only wires it to
  * `postMessage` and a timer, and a page without workers runs the same host
  * on the main thread. Units: pc, Myr, M☉.
@@ -27,9 +28,14 @@ export interface ClusterConfig {
   masses: 'equal' | 'kroupa';
   /** The cluster's orbit round the Galaxy, kpc from the centre. */
   orbit: number;
-  /** Half-mass radius at the start, pc. */
+  /** Half-mass radius at the start, pc (a King model in the tide fills its Jacobi radius instead). */
   halfMass: number;
   seed: number;
+  /** The starting shape: Plummer's sphere (the default) or a King model of depth `w0`. */
+  model?: 'plummer' | 'king';
+  w0?: number;
+  /** Whether the Galaxy's tide acts (default true). Without it the cluster is alone in space. */
+  tide?: boolean;
 }
 
 export const CLUSTER_DEFAULTS: ClusterConfig = { n: 1000, masses: 'kroupa', orbit: 8.2, halfMass: 2, seed: 1 };
@@ -60,10 +66,14 @@ export interface ClusterSample {
   jacobi: number;
   /** Radii holding 10%, 50% and 90% of the bound mass, pc. */
   lagrangian: [number, number, number];
+  /** Radii holding 2%, 10%, 50% and 90% of the bound mass about the dense core, pc: the inner ones shrink as the core collapses. */
+  core: [number, number, number, number];
   /** Half-mass radius of the heaviest tenth of the bound stars, pc. */
   heavy: number;
   /** The Jacobi integral's drift since the start, as a share of its size. */
   energyError: number;
+  /** The virial ratio of all the stars, kinetic over minus potential energy: ½ in balance. */
+  virial: number;
 }
 
 export interface ClusterInfo {
@@ -76,7 +86,10 @@ export interface ClusterInfo {
   relaxation: number;
   crossing: number;
   jacobi: number;
-  tide: Tide;
+  /** The tide, or null when the cluster is alone in space. */
+  tide: Tide | null;
+  /** The half-mass radius at the start, pc. */
+  halfMass: number;
   softening: number;
 }
 
@@ -103,19 +116,32 @@ export const RUN_LIMIT = 30;
 /** Readings per relaxation time. */
 export const SAMPLES_PER_RELAXATION = 25;
 
-/** Builds a cluster from its configuration: masses, a Plummer sphere cut at 1.5 Jacobi radii, the tide and the integrator. */
+/**
+ * Builds a cluster from its configuration: masses; a Plummer sphere cut at
+ * 1.5 Jacobi radii, or a King model (filling its Jacobi radius in the tide,
+ * or with the half-mass radius asked for without one); the tide; and the
+ * integrator.
+ */
 export function buildCluster(config: ClusterConfig) {
   const random = new Random(config.seed);
   const masses = config.masses === 'kroupa' ? kroupaMasses(config.n, random, 0.08, KROUPA_TOP) : new Float64Array(config.n).fill(0.5);
   const totalMass = masses.reduce((s, m) => s + m, 0);
-  const tide = galacticTide(config.orbit);
-  const jacobi = jacobiRadius(totalMass, tide);
-  const stars = plummerSphere(config.n, totalMass, config.halfMass / PLUMMER_HALF_MASS, random, masses, 1.5 * jacobi);
-  const crossing = crossingTime(totalMass, config.halfMass);
-  const relaxation = relaxationTime(config.n, config.halfMass, totalMass / config.n);
-  const softening = config.halfMass * SOFTENING_SHARE;
+  const tide = config.tide === false ? null : galacticTide(config.orbit);
+  const jacobi = tide ? jacobiRadius(totalMass, tide) : Infinity;
+  let stars: ReturnType<typeof plummerSphere>;
+  let halfMass = config.halfMass;
+  if (config.model === 'king') {
+    const king = kingSphere(masses, config.w0 ?? 6, tide ? { tidal: jacobi } : { halfMass: config.halfMass }, random);
+    stars = king;
+    halfMass = king.profile.halfMass * king.r0;
+  } else {
+    stars = plummerSphere(config.n, totalMass, config.halfMass / PLUMMER_HALF_MASS, random, masses, tide ? 1.5 * jacobi : undefined);
+  }
+  const crossing = crossingTime(totalMass, halfMass);
+  const relaxation = relaxationTime(config.n, halfMass, totalMass / config.n);
+  const softening = halfMass * SOFTENING_SHARE;
   const sim = new ClusterSim(stars, { softening, tide, eta: ETA, maxStep: crossing / 16 });
-  return { sim, totalMass, tide, jacobi, crossing, relaxation, softening };
+  return { sim, totalMass, tide, jacobi, crossing, relaxation, softening, halfMass };
 }
 
 export interface ClusterHost {
@@ -142,14 +168,17 @@ export function createClusterHost(post: (message: ClusterMessage) => void, now: 
     centre = reading.centre;
     lastBound = reading.bound;
     const e = b.sim.jacobiEnergy();
+    const energies = b.sim.energies();
     const s: ClusterSample = {
       t: b.sim.t,
       bound: reading.boundMass / b.totalMass,
       boundCount: reading.boundCount,
       jacobi: reading.jacobi,
       lagrangian: reading.lagrangian,
+      core: reading.core,
       heavy: reading.heavyHalfMass,
       energyError: (e - e0) / Math.abs(e0),
+      virial: energies.kinetic / -energies.potential,
     };
     samples.push(s);
     nextSample = b.sim.t + b.relaxation / SAMPLES_PER_RELAXATION;
@@ -215,6 +244,7 @@ export function createClusterHost(post: (message: ClusterMessage) => void, now: 
               crossing: built.crossing,
               jacobi: built.jacobi,
               tide: built.tide,
+              halfMass: built.halfMass,
               softening: built.softening,
             });
             sample();

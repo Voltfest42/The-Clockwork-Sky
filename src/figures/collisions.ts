@@ -40,6 +40,10 @@ export const PRESET_INFO: Record<CollisionPreset, { label: string; about: string
     label: 'A flyby',
     about: 'A flyby: a companion a third as heavy, with no disc of its own, passing once on a parabolic orbit, in the main disc’s plane and in its direction of spin',
   },
+  'milky-way': {
+    label: 'The Milky Way and Andromeda',
+    about: 'A sketch of the Milky Way meeting Andromeda: their measured masses (Andromeda the heavier, 1.3 to 1), on a bound orbit that brings them together within 30 kpc. Their orbit’s plane isn’t known, because Andromeda’s sideways motion isn’t, so the discs’ tilts here are one possibility of many',
+  },
 };
 
 export const SPEEDS = [

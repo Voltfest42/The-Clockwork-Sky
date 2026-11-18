@@ -1,11 +1,13 @@
 import { createStepper, type Stepper } from '../integrate/steppers';
 import { cross, norm, normalize, type Vec3 } from '../math/vec3';
-import { angularMomentumError, energyError, reference, type Reference } from '../nbody/diagnostics';
+import { angularMomentumError, energy, reference, type Reference } from '../nbody/diagnostics';
 import { createIas15, type Ias15 } from '../nbody/ias15';
 import { createSystem, gravity, type NBodySystem } from '../nbody/system';
 import { createWisdomHolman, jacobiOrder, type WisdomHolman } from '../nbody/wisdomHolman';
 import { stateFromElements, type Elements } from '../orbits/elements';
+import { tidalRate, type DyingStar, type StarNow } from './dyingSun';
 import { isPlanetary, parentage, type Parentage } from './hierarchy';
+import { eccentricityVector, PeriapsisWatch, relativityEnergy, withRelativity } from './relativity';
 
 /**
  * The Orrery's engine: a system of bodies with names, sizes and colours, run
@@ -23,8 +25,16 @@ import { isPlanetary, parentage, type Parentage } from './hierarchy';
  * - **Leapfrog**, the method from Chapter 7, for comparison.
  *
  * On "automatic", the engine starts with Wisdom–Holman when the system is
- * planetary and IAS15 otherwise, and switches to IAS15 for good the first time
- * two bodies come within three Hill radii of each other.
+ * planetary and IAS15 otherwise, and switches to IAS15 the first time two
+ * bodies come within three Hill radii of each other. Once every pair is well
+ * clear again (outside four Hill radii, and too far to come back within three
+ * in the next ten Wisdom–Holman steps), it switches back, as MERCURIUS-style
+ * hybrid integrators do.
+ *
+ * Two additions from Part III: relativity's correction about the heaviest
+ * body (relativity.ts), switched on with `setRelativity`; and a star that
+ * evolves (dyingSun.ts), whose mass and size follow a stellar track while
+ * tides in its envelope drag the planets in.
  */
 
 export type OrreryMethod = 'whfast' | 'ias15' | 'leapfrog';
@@ -48,7 +58,7 @@ export interface OrreryBody {
 export interface OrreryEvent {
   /** Days since the start. */
   t: number;
-  kind: 'encounter' | 'collision' | 'escape' | 'method' | 'edit';
+  kind: 'encounter' | 'collision' | 'escape' | 'method' | 'edit' | 'engulfed';
   text: string;
 }
 
@@ -65,8 +75,10 @@ export interface NewBodyOnOrbit {
 export const MAX_BODIES = 50;
 /** The speed of light in AU/day: no body may be given a tenth of it. */
 const LIGHT = 173.144_632_674;
-/** Up to 200 solar masses. */
-const MAX_GM = 200 * 2.959_122_082_855_911e-4;
+/** New bodies weigh up to 200 Suns; a system may hold a black hole of up to 100 million. */
+const SUN_GM = 2.959_122_082_855_911e-4;
+const MAX_NEW_GM = 200 * SUN_GM;
+const MAX_GM = 1e8 * SUN_GM;
 const MAX_UNDO = 30;
 
 interface Saved {
@@ -105,6 +117,18 @@ export class Orrery {
   private escaped = new Set<string>();
   private undoStack: Saved[] = [];
   private order: number[] = [];
+  /** Relativity's correction: 0 for none, 1 for the true one, more to exaggerate it. */
+  relativity = 0;
+  /** The energy at the start (times G), relativity's term included. */
+  private refEnergy = 0;
+  /** Whether the engine moved to IAS15 for a close encounter by itself (and may move back). */
+  private switchedForEncounter = false;
+  /** The last time any watched pair was within three Hill radii, days. */
+  private lastClose = -Infinity;
+  private periapsis: PeriapsisWatch | null = null;
+  private watching: string | null = null;
+  /** A star whose mass and size change with time (the Sun's death), or null. */
+  dying: DyingStar | null = null;
 
   constructor(bodies: readonly OrreryBody[], choice: MethodChoice = 'auto') {
     this.choice = choice;
@@ -152,11 +176,27 @@ export class Orrery {
     this.planetary = isPlanetary(s.gm, p);
     this.measure(p);
     this.ref = reference(s);
+    this.refEnergy = this.energyNow();
     this.near.clear();
     this.loggedOrbit.clear();
     this.closestLogged.clear();
     this.method = this.choice === 'auto' ? (this.planetary && !this.anyClose() ? 'whfast' : 'ias15') : this.choice;
+    this.switchedForEncounter = false;
     this.makeIntegrator();
+    this.restartWatch();
+  }
+
+  /** The total energy now, times G, with relativity's term. */
+  private energyNow(): number {
+    const s = this.system;
+    return energy(s) + relativityEnergy(s.gm, s.x, this.root, this.relativity);
+  }
+
+  /** Gravity for the integrators: Newton's, with relativity's correction about the heaviest body when it is on. */
+  private acceleration() {
+    const s = this.system;
+    const g = gravity(s.gm);
+    return this.relativity > 0 ? withRelativity(g, s.gm, this.root, this.relativity) : g;
   }
 
   /** The system's size (AU) and its shortest orbital period (days), from where the bodies are now. */
@@ -186,7 +226,7 @@ export class Orrery {
 
   private makeIntegrator() {
     const s = this.system;
-    const g = gravity(s.gm);
+    const g = this.acceleration();
     this.wh = null;
     this.ias = null;
     this.leap = null;
@@ -208,12 +248,71 @@ export class Orrery {
     return this.ias ? this.ias.dt : this.dt;
   }
 
+  /** The energy's drift since the start, as a share of it; NaN while a star is losing mass, when energy isn't kept. */
   energyError(): number {
-    return energyError(this.system, this.ref);
+    if (this.dying) return NaN;
+    return (this.energyNow() - this.refEnergy) / Math.abs(this.refEnergy || 1);
   }
 
   angularMomentumError(): number {
+    if (this.dying) return NaN;
     return angularMomentumError(this.system, this.ref);
+  }
+
+  /** Switches relativity's correction about the heaviest body on (1), off (0) or exaggerated (more than 1). */
+  setRelativity(strength: number) {
+    if (!(strength >= 0) || !Number.isFinite(strength)) throw new Error('Relativity’s strength must be zero or more.');
+    if (strength === this.relativity) return;
+    this.relativity = strength;
+    this.rebuild();
+    this.log('edit', strength === 0 ? 'Relativity off: Newton’s gravity alone.' : strength === 1 ? 'Relativity on.' : `Relativity on, exaggerated ${strength} times.`);
+  }
+
+  /** Watches a body's periapsis turn (from now), or stops watching. */
+  watch(id: string | null) {
+    this.watching = id;
+    this.restartWatch();
+  }
+
+  private restartWatch() {
+    this.periapsis = null;
+    const id = this.watching;
+    if (!id) return;
+    const s = this.system;
+    const i = this.ids.indexOf(id);
+    const j = i >= 0 ? this.parents[i] : -1;
+    if (i < 0 || j < 0) return;
+    const orbit = parentage(s.gm, s.x, s.v).orbits[i];
+    if (!orbit || !(orbit.a > 0) || !Number.isFinite(orbit.period) || orbit.e < 1e-4) return;
+    const { e } = this.relativeEccentricity(i, j);
+    this.periapsis = new PeriapsisWatch(id, this.ids[j], s.t, orbit.period / 32, e);
+  }
+
+  private relativeEccentricity(i: number, j: number) {
+    const s = this.system;
+    const r = [0, 1, 2].map((k) => s.x[3 * i + k] - s.x[3 * j + k]);
+    const w = [0, 1, 2].map((k) => s.v[3 * i + k] - s.v[3 * j + k]);
+    return eccentricityVector(s.gm[i] + s.gm[j], r, w);
+  }
+
+  private samplePeriapsis() {
+    const watch = this.periapsis;
+    if (!watch || !watch.due(this.system.t)) return;
+    const i = this.ids.indexOf(watch.id);
+    const j = this.ids.indexOf(watch.parent);
+    if (i < 0 || j < 0) {
+      this.periapsis = null;
+      return;
+    }
+    const { e, h } = this.relativeEccentricity(i, j);
+    watch.sample(this.system.t, e, h);
+  }
+
+  /** The watched periapsis: whose, about what, the fitted rate (radians a day), how long it has been watched (days) and the net turn (radians). */
+  precession(): { id: string; parent: string; rate: number; span: number; turned: number; samples: number } | null {
+    const w = this.periapsis;
+    if (!w) return null;
+    return { id: w.id, parent: w.parent, ...w.reading(this.system.t) };
   }
 
   /** Changes the integrator, carrying on from where the system is. */
@@ -243,6 +342,7 @@ export class Orrery {
   /** One step of the current integrator, then the checks. With `limit`, the step is no longer than that (days). */
   step(limit?: number) {
     const s = this.system;
+    const star = this.dying ? this.prepareStar(limit) : null;
     let taken: number;
     if (this.wh) {
       taken = limit !== undefined ? Math.min(this.dt, limit) : this.dt;
@@ -259,10 +359,101 @@ export class Orrery {
     for (let i = 0; i < s.x.length; i++) {
       if (!Number.isFinite(s.x[i]) || !Number.isFinite(s.v[i])) throw new Error('The simulation broke down: a body was flung off to infinity. Undo, or try IAS15.');
     }
+    if (star) this.finishStar(star);
     this.checkCollisions();
     this.checkEncounters();
     if (this.steps % 64 === 0) this.checkEscapes();
     if (this.steps % 256 === 0) this.refreshHierarchy();
+    this.samplePeriapsis();
+  }
+
+  // ——— A star that evolves (the Sun's death) ———
+
+  /**
+   * Before a step: the star's clock will advance by the pace times the step;
+   * its mass is set to the middle of that stretch, and half the tide's drag is
+   * applied (the other half after the step, so the split is symmetric).
+   */
+  private prepareStar(limit?: number) {
+    const dying = this.dying!;
+    const s = this.system;
+    const root = this.root;
+    const dt = limit !== undefined ? Math.min(this.stepSize, limit) : this.stepSize;
+    // Each planet's orbit about the star by its energy (the osculating semi-major axis), not its distance now: a pace that
+    // followed the distance would shed more mass near perihelion than near aphelion, and pump up the eccentricity.
+    const planets: { i: number; a: number; m: number; period: number }[] = [];
+    for (let i = 0; i < s.n; i++) {
+      if (i === root) continue;
+      const mu = s.gm[root] + s.gm[i];
+      const r = Math.hypot(s.x[3 * i] - s.x[3 * root], s.x[3 * i + 1] - s.x[3 * root + 1], s.x[3 * i + 2] - s.x[3 * root + 2]);
+      const w2 = (s.v[3 * i] - s.v[3 * root]) ** 2 + (s.v[3 * i + 1] - s.v[3 * root + 1]) ** 2 + (s.v[3 * i + 2] - s.v[3 * root + 2]) ** 2;
+      const inverse = 2 / r - w2 / mu;
+      const a = inverse > 0 ? 1 / inverse : r;
+      planets.push({ i, a, m: s.gm[i] / SUN_GM, period: 2 * Math.PI * Math.sqrt(a ** 3 / mu) });
+    }
+    const dAge = Math.min(dying.pace(planets) * dt, Math.max(0, dying.end - dying.age));
+    this.dragPlanets(dying.now(), planets, dAge / 2);
+    dying.age += dAge / 2;
+    s.gm[root] = dying.now().mass * SUN_GM;
+    this.wh?.refresh();
+    return { dAge, planets };
+  }
+
+  private finishStar(prepared: { dAge: number; planets: { i: number; a: number; m: number; period: number }[] }) {
+    const dying = this.dying!;
+    const s = this.system;
+    dying.age = Math.min(dying.end, dying.age + prepared.dAge / 2);
+    const now = dying.now();
+    this.dragPlanets(now, prepared.planets, prepared.dAge / 2);
+    this.radii[this.root] = now.radius;
+    // Planets inside the star's surface are swallowed.
+    const root = this.root;
+    const eaten: number[] = [];
+    for (let i = 0; i < s.n; i++) {
+      if (i === root) continue;
+      const r = Math.hypot(s.x[3 * i] - s.x[3 * root], s.x[3 * i + 1] - s.x[3 * root + 1], s.x[3 * i + 2] - s.x[3 * root + 2]);
+      if (r < now.radius + this.radii[i]) eaten.push(i);
+    }
+    if (eaten.length) {
+      const star = this.names[root];
+      const names = eaten.map((i) => this.names[i]);
+      const bodies = this.bodies().filter((_, k) => !eaten.includes(k));
+      const t = s.t;
+      for (const name of names) {
+        this.log('engulfed', `${star === 'Sun' ? 'The Sun' : star} swallowed ${name}, ${(now.t / 1000).toFixed(3)} billion years after its birth, when its radius reached ${now.radius.toFixed(2)} AU.`);
+      }
+      this.load(bodies);
+      this.system.t = t;
+    }
+  }
+
+  /** The tide's drag over `dAge` Myr of the star's life: each planet's velocity about the star shrinks by Γ dAge / 2, which shrinks a circular orbit by Γ dAge. */
+  private dragPlanets(star: StarNow, planets: readonly { i: number; a: number; m: number }[], dAge: number) {
+    const dying = this.dying!;
+    const s = this.system;
+    const root = this.root;
+    for (const p of planets) {
+      const g = tidalRate(star, p.a, p.m, dying.strength);
+      if (!(g > 0)) continue;
+      const k = Math.min(0.5, (g * dAge) / 2);
+      for (let c = 0; c < 3; c++) {
+        const rel = s.v[3 * p.i + c] - s.v[3 * root + c];
+        s.v[3 * p.i + c] -= k * rel;
+        // The reaction on the star keeps momentum.
+        s.v[3 * root + c] += (k * rel * s.gm[p.i]) / s.gm[root];
+      }
+    }
+  }
+
+  /** Lets the heaviest body evolve as `dying` says (or stops it): its mass and radius follow the track from now on. */
+  setDyingStar(dying: DyingStar | null) {
+    this.dying = dying;
+    if (dying) {
+      const now = dying.now();
+      this.system.gm[this.root] = now.mass * SUN_GM;
+      this.radii[this.root] = now.radius;
+    }
+    this.rebuild();
   }
 
   private refreshHierarchy() {
@@ -284,7 +475,7 @@ export class Orrery {
       const order = jacobiOrder(s.gm, s.x);
       if (order.some((b, i) => b !== this.order[i])) {
         this.order = order;
-        this.wh = createWisdomHolman(s.gm, gravity(s.gm), order);
+        this.wh = createWisdomHolman(s.gm, this.acceleration(), order);
       }
     }
   }
@@ -358,14 +549,15 @@ export class Orrery {
         const key = `${this.ids[i]}|${this.ids[j]}`;
         const close = this.near.get(key);
         if (d < zone) {
+          this.lastClose = s.t;
           if (!close) {
             this.near.set(key, { closest: d, t: s.t });
             if (this.method === 'whfast' && this.choice === 'auto') {
               this.log('method', `${this.names[i]} and ${this.names[j]} came within three Hill radii: switched to IAS15, which can follow a close encounter.`);
               this.method = 'ias15';
-              const g = gravity(s.gm);
+              this.switchedForEncounter = true;
               this.wh = null;
-              this.ias = createIas15(s.x.length, g, { dt: this.dt / 4, minDt: this.timescale * 1e-13 });
+              this.ias = createIas15(s.x.length, this.acceleration(), { dt: this.dt / 4, minDt: this.timescale * 1e-13 });
             }
           } else if (d < close.closest) {
             close.closest = d;
@@ -385,6 +577,50 @@ export class Orrery {
         }
       }
     }
+    if (this.switchedForEncounter && this.near.size === 0 && this.steps % 16 === 0) this.maybeSwitchBack();
+  }
+
+  /**
+   * After a close pass, back to Wisdom–Holman once the system is planetary
+   * again, no pair has been within three Hill radii for two of the fastest
+   * laps, and every pair is clear: outside four Hill radii, and too far apart
+   * to come back within three in the next ten Wisdom–Holman steps at the speed
+   * they now approach each other.
+   */
+  private maybeSwitchBack() {
+    const s = this.system;
+    if (s.t - this.lastClose < 2 * this.timescale) return;
+    const p = parentage(s.gm, s.x, s.v);
+    if (!isPlanetary(s.gm, p)) return;
+    const saved = { timescale: this.timescale, size: this.size };
+    this.measure(p);
+    const dtWh = this.timescale / 25;
+    let clear = true;
+    for (let i = 0; i < s.n && clear; i++) {
+      for (let j = i + 1; j < s.n; j++) {
+        if (i === p.root || j === p.root || (s.gm[i] === 0 && s.gm[j] === 0) || p.parent[i] === j || p.parent[j] === i) continue;
+        const h = Math.max(p.hill[i], p.hill[j]);
+        const d = Math.hypot(s.x[3 * j] - s.x[3 * i], s.x[3 * j + 1] - s.x[3 * i + 1], s.x[3 * j + 2] - s.x[3 * i + 2]);
+        const w = Math.hypot(s.v[3 * j] - s.v[3 * i], s.v[3 * j + 1] - s.v[3 * i + 1], s.v[3 * j + 2] - s.v[3 * i + 2]);
+        if (d < 4 * h || d - 3 * h < 10 * w * dtWh) {
+          clear = false;
+          break;
+        }
+      }
+    }
+    if (!clear) {
+      this.timescale = saved.timescale;
+      this.size = saved.size;
+      return;
+    }
+    this.parents = p.parent;
+    this.hill = p.hill;
+    this.root = p.root;
+    this.planetary = true;
+    this.method = 'whfast';
+    this.switchedForEncounter = false;
+    this.makeIntegrator();
+    this.log('method', 'The close pass is over: switched back to Wisdom–Holman.');
   }
 
   /** The semi-major axis of i and j's orbit about each other (AU), or −1 if they aren't bound. */
@@ -476,6 +712,7 @@ export class Orrery {
     if (bodies.length >= MAX_BODIES) throw new Error(`The Orrery holds up to ${MAX_BODIES} bodies.`);
     const parent = bodies.find((b) => b.id === spec.parent);
     if (!parent) throw new Error('Pick a body for it to go round.');
+    if (spec.gm > MAX_NEW_GM) throw new Error(`${spec.name} is too heavy: keep new bodies under 200 times the Sun’s mass.`);
     const { a, e, i, node, peri, M } = spec.orbit;
     if (!(a > 0) || !Number.isFinite(a)) throw new Error('The orbit’s size must be more than zero.');
     if (!(e >= 0 && e < 1)) throw new Error('The eccentricity must be at least 0 and less than 1.');
@@ -566,7 +803,7 @@ export class Orrery {
 function checkBody(b: OrreryBody) {
   if (!b.name) throw new Error('Every body needs a name.');
   if (!Number.isFinite(b.gm) || b.gm < 0) throw new Error(`${b.name} needs a mass of zero or more.`);
-  if (b.gm > MAX_GM) throw new Error(`${b.name} is too heavy: keep masses under 200 times the Sun’s.`);
+  if (b.gm > MAX_GM) throw new Error(`${b.name} is too heavy: keep masses under 100 million times the Sun’s.`);
   if (!Number.isFinite(b.radius) || b.radius < 0) throw new Error(`${b.name} needs a size of zero or more.`);
   if (![...b.x, ...b.v].every(Number.isFinite)) throw new Error(`${b.name} has a position or velocity that isn’t a number.`);
   if (Math.hypot(...b.x) > 1e6) throw new Error(`${b.name} is too far away: keep everything within a million AU.`);

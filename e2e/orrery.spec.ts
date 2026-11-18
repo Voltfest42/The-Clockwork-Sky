@@ -156,6 +156,136 @@ test('Figures 7.2, 7.4 and 8.3 open matching systems in the Orrery', async ({ pa
   await expect(status(page)).toContainText('5 bodies, centred on Jupiter', { timeout: 15_000 });
 });
 
+// ——— Version 2: relativity, the Sun's death, clusters and galaxies ———
+
+/** Sets the time warp to its fastest. */
+async function fastest(page: Page) {
+  const warp = lab(page).getByRole('slider', { name: /Time warp/ });
+  await warp.focus();
+  await page.keyboard.press('End');
+}
+
+/** The mode switcher's buttons. */
+const mode = (page: Page, name: string) => page.getByRole('group', { name: 'What to run' }).getByRole('button', { name });
+
+test('relativity turns S2’s orbit 12′ a lap round Sagittarius A*, and Figures 27.1 and 30.5 open it @cross', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto('/black-holes/');
+  await expect(figureByNumber(page, '27.1').getByRole('link', { name: 'Open this in the Orrery →' })).toHaveAttribute('href', '/orrery/?preset=s2');
+  await page.goto('/crowds-of-stars/');
+  const link = figureByNumber(page, '30.5').getByRole('link', { name: 'Open this in the Orrery →' });
+  await expect(link).toHaveAttribute('href', '/orrery/?preset=s2');
+  // The address itself (the other tests click their figures' links).
+  await openOrrery(page, '?preset=s2');
+  await expect(status(page)).toContainText('2 bodies, centred on Sagittarius A*', { timeout: 15_000 });
+  await expect(lab(page).getByRole('combobox', { name: 'Relativity' })).toHaveValue('1');
+  await expect(lab(page).getByRole('combobox', { name: 'System' })).toHaveValue('s2');
+  // S2 is watched from the start.
+  await expect(lab(page).getByText(/Relativity alone would turn it 12\.2′ a lap, and is switched on\./)).toBeVisible();
+  await fastest(page);
+  await lab(page).getByRole('button', { name: '▶ Run' }).click();
+  await expect(lab(page).getByText(/^Its periapsis turns 12\.[12]′ a lap \(forwards\), measured over/)).toBeVisible({ timeout: 20_000 });
+  await lab(page).getByRole('button', { name: '❚❚ Pause' }).click();
+  await lab(page).getByRole('combobox', { name: 'Relativity' }).selectOption('100');
+  await expect(lab(page).getByText(/here it is exaggerated 100 times\./)).toBeVisible();
+  await lab(page).getByRole('combobox', { name: 'Relativity' }).selectOption('0');
+  await expect(lab(page).getByText(/it is switched off\./)).toBeVisible();
+  await expect(lab(page).getByText('Relativity off: Newton’s gravity alone.')).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('Mercury’s periapsis turns with relativity in the Solar System', async ({ page }) => {
+  const errors = watchErrors(page);
+  await openOrrery(page, '?preset=solar-system&relativity=1');
+  await expect(lab(page).getByRole('combobox', { name: 'Relativity' })).toHaveValue('1');
+  await lab(page).getByRole('table').getByRole('button', { name: 'Mercury' }).click();
+  await expect(lab(page).getByText(/Relativity alone would turn it 43\.0″ a century, and is switched on\./)).toBeVisible();
+  await fastest(page);
+  await lab(page).getByRole('button', { name: '▶ Run' }).click();
+  // Wisdom–Holman at its fastest: a few centuries settle the fitted rate near 575″ a century.
+  await expect(lab(page).getByText(/^Its periapsis turns 5[67]\d″ a century \(forwards\)/)).toBeVisible({ timeout: 30_000 });
+  await lab(page).getByRole('button', { name: '❚❚ Pause' }).click();
+  expect(errors).toEqual([]);
+});
+
+test('the Sun’s death: Figure 17.2 opens it, the charts answer at once, and the run swallows Mercury', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto('/a-stars-life/');
+  const link = figureByNumber(page, '17.2').getByRole('link', { name: 'Open this in the Orrery →' });
+  await expect(link).toHaveAttribute('href', '/orrery/?preset=suns-death');
+  await link.click();
+  await expect(status(page)).toContainText('The Sun at 4.57 billion years old: main sequence', { timeout: 15_000 });
+  await expect(lab(page).getByText('Energy and angular momentum aren’t kept: the Sun is losing mass, and its tides drag on the planets.')).toBeVisible();
+  await expect(lab(page).getByRole('heading', { name: 'The Sun’s death: the answer for these settings' })).toBeVisible();
+  await expect(lab(page).getByText(/^Mercury is swallowed 12\.32\d billion years after the Sun’s birth\.$/)).toBeVisible();
+  await expect(lab(page).getByText(/^Earth survives, ending 1\.71 AU from the white dwarf/)).toBeVisible();
+  // A tide ten times stronger takes Earth too; the run can be started again with it.
+  await lab(page).getByRole('button', { name: '× 10' }).click();
+  await expect(lab(page).getByText(/^Earth is swallowed 12\.32\d billion years after the Sun’s birth\.$/)).toBeVisible();
+  const again = lab(page).getByRole('button', { name: 'Run it again with these' });
+  await expect(again).toBeEnabled();
+  await again.click();
+  await expect(again).toBeDisabled();
+  await fastest(page);
+  await lab(page).getByRole('button', { name: '▶ Run' }).click();
+  await expect(lab(page).getByText(/^The Sun swallowed Mercury, 12\.32\d billion years after its birth/)).toBeVisible({ timeout: 90_000 });
+  await lab(page).getByRole('button', { name: '❚❚ Pause' }).click();
+  await expectNoBrokenFigures(page);
+  expect(errors).toEqual([]);
+});
+
+test('the cluster mode opens Figure 30.1’s cluster and runs a core collapse, on a phone too @phone', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto('/crowds-of-stars/');
+  const link = figureByNumber(page, '30.1').getByRole('link', { name: 'Open this in the Orrery →' });
+  await expect(link).toHaveAttribute('href', '/orrery/?mode=cluster&n=1000&masses=kroupa&orbit=8.2&rh=2');
+  await link.click();
+  await expect(mode(page, 'A star cluster')).toHaveAttribute('aria-pressed', 'true', { timeout: 15_000 });
+  await expect(lab(page).getByRole('combobox', { name: 'Start from' })).toHaveValue('custom');
+  await expect(lab(page).getByRole('group', { name: 'Stars' }).getByRole('button', { name: '1,000' })).toHaveAttribute('aria-pressed', 'true');
+  await lab(page).getByRole('combobox', { name: 'Start from' }).selectOption('core-collapse');
+  await expect(lab(page).getByRole('group', { name: 'The Galaxy’s tide' }).getByRole('button', { name: 'No tide' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(lab(page).getByText(/^500 stars with Kroupa’s mix of masses .* alone in space, with no tide/).first()).toBeVisible({ timeout: 15_000 });
+  await lab(page).getByRole('button', { name: '▶ Run the cluster' }).click();
+  await expect(lab(page).getByText(/After [\d.]+ million years \([\d.]+ relaxation times\): the virial ratio is 0\.\d\d/).first()).toBeVisible({ timeout: 30_000 });
+  await lab(page).getByRole('button', { name: '❚❚ Pause' }).click();
+  await expect(lab(page).getByText(/^Energy error/)).toBeVisible();
+  // A King model in the tide fills its Jacobi radius, so its size buttons rest.
+  await lab(page).getByRole('button', { name: 'King, W₀ = 6' }).click();
+  await lab(page).getByRole('group', { name: 'The Galaxy’s tide' }).getByRole('button', { name: '8.2 kpc' }).click();
+  await expect(lab(page).getByText(/fill its Jacobi radius/)).toBeVisible();
+  await expect(lab(page).getByRole('group', { name: 'Half-mass radius at the start' }).getByRole('button', { name: '2 pc' })).toBeDisabled();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+  await expectNoBrokenFigures(page);
+  expect(errors).toEqual([]);
+});
+
+test('the galaxy mode opens Figure 31.1’s encounter, and the Milky Way meets Andromeda @phone', async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto('/colliding-galaxies/');
+  const link = figureByNumber(page, '31.1').getByRole('link', { name: 'Open this in the Orrery →' });
+  await expect(link).toHaveAttribute('href', '/orrery/?mode=galaxies&encounter=antennae&ratio=1&peri=26&e=0.5&tilt=60&spin=1&ctilt=60&cspin=1&friction=1&stars=20000');
+  await link.click();
+  await expect(mode(page, 'Colliding galaxies')).toHaveAttribute('aria-pressed', 'true', { timeout: 15_000 });
+  await expect(lab(page).getByRole('combobox', { name: 'Encounter' })).toHaveValue('antennae');
+  await lab(page).getByRole('combobox', { name: 'Encounter' }).selectOption('milky-way');
+  await expect(lab(page).getByText(/^A sketch of the Milky Way meeting Andromeda/).first()).toBeVisible();
+  await expect(lab(page).getByRole('slider', { name: /The Milky Way’s mass/ })).toBeVisible();
+  await lab(page).getByRole('button', { name: 'Fast' }).click();
+  await lab(page).getByRole('button', { name: '▶ Run the collision' }).click();
+  await expect(lab(page).getByText(/million years after the closest approach: the galaxies are \d+ kpc apart/).first()).toBeVisible({ timeout: 40_000 });
+  await lab(page).getByRole('button', { name: '❚❚ Pause' }).click();
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+  // Back to the planets: version 1's lab, fresh.
+  await mode(page, 'Planets and stars').click();
+  await expect(status(page)).toContainText('10 bodies', { timeout: 15_000 });
+  await expect(page).toHaveURL(/\/orrery\/$/);
+  await expectNoBrokenFigures(page);
+  expect(errors).toEqual([]);
+});
+
 for (const colorScheme of ['light', 'dark'] as const) {
   test.describe(`${colorScheme} mode`, () => {
     test.use({ colorScheme });
@@ -169,6 +299,21 @@ for (const colorScheme of ['light', 'dark'] as const) {
       expect(await accessibilityViolations(page)).toEqual([]);
       await lab(page).getByRole('button', { name: '3D', exact: true }).click();
       await expect(lab(page).getByText('Loading the 3D view…')).toHaveCount(0, { timeout: 15_000 });
+      expect(await accessibilityViolations(page)).toEqual([]);
+    });
+
+    test('the Orrery’s second version, in use, passes the accessibility checks', async ({ page }) => {
+      await openOrrery(page, '?preset=suns-death');
+      await expect(lab(page).getByText(/^Earth survives/)).toBeVisible();
+      await lab(page).getByRole('button', { name: 'Jump a second’s worth' }).click();
+      expect(await accessibilityViolations(page)).toEqual([]);
+      await mode(page, 'A star cluster').click();
+      await expect(lab(page).getByText(/^500 stars with Kroupa’s mix/).first()).toBeVisible({ timeout: 15_000 });
+      await expect(page.locator('canvas').first()).toBeVisible({ timeout: 15_000 });
+      expect(await accessibilityViolations(page)).toEqual([]);
+      await mode(page, 'Colliding galaxies').click();
+      await expect(lab(page).getByRole('combobox', { name: 'Encounter' })).toBeVisible();
+      await expect(page.locator('canvas').first()).toBeVisible({ timeout: 15_000 });
       expect(await accessibilityViolations(page)).toEqual([]);
     });
   });

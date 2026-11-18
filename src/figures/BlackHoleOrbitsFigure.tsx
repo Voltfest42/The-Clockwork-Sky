@@ -98,6 +98,7 @@ export function BlackHoleOrbitsFigure({ number, tryThis }: { number: string; try
     <Figure
       number={number}
       title="Orbits near a black hole"
+      orrery="preset=s2"
       description="A body orbiting a black hole, by general relativity, beside the orbit Newton’s gravity would give from the same start. Far from the hole the two agree: a black hole pulls like any other mass. Closer in, relativity’s orbits precess, a little at first and then wildly, zooming in and whirling round; inside six times GM/c² no circular orbit is stable, and gas spirals in and plunges. The effective potential shows why: relativity adds a term that pulls in hard close to the hole."
       height={1120}
       tryThis={tryThis}
